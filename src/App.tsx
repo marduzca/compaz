@@ -24,7 +24,7 @@ const App = () => (
   <div className="App">
     <header className="App-header">
       <img src={logo} className="App-logo" alt="logo" />
-      <p>This is the placeholder for compaz</p>
+      <p>This is the placeholder for compaz PWA</p>
       <a
         className="App-link"
         href="https://reactjs.org"
