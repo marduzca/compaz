@@ -24,7 +24,7 @@ const App = () => (
   <div className="App">
     <header className="App-header">
       <img src={logo} className="App-logo" alt="logo" />
-      <p>Here we will start building compaz PWA</p>
+      <p>Here we will start building compaz PWA + Updated metadata</p>
       <a
         className="App-link"
         href="https://reactjs.org"
