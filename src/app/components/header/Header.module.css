@@ -1,8 +1,16 @@
 @import '../../../variables.css';
 
 .header {
-  display: flex;
-  justify-content: space-between;
-  margin: 0 4.625rem;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 1fr auto;
+  grid-column-gap: 5.75rem;
+  align-items: center;
+  padding: 0 4.625rem;
   height: var(--header-height);
+}
+
+.logo {
+  height: 2.875rem;
+  width: 11.575rem;
 }
