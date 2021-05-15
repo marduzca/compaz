@@ -1,0 +1,8 @@
+@import '../../../variables.css';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 4.625rem;
+  height: var(--header-height);
+}

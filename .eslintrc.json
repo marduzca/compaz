@@ -30,6 +30,7 @@
     "testing-library",
     "eslint-plugin-prettier"
   ],
+  "ignorePatterns": ["build/"],
   "rules": {
     "prettier/prettier": [
       "warn",

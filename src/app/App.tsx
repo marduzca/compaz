@@ -1,9 +1,10 @@
 import React from 'react';
-import { throws } from 'assert';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
-import logo from './logo.svg';
-import './App.css';
+import styles from './App.module.css';
+import HeaderContainer from './components/header/HeaderContainer';
+import FooterContainer from './components/footer/FooterContainer';
+import PageContent from './components/content/PageContent';
 
 firebase.initializeApp({
   apiKey: 'AIzaSyCOp-cYAUCxncqLQAcWCCNzD5Wj6NOTDTc',
@@ -19,22 +20,14 @@ const firestore = firebase.firestore();
 
 firestore
   .enablePersistence({ synchronizeTabs: true })
-  .catch((err) => throws(err));
+  // eslint-disable-next-line no-console
+  .catch(() => console.log('Enable persistence failed, do nothing for now'));
 
 const App = () => (
-  <div className="App">
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <p>Here we will start building compaz PWA + Updated metadata</p>
-      <a
-        className="App-link"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Learn React
-      </a>
-    </header>
+  <div className={styles.App}>
+    <HeaderContainer />
+    <PageContent />
+    <FooterContainer />
   </div>
 );
 

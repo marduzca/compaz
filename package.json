@@ -9,8 +9,8 @@
     "test": "npm run lint && react-scripts test --watchAll=false",
     "only_test": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject",
-    "lint": "eslint . --ext .js,.ts,.tsx --max-warnings=0 && prettier --check 'src/**/*.{js,ts,tsx,css,scss,json,html,yaml}'",
-    "lint_fix": "eslint . --fix --ext .js,.ts,.tsx && prettier --write 'src/**/*.{js,ts,tsx,css,scss,json,html,yaml}'"
+    "lint": "eslint . --ext .js,.ts,.tsx --max-warnings=0 && prettier --check 'src/**/*.{js,ts,tsx,css,scss,json,html}'",
+    "lint_fix": "eslint . --fix --ext .js,.ts,.tsx && prettier --write 'src/**/*.{js,ts,tsx,css,scss,json,html}'"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.12.0",
