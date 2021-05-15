@@ -4,5 +4,5 @@
   display: flex;
   justify-content: space-between;
   margin: 0 9.375rem;
-  height: var(--footer-height);
+  height: calc(100vh * 0.205);
 }
