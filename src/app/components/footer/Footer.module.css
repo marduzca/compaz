@@ -2,7 +2,28 @@
 
 .footer {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  align-items: center;
   margin: 0 9.375rem;
   height: calc(100vh * 0.205);
+}
+
+.footerItem {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding: 2.5rem 0;
+  height: 100%;
+  width: 13.5rem;
+
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+}
+
+.footerIcon {
+  margin: 0 auto;
+  height: 2.5rem;
+  width: 2.5rem;
 }
