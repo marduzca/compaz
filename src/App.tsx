@@ -1,6 +1,7 @@
 import React from 'react';
 import { throws } from 'assert';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
 import logo from './logo.svg';
 import './App.css';
 
