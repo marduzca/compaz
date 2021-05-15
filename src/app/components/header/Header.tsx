@@ -7,10 +7,8 @@ interface HeaderItemProps {
 }
 
 const HeaderItem: React.FC<HeaderItemProps> = (props) => (
-  // eslint-disable-next-line react/prop-types,react/destructuring-assignment
   <div className={styles.menuItem}>{props.content}</div>
 );
-
 const Header: React.FC = () => (
   <header className={styles.header}>
     <div className={styles.logo}>

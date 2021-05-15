@@ -61,7 +61,9 @@
     ],
     "no-use-before-define": "off",
     // https://stackoverflow.com/questions/63818415/react-was-used-before-it-was-defined
-    "@typescript-eslint/explicit-module-boundary-types": "off"
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "react/prop-types": "off",
+    "react/destructuring-assignment": "off"
   },
   "settings": {
     "react": {
