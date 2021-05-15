@@ -7,7 +7,7 @@ interface HeaderItemProps {
 }
 
 const HeaderItem: React.FC<HeaderItemProps> = (props) => (
-  <div className={styles.menuItem}>{props.content}</div>
+  <span className={styles.menuItem}>{props.content}</span>
 );
 const Header: React.FC = () => (
   <header className={styles.header}>
