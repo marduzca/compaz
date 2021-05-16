@@ -6,16 +6,8 @@ describe('FooterContainer', () => {
   it('renders all footer items', () => {
     render(<FooterContainer />);
 
-    expect(
-      screen.getByText('Tu guía para saber como llegar')
-    ).toBeInTheDocument();
-
-    expect(
-      screen.getByText('Planea la duración de tu viaje')
-    ).toBeInTheDocument();
-
-    expect(
-      screen.getByText('Fácil y al alcance de la mano')
-    ).toBeInTheDocument();
+    expect(screen.getByText('Footer.GUIDE')).toBeInTheDocument();
+    expect(screen.getByText('Footer.TIME')).toBeInTheDocument();
+    expect(screen.getByText('Footer.EASY')).toBeInTheDocument();
   });
 });

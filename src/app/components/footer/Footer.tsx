@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { ReactComponent as CheckMarkIcon } from '../../static/img/check.svg';
 import { ReactComponent as ClockIcon } from '../../static/img/clock.svg';
 import { ReactComponent as MapIcon } from '../../static/img/map.svg';
@@ -15,12 +16,16 @@ const FooterItem: React.FC<FooterItemProps> = (props) => (
     <span>{props.text}</span>
   </div>
 );
-const Footer: React.FC = () => (
-  <footer className={styles.footer}>
-    <FooterItem text="Tu guía para saber como llegar" icon={<MapIcon />} />
-    <FooterItem text="Planea la duración de tu viaje" icon={<ClockIcon />} />
-    <FooterItem text="Fácil y al alcance de la mano" icon={<CheckMarkIcon />} />
-  </footer>
-);
+const Footer: React.FC = () => {
+  const { t } = useTranslation();
+
+  return (
+    <footer className={styles.footer}>
+      <FooterItem text={t('Footer.GUIDE')} icon={<MapIcon />} />
+      <FooterItem text={t('Footer.TIME')} icon={<ClockIcon />} />
+      <FooterItem text={t('Footer.EASY')} icon={<CheckMarkIcon />} />
+    </footer>
+  );
+};
 
 export default Footer;

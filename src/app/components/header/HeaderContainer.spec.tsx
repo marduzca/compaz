@@ -7,9 +7,9 @@ describe('HeaderContainer', () => {
     render(<HeaderContainer />);
 
     expect(screen.getByText('DROPDOWN')).toBeInTheDocument();
-    expect(screen.getByText('Historial')).toBeInTheDocument();
-    expect(screen.getByText('Como instalar')).toBeInTheDocument();
-    expect(screen.getByText('Contacto')).toBeInTheDocument();
-    expect(screen.getByText('Quienes somos')).toBeInTheDocument();
+    expect(screen.getByText('Header.HISTORY')).toBeInTheDocument();
+    expect(screen.getByText('Header.HOW_TO_INSTALL')).toBeInTheDocument();
+    expect(screen.getByText('Header.CONTACT')).toBeInTheDocument();
+    expect(screen.getByText('Header.ABOUT_US')).toBeInTheDocument();
   });
 });

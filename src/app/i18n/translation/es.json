@@ -1,0 +1,13 @@
+{
+  "Header": {
+    "HISTORY": "Historial",
+    "HOW_TO_INSTALL": "Como instalar",
+    "CONTACT": "Contacto",
+    "ABOUT_US": "Quienes somos"
+  },
+  "Footer": {
+    "GUIDE": "Tu guía para saber como llegar",
+    "TIME": "Planea la duración de tu viaje",
+    "EASY": "Fácil y al alcance de la mano"
+  }
+}
