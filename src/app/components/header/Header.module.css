@@ -21,10 +21,12 @@
   align-items: center;
   margin: 0;
   padding: 0;
-  border: none;
   background: none;
   height: 2.25rem;
   width: 2.85rem;
+  cursor: pointer;
+  border: 0;
+  outline: none;
 }
 
 .menuItem {

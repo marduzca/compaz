@@ -2,8 +2,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ReactComponent as LogoBlack } from '../../static/img/logo_black.svg';
-import { ReactComponent as FlagBolivia } from '../../static/img/flag_bolivia.svg';
 import { ReactComponent as FlagUSA } from '../../static/img/flag_usa.svg';
+import { ReactComponent as FlagBolivia } from '../../static/img/flag_bolivia.svg';
 import styles from './Header.module.css';
 import i18n from '../../i18n/instance';
 
