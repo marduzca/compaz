@@ -9,7 +9,7 @@ describe('HeaderContainer', () => {
 
     expect(screen.getByTitle('logo')).toBeInTheDocument();
     expect(
-      screen.getByRole('combobox', { name: 'language-selector' })
+      screen.getByRole('button', { name: 'language-selector' })
     ).toBeInTheDocument();
     expect(screen.getByText('Header.HISTORY')).toBeInTheDocument();
     expect(screen.getByText('Header.HOW_TO_INSTALL')).toBeInTheDocument();
@@ -18,26 +18,28 @@ describe('HeaderContainer', () => {
   });
 
   describe('when switching language', () => {
-    describe('when choosing the Bolivian Flag', () => {
+    describe('when clicking the Bolivian Flag', () => {
       it('switches the language to Spanish', () => {
+        localStorage.setItem('i18nextLng', 'en');
+
         render(<HeaderContainer />);
 
-        userEvent.selectOptions(
-          screen.getByRole('combobox', { name: 'language-selector' }),
-          '🇧🇴'
+        userEvent.click(
+          screen.getByRole('button', { name: 'language-selector' })
         );
 
         expect(localStorage.getItem('i18nextLng')).toBe('es');
       });
     });
 
-    describe('when choosing the USA Flag', () => {
+    describe('when clicking the USA Flag', () => {
       it('switches the language to English', () => {
+        localStorage.setItem('i18nextLng', 'es');
+
         render(<HeaderContainer />);
 
-        userEvent.selectOptions(
-          screen.getByRole('combobox', { name: 'language-selector' }),
-          '🇺🇸'
+        userEvent.click(
+          screen.getByRole('button', { name: 'language-selector' })
         );
 
         expect(localStorage.getItem('i18nextLng')).toBe('en');

@@ -1,7 +1,9 @@
-/* eslint-disable jsx-a11y/accessible-emoji,jsx-a11y/no-onchange,jsx-a11y/interactive-supports-focus */
+/* eslint-disable jsx-a11y/interactive-supports-focus */
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ReactComponent as LogoBlack } from '../../static/img/logo_black.svg';
+import { ReactComponent as FlagBolivia } from '../../static/img/flag_bolivia.svg';
+import { ReactComponent as FlagUSA } from '../../static/img/flag_usa.svg';
 import styles from './Header.module.css';
 import i18n from '../../i18n/instance';
 
@@ -14,7 +16,7 @@ const HeaderItem: React.FC<HeaderItemProps> = (props) => (
 );
 
 interface HeaderProps {
-  onLanguageChange: (newLanguage: string) => void;
+  onLanguageChange: () => void;
   onLogoClick: () => void;
 }
 
@@ -31,17 +33,14 @@ const Header: React.FC<HeaderProps> = (props) => {
       >
         <LogoBlack />
       </div>
-      <select
+      <button
         title="language-selector"
-        defaultValue={i18n.language}
+        type="button"
+        onClick={props.onLanguageChange}
         className={styles.languageSelector}
-        onChange={(e) => {
-          props.onLanguageChange(e.target.value);
-        }}
       >
-        <option value="es">🇧🇴</option>
-        <option value="en">🇺🇸</option>
-      </select>
+        {i18n.language === 'es' ? <FlagBolivia /> : <FlagUSA />}
+      </button>
       <HeaderItem content={t('Header.HISTORY')} />
       <HeaderItem content={t('Header.HOW_TO_INSTALL')} />
       <HeaderItem content={t('Header.CONTACT')} />
