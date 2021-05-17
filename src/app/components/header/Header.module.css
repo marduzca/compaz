@@ -15,12 +15,6 @@
   width: 11.575rem;
 }
 
-.menuItem {
-  font-weight: 500;
-  font-size: 1.25rem;
-  line-height: 1.5rem;
-}
-
 .languageSelector {
   display: flex;
   justify-content: center;
@@ -33,6 +27,8 @@
   width: 2.85rem;
 }
 
-.languageSelector:focus {
-  outline: none;
+.menuItem {
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 1.5rem;
 }
