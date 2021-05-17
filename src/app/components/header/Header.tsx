@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/accessible-emoji,jsx-a11y/no-onchange */
+/* eslint-disable jsx-a11y/accessible-emoji,jsx-a11y/no-onchange,jsx-a11y/interactive-supports-focus */
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ReactComponent as LogoBlack } from '../../static/img/logo_black.svg';
@@ -15,6 +15,7 @@ const HeaderItem: React.FC<HeaderItemProps> = (props) => (
 
 interface HeaderProps {
   onLanguageChange: (newLanguage: string) => void;
+  onLogoClick: () => void;
 }
 
 const Header: React.FC<HeaderProps> = (props) => {
@@ -22,7 +23,12 @@ const Header: React.FC<HeaderProps> = (props) => {
 
   return (
     <header className={styles.header}>
-      <div title="logo" className={styles.logo}>
+      <div
+        title="logo"
+        role="button"
+        className={styles.logo}
+        onClick={props.onLogoClick}
+      >
         <LogoBlack />
       </div>
       <select

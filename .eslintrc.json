@@ -42,12 +42,7 @@
     "react/jsx-filename-extension": [
       2,
       {
-        "extensions": [
-          ".js",
-          ",.jsx",
-          ",.ts",
-          ".tsx"
-        ]
+        "extensions": [".js", ",.jsx", ",.ts", ".tsx"]
       }
     ],
     "import/extensions": [
@@ -63,7 +58,8 @@
     // https://stackoverflow.com/questions/63818415/react-was-used-before-it-was-defined
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "react/prop-types": "off",
-    "react/destructuring-assignment": "off"
+    "react/destructuring-assignment": "off",
+    "jsx-a11y/click-events-have-key-events": "off"
   },
   "settings": {
     "react": {

@@ -7,7 +7,17 @@ const HeaderContainer: React.FC = () => {
     i18n.changeLanguage(newLanguage);
   };
 
-  return <Header onLanguageChange={handleLanguageChange} />;
+  const handleLogoClick = () => {
+    // redirect to home page with refresh
+    window.location.replace('/');
+  };
+
+  return (
+    <Header
+      onLanguageChange={handleLanguageChange}
+      onLogoClick={handleLogoClick}
+    />
+  );
 };
 
 export default HeaderContainer;
