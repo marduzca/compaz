@@ -3,8 +3,11 @@ import Header from './Header';
 import i18n from '../../i18n/instance';
 
 const HeaderContainer: React.FC = () => {
+  const SPANISH = 'es';
+  const ENGLISH = 'en';
+
   const handleLanguageChange = () => {
-    i18n.changeLanguage(i18n.language === 'es' ? 'en' : 'es');
+    i18n.changeLanguage(i18n.language.match(/en/i) ? SPANISH : ENGLISH);
   };
 
   const handleLogoClick = () => {

@@ -39,7 +39,7 @@ const Header: React.FC<HeaderProps> = (props) => {
         onClick={props.onLanguageChange}
         className={styles.languageSelector}
       >
-        {i18n.language === 'es' ? <FlagBolivia /> : <FlagUSA />}
+        {i18n.language.match(/en/i) ? <FlagBolivia /> : <FlagUSA />}
       </button>
       <HeaderItem content={t('Header.HISTORY')} />
       <HeaderItem content={t('Header.HOW_TO_INSTALL')} />
