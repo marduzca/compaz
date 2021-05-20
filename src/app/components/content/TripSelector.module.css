@@ -1,0 +1,9 @@
+@import '../../../variables.css';
+
+.container {
+  background-color: var(--primary-color);
+  height: 29.5rem;
+  width: 22.75rem;
+  border-radius: 0.625rem;
+  margin-left: 6.25rem;
+}

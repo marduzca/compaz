@@ -1,4 +1,7 @@
 :root {
+  --primary-color: #1976d2;
+  --primary-light-color: #63a4ff;
+
   --header-height: 6.5rem;
   --footer-height: 11.675rem;
 }

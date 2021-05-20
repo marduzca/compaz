@@ -1,6 +1,9 @@
 @import '../../../variables.css';
 
 .content {
+  display: flex;
+  align-items: center;
+
   background-image: url('../../static/img/background_banner.svg');
   background-size: cover;
   height: calc(100vh * 0.68);

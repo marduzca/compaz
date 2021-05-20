@@ -1,10 +1,17 @@
 import React from 'react';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+import { useCollectionDataOnce } from 'react-firebase-hooks/firestore';
 import styles from './App.module.css';
 import HeaderContainer from './components/header/HeaderContainer';
 import FooterContainer from './components/footer/FooterContainer';
 import PageContent from './components/content/PageContent';
+
+export interface Station {
+  id: string;
+  name: string;
+  lines: string[];
+}
 
 firebase.initializeApp({
   apiKey: 'AIzaSyCOp-cYAUCxncqLQAcWCCNzD5Wj6NOTDTc',
@@ -24,27 +31,15 @@ firestore
   .catch(() => console.log('Enable persistence failed, do nothing for now'));
 
 const stationsRef = firestore.collection('stations');
+const query = stationsRef.orderBy('name');
 
 const App = () => {
-  stationsRef
-    .orderBy('name')
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        // eslint-disable-next-line no-console
-        console.log(doc.id, ' => ', doc.data());
-      });
-    })
-    .catch((error) => {
-      // eslint-disable-next-line no-console
-      console.log('Error getting documents: ', error);
-    });
+  const [stations] = useCollectionDataOnce<Station>(query, { idField: 'id' });
 
   return (
     <div className={styles.App}>
       <HeaderContainer />
-      <PageContent />
+      <PageContent stations={stations} />
       <FooterContainer />
     </div>
   );
