@@ -32,10 +32,12 @@ const App = () => {
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
+        // eslint-disable-next-line no-console
         console.log(doc.id, ' => ', doc.data());
       });
     })
     .catch((error) => {
+      // eslint-disable-next-line no-console
       console.log('Error getting documents: ', error);
     });
 
