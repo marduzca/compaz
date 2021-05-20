@@ -23,12 +23,29 @@ firestore
   // eslint-disable-next-line no-console
   .catch(() => console.log('Enable persistence failed, do nothing for now'));
 
-const App = () => (
-  <div className={styles.App}>
-    <HeaderContainer />
-    <PageContent />
-    <FooterContainer />
-  </div>
-);
+const stationsRef = firestore.collection('stations');
+
+const App = () => {
+  stationsRef
+    .orderBy('name')
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, ' => ', doc.data());
+      });
+    })
+    .catch((error) => {
+      console.log('Error getting documents: ', error);
+    });
+
+  return (
+    <div className={styles.App}>
+      <HeaderContainer />
+      <PageContent />
+      <FooterContainer />
+    </div>
+  );
+};
 
 export default App;
