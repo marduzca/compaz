@@ -1,6 +1,7 @@
 import React from 'react';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+import { useCollectionDataOnce } from 'react-firebase-hooks/firestore';
 import styles from './App.module.css';
 import HeaderContainer from './components/header/HeaderContainer';
 import FooterContainer from './components/footer/FooterContainer';
@@ -29,14 +30,11 @@ firestore
   // eslint-disable-next-line no-console
   .catch(() => console.log('Enable persistence failed, do nothing for now'));
 
+const stationsRef = firestore.collection('stations');
+const query = stationsRef.orderBy('name');
+
 const App = () => {
-  const stations = [
-    {
-      id: 'irpavi',
-      name: 'Irpavi',
-      lines: ['green'],
-    },
-  ];
+  const [stations] = useCollectionDataOnce<Station>(query, { idField: 'id' });
 
   return (
     <div className={styles.App}>
