@@ -1,13 +1,11 @@
 import React from 'react';
 import TripSelector from './TripSelector';
-import { Station } from '../../App';
+import { useFirebase } from '../providers/FirebaseProvider';
 
-interface TripSelectorContainerProps {
-  stations: Station[] | undefined;
-}
+const TripSelectorContainer: React.FC = () => {
+  const { stations } = useFirebase();
 
-const TripSelectorContainer: React.FC<TripSelectorContainerProps> = (props) => (
-  <TripSelector stations={props.stations} />
-);
+  return <TripSelector stations={stations} />;
+};
 
 export default TripSelectorContainer;
