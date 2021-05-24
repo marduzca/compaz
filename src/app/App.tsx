@@ -5,12 +5,6 @@ import FooterContainer from './components/footer/FooterContainer';
 import PageContent from './components/content/PageContent';
 import { FirebaseProvider } from './components/providers/FirebaseProvider';
 
-export interface Station {
-  id: string;
-  name: string;
-  lines: string[];
-}
-
 const App = () => (
   <div className={styles.App}>
     <HeaderContainer />

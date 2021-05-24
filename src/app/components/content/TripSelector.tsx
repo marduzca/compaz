@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './TripSelector.module.css';
-import { Station } from '../../App';
+import { Station } from '../providers/FirebaseProvider';
 
 interface TripSelectorProps {
   stations: Station[];
@@ -9,7 +9,7 @@ interface TripSelectorProps {
 const TripSelector: React.FC<TripSelectorProps> = (props) => (
   <div className={styles.container}>
     {props.stations.length ? (
-      <select name="stations" id="stations">
+      <select title="stations" name="stations">
         {props.stations.map((station) => (
           <option key={station.id} value={station.id}>
             {station.name}

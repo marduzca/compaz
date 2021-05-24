@@ -13,7 +13,7 @@ interface FirebaseContext {
   stations: Station[];
 }
 
-const FirebaseContext = createContext<FirebaseContext>({
+export const FirebaseContext = createContext<FirebaseContext>({
   stations: [],
 });
 
