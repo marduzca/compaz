@@ -32,6 +32,12 @@
   ],
   "ignorePatterns": ["build/"],
   "rules": {
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": ["src/app/**/*.spec.{ts,tsx}"]
+      }
+    ],
     "prettier/prettier": [
       "warn",
       {
