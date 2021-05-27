@@ -1,6 +1,9 @@
 @import '../../../variables.css';
 
 .container {
+  display: flex;
+  justify-content: center;
+  padding: 3.125rem 1.25rem;
   background-color: var(--primary-color);
   height: 29.5rem;
   width: 22.75rem;

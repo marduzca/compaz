@@ -20,7 +20,7 @@ describe('TripSelectorContainer', () => {
     jest.clearAllMocks();
   });
 
-  it('renders the stations in the dropdown', () => {
+  it('renders the stations in the dropdown when the locations load', () => {
     const FirebaseProviderMock: React.ComponentType = ({ children }) => (
       <FirebaseContext.Provider
         value={{
@@ -44,7 +44,23 @@ describe('TripSelectorContainer', () => {
 
     render(<TripSelectorContainer />, { wrapper: FirebaseProviderMock });
 
-    expect(screen.getByText('Some station')).toBeVisible();
-    expect(screen.getByText('Another station')).toBeVisible();
+    expect(screen.getByText('Salida')).toBeVisible();
+    expect(screen.getByText('Destino')).toBeVisible();
+  });
+
+  it('renders the loading text in the dropdown when the locations are being retrieved', () => {
+    const FirebaseProviderMock: React.ComponentType = ({ children }) => (
+      <FirebaseContext.Provider
+        value={{
+          stations: [] as Station[],
+        }}
+      >
+        {children}
+      </FirebaseContext.Provider>
+    );
+
+    render(<TripSelectorContainer />, { wrapper: FirebaseProviderMock });
+
+    expect(screen.getByText('Loading...')).toBeVisible();
   });
 });

@@ -1,0 +1,157 @@
+@import '../../../../variables.css';
+
+.wrapper {
+  position: relative;
+  font-size: 1rem;
+  height: 2.75rem;
+  width: 20.25rem;
+}
+
+.input {
+  border-radius: 0.625rem;
+}
+
+.open input {
+  border-bottom-color: rgb(101, 107, 110) !important;
+}
+
+.open ul {
+  padding: 0.5rem 0;
+  visibility: visible;
+}
+
+.combobox {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 3.25rem;
+  font-size: 1.25rem;
+  line-height: 1.25rem;
+}
+
+.combobox :hover > input {
+  border-bottom-color: rgb(101, 107, 110);
+}
+
+.combobox > input {
+  font: inherit;
+  height: 100%;
+  padding-left: 0.75rem;
+  outline: none;
+  background-color: rgb(236, 237, 237);
+  color: rgb(45, 51, 53);
+  border: 1px solid transparent;
+  border-bottom: 1px solid rgb(198, 200, 201);
+}
+
+.combobox > label {
+  top: 0;
+  position: absolute;
+  padding-left: 0.8125rem;
+  transform: translate(0, 1rem) scale(1);
+  transform-origin: top left;
+  transition-property: transform, opacity, font-size;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-out;
+  pointer-events: none;
+  color: rgb(82, 89, 92);
+}
+
+.combobox > button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1.125rem 0.875rem;
+  border: 0;
+  background-color: transparent;
+
+  cursor: pointer;
+}
+
+.selected {
+  color: rgb(45, 51, 53);
+}
+
+.selected ::after {
+  border-left: 2px solid rgb(45, 51, 53);
+  border-top: 2px solid rgb(45, 51, 53);
+}
+
+.selected > input {
+  padding-top: 1rem;
+}
+
+.selected > label {
+  font-size: 0.75rem;
+  position: absolute;
+  color: rgb(120, 126, 128);
+  transform: translate(0, 0.5rem) scale(1);
+
+  transform-origin: top left;
+  transition-property: transform, opacity, font-size;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-out;
+  pointer-events: none;
+}
+
+.selected > div {
+  height: 100%;
+}
+
+.selected > div > span {
+  padding-top: 1.5rem;
+}
+
+.optionList {
+  visibility: hidden;
+  position: absolute;
+  left: 0;
+  top: 3.25rem;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0;
+  max-height: 18rem;
+  overflow: auto;
+  background-color: rgb(255, 255, 255);
+  z-index: 999;
+  border-top: 0.1429rem solid var(--primary-light-color);
+  text-align: left;
+}
+
+.highlighted {
+  background-color: rgb(236, 237, 237);
+  color: rgb(45, 51, 53);
+}
+
+.option {
+  line-height: 1.25rem;
+  padding: 0.375rem 0.75rem;
+  list-style: none;
+  cursor: pointer;
+}
+
+.optionList :not(:last-child) {
+  border-bottom: 1px dotted #e0e0e0;
+}
+
+.toggleButton {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.withValidationError .combobox {
+  border: 1px solid rgb(204, 0, 0);
+}
+
+.withValidationError .combobox input {
+  border: 0;
+}
+
+.withValidationError .combobox label {
+  color: rgb(204, 0, 0);
+}
+
+.withValidationError .optionList {
+  top: calc(3.25rem + 2px);
+}
