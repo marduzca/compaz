@@ -14,7 +14,7 @@ const TripSelector: React.FC<TripSelectorProps> = (props) => {
   return (
     <div className={styles.container}>
       {props.stations.length ? (
-        <div>
+        <div className={styles.stationsSelector}>
           <Combobox
             name="stations"
             placeholder="Salida"

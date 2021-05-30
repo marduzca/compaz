@@ -3,8 +3,6 @@
 .wrapper {
   position: relative;
   font-size: 1rem;
-  height: 2.75rem;
-  width: 20.25rem;
 }
 
 .input {
@@ -24,9 +22,9 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  height: 3.25rem;
+  height: 2.75rem;
   font-size: 1.25rem;
-  line-height: 1.25rem;
+  line-height: 0.85rem;
 }
 
 .combobox :hover > input {
@@ -36,9 +34,8 @@
 .combobox > input {
   font: inherit;
   height: 100%;
-  padding-left: 0.75rem;
+  padding-left: 0.625rem;
   outline: none;
-  background-color: rgb(236, 237, 237);
   color: rgb(45, 51, 53);
   border: 1px solid transparent;
   border-bottom: 1px solid rgb(198, 200, 201);
@@ -47,7 +44,7 @@
 .combobox > label {
   top: 0;
   position: absolute;
-  padding-left: 0.8125rem;
+  padding-left: 0.625rem;
   transform: translate(0, 1rem) scale(1);
   transform-origin: top left;
   transition-property: transform, opacity, font-size;
@@ -58,14 +55,19 @@
 }
 
 .combobox > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  background: none;
+  cursor: pointer;
+  border: 0;
+  outline: none;
+
   position: absolute;
   top: 0;
   right: 0;
-  padding: 1.125rem 0.875rem;
-  border: 0;
-  background-color: transparent;
-
-  cursor: pointer;
+  padding: 0.625rem 0.625rem;
 }
 
 .selected {
@@ -137,7 +139,6 @@
 
 .toggleButton {
   width: 1.5rem;
-  height: 1.5rem;
 }
 
 .withValidationError .combobox {
