@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import TripSelector from './TripSelector';
-import { useFirebase } from '../providers/FirebaseProvider';
+import { useStations } from '../providers/FirebaseProvider';
 
 const TripSelectorContainer: React.FC = () => {
-  const { stations } = useFirebase();
+  const { stations } = useStations();
   const [origin, setOrigin] = useState<string>('');
   const [destination, setDestination] = useState<string>('');
 
