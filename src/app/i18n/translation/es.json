@@ -5,6 +5,12 @@
     "CONTACT": "Contacto",
     "ABOUT_US": "Quienes somos"
   },
+  "Content": {
+    "TripSelector": {
+      "ORIGIN_PLACEHOLDER": "Salida",
+      "DESTINATION_PLACEHOLDER": "Destino"
+    }
+  },
   "Footer": {
     "GUIDE": "Tu guía para saber como llegar",
     "TIME": "Planea la duración de tu viaje",

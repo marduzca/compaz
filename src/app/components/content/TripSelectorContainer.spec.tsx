@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import TripSelectorContainer from './TripSelectorContainer';
 import * as FirebaseProvider from '../providers/FirebaseProvider';
 import { Station } from '../providers/FirebaseProvider';
@@ -23,7 +23,7 @@ describe('TripSelectorContainer', () => {
     jest.clearAllMocks();
   });
 
-  it('renders the stations in the dropdown when the locations load', async () => {
+  it('renders the stations dropdowns when the stations load', () => {
     useStationsMock.mockReturnValue({
       stations: [
         {
@@ -31,21 +31,64 @@ describe('TripSelectorContainer', () => {
           name: 'Some station',
           lines: ['green'],
         },
-        {
-          id: 'another_station',
-          name: 'Another station',
-          lines: ['silver'],
-        },
       ] as Station[],
     });
 
     render(<TripSelectorContainer />);
 
-    expect(screen.getByText('Salida')).toBeVisible();
-    expect(screen.getByText('Destino')).toBeVisible();
+    expect(
+      screen.getByRole('textbox', {
+        name: 'Content.TripSelector.ORIGIN_PLACEHOLDER',
+      })
+    ).toBeVisible();
+    expect(
+      screen.getByRole('textbox', {
+        name: 'Content.TripSelector.DESTINATION_PLACEHOLDER',
+      })
+    ).toBeVisible();
   });
 
-  it('renders the loading text in the dropdown when the locations are being retrieved', () => {
+  it('enables to select stations from the dropdown', () => {
+    const availableStations = [
+      {
+        id: 'some_station',
+        name: 'Some station',
+        lines: ['green'],
+      },
+      {
+        id: 'another_station',
+        name: 'Another station',
+        lines: ['silver'],
+      },
+    ] as Station[];
+    useStationsMock.mockReturnValue({
+      stations: availableStations,
+    });
+
+    render(<TripSelectorContainer />);
+
+    fireEvent.change(
+      screen.getByRole('textbox', {
+        name: 'Content.TripSelector.ORIGIN_PLACEHOLDER',
+      }),
+      {
+        target: { value: availableStations[0].id },
+      }
+    );
+    fireEvent.change(
+      screen.getByRole('textbox', {
+        name: 'Content.TripSelector.DESTINATION_PLACEHOLDER',
+      }),
+      {
+        target: { value: availableStations[1].id },
+      }
+    );
+
+    expect(screen.getByText(availableStations[0].name)).toBeVisible();
+    expect(screen.getByText(availableStations[1].name)).toBeVisible();
+  });
+
+  it('renders the loading text in the dropdown when the stations are being retrieved', () => {
     useStationsMock.mockReturnValue({
       stations: [] as Station[],
     });
