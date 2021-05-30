@@ -1,11 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TripSelector from './TripSelector';
 import { useFirebase } from '../providers/FirebaseProvider';
 
 const TripSelectorContainer: React.FC = () => {
   const { stations } = useFirebase();
+  const [origin, setOrigin] = useState<string>('');
+  const [destination, setDestination] = useState<string>('');
 
-  return <TripSelector stations={stations} />;
+  const handleOriginChange = (newOrigin: string) => {
+    setOrigin(newOrigin);
+  };
+
+  const handleDestinationChange = (newDestination: string) => {
+    setDestination(newDestination);
+  };
+
+  return (
+    <TripSelector
+      stations={stations}
+      origin={origin}
+      onOriginChange={handleOriginChange}
+      destination={destination}
+      onDestinationChange={handleDestinationChange}
+    />
+  );
 };
 
 export default TripSelectorContainer;
