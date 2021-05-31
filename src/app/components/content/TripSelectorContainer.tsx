@@ -11,21 +11,26 @@ const TripSelectorContainer: React.FC = () => {
   const [destinationValidationError, setDestinationValidationError] =
     useState<boolean>(false);
 
-  const isStationsListEmpty = (searchTerm: string): boolean =>
-    !stations.some((station) =>
-      station.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+  const shouldShowValidationError = (
+    filterOutValue: string,
+    searchTerm: string
+  ): boolean =>
+    !stations
+      .filter((station) => station.name !== filterOutValue)
+      .some((station) =>
+        station.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
 
   const handleOriginChange = (newOrigin: string) => {
     setOrigin(newOrigin);
-
-    setOriginValidationError(isStationsListEmpty(newOrigin));
+    setOriginValidationError(shouldShowValidationError(destination, newOrigin));
   };
 
   const handleDestinationChange = (newDestination: string) => {
     setDestination(newDestination);
-
-    setDestinationValidationError(isStationsListEmpty(newDestination));
+    setDestinationValidationError(
+      shouldShowValidationError(origin, newDestination)
+    );
   };
 
   return (

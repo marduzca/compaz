@@ -28,9 +28,12 @@ const TripSelector: React.FC<TripSelectorProps> = (props) => {
                 ? ` - ${t('Content.TripSelector.ERROR')}`
                 : ''
             }`}
-            options={props.stations.map(
-              (station) => ({ value: station.id, text: station.name } as Option)
-            )}
+            options={props.stations
+              .filter((station) => station.name !== props.destination)
+              .map(
+                (station) =>
+                  ({ value: station.id, text: station.name } as Option)
+              )}
             inputValue={props.origin}
             onChange={props.onOriginChange}
             validationError={props.originValidationError}
@@ -45,7 +48,7 @@ const TripSelector: React.FC<TripSelectorProps> = (props) => {
                 : ''
             }`}
             options={props.stations
-              .filter((station) => station.name !== origin)
+              .filter((station) => station.name !== props.origin)
               .map(
                 (station) =>
                   ({ value: station.id, text: station.name } as Option)

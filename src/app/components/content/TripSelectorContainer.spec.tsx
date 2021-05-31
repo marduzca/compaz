@@ -126,6 +126,68 @@ describe('TripSelectorContainer', () => {
 
       expect(screen.getByText(/Content.TripSelector.ERROR/)).toBeVisible();
     });
+
+    it('removes the station from the destination when chosen already as origin', () => {
+      useStationsMock.mockReturnValue({
+        stations: availableStations,
+      });
+
+      render(<TripSelectorContainer />);
+
+      fireEvent.change(
+        screen.getByRole('textbox', {
+          name: 'Content.TripSelector.ORIGIN_PLACEHOLDER',
+        }),
+        {
+          target: { value: availableStations[0].name },
+        }
+      );
+      fireEvent.change(
+        screen.getByRole('textbox', {
+          name: 'Content.TripSelector.DESTINATION_PLACEHOLDER',
+        }),
+        {
+          target: { value: availableStations[0].name },
+        }
+      );
+
+      expect(
+        screen.getByText(
+          'Content.TripSelector.DESTINATION_PLACEHOLDER - Content.TripSelector.ERROR'
+        )
+      ).toBeVisible();
+    });
+
+    it('removes the station from the origin when chosen already as destination', () => {
+      useStationsMock.mockReturnValue({
+        stations: availableStations,
+      });
+
+      render(<TripSelectorContainer />);
+
+      fireEvent.change(
+        screen.getByRole('textbox', {
+          name: 'Content.TripSelector.DESTINATION_PLACEHOLDER',
+        }),
+        {
+          target: { value: availableStations[0].name },
+        }
+      );
+      fireEvent.change(
+        screen.getByRole('textbox', {
+          name: 'Content.TripSelector.ORIGIN_PLACEHOLDER',
+        }),
+        {
+          target: { value: availableStations[0].name },
+        }
+      );
+
+      expect(
+        screen.getByText(
+          'Content.TripSelector.ORIGIN_PLACEHOLDER - Content.TripSelector.ERROR'
+        )
+      ).toBeVisible();
+    });
   });
 
   it('renders the loading text when the stations are being retrieved', () => {
