@@ -33,6 +33,11 @@ const TripSelectorContainer: React.FC = () => {
     );
   };
 
+  const handleSwitcherClick = () => {
+    setOrigin(destination);
+    setDestination(origin);
+  };
+
   return (
     <TripSelector
       stations={stations}
@@ -42,6 +47,7 @@ const TripSelectorContainer: React.FC = () => {
       onDestinationChange={handleDestinationChange}
       originValidationError={originValidationError}
       destinationValidationError={destinationValidationError}
+      onSwitcherClick={handleSwitcherClick}
     />
   );
 };

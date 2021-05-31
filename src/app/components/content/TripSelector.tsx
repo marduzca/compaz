@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './TripSelector.module.css';
+import { ReactComponent as Switcher } from '../../static/img/switcher.svg';
 import { Station } from '../providers/FirebaseProvider';
 import Combobox, { Option } from './combobox/Combobox';
 
@@ -8,10 +9,11 @@ interface TripSelectorProps {
   stations: Station[];
   origin: string;
   destination: string;
-  onOriginChange: (newOrigin: string) => void;
-  onDestinationChange: (newDestination: string) => void;
   originValidationError: boolean;
   destinationValidationError: boolean;
+  onOriginChange: (newOrigin: string) => void;
+  onDestinationChange: (newDestination: string) => void;
+  onSwitcherClick: () => void;
 }
 
 const TripSelector: React.FC<TripSelectorProps> = (props) => {
@@ -38,6 +40,14 @@ const TripSelector: React.FC<TripSelectorProps> = (props) => {
             onChange={props.onOriginChange}
             validationError={props.originValidationError}
           />
+          <button
+            title="stations-switcher"
+            type="button"
+            className={styles.stationsSwitcher}
+            onClick={props.onSwitcherClick}
+          >
+            <Switcher />
+          </button>
           <Combobox
             name="destination"
             placeholder={`${t(

@@ -188,6 +188,46 @@ describe('TripSelectorContainer', () => {
         )
       ).toBeVisible();
     });
+
+    it('switches origin and destination content when clicking on switcher button', () => {
+      useStationsMock.mockReturnValue({
+        stations: availableStations,
+      });
+
+      render(<TripSelectorContainer />);
+
+      fireEvent.change(
+        screen.getByRole('textbox', {
+          name: 'Content.TripSelector.ORIGIN_PLACEHOLDER',
+        }),
+        {
+          target: { value: availableStations[0].name },
+        }
+      );
+      fireEvent.change(
+        screen.getByRole('textbox', {
+          name: 'Content.TripSelector.DESTINATION_PLACEHOLDER',
+        }),
+        {
+          target: { value: availableStations[1].name },
+        }
+      );
+
+      userEvent.click(
+        screen.getByRole('button', { name: 'stations-switcher' })
+      );
+
+      expect(
+        screen.getByRole('textbox', {
+          name: 'Content.TripSelector.ORIGIN_PLACEHOLDER',
+        })
+      ).toHaveValue(availableStations[1].name);
+      expect(
+        screen.getByRole('textbox', {
+          name: 'Content.TripSelector.DESTINATION_PLACEHOLDER',
+        })
+      ).toHaveValue(availableStations[0].name);
+    });
   });
 
   it('renders the loading text when the stations are being retrieved', () => {
