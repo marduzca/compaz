@@ -48,8 +48,8 @@ const Combobox: React.FC<ComboboxProps> = (props) => {
   });
 
   const filterOptions = (options: Option[], filterValue: string) =>
-    options.filter((item) =>
-      item.text.toLowerCase().includes(filterValue.toLowerCase())
+    options.filter((option) =>
+      option.text.toLowerCase().includes(filterValue.toLowerCase())
     );
 
   useEffect(() => {

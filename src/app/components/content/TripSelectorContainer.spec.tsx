@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, prettyDOM, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import TripSelectorContainer from './TripSelectorContainer';
 import * as FirebaseProvider from '../providers/FirebaseProvider';
@@ -20,20 +20,27 @@ jest.mock('firebase/app', () => ({
 describe('TripSelectorContainer', () => {
   const useStationsMock = jest.spyOn(FirebaseProvider, 'useStations');
 
-  afterAll(() => {
+  afterEach(() => {
     jest.clearAllMocks();
   });
 
   describe('when stations have been loaded', () => {
+    const availableStations = [
+      {
+        id: 'some_station',
+        name: 'Some station',
+        lines: ['green'],
+      },
+      {
+        id: 'another_station',
+        name: 'Another station',
+        lines: ['silver'],
+      },
+    ] as Station[];
+
     it('renders the stations dropdowns when the stations load', () => {
       useStationsMock.mockReturnValue({
-        stations: [
-          {
-            id: 'some_station',
-            name: 'Some station',
-            lines: ['green'],
-          },
-        ] as Station[],
+        stations: availableStations,
       });
 
       render(<TripSelectorContainer />);
@@ -51,18 +58,6 @@ describe('TripSelectorContainer', () => {
     });
 
     it('allows to select stations from the dropdown', () => {
-      const availableStations = [
-        {
-          id: 'some_station',
-          name: 'Some station',
-          lines: ['green'],
-        },
-        {
-          id: 'another_station',
-          name: 'Another station',
-          lines: ['silver'],
-        },
-      ] as Station[];
       useStationsMock.mockReturnValue({
         stations: availableStations,
       });
@@ -74,7 +69,7 @@ describe('TripSelectorContainer', () => {
           name: 'Content.TripSelector.ORIGIN_PLACEHOLDER',
         }),
         {
-          target: { value: availableStations[0].id },
+          target: { value: availableStations[0].name },
         }
       );
       fireEvent.change(
@@ -82,7 +77,7 @@ describe('TripSelectorContainer', () => {
           name: 'Content.TripSelector.DESTINATION_PLACEHOLDER',
         }),
         {
-          target: { value: availableStations[1].id },
+          target: { value: availableStations[1].name },
         }
       );
 
@@ -90,12 +85,46 @@ describe('TripSelectorContainer', () => {
         screen.getByRole('textbox', {
           name: 'Content.TripSelector.ORIGIN_PLACEHOLDER',
         })
-      ).toHaveValue(availableStations[0].id);
+      ).toHaveValue(availableStations[0].name);
       expect(
         screen.getByRole('textbox', {
           name: 'Content.TripSelector.DESTINATION_PLACEHOLDER',
         })
-      ).toHaveValue(availableStations[1].id);
+      ).toHaveValue(availableStations[1].name);
+    });
+
+    it("shows an error when the current origin input doesn't correspond to any list item", () => {
+      useStationsMock.mockReturnValue({
+        stations: availableStations,
+      });
+
+      render(<TripSelectorContainer />);
+
+      userEvent.type(
+        screen.getByRole('textbox', {
+          name: 'Content.TripSelector.ORIGIN_PLACEHOLDER',
+        }),
+        'This is a non-existent station'
+      );
+
+      expect(screen.getByText(/Content.TripSelector.ERROR/)).toBeVisible();
+    });
+
+    it("shows an error when the current destination input doesn't correspond to any list item", () => {
+      useStationsMock.mockReturnValue({
+        stations: availableStations,
+      });
+
+      render(<TripSelectorContainer />);
+
+      userEvent.type(
+        screen.getByRole('textbox', {
+          name: 'Content.TripSelector.DESTINATION_PLACEHOLDER',
+        }),
+        'This is a non-existent station'
+      );
+
+      expect(screen.getByText(/Content.TripSelector.ERROR/)).toBeVisible();
     });
   });
 

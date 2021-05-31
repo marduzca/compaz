@@ -7,8 +7,9 @@
   },
   "Content": {
     "TripSelector": {
-      "ORIGIN_PLACEHOLDER": "Origin",
-      "DESTINATION_PLACEHOLDER": "Destination"
+      "DESTINATION_PLACEHOLDER": "Destination",
+      "ERROR": "Non-existent station",
+      "ORIGIN_PLACEHOLDER": "Origin"
     }
   },
   "Footer": {

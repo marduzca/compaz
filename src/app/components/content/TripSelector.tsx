@@ -10,6 +10,8 @@ interface TripSelectorProps {
   destination: string;
   onOriginChange: (newOrigin: string) => void;
   onDestinationChange: (newDestination: string) => void;
+  originValidationError: boolean;
+  destinationValidationError: boolean;
 }
 
 const TripSelector: React.FC<TripSelectorProps> = (props) => {
@@ -21,17 +23,27 @@ const TripSelector: React.FC<TripSelectorProps> = (props) => {
         <div className={styles.stationsSelector}>
           <Combobox
             name="origin"
-            placeholder={t('Content.TripSelector.ORIGIN_PLACEHOLDER')}
+            placeholder={`${t('Content.TripSelector.ORIGIN_PLACEHOLDER')}${
+              props.originValidationError
+                ? ` - ${t('Content.TripSelector.ERROR')}`
+                : ''
+            }`}
             options={props.stations.map(
               (station) => ({ value: station.id, text: station.name } as Option)
             )}
             inputValue={props.origin}
             onChange={props.onOriginChange}
-            validationError={false}
+            validationError={props.originValidationError}
           />
           <Combobox
             name="destination"
-            placeholder={t('Content.TripSelector.DESTINATION_PLACEHOLDER')}
+            placeholder={`${t(
+              'Content.TripSelector.DESTINATION_PLACEHOLDER'
+            )} ${
+              props.destinationValidationError
+                ? ` - ${t('Content.TripSelector.ERROR')}`
+                : ''
+            }`}
             options={props.stations
               .filter((station) => station.name !== origin)
               .map(
@@ -40,7 +52,7 @@ const TripSelector: React.FC<TripSelectorProps> = (props) => {
               )}
             inputValue={props.destination}
             onChange={props.onDestinationChange}
-            validationError={false}
+            validationError={props.destinationValidationError}
           />
         </div>
       ) : (
