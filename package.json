@@ -10,7 +10,8 @@
     "only_test": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject",
     "lint": "eslint . --ext .js,.ts,.tsx --max-warnings=0 && prettier --check 'src/**/*.{js,ts,tsx,css,scss,json,html}'",
-    "lint_fix": "eslint . --fix --ext .js,.ts,.tsx && prettier --write 'src/**/*.{js,ts,tsx,css,scss,json,html}'"
+    "lint_fix": "eslint . --fix --ext .js,.ts,.tsx && prettier --write 'src/**/*.{js,ts,tsx,css,scss,json,html}'",
+    "update_deps": "npm update && npm test && npm run build && git add . && git commit -m \"update deps\""
   },
   "dependencies": {
     "@types/node": "^15.6.1",
