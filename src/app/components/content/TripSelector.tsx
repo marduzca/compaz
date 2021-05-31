@@ -39,7 +39,7 @@ const TripSelector: React.FC<TripSelectorProps> = (props) => {
                   ({ value: station.id, text: station.name } as Option)
               )}
             inputValue={props.destination}
-            onChange={props.onOriginChange}
+            onChange={props.onDestinationChange}
             validationError={false}
           />
         </div>
