@@ -9,7 +9,8 @@
     "TripSelector": {
       "DESTINATION_PLACEHOLDER": "Destino",
       "ERROR": "Estación no existente",
-      "ORIGIN_PLACEHOLDER": "Salida"
+      "ORIGIN_PLACEHOLDER": "Salida",
+      "SEARCH_BUTTON": "Buscar"
     }
   },
   "Footer": {

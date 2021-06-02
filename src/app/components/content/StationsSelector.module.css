@@ -1,7 +1,6 @@
 @import '../../../variables.css';
 
 .stationsSelector {
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
   height: fit-content;

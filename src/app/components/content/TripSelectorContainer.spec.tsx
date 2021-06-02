@@ -24,7 +24,7 @@ describe('TripSelectorContainer', () => {
   });
 
   describe('when stations have been loaded', () => {
-    it('renders the stations dropdowns', () => {
+    it('renders the trip selector content', () => {
       useStationsMock.mockReturnValue({
         stations: [
           {
@@ -45,6 +45,11 @@ describe('TripSelectorContainer', () => {
       expect(
         screen.getByRole('textbox', {
           name: 'Content.TripSelector.DESTINATION_PLACEHOLDER',
+        })
+      ).toBeVisible();
+      expect(
+        screen.getByRole('button', {
+          name: 'trigger-search',
         })
       ).toBeVisible();
     });

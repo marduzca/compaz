@@ -2,11 +2,35 @@
 
 .container {
   display: flex;
-  justify-content: center;
-  padding: 3.125rem 1.25rem;
+  flex-direction: column;
+  justify-content: space-between;
+
   background-color: var(--primary-color);
   height: 29.5rem;
   width: 22.75rem;
   border-radius: 0.625rem;
+  padding: 3.125rem 1.25rem;
   margin-left: 6.25rem;
+}
+
+.searchButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 1.625rem;
+  margin: 0;
+  border: 0;
+  outline: none;
+
+  height: 5rem;
+  border-radius: 0.625rem;
+  background-color: var(--primary-light-color);
+}
+
+.searchButton p {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  flex-grow: 1;
 }
