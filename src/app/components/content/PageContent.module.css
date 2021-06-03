@@ -7,4 +7,5 @@
   background-image: url('../../static/img/background_banner.svg');
   background-size: cover;
   height: calc(100vh * 0.68);
+  padding: 4.25rem 0;
 }
