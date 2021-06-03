@@ -11,6 +11,15 @@
 }
 
 .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+  border: 0;
+  outline: none;
   height: 2.875rem;
   width: 11.575rem;
 }

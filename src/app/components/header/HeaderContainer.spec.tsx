@@ -7,14 +7,14 @@ describe('HeaderContainer', () => {
   it('renders all header items', () => {
     render(<HeaderContainer />);
 
-    expect(screen.getByTitle('logo')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'home' })).toBeVisible();
     expect(
       screen.getByRole('button', { name: 'language-selector' })
-    ).toBeInTheDocument();
-    expect(screen.getByText('Header.HISTORY')).toBeInTheDocument();
-    expect(screen.getByText('Header.HOW_TO_INSTALL')).toBeInTheDocument();
-    expect(screen.getByText('Header.CONTACT')).toBeInTheDocument();
-    expect(screen.getByText('Header.ABOUT_US')).toBeInTheDocument();
+    ).toBeVisible();
+    expect(screen.getByText('Header.HISTORY')).toBeVisible();
+    expect(screen.getByText('Header.HOW_TO_INSTALL')).toBeVisible();
+    expect(screen.getByText('Header.CONTACT')).toBeVisible();
+    expect(screen.getByText('Header.ABOUT_US')).toBeVisible();
   });
 
   describe('when switching language', () => {

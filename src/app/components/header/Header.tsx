@@ -25,14 +25,14 @@ const Header: React.FC<HeaderProps> = (props) => {
 
   return (
     <header className={styles.header}>
-      <div
-        title="logo"
-        role="button"
+      <button
+        title="home"
+        type="button"
         className={styles.logo}
         onClick={props.onLogoClick}
       >
         <LogoBlack />
-      </div>
+      </button>
       <button
         title="language-selector"
         type="button"
