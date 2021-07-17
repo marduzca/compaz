@@ -13,7 +13,10 @@
     "lint_fix": "eslint . --fix --ext .js,.ts,.tsx && prettier --write 'src/**/*.{js,ts,tsx,css,scss,json,html}'",
     "upgrade_deps": "npm outdated || true && npm update && npm outdated || true && npm test && npm run build && git add . && git commit -m \"update deps\"",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "loki:update": "npm run build-storybook && loki update",
+    "loki:test": "npm run build-storybook && loki test",
+    "loki:ci": "npm run build-storybook && loki test --requireReference --verboseRenderer"
   },
   "dependencies": {
     "@storybook/addon-actions": "^6.2.9",
@@ -30,6 +33,7 @@
     "i18next": "^20.3.2",
     "i18next-browser-languagedetector": "^6.1.2",
     "i18next-http-backend": "^1.2.6",
+    "loki": "^0.28.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-firebase-hooks": "^3.0.4",
@@ -95,5 +99,17 @@
         }
       }
     ]
+  },
+  "loki": {
+    "configurations": {
+      "chrome.laptop": {
+        "target": "chrome.docker",
+        "width": 1680,
+        "height": 1050,
+        "deviceScaleFactor": 1,
+        "mobile": false,
+        "fitWindow": false
+      }
+    }
   }
 }
