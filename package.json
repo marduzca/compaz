@@ -16,7 +16,7 @@
     "build-storybook": "build-storybook -s public",
     "loki:update": "npm run build-storybook && loki update",
     "loki:test": "npm run build-storybook && loki test",
-    "loki:ci": "npm run build-storybook && loki test --requireReference --verboseRenderer"
+    "loki:ci": "build-storybook && loki --requireReference --reactUri file:./storybook-static"
   },
   "dependencies": {
     "@storybook/addon-actions": "^6.2.9",
