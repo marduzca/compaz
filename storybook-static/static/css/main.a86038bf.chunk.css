@@ -65,6 +65,12 @@
   line-height: 1.5rem;
 }
 
+@media only screen and (max-width: 480px) {
+  .Header_header__2-Dkw {
+    display: none;
+  }
+}
+
 .Footer_footer__3ZpJf {
   display: -webkit-flex;
   display: flex;
@@ -99,6 +105,12 @@
   width: 2.5rem;
 }
 
+@media only screen and (max-width: 480px) {
+  .Footer_footer__3ZpJf {
+    display: none;
+  }
+}
+
 .PageContent_content__1eqQU {
   display: -webkit-flex;
   display: flex;
@@ -109,6 +121,14 @@
   background-size: cover;
   height: calc(100vh * 0.68);
   padding: 4.25rem 0;
+}
+
+@media only screen and (max-width: 480px) {
+  .PageContent_content__1eqQU {
+    background: none;
+    padding: 0;
+    height: calc(100vh * 0.35);
+  }
 }
 
 .TripSelector_container__16Smi {
@@ -151,6 +171,26 @@
   color: white;
   -webkit-flex-grow: 1;
           flex-grow: 1;
+}
+
+@media only screen and (max-width: 480px) {
+  .TripSelector_container__16Smi {
+    width: 100%;
+    margin: 0;
+  }
+
+  .TripSelector_searchButton__2Rvm3 {
+    border-radius: 360px;
+    width: 5rem;
+    -webkit-align-self: center;
+            align-self: center;
+    position: absolute;
+    bottom: 2.5rem;
+  }
+
+  .TripSelector_searchButton__2Rvm3 p {
+    display: none;
+  }
 }
 
 .StationsSelector_stationsSelector__26wA8 {
@@ -357,4 +397,4 @@
 }
 
 
-/*# sourceMappingURL=main.09424d6f.chunk.css.map*/
+/*# sourceMappingURL=main.a86038bf.chunk.css.map*/

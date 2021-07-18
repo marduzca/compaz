@@ -16,6 +16,7 @@ const FooterItem: React.FC<FooterItemProps> = (props) => (
     <span>{props.text}</span>
   </div>
 );
+
 const Footer: React.FC = () => {
   const { t } = useTranslation();
 

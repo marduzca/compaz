@@ -7,4 +7,4 @@ export default {
   component: App,
 } as Meta;
 
-export const normalState = () => <App />;
+export const normalAndMobileState = () => <App />;

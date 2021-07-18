@@ -9,3 +9,11 @@
   height: calc(100vh * 0.68);
   padding: 4.25rem 0;
 }
+
+@media only screen and (max-width: 480px) {
+  .content {
+    background: none;
+    padding: 0;
+    height: calc(100vh * 0.35);
+  }
+}
