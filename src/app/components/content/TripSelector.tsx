@@ -40,7 +40,7 @@ const TripSelector: React.FC<TripSelectorProps> = (props) => {
           </button>
         </>
       ) : (
-        <div>Loading...</div>
+        <div>Loading..</div>
       )}
     </div>
   );
