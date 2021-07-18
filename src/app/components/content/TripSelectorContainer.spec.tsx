@@ -62,6 +62,6 @@ describe('TripSelectorContainer', () => {
 
     render(<TripSelectorContainer />);
 
-    expect(screen.getByText('Loading...')).toBeVisible();
+    expect(screen.getByText('Loading..')).toBeVisible();
   });
 });
