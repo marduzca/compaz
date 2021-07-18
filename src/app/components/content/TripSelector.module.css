@@ -13,6 +13,20 @@
   margin-left: 6.25rem;
 }
 
+.header {
+  display: none;
+}
+
+.dateAndTimePicker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #f2f2f2;
+  border-radius: 0.625rem;
+  height: 2.75rem;
+}
+
 .searchButton {
   display: flex;
   justify-content: center;
@@ -40,6 +54,38 @@
     width: 100%;
     margin: 0;
     border-radius: 0;
+    padding: 1rem 1.25rem;
+  }
+
+  .header {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .menuButton {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    background: none;
+    cursor: pointer;
+    border: 0;
+    outline: none;
+    height: 2.875rem;
+    width: 2.875rem;
+  }
+
+  .logo {
+    height: 2.875rem;
+    width: 11.575rem;
   }
 
   .searchButton {

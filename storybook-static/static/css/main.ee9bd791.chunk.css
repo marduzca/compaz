@@ -147,6 +147,23 @@
   margin-left: 6.25rem;
 }
 
+.TripSelector_header__2yMm_ {
+  display: none;
+}
+
+.TripSelector_dateAndTimePicker__30N74 {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+          justify-content: center;
+  -webkit-align-items: center;
+          align-items: center;
+
+  background: #f2f2f2;
+  border-radius: 0.625rem;
+  height: 2.75rem;
+}
+
 .TripSelector_searchButton__2Rvm3 {
   display: -webkit-flex;
   display: flex;
@@ -178,6 +195,45 @@
     width: 100%;
     margin: 0;
     border-radius: 0;
+    padding: 1rem 1.25rem;
+  }
+
+  .TripSelector_header__2yMm_ {
+    position: relative;
+    width: 100%;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+            align-items: center;
+    -webkit-justify-content: center;
+            justify-content: center;
+  }
+
+  .TripSelector_menuButton__3rHb8 {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: -webkit-flex;
+
+    display: flex;
+    -webkit-justify-content: center;
+            justify-content: center;
+    -webkit-align-items: center;
+            align-items: center;
+    margin: 0;
+    padding: 0;
+    background: none;
+    cursor: pointer;
+    border: 0;
+    outline: none;
+    height: 2.875rem;
+    width: 2.875rem;
+  }
+
+  .TripSelector_logo__6hD2R {
+    height: 2.875rem;
+    width: 11.575rem;
   }
 
   .TripSelector_searchButton__2Rvm3 {
@@ -398,4 +454,4 @@
 }
 
 
-/*# sourceMappingURL=main.e3376747.chunk.css.map*/
+/*# sourceMappingURL=main.ee9bd791.chunk.css.map*/

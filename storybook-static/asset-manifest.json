@@ -1,20 +1,20 @@
 {
   "files": {
-    "0.80f1940b.iframe.bundle.js": "./0.80f1940b.iframe.bundle.js",
-    "main.css": "./static/css/main.e3376747.chunk.css",
-    "main.js": "./main.d8fdd481.iframe.bundle.js",
-    "main.css.map": "./static/css/main.e3376747.chunk.css.map",
-    "runtime~main.js": "./runtime~main.af692efa.iframe.bundle.js",
-    "vendors~main.js": "./vendors~main.4d123cc7.iframe.bundle.js",
-    "vendors~main.js.map": "./vendors~main.4d123cc7.iframe.bundle.js.map",
-    "4.ce3c3d4f.iframe.bundle.js": "./4.ce3c3d4f.iframe.bundle.js",
-    "4.ce3c3d4f.iframe.bundle.js.map": "./4.ce3c3d4f.iframe.bundle.js.map",
-    "5.bb2890e0.iframe.bundle.js": "./5.bb2890e0.iframe.bundle.js",
-    "6.817bbfa2.iframe.bundle.js": "./6.817bbfa2.iframe.bundle.js",
-    "6.817bbfa2.iframe.bundle.js.map": "./6.817bbfa2.iframe.bundle.js.map",
+    "0.44427280.iframe.bundle.js": "./0.44427280.iframe.bundle.js",
+    "main.css": "./static/css/main.ee9bd791.chunk.css",
+    "main.js": "./main.9908ec7b.iframe.bundle.js",
+    "main.css.map": "./static/css/main.ee9bd791.chunk.css.map",
+    "runtime~main.js": "./runtime~main.9727735f.iframe.bundle.js",
+    "vendors~main.js": "./vendors~main.e62975de.iframe.bundle.js",
+    "vendors~main.js.map": "./vendors~main.e62975de.iframe.bundle.js.map",
+    "4.04a8f57e.iframe.bundle.js": "./4.04a8f57e.iframe.bundle.js",
+    "4.04a8f57e.iframe.bundle.js.map": "./4.04a8f57e.iframe.bundle.js.map",
+    "5.62fef6eb.iframe.bundle.js": "./5.62fef6eb.iframe.bundle.js",
+    "6.5587421e.iframe.bundle.js": "./6.5587421e.iframe.bundle.js",
+    "6.5587421e.iframe.bundle.js.map": "./6.5587421e.iframe.bundle.js.map",
     "7.53d102db.iframe.bundle.js": "./7.53d102db.iframe.bundle.js",
-    "4.ce3c3d4f.iframe.bundle.js.LICENSE.txt": "./4.ce3c3d4f.iframe.bundle.js.LICENSE.txt",
-    "6.817bbfa2.iframe.bundle.js.LICENSE.txt": "./6.817bbfa2.iframe.bundle.js.LICENSE.txt",
+    "4.04a8f57e.iframe.bundle.js.LICENSE.txt": "./4.04a8f57e.iframe.bundle.js.LICENSE.txt",
+    "6.5587421e.iframe.bundle.js.LICENSE.txt": "./6.5587421e.iframe.bundle.js.LICENSE.txt",
     "iframe.html": "./iframe.html",
     "service-worker.js": "./service-worker.js",
     "static/media/arrow_down.71ae5b18.svg": "./static/media/arrow_down.71ae5b18.svg",
@@ -27,14 +27,16 @@
     "static/media/flag_usa.386ecc0a.svg": "./static/media/flag_usa.386ecc0a.svg",
     "static/media/getFetch.cjs": "./static/media/getFetch.582d29c4.cjs",
     "static/media/logo_black.4c436c1e.svg": "./static/media/logo_black.4c436c1e.svg",
+    "static/media/logo_white.c53323e8.svg": "./static/media/logo_white.c53323e8.svg",
     "static/media/map.1494c220.svg": "./static/media/map.1494c220.svg",
+    "static/media/menu.e0471958.svg": "./static/media/menu.e0471958.svg",
     "static/media/switcher.3ce628f6.svg": "./static/media/switcher.3ce628f6.svg",
-    "vendors~main.4d123cc7.iframe.bundle.js.LICENSE.txt": "./vendors~main.4d123cc7.iframe.bundle.js.LICENSE.txt"
+    "vendors~main.e62975de.iframe.bundle.js.LICENSE.txt": "./vendors~main.e62975de.iframe.bundle.js.LICENSE.txt"
   },
   "entrypoints": [
-    "runtime~main.af692efa.iframe.bundle.js",
-    "vendors~main.4d123cc7.iframe.bundle.js",
-    "static/css/main.e3376747.chunk.css",
-    "main.d8fdd481.iframe.bundle.js"
+    "runtime~main.9727735f.iframe.bundle.js",
+    "vendors~main.e62975de.iframe.bundle.js",
+    "static/css/main.ee9bd791.chunk.css",
+    "main.9908ec7b.iframe.bundle.js"
   ]
 }
