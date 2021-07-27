@@ -16,7 +16,7 @@
     "build-storybook": "build-storybook -s public",
     "loki:update": "npm run build-storybook && loki update",
     "loki:test": "npm run build-storybook && loki test",
-    "loki:ci": "build-storybook && loki --requireReference --reactUri file:./storybook-static"
+    "loki:ci": "npm run build-storybook && loki --requireReference --verboseRenderer"
   },
   "dependencies": {
     "@storybook/addon-actions": "^6.3.4",
@@ -107,6 +107,7 @@
     "storybook-static"
   ],
   "loki": {
+    "reactUri": "file:./storybook-static",
     "configurations": {
       "chrome.laptop": {
         "target": "chrome.docker",
