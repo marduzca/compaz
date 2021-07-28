@@ -14,7 +14,6 @@ describe('HeaderContainer', () => {
     expect(screen.getByText('Header.HISTORY')).toBeVisible();
     expect(screen.getByText('Header.HOW_TO_INSTALL')).toBeVisible();
     expect(screen.getByText('Header.CONTACT')).toBeVisible();
-    expect(screen.getByText('Header.ABOUT_US')).toBeVisible();
   });
 
   describe('when switching language', () => {

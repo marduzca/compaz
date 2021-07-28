@@ -1,9 +1,12 @@
 {
   "Header": {
+    "CONTACT": "Contactanos",
     "HISTORY": "Historial",
     "HOW_TO_INSTALL": "Como instalar",
-    "CONTACT": "Contacto",
-    "ABOUT_US": "Quienes somos"
+    "DAY_MESSAGE": "Buenos días La Paz 🔆",
+    "DAY_MESSAGE_ARIA_LABEL": "Buenos días La Paz con sol",
+    "NIGHT_MESSAGE": "Buenas noches La Paz 🌙",
+    "NIGHT_MESSAGE_ARIA_LABEL": "Buenas noches La Paz con luna"
   },
   "Content": {
     "TripSelector": {

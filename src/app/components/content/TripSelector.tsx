@@ -9,6 +9,7 @@ import StationsSelectorContainer from './StationsSelectorContainer';
 
 interface TripSelectorProps {
   stations: Station[];
+  onMenuButtonClick: () => void;
 }
 
 const TripSelector: React.FC<TripSelectorProps> = (props) => {
@@ -19,7 +20,12 @@ const TripSelector: React.FC<TripSelectorProps> = (props) => {
       {props.stations.length ? (
         <>
           <div className={styles.header}>
-            <button title="menu" type="button" className={styles.menuButton}>
+            <button
+              title="menu"
+              type="button"
+              className={styles.menuButton}
+              onClick={props.onMenuButtonClick}
+            >
               <MenuIcon />
             </button>
             <div className={styles.logo}>

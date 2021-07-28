@@ -12,5 +12,7 @@ export const normalState = () => (
   <Header
     onLanguageChange={actions('onLanguageChange').onLanguageChange}
     onLogoClick={actions('onLogoClick').onLogoClick}
+    onBackButtonClick={actions('onBackButtonClick').onBackButtonClick}
+    showMenuOnMobile={false}
   />
 );

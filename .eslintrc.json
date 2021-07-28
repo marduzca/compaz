@@ -67,6 +67,21 @@
     "react/destructuring-assignment": "off",
     "jsx-a11y/click-events-have-key-events": "off"
   },
+  "overrides": [
+    {
+      "files": ["*Provider.tsx"],
+      "rules": {
+        "@typescript-eslint/no-empty-function": "off" // required for the initial context
+      }
+    },
+    {
+      "files": ["*.spec.ts*"],
+      "rules": {
+        "@typescript-eslint/no-empty-function": "off", // required for mock functions
+        "@typescript-eslint/no-non-null-assertion": "off" // testing stateful behaviour with delayed initialisation
+      }
+    }
+  ],
   "settings": {
     "react": {
       "version": "detect"

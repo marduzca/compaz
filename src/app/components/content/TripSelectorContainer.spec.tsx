@@ -35,7 +35,7 @@ describe('TripSelectorContainer', () => {
         ],
       });
 
-      render(<TripSelectorContainer />);
+      render(<TripSelectorContainer onMenuButtonClick={() => {}} />);
 
       expect(
         screen.getByRole('textbox', {
@@ -60,7 +60,7 @@ describe('TripSelectorContainer', () => {
       stations: [] as Station[],
     });
 
-    render(<TripSelectorContainer />);
+    render(<TripSelectorContainer onMenuButtonClick={() => {}} />);
 
     expect(screen.getByText('Loading..')).toBeVisible();
   });

@@ -2,7 +2,12 @@ import React from 'react';
 import Header from './Header';
 import i18n from '../../i18n/instance';
 
-const HeaderContainer: React.FC = () => {
+interface HeaderContainerProps {
+  onBackButtonClick: () => void;
+  showMenuOnMobile: boolean;
+}
+
+const HeaderContainer: React.FC<HeaderContainerProps> = (props) => {
   const SPANISH = 'es';
   const ENGLISH = 'en';
 
@@ -19,6 +24,8 @@ const HeaderContainer: React.FC = () => {
     <Header
       onLanguageChange={handleLanguageChange}
       onLogoClick={handleLogoClick}
+      onBackButtonClick={props.onBackButtonClick}
+      showMenuOnMobile={props.showMenuOnMobile}
     />
   );
 };

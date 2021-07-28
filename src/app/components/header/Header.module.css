@@ -4,10 +4,23 @@
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: 1fr auto;
-  grid-column-gap: 5.75rem;
   align-items: center;
   padding: 0 4.625rem;
   height: calc(100vh * 0.115);
+}
+
+.headerItems {
+  display: flex;
+  gap: 5.75rem;
+  align-items: center;
+}
+
+.backButton {
+  display: none;
+}
+
+.message {
+  display: none;
 }
 
 .logo {
@@ -38,14 +51,76 @@
   outline: none;
 }
 
-.menuItem {
+.headerItem {
   font-weight: 500;
   font-size: 1.25rem;
   line-height: 1.5rem;
 }
 
 @media only screen and (max-width: 480px) {
+  .hiddenMenu {
+    visibility: hidden;
+  }
+
   .header {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    z-index: 4;
+    top: 0;
+    left: 0;
+    background-color: white;
+    height: calc(100vh * 0.5);
+    width: calc(100vw * 0.8);
+    border-radius: 0 0.625rem 0.625rem 0.625rem;
+    box-shadow: 5px 5px 8px grey;
+    padding: 0;
+  }
+
+  .backButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    background: none;
+    cursor: pointer;
+    border: 0;
+    outline: none;
+    height: 1.5rem;
+    width: 1.5rem;
+
+    align-self: flex-start;
+    margin: 1.5rem 0 0 1.5rem;
+  }
+
+  .message {
+    display: block;
+    font-weight: 500;
+    font-size: 1.5rem;
+    padding: 1.875rem 0 3.125rem 0;
+  }
+
+  .logo {
     display: none;
+  }
+
+  .headerItems {
+    align-self: flex-start;
+    margin-left: 2.5rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .headerItem {
+    font-weight: 400;
+    font-size: 1.25rem;
+    text-align: left;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid grey;
+    width: 8rem;
   }
 }

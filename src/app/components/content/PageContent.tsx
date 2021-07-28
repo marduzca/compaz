@@ -2,9 +2,13 @@ import React from 'react';
 import styles from './PageContent.module.css';
 import TripSelectorContainer from './TripSelectorContainer';
 
-const PageContent: React.FC = () => (
+interface PageContentProps {
+  onMenuButtonClick: () => void;
+}
+
+const PageContent: React.FC<PageContentProps> = (props) => (
   <div className={styles.content}>
-    <TripSelectorContainer />
+    <TripSelectorContainer onMenuButtonClick={props.onMenuButtonClick} />
   </div>
 );
 
