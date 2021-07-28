@@ -1,10 +1,11 @@
 {
   "Header": {
     "CONTACT": "Contact us",
-    "HISTORY": "History",
-    "HOW_TO_INSTALL": "How to install",
     "DAY_MESSAGE": "Good day La Paz 🔆",
     "DAY_MESSAGE_ARIA_LABEL": "Good day La Paz with sun",
+    "HISTORY": "History",
+    "HOW_TO_INSTALL": "How to install",
+    "LANGUAGE": "Language",
     "NIGHT_MESSAGE": "Good night La Paz 🌙",
     "NIGHT_MESSAGE_ARIA_LABEL": "Good night La Paz with moon"
   },
