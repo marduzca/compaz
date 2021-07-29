@@ -7,3 +7,37 @@
 .App {
   text-align: center;
 }
+
+.landscapeMessage {
+  display: none;
+}
+
+@media only screen and (orientation: landscape) and (max-height: 480px) {
+  .App {
+    display: none;
+  }
+
+  .landscapeMessage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.875rem;
+    height: 100vh;
+    background-color: var(--primary-color);
+  }
+
+  .landscapeMessage p {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    width: 60%;
+    text-align: center;
+  }
+
+  .landscapeMessage img {
+    height: auto;
+    width: 40%;
+    border-radius: 0.625rem;
+  }
+}
