@@ -34,7 +34,7 @@ const TripSelector: React.FC<TripSelectorProps> = (props) => {
           </div>
           <StationsSelectorContainer stations={props.stations} />
           <div className={styles.dateAndTimePicker}>
-            <div>Date and time picker</div>
+            <div>Date and Time picker</div>
           </div>
           <button
             type="button"
