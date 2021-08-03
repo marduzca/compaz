@@ -17,10 +17,10 @@ interface HeaderItemProps {
 }
 
 const HeaderItem: React.FC<HeaderItemProps> = (props) => (
-  <div className={styles.headerItem}>
+  <li className={styles.headerItem}>
     <span className={styles.headerItemIcon}>{props.icon}</span>
     <span>{props.content}</span>
-  </div>
+  </li>
 );
 
 interface HeaderProps {
@@ -70,14 +70,14 @@ const Header: React.FC<HeaderProps> = (props) => {
       >
         <LogoBlack />
       </button>
-      <div className={styles.headerItems}>
+      <ul className={styles.headerItems}>
         <HeaderItem content={t('Header.HISTORY')} icon={<HistoryIcon />} />
         <HeaderItem
           content={t('Header.HOW_TO_INSTALL')}
           icon={<InstallIcon />}
         />
         <HeaderItem content={t('Header.CONTACT')} icon={<ContactIcon />} />
-        <div className={styles.languageSelector}>
+        <li className={styles.languageSelector}>
           <span>{t('Header.LANGUAGE')}</span>
           <button
             title="language-selector"
@@ -86,8 +86,8 @@ const Header: React.FC<HeaderProps> = (props) => {
           >
             {i18n.language.match(/en/i) ? <FlagBolivia /> : <FlagUSA />}
           </button>
-        </div>
-      </div>
+        </li>
+      </ul>
     </header>
   );
 };
