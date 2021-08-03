@@ -49,7 +49,7 @@
   padding: 0;
   background: none;
   height: 2rem;
-  width: 2.66rem;
+  width: 3rem;
   cursor: pointer;
   border: 0;
   outline: none;
@@ -166,6 +166,6 @@
 
   .languageSelector > button {
     height: 1.75rem;
-    width: 2.33rem;
+    width: 2.625rem;
   }
 }
