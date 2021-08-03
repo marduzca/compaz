@@ -5,7 +5,9 @@ import HeaderContainer from './HeaderContainer';
 
 describe('HeaderContainer', () => {
   it('renders all header items', () => {
-    render(<HeaderContainer />);
+    render(
+      <HeaderContainer showMenuOnMobile={false} onHideMobileMenu={() => {}} />
+    );
 
     expect(screen.getByRole('button', { name: 'home' })).toBeVisible();
     expect(
@@ -21,7 +23,12 @@ describe('HeaderContainer', () => {
       it('switches the language to Spanish', () => {
         localStorage.setItem('i18nextLng', 'en');
 
-        render(<HeaderContainer />);
+        render(
+          <HeaderContainer
+            onHideMobileMenu={() => {}}
+            showMenuOnMobile={false}
+          />
+        );
 
         userEvent.click(
           screen.getByRole('button', { name: 'language-selector' })
@@ -35,7 +42,12 @@ describe('HeaderContainer', () => {
       it('switches the language to English', () => {
         localStorage.setItem('i18nextLng', 'es');
 
-        render(<HeaderContainer />);
+        render(
+          <HeaderContainer
+            showMenuOnMobile={false}
+            onHideMobileMenu={() => {}}
+          />
+        );
 
         userEvent.click(
           screen.getByRole('button', { name: 'language-selector' })

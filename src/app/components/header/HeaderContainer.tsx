@@ -3,7 +3,7 @@ import Header from './Header';
 import i18n from '../../i18n/instance';
 
 interface HeaderContainerProps {
-  onBackButtonClick: () => void;
+  onHideMobileMenu: () => void;
   showMenuOnMobile: boolean;
 }
 
@@ -24,7 +24,7 @@ const HeaderContainer: React.FC<HeaderContainerProps> = (props) => {
     <Header
       onLanguageChange={handleLanguageChange}
       onLogoClick={handleLogoClick}
-      onBackButtonClick={props.onBackButtonClick}
+      onHideMobileMenu={props.onHideMobileMenu}
       showMenuOnMobile={props.showMenuOnMobile}
     />
   );

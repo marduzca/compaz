@@ -19,22 +19,22 @@ const LandscapeErrorMessage = () => {
 };
 
 const App = () => {
-  const [showMenuOnMobile, setShowMenuOnMobile] = useState<boolean>(false);
+  const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
 
   return (
     <>
       <LandscapeErrorMessage />
       <div className={styles.App}>
         <HeaderContainer
-          showMenuOnMobile={showMenuOnMobile}
-          onBackButtonClick={() => {
-            setShowMenuOnMobile(false);
+          showMenuOnMobile={showMobileMenu}
+          onHideMobileMenu={() => {
+            setShowMobileMenu(false);
           }}
         />
         <FirebaseProvider>
           <PageContent
             onMenuButtonClick={() => {
-              setShowMenuOnMobile(true);
+              setShowMobileMenu(true);
             }}
           />
         </FirebaseProvider>

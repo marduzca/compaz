@@ -1,5 +1,5 @@
-/* eslint-disable jsx-a11y/interactive-supports-focus */
-import React from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ReactComponent as LogoBlack } from '../../static/img/logo_black.svg';
 import { ReactComponent as FlagUSA } from '../../static/img/flag_usa.svg';
@@ -28,12 +28,36 @@ const HeaderItem: React.FC<HeaderItemProps> = (props) => (
 interface HeaderProps {
   onLanguageChange: () => void;
   onLogoClick: () => void;
-  onBackButtonClick: () => void;
+  onHideMobileMenu: () => void;
   showMenuOnMobile: boolean;
 }
 
 const Header: React.FC<HeaderProps> = (props) => {
   const { t } = useTranslation();
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+
+  const handleClickOutsideOfMobileMenu = (e: MouseEvent) => {
+    if (
+      mobileMenuRef.current &&
+      mobileMenuRef.current.contains(e.target as Node)
+    ) {
+      return;
+    }
+
+    props.onHideMobileMenu();
+  };
+
+  useEffect(() => {
+    if (props.showMenuOnMobile) {
+      document.addEventListener('mousedown', handleClickOutsideOfMobileMenu);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutsideOfMobileMenu);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutsideOfMobileMenu);
+    };
+  }, [props.showMenuOnMobile]);
 
   const isDayTime = () => {
     const currentTime = new Date().getHours();
@@ -45,12 +69,13 @@ const Header: React.FC<HeaderProps> = (props) => {
       className={`${styles.header} ${
         !props.showMenuOnMobile ? styles.hiddenMenu : ''
       }`}
+      ref={mobileMenuRef}
     >
       <button
         title="Back"
         type="button"
         className={styles.backButton}
-        onClick={props.onBackButtonClick}
+        onClick={props.onHideMobileMenu}
       >
         <BackIcon />
       </button>
