@@ -2,13 +2,11 @@
   "LANDSCAPE_ERROR": "No funcionamos en modo horizontal, lo sentimos mucho :(",
   "Header": {
     "CONTACT": "Contactanos",
-    "DAY_MESSAGE": "Buenos días La Paz 🔆",
-    "DAY_MESSAGE_ARIA_LABEL": "Buenos días La Paz con sol",
+    "DAY_MESSAGE": "Buenos días\nLa Paz",
     "HISTORY": "Historial",
     "HOW_TO_INSTALL": "Como instalar",
     "LANGUAGE": "Idioma",
-    "NIGHT_MESSAGE": "Buenas noches La Paz 🌙",
-    "NIGHT_MESSAGE_ARIA_LABEL": "Buenas noches La Paz con luna"
+    "NIGHT_MESSAGE": "Buenas noches\nLa Paz"
   },
   "Content": {
     "TripSelector": {

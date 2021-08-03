@@ -1,13 +1,15 @@
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ReactComponent as BackIcon } from '../../static/img/arrow_back.svg';
-import { ReactComponent as HistoryIcon } from '../../static/img/history.svg';
-import { ReactComponent as InstallIcon } from '../../static/img/install.svg';
-import { ReactComponent as ContactIcon } from '../../static/img/contact.svg';
 import { ReactComponent as LogoBlack } from '../../static/img/logo_black.svg';
 import { ReactComponent as FlagUSA } from '../../static/img/flag_usa.svg';
 import { ReactComponent as FlagBolivia } from '../../static/img/flag_bolivia.svg';
+import { ReactComponent as BackIcon } from '../../static/img/arrow_back.svg';
+import { ReactComponent as SunIcon } from '../../static/img/sun.svg';
+import { ReactComponent as MoonIcon } from '../../static/img/moon.svg';
+import { ReactComponent as HistoryIcon } from '../../static/img/history.svg';
+import { ReactComponent as InstallIcon } from '../../static/img/install.svg';
+import { ReactComponent as ContactIcon } from '../../static/img/contact.svg';
 import styles from './Header.module.css';
 import i18n from '../../i18n/instance';
 
@@ -33,12 +35,9 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = (props) => {
   const { t } = useTranslation();
 
-  const getMessageDependingOnCurrentTime = () => {
+  const isDayTime = () => {
     const currentTime = new Date().getHours();
-
-    return currentTime > 6 && currentTime < 19
-      ? 'Header.DAY_MESSAGE'
-      : 'Header.NIGHT_MESSAGE';
+    return currentTime > 6 && currentTime < 19;
   };
 
   return (
@@ -55,13 +54,19 @@ const Header: React.FC<HeaderProps> = (props) => {
       >
         <BackIcon />
       </button>
-      <span
-        role="img"
-        aria-label={t(`${getMessageDependingOnCurrentTime()}_ARIA_LABEL`)}
-        className={styles.message}
-      >
-        {t(getMessageDependingOnCurrentTime())}
-      </span>
+      <section className={styles.message}>
+        {isDayTime() ? (
+          <>
+            <SunIcon />
+            <span>{t('Header.DAY_MESSAGE')}</span>
+          </>
+        ) : (
+          <>
+            <MoonIcon />
+            <span>{t('Header.NIGHT_MESSAGE')}</span>
+          </>
+        )}
+      </section>
       <button
         title="home"
         type="button"

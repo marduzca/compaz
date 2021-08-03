@@ -2,13 +2,11 @@
   "LANDSCAPE_ERROR": "We dont support landscape mode, we are very sorry :(",
   "Header": {
     "CONTACT": "Contact us",
-    "DAY_MESSAGE": "Good day La Paz 🔆",
-    "DAY_MESSAGE_ARIA_LABEL": "Good day La Paz with sun",
+    "DAY_MESSAGE": "Good day\nLa Paz",
     "HISTORY": "History",
     "HOW_TO_INSTALL": "How to install",
     "LANGUAGE": "Language",
-    "NIGHT_MESSAGE": "Good night La Paz 🌙",
-    "NIGHT_MESSAGE_ARIA_LABEL": "Good night La Paz with moon"
+    "NIGHT_MESSAGE": "Good night\nLa Paz"
   },
   "Content": {
     "TripSelector": {
