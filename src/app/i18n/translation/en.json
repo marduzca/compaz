@@ -1,8 +1,9 @@
 {
   "LANDSCAPE_ERROR": "We dont support landscape mode, we are very sorry :(",
   "Header": {
+    "AFTERNOON_MESSAGE": "Good afternoon\nLa Paz",
     "CONTACT": "Contact us",
-    "DAY_MESSAGE": "Good day\nLa Paz",
+    "MORNING_MESSAGE": "Good morning\nLa Paz",
     "HISTORY": "History",
     "HOW_TO_INSTALL": "How to install",
     "LANGUAGE": "Language",

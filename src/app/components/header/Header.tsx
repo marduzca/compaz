@@ -5,8 +5,9 @@ import { ReactComponent as LogoBlack } from '../../static/img/logo_black.svg';
 import { ReactComponent as FlagUSA } from '../../static/img/flag_usa.svg';
 import { ReactComponent as FlagBolivia } from '../../static/img/flag_bolivia.svg';
 import { ReactComponent as BackIcon } from '../../static/img/arrow_back.svg';
-import { ReactComponent as SunIcon } from '../../static/img/sun.svg';
-import { ReactComponent as MoonIcon } from '../../static/img/moon.svg';
+import { ReactComponent as MorningIcon } from '../../static/img/morning.svg';
+import { ReactComponent as AfternoonIcon } from '../../static/img/afternoon.svg';
+import { ReactComponent as NightIcon } from '../../static/img/night.svg';
 import { ReactComponent as HistoryIcon } from '../../static/img/history.svg';
 import { ReactComponent as InstallIcon } from '../../static/img/install.svg';
 import { ReactComponent as ContactIcon } from '../../static/img/contact.svg';
@@ -59,9 +60,33 @@ const Header: React.FC<HeaderProps> = (props) => {
     };
   }, [props.showMenuOnMobile]);
 
-  const isDayTime = () => {
+  const getMessageBasedOnTimeOfTheDay = () => {
     const currentTime = new Date().getHours();
-    return currentTime > 6 && currentTime < 19;
+
+    if (currentTime > 6 && currentTime < 13) {
+      return (
+        <>
+          <MorningIcon />
+          <span>{t('Header.MORNING_MESSAGE')}</span>
+        </>
+      );
+    }
+
+    if (currentTime >= 13 && currentTime < 19) {
+      return (
+        <>
+          <AfternoonIcon />
+          <span>{t('Header.AFTERNOON_MESSAGE')}</span>
+        </>
+      );
+    }
+
+    return (
+      <>
+        <NightIcon />
+        <span>{t('Header.NIGHT_MESSAGE')}</span>
+      </>
+    );
   };
 
   return (
@@ -80,17 +105,7 @@ const Header: React.FC<HeaderProps> = (props) => {
         <BackIcon />
       </button>
       <section className={styles.message}>
-        {isDayTime() ? (
-          <>
-            <SunIcon />
-            <span>{t('Header.DAY_MESSAGE')}</span>
-          </>
-        ) : (
-          <>
-            <MoonIcon />
-            <span>{t('Header.NIGHT_MESSAGE')}</span>
-          </>
-        )}
+        {getMessageBasedOnTimeOfTheDay()}
       </section>
       <button
         title="home"
