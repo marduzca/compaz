@@ -32,9 +32,11 @@ const TripSelector: React.FC<TripSelectorProps> = (props) => {
               <LogoWhite />
             </div>
           </div>
-          <StationsSelectorContainer stations={props.stations} />
-          <div className={styles.dateAndTimePicker}>
-            <div>Date and Time picker</div>
+          <div className={styles.inputFields}>
+            <StationsSelectorContainer stations={props.stations} />
+            <div className={styles.dateAndTimePicker}>
+              <div>Date and Time picker</div>
+            </div>
           </div>
           <button
             type="button"
