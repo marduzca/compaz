@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import StationsSelector from './StationsSelector';
-import { Station } from '../providers/FirebaseProvider';
+import { Station } from '../../providers/FirebaseProvider';
 
 interface StationsSelectorContainerProps {
   stations: Station[];

@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import TripSelectorContainer from './TripSelectorContainer';
-import * as FirebaseProvider from '../providers/FirebaseProvider';
-import { Station } from '../providers/FirebaseProvider';
+import * as FirebaseProvider from '../../providers/FirebaseProvider';
+import { Station } from '../../providers/FirebaseProvider';
 
 jest.mock('firebase/app', () => ({
   initializeApp: jest.fn(),

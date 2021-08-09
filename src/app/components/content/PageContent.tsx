@@ -1,7 +1,7 @@
 import React from 'react';
 import MapImage from '../../static/img/fake_map.png';
 import styles from './PageContent.module.css';
-import TripSelectorContainer from './TripSelectorContainer';
+import TripSelectorContainer from './tripSelector/TripSelectorContainer';
 
 interface PageContentProps {
   onMenuButtonClick: () => void;

@@ -1,6 +1,6 @@
 import React from 'react';
 import TripSelector from './TripSelector';
-import { useStations } from '../providers/FirebaseProvider';
+import { useStations } from '../../providers/FirebaseProvider';
 
 interface TripSelectorContainerProps {
   onMenuButtonClick: () => void;

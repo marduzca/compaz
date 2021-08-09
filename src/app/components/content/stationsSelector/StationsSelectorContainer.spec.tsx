@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Station } from '../providers/FirebaseProvider';
+import { Station } from '../../providers/FirebaseProvider';
 import StationsSelectorContainer from './StationsSelectorContainer';
 
 describe('StationsSelectorContainer', () => {
