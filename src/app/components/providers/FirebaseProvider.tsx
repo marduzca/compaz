@@ -2,12 +2,7 @@ import React, { createContext, useContext } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import { useCollectionDataOnce } from 'react-firebase-hooks/firestore';
-
-export interface Station {
-  id: string;
-  name: string;
-  lines: string[];
-}
+import { Station } from '../domain';
 
 interface FirebaseContext {
   stations: Station[];

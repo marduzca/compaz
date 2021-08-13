@@ -29,6 +29,7 @@
     "@types/node": "^16.4.13",
     "@types/react": "^17.0.16",
     "@types/react-dom": "^17.0.9",
+    "dijkstrajs": "^1.0.2",
     "downshift": "^6.1.6",
     "firebase": "^8.9.0",
     "i18next": "^20.3.5",
@@ -58,6 +59,7 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
+    "@testing-library/react-hooks": "^7.0.1",
     "@testing-library/user-event": "^13.2.1",
     "@types/jest": "^26.0.24",
     "@typescript-eslint/eslint-plugin": "^4.29.0",

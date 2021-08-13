@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import TripSelectorContainer from './TripSelectorContainer';
 import * as FirebaseProvider from '../../providers/FirebaseProvider';
-import { Station } from '../../providers/FirebaseProvider';
+import { Station } from '../../domain';
 
 jest.mock('firebase/app', () => ({
   initializeApp: jest.fn(),
@@ -31,6 +31,7 @@ describe('TripSelectorContainer', () => {
             id: 'some_station',
             name: 'Some station',
             lines: ['green'],
+            connectedStations: [],
           },
         ],
       });
