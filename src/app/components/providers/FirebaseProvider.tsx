@@ -55,9 +55,4 @@ export const FirebaseProvider: React.FC = (props) => {
 const useFirebase = (): FirebaseContext =>
   useContext<FirebaseContext>(FirebaseContext);
 
-const useStations = (): { stations: Station[] } => {
-  const { stations } = useContext<FirebaseContext>(FirebaseContext);
-  return { stations };
-};
-
-export { useFirebase, useStations };
+export { useFirebase };

@@ -7,8 +7,8 @@ import { Station } from '../../domain';
 
 interface StationsSelectorProps {
   stations: Station[];
-  origin: string;
-  destination: string;
+  originInputValue: string;
+  destinationInputValue: string;
   originValidationError: boolean;
   destinationValidationError: boolean;
   onOriginChange: (newOrigin: string) => void;
@@ -29,11 +29,11 @@ const StationsSelector: React.FC<StationsSelectorProps> = (props) => {
             : ''
         }`}
         options={props.stations
-          .filter((station) => station.name !== props.destination)
+          .filter((station) => station.name !== props.destinationInputValue)
           .map(
             (station) => ({ value: station.id, text: station.name } as Option)
           )}
-        inputValue={props.origin}
+        inputValue={props.originInputValue}
         onChange={props.onOriginChange}
         validationError={props.originValidationError}
       />
@@ -53,11 +53,11 @@ const StationsSelector: React.FC<StationsSelectorProps> = (props) => {
             : ''
         }`}
         options={props.stations
-          .filter((station) => station.name !== props.origin)
+          .filter((station) => station.name !== props.originInputValue)
           .map(
             (station) => ({ value: station.id, text: station.name } as Option)
           )}
-        inputValue={props.destination}
+        inputValue={props.destinationInputValue}
         onChange={props.onDestinationChange}
         validationError={props.destinationValidationError}
       />

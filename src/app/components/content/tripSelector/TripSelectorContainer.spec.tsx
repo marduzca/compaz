@@ -17,7 +17,7 @@ jest.mock('firebase/app', () => ({
 }));
 
 describe('TripSelectorContainer', () => {
-  const useStationsMock = jest.spyOn(FirebaseProvider, 'useStations');
+  const useFirebaseMock = jest.spyOn(FirebaseProvider, 'useFirebase');
 
   afterEach(() => {
     jest.clearAllMocks();
@@ -25,7 +25,7 @@ describe('TripSelectorContainer', () => {
 
   describe('when stations have been loaded', () => {
     it('renders the trip selector content', () => {
-      useStationsMock.mockReturnValue({
+      useFirebaseMock.mockReturnValue({
         stations: [
           {
             id: 'some_station',
@@ -57,7 +57,7 @@ describe('TripSelectorContainer', () => {
   });
 
   it('renders the loading text when the stations are being retrieved', () => {
-    useStationsMock.mockReturnValue({
+    useFirebaseMock.mockReturnValue({
       stations: [] as Station[],
     });
 

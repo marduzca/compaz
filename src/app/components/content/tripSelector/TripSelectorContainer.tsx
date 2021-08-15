@@ -1,13 +1,13 @@
 import React from 'react';
 import TripSelector from './TripSelector';
-import { useStations } from '../../providers/FirebaseProvider';
+import { useFirebase } from '../../providers/FirebaseProvider';
 
 interface TripSelectorContainerProps {
   onMenuButtonClick: () => void;
 }
 
 const TripSelectorContainer: React.FC<TripSelectorContainerProps> = (props) => {
-  const { stations } = useStations();
+  const { stations } = useFirebase();
 
   return (
     <TripSelector

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import StationsSelector from './StationsSelector';
 import { Station } from '../../domain';
+import { useNavigation } from '../../providers/NavigationProvider';
 
 interface StationsSelectorContainerProps {
   stations: Station[];
@@ -9,8 +10,12 @@ interface StationsSelectorContainerProps {
 const StationsSelectorContainer: React.FC<StationsSelectorContainerProps> = (
   props
 ) => {
-  const [origin, setOrigin] = useState<string>('');
-  const [destination, setDestination] = useState<string>('');
+  const { origin, destination, setOriginStation, setDestinationStation } =
+    useNavigation();
+
+  const [originInputValue, setOriginInputValue] = useState<string>('');
+  const [destinationInputValue, setDestinationInputValue] =
+    useState<string>('');
   const [originValidationError, setOriginValidationError] =
     useState<boolean>(false);
   const [destinationValidationError, setDestinationValidationError] =
@@ -27,26 +32,45 @@ const StationsSelectorContainer: React.FC<StationsSelectorContainerProps> = (
       );
 
   const handleOriginChange = (newOrigin: string) => {
-    setOrigin(newOrigin);
-    setOriginValidationError(shouldShowValidationError(destination, newOrigin));
+    setOriginInputValue(newOrigin);
+    setOriginValidationError(
+      shouldShowValidationError(destination.name, newOrigin)
+    );
+
+    const newOriginStation = props.stations.find(
+      (station) => station.name === newOrigin
+    );
+    if (newOriginStation) {
+      setOriginStation(newOriginStation);
+    }
   };
 
   const handleDestinationChange = (newDestination: string) => {
-    setDestination(newDestination);
+    setDestinationInputValue(newDestination);
     setDestinationValidationError(
-      shouldShowValidationError(origin, newDestination)
+      shouldShowValidationError(origin.name, newDestination)
     );
+
+    const newDestinationStation = props.stations.find(
+      (station) => station.name === newDestination
+    );
+    if (newDestinationStation) {
+      setDestinationStation(newDestinationStation);
+    }
   };
 
   const handleSwitcherClick = () => {
-    setOrigin(destination);
-    setDestination(origin);
+    setOriginStation(destination);
+    setDestinationStation(origin);
+
+    setOriginInputValue(destinationInputValue);
+    setDestinationInputValue(originInputValue);
   };
 
   return (
     <StationsSelector
-      origin={origin}
-      destination={destination}
+      originInputValue={originInputValue}
+      destinationInputValue={destinationInputValue}
       onOriginChange={handleOriginChange}
       onDestinationChange={handleDestinationChange}
       originValidationError={originValidationError}
