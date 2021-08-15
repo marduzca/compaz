@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from 'react';
 import StationsSelector from './StationsSelector';
-import { Station } from '../../domain';
 import { useNavigation } from '../../providers/NavigationProvider';
+import { useFirebase } from '../../providers/FirebaseProvider';
 
-interface StationsSelectorContainerProps {
-  stations: Station[];
-}
-
-const StationsSelectorContainer: React.FC<StationsSelectorContainerProps> = (
-  props
-) => {
-  const { origin, destination, setOriginStation, setDestinationStation } =
-    useNavigation();
+const StationsSelectorContainer: React.FC = () => {
+  const { stations } = useFirebase();
+  const {
+    origin,
+    destination,
+    setOriginStation,
+    setDestinationStation,
+    generateStationsMap,
+  } = useNavigation();
 
   const [originInputValue, setOriginInputValue] = useState<string>('');
   const [destinationInputValue, setDestinationInputValue] =
@@ -21,11 +22,15 @@ const StationsSelectorContainer: React.FC<StationsSelectorContainerProps> = (
   const [destinationValidationError, setDestinationValidationError] =
     useState<boolean>(false);
 
+  useEffect(() => {
+    generateStationsMap(stations);
+  }, [stations]);
+
   const shouldShowValidationError = (
     filterOutValue: string,
     searchTerm: string
   ): boolean =>
-    !props.stations
+    !stations
       .filter((station) => station.name !== filterOutValue)
       .some((station) =>
         station.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -37,7 +42,7 @@ const StationsSelectorContainer: React.FC<StationsSelectorContainerProps> = (
       shouldShowValidationError(destination.name, newOrigin)
     );
 
-    const newOriginStation = props.stations.find(
+    const newOriginStation = stations.find(
       (station) => station.name === newOrigin
     );
     if (newOriginStation) {
@@ -51,7 +56,7 @@ const StationsSelectorContainer: React.FC<StationsSelectorContainerProps> = (
       shouldShowValidationError(origin.name, newDestination)
     );
 
-    const newDestinationStation = props.stations.find(
+    const newDestinationStation = stations.find(
       (station) => station.name === newDestination
     );
     if (newDestinationStation) {
@@ -76,7 +81,7 @@ const StationsSelectorContainer: React.FC<StationsSelectorContainerProps> = (
       originValidationError={originValidationError}
       destinationValidationError={destinationValidationError}
       onSwitcherClick={handleSwitcherClick}
-      stations={props.stations}
+      stations={stations}
     />
   );
 };

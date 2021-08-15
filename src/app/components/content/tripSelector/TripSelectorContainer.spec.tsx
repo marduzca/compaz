@@ -2,7 +2,6 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import TripSelectorContainer from './TripSelectorContainer';
 import * as FirebaseProvider from '../../providers/FirebaseProvider';
-import { Station } from '../../domain';
 
 jest.mock('firebase/app', () => ({
   initializeApp: jest.fn(),
@@ -54,15 +53,5 @@ describe('TripSelectorContainer', () => {
         })
       ).toBeVisible();
     });
-  });
-
-  it('renders the loading text when the stations are being retrieved', () => {
-    useFirebaseMock.mockReturnValue({
-      stations: [] as Station[],
-    });
-
-    render(<TripSelectorContainer onMenuButtonClick={() => {}} />);
-
-    expect(screen.getByText('Loading..')).toBeVisible();
   });
 });

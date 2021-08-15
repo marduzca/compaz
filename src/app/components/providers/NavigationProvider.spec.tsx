@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks';
+import { act, renderHook } from '@testing-library/react-hooks';
 import { NavigationProvider, useNavigation } from './NavigationProvider';
 import { Station } from '../domain';
 
@@ -42,16 +42,25 @@ describe('ShortestPathProvider', () => {
     },
   ] as Station[];
 
-  it('calculates the shortest path correctly', () => {
+  it('calculates the shortest path correctly', async () => {
     const { result } = renderHook(() => useNavigation(), {
       wrapper: NavigationProvider,
     });
 
-    const shortestPath = result.current.findShortestPath(
-      stations,
-      'station_a',
-      'station_e'
-    );
+    act(() => {
+      result.current.generateStationsMap(stations);
+    });
+
+    act(() => {
+      result.current.setOriginStation(stations[0]);
+    });
+
+    act(() => {
+      result.current.setDestinationStation(stations[4]);
+    });
+
+    const shortestPath =
+      result.current.findShortestPathFromOriginToDestination();
 
     expect(shortestPath).toEqual(['station_a', 'station_d', 'station_e']);
   });

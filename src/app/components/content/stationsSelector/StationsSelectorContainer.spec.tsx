@@ -4,8 +4,10 @@ import userEvent from '@testing-library/user-event';
 import StationsSelectorContainer from './StationsSelectorContainer';
 import { Station } from '../../domain';
 import * as NavigationProvider from '../../providers/NavigationProvider';
+import * as FirebaseProvider from '../../providers/FirebaseProvider';
 
 describe('StationsSelectorContainer', () => {
+  const useFirebaseMock = jest.spyOn(FirebaseProvider, 'useFirebase');
   const useNavigationMock = jest.spyOn(NavigationProvider, 'useNavigation');
 
   const availableStations = [
@@ -24,6 +26,10 @@ describe('StationsSelectorContainer', () => {
   ] as Station[];
 
   beforeEach(() => {
+    useFirebaseMock.mockReturnValue({
+      stations: availableStations,
+    });
+
     useNavigationMock.mockReturnValue({
       origin: {
         id: '',
@@ -39,7 +45,8 @@ describe('StationsSelectorContainer', () => {
       },
       setOriginStation: () => {},
       setDestinationStation: () => {},
-      findShortestPath: () => [],
+      generateStationsMap: () => {},
+      findShortestPathFromOriginToDestination: () => [],
     });
   });
 
@@ -48,7 +55,7 @@ describe('StationsSelectorContainer', () => {
   });
 
   it('allows to select stations from the dropdown', () => {
-    render(<StationsSelectorContainer stations={availableStations} />);
+    render(<StationsSelectorContainer />);
 
     fireEvent.change(
       screen.getByRole('textbox', {
@@ -80,7 +87,7 @@ describe('StationsSelectorContainer', () => {
   });
 
   it("shows an error when the current origin input doesn't correspond to any list item", () => {
-    render(<StationsSelectorContainer stations={availableStations} />);
+    render(<StationsSelectorContainer />);
 
     userEvent.type(
       screen.getByRole('textbox', {
@@ -93,7 +100,7 @@ describe('StationsSelectorContainer', () => {
   });
 
   it("shows an error when the current destination input doesn't correspond to any list item", () => {
-    render(<StationsSelectorContainer stations={availableStations} />);
+    render(<StationsSelectorContainer />);
 
     userEvent.type(
       screen.getByRole('textbox', {
@@ -116,10 +123,11 @@ describe('StationsSelectorContainer', () => {
       },
       setOriginStation: () => {},
       setDestinationStation: () => {},
-      findShortestPath: () => [],
+      generateStationsMap: () => {},
+      findShortestPathFromOriginToDestination: () => [],
     });
 
-    render(<StationsSelectorContainer stations={availableStations} />);
+    render(<StationsSelectorContainer />);
 
     fireEvent.change(
       screen.getByRole('textbox', {
@@ -148,10 +156,11 @@ describe('StationsSelectorContainer', () => {
       destination: availableStations[0],
       setOriginStation: () => {},
       setDestinationStation: () => {},
-      findShortestPath: () => [],
+      generateStationsMap: () => {},
+      findShortestPathFromOriginToDestination: () => [],
     });
 
-    render(<StationsSelectorContainer stations={availableStations} />);
+    render(<StationsSelectorContainer />);
 
     fireEvent.change(
       screen.getByRole('textbox', {
@@ -170,7 +179,7 @@ describe('StationsSelectorContainer', () => {
   });
 
   it('switches origin and destination content when clicking on switcher button', () => {
-    render(<StationsSelectorContainer stations={availableStations} />);
+    render(<StationsSelectorContainer />);
 
     fireEvent.change(
       screen.getByRole('textbox', {

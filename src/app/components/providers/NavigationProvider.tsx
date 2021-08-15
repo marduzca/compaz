@@ -17,11 +17,8 @@ interface NavigationContextProps {
   destination: Station;
   setOriginStation: (newOrigin: Station) => void;
   setDestinationStation: (newDestination: Station) => void;
-  findShortestPath: (
-    stations: Station[],
-    fromStationID: string,
-    toStationID: string
-  ) => string[];
+  generateStationsMap: (stations: Station[]) => void;
+  findShortestPathFromOriginToDestination: () => string[];
 }
 
 export const NavigationContext = createContext<NavigationContextProps>({
@@ -39,7 +36,8 @@ export const NavigationContext = createContext<NavigationContextProps>({
   },
   setOriginStation: () => {},
   setDestinationStation: () => {},
-  findShortestPath: () => [],
+  generateStationsMap: () => {},
+  findShortestPathFromOriginToDestination: () => [],
 });
 
 export const NavigationProvider: React.FC = (props) => {
@@ -55,6 +53,7 @@ export const NavigationProvider: React.FC = (props) => {
     lines: [],
     name: '',
   });
+  const [stationsMap, setStationsMap] = useState<StationsMap>({});
 
   const setOriginStation = (newOrigin: Station) => {
     setOrigin(newOrigin);
@@ -64,8 +63,8 @@ export const NavigationProvider: React.FC = (props) => {
     setDestination(newDestination);
   };
 
-  const generateStationsMap = (stations: Station[]): StationsMap => {
-    const stationsMap = {} as StationsMap;
+  const generateStationsMap = (stations: Station[]) => {
+    const generatedStationsMap = {} as StationsMap;
 
     stations.forEach((station) => {
       const connectedStationTimeTo = {} as ConnectedStationTimeTo;
@@ -75,22 +74,16 @@ export const NavigationProvider: React.FC = (props) => {
           connectedStation.timeTo;
       });
 
-      stationsMap[`${station.id}`] = connectedStationTimeTo;
+      generatedStationsMap[`${station.id}`] = connectedStationTimeTo;
     });
 
-    return stationsMap;
+    setStationsMap(generatedStationsMap);
   };
 
-  const findShortestPath = (
-    stations: Station[],
-    originStationID: string,
-    destinationStationID: string
-  ): string[] => {
-    const stationsMap = generateStationsMap(stations);
-
+  const findShortestPathFromOriginToDestination = (): string[] => {
     const findPath = dijkstra.find_path;
 
-    return findPath(stationsMap, originStationID, destinationStationID);
+    return findPath(stationsMap, origin.id, destination.id);
   };
 
   return (
@@ -100,7 +93,8 @@ export const NavigationProvider: React.FC = (props) => {
         destination,
         setOriginStation,
         setDestinationStation,
-        findShortestPath,
+        generateStationsMap,
+        findShortestPathFromOriginToDestination,
       }}
     >
       {props.children}
