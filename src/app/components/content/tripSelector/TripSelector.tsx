@@ -8,43 +8,43 @@ import StationsSelectorContainer from '../stationsSelector/StationsSelectorConta
 
 interface TripSelectorProps {
   onMenuButtonClick: () => void;
+  onSearchButtonClick: () => void;
 }
 
 const TripSelector: React.FC<TripSelectorProps> = (props) => {
   const { t } = useTranslation();
 
   return (
-    <div className={styles.container}>
-      <>
-        <div className={styles.header}>
-          <button
-            title="menu"
-            type="button"
-            className={styles.menuButton}
-            onClick={props.onMenuButtonClick}
-          >
-            <MenuIcon />
-          </button>
-          <div className={styles.logo}>
-            <LogoWhite />
-          </div>
-        </div>
-        <div className={styles.inputFields}>
-          <StationsSelectorContainer />
-          <div className={styles.dateAndTimePicker}>
-            <div>Date and Time picker</div>
-          </div>
-        </div>
+    <>
+      <div className={styles.header}>
         <button
+          title="menu"
           type="button"
-          aria-label="trigger-search"
-          className={styles.searchButton}
+          className={styles.menuButton}
+          onClick={props.onMenuButtonClick}
         >
-          <p>{t('Content.TripSelector.SEARCH_BUTTON')}</p>
-          <SearchIcon />
+          <MenuIcon />
         </button>
-      </>
-    </div>
+        <div className={styles.logo}>
+          <LogoWhite />
+        </div>
+      </div>
+      <div className={styles.inputFields}>
+        <StationsSelectorContainer />
+        <div className={styles.dateAndTimePicker}>
+          <div>Date and Time picker</div>
+        </div>
+      </div>
+      <button
+        type="button"
+        aria-label="trigger-search"
+        className={styles.searchButton}
+        onClick={props.onSearchButtonClick}
+      >
+        <p>{t('Content.TripSelector.SEARCH_BUTTON')}</p>
+        <SearchIcon />
+      </button>
+    </>
   );
 };
 

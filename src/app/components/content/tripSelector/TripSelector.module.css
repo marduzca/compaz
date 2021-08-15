@@ -1,18 +1,5 @@
 @import '../../../../variables.css';
 
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  background-color: var(--primary-color);
-  height: 100%;
-  width: 22.75rem;
-  border-radius: 0.625rem;
-  padding: 3.125rem 1.25rem;
-  margin-left: 6.25rem;
-}
-
 .header {
   display: none;
 }
@@ -57,15 +44,6 @@
 }
 
 @media only screen and (max-width: 480px) {
-  .container {
-    width: 100%;
-    margin: 0;
-    border-radius: 0;
-    padding: 1rem 1.25rem;
-    min-height: 17.5rem;
-    height: 40%;
-  }
-
   .header {
     position: relative;
     width: 100%;
