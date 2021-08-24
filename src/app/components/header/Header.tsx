@@ -31,6 +31,7 @@ interface HeaderProps {
   onLogoClick: () => void;
   onHideMobileMenu: () => void;
   showMenuOnMobile: boolean;
+  fixNightMessage?: boolean; // Used only to avoid flakyness in the visual regression test
 }
 
 const Header: React.FC<HeaderProps> = (props) => {
@@ -61,6 +62,16 @@ const Header: React.FC<HeaderProps> = (props) => {
   }, [props.showMenuOnMobile]);
 
   const getMessageBasedOnTimeOfTheDay = () => {
+    if (props.fixNightMessage) {
+      // Used only to avoid flakyness in the visual regression test
+      return (
+        <>
+          <NightIcon />
+          <span>{t('Header.NIGHT_MESSAGE')}</span>
+        </>
+      );
+    }
+
     const currentTime = new Date().getHours();
 
     if (currentTime > 6 && currentTime < 13) {
