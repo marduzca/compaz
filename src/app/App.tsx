@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './App.module.css';
-import HeaderContainer from './components/header/HeaderContainer';
+import MenuContainer from './components/menu/MenuContainer';
 import FooterContainer from './components/footer/FooterContainer';
 import PageContent from './components/content/PageContent';
 import { FirebaseProvider } from './components/providers/FirebaseProvider';
@@ -26,7 +26,7 @@ const App = () => {
     <>
       <LandscapeErrorMessage />
       <div className={styles.App}>
-        <HeaderContainer
+        <MenuContainer
           showMenuOnMobile={showMobileMenu}
           onHideMobileMenu={() => {
             setShowMobileMenu(false);

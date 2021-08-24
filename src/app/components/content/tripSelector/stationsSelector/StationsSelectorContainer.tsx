@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import StationsSelector from './StationsSelector';
-import { useNavigation } from '../../providers/NavigationProvider';
-import { useFirebase } from '../../providers/FirebaseProvider';
+import { useNavigation } from '../../../providers/NavigationProvider';
+import { useFirebase } from '../../../providers/FirebaseProvider';
 
 const StationsSelectorContainer: React.FC = () => {
   const { stations } = useFirebase();

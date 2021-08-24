@@ -2,9 +2,9 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import StationsSelectorContainer from './StationsSelectorContainer';
-import { Station } from '../../domain';
-import * as NavigationProvider from '../../providers/NavigationProvider';
-import * as FirebaseProvider from '../../providers/FirebaseProvider';
+import { Station } from '../../../domain';
+import * as NavigationProvider from '../../../providers/NavigationProvider';
+import * as FirebaseProvider from '../../../providers/FirebaseProvider';
 
 describe('StationsSelectorContainer', () => {
   const useFirebaseMock = jest.spyOn(FirebaseProvider, 'useFirebase');

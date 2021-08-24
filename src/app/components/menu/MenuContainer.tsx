@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from './Header';
+import Menu from './Menu';
 import i18n from '../../i18n/instance';
 
 interface HeaderContainerProps {
@@ -7,7 +7,7 @@ interface HeaderContainerProps {
   showMenuOnMobile: boolean;
 }
 
-const HeaderContainer: React.FC<HeaderContainerProps> = (props) => {
+const MenuContainer: React.FC<HeaderContainerProps> = (props) => {
   const SPANISH = 'es';
   const ENGLISH = 'en';
 
@@ -21,7 +21,7 @@ const HeaderContainer: React.FC<HeaderContainerProps> = (props) => {
   };
 
   return (
-    <Header
+    <Menu
       onLanguageChange={handleLanguageChange}
       onLogoClick={handleLogoClick}
       onHideMobileMenu={props.onHideMobileMenu}
@@ -30,4 +30,4 @@ const HeaderContainer: React.FC<HeaderContainerProps> = (props) => {
   );
 };
 
-export default HeaderContainer;
+export default MenuContainer;

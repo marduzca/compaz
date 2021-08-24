@@ -11,7 +11,7 @@ import { ReactComponent as NightIcon } from '../../static/img/night.svg';
 import { ReactComponent as HistoryIcon } from '../../static/img/history.svg';
 import { ReactComponent as InstallIcon } from '../../static/img/install.svg';
 import { ReactComponent as ContactIcon } from '../../static/img/contact.svg';
-import styles from './Header.module.css';
+import styles from './Menu.module.css';
 import i18n from '../../i18n/instance';
 
 interface HeaderItemProps {
@@ -34,7 +34,7 @@ interface HeaderProps {
   fixNightMessage?: boolean; // Used only to avoid flakyness in the visual regression test
 }
 
-const Header: React.FC<HeaderProps> = (props) => {
+const Menu: React.FC<HeaderProps> = (props) => {
   const { t } = useTranslation();
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
@@ -67,7 +67,7 @@ const Header: React.FC<HeaderProps> = (props) => {
       return (
         <>
           <NightIcon />
-          <span>{t('Header.NIGHT_MESSAGE')}</span>
+          <span>{t('Menu.NIGHT_MESSAGE')}</span>
         </>
       );
     }
@@ -78,7 +78,7 @@ const Header: React.FC<HeaderProps> = (props) => {
       return (
         <>
           <MorningIcon />
-          <span>{t('Header.MORNING_MESSAGE')}</span>
+          <span>{t('Menu.MORNING_MESSAGE')}</span>
         </>
       );
     }
@@ -87,7 +87,7 @@ const Header: React.FC<HeaderProps> = (props) => {
       return (
         <>
           <AfternoonIcon />
-          <span>{t('Header.AFTERNOON_MESSAGE')}</span>
+          <span>{t('Menu.AFTERNOON_MESSAGE')}</span>
         </>
       );
     }
@@ -95,7 +95,7 @@ const Header: React.FC<HeaderProps> = (props) => {
     return (
       <>
         <NightIcon />
-        <span>{t('Header.NIGHT_MESSAGE')}</span>
+        <span>{t('Menu.NIGHT_MESSAGE')}</span>
       </>
     );
   };
@@ -127,14 +127,11 @@ const Header: React.FC<HeaderProps> = (props) => {
         <LogoBlack />
       </button>
       <ul className={styles.headerItems}>
-        <HeaderItem content={t('Header.HISTORY')} icon={<HistoryIcon />} />
-        <HeaderItem
-          content={t('Header.HOW_TO_INSTALL')}
-          icon={<InstallIcon />}
-        />
-        <HeaderItem content={t('Header.CONTACT')} icon={<ContactIcon />} />
+        <HeaderItem content={t('Menu.HISTORY')} icon={<HistoryIcon />} />
+        <HeaderItem content={t('Menu.HOW_TO_INSTALL')} icon={<InstallIcon />} />
+        <HeaderItem content={t('Menu.CONTACT')} icon={<ContactIcon />} />
         <li className={styles.languageSelector}>
-          <span>{t('Header.LANGUAGE')}</span>
+          <span>{t('Menu.LANGUAGE')}</span>
           <button
             title="language-selector"
             type="button"
@@ -147,4 +144,4 @@ const Header: React.FC<HeaderProps> = (props) => {
     </header>
   );
 };
-export default Header;
+export default Menu;

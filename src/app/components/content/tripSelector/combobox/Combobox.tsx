@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { KeyboardEvent, useEffect, useState } from 'react';
 import { useCombobox } from 'downshift';
-import { ReactComponent as UpIcon } from '../../../static/img/arrow_up.svg';
-import { ReactComponent as DownIcon } from '../../../static/img/arrow_down.svg';
+import { ReactComponent as UpIcon } from '../../../../static/img/arrow_up.svg';
+import { ReactComponent as DownIcon } from '../../../../static/img/arrow_down.svg';
 import styles from './Combobox.module.css';
 
 export interface Option {

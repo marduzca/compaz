@@ -1,15 +1,15 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
-import Header from './Header';
+import Menu from './Menu';
 
 export default {
-  title: 'Header',
-  component: Header,
+  title: 'Menu',
+  component: Menu,
 } as Meta;
 
 export const normalState = () => (
-  <Header
+  <Menu
     onLanguageChange={actions('onLanguageChange').onLanguageChange}
     onLogoClick={actions('onLogoClick').onLogoClick}
     onHideMobileMenu={actions('onBackButtonClick').onBackButtonClick}
@@ -18,7 +18,7 @@ export const normalState = () => (
 );
 
 export const mobileState = () => (
-  <Header
+  <Menu
     onLanguageChange={actions('onLanguageChange').onLanguageChange}
     onLogoClick={actions('onLogoClick').onLogoClick}
     onHideMobileMenu={actions('onBackButtonClick').onBackButtonClick}

@@ -10,18 +10,18 @@ interface PageContentProps {
 
 const PageContent: React.FC<PageContentProps> = (props) => {
   const { findShortestPathFromOriginToDestination } = useNavigation();
-  const [showRoute, setShowRoute] = useState<boolean>(false);
+  const [showRoutesOverview, setShowRoutesOverview] = useState<boolean>(false);
   const [route, setRoute] = useState<string[]>([]);
 
   const handleSearchButtonClick = () => {
     setRoute(findShortestPathFromOriginToDestination());
-    setShowRoute(true);
+    setShowRoutesOverview(true);
   };
 
   return (
     <div className={styles.content}>
       <div className={styles.container}>
-        {!showRoute ? (
+        {!showRoutesOverview ? (
           <TripSelectorContainer
             onMenuButtonClick={props.onMenuButtonClick}
             onSearchButtonClick={handleSearchButtonClick}

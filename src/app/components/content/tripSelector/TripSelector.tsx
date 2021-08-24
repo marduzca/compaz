@@ -4,7 +4,7 @@ import styles from './TripSelector.module.css';
 import { ReactComponent as SearchIcon } from '../../../static/img/arrow_right.svg';
 import { ReactComponent as LogoWhite } from '../../../static/img/logo_white.svg';
 import { ReactComponent as MenuIcon } from '../../../static/img/menu.svg';
-import StationsSelectorContainer from '../stationsSelector/StationsSelectorContainer';
+import StationsSelectorContainer from './stationsSelector/StationsSelectorContainer';
 
 interface TripSelectorProps {
   onMenuButtonClick: () => void;

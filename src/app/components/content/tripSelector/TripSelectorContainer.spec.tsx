@@ -35,7 +35,12 @@ describe('TripSelectorContainer', () => {
         ],
       });
 
-      render(<TripSelectorContainer onMenuButtonClick={() => {}} />);
+      render(
+        <TripSelectorContainer
+          onMenuButtonClick={() => {}}
+          onSearchButtonClick={() => {}}
+        />
+      );
 
       expect(
         screen.getByRole('textbox', {

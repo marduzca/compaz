@@ -1,21 +1,21 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import HeaderContainer from './HeaderContainer';
+import MenuContainer from './MenuContainer';
 
-describe('HeaderContainer', () => {
+describe('MenuContainer', () => {
   it('renders all header items', () => {
     render(
-      <HeaderContainer showMenuOnMobile={false} onHideMobileMenu={() => {}} />
+      <MenuContainer showMenuOnMobile={false} onHideMobileMenu={() => {}} />
     );
 
     expect(screen.getByRole('button', { name: 'home' })).toBeVisible();
     expect(
       screen.getByRole('button', { name: 'language-selector' })
     ).toBeVisible();
-    expect(screen.getByText('Header.HISTORY')).toBeVisible();
-    expect(screen.getByText('Header.HOW_TO_INSTALL')).toBeVisible();
-    expect(screen.getByText('Header.CONTACT')).toBeVisible();
+    expect(screen.getByText('Menu.HISTORY')).toBeVisible();
+    expect(screen.getByText('Menu.HOW_TO_INSTALL')).toBeVisible();
+    expect(screen.getByText('Menu.CONTACT')).toBeVisible();
   });
 
   describe('when switching language', () => {
@@ -24,10 +24,7 @@ describe('HeaderContainer', () => {
         localStorage.setItem('i18nextLng', 'en');
 
         render(
-          <HeaderContainer
-            onHideMobileMenu={() => {}}
-            showMenuOnMobile={false}
-          />
+          <MenuContainer onHideMobileMenu={() => {}} showMenuOnMobile={false} />
         );
 
         userEvent.click(
@@ -43,10 +40,7 @@ describe('HeaderContainer', () => {
         localStorage.setItem('i18nextLng', 'es');
 
         render(
-          <HeaderContainer
-            showMenuOnMobile={false}
-            onHideMobileMenu={() => {}}
-          />
+          <MenuContainer showMenuOnMobile={false} onHideMobileMenu={() => {}} />
         );
 
         userEvent.click(
