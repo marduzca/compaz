@@ -9,20 +9,39 @@
   background-image: url('../../static/img/background_banner.svg');
   background-size: cover;
   height: calc(100vh * 0.68);
-  padding: 4.25rem 0;
 }
 
 .container {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
 
-  background-color: var(--primary-color);
   height: 100%;
   width: 22.75rem;
   border-radius: 0.625rem;
+  margin: 4.25rem 0 4.25rem 6.25rem;
+}
+
+.tripSelectorContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  border-radius: inherit;
+  background-color: var(--primary-color);
+  height: 100%;
+  width: 22.75rem;
   padding: 3.125rem 1.25rem;
-  margin-left: 6.25rem;
+}
+
+.routesContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+  border-radius: inherit;
+  background-color: white;
 }
 
 .map {
@@ -38,16 +57,29 @@
   }
 
   .container {
+    display: block;
+
     width: 100%;
+    height: 100%;
+    min-height: 17.5rem;
+
     margin: 0;
     border-radius: 0;
-    padding: 1rem 1.25rem;
-    min-height: 17.5rem;
+  }
+
+  .tripSelectorContainer {
+    width: 100%;
     height: 40%;
+    min-height: 17.5rem;
+    padding: 1rem 1.25rem;
+  }
+
+  .routesContainer {
+    background-color: white;
   }
 
   .map {
-    display: block;
+    display: flex;
     height: 60%;
     width: 100%;
   }
