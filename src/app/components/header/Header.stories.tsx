@@ -16,3 +16,12 @@ export const normalState = () => (
     showMenuOnMobile={false}
   />
 );
+
+export const mobileState = () => (
+  <Header
+    onLanguageChange={actions('onLanguageChange').onLanguageChange}
+    onLogoClick={actions('onLogoClick').onLogoClick}
+    onHideMobileMenu={actions('onBackButtonClick').onBackButtonClick}
+    showMenuOnMobile
+  />
+);
