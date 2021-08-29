@@ -34,16 +34,6 @@
   padding: 3.125rem 1.25rem;
 }
 
-.routesContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  height: 100%;
-  border-radius: inherit;
-  background-color: white;
-}
-
 .map {
   display: none;
 }

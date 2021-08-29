@@ -23,9 +23,7 @@ const PageContent: React.FC<PageContentProps> = (props) => {
     <div className={styles.content}>
       <section className={styles.container}>
         {showRoutesOverview ? (
-          <div className={styles.routesContainer}>
-            <RoutesOverviewContainer route={route} />
-          </div>
+          <RoutesOverviewContainer route={route} />
         ) : (
           <>
             <div className={styles.tripSelectorContainer}>
