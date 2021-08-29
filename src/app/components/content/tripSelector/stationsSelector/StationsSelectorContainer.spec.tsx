@@ -198,7 +198,11 @@ describe('StationsSelectorContainer', () => {
       }
     );
 
-    userEvent.click(screen.getByRole('button', { name: 'stations-switcher' }));
+    userEvent.click(
+      screen.getByRole('button', {
+        name: 'Content.TripSelector.STATIONS_SWITCHER',
+      })
+    );
 
     expect(
       screen.getByRole('textbox', {

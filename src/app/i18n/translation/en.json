@@ -1,7 +1,9 @@
 {
+  "GO_BACK_BUTTON": "Go back",
   "LANDSCAPE_ERROR": "We dont support landscape mode, we are very sorry :(",
   "Menu": {
     "AFTERNOON_MESSAGE": "Good afternoon\nLa Paz",
+    "CHANGE_LANGUAGE": "Change language",
     "CONTACT": "Contact us",
     "MORNING_MESSAGE": "Good morning\nLa Paz",
     "HISTORY": "History",
@@ -14,7 +16,9 @@
       "DESTINATION_PLACEHOLDER": "Destination",
       "ERROR": "Non-existent station",
       "ORIGIN_PLACEHOLDER": "Origin",
-      "SEARCH_BUTTON": "Search"
+      "SEARCH_BUTTON": "Search",
+      "STATIONS_SWITCHER": "Switch stations",
+      "TOGGLE_STATIONS": "Toggle stations"
     }
   },
   "Footer": {

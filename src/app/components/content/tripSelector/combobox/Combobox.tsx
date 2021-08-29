@@ -17,6 +17,7 @@ interface ComboboxProps {
   inputValue: string;
   onChange: (inputValue: string) => void;
   validationError?: boolean;
+  arrowButtonTitle: string;
 }
 
 const Combobox: React.FC<ComboboxProps> = (props) => {
@@ -84,7 +85,7 @@ const Combobox: React.FC<ComboboxProps> = (props) => {
         </label>
         <button
           type="button"
-          aria-label="toggle-options"
+          title={props.arrowButtonTitle}
           {...getToggleButtonProps()}
         >
           {isOpen ? (

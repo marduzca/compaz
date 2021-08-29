@@ -1,5 +1,6 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
+import { actions } from '@storybook/addon-actions';
 import RoutesOverview from './RoutesOverview';
 
 export default {
@@ -8,5 +9,8 @@ export default {
 } as Meta;
 
 export const normalAndMobileState = () => (
-  <RoutesOverview route={['origin', 'destination']} />
+  <RoutesOverview
+    route={['origin', 'destination']}
+    onBackButtonClick={actions('onBackButtonClick').onBackButtonClick}
+  />
 );

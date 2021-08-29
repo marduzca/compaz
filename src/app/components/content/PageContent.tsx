@@ -18,11 +18,19 @@ const PageContent: React.FC<PageContentProps> = (props) => {
     setShowRoutesOverview(true);
   };
 
+  const handleBackButtonClick = () => {
+    setRoute([]);
+    setShowRoutesOverview(false);
+  };
+
   return (
     <div className={styles.content}>
       <section className={styles.container}>
         {showRoutesOverview ? (
-          <RoutesOverviewContainer route={route} />
+          <RoutesOverviewContainer
+            route={route}
+            onBackButtonClick={handleBackButtonClick}
+          />
         ) : (
           <TripSelectorContainer
             onMenuButtonClick={props.onMenuButtonClick}

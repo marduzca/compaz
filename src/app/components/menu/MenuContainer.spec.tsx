@@ -11,7 +11,7 @@ describe('MenuContainer', () => {
 
     expect(screen.getByRole('button', { name: 'home' })).toBeVisible();
     expect(
-      screen.getByRole('button', { name: 'language-selector' })
+      screen.getByRole('button', { name: 'Menu.CHANGE_LANGUAGE' })
     ).toBeVisible();
     expect(screen.getByText('Menu.HISTORY')).toBeVisible();
     expect(screen.getByText('Menu.HOW_TO_INSTALL')).toBeVisible();
@@ -28,7 +28,7 @@ describe('MenuContainer', () => {
         );
 
         userEvent.click(
-          screen.getByRole('button', { name: 'language-selector' })
+          screen.getByRole('button', { name: 'Menu.CHANGE_LANGUAGE' })
         );
 
         expect(localStorage.getItem('i18nextLng')).toBe('es');
@@ -44,7 +44,7 @@ describe('MenuContainer', () => {
         );
 
         userEvent.click(
-          screen.getByRole('button', { name: 'language-selector' })
+          screen.getByRole('button', { name: 'Menu.CHANGE_LANGUAGE' })
         );
 
         expect(localStorage.getItem('i18nextLng')).toBe('en');

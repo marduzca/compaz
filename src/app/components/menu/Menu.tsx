@@ -108,7 +108,7 @@ const Menu: React.FC<HeaderProps> = (props) => {
       ref={mobileMenuRef}
     >
       <button
-        title="Back"
+        title={t('GO_BACK_BUTTON')}
         type="button"
         className={styles.backButton}
         onClick={props.onHideMobileMenu}
@@ -133,7 +133,7 @@ const Menu: React.FC<HeaderProps> = (props) => {
         <li className={styles.languageSelector}>
           <span>{t('Menu.LANGUAGE')}</span>
           <button
-            title="language-selector"
+            title={t('Menu.CHANGE_LANGUAGE')}
             type="button"
             onClick={props.onLanguageChange}
           >

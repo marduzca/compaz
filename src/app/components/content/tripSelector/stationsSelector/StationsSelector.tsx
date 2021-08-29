@@ -36,9 +36,10 @@ const StationsSelector: React.FC<StationsSelectorProps> = (props) => {
         inputValue={props.originInputValue}
         onChange={props.onOriginChange}
         validationError={props.originValidationError}
+        arrowButtonTitle={t('Content.TripSelector.TOGGLE_STATIONS')}
       />
       <button
-        title="stations-switcher"
+        title={t('Content.TripSelector.STATIONS_SWITCHER')}
         type="button"
         className={styles.stationsSwitcher}
         onClick={props.onSwitcherClick}
@@ -60,6 +61,7 @@ const StationsSelector: React.FC<StationsSelectorProps> = (props) => {
         inputValue={props.destinationInputValue}
         onChange={props.onDestinationChange}
         validationError={props.destinationValidationError}
+        arrowButtonTitle={t('Content.TripSelector.TOGGLE_STATIONS')}
       />
     </div>
   );

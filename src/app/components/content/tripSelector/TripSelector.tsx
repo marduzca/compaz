@@ -20,7 +20,7 @@ const TripSelector: React.FC<TripSelectorProps> = (props) => {
       <div className={styles.tripSelectorContainer}>
         <div className={styles.header}>
           <button
-            title="menu"
+            title={t('GO_BACK_BUTTON')}
             type="button"
             className={styles.menuButton}
             onClick={props.onMenuButtonClick}

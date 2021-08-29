@@ -7,6 +7,7 @@ describe('RoutesOverviewContainer', () => {
     render(
       <RoutesOverviewContainer
         route={['station_a', 'station_b', 'station_c', 'station_d']}
+        onBackButtonClick={() => {}}
       />
     );
 

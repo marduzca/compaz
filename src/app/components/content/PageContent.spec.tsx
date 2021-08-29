@@ -21,16 +21,16 @@ jest.mock('firebase/app', () => ({
 describe('PageContent', () => {
   const useFirebaseMock = jest.spyOn(FirebaseProvider, 'useFirebase');
   const useNavigationMock = jest.spyOn(NavigationProvider, 'useNavigation');
+
   const originStation = {
-    id: 'some_station',
-    name: 'Some station',
+    id: 'origin_station',
+    name: 'Origin station',
     lines: ['green'],
     connectedStations: [],
   } as Station;
-
   const destinationStation = {
-    id: 'another_station',
-    name: 'Another station',
+    id: 'destination_station',
+    name: 'Destination station',
     lines: ['green'],
     connectedStations: [],
   } as Station;
@@ -72,6 +72,16 @@ describe('PageContent', () => {
   });
 
   it('navigates back to trip selection when clicking on search', () => {
-    expect(true).toBeTruthy();
+    render(<PageContent onMenuButtonClick={() => {}} />);
+
+    userEvent.click(
+      screen.getByRole('button', { name: 'Content.TripSelector.SEARCH_BUTTON' })
+    );
+
+    userEvent.click(screen.getByRole('button', { name: 'GO_BACK_BUTTON' }));
+
+    expect(
+      screen.getByRole('button', { name: 'Content.TripSelector.SEARCH_BUTTON' })
+    ).toBeVisible();
   });
 });
