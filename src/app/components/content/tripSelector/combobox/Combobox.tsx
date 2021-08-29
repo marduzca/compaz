@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { KeyboardEvent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useCombobox } from 'downshift';
 import { ReactComponent as UpIcon } from '../../../../static/img/arrow_up.svg';
 import { ReactComponent as DownIcon } from '../../../../static/img/arrow_down.svg';
@@ -16,7 +16,6 @@ interface ComboboxProps {
   options: Option[];
   inputValue: string;
   onChange: (inputValue: string) => void;
-  inputOnKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
   validationError?: boolean;
 }
 
@@ -74,17 +73,11 @@ const Combobox: React.FC<ComboboxProps> = (props) => {
       >
         <input
           name={props.name}
-          {...getInputProps({
-            onKeyDown: (e) => {
-              if (props.inputOnKeyDown) {
-                props.inputOnKeyDown(e);
-              }
-            },
-          })}
           onClick={(e) => {
             if (!isOpen) getToggleButtonProps().onClick(e);
           }}
           className={styles.input}
+          {...getInputProps({})}
         />
         <label htmlFor={props.name} {...getLabelProps()}>
           {props.placeholder}
@@ -117,6 +110,10 @@ const Combobox: React.FC<ComboboxProps> = (props) => {
       </ul>
     </div>
   );
+};
+
+Combobox.defaultProps = {
+  validationError: false,
 };
 
 export default Combobox;

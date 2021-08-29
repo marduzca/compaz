@@ -144,4 +144,9 @@ const Menu: React.FC<HeaderProps> = (props) => {
     </header>
   );
 };
+
+Menu.defaultProps = {
+  fixNightMessage: false,
+};
+
 export default Menu;
