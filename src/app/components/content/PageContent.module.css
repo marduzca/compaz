@@ -22,22 +22,6 @@
   margin: 4.25rem 0 4.25rem 6.25rem;
 }
 
-.tripSelectorContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  border-radius: inherit;
-  background-color: var(--primary-color);
-  height: 100%;
-  width: 22.75rem;
-  padding: 3.125rem 1.25rem;
-}
-
-.map {
-  display: none;
-}
-
 @media only screen and (max-width: 480px) {
   .content {
     background: none;
@@ -55,22 +39,5 @@
 
     margin: 0;
     border-radius: 0;
-  }
-
-  .tripSelectorContainer {
-    width: 100%;
-    height: 40%;
-    min-height: 17.5rem;
-    padding: 1rem 1.25rem;
-  }
-
-  .routesContainer {
-    background-color: white;
-  }
-
-  .map {
-    display: flex;
-    height: 60%;
-    width: 100%;
   }
 }

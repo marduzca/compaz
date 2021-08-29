@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import MapImage from '../../static/img/fake_map.png';
 import styles from './PageContent.module.css';
 import TripSelectorContainer from './tripSelector/TripSelectorContainer';
 import { useNavigation } from '../providers/NavigationProvider';
@@ -25,15 +24,10 @@ const PageContent: React.FC<PageContentProps> = (props) => {
         {showRoutesOverview ? (
           <RoutesOverviewContainer route={route} />
         ) : (
-          <>
-            <div className={styles.tripSelectorContainer}>
-              <TripSelectorContainer
-                onMenuButtonClick={props.onMenuButtonClick}
-                onSearchButtonClick={handleSearchButtonClick}
-              />
-            </div>
-            <img className={styles.map} alt="Map" src={MapImage} />
-          </>
+          <TripSelectorContainer
+            onMenuButtonClick={props.onMenuButtonClick}
+            onSearchButtonClick={handleSearchButtonClick}
+          />
         )}
       </section>
     </div>
