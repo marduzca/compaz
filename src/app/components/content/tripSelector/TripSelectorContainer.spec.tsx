@@ -54,7 +54,7 @@ describe('TripSelectorContainer', () => {
       ).toBeVisible();
       expect(
         screen.getByRole('button', {
-          name: 'trigger-search',
+          name: 'Content.TripSelector.SEARCH_BUTTON',
         })
       ).toBeVisible();
     });
