@@ -64,6 +64,43 @@
   fill: white;
 }
 
+.routesOverview {
+  height: 100%;
+}
+
+.adjustTimeButton {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+
+  width: 100%;
+  height: 2rem;
+  margin: 0.5rem 0;
+  padding-left: 1rem;
+
+  box-shadow: 0 0 0.25rem 0 grey;
+
+  font-size: 1rem;
+  font-weight: 500;
+
+  background: none;
+  cursor: pointer;
+  border: 0;
+  outline: none;
+}
+
+.adjustTimeButton > svg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.laterButton {
+  margin-bottom: 0;
+}
+
 @media only screen and (max-width: 480px) {
   .routesContainer {
     width: 100%;

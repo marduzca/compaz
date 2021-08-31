@@ -12,6 +12,10 @@
     "NIGHT_MESSAGE": "Buenas noches\nLa Paz"
   },
   "Content": {
+    "RoutesOverview": {
+      "EARLIER_BUTTON": "Más temprano",
+      "LATER_BUTTON": "Más tarde"
+    },
     "TripSelector": {
       "DESTINATION_PLACEHOLDER": "Destino",
       "ERROR": "Estación no existente",

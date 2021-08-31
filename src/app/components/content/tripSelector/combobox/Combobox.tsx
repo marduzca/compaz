@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect, useState } from 'react';
 import { useCombobox } from 'downshift';
-import { ReactComponent as UpIcon } from '../../../../static/img/arrow_up.svg';
-import { ReactComponent as DownIcon } from '../../../../static/img/arrow_down.svg';
+import { ReactComponent as ArrowUpIcon } from '../../../../static/img/arrow_up.svg';
+import { ReactComponent as ArrowDownIcon } from '../../../../static/img/arrow_down.svg';
 import styles from './Combobox.module.css';
 
 export interface Option {
@@ -89,9 +89,9 @@ const Combobox: React.FC<ComboboxProps> = (props) => {
           {...getToggleButtonProps()}
         >
           {isOpen ? (
-            <UpIcon className={styles.toggleButton} />
+            <ArrowUpIcon className={styles.toggleButton} />
           ) : (
-            <DownIcon className={styles.toggleButton} />
+            <ArrowDownIcon className={styles.toggleButton} />
           )}
         </button>
       </div>
