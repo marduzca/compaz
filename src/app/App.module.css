@@ -13,7 +13,7 @@
   display: none;
 }
 
-@media only screen and (orientation: landscape) and (max-height: 480px) {
+@media only screen and (max-device-height: 480px) {
   .App {
     display: none;
   }
