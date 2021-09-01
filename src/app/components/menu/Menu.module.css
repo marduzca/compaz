@@ -153,10 +153,6 @@
     margin: 1rem 0;
   }
 
-  .headerItem:active {
-    background-color: lightgrey;
-  }
-
   .headerItemIcon {
     display: inline-block;
     height: 1.75rem;
