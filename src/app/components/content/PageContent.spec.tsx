@@ -66,7 +66,7 @@ describe('PageContent', () => {
 
     expect(
       screen.getByRole('heading', {
-        name: `${originStation.id} - ${destinationStation.id}`,
+        name: `${originStation.name} - ${destinationStation.name}`,
       })
     ).toBeVisible();
   });

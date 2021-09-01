@@ -6,13 +6,38 @@ describe('RoutesOverviewContainer', () => {
   it('displays origin and destination in the header', () => {
     render(
       <RoutesOverviewContainer
-        route={['station_a', 'station_b', 'station_c', 'station_d']}
+        route={[
+          {
+            id: 'station_a',
+            name: 'Station a',
+            lines: ['green'],
+            connectedStations: [],
+          },
+          {
+            id: 'station_b',
+            name: 'Station b',
+            lines: ['green'],
+            connectedStations: [],
+          },
+          {
+            id: 'station_c',
+            name: 'Station c',
+            lines: ['green'],
+            connectedStations: [],
+          },
+          {
+            id: 'station_d',
+            name: 'Station d',
+            lines: ['green'],
+            connectedStations: [],
+          },
+        ]}
         onBackButtonClick={() => {}}
       />
     );
 
     expect(
-      screen.getByRole('heading', { name: 'station_a - station_d' })
+      screen.getByRole('heading', { name: 'Station a - Station d' })
     ).toBeVisible();
   });
 });

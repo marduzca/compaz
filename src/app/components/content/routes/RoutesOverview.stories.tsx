@@ -10,7 +10,20 @@ export default {
 
 export const normalAndMobileState = () => (
   <RoutesOverview
-    route={['origin', 'destination']}
+    route={[
+      {
+        id: 'some_station',
+        name: 'Some station',
+        lines: ['green'],
+        connectedStations: [],
+      },
+      {
+        id: 'other_station',
+        name: 'Other station',
+        lines: ['green'],
+        connectedStations: [],
+      },
+    ]}
     onBackButtonClick={actions('onBackButtonClick').onBackButtonClick}
   />
 );

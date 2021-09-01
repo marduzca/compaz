@@ -1,8 +1,9 @@
 import React from 'react';
 import RoutesOverview from './RoutesOverview';
+import { Station } from '../../domain';
 
 interface RoutesOverviewContainerProps {
-  route: string[];
+  route: Station[];
   onBackButtonClick: () => void;
 }
 

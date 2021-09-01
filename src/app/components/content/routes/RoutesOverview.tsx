@@ -4,9 +4,10 @@ import { ReactComponent as ArrowUpIcon } from '../../../static/img/arrow_up.svg'
 import { ReactComponent as ArrowDownIcon } from '../../../static/img/arrow_down.svg';
 import { ReactComponent as BackIcon } from '../../../static/img/arrow_back.svg';
 import styles from './RoutesOverview.module.css';
+import { Station } from '../../domain';
 
 interface RoutesOverviewProps {
-  route: string[];
+  route: Station[];
   onBackButtonClick: () => void;
 }
 
@@ -25,8 +26,8 @@ const RoutesOverview: React.FC<RoutesOverviewProps> = (props) => {
           >
             <BackIcon />
           </button>
-          <h4>{`${props.route[0]} - ${
-            props.route[props.route.length - 1]
+          <h4>{`${props.route[0].name} - ${
+            props.route[props.route.length - 1].name
           }`}</h4>
         </div>
         <span>Lun 15 Mar 2021</span>
@@ -44,15 +45,15 @@ const RoutesOverview: React.FC<RoutesOverviewProps> = (props) => {
           {props.route.map((station, index) => {
             if (index === props.route.length - 1) {
               return (
-                <div key={station}>
-                  <p>{`${station}`}</p>
+                <div key={station.id}>
+                  <p>{`${station.name}`}</p>
                 </div>
               );
             }
 
             return (
-              <div key={station}>
-                <p>{`${station}`}</p>
+              <div key={station.id}>
+                <p>{`${station.name}`}</p>
                 <p>V</p>
               </div>
             );

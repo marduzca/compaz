@@ -20,6 +20,8 @@
   width: 22.75rem;
   border-radius: 0.625rem;
   margin: 4.25rem 0 4.25rem 6.25rem;
+
+  overflow: hidden;
 }
 
 @media only screen and (max-width: 480px) {
