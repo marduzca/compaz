@@ -9,3 +9,13 @@ export interface ConnectedStation {
   id: string;
   timeTo: number;
 }
+
+export interface Route {
+  subRoutes: SubRoute[];
+  totalTime: number;
+}
+
+export interface SubRoute {
+  stationsPath: Station[];
+  totalTime: number;
+}

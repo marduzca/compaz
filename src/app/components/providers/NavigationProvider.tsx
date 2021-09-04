@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
-import { Station } from '../domain';
+import { Route, Station, SubRoute } from '../domain';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const dijkstra = require('dijkstrajs');
@@ -18,7 +18,7 @@ interface NavigationContextProps {
   setOriginStation: (newOrigin: Station) => void;
   setDestinationStation: (newDestination: Station) => void;
   generateStationsMap: (stations: Station[]) => void;
-  findShortestPathFromOriginToDestination: () => string[];
+  calculateRoute: (stations: Station[]) => Route;
 }
 
 export const NavigationContext = createContext<NavigationContextProps>({
@@ -37,8 +37,69 @@ export const NavigationContext = createContext<NavigationContextProps>({
   setOriginStation: () => {},
   setDestinationStation: () => {},
   generateStationsMap: () => {},
-  findShortestPathFromOriginToDestination: () => [],
+  calculateRoute: () => ({ subRoutes: [], totalTime: 0 }),
 });
+
+const identifyTransferPositions = (stationsPath: Station[]): number[] => {
+  const transferPositions = [] as number[];
+
+  stationsPath.forEach((subPath, index) => {
+    if (index < stationsPath.length - 2) {
+      if (stationsPath[index + 1].lines.length > 1) {
+        // Next station is connected to more than one line
+        if (
+          !stationsPath[index + 2].lines.some((line) =>
+            subPath.lines.includes(line)
+          ) // Station after the next one doesn't belong to line of current station
+        ) {
+          transferPositions.push(index + 1);
+        }
+      }
+    }
+  });
+
+  return transferPositions;
+};
+
+export const extractSubRoutes = (stationsPath: Station[]): Station[][] => {
+  const subRoutes = [] as Station[][];
+  const transferPositions = identifyTransferPositions(stationsPath);
+
+  subRoutes.push(stationsPath.slice(0, transferPositions[0] + 1));
+
+  transferPositions.forEach((transferPoint, index) => {
+    if (index !== transferPositions.length - 1) {
+      subRoutes.push(
+        stationsPath.slice(transferPoint, transferPositions[index + 1] + 1)
+      );
+    }
+  });
+
+  subRoutes.push(
+    stationsPath.slice(
+      transferPositions[transferPositions.length - 1],
+      stationsPath.length
+    )
+  );
+
+  return subRoutes;
+};
+
+export const calculateTotalTimeOfRoute = (route: Station[]) => {
+  let totalTime = 0;
+
+  route.forEach((station, index) => {
+    if (index < route.length - 1) {
+      const nextStation = station.connectedStations.find(
+        (connectedStation) => connectedStation.id === route[index + 1].id
+      );
+
+      if (nextStation) totalTime += nextStation.timeTo;
+    }
+  });
+
+  return Math.round(totalTime);
+};
 
 export const NavigationProvider: React.FC = (props) => {
   const [origin, setOrigin] = useState<Station>({
@@ -80,10 +141,38 @@ export const NavigationProvider: React.FC = (props) => {
     setStationsMap(generatedStationsMap);
   };
 
-  const findShortestPathFromOriginToDestination = (): string[] => {
+  const findShortestPathFromOriginToDestination = (
+    allStations: Station[]
+  ): Station[] => {
     const findPath = dijkstra.find_path;
 
-    return findPath(stationsMap, origin.id, destination.id);
+    return findPath(stationsMap, origin.id, destination.id).map(
+      (stationId: string) =>
+        allStations.find((station) => station.id === stationId)
+    );
+  };
+
+  const calculateRoute = (allStations: Station[]): Route => {
+    const stationsPath = findShortestPathFromOriginToDestination(allStations);
+
+    const subRoutesWithoutTimes = extractSubRoutes(stationsPath);
+
+    let totalTimeOfFullRoute = 0;
+
+    const subRoutesWithTimes = subRoutesWithoutTimes.map((subRoute) => {
+      const totalTimeOfSubRoute = calculateTotalTimeOfRoute(subRoute);
+      totalTimeOfFullRoute += totalTimeOfSubRoute;
+
+      return {
+        stationsPath: subRoute,
+        totalTime: totalTimeOfSubRoute,
+      } as SubRoute;
+    });
+
+    return {
+      subRoutes: subRoutesWithTimes,
+      totalTime: totalTimeOfFullRoute,
+    } as Route;
   };
 
   return (
@@ -94,7 +183,7 @@ export const NavigationProvider: React.FC = (props) => {
         setOriginStation,
         setDestinationStation,
         generateStationsMap,
-        findShortestPathFromOriginToDestination,
+        calculateRoute,
       }}
     >
       {props.children}

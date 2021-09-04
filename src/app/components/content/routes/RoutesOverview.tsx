@@ -4,10 +4,12 @@ import { ReactComponent as ArrowUpIcon } from '../../../static/img/arrow_up.svg'
 import { ReactComponent as ArrowDownIcon } from '../../../static/img/arrow_down.svg';
 import { ReactComponent as BackIcon } from '../../../static/img/arrow_back.svg';
 import styles from './RoutesOverview.module.css';
-import { Station } from '../../domain';
+import { Route } from '../../domain';
 
 interface RoutesOverviewProps {
-  route: Station[];
+  route: Route;
+  originName: string;
+  destinationName: string;
   onBackButtonClick: () => void;
 }
 
@@ -26,9 +28,7 @@ const RoutesOverview: React.FC<RoutesOverviewProps> = (props) => {
           >
             <BackIcon />
           </button>
-          <h4>{`${props.route[0].name} - ${
-            props.route[props.route.length - 1].name
-          }`}</h4>
+          <h4>{`${props.originName} - ${props.destinationName}`}</h4>
         </div>
         <span>Lun 15 Mar 2021</span>
       </header>
@@ -42,22 +42,17 @@ const RoutesOverview: React.FC<RoutesOverviewProps> = (props) => {
           <span>{t('Content.RoutesOverview.EARLIER_BUTTON')}</span>
         </button>
         <section>
-          {props.route.map((station, index) => {
-            if (index === props.route.length - 1) {
-              return (
-                <div key={station.id}>
-                  <p>{`${station.name}`}</p>
-                </div>
-              );
-            }
-
-            return (
-              <div key={station.id}>
-                <p>{`${station.name}`}</p>
-                <p>V</p>
-              </div>
-            );
-          })}
+          {props.route.subRoutes.map((subRoute, index) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <div key={`subRoute-${index}`}>
+              <p>
+                Subroute in line {subRoute.stationsPath[0].lines.toString()}
+              </p>
+              <p>Takes {subRoute.totalTime} mins in total</p>
+              <p>V</p>
+            </div>
+          ))}
+          <p>Total time of route is {props.route.totalTime}</p>
         </section>
         <button
           type="button"

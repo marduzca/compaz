@@ -1,19 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigation } from '../../providers/NavigationProvider';
 import RoutesOverview from './RoutesOverview';
-import { Station } from '../../domain';
+import { useFirebase } from '../../providers/FirebaseProvider';
+import { Route } from '../../domain';
 
 interface RoutesOverviewContainerProps {
-  route: Station[];
   onBackButtonClick: () => void;
 }
 
 const RoutesOverviewContainer: React.FC<RoutesOverviewContainerProps> = (
   props
-) => (
-  <RoutesOverview
-    route={props.route}
-    onBackButtonClick={props.onBackButtonClick}
-  />
-);
+) => {
+  const { calculateRoute, origin, destination } = useNavigation();
+  const { stations } = useFirebase();
+
+  const [route, setRoute] = useState<Route>({ subRoutes: [], totalTime: 0 });
+
+  useEffect(() => {
+    setRoute(calculateRoute(stations));
+  }, [calculateRoute, stations]);
+
+  return (
+    <RoutesOverview
+      route={route}
+      originName={origin.name}
+      destinationName={destination.name}
+      onBackButtonClick={props.onBackButtonClick}
+    />
+  );
+};
 
 export default RoutesOverviewContainer;

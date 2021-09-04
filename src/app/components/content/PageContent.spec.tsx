@@ -4,19 +4,7 @@ import userEvent from '@testing-library/user-event';
 import PageContent from './PageContent';
 import * as FirebaseProvider from '../providers/FirebaseProvider';
 import * as NavigationProvider from '../providers/NavigationProvider';
-import { Station } from '../domain';
-
-jest.mock('firebase/app', () => ({
-  initializeApp: jest.fn(),
-  firestore: () => ({
-    enablePersistence: jest.fn(() => Promise.resolve()),
-    collection: jest.fn(() => ({
-      where: jest.fn(() => ({
-        get: jest.fn(),
-      })),
-    })),
-  }),
-}));
+import { Route, Station } from '../domain';
 
 describe('PageContent', () => {
   const useFirebaseMock = jest.spyOn(FirebaseProvider, 'useFirebase');
@@ -46,10 +34,7 @@ describe('PageContent', () => {
       setOriginStation: jest.fn(),
       setDestinationStation: jest.fn(),
       generateStationsMap: jest.fn(),
-      findShortestPathFromOriginToDestination: () => [
-        originStation.id,
-        destinationStation.id,
-      ],
+      calculateRoute: () => ({ subRoutes: [], totalTime: 0 } as Route),
     });
   });
 
