@@ -45,9 +45,7 @@ const RoutesOverview: React.FC<RoutesOverviewProps> = (props) => {
           {props.route.subRoutes.map((subRoute, index) => (
             // eslint-disable-next-line react/no-array-index-key
             <div key={`subRoute-${index}`}>
-              <p>
-                Subroute in line {subRoute.stationsPath[0].lines.toString()}
-              </p>
+              <p>Subroute in line {subRoute.line}</p>
               <p>Takes {subRoute.totalTime} mins in total</p>
               <p>V</p>
             </div>

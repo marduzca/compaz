@@ -85,13 +85,13 @@ export const extractSubRoutes = (stationsPath: Station[]): Station[][] => {
   return subRoutes;
 };
 
-export const calculateTotalTimeOfRoute = (route: Station[]) => {
+export const calculateTotalTimeOfSubRoute = (subRoute: Station[]) => {
   let totalTime = 0;
 
-  route.forEach((station, index) => {
-    if (index < route.length - 1) {
+  subRoute.forEach((station, index) => {
+    if (index < subRoute.length - 1) {
       const nextStation = station.connectedStations.find(
-        (connectedStation) => connectedStation.id === route[index + 1].id
+        (connectedStation) => connectedStation.id === subRoute[index + 1].id
       );
 
       if (nextStation) totalTime += nextStation.timeTo;
@@ -99,6 +99,14 @@ export const calculateTotalTimeOfRoute = (route: Station[]) => {
   });
 
   return Math.round(totalTime);
+};
+
+export const calculateLineOfSubRoute = (subRoute: Station[]) => {
+  const allLinesInSubRoute = subRoute.map((station) => station.lines);
+
+  return allLinesInSubRoute.reduce((lineListA, lineListB) =>
+    lineListA.filter((e) => lineListB.includes(e))
+  )[0];
 };
 
 export const NavigationProvider: React.FC = (props) => {
@@ -155,22 +163,25 @@ export const NavigationProvider: React.FC = (props) => {
   const calculateRoute = (allStations: Station[]): Route => {
     const stationsPath = findShortestPathFromOriginToDestination(allStations);
 
-    const subRoutesWithoutTimes = extractSubRoutes(stationsPath);
+    const subRoutes = extractSubRoutes(stationsPath);
 
     let totalTimeOfFullRoute = 0;
 
-    const subRoutesWithTimes = subRoutesWithoutTimes.map((subRoute) => {
-      const totalTimeOfSubRoute = calculateTotalTimeOfRoute(subRoute);
+    const subRoutesWithTimeAndLineInfo = subRoutes.map((subRoute) => {
+      const totalTimeOfSubRoute = calculateTotalTimeOfSubRoute(subRoute);
       totalTimeOfFullRoute += totalTimeOfSubRoute;
+
+      const subRouteLine = calculateLineOfSubRoute(subRoute);
 
       return {
         stationsPath: subRoute,
         totalTime: totalTimeOfSubRoute,
+        line: subRouteLine,
       } as SubRoute;
     });
 
     return {
-      subRoutes: subRoutesWithTimes,
+      subRoutes: subRoutesWithTimeAndLineInfo,
       totalTime: totalTimeOfFullRoute,
     } as Route;
   };

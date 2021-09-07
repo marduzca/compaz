@@ -18,4 +18,5 @@ export interface Route {
 export interface SubRoute {
   stationsPath: Station[];
   totalTime: number;
+  line: string;
 }

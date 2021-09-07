@@ -1,6 +1,7 @@
 import { act, renderHook } from '@testing-library/react-hooks';
 import {
-  calculateTotalTimeOfRoute,
+  calculateLineOfSubRoute,
+  calculateTotalTimeOfSubRoute,
   extractSubRoutes,
   NavigationProvider,
   useNavigation,
@@ -111,6 +112,7 @@ describe('ShortestPathProvider', () => {
             },
           ],
           totalTime: 2,
+          line: 'green',
         },
         {
           stationsPath: [
@@ -138,6 +140,7 @@ describe('ShortestPathProvider', () => {
             },
           ],
           totalTime: 4,
+          line: 'red',
         },
       ] as SubRoute[],
       totalTime: 6,
@@ -185,6 +188,7 @@ describe('ShortestPathProvider', () => {
             },
           ],
           totalTime: 2,
+          line: 'green',
         },
         {
           stationsPath: [
@@ -215,6 +219,7 @@ describe('ShortestPathProvider', () => {
             },
           ],
           totalTime: 4,
+          line: 'red',
         },
         {
           stationsPath: [
@@ -237,6 +242,7 @@ describe('ShortestPathProvider', () => {
             },
           ],
           totalTime: 2,
+          line: 'blue',
         },
       ] as SubRoute[],
       totalTime: 8,
@@ -365,11 +371,19 @@ describe('ShortestPathProvider', () => {
     });
   });
 
-  describe('calculateTotalTimeOfRoute', () => {
+  describe('calculateTotalTimeOfSubRoute', () => {
     it('calculates total time of route correctly', () => {
-      const calculatedTotalTime = calculateTotalTimeOfRoute(simpleRoute);
+      const calculatedTotalTime = calculateTotalTimeOfSubRoute(simpleRoute);
 
       expect(calculatedTotalTime).toEqual(6);
+    });
+  });
+
+  describe('calculateLineOfSubRoute', () => {
+    it('calculates lines of route correctly', () => {
+      const subRouteLine = calculateLineOfSubRoute(simpleRoute.slice(0, 2));
+
+      expect(subRouteLine).toEqual('green');
     });
   });
 });
