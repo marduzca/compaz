@@ -110,7 +110,7 @@ export const calculateLineOfSubRoute = (subRoute: Station[]) => {
   const allLinesInSubRoute = subRoute.map((station) => station.lines);
 
   return allLinesInSubRoute.reduce((lineListA, lineListB) =>
-    lineListA.filter((e) => lineListB.includes(e))
+    lineListA.filter((line) => lineListB.includes(line))
   )[0];
 };
 
