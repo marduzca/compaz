@@ -79,6 +79,7 @@ const Combobox: React.FC<ComboboxProps> = (props) => {
           }}
           className={styles.input}
           {...getInputProps({})}
+          spellCheck={false}
         />
         <label htmlFor={props.name} {...getLabelProps()}>
           {props.placeholder}

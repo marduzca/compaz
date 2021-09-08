@@ -19,7 +19,7 @@ const PageContent: React.FC<PageContentProps> = (props) => {
   };
 
   return (
-    <div className={styles.content}>
+    <main className={styles.content}>
       <section className={styles.container}>
         {showRoutesOverview ? (
           <RoutesOverviewContainer onBackButtonClick={handleBackButtonClick} />
@@ -30,7 +30,7 @@ const PageContent: React.FC<PageContentProps> = (props) => {
           />
         )}
       </section>
-    </div>
+    </main>
   );
 };
 
