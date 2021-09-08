@@ -34,6 +34,7 @@ export const normalAndMobileState = () => (
               },
             ],
             totalTime: 2,
+            line: 'blue',
           },
           {
             stationsPath: [
@@ -55,6 +56,7 @@ export const normalAndMobileState = () => (
               },
             ],
             totalTime: 2,
+            line: 'red',
           },
         ] as SubRoute[],
         totalTime: 4,
