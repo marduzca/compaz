@@ -59,8 +59,8 @@ const RoutesOverview: React.FC<RoutesOverviewProps> = (props) => {
     const lineIcons = props.route.subRoutes.map((subRoute) => (
       <img
         key={`${subRoute.line}`}
-        src={getCorrespondingTelefericoIcon(subRoute.line)}
         title={subRoute.line}
+        src={getCorrespondingTelefericoIcon(subRoute.line)}
         alt={subRoute.line}
         className={styles.teleferico}
       />

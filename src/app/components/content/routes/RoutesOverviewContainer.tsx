@@ -11,7 +11,13 @@ interface RoutesOverviewContainerProps {
 const RoutesOverviewContainer: React.FC<RoutesOverviewContainerProps> = (
   props
 ) => {
-  const { calculateRoute, origin, destination } = useNavigation();
+  const {
+    calculateRoute,
+    origin,
+    destination,
+    setOriginStation,
+    setDestinationStation,
+  } = useNavigation();
   const { stations } = useFirebase();
 
   const [route, setRoute] = useState<Route>({ subRoutes: [], totalTime: 0 });
@@ -20,12 +26,30 @@ const RoutesOverviewContainer: React.FC<RoutesOverviewContainerProps> = (
     setRoute(calculateRoute(stations));
   }, [calculateRoute, stations]);
 
+  const handleBackButtonClick = () => {
+    setOriginStation({
+      connectedStations: [],
+      id: '',
+      lines: [],
+      name: '',
+    });
+
+    setDestinationStation({
+      connectedStations: [],
+      id: '',
+      lines: [],
+      name: '',
+    });
+
+    props.onBackButtonClick();
+  };
+
   return (
     <RoutesOverview
       route={route}
       originName={origin.name}
       destinationName={destination.name}
-      onBackButtonClick={props.onBackButtonClick}
+      onBackButtonClick={handleBackButtonClick}
     />
   );
 };

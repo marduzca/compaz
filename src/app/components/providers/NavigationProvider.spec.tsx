@@ -250,6 +250,60 @@ describe('ShortestPathProvider', () => {
   });
 
   describe('extractSubRoutes', () => {
+    it('extracts sub route correctly from route without transfers', () => {
+      const calculatedSubRoutes = extractSubRoutes([
+        {
+          id: 'station_b',
+          name: 'Station b',
+          lines: ['green', 'red'],
+          connectedStations: [
+            { id: 'station_c', timeTo: 2 } as ConnectedStation,
+          ],
+        },
+        {
+          id: 'station_c',
+          name: 'Station c',
+          lines: ['red'],
+          connectedStations: [
+            { id: 'station_d', timeTo: 2 } as ConnectedStation,
+          ],
+        },
+        {
+          id: 'station_d',
+          name: 'Station d',
+          lines: ['red', 'blue'],
+          connectedStations: [],
+        },
+      ]);
+
+      expect(calculatedSubRoutes).toEqual([
+        [
+          {
+            id: 'station_b',
+            name: 'Station b',
+            lines: ['green', 'red'],
+            connectedStations: [
+              { id: 'station_c', timeTo: 2 } as ConnectedStation,
+            ],
+          },
+          {
+            id: 'station_c',
+            name: 'Station c',
+            lines: ['red'],
+            connectedStations: [
+              { id: 'station_d', timeTo: 2 } as ConnectedStation,
+            ],
+          },
+          {
+            id: 'station_d',
+            name: 'Station d',
+            lines: ['red', 'blue'],
+            connectedStations: [],
+          },
+        ],
+      ]);
+    });
+
     it('extracts sub routes correctly from simple route', () => {
       const calculatedSubRoutes = extractSubRoutes(simpleRoute);
 

@@ -65,6 +65,11 @@ export const extractSubRoutes = (stationsPath: Station[]): Station[][] => {
   const subRoutes = [] as Station[][];
   const transferPositions = identifyTransferPositions(stationsPath);
 
+  if (transferPositions.length === 0) {
+    subRoutes.push(stationsPath);
+    return subRoutes;
+  }
+
   subRoutes.push(stationsPath.slice(0, transferPositions[0] + 1));
 
   transferPositions.forEach((transferPoint, index) => {
