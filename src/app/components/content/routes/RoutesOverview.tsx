@@ -52,13 +52,15 @@ const SingleRoute: React.FC<SingleRouteProps> = (props) => {
 
   const renderRoute = (): ReactNode[] => {
     const lineIcons = props.route.subRoutes.map((subRoute) => (
-      <img
-        key={`${subRoute.line}`}
-        title={subRoute.line}
-        src={getCorrespondingTelefericoIcon(subRoute.line)}
-        alt={subRoute.line}
-        className={styles.teleferico}
-      />
+      <div className={styles.teleferico}>
+        <img
+          key={`${subRoute.line}`}
+          title={subRoute.line}
+          src={getCorrespondingTelefericoIcon(subRoute.line)}
+          alt={subRoute.line}
+        />
+        <span>{subRoute.totalTime}</span>
+      </div>
     ));
 
     for (let index = 0; index < lineIcons.length; index += 1) {
@@ -66,7 +68,10 @@ const SingleRoute: React.FC<SingleRouteProps> = (props) => {
         lineIcons.splice(
           index,
           0,
-          <img src={transferIcon} alt="Transfer" className={styles.transfer} />
+          <div className={styles.transfer}>
+            <img src={transferIcon} alt="Transfer" />
+            <span>2</span>
+          </div>
         );
       }
     }
