@@ -17,16 +17,11 @@ import transferIcon from '../../../static/img/double_arrow.svg';
 import styles from './RoutesOverview.module.css';
 import { Route } from '../../domain';
 
-interface RoutesOverviewProps {
+interface SingleRouteProps {
   route: Route;
-  originName: string;
-  destinationName: string;
-  onBackButtonClick: () => void;
 }
 
-const RoutesOverview: React.FC<RoutesOverviewProps> = (props) => {
-  const { t } = useTranslation();
-
+const SingleRoute: React.FC<SingleRouteProps> = (props) => {
   const getCorrespondingTelefericoIcon = (lineColor: string): string => {
     switch (lineColor) {
       case 'blue':
@@ -80,6 +75,36 @@ const RoutesOverview: React.FC<RoutesOverviewProps> = (props) => {
   };
 
   return (
+    <>
+      {props.route.subRoutes.length > 0 && (
+        <section className={styles.singleRouteOverview}>
+          <div className={styles.routeTop}>
+            <ul className={styles.route}>
+              {renderRoute().map((routeItem, index) => (
+                // eslint-disable-next-line react/no-array-index-key
+                <li key={index}>{routeItem}</li>
+              ))}
+            </ul>
+            <span>{props.route.totalTime} min</span>
+          </div>
+          <p className={styles.routeClock}>15:00 - 15:36</p>
+        </section>
+      )}
+    </>
+  );
+};
+
+interface RoutesOverviewProps {
+  route: Route;
+  originName: string;
+  destinationName: string;
+  onBackButtonClick: () => void;
+}
+
+const RoutesOverview: React.FC<RoutesOverviewProps> = (props) => {
+  const { t } = useTranslation();
+
+  return (
     <div className={styles.routesContainer}>
       <header className={styles.header}>
         <div className={styles.headerTop}>
@@ -104,20 +129,7 @@ const RoutesOverview: React.FC<RoutesOverviewProps> = (props) => {
           <ArrowUpIcon />
           <span>{t('Content.RoutesOverview.EARLIER_BUTTON')}</span>
         </button>
-        {props.route.subRoutes.length > 0 && (
-          <section className={styles.singleRouteOverview}>
-            <div className={styles.routeTop}>
-              <ul className={styles.route}>
-                {renderRoute().map((routeItem, index) => (
-                  // eslint-disable-next-line react/no-array-index-key
-                  <li key={index}>{routeItem}</li>
-                ))}
-              </ul>
-              <span>{props.route.totalTime} min</span>
-            </div>
-            <p className={styles.routeClock}>15:00 - 15:36</p>
-          </section>
-        )}{' '}
+        <SingleRoute route={props.route} />
         <button
           type="button"
           title={t('Content.RoutesOverview.LATER_BUTTON')}
