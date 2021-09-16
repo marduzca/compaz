@@ -22,6 +22,8 @@ interface SingleRouteProps {
 }
 
 const SingleRoute: React.FC<SingleRouteProps> = (props) => {
+  const { t } = useTranslation();
+
   const getCorrespondingTelefericoIcon = (lineColor: string): string => {
     switch (lineColor) {
       case 'blue':
@@ -52,15 +54,17 @@ const SingleRoute: React.FC<SingleRouteProps> = (props) => {
 
   const renderRoute = (): ReactNode[] => {
     const lineIcons = props.route.subRoutes.map((subRoute) => (
-      <div className={styles.teleferico}>
+      <li key={subRoute.line} className={styles.teleferico}>
         <img
           key={`${subRoute.line}`}
-          title={subRoute.line}
+          title={t(
+            `Content.RoutesOverview.Lines.${subRoute.line.toUpperCase()}`
+          )}
+          alt={t(`Content.RoutesOverview.Lines.${subRoute.line.toUpperCase()}`)}
           src={getCorrespondingTelefericoIcon(subRoute.line)}
-          alt={subRoute.line}
         />
         <span>{subRoute.totalTime}</span>
-      </div>
+      </li>
     ));
 
     for (let index = 0; index < lineIcons.length; index += 1) {
@@ -68,10 +72,14 @@ const SingleRoute: React.FC<SingleRouteProps> = (props) => {
         lineIcons.splice(
           index,
           0,
-          <div className={styles.transfer}>
-            <img src={transferIcon} alt="Transfer" />
+          <li key={`transfer-${index}`} className={styles.transfer}>
+            <img
+              src={transferIcon}
+              title={t('Content.RoutesOverview.TRANSFER')}
+              alt={t('Content.RoutesOverview.TRANSFER')}
+            />
             <span>2</span>
-          </div>
+          </li>
         );
       }
     }
@@ -85,10 +93,7 @@ const SingleRoute: React.FC<SingleRouteProps> = (props) => {
         <section className={styles.singleRouteOverview}>
           <div className={styles.routeTop}>
             <ul className={styles.route}>
-              {renderRoute().map((routeItem, index) => (
-                // eslint-disable-next-line react/no-array-index-key
-                <li key={index}>{routeItem}</li>
-              ))}
+              {renderRoute().map((routeItem) => routeItem)}
             </ul>
             <span>{props.route.totalTime} min</span>
           </div>

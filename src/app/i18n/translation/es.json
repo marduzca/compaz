@@ -13,8 +13,21 @@
   },
   "Content": {
     "RoutesOverview": {
+      "Lines": {
+        "BLUE": "Linea azul",
+        "BROWN": "Linea cafe",
+        "GREEN": "Linea verde",
+        "LIGHT_BLUE": "Linea celeste",
+        "ORANGE": "Linea naranja",
+        "PURPLE": "Linea morada",
+        "RED": "Linea roja",
+        "SILVER": "Linea plateada",
+        "WHITE": "Linea blanca",
+        "YELLOW": "Linea amarilla"
+      },
       "EARLIER_BUTTON": "Más temprano",
-      "LATER_BUTTON": "Más tarde"
+      "LATER_BUTTON": "Más tarde",
+      "TRANSFER": "Transferencia"
     },
     "TripSelector": {
       "DESTINATION_PLACEHOLDER": "Destino",

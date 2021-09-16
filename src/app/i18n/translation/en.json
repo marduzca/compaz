@@ -13,8 +13,21 @@
   },
   "Content": {
     "RoutesOverview": {
+      "Lines": {
+        "BLUE": "Blue line",
+        "BROWN": "Brown line",
+        "GREEN": "Green line",
+        "LIGHT_BLUE": "Light blue line",
+        "ORANGE": "Orange line",
+        "PURPLE": "Purple line",
+        "RED": "Red line",
+        "SILVER": "Silver line",
+        "WHITE": "White line",
+        "YELLOW": "Yellow line"
+      },
       "EARLIER_BUTTON": "Earlier",
-      "LATER_BUTTON": "Later"
+      "LATER_BUTTON": "Later",
+      "TRANSFER": "Transfer"
     },
     "TripSelector": {
       "DESTINATION_PLACEHOLDER": "Destination",
