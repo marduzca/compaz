@@ -2,14 +2,16 @@ import React, { createContext, useContext } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import { useCollectionDataOnce } from 'react-firebase-hooks/firestore';
-import { Station } from '../domain';
+import { Line, Station } from '../domain';
 
 interface FirebaseContext {
   stations: Station[];
+  lines: Line[];
 }
 
 export const FirebaseContext = createContext<FirebaseContext>({
   stations: [],
+  lines: [],
 });
 
 firebase.initializeApp({
@@ -32,6 +34,7 @@ firestore.enablePersistence({ synchronizeTabs: true }).catch(() =>
 );
 
 const stationsRef = firestore.collection('stations');
+const linesRef = firestore.collection('lines');
 
 export const FirebaseProvider: React.FC = (props) => {
   const [stations] = useCollectionDataOnce<Station>(
@@ -40,11 +43,15 @@ export const FirebaseProvider: React.FC = (props) => {
       idField: 'id',
     }
   );
+  const [lines] = useCollectionDataOnce<Line>(linesRef, {
+    idField: 'id',
+  });
 
   return (
     <FirebaseContext.Provider
       value={{
         stations: stations || [],
+        lines: lines || [],
       }}
     >
       {props.children}

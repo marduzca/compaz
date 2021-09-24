@@ -106,12 +106,19 @@ export const calculateTotalTimeOfSubRoute = (subRoute: Station[]) => {
   return Math.round(totalTime);
 };
 
-export const calculateLineOfSubRoute = (subRoute: Station[]) => {
-  const allLinesInSubRoute = subRoute.map((station) => station.lines);
+export const calculateLineOfSubRoute = (
+  subRoute: Station[],
+  lines: Line[]
+): string => {
+  const lineInCommon = lines.find((line) =>
+    subRoute.every((station) => station.lines.includes(line.id))
+  );
 
-  return allLinesInSubRoute.reduce((lineListA, lineListB) =>
-    lineListA.filter((line) => lineListB.includes(line))
-  )[0];
+  if (lineInCommon) {
+    return lineInCommon.id;
+  }
+
+  return 'unknown';
 };
 
 export const calculateTotalTransferTime = (
@@ -205,7 +212,7 @@ export const NavigationProvider: React.FC = (props) => {
       const totalTimeOfSubRoute = calculateTotalTimeOfSubRoute(subRoute);
       totalTimeOfFullRoute += totalTimeOfSubRoute;
 
-      const subRouteLine = calculateLineOfSubRoute(subRoute);
+      const subRouteLine = calculateLineOfSubRoute(subRoute, lines);
 
       return {
         stationsPath: subRoute,

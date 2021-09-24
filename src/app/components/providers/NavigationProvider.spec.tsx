@@ -475,7 +475,8 @@ describe('ShortestPathProvider', () => {
   describe('calculateLineOfSubRoute', () => {
     it('calculates lines of route correctly', () => {
       const subRouteLine = calculateLineOfSubRoute(
-        listOfStationsWithTwoLines.slice(0, 2)
+        listOfStationsWithTwoLines.slice(0, 2),
+        lines
       );
 
       expect(subRouteLine).toEqual('green');
