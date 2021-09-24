@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
-import { Route, Station, SubRoute } from '../domain';
+import { Line, Route, Station, SubRoute } from '../domain';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const dijkstra = require('dijkstrajs');
@@ -18,7 +18,7 @@ interface NavigationContextProps {
   setOriginStation: (newOrigin: Station) => void;
   setDestinationStation: (newDestination: Station) => void;
   generateStationsMap: (stations: Station[]) => void;
-  calculateRoute: (stations: Station[]) => Route;
+  calculateRoute: (stations: Station[], lines: Line[]) => Route;
 }
 
 export const NavigationContext = createContext<NavigationContextProps>({
@@ -114,6 +114,35 @@ export const calculateLineOfSubRoute = (subRoute: Station[]) => {
   )[0];
 };
 
+export const calculateTotalTransferTime = (
+  subRoutesWithTimeAndLineInfo: SubRoute[],
+  lines: Line[]
+) => {
+  let totalTransferTime = 0;
+
+  subRoutesWithTimeAndLineInfo.forEach((subRoute, index) => {
+    if (
+      subRoutesWithTimeAndLineInfo[index + 1] &&
+      subRoutesWithTimeAndLineInfo[index + 1].line !== subRoute.line
+    ) {
+      const currentLine = lines.find((line) => line.id === subRoute.line);
+
+      if (currentLine) {
+        const nextLine = currentLine.connectedLines.find(
+          (connectedLine) =>
+            connectedLine.id === subRoutesWithTimeAndLineInfo[index + 1].line
+        );
+
+        if (nextLine) {
+          totalTransferTime += nextLine.transferTime;
+        }
+      }
+    }
+  });
+
+  return totalTransferTime;
+};
+
 export const NavigationProvider: React.FC = (props) => {
   const [origin, setOrigin] = useState<Station>({
     connectedStations: [],
@@ -165,7 +194,7 @@ export const NavigationProvider: React.FC = (props) => {
     );
   };
 
-  const calculateRoute = (allStations: Station[]): Route => {
+  const calculateRoute = (allStations: Station[], lines: Line[]): Route => {
     const stationsPath = findShortestPathFromOriginToDestination(allStations);
 
     const subRoutes = extractSubRoutes(stationsPath);
@@ -184,6 +213,11 @@ export const NavigationProvider: React.FC = (props) => {
         line: subRouteLine,
       } as SubRoute;
     });
+
+    totalTimeOfFullRoute += calculateTotalTransferTime(
+      subRoutesWithTimeAndLineInfo,
+      lines
+    );
 
     return {
       subRoutes: subRoutesWithTimeAndLineInfo,

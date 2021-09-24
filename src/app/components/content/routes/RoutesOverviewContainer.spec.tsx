@@ -41,6 +41,9 @@ describe('RoutesOverviewContainer', () => {
     jest.clearAllMocks();
   });
 
+  // TODO: Check date is properly shown
+  // TODO: Check times are properly displayed
+
   it('displays origin and destination in the header', () => {
     render(<RoutesOverviewContainer onBackButtonClick={() => {}} />);
 
@@ -130,7 +133,4 @@ describe('RoutesOverviewContainer', () => {
       screen.getByRole('img', { name: 'Content.RoutesOverview.Lines.RED' })
     ).toBeVisible();
   });
-
-  // Check date is properly shown
-  // Check times are properly displayed
 });

@@ -10,6 +10,16 @@ export interface ConnectedStation {
   timeTo: number;
 }
 
+export interface Line {
+  id: string;
+  connectedLines: ConnectedLine[];
+}
+
+export interface ConnectedLine {
+  id: string;
+  transferTime: number;
+}
+
 export interface Route {
   subRoutes: SubRoute[];
   totalTime: number;
