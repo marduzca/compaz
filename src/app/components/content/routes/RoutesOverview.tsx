@@ -75,8 +75,12 @@ const SingleRoute: React.FC<SingleRouteProps> = (props) => {
       </li>
     ));
 
-    for (let index = 0; index < lineIcons.length; index += 1) {
-      if (index % 2 === 1) {
+    for (
+      let index = 0;
+      index < props.route.subRoutes.length * 2 - 1;
+      index += 1
+    ) {
+      if (index !== 0 && index % 2 === 1) {
         lineIcons.splice(
           index,
           0,
@@ -86,7 +90,12 @@ const SingleRoute: React.FC<SingleRouteProps> = (props) => {
               title={t('Content.RoutesOverview.TRANSFER')}
               alt={t('Content.RoutesOverview.TRANSFER')}
             />
-            <span>2</span>
+            <span>
+              {
+                props.route.subRoutes[Math.floor(index / 2)]
+                  .transferTimeToNextLine
+              }
+            </span>
           </li>
         );
       }

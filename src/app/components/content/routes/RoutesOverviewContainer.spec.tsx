@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import RoutesOverviewContainer from './RoutesOverviewContainer';
 import * as NavigationProvider from '../../providers/NavigationProvider';
 import * as FirebaseProvider from '../../providers/FirebaseProvider';
-import { ConnectedStation, Route, Station, SubRoute } from '../../domain';
+import { ConnectedStation, Line, Route, Station, SubRoute } from '../../domain';
 
 describe('RoutesOverviewContainer', () => {
   const originStation = {
@@ -25,6 +25,23 @@ describe('RoutesOverviewContainer', () => {
   beforeEach(() => {
     useFirebaseMock.mockReturnValue({
       stations: [originStation, destinationStation],
+      lines: [
+        {
+          id: 'green',
+          connectedLines: [
+            { id: 'yellow', transferTime: 2 },
+            { id: 'red', transferTime: 2 },
+          ],
+        },
+        {
+          id: 'red',
+          connectedLines: [
+            { id: 'blue', transferTime: 3 },
+            { id: 'silver', transferTime: 2 },
+            { id: 'green', transferTime: 2 },
+          ],
+        },
+      ] as Line[],
     });
 
     useNavigationMock.mockReturnValue({
@@ -76,8 +93,9 @@ describe('RoutesOverviewContainer', () => {
               ],
             },
           ],
-          totalTime: 2,
+          totalTime: 3,
           line: 'green',
+          transferTimeToNextLine: 2,
         },
         {
           stationsPath: [
@@ -108,7 +126,7 @@ describe('RoutesOverviewContainer', () => {
           line: 'red',
         },
       ] as SubRoute[],
-      totalTime: 6,
+      totalTime: 9,
     } as Route;
 
     useNavigationMock.mockReturnValue({
@@ -122,15 +140,21 @@ describe('RoutesOverviewContainer', () => {
 
     render(<RoutesOverviewContainer onBackButtonClick={() => {}} />);
 
-    expect(screen.getByText('6 min')).toBeVisible();
+    expect(screen.getByText('9 min')).toBeVisible();
+
     expect(
       screen.getByRole('img', { name: 'Content.RoutesOverview.Lines.GREEN' })
     ).toBeVisible();
+    expect(screen.getByText('3')).toBeVisible();
+
     expect(
       screen.getByRole('img', { name: 'Content.RoutesOverview.TRANSFER' })
     ).toBeVisible();
+    expect(screen.getByText('2')).toBeVisible();
+
     expect(
       screen.getByRole('img', { name: 'Content.RoutesOverview.Lines.RED' })
     ).toBeVisible();
+    expect(screen.getByText('4')).toBeVisible();
   });
 });

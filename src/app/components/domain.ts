@@ -29,4 +29,5 @@ export interface SubRoute {
   stationsPath: Station[];
   totalTime: number;
   line: string;
+  transferTimeToNextLine?: number;
 }

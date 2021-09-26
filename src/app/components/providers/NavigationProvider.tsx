@@ -121,17 +121,18 @@ export const calculateLineOfSubRoute = (
   return 'unknown';
 };
 
-export const calculateTotalTransferTime = (
+export const addTransferTimeBetweenLines = (
   subRoutesWithTimeAndLineInfo: SubRoute[],
   lines: Line[]
-) => {
-  let totalTransferTime = 0;
+): SubRoute[] => {
+  if (subRoutesWithTimeAndLineInfo.length === 1) {
+    return subRoutesWithTimeAndLineInfo;
+  }
+
+  const subRoutesWithTimeLineAndTransferInfo = [] as SubRoute[];
 
   subRoutesWithTimeAndLineInfo.forEach((subRoute, index) => {
-    if (
-      subRoutesWithTimeAndLineInfo[index + 1] &&
-      subRoutesWithTimeAndLineInfo[index + 1].line !== subRoute.line
-    ) {
+    if (subRoutesWithTimeAndLineInfo[index + 1]) {
       const currentLine = lines.find((line) => line.id === subRoute.line);
 
       if (currentLine) {
@@ -141,13 +142,19 @@ export const calculateTotalTransferTime = (
         );
 
         if (nextLine) {
-          totalTransferTime += nextLine.transferTime;
+          subRoutesWithTimeLineAndTransferInfo.push({
+            ...subRoute,
+            transferTimeToNextLine: nextLine.transferTime,
+          });
         }
       }
+    } else {
+      // Add last sub route
+      subRoutesWithTimeLineAndTransferInfo.push(subRoute);
     }
   });
 
-  return totalTransferTime;
+  return subRoutesWithTimeLineAndTransferInfo;
 };
 
 export const NavigationProvider: React.FC = (props) => {
@@ -221,13 +228,19 @@ export const NavigationProvider: React.FC = (props) => {
       } as SubRoute;
     });
 
-    totalTimeOfFullRoute += calculateTotalTransferTime(
+    const subRoutesWithTimeLineAndTransferInfo = addTransferTimeBetweenLines(
       subRoutesWithTimeAndLineInfo,
       lines
     );
 
+    subRoutesWithTimeLineAndTransferInfo.forEach((subRoute) => {
+      if (subRoute.transferTimeToNextLine) {
+        totalTimeOfFullRoute += subRoute.transferTimeToNextLine;
+      }
+    });
+
     return {
-      subRoutes: subRoutesWithTimeAndLineInfo,
+      subRoutes: subRoutesWithTimeLineAndTransferInfo,
       totalTime: totalTimeOfFullRoute,
     } as Route;
   };

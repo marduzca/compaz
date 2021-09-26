@@ -2,7 +2,7 @@ import { act, renderHook } from '@testing-library/react-hooks';
 import {
   calculateLineOfSubRoute,
   calculateTotalTimeOfSubRoute,
-  calculateTotalTransferTime,
+  addTransferTimeBetweenLines,
   extractSubRoutes,
   NavigationProvider,
   useNavigation,
@@ -94,6 +94,7 @@ describe('ShortestPathProvider', () => {
       ],
       totalTime: 2,
       line: 'green',
+      transferTimeToNextLine: 2,
     },
     {
       stationsPath: [
@@ -124,6 +125,7 @@ describe('ShortestPathProvider', () => {
       line: 'red',
     },
   ] as SubRoute[];
+
   const routeWithMultipleTransfers = [
     {
       stationsPath: [
@@ -146,6 +148,7 @@ describe('ShortestPathProvider', () => {
       ],
       totalTime: 2,
       line: 'green',
+      transferTimeToNextLine: 2,
     },
     {
       stationsPath: [
@@ -177,6 +180,7 @@ describe('ShortestPathProvider', () => {
       ],
       totalTime: 4,
       line: 'red',
+      transferTimeToNextLine: 3,
     },
     {
       stationsPath: [
@@ -483,14 +487,93 @@ describe('ShortestPathProvider', () => {
     });
   });
 
-  describe('calculateTotalTransferTime', () => {
+  describe('addTransferTimeBetweenLines', () => {
     it('calculates total transfer time correctly', () => {
-      const totalTransferTime = calculateTotalTransferTime(
+      const routeWithMultipleTransferTimes = addTransferTimeBetweenLines(
         routeWithMultipleTransfers,
         lines
       );
 
-      expect(totalTransferTime).toEqual(5);
+      expect(routeWithMultipleTransferTimes).toEqual([
+        {
+          stationsPath: [
+            {
+              id: 'station_a',
+              name: 'Station a',
+              lines: ['green'],
+              connectedStations: [
+                { id: 'station_b', timeTo: 2 } as ConnectedStation,
+              ],
+            },
+            {
+              id: 'station_b',
+              name: 'Station b',
+              lines: ['green', 'red'],
+              connectedStations: [
+                { id: 'station_c', timeTo: 2 } as ConnectedStation,
+              ],
+            },
+          ],
+          totalTime: 2,
+          line: 'green',
+          transferTimeToNextLine: 2,
+        },
+        {
+          stationsPath: [
+            {
+              id: 'station_b',
+              name: 'Station b',
+              lines: ['green', 'red'],
+              connectedStations: [
+                { id: 'station_c', timeTo: 2 } as ConnectedStation,
+              ],
+            },
+            {
+              id: 'station_c',
+              name: 'Station c',
+              lines: ['red'],
+              connectedStations: [
+                { id: 'station_d', timeTo: 2 } as ConnectedStation,
+              ],
+            },
+            {
+              id: 'station_d',
+              name: 'Station d',
+              lines: ['red', 'blue'],
+              connectedStations: [
+                { id: 'station_c', timeTo: 2 },
+                { id: 'station_e', timeTo: 2 } as ConnectedStation,
+              ],
+            },
+          ],
+          totalTime: 4,
+          line: 'red',
+          transferTimeToNextLine: 3,
+        },
+        {
+          stationsPath: [
+            {
+              id: 'station_d',
+              name: 'Station d',
+              lines: ['red', 'blue'],
+              connectedStations: [
+                { id: 'station_c', timeTo: 2 },
+                { id: 'station_e', timeTo: 2 } as ConnectedStation,
+              ],
+            },
+            {
+              id: 'station_e',
+              name: 'Station e',
+              lines: ['blue'],
+              connectedStations: [
+                { id: 'station_e', timeTo: 2 } as ConnectedStation,
+              ],
+            },
+          ],
+          totalTime: 2,
+          line: 'blue',
+        },
+      ]);
     });
   });
 });

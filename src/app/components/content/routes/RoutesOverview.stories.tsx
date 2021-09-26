@@ -35,6 +35,7 @@ export const normalAndMobileState = () => (
             ],
             totalTime: 2,
             line: 'blue',
+            transferTimeToNextLine: 3,
           },
           {
             stationsPath: [
