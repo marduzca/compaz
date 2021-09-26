@@ -19,6 +19,63 @@ describe('RoutesOverviewContainer', () => {
     connectedStations: [],
   } as Station;
 
+  const simpleRoute = {
+    subRoutes: [
+      {
+        stationsPath: [
+          {
+            id: 'station_a',
+            name: 'Station a',
+            lines: ['green'],
+            connectedStations: [
+              { id: 'station_b', timeTo: 2 } as ConnectedStation,
+            ],
+          },
+          {
+            id: 'station_b',
+            name: 'Station b',
+            lines: ['green', 'red'],
+            connectedStations: [
+              { id: 'station_c', timeTo: 2 } as ConnectedStation,
+            ],
+          },
+        ],
+        totalTime: 3,
+        line: 'green',
+        transferTimeToNextLine: 2,
+      },
+      {
+        stationsPath: [
+          {
+            id: 'station_b',
+            name: 'Station b',
+            lines: ['green', 'red'],
+            connectedStations: [
+              { id: 'station_c', timeTo: 2 } as ConnectedStation,
+            ],
+          },
+          {
+            id: 'station_c',
+            name: 'Station c',
+            lines: ['red'],
+            connectedStations: [
+              { id: 'station_d', timeTo: 2 } as ConnectedStation,
+            ],
+          },
+          {
+            id: 'station_d',
+            name: 'Station d',
+            lines: ['red'],
+            connectedStations: [],
+          },
+        ],
+        totalTime: 4,
+        line: 'red',
+      },
+    ] as SubRoute[],
+    totalTime: 9,
+  } as Route;
+
   const useFirebaseMock = jest.spyOn(FirebaseProvider, 'useFirebase');
   const useNavigationMock = jest.spyOn(NavigationProvider, 'useNavigation');
 
@@ -50,16 +107,13 @@ describe('RoutesOverviewContainer', () => {
       setOriginStation: jest.fn(),
       setDestinationStation: jest.fn(),
       generateStationsMap: jest.fn(),
-      calculateRoute: () => ({ subRoutes: [], totalTime: 0 } as Route),
+      calculateRoute: () => simpleRoute,
     });
   });
 
   afterEach(() => {
     jest.clearAllMocks();
   });
-
-  // TODO: Check date is properly shown
-  // TODO: Check times are properly displayed
 
   it('displays origin and destination in the header', () => {
     render(<RoutesOverviewContainer onBackButtonClick={() => {}} />);
@@ -71,73 +125,7 @@ describe('RoutesOverviewContainer', () => {
     ).toBeVisible();
   });
 
-  it('displays the route with correct icons and total time', () => {
-    const simpleRoute = {
-      subRoutes: [
-        {
-          stationsPath: [
-            {
-              id: 'station_a',
-              name: 'Station a',
-              lines: ['green'],
-              connectedStations: [
-                { id: 'station_b', timeTo: 2 } as ConnectedStation,
-              ],
-            },
-            {
-              id: 'station_b',
-              name: 'Station b',
-              lines: ['green', 'red'],
-              connectedStations: [
-                { id: 'station_c', timeTo: 2 } as ConnectedStation,
-              ],
-            },
-          ],
-          totalTime: 3,
-          line: 'green',
-          transferTimeToNextLine: 2,
-        },
-        {
-          stationsPath: [
-            {
-              id: 'station_b',
-              name: 'Station b',
-              lines: ['green', 'red'],
-              connectedStations: [
-                { id: 'station_c', timeTo: 2 } as ConnectedStation,
-              ],
-            },
-            {
-              id: 'station_c',
-              name: 'Station c',
-              lines: ['red'],
-              connectedStations: [
-                { id: 'station_d', timeTo: 2 } as ConnectedStation,
-              ],
-            },
-            {
-              id: 'station_d',
-              name: 'Station d',
-              lines: ['red'],
-              connectedStations: [],
-            },
-          ],
-          totalTime: 4,
-          line: 'red',
-        },
-      ] as SubRoute[],
-      totalTime: 9,
-    } as Route;
-
-    useNavigationMock.mockReturnValue({
-      origin: originStation,
-      destination: destinationStation,
-      setOriginStation: jest.fn(),
-      setDestinationStation: jest.fn(),
-      generateStationsMap: jest.fn(),
-      calculateRoute: () => simpleRoute,
-    });
-
+  it('displays the route with correct icons', () => {
     render(<RoutesOverviewContainer onBackButtonClick={() => {}} />);
 
     expect(screen.getByText('9 min')).toBeVisible();
@@ -156,5 +144,13 @@ describe('RoutesOverviewContainer', () => {
       screen.getByRole('img', { name: 'Content.RoutesOverview.Lines.RED' })
     ).toBeVisible();
     expect(screen.getByText('4')).toBeVisible();
+  });
+
+  it('displays the time and date correctly', () => {
+    render(<RoutesOverviewContainer onBackButtonClick={() => {}} />);
+
+    expect(screen.getByText('9 min')).toBeVisible();
+    expect(screen.getByText('Friday 24 September')).toBeVisible();
+    expect(screen.getByText('17:30 - 17:39')).toBeVisible();
   });
 });
