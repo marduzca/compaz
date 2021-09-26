@@ -49,6 +49,7 @@ const RoutesOverviewContainer: React.FC<RoutesOverviewContainerProps> = (
       route={route}
       originName={origin.name}
       destinationName={destination.name}
+      dateAndTime={new Date('2021-09-24 17:30')}
       onBackButtonClick={handleBackButtonClick}
     />
   );

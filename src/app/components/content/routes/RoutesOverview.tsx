@@ -16,9 +16,17 @@ import yellowTelefericoIcon from '../../../static/img/yellow_teleferico.svg';
 import transferIcon from '../../../static/img/double_arrow.svg';
 import styles from './RoutesOverview.module.css';
 import { Route } from '../../domain';
+import {
+  addMinutesToDate,
+  parseToEnglishDateString,
+  parseToSpanishDateString,
+  parseToTimeString,
+} from '../dateFormatter';
+import i18n from '../../../i18n/instance';
 
 interface SingleRouteProps {
   route: Route;
+  time: Date;
 }
 
 const SingleRoute: React.FC<SingleRouteProps> = (props) => {
@@ -97,7 +105,10 @@ const SingleRoute: React.FC<SingleRouteProps> = (props) => {
             </ul>
             <span>{props.route.totalTime} min</span>
           </div>
-          <p className={styles.routeClock}>15:00 - 15:36</p>
+          <p className={styles.routeClock}>{`${parseToTimeString(props.time)} - 
+          ${parseToTimeString(
+            addMinutesToDate(props.time, props.route.totalTime)
+          )}`}</p>
         </section>
       )}
     </>
@@ -108,6 +119,7 @@ interface RoutesOverviewProps {
   route: Route;
   originName: string;
   destinationName: string;
+  dateAndTime: Date;
   onBackButtonClick: () => void;
 }
 
@@ -128,7 +140,11 @@ const RoutesOverview: React.FC<RoutesOverviewProps> = (props) => {
           </button>
           <h4>{`${props.originName} - ${props.destinationName}`}</h4>
         </div>
-        <span>Lun 15 Mar 2021</span>
+        <span>
+          {i18n.language.match(/en/i)
+            ? parseToEnglishDateString(props.dateAndTime, false)
+            : parseToSpanishDateString(props.dateAndTime, false)}
+        </span>
       </header>
       <div className={styles.routesOverview}>
         <button
@@ -139,7 +155,7 @@ const RoutesOverview: React.FC<RoutesOverviewProps> = (props) => {
           <ArrowUpIcon />
           <span>{t('Content.RoutesOverview.EARLIER_BUTTON')}</span>
         </button>
-        <SingleRoute route={props.route} />
+        <SingleRoute route={props.route} time={props.dateAndTime} />
         <button
           type="button"
           title={t('Content.RoutesOverview.LATER_BUTTON')}

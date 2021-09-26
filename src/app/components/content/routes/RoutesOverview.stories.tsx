@@ -59,11 +59,12 @@ export const normalAndMobileState = () => (
             line: 'red',
           },
         ] as SubRoute[],
-        totalTime: 4,
+        totalTime: 6,
       } as Route
     }
     originName="Station a"
     destinationName="Station d"
+    dateAndTime={new Date('1993-03-15 09:30')}
     onBackButtonClick={actions('onBackButtonClick').onBackButtonClick}
   />
 );
