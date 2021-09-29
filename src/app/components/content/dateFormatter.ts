@@ -14,7 +14,7 @@ export const parseToEnglishDateString = (
   date: Date,
   shortFormat: boolean
 ): string => {
-  const todayIndicator = isToday(date) ? 'Today, ' : '';
+  const todayIndicator = isToday(date) && !shortFormat ? 'Today, ' : '';
 
   const weekday = new Intl.DateTimeFormat('en', {
     weekday: shortFormat ? 'short' : 'long',

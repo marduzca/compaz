@@ -27,16 +27,6 @@
   gap: 1.875rem;
 }
 
-.dateAndTimePicker {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background: #f2f2f2;
-  border-radius: 0.625rem;
-  height: 2.75rem;
-}
-
 .searchButton {
   cursor: pointer;
   border: 0;

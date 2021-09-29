@@ -6,6 +6,7 @@ import { ReactComponent as LogoWhite } from '../../../static/img/logo_white.svg'
 import { ReactComponent as MenuIcon } from '../../../static/img/menu.svg';
 import StationsSelectorContainer from './stationsSelector/StationsSelectorContainer';
 import MapImage from '../../../static/img/fake_map.png';
+import DateAndTimePickerContainer from './dateAndTimePicker/DateAndTimePickerContainer';
 
 interface TripSelectorProps {
   onMenuButtonClick: () => void;
@@ -14,6 +15,8 @@ interface TripSelectorProps {
 
 const TripSelector: React.FC<TripSelectorProps> = (props) => {
   const { t } = useTranslation();
+
+  const dateAndTime = new Date('2021-09-24 17:30');
 
   return (
     <>
@@ -33,9 +36,7 @@ const TripSelector: React.FC<TripSelectorProps> = (props) => {
         </div>
         <div className={styles.inputFields}>
           <StationsSelectorContainer />
-          <div className={styles.dateAndTimePicker}>
-            <div>Date and Time picker</div>
-          </div>
+          <DateAndTimePickerContainer selectedDate={dateAndTime} />
         </div>
         <button
           type="button"
