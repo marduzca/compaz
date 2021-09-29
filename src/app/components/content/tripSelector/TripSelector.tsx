@@ -16,7 +16,7 @@ interface TripSelectorProps {
 const TripSelector: React.FC<TripSelectorProps> = (props) => {
   const { t } = useTranslation();
 
-  const dateAndTime = new Date('2021-09-24 17:30');
+  const dateAndTime = new Date('2020-08-19T23:13:44.514Z');
 
   return (
     <>
