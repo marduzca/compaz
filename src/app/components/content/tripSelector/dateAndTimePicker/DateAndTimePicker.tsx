@@ -39,6 +39,7 @@ const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => (
           className={styles.reactTimePicker}
           value={props.selectedDate}
           clockIcon={null}
+          locale="es"
         />
       </div>
     )}
