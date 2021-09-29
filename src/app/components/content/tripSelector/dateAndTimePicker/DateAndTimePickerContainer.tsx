@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import DateAndTimePicker from './DateAndTimePicker';
 
 interface DateAndTimePickerContainerProps {
@@ -7,6 +7,20 @@ interface DateAndTimePickerContainerProps {
 
 const DateAndTimePickerContainer: React.FC<DateAndTimePickerContainerProps> = (
   props
-) => <DateAndTimePicker selectedDate={props.selectedDate} />;
+) => {
+  const [isTimeEditable, setTimeEditable] = useState<boolean>(false);
+
+  const handleTimePickerClick = () => {
+    setTimeEditable(!isTimeEditable);
+  };
+
+  return (
+    <DateAndTimePicker
+      selectedDate={props.selectedDate}
+      isTimeEditable={isTimeEditable}
+      onTimePickerClick={handleTimePickerClick}
+    />
+  );
+};
 
 export default DateAndTimePickerContainer;

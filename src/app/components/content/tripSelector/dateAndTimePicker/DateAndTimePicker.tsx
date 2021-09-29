@@ -1,4 +1,5 @@
 import React from 'react';
+import TimePicker from 'react-time-picker';
 import styles from './DateAndTimePicker.module.css';
 import { ReactComponent as CalendarIcon } from '../../../../static/img/date_picker.svg';
 import {
@@ -9,21 +10,38 @@ import { ReactComponent as TimeIcon } from '../../../../static/img/time_picker.s
 
 interface DateAndTimePickerProps {
   selectedDate: Date;
+  isTimeEditable: boolean;
+  onTimePickerClick: () => void;
 }
 
 const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => (
   <div className={styles.dateAndTimePickerContainer}>
-    <span className={styles.datePicker}>
-      <button type="button" className={styles.datePickerToggleButton}>
+    <button type="button" className={styles.datePicker}>
+      <div className={styles.datePickerToggleButton}>
         <CalendarIcon />
         <span>{parseToEnglishDateString(props.selectedDate, true)}</span>
-      </button>
+      </div>
       <input type="date" className={styles.datePickerInput} />
-    </span>
-    <div className={styles.timePicker}>
-      <TimeIcon />
-      <span>{parseToTimeString(props.selectedDate)}</span>
-    </div>
+    </button>
+    {!props.isTimeEditable ? (
+      <button
+        type="button"
+        className={`${styles.timePicker} ${styles.timePickerButton}`}
+        onClick={props.onTimePickerClick}
+      >
+        <TimeIcon />
+        <span>{parseToTimeString(props.selectedDate)}</span>
+      </button>
+    ) : (
+      <div className={`${styles.timePicker} ${styles.timePickerInput}`}>
+        <TimeIcon />
+        <TimePicker
+          className={styles.reactTimePicker}
+          value={props.selectedDate}
+          clockIcon={null}
+        />
+      </div>
+    )}
   </div>
 );
 

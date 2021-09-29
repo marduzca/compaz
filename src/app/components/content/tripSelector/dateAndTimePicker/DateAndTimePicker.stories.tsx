@@ -1,5 +1,6 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
+import { actions } from '@storybook/addon-actions';
 import DateAndTimePicker from './DateAndTimePicker';
 
 const guaranteedSize = (child: JSX.Element): JSX.Element => (
@@ -25,5 +26,9 @@ export default {
 
 export const basic = () =>
   guaranteedSize(
-    <DateAndTimePicker selectedDate={new Date('2021-09-24 17:30')} />
+    <DateAndTimePicker
+      selectedDate={new Date('2021-09-24 17:30')}
+      isTimeEditable={false}
+      onTimePickerClick={actions('onTimePickerClick').onTimePickerClick}
+    />
   );
