@@ -109,6 +109,18 @@ const SingleRoute: React.FC<SingleRouteProps> = (props) => {
             addMinutesToDate(props.time, props.route.totalTime)
           )}`;
 
+  const convertMinutesToHoursMinutess = (givenMinutes: number): JSX.Element => {
+    const resultHours = Math.floor(givenMinutes / 60);
+    const resultMinutes = givenMinutes % 60;
+
+    return (
+      <div className={styles.totalTimeInHours}>
+        <span>{resultHours} h</span>
+        {resultMinutes ? <span>{resultMinutes} min</span> : null}
+      </div>
+    );
+  };
+
   return (
     <>
       {props.route.subRoutes.length > 0 && (
@@ -120,7 +132,11 @@ const SingleRoute: React.FC<SingleRouteProps> = (props) => {
             <ul className={styles.route}>
               {renderRoute().map((routeItem) => routeItem)}
             </ul>
-            <span>{props.route.totalTime} min</span>
+            {props.route.totalTime < 60 ? (
+              <span>{props.route.totalTime} min</span>
+            ) : (
+              convertMinutesToHoursMinutess(props.route.totalTime)
+            )}
           </div>
           <p className={styles.routeClock}>{routeClockTime}</p>
         </section>

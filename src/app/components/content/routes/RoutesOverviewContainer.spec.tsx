@@ -155,18 +155,6 @@ describe('RoutesOverviewContainer', () => {
     expect(withinFirstRouteSection.getByText('4')).toBeVisible();
   });
 
-  it('displays the time and date correctly', () => {
-    render(<RoutesOverviewContainer onBackButtonClick={() => {}} />);
-
-    const withinFirstRouteSection = within(
-      screen.getByTitle('Single Route 17:30 - 17:39')
-    );
-
-    expect(screen.getByText('Friday 24 September')).toBeVisible();
-    expect(withinFirstRouteSection.getByText('9 min')).toBeVisible();
-    expect(withinFirstRouteSection.getByText('17:30 - 17:39')).toBeVisible();
-  });
-
   it('displays earlier route time when clicking on earlier button', () => {
     render(<RoutesOverviewContainer onBackButtonClick={() => {}} />);
 
@@ -189,5 +177,177 @@ describe('RoutesOverviewContainer', () => {
     );
 
     expect(screen.getByText('17:50 - 17:59')).toBeVisible();
+  });
+
+  describe('time and date', () => {
+    it('displays the time and date correctly', () => {
+      render(<RoutesOverviewContainer onBackButtonClick={() => {}} />);
+
+      const withinFirstRouteSection = within(
+        screen.getByTitle('Single Route 17:30 - 17:39')
+      );
+
+      expect(screen.getByText('Friday 24 September')).toBeVisible();
+      expect(withinFirstRouteSection.getByText('9 min')).toBeVisible();
+      expect(withinFirstRouteSection.getByText('17:30 - 17:39')).toBeVisible();
+    });
+
+    it('displays separated total time in hours and minutes if total time is above one hour', () => {
+      const routeWithTotalTimeAboveOneHour = {
+        subRoutes: [
+          {
+            stationsPath: [
+              {
+                id: 'station_a',
+                name: 'Station a',
+                lines: ['green'],
+                connectedStations: [
+                  { id: 'station_b', timeTo: 2 } as ConnectedStation,
+                ],
+              },
+              {
+                id: 'station_b',
+                name: 'Station b',
+                lines: ['green', 'red'],
+                connectedStations: [
+                  { id: 'station_c', timeTo: 2 } as ConnectedStation,
+                ],
+              },
+            ],
+            totalTime: 35,
+            line: 'green',
+            transferTimeToNextLine: 10,
+          },
+          {
+            stationsPath: [
+              {
+                id: 'station_b',
+                name: 'Station b',
+                lines: ['green', 'red'],
+                connectedStations: [
+                  { id: 'station_c', timeTo: 2 } as ConnectedStation,
+                ],
+              },
+              {
+                id: 'station_c',
+                name: 'Station c',
+                lines: ['red'],
+                connectedStations: [
+                  { id: 'station_d', timeTo: 2 } as ConnectedStation,
+                ],
+              },
+              {
+                id: 'station_d',
+                name: 'Station d',
+                lines: ['red'],
+                connectedStations: [],
+              },
+            ],
+            totalTime: 30,
+            line: 'red',
+          },
+        ] as SubRoute[],
+        totalTime: 75,
+      } as Route;
+
+      useNavigationMock.mockReturnValue({
+        origin: originStation,
+        destination: destinationStation,
+        setOriginStation: jest.fn(),
+        setDestinationStation: jest.fn(),
+        generateStationsMap: jest.fn(),
+        calculateRoute: () => routeWithTotalTimeAboveOneHour,
+      });
+
+      render(<RoutesOverviewContainer onBackButtonClick={() => {}} />);
+
+      const withinFirstRouteSection = within(
+        screen.getByTitle('Single Route 17:30 - 18:45')
+      );
+
+      expect(screen.getByText('Friday 24 September')).toBeVisible();
+      expect(withinFirstRouteSection.getByText('1 h')).toBeVisible();
+      expect(withinFirstRouteSection.getByText('15 min')).toBeVisible();
+      expect(withinFirstRouteSection.getByText('17:30 - 18:45')).toBeVisible();
+    });
+
+    it('displays total time only in hours if total time is exactly an hour', () => {
+      const routeWithTotalTimeAboveOneHour = {
+        subRoutes: [
+          {
+            stationsPath: [
+              {
+                id: 'station_a',
+                name: 'Station a',
+                lines: ['green'],
+                connectedStations: [
+                  { id: 'station_b', timeTo: 2 } as ConnectedStation,
+                ],
+              },
+              {
+                id: 'station_b',
+                name: 'Station b',
+                lines: ['green', 'red'],
+                connectedStations: [
+                  { id: 'station_c', timeTo: 2 } as ConnectedStation,
+                ],
+              },
+            ],
+            totalTime: 25,
+            line: 'green',
+            transferTimeToNextLine: 5,
+          },
+          {
+            stationsPath: [
+              {
+                id: 'station_b',
+                name: 'Station b',
+                lines: ['green', 'red'],
+                connectedStations: [
+                  { id: 'station_c', timeTo: 2 } as ConnectedStation,
+                ],
+              },
+              {
+                id: 'station_c',
+                name: 'Station c',
+                lines: ['red'],
+                connectedStations: [
+                  { id: 'station_d', timeTo: 2 } as ConnectedStation,
+                ],
+              },
+              {
+                id: 'station_d',
+                name: 'Station d',
+                lines: ['red'],
+                connectedStations: [],
+              },
+            ],
+            totalTime: 30,
+            line: 'red',
+          },
+        ] as SubRoute[],
+        totalTime: 60,
+      } as Route;
+
+      useNavigationMock.mockReturnValue({
+        origin: originStation,
+        destination: destinationStation,
+        setOriginStation: jest.fn(),
+        setDestinationStation: jest.fn(),
+        generateStationsMap: jest.fn(),
+        calculateRoute: () => routeWithTotalTimeAboveOneHour,
+      });
+
+      render(<RoutesOverviewContainer onBackButtonClick={() => {}} />);
+
+      const withinFirstRouteSection = within(
+        screen.getByTitle('Single Route 17:30 - 18:30')
+      );
+
+      expect(screen.getByText('Friday 24 September')).toBeVisible();
+      expect(withinFirstRouteSection.getByText('1 h')).toBeVisible();
+      expect(withinFirstRouteSection.queryByText(/min/)).toBeNull();
+      expect(withinFirstRouteSection.getByText('17:30 - 18:30')).toBeVisible();
+    });
   });
 });

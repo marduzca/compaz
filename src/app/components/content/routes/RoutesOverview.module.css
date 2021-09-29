@@ -88,10 +88,15 @@
   align-items: center;
 }
 
-.routeTop > span {
+.routeTop span {
   color: black;
   font-size: 1rem;
   font-weight: 700;
+}
+
+.totalTimeInHours > span {
+  display: block;
+  line-height: 1.125rem;
 }
 
 .route {
