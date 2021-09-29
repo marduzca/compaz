@@ -61,3 +61,6 @@ export const parseToTimeString = (date: Date): string =>
 
 export const addMinutesToDate = (date: Date, minutes: number): Date =>
   new Date(date.getTime() + minutes * 60000);
+
+export const reduceMinutesToDate = (date: Date, minutes: number): Date =>
+  new Date(date.getTime() - minutes * 60000);

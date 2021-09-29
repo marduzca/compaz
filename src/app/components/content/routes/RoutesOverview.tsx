@@ -104,20 +104,25 @@ const SingleRoute: React.FC<SingleRouteProps> = (props) => {
     return lineIcons;
   };
 
+  const routeClockTime = `${parseToTimeString(props.time)} - 
+          ${parseToTimeString(
+            addMinutesToDate(props.time, props.route.totalTime)
+          )}`;
+
   return (
     <>
       {props.route.subRoutes.length > 0 && (
-        <section className={styles.singleRouteOverview}>
+        <section
+          title={`Single Route ${routeClockTime}`}
+          className={styles.singleRouteOverview}
+        >
           <div className={styles.routeTop}>
             <ul className={styles.route}>
               {renderRoute().map((routeItem) => routeItem)}
             </ul>
             <span>{props.route.totalTime} min</span>
           </div>
-          <p className={styles.routeClock}>{`${parseToTimeString(props.time)} - 
-          ${parseToTimeString(
-            addMinutesToDate(props.time, props.route.totalTime)
-          )}`}</p>
+          <p className={styles.routeClock}>{routeClockTime}</p>
         </section>
       )}
     </>
@@ -129,7 +134,10 @@ interface RoutesOverviewProps {
   originName: string;
   destinationName: string;
   dateAndTime: Date;
+  displayedRouteTimes: Date[];
   onBackButtonClick: () => void;
+  onEarlierButtonClick: () => void;
+  onLaterButtonClick: () => void;
 }
 
 const RoutesOverview: React.FC<RoutesOverviewProps> = (props) => {
@@ -159,16 +167,24 @@ const RoutesOverview: React.FC<RoutesOverviewProps> = (props) => {
         <button
           type="button"
           title={t('Content.RoutesOverview.EARLIER_BUTTON')}
-          className={styles.adjustTimeButton}
+          className={`${styles.adjustTimeButton} ${styles.earlierButton}`}
+          onClick={props.onEarlierButtonClick}
         >
           <ArrowUpIcon />
           <span>{t('Content.RoutesOverview.EARLIER_BUTTON')}</span>
         </button>
-        <SingleRoute route={props.route} time={props.dateAndTime} />
+        {props.displayedRouteTimes.map((routeTime) => (
+          <SingleRoute
+            key={routeTime.getTime()}
+            route={props.route}
+            time={routeTime}
+          />
+        ))}
         <button
           type="button"
           title={t('Content.RoutesOverview.LATER_BUTTON')}
-          className={`${styles.adjustTimeButton} ${styles.laterButton}`}
+          className={styles.adjustTimeButton}
+          onClick={props.onLaterButtonClick}
         >
           <ArrowDownIcon />
           <span>{t('Content.RoutesOverview.LATER_BUTTON')}</span>

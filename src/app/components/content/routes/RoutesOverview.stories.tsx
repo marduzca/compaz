@@ -66,6 +66,13 @@ export const normalAndMobileState = () => (
     originName="Station a"
     destinationName="Station d"
     dateAndTime={new Date('1993-03-15 09:30')}
+    displayedRouteTimes={[
+      new Date('1993-03-15 09:30'),
+      new Date('1993-03-15 09:35'),
+      new Date('1993-03-15 09:40'),
+    ]}
     onBackButtonClick={actions('onBackButtonClick').onBackButtonClick}
+    onEarlierButtonClick={actions('onEarlierButtonClick').onEarlierButtonClick}
+    onLaterButtonClick={actions('onLaterButtonClick').onLaterButtonClick}
   />
 );

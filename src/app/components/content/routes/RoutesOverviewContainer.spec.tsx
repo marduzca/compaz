@@ -1,5 +1,6 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import RoutesOverviewContainer from './RoutesOverviewContainer';
 import * as NavigationProvider from '../../providers/NavigationProvider';
 import * as FirebaseProvider from '../../providers/FirebaseProvider';
@@ -128,29 +129,65 @@ describe('RoutesOverviewContainer', () => {
   it('displays the route with correct icons', () => {
     render(<RoutesOverviewContainer onBackButtonClick={() => {}} />);
 
-    expect(screen.getByText('9 min')).toBeVisible();
+    const withinFirstRouteSection = within(
+      screen.getByTitle('Single Route 17:30 - 17:39')
+    );
 
     expect(
-      screen.getByRole('img', { name: 'Content.RoutesOverview.Lines.GREEN' })
+      withinFirstRouteSection.getByRole('img', {
+        name: 'Content.RoutesOverview.Lines.GREEN',
+      })
     ).toBeVisible();
-    expect(screen.getByText('3')).toBeVisible();
+    expect(withinFirstRouteSection.getByText('3')).toBeVisible();
 
     expect(
-      screen.getByRole('img', { name: 'Content.RoutesOverview.TRANSFER' })
+      withinFirstRouteSection.getByRole('img', {
+        name: 'Content.RoutesOverview.TRANSFER',
+      })
     ).toBeVisible();
-    expect(screen.getByText('2')).toBeVisible();
+    expect(withinFirstRouteSection.getByText('2')).toBeVisible();
 
     expect(
-      screen.getByRole('img', { name: 'Content.RoutesOverview.Lines.RED' })
+      withinFirstRouteSection.getByRole('img', {
+        name: 'Content.RoutesOverview.Lines.RED',
+      })
     ).toBeVisible();
-    expect(screen.getByText('4')).toBeVisible();
+    expect(withinFirstRouteSection.getByText('4')).toBeVisible();
   });
 
   it('displays the time and date correctly', () => {
     render(<RoutesOverviewContainer onBackButtonClick={() => {}} />);
 
-    expect(screen.getByText('9 min')).toBeVisible();
+    const withinFirstRouteSection = within(
+      screen.getByTitle('Single Route 17:30 - 17:39')
+    );
+
     expect(screen.getByText('Friday 24 September')).toBeVisible();
-    expect(screen.getByText('17:30 - 17:39')).toBeVisible();
+    expect(withinFirstRouteSection.getByText('9 min')).toBeVisible();
+    expect(withinFirstRouteSection.getByText('17:30 - 17:39')).toBeVisible();
+  });
+
+  it('displays earlier route time when clicking on earlier button', () => {
+    render(<RoutesOverviewContainer onBackButtonClick={() => {}} />);
+
+    userEvent.click(
+      screen.getByRole('button', {
+        name: 'Content.RoutesOverview.EARLIER_BUTTON',
+      })
+    );
+
+    expect(screen.getByText('17:25 - 17:34')).toBeVisible();
+  });
+
+  it('displays later route time when clicking on later button', () => {
+    render(<RoutesOverviewContainer onBackButtonClick={() => {}} />);
+
+    userEvent.click(
+      screen.getByRole('button', {
+        name: 'Content.RoutesOverview.LATER_BUTTON',
+      })
+    );
+
+    expect(screen.getByText('17:50 - 17:59')).toBeVisible();
   });
 });

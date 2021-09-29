@@ -14,10 +14,11 @@
 .header {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: flex-start;
   gap: 0.5rem;
 
-  max-height: 20%;
+  height: 20%;
   width: 100%;
   padding: 1rem;
 
@@ -65,12 +66,16 @@
 }
 
 .routesOverview {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.5rem;
+
   height: 100%;
   overflow-y: auto;
 }
 
 .singleRouteOverview {
-  margin: 1rem 0;
   padding: 1.25rem 1rem;
   box-shadow: 0 0 0.25rem 0 grey;
 
@@ -155,7 +160,6 @@
 
   width: 100%;
   height: 2rem;
-  margin-top: 0.5rem;
   padding-left: 1rem;
 
   box-shadow: 0 0 0.25rem 0 grey;
@@ -177,8 +181,8 @@
   width: 1.5rem;
 }
 
-.laterButton {
-  margin-bottom: 0;
+.earlierButton {
+  margin-top: 0.5rem;
 }
 
 @media only screen and (max-width: 480px) {
@@ -189,5 +193,9 @@
   .header {
     border-radius: 0;
     gap: 1rem;
+  }
+
+  .routeClock {
+    margin-top: 1.75rem;
   }
 }

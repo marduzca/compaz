@@ -3,6 +3,7 @@ import {
   parseToEnglishDateString,
   parseToSpanishDateString,
   parseToTimeString,
+  reduceMinutesToDate,
 } from './dateFormatter';
 
 describe('dateFormatter', () => {
@@ -66,6 +67,16 @@ describe('dateFormatter', () => {
 
     expect(dateWithAddedMinutes.getHours()).toEqual(18);
     expect(dateWithAddedMinutes.getMinutes()).toEqual(5);
+  });
+
+  it('reduces given minutes to given date correctly', () => {
+    const dateWithAddedMinutes = reduceMinutesToDate(
+      new Date('2021-09-24 17:35'),
+      40
+    );
+
+    expect(dateWithAddedMinutes.getHours()).toEqual(16);
+    expect(dateWithAddedMinutes.getMinutes()).toEqual(55);
   });
 
   it('parses date to simple time format correctly', () => {
