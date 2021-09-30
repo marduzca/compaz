@@ -14,7 +14,6 @@ interface DateAndTimePickerProps {
   selectedDate: Date;
   selectedTime: string;
   onTimePickerChange: (time: moment.MomentInput, timeString: string) => void;
-  showTimePickerPanel?: boolean;
 }
 
 const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => (
@@ -38,15 +37,11 @@ const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => (
           onChange={props.onTimePickerChange}
           format="HH:mm"
           getPopupContainer={() => document.documentElement}
-          open={props.showTimePickerPanel}
+          inputReadOnly
         />
       </ConfigProvider>
     </button>
   </div>
 );
-
-DateAndTimePicker.defaultProps = {
-  showTimePickerPanel: undefined,
-};
 
 export default DateAndTimePicker;
