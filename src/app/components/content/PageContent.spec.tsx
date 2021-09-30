@@ -26,11 +26,16 @@ describe('PageContent', () => {
   beforeEach(() => {
     useFirebaseMock.mockReturnValue({
       stations: [originStation, destinationStation],
+      lines: [],
     });
 
     useNavigationMock.mockReturnValue({
       origin: originStation,
       destination: destinationStation,
+      departureTime: '17:30',
+      departureDate: new Date('2021-09-24'),
+      setNewDepartureTime: jest.fn(),
+      setNewDepartureDate: jest.fn(),
       setOriginStation: jest.fn(),
       setDestinationStation: jest.fn(),
       generateStationsMap: jest.fn(),

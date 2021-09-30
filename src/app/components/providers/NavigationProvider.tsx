@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 import { Line, Route, Station, SubRoute } from '../domain';
+import { parseToSimpleTime } from '../content/dateFormatter';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const dijkstra = require('dijkstrajs');
@@ -15,6 +16,10 @@ interface ConnectedStationTimeTo {
 interface NavigationContextProps {
   origin: Station;
   destination: Station;
+  departureTime: string;
+  departureDate: Date;
+  setNewDepartureTime: (newDepartureTime: string) => void;
+  setNewDepartureDate: (newDepartureDate: Date) => void;
   setOriginStation: (newOrigin: Station) => void;
   setDestinationStation: (newDestination: Station) => void;
   generateStationsMap: (stations: Station[]) => void;
@@ -34,6 +39,10 @@ export const NavigationContext = createContext<NavigationContextProps>({
     lines: [],
     name: '',
   },
+  departureTime: '',
+  departureDate: new Date(),
+  setNewDepartureTime: () => {},
+  setNewDepartureDate: () => {},
   setOriginStation: () => {},
   setDestinationStation: () => {},
   generateStationsMap: () => {},
@@ -170,6 +179,10 @@ export const NavigationProvider: React.FC = (props) => {
     lines: [],
     name: '',
   });
+  const [departureTime, setDepartureTime] = useState<string>(
+    parseToSimpleTime(new Date())
+  );
+  const [departureDate, setDepartureDate] = useState<Date>(new Date());
   const [stationsMap, setStationsMap] = useState<StationsMap>({});
 
   const setOriginStation = (newOrigin: Station) => {
@@ -178,6 +191,14 @@ export const NavigationProvider: React.FC = (props) => {
 
   const setDestinationStation = (newDestination: Station) => {
     setDestination(newDestination);
+  };
+
+  const setNewDepartureTime = (newDepartureTime: string) => {
+    setDepartureTime(newDepartureTime);
+  };
+
+  const setNewDepartureDate = (newDepartureDate: Date) => {
+    setDepartureDate(newDepartureDate);
   };
 
   const generateStationsMap = (stations: Station[]) => {
@@ -250,6 +271,10 @@ export const NavigationProvider: React.FC = (props) => {
       value={{
         origin,
         destination,
+        departureTime,
+        departureDate,
+        setNewDepartureTime,
+        setNewDepartureDate,
         setOriginStation,
         setDestinationStation,
         generateStationsMap,

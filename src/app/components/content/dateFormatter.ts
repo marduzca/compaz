@@ -31,7 +31,7 @@ export const parseToEnglishDateString = (
   return `${todayIndicator}${weekday} ${dayOfMonth} ${month}`;
 };
 
-export const parseToSpanishDateString = (
+export const parseToSpanishDate = (
   date: Date,
   shortFormat: boolean
 ): string => {
@@ -54,7 +54,7 @@ export const parseToSpanishDateString = (
   )}`;
 };
 
-export const parseToDateInputFormat = (date: Date): string => {
+export const parseToSimpleDate = (date: Date): string => {
   const year = new Intl.DateTimeFormat('en', {
     year: 'numeric',
   }).format(date);
@@ -70,7 +70,7 @@ export const parseToDateInputFormat = (date: Date): string => {
   return `${year}-${month}-${day}`;
 };
 
-export const parseToTimeString = (date: Date): string =>
+export const parseToSimpleTime = (date: Date): string =>
   new Intl.DateTimeFormat('en', { timeStyle: 'short', hour12: false }).format(
     date
   );

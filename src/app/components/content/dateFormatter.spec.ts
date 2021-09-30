@@ -1,9 +1,9 @@
 import {
   addMinutesToDate,
-  parseToDateInputFormat,
+  parseToSimpleDate,
   parseToEnglishDateString,
-  parseToSpanishDateString,
-  parseToTimeString,
+  parseToSpanishDate,
+  parseToSimpleTime,
   reduceMinutesToDate,
 } from './dateFormatter';
 
@@ -36,7 +36,7 @@ describe('dateFormatter', () => {
 
   describe('spanish', () => {
     it('parses a date to spanish long format correctly', () => {
-      const dateInLongFormat = parseToSpanishDateString(
+      const dateInLongFormat = parseToSpanishDate(
         new Date('2021-09-24 17:30'),
         false
       );
@@ -45,7 +45,7 @@ describe('dateFormatter', () => {
     });
 
     it('parses a date to spanish short format correctly', () => {
-      const dateInLongFormat = parseToSpanishDateString(
+      const dateInLongFormat = parseToSpanishDate(
         new Date('2021-09-24 17:30'),
         true
       );
@@ -54,16 +54,14 @@ describe('dateFormatter', () => {
     });
 
     it('adds spanish today indicator if given date is today', () => {
-      const dateInLongFormat = parseToSpanishDateString(new Date(), false);
+      const dateInLongFormat = parseToSpanishDate(new Date(), false);
 
       expect(dateInLongFormat).toContain('Hoy, ');
     });
   });
 
   it('parses date to input date format correctly', () => {
-    const timeInSimpleFormat = parseToDateInputFormat(
-      new Date('2021-09-24 17:30')
-    );
+    const timeInSimpleFormat = parseToSimpleDate(new Date('2021-09-24 17:30'));
 
     expect(timeInSimpleFormat).toEqual('2021-09-24');
   });
@@ -89,7 +87,7 @@ describe('dateFormatter', () => {
   });
 
   it('parses date to simple time format correctly', () => {
-    const timeInSimpleFormat = parseToTimeString(new Date('2021-09-24 17:30'));
+    const timeInSimpleFormat = parseToSimpleTime(new Date('2021-09-24 17:30'));
 
     expect(timeInSimpleFormat).toEqual('17:30');
   });

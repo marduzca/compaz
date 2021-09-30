@@ -19,8 +19,8 @@ import { Route } from '../../domain';
 import {
   addMinutesToDate,
   parseToEnglishDateString,
-  parseToSpanishDateString,
-  parseToTimeString,
+  parseToSpanishDate,
+  parseToSimpleTime,
 } from '../dateFormatter';
 import i18n from '../../../i18n/instance';
 
@@ -104,8 +104,8 @@ const SingleRoute: React.FC<SingleRouteProps> = (props) => {
     return lineIcons;
   };
 
-  const routeClockTime = `${parseToTimeString(props.time)} - 
-          ${parseToTimeString(
+  const routeClockTime = `${parseToSimpleTime(props.time)} - 
+          ${parseToSimpleTime(
             addMinutesToDate(props.time, props.route.totalTime)
           )}`;
 
@@ -176,7 +176,7 @@ const RoutesOverview: React.FC<RoutesOverviewProps> = (props) => {
         <span>
           {i18n.language.match(/en/i)
             ? parseToEnglishDateString(props.dateAndTime, false)
-            : parseToSpanishDateString(props.dateAndTime, false)}
+            : parseToSpanishDate(props.dateAndTime, false)}
         </span>
       </header>
       <div className={styles.routesOverview}>

@@ -9,7 +9,7 @@ import styles from './DateAndTimePicker.module.css';
 import { ReactComponent as CalendarIcon } from '../../../../static/img/date_picker.svg';
 import { ReactComponent as TimeIcon } from '../../../../static/img/time_picker.svg';
 import {
-  parseToDateInputFormat,
+  parseToSimpleDate,
   parseToEnglishDateString,
 } from '../../dateFormatter';
 import i18n from '../../../../i18n/instance';
@@ -46,7 +46,7 @@ const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => {
           data-testid="datePicker"
           type="date"
           className={styles.datePickerInput}
-          value={parseToDateInputFormat(props.selectedDate)}
+          value={parseToSimpleDate(props.selectedDate)}
           onChange={props.onDatePickerChange}
         />
       </button>
