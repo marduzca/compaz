@@ -4,14 +4,17 @@ import DateAndTimePicker from './DateAndTimePicker';
 import { parseToTimeString } from '../../dateFormatter';
 
 interface DateAndTimePickerContainerProps {
-  selectedDate: Date;
+  randomDateAndTime: Date;
 }
 
 const DateAndTimePickerContainer: React.FC<DateAndTimePickerContainerProps> = (
   props
 ) => {
   const [selectedTime, setSelectedTime] = useState<string>(
-    parseToTimeString(props.selectedDate)
+    parseToTimeString(props.randomDateAndTime)
+  );
+  const [selectedDate, setSelectedDate] = useState<Date>(
+    props.randomDateAndTime
   );
 
   const handleTimePickerChange = (
@@ -21,10 +24,17 @@ const DateAndTimePickerContainer: React.FC<DateAndTimePickerContainerProps> = (
     setSelectedTime(timeString);
   };
 
+  const handleDatePickerChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setSelectedDate(new Date(event.target.value));
+  };
+
   return (
     <DateAndTimePicker
-      selectedDate={props.selectedDate}
+      selectedDate={selectedDate}
       selectedTime={selectedTime}
+      onDatePickerChange={handleDatePickerChange}
       onTimePickerChange={handleTimePickerChange}
     />
   );

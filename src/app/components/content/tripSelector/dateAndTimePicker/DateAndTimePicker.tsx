@@ -8,13 +8,17 @@ import { useTranslation } from 'react-i18next';
 import styles from './DateAndTimePicker.module.css';
 import { ReactComponent as CalendarIcon } from '../../../../static/img/date_picker.svg';
 import { ReactComponent as TimeIcon } from '../../../../static/img/time_picker.svg';
-import { parseToEnglishDateString } from '../../dateFormatter';
+import {
+  parseToDateInputFormat,
+  parseToEnglishDateString,
+} from '../../dateFormatter';
 import i18n from '../../../../i18n/instance';
 
 interface DateAndTimePickerProps {
   selectedDate: Date;
   selectedTime: string;
   onTimePickerChange: (time: moment.MomentInput, timeString: string) => void;
+  onDatePickerChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   showOpenTimePickerPanel?: boolean;
 }
 
@@ -38,7 +42,13 @@ const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => {
           <CalendarIcon />
           <span>{parseToEnglishDateString(props.selectedDate, true)}</span>
         </div>
-        <input type="date" className={styles.datePickerInput} />
+        <input
+          data-testid="datePicker"
+          type="date"
+          className={styles.datePickerInput}
+          value={parseToDateInputFormat(props.selectedDate)}
+          onChange={props.onDatePickerChange}
+        />
       </button>
       <button
         type="button"
@@ -53,6 +63,7 @@ const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => {
           <TimePicker
             className={styles.reactTimePicker}
             onChange={props.onTimePickerChange}
+            value={moment(props.selectedTime, 'HH:mm')}
             format="HH:mm"
             inputReadOnly
             popupClassName={styles.reactTimePickerPanel}

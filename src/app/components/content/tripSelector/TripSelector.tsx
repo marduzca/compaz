@@ -16,7 +16,7 @@ interface TripSelectorProps {
 const TripSelector: React.FC<TripSelectorProps> = (props) => {
   const { t } = useTranslation();
 
-  const dateAndTime = new Date('2020-08-19T23:13:44.514Z');
+  const dateAndTime = new Date('1995-12-17T10:24:00');
 
   return (
     <>
@@ -36,7 +36,7 @@ const TripSelector: React.FC<TripSelectorProps> = (props) => {
         </div>
         <div className={styles.inputFields}>
           <StationsSelectorContainer />
-          <DateAndTimePickerContainer selectedDate={dateAndTime} />
+          <DateAndTimePickerContainer randomDateAndTime={dateAndTime} />
         </div>
         <button
           type="button"
@@ -47,7 +47,7 @@ const TripSelector: React.FC<TripSelectorProps> = (props) => {
           <p>{t('Content.TripSelector.SEARCH_BUTTON')}</p>
           <SearchIcon />
         </button>
-      </div>{' '}
+      </div>
       <img className={styles.map} alt="Map" src={MapImage} />
     </>
   );

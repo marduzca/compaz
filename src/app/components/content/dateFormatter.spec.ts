@@ -1,5 +1,6 @@
 import {
   addMinutesToDate,
+  parseToDateInputFormat,
   parseToEnglishDateString,
   parseToSpanishDateString,
   parseToTimeString,
@@ -57,6 +58,14 @@ describe('dateFormatter', () => {
 
       expect(dateInLongFormat).toContain('Hoy, ');
     });
+  });
+
+  it('parses date to input date format correctly', () => {
+    const timeInSimpleFormat = parseToDateInputFormat(
+      new Date('2021-09-24 17:30')
+    );
+
+    expect(timeInSimpleFormat).toEqual('2021-09-24');
   });
 
   it('adds given minutes to given date correctly', () => {

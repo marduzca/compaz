@@ -30,6 +30,7 @@ export const basicInNormalState = () =>
       selectedDate={new Date('2021-09-24 17:30')}
       selectedTime="17:30"
       onTimePickerChange={actions('onTimePickerChange').onTimePickerChange}
+      onDatePickerChange={actions('onDatePickerChange').onDatePickerChange}
     />
   );
 
@@ -39,6 +40,7 @@ export const showOpenTimePickerPanelInNormalState = () =>
       selectedDate={new Date('2021-09-24 17:30')}
       selectedTime="17:30"
       onTimePickerChange={actions('onTimePickerChange').onTimePickerChange}
+      onDatePickerChange={actions('onDatePickerChange').onDatePickerChange}
       showOpenTimePickerPanel
     />
   );
