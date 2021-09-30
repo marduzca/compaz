@@ -1,5 +1,5 @@
 import React from 'react';
-import { TimePicker, ConfigProvider } from 'antd';
+import { ConfigProvider, TimePicker } from 'antd';
 import esES from 'antd/lib/locale/es_ES';
 import enGB from 'antd/lib/locale/en_GB';
 import './antd.css';
@@ -14,34 +14,48 @@ interface DateAndTimePickerProps {
   selectedDate: Date;
   selectedTime: string;
   onTimePickerChange: (time: moment.MomentInput, timeString: string) => void;
+  showOpenTimePickerPanel?: boolean;
 }
 
-const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => (
-  <div className={styles.dateAndTimePickerContainer}>
-    <button type="button" className={styles.datePicker}>
-      <div className={styles.datePickerToggleButton}>
-        <CalendarIcon />
-        <span>{parseToEnglishDateString(props.selectedDate, true)}</span>
-      </div>
-      <input type="date" className={styles.datePickerInput} />
-    </button>
-    <button type="button" className={styles.timePicker}>
-      <div className={styles.timePickerToggleButton}>
-        <TimeIcon />
-        <span>{props.selectedTime}</span>
-      </div>
-      <ConfigProvider locale={i18n.language.match(/en/i) ? enGB : esES}>
-        <TimePicker
-          className={styles.reactTimePicker}
-          popupClassName={styles.reactTimePickerPanel}
-          onChange={props.onTimePickerChange}
-          format="HH:mm"
-          getPopupContainer={() => document.documentElement}
-          inputReadOnly
-        />
-      </ConfigProvider>
-    </button>
-  </div>
-);
+const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => {
+  if (!props.showOpenTimePickerPanel) {
+    // This is necessary to have a visual regression test for the time picker panel (as it will probably break with new versions eventually)
+    // @ts-ignore
+    import('./antd_animations.css');
+  }
+
+  return (
+    <div className={styles.dateAndTimePickerContainer}>
+      <button type="button" className={styles.datePicker}>
+        <div className={styles.datePickerToggleButton}>
+          <CalendarIcon />
+          <span>{parseToEnglishDateString(props.selectedDate, true)}</span>
+        </div>
+        <input type="date" className={styles.datePickerInput} />
+      </button>
+      <button type="button" className={styles.timePicker}>
+        <div className={styles.timePickerToggleButton}>
+          <TimeIcon />
+          <span>{props.selectedTime}</span>
+        </div>
+        <ConfigProvider locale={i18n.language.match(/en/i) ? enGB : esES}>
+          <TimePicker
+            className={styles.reactTimePicker}
+            popupClassName={styles.reactTimePickerPanel}
+            onChange={props.onTimePickerChange}
+            format="HH:mm"
+            getPopupContainer={() => document.documentElement}
+            inputReadOnly
+            open={props.showOpenTimePickerPanel}
+          />
+        </ConfigProvider>
+      </button>
+    </div>
+  );
+};
+
+DateAndTimePicker.defaultProps = {
+  showOpenTimePickerPanel: undefined,
+};
 
 export default DateAndTimePicker;

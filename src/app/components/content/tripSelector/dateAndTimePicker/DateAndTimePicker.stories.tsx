@@ -7,12 +7,12 @@ const guaranteedSize = (child: JSX.Element): JSX.Element => (
   <div
     style={{
       width: '400px',
-      height: '200px',
+      height: '400px',
       display: 'flex',
       flexDirection: 'column',
-      justifyContent: 'center',
+      justifyContent: 'flex-start',
       backgroundColor: '#1976d2',
-      padding: '0 1.25rem',
+      padding: '1.25rem',
     }}
   >
     {child}
@@ -30,5 +30,15 @@ export const basicInNormalState = () =>
       selectedDate={new Date('2021-09-24 17:30')}
       selectedTime="17:30"
       onTimePickerChange={actions('onTimePickerChange').onTimePickerChange}
+    />
+  );
+
+export const showOpenTimePickerPanelInNormalState = () =>
+  guaranteedSize(
+    <DateAndTimePicker
+      selectedDate={new Date('2021-09-24 17:30')}
+      selectedTime="17:30"
+      onTimePickerChange={actions('onTimePickerChange').onTimePickerChange}
+      showOpenTimePickerPanel
     />
   );
