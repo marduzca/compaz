@@ -130,6 +130,10 @@
   opacity: 0;
 }
 
+.reactTimePicker > div > input {
+  display: none;
+}
+
 .reactTimePickerPanel > div > div > :last-child > ul {
   display: flex;
   justify-content: space-between;
