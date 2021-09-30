@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import moment from 'moment';
 import DateAndTimePicker from './DateAndTimePicker';
 
 interface DateAndTimePickerContainerProps {
@@ -8,17 +9,20 @@ interface DateAndTimePickerContainerProps {
 const DateAndTimePickerContainer: React.FC<DateAndTimePickerContainerProps> = (
   props
 ) => {
-  const [isTimeEditable, setTimeEditable] = useState<boolean>(false);
+  const [selectedTime, setSelectedTime] = useState<string>('19:30');
 
-  const handleTimePickerClick = () => {
-    setTimeEditable(!isTimeEditable);
+  const handleTimePickerChange = (
+    time: moment.MomentInput,
+    timeString: string
+  ) => {
+    setSelectedTime(timeString);
   };
 
   return (
     <DateAndTimePicker
       selectedDate={props.selectedDate}
-      isTimeEditable={isTimeEditable}
-      onTimePickerClick={handleTimePickerClick}
+      selectedTime={selectedTime}
+      onTimePickerChange={handleTimePickerChange}
     />
   );
 };

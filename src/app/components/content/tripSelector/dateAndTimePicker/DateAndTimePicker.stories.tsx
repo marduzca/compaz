@@ -24,11 +24,11 @@ export default {
   component: DateAndTimePicker,
 } as Meta;
 
-export const basic = () =>
+export const basicInNormalState = () =>
   guaranteedSize(
     <DateAndTimePicker
       selectedDate={new Date('2021-09-24 17:30')}
-      isTimeEditable={false}
-      onTimePickerClick={actions('onTimePickerClick').onTimePickerClick}
+      selectedTime="17:30"
+      onTimePickerChange={actions('onTimePickerChange').onTimePickerChange}
     />
   );

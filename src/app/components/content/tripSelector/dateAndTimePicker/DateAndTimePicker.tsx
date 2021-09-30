@@ -1,17 +1,20 @@
 import React from 'react';
-import TimePicker from 'react-time-picker';
+import { TimePicker, ConfigProvider } from 'antd';
+import esES from 'antd/lib/locale/es_ES';
+import enGB from 'antd/lib/locale/en_GB';
+import './antd.css';
+import moment from 'moment';
 import styles from './DateAndTimePicker.module.css';
 import { ReactComponent as CalendarIcon } from '../../../../static/img/date_picker.svg';
-import {
-  parseToEnglishDateString,
-  parseToTimeString,
-} from '../../dateFormatter';
 import { ReactComponent as TimeIcon } from '../../../../static/img/time_picker.svg';
+import { parseToEnglishDateString } from '../../dateFormatter';
+import i18n from '../../../../i18n/instance';
 
 interface DateAndTimePickerProps {
   selectedDate: Date;
-  isTimeEditable: boolean;
-  onTimePickerClick: () => void;
+  selectedTime: string;
+  onTimePickerChange: (time: moment.MomentInput, timeString: string) => void;
+  showTimePickerPanel?: boolean;
 }
 
 const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => (
@@ -23,27 +26,27 @@ const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => (
       </div>
       <input type="date" className={styles.datePickerInput} />
     </button>
-    {!props.isTimeEditable ? (
-      <button
-        type="button"
-        className={`${styles.timePicker} ${styles.timePickerButton}`}
-        onClick={props.onTimePickerClick}
-      >
+    <button type="button" className={styles.timePicker}>
+      <div className={styles.timePickerToggleButton}>
         <TimeIcon />
-        <span>{parseToTimeString(props.selectedDate)}</span>
-      </button>
-    ) : (
-      <div className={`${styles.timePicker} ${styles.timePickerInput}`}>
-        <TimeIcon />
+        <span>{props.selectedTime}</span>
+      </div>
+      <ConfigProvider locale={i18n.language.match(/en/i) ? enGB : esES}>
         <TimePicker
           className={styles.reactTimePicker}
-          value={props.selectedDate}
-          clockIcon={null}
-          locale="es"
+          popupClassName={styles.reactTimePickerPanel}
+          onChange={props.onTimePickerChange}
+          format="HH:mm"
+          getPopupContainer={() => document.documentElement}
+          open={props.showTimePickerPanel}
         />
-      </div>
-    )}
+      </ConfigProvider>
+    </button>
   </div>
 );
+
+DateAndTimePicker.defaultProps = {
+  showTimePickerPanel: undefined,
+};
 
 export default DateAndTimePicker;
