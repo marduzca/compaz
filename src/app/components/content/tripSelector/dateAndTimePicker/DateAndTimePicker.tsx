@@ -41,11 +41,11 @@ const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => {
         <ConfigProvider locale={i18n.language.match(/en/i) ? enGB : esES}>
           <TimePicker
             className={styles.reactTimePicker}
-            popupClassName={styles.reactTimePickerPanel}
             onChange={props.onTimePickerChange}
             format="HH:mm"
-            getPopupContainer={() => document.documentElement}
             inputReadOnly
+            popupClassName={styles.reactTimePickerPanel}
+            getPopupContainer={() => document.documentElement}
             open={props.showOpenTimePickerPanel}
           />
         </ConfigProvider>
