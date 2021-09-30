@@ -36,6 +36,10 @@
       "SEARCH_BUTTON": "Buscar",
       "STATIONS_SWITCHER": "Intercambiar estaciones",
       "TOGGLE_STATIONS": "Ver estaciones"
+    },
+    "DateAndTimePicker": {
+      "DATE_PICKER": "Seleccionar fecha de salida",
+      "TIME_PICKER": "Seleccionar hora de salida"
     }
   },
   "Footer": {

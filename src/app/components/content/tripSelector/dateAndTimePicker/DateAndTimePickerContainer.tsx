@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import moment from 'moment';
 import DateAndTimePicker from './DateAndTimePicker';
+import { parseToTimeString } from '../../dateFormatter';
 
 interface DateAndTimePickerContainerProps {
   selectedDate: Date;
@@ -9,7 +10,9 @@ interface DateAndTimePickerContainerProps {
 const DateAndTimePickerContainer: React.FC<DateAndTimePickerContainerProps> = (
   props
 ) => {
-  const [selectedTime, setSelectedTime] = useState<string>('19:30');
+  const [selectedTime, setSelectedTime] = useState<string>(
+    parseToTimeString(props.selectedDate)
+  );
 
   const handleTimePickerChange = (
     time: moment.MomentInput,

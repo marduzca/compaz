@@ -4,6 +4,7 @@ import esES from 'antd/lib/locale/es_ES';
 import enGB from 'antd/lib/locale/en_GB';
 import './antd.css';
 import moment from 'moment';
+import { useTranslation } from 'react-i18next';
 import styles from './DateAndTimePicker.module.css';
 import { ReactComponent as CalendarIcon } from '../../../../static/img/date_picker.svg';
 import { ReactComponent as TimeIcon } from '../../../../static/img/time_picker.svg';
@@ -18,6 +19,8 @@ interface DateAndTimePickerProps {
 }
 
 const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => {
+  const { t } = useTranslation();
+
   if (!props.showOpenTimePickerPanel) {
     // This is necessary to have a visual regression test for the time picker panel (as it will probably break with new versions eventually)
     // @ts-ignore
@@ -26,14 +29,22 @@ const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => {
 
   return (
     <div className={styles.dateAndTimePickerContainer}>
-      <button type="button" className={styles.datePicker}>
+      <button
+        type="button"
+        title={t('DateAndTimePicker.DATE_PICKER')}
+        className={styles.datePicker}
+      >
         <div className={styles.datePickerToggleButton}>
           <CalendarIcon />
           <span>{parseToEnglishDateString(props.selectedDate, true)}</span>
         </div>
         <input type="date" className={styles.datePickerInput} />
       </button>
-      <button type="button" className={styles.timePicker}>
+      <button
+        type="button"
+        title={t('DateAndTimePicker.TIME_PICKER')}
+        className={styles.timePicker}
+      >
         <div className={styles.timePickerToggleButton}>
           <TimeIcon />
           <span>{props.selectedTime}</span>

@@ -36,6 +36,10 @@
       "SEARCH_BUTTON": "Search",
       "STATIONS_SWITCHER": "Switch stations",
       "TOGGLE_STATIONS": "Toggle stations"
+    },
+    "DateAndTimePicker": {
+      "DATE_PICKER": "Select departure date",
+      "TIME_PICKER": "Select departure time"
     }
   },
   "Footer": {
