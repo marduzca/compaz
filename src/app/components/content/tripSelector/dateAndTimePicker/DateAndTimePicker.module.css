@@ -191,3 +191,15 @@
   > button:focus {
   background-color: var(--primary-color);
 }
+
+@media only screen and (max-width: 480px) {
+  .datePicker:hover,
+  .datePicker:focus {
+    background-color: #f2f2f2;
+  }
+
+  .timePicker:hover,
+  .timePicker:focus {
+    background-color: #f2f2f2;
+  }
+}

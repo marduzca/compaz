@@ -1,8 +1,9 @@
 import React from 'react';
 import { ConfigProvider, TimePicker } from 'antd';
+import 'antd/lib/date-picker/style/index.css';
+import 'antd/lib/button/style/index.css';
 import esES from 'antd/lib/locale/es_ES';
 import enGB from 'antd/lib/locale/en_GB';
-import './antd.css';
 import moment from 'moment';
 import { useTranslation } from 'react-i18next';
 import styles from './DateAndTimePicker.module.css';
