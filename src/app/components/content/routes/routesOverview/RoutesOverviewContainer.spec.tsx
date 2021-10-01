@@ -2,9 +2,15 @@ import React from 'react';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import RoutesOverviewContainer from './RoutesOverviewContainer';
-import * as NavigationProvider from '../../providers/NavigationProvider';
-import * as FirebaseProvider from '../../providers/FirebaseProvider';
-import { ConnectedStation, Line, Route, Station, SubRoute } from '../../domain';
+import * as NavigationProvider from '../../../providers/NavigationProvider';
+import * as FirebaseProvider from '../../../providers/FirebaseProvider';
+import {
+  ConnectedStation,
+  Line,
+  Route,
+  Station,
+  SubRoute,
+} from '../../../domain';
 
 describe('RoutesOverviewContainer', () => {
   const originStation = {
@@ -112,7 +118,7 @@ describe('RoutesOverviewContainer', () => {
       setOriginStation: jest.fn(),
       setDestinationStation: jest.fn(),
       generateStationsMap: jest.fn(),
-      calculateRoute: () => simpleRoute,
+      calculateRoute: () => ({ subRoutes: [], totalTime: 0 }),
     });
   });
 
@@ -121,7 +127,12 @@ describe('RoutesOverviewContainer', () => {
   });
 
   it('displays origin and destination in the header', () => {
-    render(<RoutesOverviewContainer onBackButtonClick={() => {}} />);
+    render(
+      <RoutesOverviewContainer
+        route={simpleRoute}
+        onBackButtonClick={() => {}}
+      />
+    );
 
     expect(
       screen.getByRole('heading', {
@@ -131,7 +142,12 @@ describe('RoutesOverviewContainer', () => {
   });
 
   it('displays the route with correct icons', () => {
-    render(<RoutesOverviewContainer onBackButtonClick={() => {}} />);
+    render(
+      <RoutesOverviewContainer
+        route={simpleRoute}
+        onBackButtonClick={() => {}}
+      />
+    );
 
     const withinFirstRouteSection = within(
       screen.getByTitle('Single Route 17:30 - 17:39')
@@ -160,7 +176,12 @@ describe('RoutesOverviewContainer', () => {
   });
 
   it('displays earlier route time when clicking on earlier button', () => {
-    render(<RoutesOverviewContainer onBackButtonClick={() => {}} />);
+    render(
+      <RoutesOverviewContainer
+        route={simpleRoute}
+        onBackButtonClick={() => {}}
+      />
+    );
 
     userEvent.click(
       screen.getByRole('button', {
@@ -172,7 +193,12 @@ describe('RoutesOverviewContainer', () => {
   });
 
   it('displays later route time when clicking on later button', () => {
-    render(<RoutesOverviewContainer onBackButtonClick={() => {}} />);
+    render(
+      <RoutesOverviewContainer
+        route={simpleRoute}
+        onBackButtonClick={() => {}}
+      />
+    );
 
     userEvent.click(
       screen.getByRole('button', {
@@ -185,7 +211,12 @@ describe('RoutesOverviewContainer', () => {
 
   describe('time and date', () => {
     it('displays the time and date correctly', () => {
-      render(<RoutesOverviewContainer onBackButtonClick={() => {}} />);
+      render(
+        <RoutesOverviewContainer
+          route={simpleRoute}
+          onBackButtonClick={() => {}}
+        />
+      );
 
       const withinFirstRouteSection = within(
         screen.getByTitle('Single Route 17:30 - 17:39')
@@ -254,20 +285,12 @@ describe('RoutesOverviewContainer', () => {
         totalTime: 75,
       } as Route;
 
-      useNavigationMock.mockReturnValue({
-        origin: originStation,
-        destination: destinationStation,
-        departureTime: '17:30',
-        departureDate: new Date('2021-09-24'),
-        setNewDepartureTime: jest.fn(),
-        setNewDepartureDate: jest.fn(),
-        setOriginStation: jest.fn(),
-        setDestinationStation: jest.fn(),
-        generateStationsMap: jest.fn(),
-        calculateRoute: () => routeWithTotalTimeAboveOneHour,
-      });
-
-      render(<RoutesOverviewContainer onBackButtonClick={() => {}} />);
+      render(
+        <RoutesOverviewContainer
+          route={routeWithTotalTimeAboveOneHour}
+          onBackButtonClick={() => {}}
+        />
+      );
 
       const withinFirstRouteSection = within(
         screen.getByTitle('Single Route 17:30 - 18:45')
@@ -280,7 +303,7 @@ describe('RoutesOverviewContainer', () => {
     });
 
     it('displays total time only in hours if total time is exactly an hour', () => {
-      const routeWithTotalTimeAboveOneHour = {
+      const routeWithTotalTimeOfExactlyAnHour = {
         subRoutes: [
           {
             stationsPath: [
@@ -347,10 +370,15 @@ describe('RoutesOverviewContainer', () => {
         setOriginStation: jest.fn(),
         setDestinationStation: jest.fn(),
         generateStationsMap: jest.fn(),
-        calculateRoute: () => routeWithTotalTimeAboveOneHour,
+        calculateRoute: () => routeWithTotalTimeOfExactlyAnHour,
       });
 
-      render(<RoutesOverviewContainer onBackButtonClick={() => {}} />);
+      render(
+        <RoutesOverviewContainer
+          route={routeWithTotalTimeOfExactlyAnHour}
+          onBackButtonClick={() => {}}
+        />
+      );
 
       const withinFirstRouteSection = within(
         screen.getByTitle('Single Route 17:30 - 18:30')

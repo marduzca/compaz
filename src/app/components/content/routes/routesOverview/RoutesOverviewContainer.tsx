@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigation } from '../../providers/NavigationProvider';
+import React, { useState } from 'react';
+import { useNavigation } from '../../../providers/NavigationProvider';
 import RoutesOverview from './RoutesOverview';
-import { useFirebase } from '../../providers/FirebaseProvider';
-import { Route } from '../../domain';
+import { Route } from '../../../domain';
 import {
   addMinutesToDate,
   parseToSimpleDate,
   reduceMinutesToDate,
-} from '../dateFormatter';
+} from '../../dateFormatter';
 
 interface RoutesOverviewContainerProps {
+  route: Route;
   onBackButtonClick: () => void;
 }
 
@@ -17,7 +17,6 @@ const RoutesOverviewContainer: React.FC<RoutesOverviewContainerProps> = (
   props
 ) => {
   const {
-    calculateRoute,
     origin,
     destination,
     setOriginStation,
@@ -25,23 +24,17 @@ const RoutesOverviewContainer: React.FC<RoutesOverviewContainerProps> = (
     departureDate,
     departureTime,
   } = useNavigation();
-  const { stations, lines } = useFirebase();
 
   const departureDateAndTime = new Date(
     `${parseToSimpleDate(departureDate)} ${departureTime}`
   );
 
-  const [route, setRoute] = useState<Route>({ subRoutes: [], totalTime: 0 });
   const [displayedRouteTimes, setDisplayedRouteTimes] = useState<Date[]>([
     departureDateAndTime,
     addMinutesToDate(departureDateAndTime, 5),
     addMinutesToDate(departureDateAndTime, 10),
     addMinutesToDate(departureDateAndTime, 15),
   ]);
-
-  useEffect(() => {
-    setRoute(calculateRoute(stations, lines));
-  }, [calculateRoute, lines, stations]);
 
   const handleBackButtonClick = () => {
     setOriginStation({
@@ -84,7 +77,7 @@ const RoutesOverviewContainer: React.FC<RoutesOverviewContainerProps> = (
 
   return (
     <RoutesOverview
-      route={route}
+      route={props.route}
       originName={origin.name}
       destinationName={destination.name}
       dateAndTime={departureDateAndTime}

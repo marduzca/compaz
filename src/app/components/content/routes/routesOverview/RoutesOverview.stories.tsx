@@ -2,7 +2,7 @@ import React from 'react';
 import { Meta } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 import RoutesOverview from './RoutesOverview';
-import { ConnectedStation, Route, SubRoute } from '../../domain';
+import { ConnectedStation, Route, SubRoute } from '../../../domain';
 
 export default {
   title: 'RoutesOverview',

@@ -1,28 +1,28 @@
 import React, { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ReactComponent as ArrowUpIcon } from '../../../static/img/chevron_up.svg';
-import { ReactComponent as ArrowDownIcon } from '../../../static/img/chevron_down.svg';
-import { ReactComponent as BackIcon } from '../../../static/img/arrow_back.svg';
-import blueTelefericoIcon from '../../../static/img/blue_teleferico.svg';
-import brownTelefericoIcon from '../../../static/img/brown_teleferico.svg';
-import greenTelefericoIcon from '../../../static/img/green_teleferico.svg';
-import lightBlueTelefericoIcon from '../../../static/img/light_blue_teleferico.svg';
-import orangeTelefericoIcon from '../../../static/img/orange_teleferico.svg';
-import purpleTelefericoIcon from '../../../static/img/purple_teleferico.svg';
-import redTelefericoIcon from '../../../static/img/red_teleferico.svg';
-import silverTelefericoIcon from '../../../static/img/silver_teleferico.svg';
-import whiteTelefericoIcon from '../../../static/img/white_teleferico.svg';
-import yellowTelefericoIcon from '../../../static/img/yellow_teleferico.svg';
-import transferIcon from '../../../static/img/double_arrow.svg';
+import { ReactComponent as ArrowUpIcon } from '../../../../static/img/chevron_up.svg';
+import { ReactComponent as ArrowDownIcon } from '../../../../static/img/chevron_down.svg';
+import { ReactComponent as BackIcon } from '../../../../static/img/arrow_back.svg';
+import blueTelefericoIcon from '../../../../static/img/blue_teleferico.svg';
+import brownTelefericoIcon from '../../../../static/img/brown_teleferico.svg';
+import greenTelefericoIcon from '../../../../static/img/green_teleferico.svg';
+import lightBlueTelefericoIcon from '../../../../static/img/light_blue_teleferico.svg';
+import orangeTelefericoIcon from '../../../../static/img/orange_teleferico.svg';
+import purpleTelefericoIcon from '../../../../static/img/purple_teleferico.svg';
+import redTelefericoIcon from '../../../../static/img/red_teleferico.svg';
+import silverTelefericoIcon from '../../../../static/img/silver_teleferico.svg';
+import whiteTelefericoIcon from '../../../../static/img/white_teleferico.svg';
+import yellowTelefericoIcon from '../../../../static/img/yellow_teleferico.svg';
+import transferIcon from '../../../../static/img/double_arrow.svg';
 import styles from './RoutesOverview.module.css';
-import { Route } from '../../domain';
+import { Route } from '../../../domain';
 import {
   addMinutesToDate,
   parseToEnglishDateString,
   parseToSpanishDate,
   parseToSimpleTime,
-} from '../dateFormatter';
-import i18n from '../../../i18n/instance';
+} from '../../dateFormatter';
+import i18n from '../../../../i18n/instance';
 
 interface SingleRouteProps {
   route: Route;
