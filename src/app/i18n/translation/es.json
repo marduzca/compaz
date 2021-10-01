@@ -12,7 +12,7 @@
     "NIGHT_MESSAGE": "Buenas noches\nLa Paz"
   },
   "Content": {
-    "RoutesOverview": {
+    "Route": {
       "Lines": {
         "BLUE": "Linea azul",
         "BROWN": "Linea cafe",
@@ -24,10 +24,18 @@
         "SILVER": "Linea plateada",
         "WHITE": "Linea blanca",
         "YELLOW": "Linea amarilla"
-      },
+      }
+    },
+    "RoutesOverview": {
       "EARLIER_BUTTON": "Más temprano",
       "LATER_BUTTON": "Más tarde",
       "TRANSFER": "Transferencia"
+    },
+    "RouteDetails": {
+      "INTERMEDIATE_STATIONS_OPEN_BUTTON_TITLE": "Mostrar estaciones intermedias",
+      "INTERMEDIATE_STATIONS_CLOSE_BUTTON_TITLE": "Ocultar estaciones intermedias",
+      "INTERMEDIATE_STATIONS_MESSAGE": "Avanza {{stopsNumber}} paradas ({{time}} min)",
+      "SINGLE_INTERMEDIATE_STATIONS_MESSAGE": "Avanza 1 parada ({{time}} min)"
     },
     "TripSelector": {
       "DESTINATION_PLACEHOLDER": "Destino",

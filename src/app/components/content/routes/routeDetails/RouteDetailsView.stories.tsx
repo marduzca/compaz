@@ -1,5 +1,6 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
+import { actions } from '@storybook/addon-actions';
 import RouteDetailsView from './RouteDetailsView';
 import { ConnectedStation, SubRoute } from '../../../domain';
 
@@ -37,7 +38,15 @@ export const basicInNormalAndMobileState = () =>
                 name: 'Origin Station',
                 lines: ['purple'],
                 connectedStations: [
-                  { id: 'station_b', timeTo: 2 } as ConnectedStation,
+                  { id: 'station_a_half', timeTo: 2 } as ConnectedStation,
+                ],
+              },
+              {
+                id: 'station_a_half',
+                name: 'A.5 Station',
+                lines: ['purple'],
+                connectedStations: [
+                  { id: 'station_b', timeTo: 4 } as ConnectedStation,
                 ],
               },
               {
@@ -49,7 +58,7 @@ export const basicInNormalAndMobileState = () =>
                 ],
               },
             ],
-            totalTime: 2,
+            totalTime: 6,
             line: 'purple',
             transferTimeToNextLine: 3,
           },
@@ -79,5 +88,10 @@ export const basicInNormalAndMobileState = () =>
         totalTime: 6,
       }}
       departureTime={new Date('1993-03-15 09:30')}
+      linesWithOpenIntermediateStations={['purple']}
+      onIntermediateStationsButtonClick={
+        actions('onIntermediateStationsButtonClick')
+          .onIntermediateStationsButtonClick
+      }
     />
   );
