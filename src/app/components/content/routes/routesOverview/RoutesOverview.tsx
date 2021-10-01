@@ -3,26 +3,17 @@ import { useTranslation } from 'react-i18next';
 import { ReactComponent as ArrowUpIcon } from '../../../../static/img/chevron_up.svg';
 import { ReactComponent as ArrowDownIcon } from '../../../../static/img/chevron_down.svg';
 import { ReactComponent as BackIcon } from '../../../../static/img/arrow_back.svg';
-import blueTelefericoIcon from '../../../../static/img/blue_teleferico.svg';
-import brownTelefericoIcon from '../../../../static/img/brown_teleferico.svg';
-import greenTelefericoIcon from '../../../../static/img/green_teleferico.svg';
-import lightBlueTelefericoIcon from '../../../../static/img/light_blue_teleferico.svg';
-import orangeTelefericoIcon from '../../../../static/img/orange_teleferico.svg';
-import purpleTelefericoIcon from '../../../../static/img/purple_teleferico.svg';
-import redTelefericoIcon from '../../../../static/img/red_teleferico.svg';
-import silverTelefericoIcon from '../../../../static/img/silver_teleferico.svg';
-import whiteTelefericoIcon from '../../../../static/img/white_teleferico.svg';
-import yellowTelefericoIcon from '../../../../static/img/yellow_teleferico.svg';
 import transferIcon from '../../../../static/img/double_arrow.svg';
 import styles from './RoutesOverview.module.css';
 import { Route } from '../../../domain';
 import {
   addMinutesToDate,
   parseToEnglishDateString,
-  parseToSpanishDate,
   parseToSimpleTime,
+  parseToSpanishDate,
 } from '../../dateFormatter';
 import i18n from '../../../../i18n/instance';
+import getCorrespondingTelefericoIcon from '../utils';
 
 interface SingleRouteProps {
   route: Route;
@@ -32,43 +23,13 @@ interface SingleRouteProps {
 const SingleRoute: React.FC<SingleRouteProps> = (props) => {
   const { t } = useTranslation();
 
-  const getCorrespondingTelefericoIcon = (lineColor: string): string => {
-    switch (lineColor) {
-      case 'blue':
-        return blueTelefericoIcon;
-      case 'brown':
-        return brownTelefericoIcon;
-      case 'green':
-        return greenTelefericoIcon;
-      case 'light_blue':
-        return lightBlueTelefericoIcon;
-      case 'orange':
-        return orangeTelefericoIcon;
-      case 'purple':
-        return purpleTelefericoIcon;
-      case 'red':
-        return redTelefericoIcon;
-      case 'silver':
-        return silverTelefericoIcon;
-      case 'white':
-        return whiteTelefericoIcon;
-      case 'yellow':
-        return yellowTelefericoIcon;
-      default:
-        // TODO: handle error case
-        return '';
-    }
-  };
-
   const renderRoute = (): ReactNode[] => {
     const lineIcons = props.route.subRoutes.map((subRoute) => (
       <li key={subRoute.line} className={styles.teleferico}>
         <img
           key={`${subRoute.line}`}
-          title={t(
-            `Content.RoutesOverview.Lines.${subRoute.line.toUpperCase()}`
-          )}
-          alt={t(`Content.RoutesOverview.Lines.${subRoute.line.toUpperCase()}`)}
+          title={t(`Content.Route.Lines.${subRoute.line.toUpperCase()}`)}
+          alt={t(`Content.Route.Lines.${subRoute.line.toUpperCase()}`)}
           src={getCorrespondingTelefericoIcon(subRoute.line)}
         />
         <span>{subRoute.totalTime}</span>

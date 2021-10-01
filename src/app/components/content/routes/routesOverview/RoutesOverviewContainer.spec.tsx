@@ -155,7 +155,7 @@ describe('RoutesOverviewContainer', () => {
 
     expect(
       withinFirstRouteSection.getByRole('img', {
-        name: 'Content.RoutesOverview.Lines.GREEN',
+        name: 'Content.Route.Lines.GREEN',
       })
     ).toBeVisible();
     expect(withinFirstRouteSection.getByText('3')).toBeVisible();
@@ -169,7 +169,7 @@ describe('RoutesOverviewContainer', () => {
 
     expect(
       withinFirstRouteSection.getByRole('img', {
-        name: 'Content.RoutesOverview.Lines.RED',
+        name: 'Content.Route.Lines.RED',
       })
     ).toBeVisible();
     expect(withinFirstRouteSection.getByText('4')).toBeVisible();

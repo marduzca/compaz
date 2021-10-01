@@ -1,0 +1,93 @@
+@import '../../../../../variables.css';
+
+.subRouteInfo {
+  display: grid;
+  grid-template-areas:
+    '  teleferico     origin        originTime'
+    '    .         intermediate         .'
+    '  circle       destination   destinationTime';
+  grid-template-columns: auto 2fr 0.5fr;
+  column-gap: 1rem;
+
+  height: 400px;
+
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.telefericoIcon {
+  grid-area: teleferico;
+  grid-row: span 2 / auto;
+
+  position: relative;
+}
+
+.telefericoIcon > img {
+  width: 2rem;
+  height: 2rem;
+}
+
+.telefericoIcon:after {
+  content: '';
+  width: 0.75rem;
+  height: 100%;
+
+  position: absolute;
+  top: 0.75rem;
+  left: 50%;
+  transform: translate(-50%);
+  z-index: -1;
+
+  border: 2px solid black;
+  color: inherit;
+  background-color: currentColor;
+}
+
+.originStation {
+  grid-area: origin;
+
+  margin-top: 0.5rem;
+}
+
+.originTime {
+  grid-area: originTime;
+
+  margin-top: 0.5rem;
+
+  text-align: right;
+}
+
+.intermediateStations {
+  grid-area: intermediate;
+}
+
+.circleIcon {
+  grid-area: circle;
+  justify-self: center;
+}
+
+.circleIcon > svg {
+  grid-area: circle;
+  justify-self: center;
+
+  width: 1rem;
+  height: 1rem;
+}
+
+.destinationStation {
+  grid-area: destination;
+
+  line-height: 1.25rem;
+}
+
+.destinationTime {
+  grid-area: destinationTime;
+
+  text-align: right;
+  line-height: 1.25rem;
+}
+
+.subRouteInfoStation {
+  display: block;
+  font-weight: 700;
+}
