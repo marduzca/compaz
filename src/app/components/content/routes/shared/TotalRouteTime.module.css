@@ -1,0 +1,11 @@
+.totalTime {
+  color: black;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.totalTime span {
+  display: block;
+
+  line-height: 1.125rem;
+}

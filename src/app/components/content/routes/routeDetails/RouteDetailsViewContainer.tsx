@@ -5,6 +5,7 @@ import { Route } from '../../../domain';
 interface RouteDetailsViewContainerProps {
   route: Route;
   departureTime: Date;
+  onBackButtonClick: () => void;
 }
 
 const RouteDetailsViewContainer: React.FC<RouteDetailsViewContainerProps> = (
@@ -36,6 +37,7 @@ const RouteDetailsViewContainer: React.FC<RouteDetailsViewContainerProps> = (
     <RouteDetailsView
       route={props.route}
       departureTime={props.departureTime}
+      onBackButtonClick={props.onBackButtonClick}
       linesWithOpenIntermediateStations={linesWithOpenIntermediateStations}
       onIntermediateStationsButtonClick={handleIntermediateStationsButtonClick}
     />

@@ -97,17 +97,6 @@
   align-items: center;
 }
 
-.routeTop span {
-  color: black;
-  font-size: 1rem;
-  font-weight: 700;
-}
-
-.totalTimeInHours > span {
-  display: block;
-  line-height: 1.125rem;
-}
-
 .routeClock {
   margin-top: 1.25rem;
 

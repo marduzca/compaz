@@ -12,7 +12,8 @@ import {
   parseToSpanishDate,
 } from '../../dateFormatter';
 import i18n from '../../../../i18n/instance';
-import IconsRoute from '../IconsRoute';
+import IconsRoute from '../shared/IconsRoute';
+import TotalRouteTime from '../shared/TotalRouteTime';
 
 interface SingleRouteProps {
   route: Route;
@@ -28,18 +29,6 @@ const SingleRoute: React.FC<SingleRouteProps> = (props) => {
             addMinutesToDate(props.departureTime, props.route.totalTime)
           )}`;
 
-  const convertMinutesToHoursMinutess = (givenMinutes: number): JSX.Element => {
-    const resultHours = Math.floor(givenMinutes / 60);
-    const resultMinutes = givenMinutes % 60;
-
-    return (
-      <div className={styles.totalTimeInHours}>
-        <span>{resultHours} h</span>
-        {resultMinutes ? <span>{resultMinutes} min</span> : null}
-      </div>
-    );
-  };
-
   return (
     <>
       {props.route.subRoutes.length > 0 && (
@@ -54,12 +43,8 @@ const SingleRoute: React.FC<SingleRouteProps> = (props) => {
           }}
         >
           <div className={styles.routeTop}>
-            <IconsRoute route={props.route} />
-            {props.route.totalTime < 60 ? (
-              <span>{props.route.totalTime} min</span>
-            ) : (
-              convertMinutesToHoursMinutess(props.route.totalTime)
-            )}
+            <IconsRoute subRoutes={props.route.subRoutes} />
+            <TotalRouteTime totalTime={props.route.totalTime} />
           </div>
           <p className={styles.routeClock}>{routeClockTime}</p>
         </button>

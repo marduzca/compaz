@@ -73,6 +73,7 @@ export const basicInNormalAndMobileState = () => (
     }}
     departureTime={new Date('1993-03-15 09:30')}
     linesWithOpenIntermediateStations={['purple']}
+    onBackButtonClick={actions('onBackButtonClick').onBackButtonClick}
     onIntermediateStationsButtonClick={
       actions('onIntermediateStationsButtonClick')
         .onIntermediateStationsButtonClick

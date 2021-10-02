@@ -1,12 +1,12 @@
 import React, { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './IconsRoute.module.css';
-import getCorrespondingTelefericoIcon from './utils';
-import transferIcon from '../../../static/img/double_arrow.svg';
-import { Route } from '../../domain';
+import getCorrespondingTelefericoIcon from '../utils';
+import transferIcon from '../../../../static/img/double_arrow.svg';
+import { SubRoute } from '../../../domain';
 
 interface SimpleIconsRouteProps {
-  route: Route;
+  subRoutes: SubRoute[];
   hideTimes?: boolean;
 }
 
@@ -14,11 +14,10 @@ const IconsRoute: React.FC<SimpleIconsRouteProps> = (props) => {
   const { t } = useTranslation();
 
   const renderRoute = (): ReactNode[] => {
-    const lineIcons = props.route.subRoutes.map((subRoute) => (
+    const lineIcons = props.subRoutes.map((subRoute) => (
       <li key={subRoute.line} className={styles.teleferico}>
         <img
           key={`${subRoute.line}`}
-          title={t(`Content.Route.Lines.${subRoute.line.toUpperCase()}`)}
           alt={t(`Content.Route.Lines.${subRoute.line.toUpperCase()}`)}
           src={getCorrespondingTelefericoIcon(subRoute.line)}
         />
@@ -26,11 +25,7 @@ const IconsRoute: React.FC<SimpleIconsRouteProps> = (props) => {
       </li>
     ));
 
-    for (
-      let index = 0;
-      index < props.route.subRoutes.length * 2 - 1;
-      index += 1
-    ) {
+    for (let index = 0; index < props.subRoutes.length * 2 - 1; index += 1) {
       if (index !== 0 && index % 2 === 1) {
         lineIcons.splice(
           index,
@@ -38,15 +33,11 @@ const IconsRoute: React.FC<SimpleIconsRouteProps> = (props) => {
           <li key={`transfer-${index}`} className={styles.transfer}>
             <img
               src={transferIcon}
-              title={t('Content.RoutesOverview.TRANSFER')}
               alt={t('Content.RoutesOverview.TRANSFER')}
             />
             {!props.hideTimes && (
               <span>
-                {
-                  props.route.subRoutes[Math.floor(index / 2)]
-                    .transferTimeToNextLine
-                }
+                {props.subRoutes[Math.floor(index / 2)].transferTimeToNextLine}
               </span>
             )}
           </li>

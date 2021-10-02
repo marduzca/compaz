@@ -121,7 +121,7 @@ describe('PageContent', () => {
     ).toBeVisible();
   });
 
-  it('navigates back to trip selection when clicking on search', () => {
+  it('navigates back to trip selection when clicking on routes overview back button', () => {
     render(<PageContent onMenuButtonClick={() => {}} />);
 
     userEvent.click(
@@ -152,10 +152,6 @@ describe('PageContent', () => {
       screen.getByTitle('Content.Route.Lines.PURPLE')
     );
 
-    const withinTransferBlock = within(
-      screen.getByTitle('Content.RoutesOverview.TRANSFER')
-    );
-
     const withinBlueLine = within(
       screen.getByTitle('Content.Route.Lines.BLUE')
     );
@@ -164,38 +160,34 @@ describe('PageContent', () => {
       withinPurpleLine.getByRole('img', { name: 'Content.Route.Lines.PURPLE' })
     ).toBeVisible();
     expect(withinPurpleLine.getByText('Origin Station')).toBeVisible();
-    expect(
-      withinPurpleLine.getByText('Content.RouteDetails.DIRECTION')
-    ).toBeVisible();
-    expect(withinPurpleLine.getByText('17:30')).toBeVisible();
-    expect(
-      withinPurpleLine.getByText(
-        'Content.RouteDetails.INTERMEDIATE_STATIONS_MESSAGE'
-      )
-    ).toBeVisible();
     expect(withinPurpleLine.getByText('Intermediate Station')).toBeVisible();
-    expect(withinPurpleLine.getByText('17:36')).toBeVisible();
-
-    expect(
-      withinTransferBlock.getByRole('img', {
-        name: 'Content.RoutesOverview.TRANSFER',
-      })
-    ).toBeVisible();
-    expect(
-      withinTransferBlock.getByText('Content.RouteDetails.TRANSFER_MESSAGE')
-    ).toBeVisible();
 
     expect(
       withinBlueLine.getByRole('img', { name: 'Content.Route.Lines.BLUE' })
     ).toBeVisible();
     expect(withinBlueLine.getByText('Intermediate Station')).toBeVisible();
-    expect(withinBlueLine.getByText('17:39')).toBeVisible();
-    expect(
-      withinBlueLine.getByText(
-        'Content.RouteDetails.SINGLE_INTERMEDIATE_STATIONS_MESSAGE'
-      )
-    ).toBeVisible();
     expect(withinBlueLine.getByText('Destination Station')).toBeVisible();
-    expect(withinBlueLine.getByText('17:41')).toBeVisible();
+  });
+
+  it('navigates back to routes overview when clicking on route details back button', () => {
+    render(<PageContent onMenuButtonClick={() => {}} />);
+
+    userEvent.click(
+      screen.getByRole('button', { name: 'Content.TripSelector.SEARCH_BUTTON' })
+    );
+
+    userEvent.click(
+      screen.getByRole('button', {
+        name: 'Content.RoutesOverview.SINGLE_ROUTE_BUTTON_TITLE 17:30 - 17:41',
+      })
+    );
+
+    userEvent.click(screen.getByRole('button', { name: 'GO_BACK_BUTTON' }));
+
+    expect(
+      screen.getByRole('heading', {
+        name: `${originStation.name} - ${destinationStation.name}`,
+      })
+    ).toBeVisible();
   });
 });

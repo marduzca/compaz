@@ -33,13 +33,17 @@ const PageContent: React.FC<PageContentProps> = (props) => {
     setCurrentAppViewState(AppViewState.ROUTES_OVERVIEW);
   };
 
-  const handleBackButtonClick = () => {
+  const handleRoutesOverviewBackButtonClick = () => {
     setCurrentAppViewState(AppViewState.TRIP_SELECTOR);
   };
 
   const handleRouteSelection = (departureTime: Date) => {
     setSelectedRouteDepartureTime(departureTime);
     setCurrentAppViewState(AppViewState.ROUTE_DETAILS);
+  };
+
+  const handleRouteDetailsBackButtonClick = () => {
+    setCurrentAppViewState(AppViewState.ROUTES_OVERVIEW);
   };
 
   const renderCurrentAppViewState = () => {
@@ -49,7 +53,7 @@ const PageContent: React.FC<PageContentProps> = (props) => {
           <RoutesOverviewContainer
             route={route}
             onRouteSelection={handleRouteSelection}
-            onBackButtonClick={handleBackButtonClick}
+            onBackButtonClick={handleRoutesOverviewBackButtonClick}
           />
         );
       case AppViewState.ROUTE_DETAILS:
@@ -57,6 +61,7 @@ const PageContent: React.FC<PageContentProps> = (props) => {
           <RouteDetailsViewContainer
             route={route}
             departureTime={selectedRouteDepartureTime}
+            onBackButtonClick={handleRouteDetailsBackButtonClick}
           />
         );
       default:

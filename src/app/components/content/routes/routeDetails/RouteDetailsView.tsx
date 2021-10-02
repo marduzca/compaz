@@ -5,12 +5,16 @@ import SubRouteDetails from './SubRouteDetails';
 import { addMinutesToDate } from '../../dateFormatter';
 import styles from './RouteDetailsView.module.css';
 import transferIcon from '../../../../static/img/transfer.svg';
+import IconsRoute from '../shared/IconsRoute';
+import TotalRouteTime from '../shared/TotalRouteTime';
+import { ReactComponent as BackIcon } from '../../../../static/img/arrow_back.svg';
 
 interface RouteDetailsViewProps {
   route: Route;
   departureTime: Date;
   linesWithOpenIntermediateStations: string[];
   onIntermediateStationsButtonClick: (line: string) => void;
+  onBackButtonClick: () => void;
 }
 
 const RouteDetailsView: React.FC<RouteDetailsViewProps> = (props) => {
@@ -80,10 +84,20 @@ const RouteDetailsView: React.FC<RouteDetailsViewProps> = (props) => {
 
   return (
     <div className={styles.routeDetailsContainer}>
-      <p>HEADER</p>
-      <hr style={{ width: '100%' }} />
-      <div className={styles.superContainer}>
-        <ol className={styles.contentContainer}>{renderRouteDetails()}</ol>
+      <header className={styles.header}>
+        <button
+          type="button"
+          title={t('GO_BACK_BUTTON')}
+          className={styles.backButton}
+          onClick={props.onBackButtonClick}
+        >
+          <BackIcon />
+        </button>
+        <IconsRoute subRoutes={props.route.subRoutes} hideTimes />
+        <TotalRouteTime totalTime={props.route.totalTime} />
+      </header>
+      <div className={styles.contentContainer}>
+        <ol className={styles.routeDetails}>{renderRouteDetails()}</ol>
       </div>
     </div>
   );
