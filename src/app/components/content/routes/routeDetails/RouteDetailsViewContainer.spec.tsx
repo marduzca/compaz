@@ -2,72 +2,74 @@ import React from 'react';
 import { render, within, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import RouteDetailsViewContainer from './RouteDetailsViewContainer';
-import { ConnectedStation, SubRoute } from '../../../domain';
+import { ConnectedStation, Route, SubRoute } from '../../../domain';
 
 describe('RouteDetailsViewContainer', () => {
+  const testRoute = {
+    subRoutes: [
+      {
+        stationsPath: [
+          {
+            id: 'station_a',
+            name: 'Origin Station',
+            lines: ['purple'],
+            connectedStations: [
+              { id: 'station_a_half', timeTo: 2 } as ConnectedStation,
+            ],
+          },
+          {
+            id: 'station_a_half',
+            name: 'A.5 Station',
+            lines: ['purple'],
+            connectedStations: [
+              { id: 'station_b', timeTo: 4 } as ConnectedStation,
+            ],
+          },
+          {
+            id: 'station_b',
+            name: 'Intermediate Station',
+            lines: ['purple', 'blue'],
+            connectedStations: [
+              { id: 'station_c', timeTo: 2 } as ConnectedStation,
+            ],
+          },
+        ],
+        totalTime: 6,
+        line: 'purple',
+        direction: 'End Station Purple Line',
+        transferTimeToNextLine: 3,
+      },
+      {
+        stationsPath: [
+          {
+            id: 'station_b',
+            name: 'Intermediate Station',
+            lines: ['blue', 'purple'],
+            connectedStations: [
+              { id: 'station_c', timeTo: 2 } as ConnectedStation,
+            ],
+          },
+          {
+            id: 'station_c',
+            name: 'Destination Station',
+            lines: ['blue'],
+            connectedStations: [
+              { id: 'station_d', timeTo: 2 } as ConnectedStation,
+            ],
+          },
+        ],
+        totalTime: 2,
+        line: 'blue',
+        direction: 'Start Station Blue Line',
+      },
+    ] as SubRoute[],
+    totalTime: 11,
+  } as Route;
+
   it('shows and hides intermediate stations list when clicking on intermediate stations button', () => {
     render(
       <RouteDetailsViewContainer
-        route={{
-          subRoutes: [
-            {
-              stationsPath: [
-                {
-                  id: 'station_a',
-                  name: 'Origin Station',
-                  lines: ['purple'],
-                  connectedStations: [
-                    { id: 'station_a_half', timeTo: 2 } as ConnectedStation,
-                  ],
-                },
-                {
-                  id: 'station_a_half',
-                  name: 'A.5 Station',
-                  lines: ['purple'],
-                  connectedStations: [
-                    { id: 'station_b', timeTo: 4 } as ConnectedStation,
-                  ],
-                },
-                {
-                  id: 'station_b',
-                  name: 'Intermediate Station',
-                  lines: ['purple', 'blue'],
-                  connectedStations: [
-                    { id: 'station_c', timeTo: 2 } as ConnectedStation,
-                  ],
-                },
-              ],
-              totalTime: 6,
-              line: 'purple',
-              direction: 'End Station Purple Line',
-              transferTimeToNextLine: 3,
-            },
-            {
-              stationsPath: [
-                {
-                  id: 'station_b',
-                  name: 'Intermediate Station',
-                  lines: ['blue', 'purple'],
-                  connectedStations: [
-                    { id: 'station_c', timeTo: 2 } as ConnectedStation,
-                  ],
-                },
-                {
-                  id: 'station_c',
-                  name: 'Destination Station',
-                  lines: ['blue'],
-                  connectedStations: [
-                    { id: 'station_d', timeTo: 2 } as ConnectedStation,
-                  ],
-                },
-              ],
-              totalTime: 2,
-              line: 'blue',
-              direction: 'Start Station Blue Line',
-            },
-          ] as SubRoute[],
-          totalTime: 6,
-        }}
+        route={testRoute}
         departureTime={new Date('1993-03-15 09:30')}
       />
     );
@@ -93,5 +95,19 @@ describe('RouteDetailsViewContainer', () => {
     );
 
     expect(withinPurpleLine.queryByText('A.5 Station')).toBeNull();
+  });
+
+  it('calculates the correct start and end times of each block', () => {
+    render(
+      <RouteDetailsViewContainer
+        route={testRoute}
+        departureTime={new Date('1993-03-15 09:30')}
+      />
+    );
+
+    expect(screen.getByText('09:30')).toBeVisible();
+    expect(screen.getByText('09:36')).toBeVisible();
+    expect(screen.getByText('09:39')).toBeVisible();
+    expect(screen.getByText('09:41')).toBeVisible();
   });
 });

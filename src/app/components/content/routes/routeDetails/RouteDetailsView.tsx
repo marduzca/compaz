@@ -20,24 +20,27 @@ const RouteDetailsView: React.FC<RouteDetailsViewProps> = (props) => {
 
   const renderRouteDetails = (): ReactNode[] => {
     const routeDetailsBlocks = props.route.subRoutes.map((subRoute) => {
-      passedTime += subRoute.totalTime;
+      try {
+        return (
+          <SubRouteDetails
+            key={subRoute.line}
+            subRoute={subRoute}
+            startTime={addMinutesToDate(props.departureTime, passedTime)}
+            showIntermediateStations={props.linesWithOpenIntermediateStations.includes(
+              subRoute.line
+            )}
+            onIntermediateStationsButtonClick={
+              props.onIntermediateStationsButtonClick
+            }
+          />
+        );
+      } finally {
+        passedTime += subRoute.totalTime;
 
-      return (
-        <SubRouteDetails
-          key={subRoute.line}
-          subRoute={subRoute}
-          startTime={addMinutesToDate(
-            props.departureTime,
-            passedTime - subRoute.totalTime
-          )}
-          showIntermediateStations={props.linesWithOpenIntermediateStations.includes(
-            subRoute.line
-          )}
-          onIntermediateStationsButtonClick={
-            props.onIntermediateStationsButtonClick
-          }
-        />
-      );
+        if (subRoute.transferTimeToNextLine) {
+          passedTime += subRoute.transferTimeToNextLine;
+        }
+      }
     });
 
     for (
