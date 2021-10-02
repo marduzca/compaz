@@ -49,7 +49,7 @@ const RouteDetailsView: React.FC<RouteDetailsViewProps> = (props) => {
         routeDetailsBlocks.splice(
           index,
           0,
-          <li className={styles.transfer}>
+          <li key={`transfer-${index}`} className={styles.transfer}>
             <div className={styles.transferMessage}>
               <img
                 src={transferIcon}
