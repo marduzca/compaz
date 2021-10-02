@@ -1,9 +1,8 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ReactComponent as ArrowUpIcon } from '../../../../static/img/chevron_up.svg';
 import { ReactComponent as ArrowDownIcon } from '../../../../static/img/chevron_down.svg';
 import { ReactComponent as BackIcon } from '../../../../static/img/arrow_back.svg';
-import transferIcon from '../../../../static/img/double_arrow.svg';
 import styles from './RoutesOverview.module.css';
 import { Route } from '../../../domain';
 import {
@@ -13,7 +12,7 @@ import {
   parseToSpanishDate,
 } from '../../dateFormatter';
 import i18n from '../../../../i18n/instance';
-import getCorrespondingTelefericoIcon from '../utils';
+import IconsRoute from '../IconsRoute';
 
 interface SingleRouteProps {
   route: Route;
@@ -23,48 +22,6 @@ interface SingleRouteProps {
 
 const SingleRoute: React.FC<SingleRouteProps> = (props) => {
   const { t } = useTranslation();
-
-  const renderRoute = (): ReactNode[] => {
-    const lineIcons = props.route.subRoutes.map((subRoute) => (
-      <li key={subRoute.line} className={styles.teleferico}>
-        <img
-          key={`${subRoute.line}`}
-          title={t(`Content.Route.Lines.${subRoute.line.toUpperCase()}`)}
-          alt={t(`Content.Route.Lines.${subRoute.line.toUpperCase()}`)}
-          src={getCorrespondingTelefericoIcon(subRoute.line)}
-        />
-        <span>{subRoute.totalTime}</span>
-      </li>
-    ));
-
-    for (
-      let index = 0;
-      index < props.route.subRoutes.length * 2 - 1;
-      index += 1
-    ) {
-      if (index !== 0 && index % 2 === 1) {
-        lineIcons.splice(
-          index,
-          0,
-          <li key={`transfer-${index}`} className={styles.transfer}>
-            <img
-              src={transferIcon}
-              title={t('Content.RoutesOverview.TRANSFER')}
-              alt={t('Content.RoutesOverview.TRANSFER')}
-            />
-            <span>
-              {
-                props.route.subRoutes[Math.floor(index / 2)]
-                  .transferTimeToNextLine
-              }
-            </span>
-          </li>
-        );
-      }
-    }
-
-    return lineIcons;
-  };
 
   const routeClockTime = `${parseToSimpleTime(props.departureTime)} - 
           ${parseToSimpleTime(
@@ -97,9 +54,7 @@ const SingleRoute: React.FC<SingleRouteProps> = (props) => {
           }}
         >
           <div className={styles.routeTop}>
-            <ol className={styles.route}>
-              {renderRoute().map((routeItem) => routeItem)}
-            </ol>
+            <IconsRoute route={props.route} />
             {props.route.totalTime < 60 ? (
               <span>{props.route.totalTime} min</span>
             ) : (
