@@ -98,7 +98,11 @@ const SubRouteDetails: React.FC<SubRouteDetailsProps> = (props) => {
         <span className={styles.subRouteInfoStation}>
           {props.subRoute.stationsPath[0].name}
         </span>
-        <span>Dirección Libertador</span>
+        <span className={styles.subRouteDirection}>
+          {t('Content.RouteDetails.DIRECTION', {
+            direction: props.subRoute.direction,
+          })}
+        </span>
       </div>
       <span className={styles.originTime}>
         {parseToSimpleTime(props.startTime)}

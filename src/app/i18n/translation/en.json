@@ -32,6 +32,7 @@
       "TRANSFER": "Transfer"
     },
     "RouteDetails": {
+      "DIRECTION": "Direction: {{direction}}",
       "INTERMEDIATE_STATIONS_OPEN_BUTTON_TITLE": "Show intermediate stations",
       "INTERMEDIATE_STATIONS_CLOSE_BUTTON_TITLE": "Hide intermediate stations",
       "INTERMEDIATE_STATIONS_MESSAGE": "Ride {{stopsNumber}} stops ({{time}} min)",

@@ -60,6 +60,7 @@ export const basicInNormalAndMobileState = () =>
             ],
             totalTime: 6,
             line: 'purple',
+            direction: 'End Station Purple Line',
             transferTimeToNextLine: 3,
           },
           {
@@ -83,6 +84,7 @@ export const basicInNormalAndMobileState = () =>
             ],
             totalTime: 2,
             line: 'blue',
+            direction: 'Start Station Blue Line',
           },
         ] as SubRoute[],
         totalTime: 6,

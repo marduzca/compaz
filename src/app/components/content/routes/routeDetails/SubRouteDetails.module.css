@@ -49,6 +49,11 @@
   margin-top: 0.5rem;
 }
 
+.subRouteInfoStation {
+  display: block;
+  font-weight: 700;
+}
+
 .originTime {
   grid-area: originTime;
 
@@ -112,9 +117,4 @@
 
   text-align: right;
   line-height: 1.25rem;
-}
-
-.subRouteInfoStation {
-  display: block;
-  font-weight: 700;
 }
