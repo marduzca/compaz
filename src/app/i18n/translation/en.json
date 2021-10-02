@@ -36,7 +36,8 @@
       "INTERMEDIATE_STATIONS_OPEN_BUTTON_TITLE": "Show intermediate stations",
       "INTERMEDIATE_STATIONS_CLOSE_BUTTON_TITLE": "Hide intermediate stations",
       "INTERMEDIATE_STATIONS_MESSAGE": "Ride {{stopsNumber}} stops ({{time}} min)",
-      "SINGLE_INTERMEDIATE_STATIONS_MESSAGE": "Ride 1 stop ({{time}} min)"
+      "SINGLE_INTERMEDIATE_STATIONS_MESSAGE": "Ride 1 stop ({{time}} min)",
+      "TRANSFER_MESSAGE": "Transfer line ({{transferTime}} min)"
     },
     "TripSelector": {
       "DESTINATION_PLACEHOLDER": "Destination",

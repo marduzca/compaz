@@ -1,0 +1,55 @@
+@import '../../../../../variables.css';
+
+.container {
+  display: grid;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  margin: 0;
+}
+
+.transfer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.transferMessage {
+  --size-transfer-icon: 1.75rem;
+  --margin-align-transfer-icon: 0.4rem;
+  --total-width-route-icons-bar-and-gap: calc(
+    var(--route-icons-bar-width) + var(--gap-after-route-icons-bar)
+  );
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: calc(
+    var(--total-width-route-icons-bar-and-gap) - var(--size-transfer-icon) -
+      var(--margin-align-transfer-icon)
+  );
+
+  margin-left: var(--margin-align-transfer-icon);
+}
+
+.transferMessage > img {
+  width: var(--size-transfer-icon);
+  height: var(--size-transfer-icon);
+}
+
+.transfer:before,
+.transfer:after {
+  --size-spacing-point: 0.75rem;
+
+  content: '';
+  width: var(--size-spacing-point);
+  height: var(--size-spacing-point);
+
+  margin: 0.75rem 0 0.75rem
+    calc((var(--route-icons-bar-width) - var(--size-spacing-point)) / 2);
+
+  border-radius: 50%;
+  background-color: #bdbdbd;
+}

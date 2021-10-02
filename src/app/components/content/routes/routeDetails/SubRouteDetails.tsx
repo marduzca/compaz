@@ -80,7 +80,7 @@ const SubRouteDetails: React.FC<SubRouteDetailsProps> = (props) => {
   const { t } = useTranslation();
 
   return (
-    <section
+    <li
       title={t(`Content.Route.Lines.${props.subRoute.line.toUpperCase()}`)}
       className={styles.subRouteBlock}
     >
@@ -132,7 +132,7 @@ const SubRouteDetails: React.FC<SubRouteDetailsProps> = (props) => {
           addMinutesToDate(props.startTime, props.subRoute.totalTime)
         )}
       </span>
-    </section>
+    </li>
   );
 };
 

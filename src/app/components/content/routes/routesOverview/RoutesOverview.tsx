@@ -90,9 +90,9 @@ const SingleRoute: React.FC<SingleRouteProps> = (props) => {
           className={styles.singleRouteOverview}
         >
           <div className={styles.routeTop}>
-            <ul className={styles.route}>
+            <ol className={styles.route}>
               {renderRoute().map((routeItem) => routeItem)}
-            </ul>
+            </ol>
             {props.route.totalTime < 60 ? (
               <span>{props.route.totalTime} min</span>
             ) : (

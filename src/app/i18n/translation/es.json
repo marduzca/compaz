@@ -36,7 +36,8 @@
       "INTERMEDIATE_STATIONS_OPEN_BUTTON_TITLE": "Mostrar estaciones intermedias",
       "INTERMEDIATE_STATIONS_CLOSE_BUTTON_TITLE": "Ocultar estaciones intermedias",
       "INTERMEDIATE_STATIONS_MESSAGE": "Avanza {{stopsNumber}} paradas ({{time}} min)",
-      "SINGLE_INTERMEDIATE_STATIONS_MESSAGE": "Avanza 1 parada ({{time}} min)"
+      "SINGLE_INTERMEDIATE_STATIONS_MESSAGE": "Avanza 1 parada ({{time}} min)",
+      "TRANSFER_MESSAGE": "Cambiar de linea ({{transferTime}} min)"
     },
     "TripSelector": {
       "DESTINATION_PLACEHOLDER": "Destino",
