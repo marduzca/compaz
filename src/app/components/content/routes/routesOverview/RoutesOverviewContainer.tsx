@@ -27,7 +27,7 @@ const RoutesOverviewContainer: React.FC<RoutesOverviewContainerProps> = (
   } = useNavigation();
 
   const departureDateAndTime = new Date(
-    `${parseToSimpleDate(departureDate)} ${departureTime}`
+    `${parseToSimpleDate(departureDate)}T${departureTime}`
   );
 
   const [displayedRouteTimes, setDisplayedRouteTimes] = useState<Date[]>([
