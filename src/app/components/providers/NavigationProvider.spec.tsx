@@ -6,6 +6,7 @@ import {
   extractSubRoutes,
   NavigationProvider,
   useNavigation,
+  calculateDirectionOfSubRoute,
 } from './NavigationProvider';
 import { ConnectedStation, Line, Route, Station, SubRoute } from '../domain';
 
@@ -61,8 +62,8 @@ describe('ShortestPathProvider', () => {
       lines: ['red', 'blue'],
       connectedStations: [
         { id: 'station_c', timeTo: 2 },
-        { id: 'station_e', timeTo: 2 } as ConnectedStation,
-      ],
+        { id: 'station_e', timeTo: 2 },
+      ] as ConnectedStation[],
     },
     {
       id: 'station_e',
@@ -80,20 +81,21 @@ describe('ShortestPathProvider', () => {
           name: 'Station a',
           lines: ['green'],
           connectedStations: [
-            { id: 'station_b', timeTo: 2 } as ConnectedStation,
-          ],
+            { id: 'station_b', timeTo: 2 },
+          ] as ConnectedStation[],
         },
         {
           id: 'station_b',
           name: 'Station b',
           lines: ['green', 'red'],
           connectedStations: [
-            { id: 'station_c', timeTo: 2 } as ConnectedStation,
-          ],
+            { id: 'station_c', timeTo: 2 },
+          ] as ConnectedStation[],
         },
       ],
       totalTime: 2,
       line: 'green',
+      direction: 'station_b',
       transferTimeToNextLine: 2,
     },
     {
@@ -103,16 +105,16 @@ describe('ShortestPathProvider', () => {
           name: 'Station b',
           lines: ['green', 'red'],
           connectedStations: [
-            { id: 'station_c', timeTo: 2 } as ConnectedStation,
-          ],
+            { id: 'station_c', timeTo: 2 },
+          ] as ConnectedStation[],
         },
         {
           id: 'station_c',
           name: 'Station c',
           lines: ['red'],
           connectedStations: [
-            { id: 'station_d', timeTo: 2 } as ConnectedStation,
-          ],
+            { id: 'station_d', timeTo: 2 },
+          ] as ConnectedStation[],
         },
         {
           id: 'station_d',
@@ -123,6 +125,7 @@ describe('ShortestPathProvider', () => {
       ],
       totalTime: 4,
       line: 'red',
+      direction: 'end_station_red',
     },
   ] as SubRoute[];
 
@@ -134,20 +137,21 @@ describe('ShortestPathProvider', () => {
           name: 'Station a',
           lines: ['green'],
           connectedStations: [
-            { id: 'station_b', timeTo: 2 } as ConnectedStation,
-          ],
+            { id: 'station_b', timeTo: 2 },
+          ] as ConnectedStation[],
         },
         {
           id: 'station_b',
           name: 'Station b',
           lines: ['green', 'red'],
           connectedStations: [
-            { id: 'station_c', timeTo: 2 } as ConnectedStation,
-          ],
+            { id: 'station_c', timeTo: 2 },
+          ] as ConnectedStation[],
         },
       ],
       totalTime: 2,
       line: 'green',
+      direction: 'station_b',
       transferTimeToNextLine: 2,
     },
     {
@@ -157,16 +161,16 @@ describe('ShortestPathProvider', () => {
           name: 'Station b',
           lines: ['green', 'red'],
           connectedStations: [
-            { id: 'station_c', timeTo: 2 } as ConnectedStation,
-          ],
+            { id: 'station_c', timeTo: 2 },
+          ] as ConnectedStation[],
         },
         {
           id: 'station_c',
           name: 'Station c',
           lines: ['red'],
           connectedStations: [
-            { id: 'station_d', timeTo: 2 } as ConnectedStation,
-          ],
+            { id: 'station_d', timeTo: 2 },
+          ] as ConnectedStation[],
         },
         {
           id: 'station_d',
@@ -174,12 +178,13 @@ describe('ShortestPathProvider', () => {
           lines: ['red', 'blue'],
           connectedStations: [
             { id: 'station_c', timeTo: 2 },
-            { id: 'station_e', timeTo: 2 } as ConnectedStation,
-          ],
+            { id: 'station_e', timeTo: 2 },
+          ] as ConnectedStation[],
         },
       ],
       totalTime: 4,
       line: 'red',
+      direction: 'end_station_red',
       transferTimeToNextLine: 3,
     },
     {
@@ -190,26 +195,28 @@ describe('ShortestPathProvider', () => {
           lines: ['red', 'blue'],
           connectedStations: [
             { id: 'station_c', timeTo: 2 },
-            { id: 'station_e', timeTo: 2 } as ConnectedStation,
-          ],
+            { id: 'station_e', timeTo: 2 },
+          ] as ConnectedStation[],
         },
         {
           id: 'station_e',
           name: 'Station e',
           lines: ['blue'],
           connectedStations: [
-            { id: 'station_e', timeTo: 2 } as ConnectedStation,
-          ],
+            { id: 'station_e', timeTo: 2 },
+          ] as ConnectedStation[],
         },
       ],
       totalTime: 2,
       line: 'blue',
+      direction: 'station_e',
     },
   ] as SubRoute[];
 
   const lines = [
     {
       id: 'green',
+      stationsPath: ['station_a', 'station_b'],
       connectedLines: [
         { id: 'yellow', transferTime: 2 },
         { id: 'red', transferTime: 2 },
@@ -217,6 +224,13 @@ describe('ShortestPathProvider', () => {
     },
     {
       id: 'red',
+      stationsPath: [
+        'start_station_red',
+        'station_b',
+        'station_c',
+        'station_d',
+        'end_station_red',
+      ],
       connectedLines: [
         { id: 'blue', transferTime: 3 },
         { id: 'silver', transferTime: 2 },
@@ -225,6 +239,7 @@ describe('ShortestPathProvider', () => {
     },
     {
       id: 'blue',
+      stationsPath: ['station_d', 'station_e'],
       connectedLines: [
         { id: 'red', transferTime: 3 },
         { id: 'silver', transferTime: 2 },
@@ -296,16 +311,16 @@ describe('ShortestPathProvider', () => {
           name: 'Station b',
           lines: ['green', 'red'],
           connectedStations: [
-            { id: 'station_c', timeTo: 2 } as ConnectedStation,
-          ],
+            { id: 'station_c', timeTo: 2 },
+          ] as ConnectedStation[],
         },
         {
           id: 'station_c',
           name: 'Station c',
           lines: ['red'],
           connectedStations: [
-            { id: 'station_d', timeTo: 2 } as ConnectedStation,
-          ],
+            { id: 'station_d', timeTo: 2 },
+          ] as ConnectedStation[],
         },
         {
           id: 'station_d',
@@ -322,16 +337,16 @@ describe('ShortestPathProvider', () => {
             name: 'Station b',
             lines: ['green', 'red'],
             connectedStations: [
-              { id: 'station_c', timeTo: 2 } as ConnectedStation,
-            ],
+              { id: 'station_c', timeTo: 2 },
+            ] as ConnectedStation[],
           },
           {
             id: 'station_c',
             name: 'Station c',
             lines: ['red'],
             connectedStations: [
-              { id: 'station_d', timeTo: 2 } as ConnectedStation,
-            ],
+              { id: 'station_d', timeTo: 2 },
+            ] as ConnectedStation[],
           },
           {
             id: 'station_d',
@@ -353,16 +368,16 @@ describe('ShortestPathProvider', () => {
             name: 'Station a',
             lines: ['green'],
             connectedStations: [
-              { id: 'station_b', timeTo: 2 } as ConnectedStation,
-            ],
+              { id: 'station_b', timeTo: 2 },
+            ] as ConnectedStation[],
           },
           {
             id: 'station_b',
             name: 'Station b',
             lines: ['green', 'red'],
             connectedStations: [
-              { id: 'station_c', timeTo: 2 } as ConnectedStation,
-            ],
+              { id: 'station_c', timeTo: 2 },
+            ] as ConnectedStation[],
           },
         ],
         [
@@ -371,16 +386,16 @@ describe('ShortestPathProvider', () => {
             name: 'Station b',
             lines: ['green', 'red'],
             connectedStations: [
-              { id: 'station_c', timeTo: 2 } as ConnectedStation,
-            ],
+              { id: 'station_c', timeTo: 2 },
+            ] as ConnectedStation[],
           },
           {
             id: 'station_c',
             name: 'Station c',
             lines: ['red'],
             connectedStations: [
-              { id: 'station_d', timeTo: 2 } as ConnectedStation,
-            ],
+              { id: 'station_d', timeTo: 2 },
+            ] as ConnectedStation[],
           },
           {
             id: 'station_d',
@@ -404,16 +419,16 @@ describe('ShortestPathProvider', () => {
             name: 'Station a',
             lines: ['green'],
             connectedStations: [
-              { id: 'station_b', timeTo: 2 } as ConnectedStation,
-            ],
+              { id: 'station_b', timeTo: 2 },
+            ] as ConnectedStation[],
           },
           {
             id: 'station_b',
             name: 'Station b',
             lines: ['green', 'red'],
             connectedStations: [
-              { id: 'station_c', timeTo: 2 } as ConnectedStation,
-            ],
+              { id: 'station_c', timeTo: 2 },
+            ] as ConnectedStation[],
           },
         ],
         [
@@ -422,16 +437,16 @@ describe('ShortestPathProvider', () => {
             name: 'Station b',
             lines: ['green', 'red'],
             connectedStations: [
-              { id: 'station_c', timeTo: 2 } as ConnectedStation,
-            ],
+              { id: 'station_c', timeTo: 2 },
+            ] as ConnectedStation[],
           },
           {
             id: 'station_c',
             name: 'Station c',
             lines: ['red'],
             connectedStations: [
-              { id: 'station_d', timeTo: 2 } as ConnectedStation,
-            ],
+              { id: 'station_d', timeTo: 2 },
+            ] as ConnectedStation[],
           },
           {
             id: 'station_d',
@@ -439,8 +454,8 @@ describe('ShortestPathProvider', () => {
             lines: ['red', 'blue'],
             connectedStations: [
               { id: 'station_c', timeTo: 2 },
-              { id: 'station_e', timeTo: 2 } as ConnectedStation,
-            ],
+              { id: 'station_e', timeTo: 2 },
+            ] as ConnectedStation[],
           },
         ],
         [
@@ -450,16 +465,16 @@ describe('ShortestPathProvider', () => {
             lines: ['red', 'blue'],
             connectedStations: [
               { id: 'station_c', timeTo: 2 },
-              { id: 'station_e', timeTo: 2 } as ConnectedStation,
-            ],
+              { id: 'station_e', timeTo: 2 },
+            ] as ConnectedStation[],
           },
           {
             id: 'station_e',
             name: 'Station e',
             lines: ['blue'],
             connectedStations: [
-              { id: 'station_e', timeTo: 2 } as ConnectedStation,
-            ],
+              { id: 'station_e', timeTo: 2 },
+            ] as ConnectedStation[],
           },
         ],
       ]);
@@ -483,7 +498,27 @@ describe('ShortestPathProvider', () => {
         lines
       );
 
-      expect(subRouteLine).toEqual('green');
+      expect(subRouteLine).toEqual(lines[0]);
+    });
+  });
+
+  describe('calculateDirectionOfSubRoute', () => {
+    it('calculates direction of route correctly when heading towards end of line', () => {
+      const subRouteDirection = calculateDirectionOfSubRoute(
+        lines[1],
+        routeWithMultipleTransfers[1].stationsPath
+      );
+
+      expect(subRouteDirection).toEqual('end_station_red');
+    });
+
+    it('calculates direction of route correctly when heading towards start of line', () => {
+      const subRouteDirection = calculateDirectionOfSubRoute(
+        lines[1],
+        routeWithMultipleTransfers[1].stationsPath.reverse()
+      );
+
+      expect(subRouteDirection).toEqual('start_station_red');
     });
   });
 
@@ -496,82 +531,15 @@ describe('ShortestPathProvider', () => {
 
       expect(routeWithMultipleTransferTimes).toEqual([
         {
-          stationsPath: [
-            {
-              id: 'station_a',
-              name: 'Station a',
-              lines: ['green'],
-              connectedStations: [
-                { id: 'station_b', timeTo: 2 } as ConnectedStation,
-              ],
-            },
-            {
-              id: 'station_b',
-              name: 'Station b',
-              lines: ['green', 'red'],
-              connectedStations: [
-                { id: 'station_c', timeTo: 2 } as ConnectedStation,
-              ],
-            },
-          ],
-          totalTime: 2,
-          line: 'green',
+          ...routeWithMultipleTransfers[0],
           transferTimeToNextLine: 2,
         },
         {
-          stationsPath: [
-            {
-              id: 'station_b',
-              name: 'Station b',
-              lines: ['green', 'red'],
-              connectedStations: [
-                { id: 'station_c', timeTo: 2 } as ConnectedStation,
-              ],
-            },
-            {
-              id: 'station_c',
-              name: 'Station c',
-              lines: ['red'],
-              connectedStations: [
-                { id: 'station_d', timeTo: 2 } as ConnectedStation,
-              ],
-            },
-            {
-              id: 'station_d',
-              name: 'Station d',
-              lines: ['red', 'blue'],
-              connectedStations: [
-                { id: 'station_c', timeTo: 2 },
-                { id: 'station_e', timeTo: 2 } as ConnectedStation,
-              ],
-            },
-          ],
-          totalTime: 4,
-          line: 'red',
+          ...routeWithMultipleTransfers[1],
           transferTimeToNextLine: 3,
         },
         {
-          stationsPath: [
-            {
-              id: 'station_d',
-              name: 'Station d',
-              lines: ['red', 'blue'],
-              connectedStations: [
-                { id: 'station_c', timeTo: 2 },
-                { id: 'station_e', timeTo: 2 } as ConnectedStation,
-              ],
-            },
-            {
-              id: 'station_e',
-              name: 'Station e',
-              lines: ['blue'],
-              connectedStations: [
-                { id: 'station_e', timeTo: 2 } as ConnectedStation,
-              ],
-            },
-          ],
-          totalTime: 2,
-          line: 'blue',
+          ...routeWithMultipleTransfers[2],
         },
       ]);
     });

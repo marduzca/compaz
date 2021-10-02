@@ -12,6 +12,7 @@ export interface ConnectedStation {
 
 export interface Line {
   id: string;
+  stationsPath: string[];
   connectedLines: ConnectedLine[];
 }
 
@@ -29,5 +30,6 @@ export interface SubRoute {
   stationsPath: Station[];
   totalTime: number;
   line: string;
+  direction: string;
   transferTimeToNextLine?: number;
 }
