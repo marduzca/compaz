@@ -52,11 +52,14 @@ const RouteDetailsView: React.FC<RouteDetailsViewProps> = (props) => {
         routeDetailsBlocks.splice(
           index,
           0,
-          <li key={`transfer-${index}`} className={styles.transfer}>
+          <li
+            key={`transfer-${index}`}
+            title={t('Content.RoutesOverview.TRANSFER')}
+            className={styles.transfer}
+          >
             <div className={styles.transferMessage}>
               <img
                 src={transferIcon}
-                title={t('Content.RoutesOverview.TRANSFER')}
                 alt={t('Content.RoutesOverview.TRANSFER')}
               />
               <span>
@@ -76,11 +79,13 @@ const RouteDetailsView: React.FC<RouteDetailsViewProps> = (props) => {
   };
 
   return (
-    <>
+    <div className={styles.routeDetailsContainer}>
       <p>HEADER</p>
-      <br />
-      <ol className={styles.container}>{renderRouteDetails()}</ol>
-    </>
+      <hr style={{ width: '100%' }} />
+      <div className={styles.superContainer}>
+        <ol className={styles.contentContainer}>{renderRouteDetails()}</ol>
+      </div>
+    </div>
   );
 };
 

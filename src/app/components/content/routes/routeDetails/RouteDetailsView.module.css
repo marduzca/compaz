@@ -1,9 +1,25 @@
 @import '../../../../../variables.css';
 
-.container {
-  display: grid;
+.routeDetailsContainer {
+  display: flex;
   flex-direction: column;
-  justify-content: space-between;
+
+  height: 100%;
+  width: 22.75rem;
+
+  border-radius: inherit;
+  background-color: white;
+}
+
+.superContainer {
+  padding: 1.5rem;
+
+  overflow-x: auto;
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: column;
   align-items: flex-start;
 
   margin: 0;
@@ -20,7 +36,7 @@
   --size-transfer-icon: 1.75rem;
   --margin-align-transfer-icon: 0.4rem;
   --total-width-route-icons-bar-and-gap: calc(
-    var(--route-icons-bar-width) + var(--gap-after-route-icons-bar)
+    var(--route-icons-bar-size) + var(--gap-after-route-icons-bar)
   );
 
   display: flex;
@@ -48,8 +64,14 @@
   height: var(--size-spacing-point);
 
   margin: 0.75rem 0 0.75rem
-    calc((var(--route-icons-bar-width) - var(--size-spacing-point)) / 2);
+    calc((var(--route-icons-bar-size) - var(--size-spacing-point)) / 2);
 
   border-radius: 50%;
   background-color: #bdbdbd;
+}
+
+@media only screen and (max-width: 480px) {
+  .routeDetailsContainer {
+    width: 100%;
+  }
 }

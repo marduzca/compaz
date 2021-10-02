@@ -29,6 +29,7 @@
     "RoutesOverview": {
       "EARLIER_BUTTON": "Earlier",
       "LATER_BUTTON": "Later",
+      "SINGLE_ROUTE_BUTTON_TITLE": "Route with times",
       "TRANSFER": "Transfer"
     },
     "RouteDetails": {

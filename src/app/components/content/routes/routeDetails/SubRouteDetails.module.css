@@ -7,8 +7,12 @@
     '    .         intermediate         .'
     '  circle       destination   destinationTime';
   grid-template-columns: auto 2fr 0.5fr;
+  grid-template-rows: minmax(1rem, max-content) auto minmax(1rem, max-content);
   column-gap: var(--gap-after-route-icons-bar);
   row-gap: 2rem;
+
+  min-height: 12rem;
+  width: 100%;
 
   font-size: 1rem;
   font-weight: 500;
@@ -22,22 +26,23 @@
 }
 
 .telefericoIcon > img {
-  width: var(--route-icons-bar-width);
-  height: var(--route-icons-bar-width);
+  width: var(--route-icons-bar-size);
+  height: var(--route-icons-bar-size);
 }
 
 .telefericoIcon:after {
   content: '';
-  width: 0.75rem;
-  height: calc(100% + 2rem);
-
   position: absolute;
-  top: 0.75rem;
+  top: var(--route-icons-bar-size);
   left: 50%;
   transform: translate(-50%);
-  z-index: -1;
+  z-index: 1;
 
-  border: 2px solid black;
+  width: 0.75rem;
+  height: calc(100% + 0.5rem);
+
+  border: 1px solid black;
+  border-top: none;
   color: inherit;
   background-color: currentColor;
 }
@@ -63,6 +68,8 @@
 
 .intermediateStations {
   grid-area: intermediate;
+
+  font-size: 0.875rem;
 }
 
 .intermediateStationsButton {
@@ -85,7 +92,7 @@
 }
 
 .intermediateStationsList {
-  margin: 0.5rem 0 0 2rem;
+  margin: 0.25rem 0 0 2rem;
 
   list-style: none;
 
@@ -95,6 +102,8 @@
 .circleIcon {
   grid-area: circle;
   justify-self: center;
+
+  z-index: 2;
 }
 
 .circleIcon > svg {
@@ -116,4 +125,10 @@
 
   text-align: right;
   line-height: 1.25rem;
+}
+
+@media only screen and (max-width: 480px) {
+  .intermediateStations {
+    font-size: 1rem;
+  }
 }

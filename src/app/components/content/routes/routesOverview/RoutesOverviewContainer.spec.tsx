@@ -130,6 +130,7 @@ describe('RoutesOverviewContainer', () => {
     render(
       <RoutesOverviewContainer
         route={simpleRoute}
+        onRouteSelection={() => {}}
         onBackButtonClick={() => {}}
       />
     );
@@ -145,12 +146,15 @@ describe('RoutesOverviewContainer', () => {
     render(
       <RoutesOverviewContainer
         route={simpleRoute}
+        onRouteSelection={() => {}}
         onBackButtonClick={() => {}}
       />
     );
 
     const withinFirstRouteSection = within(
-      screen.getByTitle('Single Route 17:30 - 17:39')
+      screen.getByRole('button', {
+        name: 'Content.RoutesOverview.SINGLE_ROUTE_BUTTON_TITLE 17:30 - 17:39',
+      })
     );
 
     expect(
@@ -179,6 +183,7 @@ describe('RoutesOverviewContainer', () => {
     render(
       <RoutesOverviewContainer
         route={simpleRoute}
+        onRouteSelection={() => {}}
         onBackButtonClick={() => {}}
       />
     );
@@ -196,6 +201,7 @@ describe('RoutesOverviewContainer', () => {
     render(
       <RoutesOverviewContainer
         route={simpleRoute}
+        onRouteSelection={() => {}}
         onBackButtonClick={() => {}}
       />
     );
@@ -214,12 +220,15 @@ describe('RoutesOverviewContainer', () => {
       render(
         <RoutesOverviewContainer
           route={simpleRoute}
+          onRouteSelection={() => {}}
           onBackButtonClick={() => {}}
         />
       );
 
       const withinFirstRouteSection = within(
-        screen.getByTitle('Single Route 17:30 - 17:39')
+        screen.getByRole('button', {
+          name: 'Content.RoutesOverview.SINGLE_ROUTE_BUTTON_TITLE 17:30 - 17:39',
+        })
       );
 
       expect(screen.getByText('Friday 24 September')).toBeVisible();
@@ -288,12 +297,15 @@ describe('RoutesOverviewContainer', () => {
       render(
         <RoutesOverviewContainer
           route={routeWithTotalTimeAboveOneHour}
+          onRouteSelection={() => {}}
           onBackButtonClick={() => {}}
         />
       );
 
       const withinFirstRouteSection = within(
-        screen.getByTitle('Single Route 17:30 - 18:45')
+        screen.getByRole('button', {
+          name: 'Content.RoutesOverview.SINGLE_ROUTE_BUTTON_TITLE 17:30 - 18:45',
+        })
       );
 
       expect(screen.getByText('Friday 24 September')).toBeVisible();
@@ -376,12 +388,15 @@ describe('RoutesOverviewContainer', () => {
       render(
         <RoutesOverviewContainer
           route={routeWithTotalTimeOfExactlyAnHour}
+          onRouteSelection={() => {}}
           onBackButtonClick={() => {}}
         />
       );
 
       const withinFirstRouteSection = within(
-        screen.getByTitle('Single Route 17:30 - 18:30')
+        screen.getByRole('button', {
+          name: 'Content.RoutesOverview.SINGLE_ROUTE_BUTTON_TITLE 17:30 - 18:30',
+        })
       );
 
       expect(screen.getByText('Friday 24 September')).toBeVisible();

@@ -10,6 +10,7 @@ import {
 
 interface RoutesOverviewContainerProps {
   route: Route;
+  onRouteSelection: (departureTime: Date) => void;
   onBackButtonClick: () => void;
 }
 
@@ -82,6 +83,7 @@ const RoutesOverviewContainer: React.FC<RoutesOverviewContainerProps> = (
       destinationName={destination.name}
       dateAndTime={departureDateAndTime}
       displayedRouteTimes={displayedRouteTimes}
+      onRouteSelection={props.onRouteSelection}
       onBackButtonClick={handleBackButtonClick}
       onEarlierButtonClick={handleEarlierButtonClick}
       onLaterButtonClick={handleLaterButtonClick}

@@ -72,6 +72,7 @@ export const normalAndMobileState = () => (
       new Date('1993-03-15 09:40'),
       new Date('1993-03-15 09:45'),
     ]}
+    onRouteSelection={actions('onRouteSelection').onRouteSelection}
     onBackButtonClick={actions('onBackButtonClick').onBackButtonClick}
     onEarlierButtonClick={actions('onEarlierButtonClick').onEarlierButtonClick}
     onLaterButtonClick={actions('onLaterButtonClick').onLaterButtonClick}
@@ -210,6 +211,7 @@ export const tooLongConnectionInNormalAndMobileState = () => (
       new Date('1993-03-15 09:40'),
       new Date('1993-03-15 09:45'),
     ]}
+    onRouteSelection={actions('onRouteSelection').onRouteSelection}
     onBackButtonClick={actions('onBackButtonClick').onBackButtonClick}
     onEarlierButtonClick={actions('onEarlierButtonClick').onEarlierButtonClick}
     onLaterButtonClick={actions('onLaterButtonClick').onLaterButtonClick}
@@ -279,6 +281,7 @@ export const timeAboveOneHourInNormalAndMobileState = () => (
       new Date('1993-03-15 09:40'),
       new Date('1993-03-15 09:45'),
     ]}
+    onRouteSelection={actions('onRouteSelection').onRouteSelection}
     onBackButtonClick={actions('onBackButtonClick').onBackButtonClick}
     onEarlierButtonClick={actions('onEarlierButtonClick').onEarlierButtonClick}
     onLaterButtonClick={actions('onLaterButtonClick').onLaterButtonClick}

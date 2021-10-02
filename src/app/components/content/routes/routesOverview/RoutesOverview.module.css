@@ -1,6 +1,6 @@
 @import '../../../../../variables.css';
 
-.routesContainer {
+.routesOverviewContainer {
   display: flex;
   flex-direction: column;
 
@@ -80,6 +80,15 @@
   box-shadow: 0 0 0.25rem 0 grey;
 
   text-align: left;
+
+  background: none;
+  cursor: pointer;
+  border: 0;
+  outline: none;
+}
+
+.singleRouteOverview:is(:hover, :focus) {
+  background-color: #e0e0e0;
 }
 
 .routeTop {
@@ -192,7 +201,7 @@
 }
 
 @media only screen and (max-width: 480px) {
-  .routesContainer {
+  .routesOverviewContainer {
     width: 100%;
   }
 

@@ -1,10 +1,10 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import PageContent from './PageContent';
 import * as FirebaseProvider from '../providers/FirebaseProvider';
 import * as NavigationProvider from '../providers/NavigationProvider';
-import { Route, Station } from '../domain';
+import { ConnectedStation, Route, Station, SubRoute } from '../domain';
 
 describe('PageContent', () => {
   const useFirebaseMock = jest.spyOn(FirebaseProvider, 'useFirebase');
@@ -22,6 +22,66 @@ describe('PageContent', () => {
     lines: ['green'],
     connectedStations: [],
   } as Station;
+  const testRoute = {
+    subRoutes: [
+      {
+        stationsPath: [
+          {
+            id: 'station_a',
+            name: 'Origin Station',
+            lines: ['purple'],
+            connectedStations: [
+              { id: 'station_a_half', timeTo: 2 } as ConnectedStation,
+            ],
+          },
+          {
+            id: 'station_a_half',
+            name: 'A.5 Station',
+            lines: ['purple'],
+            connectedStations: [
+              { id: 'station_b', timeTo: 4 } as ConnectedStation,
+            ],
+          },
+          {
+            id: 'station_b',
+            name: 'Intermediate Station',
+            lines: ['purple', 'blue'],
+            connectedStations: [
+              { id: 'station_c', timeTo: 2 } as ConnectedStation,
+            ],
+          },
+        ],
+        totalTime: 6,
+        line: 'purple',
+        direction: 'End Station Purple Line',
+        transferTimeToNextLine: 3,
+      },
+      {
+        stationsPath: [
+          {
+            id: 'station_b',
+            name: 'Intermediate Station',
+            lines: ['blue', 'purple'],
+            connectedStations: [
+              { id: 'station_c', timeTo: 2 } as ConnectedStation,
+            ],
+          },
+          {
+            id: 'station_c',
+            name: 'Destination Station',
+            lines: ['blue'],
+            connectedStations: [
+              { id: 'station_d', timeTo: 2 } as ConnectedStation,
+            ],
+          },
+        ],
+        totalTime: 2,
+        line: 'blue',
+        direction: 'Start Station Blue Line',
+      },
+    ] as SubRoute[],
+    totalTime: 11,
+  } as Route;
 
   beforeEach(() => {
     useFirebaseMock.mockReturnValue({
@@ -39,7 +99,7 @@ describe('PageContent', () => {
       setOriginStation: jest.fn(),
       setDestinationStation: jest.fn(),
       generateStationsMap: jest.fn(),
-      calculateRoute: () => ({ subRoutes: [], totalTime: 0 } as Route),
+      calculateRoute: () => testRoute,
     });
   });
 
@@ -73,5 +133,69 @@ describe('PageContent', () => {
     expect(
       screen.getByRole('button', { name: 'Content.TripSelector.SEARCH_BUTTON' })
     ).toBeVisible();
+  });
+
+  it('navigates to route details when clicking on specific route in overview', () => {
+    render(<PageContent onMenuButtonClick={() => {}} />);
+
+    userEvent.click(
+      screen.getByRole('button', { name: 'Content.TripSelector.SEARCH_BUTTON' })
+    );
+
+    userEvent.click(
+      screen.getByRole('button', {
+        name: 'Content.RoutesOverview.SINGLE_ROUTE_BUTTON_TITLE 17:30 - 17:41',
+      })
+    );
+
+    const withinPurpleLine = within(
+      screen.getByTitle('Content.Route.Lines.PURPLE')
+    );
+
+    const withinTransferBlock = within(
+      screen.getByTitle('Content.RoutesOverview.TRANSFER')
+    );
+
+    const withinBlueLine = within(
+      screen.getByTitle('Content.Route.Lines.BLUE')
+    );
+
+    expect(
+      withinPurpleLine.getByRole('img', { name: 'Content.Route.Lines.PURPLE' })
+    ).toBeVisible();
+    expect(withinPurpleLine.getByText('Origin Station')).toBeVisible();
+    expect(
+      withinPurpleLine.getByText('Content.RouteDetails.DIRECTION')
+    ).toBeVisible();
+    expect(withinPurpleLine.getByText('17:30')).toBeVisible();
+    expect(
+      withinPurpleLine.getByText(
+        'Content.RouteDetails.INTERMEDIATE_STATIONS_MESSAGE'
+      )
+    ).toBeVisible();
+    expect(withinPurpleLine.getByText('Intermediate Station')).toBeVisible();
+    expect(withinPurpleLine.getByText('17:36')).toBeVisible();
+
+    expect(
+      withinTransferBlock.getByRole('img', {
+        name: 'Content.RoutesOverview.TRANSFER',
+      })
+    ).toBeVisible();
+    expect(
+      withinTransferBlock.getByText('Content.RouteDetails.TRANSFER_MESSAGE')
+    ).toBeVisible();
+
+    expect(
+      withinBlueLine.getByRole('img', { name: 'Content.Route.Lines.BLUE' })
+    ).toBeVisible();
+    expect(withinBlueLine.getByText('Intermediate Station')).toBeVisible();
+    expect(withinBlueLine.getByText('17:39')).toBeVisible();
+    expect(
+      withinBlueLine.getByText(
+        'Content.RouteDetails.SINGLE_INTERMEDIATE_STATIONS_MESSAGE'
+      )
+    ).toBeVisible();
+    expect(withinBlueLine.getByText('Destination Station')).toBeVisible();
+    expect(withinBlueLine.getByText('17:41')).toBeVisible();
   });
 });

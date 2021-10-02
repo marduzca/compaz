@@ -135,6 +135,7 @@ export const calculateLineOfSubRoute = (
 };
 
 export const calculateDirectionOfSubRoute = (
+  allStations: Station[],
   subRouteLine: Line,
   subRoute: Station[]
 ): string => {
@@ -152,9 +153,20 @@ export const calculateDirectionOfSubRoute = (
     return 'unknown';
   }
 
-  return positionOfSubRouteStartWithinLine < positionOfSubRouteEndWithinLine
-    ? subRouteLine.stationsPath[subRouteLine.stationsPath.length - 1]
-    : subRouteLine.stationsPath[0];
+  const directionId =
+    positionOfSubRouteStartWithinLine < positionOfSubRouteEndWithinLine
+      ? subRouteLine.stationsPath[subRouteLine.stationsPath.length - 1]
+      : subRouteLine.stationsPath[0];
+
+  const directionStation = allStations.find(
+    (station) => station.id === directionId
+  );
+
+  if (!directionStation) {
+    return 'unknown';
+  }
+
+  return directionStation.name;
 };
 
 export const addTransferTimeBetweenLines = (
@@ -270,6 +282,7 @@ export const NavigationProvider: React.FC = (props) => {
       const subRouteLine = calculateLineOfSubRoute(subRoute, lines);
 
       const subRouteDirection = calculateDirectionOfSubRoute(
+        allStations,
         subRouteLine,
         subRoute
       );

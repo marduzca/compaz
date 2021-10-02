@@ -95,7 +95,7 @@ describe('ShortestPathProvider', () => {
       ],
       totalTime: 2,
       line: 'green',
-      direction: 'station_b',
+      direction: 'Station b',
       transferTimeToNextLine: 2,
     },
     {
@@ -125,7 +125,7 @@ describe('ShortestPathProvider', () => {
       ],
       totalTime: 4,
       line: 'red',
-      direction: 'end_station_red',
+      direction: 'Station d',
     },
   ] as SubRoute[];
 
@@ -151,7 +151,7 @@ describe('ShortestPathProvider', () => {
       ],
       totalTime: 2,
       line: 'green',
-      direction: 'station_b',
+      direction: 'Station b',
       transferTimeToNextLine: 2,
     },
     {
@@ -184,7 +184,7 @@ describe('ShortestPathProvider', () => {
       ],
       totalTime: 4,
       line: 'red',
-      direction: 'end_station_red',
+      direction: 'Station d',
       transferTimeToNextLine: 3,
     },
     {
@@ -209,7 +209,7 @@ describe('ShortestPathProvider', () => {
       ],
       totalTime: 2,
       line: 'blue',
-      direction: 'station_e',
+      direction: 'Station e',
     },
   ] as SubRoute[];
 
@@ -224,13 +224,7 @@ describe('ShortestPathProvider', () => {
     },
     {
       id: 'red',
-      stationsPath: [
-        'start_station_red',
-        'station_b',
-        'station_c',
-        'station_d',
-        'end_station_red',
-      ],
+      stationsPath: ['station_b', 'station_c', 'station_d'],
       connectedLines: [
         { id: 'blue', transferTime: 3 },
         { id: 'silver', transferTime: 2 },
@@ -503,22 +497,81 @@ describe('ShortestPathProvider', () => {
   });
 
   describe('calculateDirectionOfSubRoute', () => {
+    const allStations = [
+      {
+        id: 'first_station_red',
+        name: 'First station red',
+        lines: ['red'],
+        connectedStations: [{ id: 'station_b', timeTo: 2 } as ConnectedStation],
+      },
+      {
+        id: 'station_b',
+        name: 'Station b',
+        lines: ['red'],
+        connectedStations: [{ id: 'station_c', timeTo: 2 } as ConnectedStation],
+      },
+      {
+        id: 'station_c',
+        name: 'Station c',
+        lines: ['red'],
+        connectedStations: [{ id: 'station_d', timeTo: 2 } as ConnectedStation],
+      },
+      {
+        id: 'last_station_red',
+        name: 'Last station red',
+        lines: ['red'],
+        connectedStations: [],
+      },
+    ] as Station[];
+
+    const redLine = {
+      id: 'red',
+      stationsPath: [
+        'first_station_red',
+        'station_b',
+        'station_c',
+        'last_station_red',
+      ],
+      connectedLines: [],
+    } as Line;
+
+    const routeHeadingEndOfLine = [
+      {
+        id: 'station_b',
+        name: 'Station b',
+        lines: ['red'],
+        connectedStations: [
+          { id: 'station_c', timeTo: 2 },
+        ] as ConnectedStation[],
+      },
+      {
+        id: 'station_c',
+        name: 'Station c',
+        lines: ['red'],
+        connectedStations: [
+          { id: 'station_d', timeTo: 2 },
+        ] as ConnectedStation[],
+      },
+    ];
+
     it('calculates direction of route correctly when heading towards end of line', () => {
       const subRouteDirection = calculateDirectionOfSubRoute(
-        lines[1],
-        routeWithMultipleTransfers[1].stationsPath
+        allStations,
+        redLine,
+        routeHeadingEndOfLine
       );
 
-      expect(subRouteDirection).toEqual('end_station_red');
+      expect(subRouteDirection).toEqual('Last station red');
     });
 
     it('calculates direction of route correctly when heading towards start of line', () => {
       const subRouteDirection = calculateDirectionOfSubRoute(
-        lines[1],
-        routeWithMultipleTransfers[1].stationsPath.reverse()
+        allStations,
+        redLine,
+        routeHeadingEndOfLine.reverse()
       );
 
-      expect(subRouteDirection).toEqual('start_station_red');
+      expect(subRouteDirection).toEqual('First station red');
     });
   });
 

@@ -17,7 +17,8 @@ import getCorrespondingTelefericoIcon from '../utils';
 
 interface SingleRouteProps {
   route: Route;
-  time: Date;
+  departureTime: Date;
+  onRouteSelection: (departureTime: Date) => void;
 }
 
 const SingleRoute: React.FC<SingleRouteProps> = (props) => {
@@ -65,9 +66,9 @@ const SingleRoute: React.FC<SingleRouteProps> = (props) => {
     return lineIcons;
   };
 
-  const routeClockTime = `${parseToSimpleTime(props.time)} - 
+  const routeClockTime = `${parseToSimpleTime(props.departureTime)} - 
           ${parseToSimpleTime(
-            addMinutesToDate(props.time, props.route.totalTime)
+            addMinutesToDate(props.departureTime, props.route.totalTime)
           )}`;
 
   const convertMinutesToHoursMinutess = (givenMinutes: number): JSX.Element => {
@@ -85,9 +86,15 @@ const SingleRoute: React.FC<SingleRouteProps> = (props) => {
   return (
     <>
       {props.route.subRoutes.length > 0 && (
-        <section
-          title={`Single Route ${routeClockTime}`}
+        <button
+          type="button"
+          title={`${t(
+            'Content.RoutesOverview.SINGLE_ROUTE_BUTTON_TITLE'
+          )} ${routeClockTime}`}
           className={styles.singleRouteOverview}
+          onClick={() => {
+            props.onRouteSelection(props.departureTime);
+          }}
         >
           <div className={styles.routeTop}>
             <ol className={styles.route}>
@@ -100,7 +107,7 @@ const SingleRoute: React.FC<SingleRouteProps> = (props) => {
             )}
           </div>
           <p className={styles.routeClock}>{routeClockTime}</p>
-        </section>
+        </button>
       )}
     </>
   );
@@ -112,6 +119,7 @@ interface RoutesOverviewProps {
   destinationName: string;
   dateAndTime: Date;
   displayedRouteTimes: Date[];
+  onRouteSelection: (departureTime: Date) => void;
   onBackButtonClick: () => void;
   onEarlierButtonClick: () => void;
   onLaterButtonClick: () => void;
@@ -121,7 +129,7 @@ const RoutesOverview: React.FC<RoutesOverviewProps> = (props) => {
   const { t } = useTranslation();
 
   return (
-    <div className={styles.routesContainer}>
+    <div className={styles.routesOverviewContainer}>
       <header className={styles.header}>
         <div className={styles.headerTop}>
           <button
@@ -150,11 +158,12 @@ const RoutesOverview: React.FC<RoutesOverviewProps> = (props) => {
           <ArrowUpIcon />
           <span>{t('Content.RoutesOverview.EARLIER_BUTTON')}</span>
         </button>
-        {props.displayedRouteTimes.map((routeTime) => (
+        {props.displayedRouteTimes.map((routeDepartureTime) => (
           <SingleRoute
-            key={routeTime.getTime()}
+            key={routeDepartureTime.getTime()}
             route={props.route}
-            time={routeTime}
+            departureTime={routeDepartureTime}
+            onRouteSelection={props.onRouteSelection}
           />
         ))}
         <button
