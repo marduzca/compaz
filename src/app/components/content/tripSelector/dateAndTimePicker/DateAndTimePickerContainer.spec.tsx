@@ -103,7 +103,7 @@ describe('DateAndTimePickerContainer', () => {
 
     expect(setNewDepartureTimeMock).toHaveBeenLastCalledWith('02:00');
     expect(setNewDepartureDateMock).toHaveBeenLastCalledWith(
-      new Date('2021-10-31')
+      new Date('2021-10-31T02:00:00.000Z')
     );
   });
 
