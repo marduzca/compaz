@@ -40,8 +40,8 @@ const DateAndTimePickerContainer: React.FC = () => {
   };
 
   const handleNowButtonClick = () => {
-    const timeNow = parseToSimpleTime(new Date());
     const dateNow = new Date();
+    const timeNow = parseToSimpleTime(dateNow);
 
     setCurrentlySelectedDate(parseToSimpleDate(dateNow));
     setCurrentlySelectedTime(timeNow);

@@ -74,7 +74,6 @@ export const parseToSimpleTime = (date: Date): string =>
   new Intl.DateTimeFormat('en', {
     timeStyle: 'short',
     hourCycle: 'h23',
-    hour12: false,
   }).format(date);
 
 export const addMinutesToDate = (date: Date, minutes: number): Date =>
