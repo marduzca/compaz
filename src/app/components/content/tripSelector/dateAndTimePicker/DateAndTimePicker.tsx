@@ -1,84 +1,120 @@
-import React from 'react';
-import { ConfigProvider, TimePicker } from 'antd';
-import 'antd/lib/date-picker/style/index.css';
-import 'antd/lib/button/style/index.css';
-import esES from 'antd/lib/locale/es_ES';
-import enGB from 'antd/lib/locale/en_GB';
-import moment from 'moment';
+import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './DateAndTimePicker.module.css';
 import { ReactComponent as CalendarIcon } from '../../../../static/img/date_picker.svg';
 import { ReactComponent as TimeIcon } from '../../../../static/img/time_picker.svg';
-import {
-  parseToSimpleDate,
-  parseToEnglishDateString,
-} from '../../dateFormatter';
-import i18n from '../../../../i18n/instance';
+import { parseToEnglishDateString } from '../../dateFormatter';
 
 interface DateAndTimePickerProps {
-  selectedDate: Date;
-  selectedTime: string;
-  onTimePickerChange: (time: moment.MomentInput, timeString: string) => void;
+  departureDate: Date;
+  departureTime: string;
+  currentlySelectedDate: string;
+  currentlySelectedTime: string;
+  onDateAndTimeButtonClick: () => void;
   onDatePickerChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  showOpenTimePickerPanel?: boolean;
+  onTimePickerChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onSelectButtonClick: () => void;
+  onNowButtonClick: () => void;
+  onHideSelectionPanel: () => void;
+  showSelectionPanel: boolean;
 }
 
 const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => {
   const { t } = useTranslation();
 
-  if (!props.showOpenTimePickerPanel) {
-    // This is necessary to have a visual regression test for the time picker panel (as it will probably break with new versions eventually)
-    // @ts-ignore
-    import('./antd_animations.css');
-  }
+  const dateAndTimeSelectionPanelRef = useRef<HTMLDivElement>(null);
+
+  const handleClickOutsideOfMobileMenu = (e: MouseEvent) => {
+    if (
+      dateAndTimeSelectionPanelRef.current &&
+      dateAndTimeSelectionPanelRef.current.contains(e.target as Node)
+    ) {
+      return;
+    }
+
+    props.onHideSelectionPanel();
+  };
+
+  useEffect(() => {
+    if (props.showSelectionPanel) {
+      document.addEventListener('mousedown', handleClickOutsideOfMobileMenu);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutsideOfMobileMenu);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutsideOfMobileMenu);
+    };
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.showSelectionPanel]);
 
   return (
-    <div className={styles.dateAndTimePickerContainer}>
-      <button
-        type="button"
-        title={t('DateAndTimePicker.DATE_PICKER')}
-        className={styles.datePicker}
-      >
-        <div className={styles.datePickerToggleButton}>
-          <CalendarIcon />
-          <span>{parseToEnglishDateString(props.selectedDate, true)}</span>
-        </div>
-        <input
-          data-testid="datePicker"
-          type="date"
-          className={styles.datePickerInput}
-          value={parseToSimpleDate(props.selectedDate)}
-          onChange={props.onDatePickerChange}
-        />
-      </button>
-      <button
-        type="button"
-        title={t('DateAndTimePicker.TIME_PICKER')}
-        className={styles.timePicker}
-      >
-        <div className={styles.timePickerToggleButton}>
-          <TimeIcon />
-          <span>{props.selectedTime}</span>
-        </div>
-        <ConfigProvider locale={i18n.language.match(/en/i) ? enGB : esES}>
-          <TimePicker
-            className={styles.reactTimePicker}
-            onChange={props.onTimePickerChange}
-            value={moment(props.selectedTime, 'HH:mm')}
-            format="HH:mm"
-            inputReadOnly
-            popupClassName={styles.reactTimePickerPanel}
-            getPopupContainer={() => document.documentElement}
-            open={props.showOpenTimePickerPanel}
-          />
-        </ConfigProvider>
-      </button>
-    </div>
+    <>
+      <div className={styles.dateAndTimePickerContainer}>
+        <button
+          type="button"
+          title={t('Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON')}
+          className={styles.dateAndTimePickerButton}
+          onClick={props.onDateAndTimeButtonClick}
+        >
+          <div className={styles.date}>
+            <CalendarIcon />
+            <span>{parseToEnglishDateString(props.departureDate, true)}</span>
+          </div>
+          <div className={styles.time}>
+            <TimeIcon />
+            <span>{props.departureTime}</span>
+          </div>
+        </button>
+        {props.showSelectionPanel && (
+          <div className={styles.menu} ref={dateAndTimeSelectionPanelRef}>
+            <div className={styles.inputFields}>
+              <div>
+                <label htmlFor="dateInput">
+                  {t('Content.DateAndTimePicker.DATE_LABEL')}
+                </label>
+                <input
+                  type="date"
+                  id="dateInput"
+                  className={styles.dateInput}
+                  value={props.currentlySelectedDate}
+                  onChange={props.onDatePickerChange}
+                />
+              </div>
+              <div>
+                <label htmlFor="timeInput">
+                  {t('Content.DateAndTimePicker.TIME_LABEL')}
+                </label>
+                <input
+                  type="time"
+                  id="timeInput"
+                  value={props.currentlySelectedTime}
+                  onChange={props.onTimePickerChange}
+                />
+              </div>
+            </div>
+            <div className={styles.footer}>
+              <button
+                type="button"
+                className={styles.nowButton}
+                onClick={props.onNowButtonClick}
+              >
+                {t('Content.DateAndTimePicker.NOW_BUTTON')}
+              </button>
+              <button
+                type="button"
+                className={styles.selectButton}
+                onClick={props.onSelectButtonClick}
+              >
+                {t('Content.DateAndTimePicker.SELECT_BUTTON')}
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+    </>
   );
-};
-
-DateAndTimePicker.defaultProps = {
-  showOpenTimePickerPanel: undefined,
 };
 
 export default DateAndTimePicker;

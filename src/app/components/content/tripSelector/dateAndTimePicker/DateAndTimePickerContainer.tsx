@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import moment from 'moment';
 import DateAndTimePicker from './DateAndTimePicker';
 import { useNavigation } from '../../../providers/NavigationProvider';
+import { parseToSimpleDate, parseToSimpleTime } from '../../dateFormatter';
 
 const DateAndTimePickerContainer: React.FC = () => {
   const {
@@ -11,30 +11,59 @@ const DateAndTimePickerContainer: React.FC = () => {
     setNewDepartureDate,
   } = useNavigation();
 
-  const [selectedTime, setSelectedTime] = useState<string>(departureTime);
-  const [selectedDate, setSelectedDate] = useState<Date>(departureDate);
-
-  const handleTimePickerChange = (
-    time: moment.MomentInput,
-    timeString: string
-  ) => {
-    setSelectedTime(timeString);
-    setNewDepartureTime(timeString);
-  };
+  const [currentlySelectedDate, setCurrentlySelectedDate] = useState<string>(
+    parseToSimpleDate(departureDate)
+  );
+  const [currentlySelectedTime, setCurrentlySelectedTime] =
+    useState<string>(departureTime);
+  const [showSelectionPanel, setShowSelectionPanel] = useState<boolean>(false);
 
   const handleDatePickerChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setSelectedDate(new Date(event.target.value));
-    setNewDepartureDate(new Date(event.target.value));
+    setCurrentlySelectedDate(event.target.value);
+  };
+
+  const handleTimePickerChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setCurrentlySelectedTime(event.target.value);
+  };
+
+  const handleSelectButtonClick = () => {
+    setNewDepartureDate(new Date(currentlySelectedDate));
+    setNewDepartureTime(currentlySelectedTime);
+    setShowSelectionPanel(false);
+  };
+
+  const handleNowButtonClick = () => {
+    const timeNow = parseToSimpleTime(new Date());
+    const dateNow = new Date();
+
+    setCurrentlySelectedDate(parseToSimpleDate(dateNow));
+    setCurrentlySelectedTime(timeNow);
+    setNewDepartureDate(dateNow);
+    setNewDepartureTime(timeNow);
+    setShowSelectionPanel(false);
   };
 
   return (
     <DateAndTimePicker
-      selectedTime={selectedTime}
-      selectedDate={selectedDate}
-      onTimePickerChange={handleTimePickerChange}
+      departureDate={departureDate}
+      departureTime={departureTime}
+      currentlySelectedTime={currentlySelectedTime}
+      currentlySelectedDate={currentlySelectedDate}
+      showSelectionPanel={showSelectionPanel}
+      onDateAndTimeButtonClick={() => {
+        setShowSelectionPanel(!showSelectionPanel);
+      }}
       onDatePickerChange={handleDatePickerChange}
+      onTimePickerChange={handleTimePickerChange}
+      onSelectButtonClick={handleSelectButtonClick}
+      onNowButtonClick={handleNowButtonClick}
+      onHideSelectionPanel={() => {
+        setShowSelectionPanel(false);
+      }}
     />
   );
 };

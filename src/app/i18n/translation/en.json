@@ -49,8 +49,11 @@
       "TOGGLE_STATIONS": "Toggle stations"
     },
     "DateAndTimePicker": {
-      "DATE_PICKER": "Select departure date",
-      "TIME_PICKER": "Select departure time"
+      "DATE_LABEL": "Date",
+      "DATE_TIME_PICKER_BUTTON": "Select departure date and time",
+      "NOW_BUTTON": "Now",
+      "SELECT_BUTTON": "Select",
+      "TIME_LABEL": "Time"
     }
   },
   "Footer": {

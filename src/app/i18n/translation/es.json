@@ -49,8 +49,11 @@
       "TOGGLE_STATIONS": "Ver estaciones"
     },
     "DateAndTimePicker": {
-      "DATE_PICKER": "Seleccionar fecha de salida",
-      "TIME_PICKER": "Seleccionar hora de salida"
+      "DATE_LABEL": "Fecha",
+      "DATE_TIME_PICKER": "Seleccionar fecha y hora de salida",
+      "NOW_BUTTON": "Ahora",
+      "SELECT_BUTTON": "Aceptar",
+      "TIME_LABEL": "Hora"
     }
   },
   "Footer": {

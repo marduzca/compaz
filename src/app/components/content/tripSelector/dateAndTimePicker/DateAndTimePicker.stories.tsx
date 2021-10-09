@@ -27,20 +27,41 @@ export default {
 export const basicInNormalState = () =>
   guaranteedSize(
     <DateAndTimePicker
-      selectedDate={new Date('2021-09-24 17:30')}
-      selectedTime="17:30"
-      onTimePickerChange={actions('onTimePickerChange').onTimePickerChange}
+      departureDate={new Date('2021-09-24 17:30')}
+      departureTime="17:30"
+      currentlySelectedDate="2021-09-24 17:30"
+      currentlySelectedTime="17:30"
+      showSelectionPanel={false}
+      onDateAndTimeButtonClick={
+        actions('onDateAndTimeButtonClick').onDateAndTimeButtonClick
+      }
       onDatePickerChange={actions('onDatePickerChange').onDatePickerChange}
+      onTimePickerChange={actions('onTimePickerChange').onTimePickerChange}
+      onSelectButtonClick={actions('onSelectButtonClick').onSelectButtonClick}
+      onNowButtonClick={actions('onNowButtonClick').onNowButtonClick}
+      onHideSelectionPanel={
+        actions('onHideSelectionPanel').onHideSelectionPanel
+      }
     />
   );
 
-export const showOpenTimePickerPanelInNormalState = () =>
+export const withOpenSelectionPanelInNormalState = () =>
   guaranteedSize(
     <DateAndTimePicker
-      selectedDate={new Date('2021-09-24 17:30')}
-      selectedTime="17:30"
-      onTimePickerChange={actions('onTimePickerChange').onTimePickerChange}
+      departureDate={new Date('2021-09-24 17:30')}
+      departureTime="17:30"
+      currentlySelectedDate="2021-09-24 17:30"
+      currentlySelectedTime="17:30"
+      onDateAndTimeButtonClick={
+        actions('onDateAndTimeButtonClick').onDateAndTimeButtonClick
+      }
       onDatePickerChange={actions('onDatePickerChange').onDatePickerChange}
-      showOpenTimePickerPanel
+      onTimePickerChange={actions('onTimePickerChange').onTimePickerChange}
+      onSelectButtonClick={actions('onSelectButtonClick').onSelectButtonClick}
+      onNowButtonClick={actions('onNowButtonClick').onNowButtonClick}
+      onHideSelectionPanel={
+        actions('onHideSelectionPanel').onHideSelectionPanel
+      }
+      showSelectionPanel
     />
   );

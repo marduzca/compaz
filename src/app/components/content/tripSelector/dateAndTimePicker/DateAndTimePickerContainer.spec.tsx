@@ -1,4 +1,5 @@
 import React from 'react';
+import MockDate from 'mockdate';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import DateAndTimePickerContainer from './DateAndTimePickerContainer';
@@ -6,6 +7,10 @@ import * as NavigationProvider from '../../../providers/NavigationProvider';
 
 describe('DateAndTimePickerContainer', () => {
   const useNavigationMock = jest.spyOn(NavigationProvider, 'useNavigation');
+  const setNewDepartureDateMock = jest.fn();
+  const setNewDepartureTimeMock = jest.fn();
+
+  MockDate.set('2021-10-31 02:00');
 
   beforeEach(() => {
     useNavigationMock.mockReturnValue({
@@ -22,9 +27,9 @@ describe('DateAndTimePickerContainer', () => {
         name: '',
       },
       departureTime: '10:24',
-      departureDate: new Date('1995-12-17T10:24:00'),
-      setNewDepartureTime: jest.fn(),
-      setNewDepartureDate: jest.fn(),
+      departureDate: new Date('2021-12-25T10:24:00'),
+      setNewDepartureTime: setNewDepartureTimeMock,
+      setNewDepartureDate: setNewDepartureDateMock,
       setOriginStation: jest.fn(),
       setDestinationStation: jest.fn(),
       generateStationsMap: jest.fn(),
@@ -36,23 +41,98 @@ describe('DateAndTimePickerContainer', () => {
     jest.clearAllMocks();
   });
 
-  it('selects and displays selected date', () => {
+  it('displays current date and time coming from provider by default', () => {
     render(<DateAndTimePickerContainer />);
 
-    userEvent.type(screen.getByTestId('datePicker'), '1993-03-15');
-
     expect(
-      screen.getByRole('button', { name: 'DateAndTimePicker.DATE_PICKER' })
-        .textContent
-    ).toContain('Mon 15 Mar');
+      screen.getByRole('button', {
+        name: 'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON',
+      }).textContent
+    ).toContain('Sat 25 Dec');
+    expect(
+      screen.getByRole('button', {
+        name: 'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON',
+      }).textContent
+    ).toContain('10:24');
   });
 
-  it('displays given time correctly', () => {
+  it('selects and displays selected date and time', () => {
     render(<DateAndTimePickerContainer />);
 
+    userEvent.click(
+      screen.getByRole('button', {
+        name: 'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON',
+      })
+    );
+
+    userEvent.type(
+      screen.getByLabelText('Content.DateAndTimePicker.DATE_LABEL'),
+      '1993-03-15'
+    );
+    userEvent.type(
+      screen.getByLabelText('Content.DateAndTimePicker.TIME_LABEL'),
+      '09:30'
+    );
+
+    userEvent.click(
+      screen.getByRole('button', {
+        name: 'Content.DateAndTimePicker.SELECT_BUTTON',
+      })
+    );
+
+    expect(setNewDepartureTimeMock).toHaveBeenLastCalledWith('09:30');
+    expect(setNewDepartureDateMock).toHaveBeenLastCalledWith(
+      new Date('1993-03-15')
+    );
+  });
+
+  it('selects current date and time when clicking on Now button', () => {
+    render(<DateAndTimePickerContainer />);
+
+    userEvent.click(
+      screen.getByRole('button', {
+        name: 'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON',
+      })
+    );
+
+    userEvent.click(
+      screen.getByRole('button', {
+        name: 'Content.DateAndTimePicker.NOW_BUTTON',
+      })
+    );
+
+    expect(setNewDepartureTimeMock).toHaveBeenLastCalledWith('02:00');
+    expect(setNewDepartureDateMock).toHaveBeenLastCalledWith(
+      new Date('2021-10-31')
+    );
+  });
+
+  it('hides selection panel when clicking outside of it', () => {
+    render(
+      <div>
+        <DateAndTimePickerContainer />
+        <span>This is outside the panel</span>
+      </div>
+    );
+
+    userEvent.click(
+      screen.getByRole('button', {
+        name: 'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON',
+      })
+    );
+
     expect(
-      screen.getByRole('button', { name: 'DateAndTimePicker.TIME_PICKER' })
-        .textContent
-    ).toContain('10:24');
+      screen.getByRole('button', {
+        name: 'Content.DateAndTimePicker.NOW_BUTTON',
+      })
+    ).toBeVisible();
+
+    userEvent.click(screen.getByText('This is outside the panel'));
+
+    expect(
+      screen.queryByRole('button', {
+        name: 'Content.DateAndTimePicker.NOW_BUTTON',
+      })
+    ).toBeNull();
   });
 });
