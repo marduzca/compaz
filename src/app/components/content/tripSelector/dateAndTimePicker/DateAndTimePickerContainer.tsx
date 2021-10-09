@@ -31,8 +31,11 @@ const DateAndTimePickerContainer: React.FC = () => {
   };
 
   const handleSelectButtonClick = () => {
-    setNewDepartureDate(new Date(currentlySelectedDate));
-    setNewDepartureTime(currentlySelectedTime);
+    if (currentlySelectedDate && currentlySelectedTime) {
+      setNewDepartureDate(new Date(currentlySelectedDate));
+      setNewDepartureTime(currentlySelectedTime);
+    }
+
     setShowSelectionPanel(false);
   };
 
