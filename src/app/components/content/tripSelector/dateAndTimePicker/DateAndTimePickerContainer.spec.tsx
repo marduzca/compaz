@@ -85,7 +85,7 @@ describe('DateAndTimePickerContainer', () => {
   });
 
   it('selects current date and time when clicking on Now button', () => {
-    MockDate.set(new Date('2021-10-31T00:00:00.000Z'));
+    MockDate.set(new Date('2021-10-31T00:05:00.000Z'));
 
     render(<DateAndTimePickerContainer />);
 
@@ -102,9 +102,9 @@ describe('DateAndTimePickerContainer', () => {
     );
 
     expect(setNewDepartureDateMock).toHaveBeenLastCalledWith(
-      new Date('2021-10-31T00:00:00.000Z')
+      new Date('2021-10-31T00:05:00.000Z')
     );
-    expect(setNewDepartureTimeMock).toHaveBeenLastCalledWith('02:00');
+    expect(setNewDepartureTimeMock).toHaveBeenLastCalledWith('02:05');
 
     MockDate.reset();
   });

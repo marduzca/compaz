@@ -219,9 +219,11 @@ export const NavigationProvider: React.FC = (props) => {
     name: '',
   });
   const [departureTime, setDepartureTime] = useState<string>(
-    parseToSimpleTime(new Date())
+    parseToSimpleTime(new Date(Date.now()))
   );
-  const [departureDate, setDepartureDate] = useState<Date>(new Date());
+  const [departureDate, setDepartureDate] = useState<Date>(
+    new Date(Date.now())
+  );
   const [stationsMap, setStationsMap] = useState<StationsMap>({});
 
   const setOriginStation = (newOrigin: Station) => {
