@@ -54,8 +54,6 @@ const DateAndTimePickerContainer: React.FC = () => {
     <DateAndTimePicker
       departureDate={departureDate}
       departureTime={departureTime}
-      currentlySelectedTime={currentlySelectedTime}
-      currentlySelectedDate={currentlySelectedDate}
       showSelectionPanel={showSelectionPanel}
       onDateAndTimeButtonClick={() => {
         setShowSelectionPanel(!showSelectionPanel);

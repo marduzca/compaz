@@ -29,8 +29,6 @@ export const basicInNormalState = () =>
     <DateAndTimePicker
       departureDate={new Date('2021-09-24 17:30')}
       departureTime="17:30"
-      currentlySelectedDate="2021-09-24 17:30"
-      currentlySelectedTime="17:30"
       showSelectionPanel={false}
       onDateAndTimeButtonClick={
         actions('onDateAndTimeButtonClick').onDateAndTimeButtonClick
@@ -50,8 +48,6 @@ export const withOpenSelectionPanelInNormalState = () =>
     <DateAndTimePicker
       departureDate={new Date('2021-09-24 17:30')}
       departureTime="17:30"
-      currentlySelectedDate="2021-09-24 17:30"
-      currentlySelectedTime="17:30"
       onDateAndTimeButtonClick={
         actions('onDateAndTimeButtonClick').onDateAndTimeButtonClick
       }

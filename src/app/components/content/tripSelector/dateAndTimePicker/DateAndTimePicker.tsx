@@ -3,13 +3,14 @@ import { useTranslation } from 'react-i18next';
 import styles from './DateAndTimePicker.module.css';
 import { ReactComponent as CalendarIcon } from '../../../../static/img/date_picker.svg';
 import { ReactComponent as TimeIcon } from '../../../../static/img/time_picker.svg';
-import { parseToEnglishDateString } from '../../dateFormatter';
+import {
+  parseToEnglishDateString,
+  parseToSimpleDate,
+} from '../../dateFormatter';
 
 interface DateAndTimePickerProps {
   departureDate: Date;
   departureTime: string;
-  currentlySelectedDate: string;
-  currentlySelectedTime: string;
   onDateAndTimeButtonClick: () => void;
   onDatePickerChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onTimePickerChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -78,7 +79,7 @@ const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => {
                   type="date"
                   id="dateInput"
                   className={styles.dateInput}
-                  value={props.currentlySelectedDate}
+                  defaultValue={parseToSimpleDate(props.departureDate)}
                   onChange={props.onDatePickerChange}
                 />
               </div>
@@ -89,7 +90,7 @@ const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => {
                 <input
                   type="time"
                   id="timeInput"
-                  value={props.currentlySelectedTime}
+                  defaultValue={props.departureTime}
                   onChange={props.onTimePickerChange}
                 />
               </div>
