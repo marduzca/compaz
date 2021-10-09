@@ -2,11 +2,7 @@ import React, { useState } from 'react';
 import { useNavigation } from '../../../providers/NavigationProvider';
 import RoutesOverview from './RoutesOverview';
 import { Route } from '../../../domain';
-import {
-  addMinutesToDate,
-  parseToSimpleDate,
-  reduceMinutesToDate,
-} from '../../dateFormatter';
+import { addMinutesToDate, reduceMinutesToDate } from '../../dateFormatter';
 
 interface RoutesOverviewContainerProps {
   route: Route;
@@ -26,9 +22,7 @@ const RoutesOverviewContainer: React.FC<RoutesOverviewContainerProps> = (
     departureTime,
   } = useNavigation();
 
-  const departureDateAndTime = new Date(
-    `${parseToSimpleDate(departureDate)}T${departureTime}`
-  );
+  const departureDateAndTime = new Date(`${departureDate}T${departureTime}`);
 
   const [displayedRouteTimes, setDisplayedRouteTimes] = useState<Date[]>([
     departureDateAndTime,

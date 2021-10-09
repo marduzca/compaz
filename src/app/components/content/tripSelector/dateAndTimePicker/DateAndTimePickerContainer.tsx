@@ -5,15 +5,14 @@ import { parseToSimpleDate, parseToSimpleTime } from '../../dateFormatter';
 
 const DateAndTimePickerContainer: React.FC = () => {
   const {
-    departureTime,
     departureDate,
+    departureTime,
     setNewDepartureTime,
     setNewDepartureDate,
   } = useNavigation();
 
-  const [currentlySelectedDate, setCurrentlySelectedDate] = useState<string>(
-    parseToSimpleDate(departureDate)
-  );
+  const [currentlySelectedDate, setCurrentlySelectedDate] =
+    useState<string>(departureDate);
   const [currentlySelectedTime, setCurrentlySelectedTime] =
     useState<string>(departureTime);
   const [showSelectionPanel, setShowSelectionPanel] = useState<boolean>(false);
@@ -32,7 +31,7 @@ const DateAndTimePickerContainer: React.FC = () => {
 
   const handleSelectButtonClick = () => {
     if (currentlySelectedDate && currentlySelectedTime) {
-      setNewDepartureDate(new Date(currentlySelectedDate));
+      setNewDepartureDate(currentlySelectedDate);
       setNewDepartureTime(currentlySelectedTime);
     }
 
@@ -41,12 +40,13 @@ const DateAndTimePickerContainer: React.FC = () => {
 
   const handleNowButtonClick = () => {
     const dateNow = new Date(Date.now());
-    const timeNow = parseToSimpleTime(dateNow);
+    const simpleDateNow = parseToSimpleDate(dateNow);
+    const simpleTimeNow = parseToSimpleTime(dateNow);
 
-    setCurrentlySelectedDate(parseToSimpleDate(dateNow));
-    setCurrentlySelectedTime(timeNow);
-    setNewDepartureDate(dateNow);
-    setNewDepartureTime(timeNow);
+    setCurrentlySelectedDate(simpleDateNow);
+    setCurrentlySelectedTime(simpleTimeNow);
+    setNewDepartureDate(simpleDateNow);
+    setNewDepartureTime(simpleTimeNow);
     setShowSelectionPanel(false);
   };
 

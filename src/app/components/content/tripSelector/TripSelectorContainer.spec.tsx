@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import TripSelectorContainer from './TripSelectorContainer';
 import * as FirebaseProvider from '../../providers/FirebaseProvider';
+import * as NavigationProvider from '../../providers/NavigationProvider';
 
 jest.mock('firebase/app', () => ({
   initializeApp: jest.fn(),
@@ -17,6 +18,7 @@ jest.mock('firebase/app', () => ({
 
 describe('TripSelectorContainer', () => {
   const useFirebaseMock = jest.spyOn(FirebaseProvider, 'useFirebase');
+  const useNavigationMock = jest.spyOn(NavigationProvider, 'useNavigation');
 
   afterEach(() => {
     jest.clearAllMocks();
@@ -33,6 +35,30 @@ describe('TripSelectorContainer', () => {
             connectedStations: [],
           },
         ],
+        lines: [],
+      });
+
+      useNavigationMock.mockReturnValue({
+        origin: {
+          connectedStations: [],
+          id: '',
+          lines: [],
+          name: '',
+        },
+        destination: {
+          connectedStations: [],
+          id: '',
+          lines: [],
+          name: '',
+        },
+        departureTime: '10:24',
+        departureDate: '2021-12-25',
+        setNewDepartureTime: jest.fn(),
+        setNewDepartureDate: jest.fn(),
+        setOriginStation: jest.fn(),
+        setDestinationStation: jest.fn(),
+        generateStationsMap: jest.fn(),
+        calculateRoute: () => ({ subRoutes: [], totalTime: 0 }),
       });
 
       render(

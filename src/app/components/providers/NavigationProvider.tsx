@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 import { Line, Route, Station, SubRoute } from '../domain';
-import { parseToSimpleTime } from '../content/dateFormatter';
+import { parseToSimpleDate, parseToSimpleTime } from '../content/dateFormatter';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const dijkstra = require('dijkstrajs');
@@ -17,9 +17,9 @@ interface NavigationContextProps {
   origin: Station;
   destination: Station;
   departureTime: string;
-  departureDate: Date;
+  departureDate: string;
   setNewDepartureTime: (newDepartureTime: string) => void;
-  setNewDepartureDate: (newDepartureDate: Date) => void;
+  setNewDepartureDate: (newDepartureDate: string) => void;
   setOriginStation: (newOrigin: Station) => void;
   setDestinationStation: (newDestination: Station) => void;
   generateStationsMap: (stations: Station[]) => void;
@@ -40,7 +40,7 @@ export const NavigationContext = createContext<NavigationContextProps>({
     name: '',
   },
   departureTime: '',
-  departureDate: new Date(),
+  departureDate: '',
   setNewDepartureTime: () => {},
   setNewDepartureDate: () => {},
   setOriginStation: () => {},
@@ -219,10 +219,10 @@ export const NavigationProvider: React.FC = (props) => {
     name: '',
   });
   const [departureTime, setDepartureTime] = useState<string>(
-    parseToSimpleTime(new Date(Date.now()))
+    parseToSimpleTime(new Date())
   );
-  const [departureDate, setDepartureDate] = useState<Date>(
-    new Date(Date.now())
+  const [departureDate, setDepartureDate] = useState<string>(
+    parseToSimpleDate(new Date())
   );
   const [stationsMap, setStationsMap] = useState<StationsMap>({});
 
@@ -238,7 +238,7 @@ export const NavigationProvider: React.FC = (props) => {
     setDepartureTime(newDepartureTime);
   };
 
-  const setNewDepartureDate = (newDepartureDate: Date) => {
+  const setNewDepartureDate = (newDepartureDate: string) => {
     setDepartureDate(newDepartureDate);
   };
 

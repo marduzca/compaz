@@ -28,25 +28,30 @@ describe('StationsSelectorContainer', () => {
   beforeEach(() => {
     useFirebaseMock.mockReturnValue({
       stations: availableStations,
+      lines: [],
     });
 
     useNavigationMock.mockReturnValue({
       origin: {
-        id: '',
-        name: '',
-        lines: [],
         connectedStations: [],
+        id: '',
+        lines: [],
+        name: '',
       },
       destination: {
-        id: '',
-        name: '',
-        lines: [],
         connectedStations: [],
+        id: '',
+        lines: [],
+        name: '',
       },
-      setOriginStation: () => {},
-      setDestinationStation: () => {},
-      generateStationsMap: () => {},
-      findShortestPathFromOriginToDestination: () => [],
+      departureTime: '10:24',
+      departureDate: '2021-12-25',
+      setNewDepartureTime: jest.fn(),
+      setNewDepartureDate: jest.fn(),
+      setOriginStation: jest.fn(),
+      setDestinationStation: jest.fn(),
+      generateStationsMap: jest.fn(),
+      calculateRoute: () => ({ subRoutes: [], totalTime: 0 }),
     });
   });
 
@@ -116,15 +121,19 @@ describe('StationsSelectorContainer', () => {
     useNavigationMock.mockReturnValue({
       origin: availableStations[0],
       destination: {
-        id: '',
-        name: '',
-        lines: [],
         connectedStations: [],
+        id: '',
+        lines: [],
+        name: '',
       },
-      setOriginStation: () => {},
-      setDestinationStation: () => {},
-      generateStationsMap: () => {},
-      findShortestPathFromOriginToDestination: () => [],
+      departureTime: '10:24',
+      departureDate: '2021-12-25',
+      setNewDepartureTime: jest.fn(),
+      setNewDepartureDate: jest.fn(),
+      setOriginStation: jest.fn(),
+      setDestinationStation: jest.fn(),
+      generateStationsMap: jest.fn(),
+      calculateRoute: () => ({ subRoutes: [], totalTime: 0 }),
     });
 
     render(<StationsSelectorContainer />);
@@ -148,16 +157,20 @@ describe('StationsSelectorContainer', () => {
   it('removes the station from the origin when chosen already as destination', () => {
     useNavigationMock.mockReturnValue({
       origin: {
-        id: '',
-        name: '',
-        lines: [],
         connectedStations: [],
+        id: '',
+        lines: [],
+        name: '',
       },
       destination: availableStations[0],
-      setOriginStation: () => {},
-      setDestinationStation: () => {},
-      generateStationsMap: () => {},
-      findShortestPathFromOriginToDestination: () => [],
+      departureTime: '10:24',
+      departureDate: '2021-12-25',
+      setNewDepartureTime: jest.fn(),
+      setNewDepartureDate: jest.fn(),
+      setOriginStation: jest.fn(),
+      setDestinationStation: jest.fn(),
+      generateStationsMap: jest.fn(),
+      calculateRoute: () => ({ subRoutes: [], totalTime: 0 }),
     });
 
     render(<StationsSelectorContainer />);

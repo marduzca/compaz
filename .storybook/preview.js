@@ -1,6 +1,6 @@
 import MockDate from 'mockdate';
 
-MockDate.set('1993-03-15 09:30');
+MockDate.set('1993-03-15T09:30:00.000Z');
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },

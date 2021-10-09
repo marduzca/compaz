@@ -93,7 +93,7 @@ describe('PageContent', () => {
       origin: originStation,
       destination: destinationStation,
       departureTime: '17:30',
-      departureDate: new Date('2021-09-24'),
+      departureDate: '2021-09-24',
       setNewDepartureTime: jest.fn(),
       setNewDepartureDate: jest.fn(),
       setOriginStation: jest.fn(),

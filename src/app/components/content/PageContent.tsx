@@ -26,7 +26,7 @@ const PageContent: React.FC<PageContentProps> = (props) => {
   );
   const [route, setRoute] = useState<Route>({ subRoutes: [], totalTime: 0 });
   const [selectedRouteDepartureTime, setSelectedRouteDepartureTime] =
-    useState<Date>(new Date(Date.now()));
+    useState<Date>(new Date());
 
   const handleSearchButtonClick = () => {
     setRoute(calculateRoute(stations, lines));

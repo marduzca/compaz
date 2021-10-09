@@ -27,7 +27,7 @@ export default {
 export const basicInNormalState = () =>
   guaranteedSize(
     <DateAndTimePicker
-      departureDate={new Date('2021-09-24 17:30')}
+      departureDate="2021-09-24"
       departureTime="17:30"
       showSelectionPanel={false}
       onDateAndTimeButtonClick={
@@ -46,7 +46,7 @@ export const basicInNormalState = () =>
 export const withOpenSelectionPanelInNormalState = () =>
   guaranteedSize(
     <DateAndTimePicker
-      departureDate={new Date('2021-09-24 17:30')}
+      departureDate="2021-09-24"
       departureTime="17:30"
       onDateAndTimeButtonClick={
         actions('onDateAndTimeButtonClick').onDateAndTimeButtonClick

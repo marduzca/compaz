@@ -1,9 +1,9 @@
 import React from 'react';
-import MockDate from 'mockdate';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import DateAndTimePickerContainer from './DateAndTimePickerContainer';
 import * as NavigationProvider from '../../../providers/NavigationProvider';
+import { parseToSimpleDate, parseToSimpleTime } from '../../dateFormatter';
 
 describe('DateAndTimePickerContainer', () => {
   const useNavigationMock = jest.spyOn(NavigationProvider, 'useNavigation');
@@ -25,7 +25,7 @@ describe('DateAndTimePickerContainer', () => {
         name: '',
       },
       departureTime: '10:24',
-      departureDate: new Date('2021-12-25T10:24:00'),
+      departureDate: '2021-12-25',
       setNewDepartureTime: setNewDepartureTimeMock,
       setNewDepartureDate: setNewDepartureDateMock,
       setOriginStation: jest.fn(),
@@ -79,14 +79,10 @@ describe('DateAndTimePickerContainer', () => {
     );
 
     expect(setNewDepartureTimeMock).toHaveBeenLastCalledWith('09:30');
-    expect(setNewDepartureDateMock).toHaveBeenLastCalledWith(
-      new Date('1993-03-15')
-    );
+    expect(setNewDepartureDateMock).toHaveBeenLastCalledWith('1993-03-15');
   });
 
   it('selects current date and time when clicking on Now button', () => {
-    MockDate.set(new Date('2021-10-31T00:05:00.000Z'));
-
     render(<DateAndTimePickerContainer />);
 
     userEvent.click(
@@ -101,12 +97,12 @@ describe('DateAndTimePickerContainer', () => {
       })
     );
 
-    expect(setNewDepartureDateMock).toHaveBeenLastCalledWith(
-      new Date('2021-10-31T00:05:00.000Z')
+    expect(setNewDepartureTimeMock).toHaveBeenCalledWith(
+      parseToSimpleTime(new Date())
     );
-    expect(setNewDepartureTimeMock).toHaveBeenLastCalledWith('02:05');
-
-    MockDate.reset();
+    expect(setNewDepartureDateMock).toHaveBeenLastCalledWith(
+      parseToSimpleDate(new Date())
+    );
   });
 
   it('hides selection panel when clicking outside of it', () => {

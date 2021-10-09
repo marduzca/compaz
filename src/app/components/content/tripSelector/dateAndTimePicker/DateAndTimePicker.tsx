@@ -5,11 +5,11 @@ import { ReactComponent as CalendarIcon } from '../../../../static/img/date_pick
 import { ReactComponent as TimeIcon } from '../../../../static/img/time_picker.svg';
 import {
   parseToEnglishDateString,
-  parseToSimpleDate,
+  parseToSimpleTime,
 } from '../../dateFormatter';
 
 interface DateAndTimePickerProps {
-  departureDate: Date;
+  departureDate: string;
   departureTime: string;
   onDateAndTimeButtonClick: () => void;
   onDatePickerChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -61,11 +61,22 @@ const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => {
         >
           <div className={styles.date}>
             <CalendarIcon />
-            <span>{parseToEnglishDateString(props.departureDate, true)}</span>
+            <span>
+              {parseToEnglishDateString(
+                props.departureDate
+                  ? new Date(`${props.departureDate}T00:00:00.000Z`)
+                  : new Date(),
+                true
+              )}
+            </span>
           </div>
           <div className={styles.time}>
             <TimeIcon />
-            <span>{props.departureTime}</span>
+            <span>
+              {props.departureTime
+                ? props.departureTime
+                : parseToSimpleTime(new Date())}
+            </span>
           </div>
         </button>
         {props.showSelectionPanel && (
@@ -79,7 +90,7 @@ const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => {
                   type="date"
                   id="dateInput"
                   className={styles.dateInput}
-                  defaultValue={parseToSimpleDate(props.departureDate)}
+                  defaultValue={props.departureDate}
                   onChange={props.onDatePickerChange}
                 />
               </div>
