@@ -53,7 +53,8 @@
       "DATE_TIME_PICKER_BUTTON": "Select departure date and time",
       "NOW_BUTTON": "Now",
       "SELECT_BUTTON": "Select",
-      "TIME_LABEL": "Time"
+      "TIME_LABEL": "Time",
+      "TIME_ERROR": "Time is outside of functional hours"
     }
   },
   "Footer": {

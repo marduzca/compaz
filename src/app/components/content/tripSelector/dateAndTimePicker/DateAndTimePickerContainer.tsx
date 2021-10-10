@@ -1,9 +1,37 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DateAndTimePicker from './DateAndTimePicker';
 import { useNavigation } from '../../../providers/NavigationProvider';
-import { parseToSimpleDate, parseToSimpleTime } from '../../dateFormatter';
+import {
+  isWeekday,
+  parseToSimpleDate,
+  parseToSimpleTime,
+} from '../../dateFormatter';
 
 const DateAndTimePickerContainer: React.FC = () => {
+  const weekdayBeginOfFunctionalHours = 6;
+  const weekdayEndOfFunctionalHours = 21;
+  const weekendBeginOfFunctionalHours = 7;
+  const weekendEndOfFunctionalHours = 19;
+
+  const isTimeOutsideOfFunctionalHours = (hour: number) => {
+    if (
+      isWeekday(currentlySelectedDate) &&
+      (hour < weekdayBeginOfFunctionalHours ||
+        hour > weekdayEndOfFunctionalHours)
+    ) {
+      return true;
+    }
+
+    if (
+      hour < weekendBeginOfFunctionalHours ||
+      hour > weekendEndOfFunctionalHours
+    ) {
+      return true;
+    }
+
+    return false;
+  };
+
   const {
     departureDate,
     departureTime,
@@ -16,6 +44,21 @@ const DateAndTimePickerContainer: React.FC = () => {
   const [currentlySelectedTime, setCurrentlySelectedTime] =
     useState<string>(departureTime);
   const [showSelectionPanel, setShowSelectionPanel] = useState<boolean>(false);
+  const [
+    isSelectedTimeOutsideOfFunctionalHours,
+    setSelectedTimeOutsideOfFunctionalHours,
+  ] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (departureTime) {
+      setSelectedTimeOutsideOfFunctionalHours(
+        isTimeOutsideOfFunctionalHours(
+          parseInt(departureTime.substring(0, 2), 10)
+        )
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [departureTime]);
 
   const handleDatePickerChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -26,7 +69,15 @@ const DateAndTimePickerContainer: React.FC = () => {
   const handleTimePickerChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setCurrentlySelectedTime(event.target.value);
+    const newSelectedTime = event.target.value;
+
+    setCurrentlySelectedTime(newSelectedTime);
+
+    const hour = parseInt(newSelectedTime.substring(0, 2), 10);
+
+    setSelectedTimeOutsideOfFunctionalHours(
+      isTimeOutsideOfFunctionalHours(hour)
+    );
   };
 
   const handleSelectButtonClick = () => {
@@ -55,6 +106,9 @@ const DateAndTimePickerContainer: React.FC = () => {
       departureDate={departureDate}
       departureTime={departureTime}
       showSelectionPanel={showSelectionPanel}
+      isSelectedTimeOutsideOfFunctionalHours={
+        isSelectedTimeOutsideOfFunctionalHours
+      }
       onDateAndTimeButtonClick={() => {
         setShowSelectionPanel(!showSelectionPanel);
       }}

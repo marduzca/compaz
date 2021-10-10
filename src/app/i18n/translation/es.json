@@ -53,7 +53,8 @@
       "DATE_TIME_PICKER": "Seleccionar fecha y hora de salida",
       "NOW_BUTTON": "Ahora",
       "SELECT_BUTTON": "Aceptar",
-      "TIME_LABEL": "Hora"
+      "TIME_LABEL": "Hora",
+      "TIME_ERROR": "Hora fuera de horarios funcionales"
     }
   },
   "Footer": {

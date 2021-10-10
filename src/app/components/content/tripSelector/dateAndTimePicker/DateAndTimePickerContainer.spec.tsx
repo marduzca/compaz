@@ -133,4 +133,52 @@ describe('DateAndTimePickerContainer', () => {
       })
     ).toBeNull();
   });
+
+  describe('error message', () => {
+    it('shows error message when time outside of functional hours during the week', () => {
+      render(<DateAndTimePickerContainer />);
+
+      userEvent.click(
+        screen.getByRole('button', {
+          name: 'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON',
+        })
+      );
+
+      userEvent.type(
+        screen.getByLabelText('Content.DateAndTimePicker.DATE_LABEL'),
+        '1993-03-17'
+      );
+      userEvent.type(
+        screen.getByLabelText('Content.DateAndTimePicker.TIME_LABEL'),
+        '23:00'
+      );
+
+      expect(
+        screen.getByText('Content.DateAndTimePicker.TIME_ERROR')
+      ).toBeVisible();
+    });
+
+    it('shows error message when time outside of functional hours during the weekend', () => {
+      render(<DateAndTimePickerContainer />);
+
+      userEvent.click(
+        screen.getByRole('button', {
+          name: 'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON',
+        })
+      );
+
+      userEvent.type(
+        screen.getByLabelText('Content.DateAndTimePicker.DATE_LABEL'),
+        '1993-03-13'
+      );
+      userEvent.type(
+        screen.getByLabelText('Content.DateAndTimePicker.TIME_LABEL'),
+        '20:00'
+      );
+
+      expect(
+        screen.getByText('Content.DateAndTimePicker.TIME_ERROR')
+      ).toBeVisible();
+    });
+  });
 });

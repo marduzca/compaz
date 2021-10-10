@@ -5,6 +5,7 @@ import {
   parseToSpanishDate,
   parseToSimpleTime,
   reduceMinutesToDate,
+  isWeekday,
 } from './dateFormatter';
 
 describe('dateFormatter', () => {
@@ -57,6 +58,20 @@ describe('dateFormatter', () => {
       const dateInLongFormat = parseToSpanishDate(new Date(), false);
 
       expect(dateInLongFormat).toContain('Hoy, ');
+    });
+  });
+
+  describe('isWeekday', () => {
+    it('returns true if date is during the week', () => {
+      const isDayDuringWeek = isWeekday('1993-03-17');
+
+      expect(isDayDuringWeek).toBeTruthy();
+    });
+
+    it('returns false if date is during the weekend', () => {
+      const isDayDuringWeek = isWeekday('1993-03-13');
+
+      expect(isDayDuringWeek).toBeFalsy();
     });
   });
 

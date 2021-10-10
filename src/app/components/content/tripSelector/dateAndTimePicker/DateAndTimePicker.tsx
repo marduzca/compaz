@@ -11,13 +11,14 @@ import {
 interface DateAndTimePickerProps {
   departureDate: string;
   departureTime: string;
+  showSelectionPanel: boolean;
+  isSelectedTimeOutsideOfFunctionalHours: boolean;
   onDateAndTimeButtonClick: () => void;
   onDatePickerChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onTimePickerChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onSelectButtonClick: () => void;
   onNowButtonClick: () => void;
   onHideSelectionPanel: () => void;
-  showSelectionPanel: boolean;
 }
 
 const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => {
@@ -103,9 +104,19 @@ const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => {
                   id="timeInput"
                   defaultValue={props.departureTime}
                   onChange={props.onTimePickerChange}
+                  className={
+                    props.isSelectedTimeOutsideOfFunctionalHours
+                      ? styles.outsideOfFunctionalHours
+                      : ''
+                  }
                 />
               </div>
             </div>
+            {props.isSelectedTimeOutsideOfFunctionalHours && (
+              <p className={styles.timeError}>
+                {t('Content.DateAndTimePicker.TIME_ERROR')}
+              </p>
+            )}
             <div className={styles.footer}>
               <button
                 type="button"

@@ -83,6 +83,9 @@
 
 .inputFields input {
   width: 100%;
+
+  border: 2px solid #4f4f4f;
+  border-radius: 0.625rem;
 }
 
 .inputFields label {
@@ -100,6 +103,18 @@
 
 .dateInput::-webkit-calendar-picker-indicator {
   justify-self: end;
+}
+
+.outsideOfFunctionalHours {
+  border: 2px solid #c2185b !important;
+}
+
+.timeError {
+  margin-top: 0.5rem;
+
+  color: #c2185b;
+  font-weight: 500;
+  font-size: 1rem;
 }
 
 .footer {

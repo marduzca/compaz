@@ -30,6 +30,7 @@ export const basicInNormalState = () =>
       departureDate="2021-09-24"
       departureTime="17:30"
       showSelectionPanel={false}
+      isSelectedTimeOutsideOfFunctionalHours={false}
       onDateAndTimeButtonClick={
         actions('onDateAndTimeButtonClick').onDateAndTimeButtonClick
       }
@@ -48,6 +49,7 @@ export const withOpenSelectionPanelInNormalState = () =>
     <DateAndTimePicker
       departureDate="2021-09-24"
       departureTime="17:30"
+      isSelectedTimeOutsideOfFunctionalHours={false}
       onDateAndTimeButtonClick={
         actions('onDateAndTimeButtonClick').onDateAndTimeButtonClick
       }
@@ -59,5 +61,25 @@ export const withOpenSelectionPanelInNormalState = () =>
         actions('onHideSelectionPanel').onHideSelectionPanel
       }
       showSelectionPanel
+    />
+  );
+
+export const withTimeError = () =>
+  guaranteedSize(
+    <DateAndTimePicker
+      departureDate="2021-09-24"
+      departureTime="17:30"
+      onDateAndTimeButtonClick={
+        actions('onDateAndTimeButtonClick').onDateAndTimeButtonClick
+      }
+      onDatePickerChange={actions('onDatePickerChange').onDatePickerChange}
+      onTimePickerChange={actions('onTimePickerChange').onTimePickerChange}
+      onSelectButtonClick={actions('onSelectButtonClick').onSelectButtonClick}
+      onNowButtonClick={actions('onNowButtonClick').onNowButtonClick}
+      onHideSelectionPanel={
+        actions('onHideSelectionPanel').onHideSelectionPanel
+      }
+      showSelectionPanel
+      isSelectedTimeOutsideOfFunctionalHours
     />
   );
