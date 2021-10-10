@@ -65,7 +65,7 @@ const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => {
             <span>
               {parseToEnglishDateString(
                 props.departureDate
-                  ? new Date(`${props.departureDate}T00:00:00.000Z`)
+                  ? new Date(`${props.departureDate}T12:00:00.000Z`)
                   : new Date(),
                 true
               )}
