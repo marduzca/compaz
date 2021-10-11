@@ -1,6 +1,7 @@
 import React, { createContext, useContext } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+import 'firebase/analytics';
 import { useCollectionDataOnce } from 'react-firebase-hooks/firestore';
 import { Line, Station } from '../domain';
 
@@ -25,7 +26,6 @@ firebase.initializeApp({
 });
 
 const firestore = firebase.firestore();
-const analytics = firebase.analytics();
 
 firestore.enablePersistence({ synchronizeTabs: true }).catch(() =>
   // eslint-disable-next-line no-console
@@ -47,8 +47,6 @@ export const FirebaseProvider: React.FC = (props) => {
   const [lines] = useCollectionDataOnce<Line>(linesRef, {
     idField: 'id',
   });
-
-  analytics.logEvent('firestore data retrieved started');
 
   return (
     <FirebaseContext.Provider
