@@ -25,6 +25,7 @@ firebase.initializeApp({
 });
 
 const firestore = firebase.firestore();
+const analytics = firebase.analytics();
 
 firestore.enablePersistence({ synchronizeTabs: true }).catch(() =>
   // eslint-disable-next-line no-console
@@ -46,6 +47,8 @@ export const FirebaseProvider: React.FC = (props) => {
   const [lines] = useCollectionDataOnce<Line>(linesRef, {
     idField: 'id',
   });
+
+  analytics.logEvent('firestore data retrieved started');
 
   return (
     <FirebaseContext.Provider
