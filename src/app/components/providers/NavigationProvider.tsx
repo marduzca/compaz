@@ -192,7 +192,7 @@ export const addTransferTimeBetweenLines = (
         if (nextLine) {
           subRoutesWithTimeLineAndTransferInfo.push({
             ...subRoute,
-            transferTimeToNextLine: nextLine.transferTime,
+            transferTimeToNextLine: Math.round(nextLine.transferTime),
           });
         }
       }

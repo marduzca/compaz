@@ -31,15 +31,15 @@ const IconsRoute: React.FC<SimpleIconsRouteProps> = (props) => {
           index,
           0,
           <li key={`transfer-${index}`} className={styles.transfer}>
-            <img
-              src={transferIcon}
-              alt={t('Content.RoutesOverview.TRANSFER')}
-            />
             {!props.hideTimes && (
               <span>
                 {props.subRoutes[Math.floor(index / 2)].transferTimeToNextLine}
               </span>
             )}
+            <img
+              src={transferIcon}
+              alt={t('Content.RoutesOverview.TRANSFER')}
+            />
           </li>
         );
       }
