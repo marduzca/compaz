@@ -87,7 +87,7 @@ export const isWeekday = (dateString: string): boolean => {
 
   const dayOfTheWeek = new Intl.DateTimeFormat('en', {
     weekday: 'short',
-  }).format(new Date(dateString));
+  }).format(new Date(`${dateString}T12:00:00.000Z`));
 
   return weekdays.includes(dayOfTheWeek);
 };
