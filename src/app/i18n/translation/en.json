@@ -1,16 +1,6 @@
 {
   "GO_BACK_BUTTON": "Go back",
   "LANDSCAPE_ERROR": "We dont support landscape mode, we are very sorry :(",
-  "Menu": {
-    "AFTERNOON_MESSAGE": "Good afternoon\nLa Paz",
-    "CHANGE_LANGUAGE": "Change language",
-    "CONTACT": "Contact us",
-    "MORNING_MESSAGE": "Good morning\nLa Paz",
-    "HISTORY": "History",
-    "HOW_TO_INSTALL": "How to install",
-    "LANGUAGE": "Language",
-    "NIGHT_MESSAGE": "Good night\nLa Paz"
-  },
   "Content": {
     "Route": {
       "Lines": {
@@ -61,5 +51,20 @@
     "GUIDE": "Your guide to know how to get everywhere",
     "TIME": "Plan the duration of your trip",
     "EASY": "Easy to use and at your fingertips"
+  },
+  "Menu": {
+    "AFTERNOON_MESSAGE": "Good afternoon\nLa Paz",
+    "CHANGE_LANGUAGE": "Change language",
+    "CONTACT": "Contact us",
+    "MORNING_MESSAGE": "Good morning\nLa Paz",
+    "HISTORY": "History",
+    "HOW_TO_INSTALL": "How to install",
+    "LANGUAGE": "Language",
+    "NIGHT_MESSAGE": "Good night\nLa Paz"
+  },
+  "Notification": {
+    "INFO": "Information",
+    "SUCCESS": "Success",
+    "WARNING": "Error"
   }
 }

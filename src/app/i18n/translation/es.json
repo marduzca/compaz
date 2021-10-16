@@ -1,16 +1,6 @@
 {
   "GO_BACK_BUTTON": "Volver",
   "LANDSCAPE_ERROR": "No funcionamos en modo horizontal, lo sentimos mucho :(",
-  "Menu": {
-    "AFTERNOON_MESSAGE": "Buenas tardes\nLa Paz",
-    "CHANGE_LANGUAGE": "Cambiar idioma",
-    "CONTACT": "Contactanos",
-    "MORNING_MESSAGE": "Buenos días\nLa Paz",
-    "HISTORY": "Historial",
-    "HOW_TO_INSTALL": "Como instalar",
-    "LANGUAGE": "Idioma",
-    "NIGHT_MESSAGE": "Buenas noches\nLa Paz"
-  },
   "Content": {
     "Route": {
       "Lines": {
@@ -61,5 +51,20 @@
     "GUIDE": "Tu guía para saber como llegar",
     "TIME": "Planea la duración de tu viaje",
     "EASY": "Fácil y al alcance de la mano"
+  },
+  "Menu": {
+    "AFTERNOON_MESSAGE": "Buenas tardes\nLa Paz",
+    "CHANGE_LANGUAGE": "Cambiar idioma",
+    "CONTACT": "Contactanos",
+    "MORNING_MESSAGE": "Buenos días\nLa Paz",
+    "HISTORY": "Historial",
+    "HOW_TO_INSTALL": "Como instalar",
+    "LANGUAGE": "Idioma",
+    "NIGHT_MESSAGE": "Buenas noches\nLa Paz"
+  },
+  "Notification": {
+    "INFO": "Información",
+    "SUCCESS": "Exitoso",
+    "WARNING": "Error"
   }
 }
