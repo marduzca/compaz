@@ -8,6 +8,9 @@ import redTelefericoIcon from '../../../static/img/red_teleferico.svg';
 import silverTelefericoIcon from '../../../static/img/silver_teleferico.svg';
 import whiteTelefericoIcon from '../../../static/img/white_teleferico.svg';
 import yellowTelefericoIcon from '../../../static/img/yellow_teleferico.svg';
+import { NotificationType } from '../../notification/Notification';
+import { NotificationEvent } from '../../domain';
+import { GENERAL_ERROR_NOTIFICATION_KEY } from '../../notification/NotificationContainer';
 
 const getCorrespondingTelefericoIcon = (lineColor: string): string => {
   switch (lineColor) {
@@ -32,7 +35,15 @@ const getCorrespondingTelefericoIcon = (lineColor: string): string => {
     case 'yellow':
       return yellowTelefericoIcon;
     default:
-      // TODO: handle error case
+      document.dispatchEvent(
+        new CustomEvent('notification', {
+          detail: {
+            type: NotificationType.ERROR,
+            content: GENERAL_ERROR_NOTIFICATION_KEY,
+          } as NotificationEvent,
+        })
+      );
+
       return '';
   }
 };

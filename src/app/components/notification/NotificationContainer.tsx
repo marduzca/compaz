@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import Notification, { NotificationType } from './Notification';
 import { NotificationEvent } from '../domain';
 
+export const GENERAL_ERROR_NOTIFICATION_KEY =
+  'Notification.GENERAL_ERROR_MESSAGE';
+
 const NotificationContainer = () => {
-  const [showNotification, setShowNotification] = useState<boolean>(true);
+  const [showNotification, setShowNotification] = useState<boolean>(false);
   const [notification, setNotification] = useState<NotificationEvent>({
     type: NotificationType.INFO,
-    content: 'RELOAD',
+    content: '',
   });
 
   const handleCloseButtonClick = () => {

@@ -60,7 +60,7 @@ const Notification: React.FC<NotificationProps> = (props) => {
             Notification.RELOAD_MESSAGE <a href=".">Reload link</a>
           </Trans>
         ) : (
-          props.content
+          t(props.content)
         )}
       </p>
       <button

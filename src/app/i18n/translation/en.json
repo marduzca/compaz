@@ -63,9 +63,10 @@
     "NIGHT_MESSAGE": "Good night\nLa Paz"
   },
   "Notification": {
+    "ERROR": "Error",
+    "GENERAL_ERROR_MESSAGE": "Something went wrong. Please refresh the page and try again.",
     "INFO": "Information",
     "RELOAD_MESSAGE": "There are new updates to the app. <1>Click here</1> to download them or refresh the page.",
-    "SUCCESS": "Success",
-    "WARNING": "Error"
+    "SUCCESS": "Success"
   }
 }
