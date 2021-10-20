@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import successIcon from '../../static/img/success.svg';
 import errorIcon from '../../static/img/error.svg';
 import infoIcon from '../../static/img/info.svg';
@@ -12,9 +12,10 @@ export enum NotificationType {
   ERROR = 'ERROR',
 }
 
+export const RELOAD_EVENT = 'RELOAD';
+
 interface NotificationProps {
-  // This is intended for passing your own paragraph with a clickable anchor inside
-  content: string | React.ReactNode;
+  content: string;
   notificationType: NotificationType;
   onCloseButtonClick: () => void;
 }
@@ -53,11 +54,15 @@ const Notification: React.FC<NotificationProps> = (props) => {
         src={renderCorrespondingIcon()}
         alt={t(`Notification.${props.notificationType.toString()}`)}
       />
-      {typeof props.content === 'string' ? (
-        <p>{props.content}</p>
-      ) : (
-        props.content
-      )}
+      <p>
+        {props.content === RELOAD_EVENT ? (
+          <Trans i18nKey="Notification.RELOAD_MESSAGE">
+            Notification.RELOAD_MESSAGE <a href=".">Reload link</a>
+          </Trans>
+        ) : (
+          props.content
+        )}
+      </p>
       <button
         type="button"
         className={styles.closeButton}

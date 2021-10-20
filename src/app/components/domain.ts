@@ -1,4 +1,3 @@
-import React from 'react';
 import { NotificationType } from './notification/Notification';
 
 export interface Station {
@@ -39,5 +38,5 @@ export interface SubRoute {
 
 export interface NotificationEvent {
   type: NotificationType;
-  content: string | React.ReactNode;
+  content: string;
 }

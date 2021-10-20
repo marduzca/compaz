@@ -1,6 +1,6 @@
 import React from 'react';
 import { actions } from '@storybook/addon-actions';
-import Notification, { NotificationType } from './Notification';
+import Notification, { NotificationType, RELOAD_EVENT } from './Notification';
 
 export default {
   component: Notification,
@@ -42,14 +42,10 @@ export const withLongTextNormalState = () => (
   />
 );
 
-export const withOwnContentNormalState = () => (
+export const withReloadMessageNormalState = () => (
   <Notification
     notificationType={NotificationType.INFO}
-    content={
-      <p>
-        This would be the perfect time to <a href=".">refresh</a>.
-      </p>
-    }
+    content={RELOAD_EVENT}
     onCloseButtonClick={actions('onCloseButtonClick').onCloseButtonClick}
   />
 );

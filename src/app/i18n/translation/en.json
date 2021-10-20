@@ -64,6 +64,7 @@
   },
   "Notification": {
     "INFO": "Information",
+    "RELOAD_MESSAGE": "There are new updates to the app. <1>Click here</1> to download them or refresh the page.",
     "SUCCESS": "Success",
     "WARNING": "Error"
   }

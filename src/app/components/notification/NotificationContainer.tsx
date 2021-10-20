@@ -3,12 +3,15 @@ import Notification, { NotificationType } from './Notification';
 import { NotificationEvent } from '../domain';
 
 const NotificationContainer = () => {
+  const [showNotification, setShowNotification] = useState<boolean>(true);
   const [notification, setNotification] = useState<NotificationEvent>({
     type: NotificationType.INFO,
-    content: '',
+    content: 'RELOAD',
   });
 
   const handleCloseButtonClick = () => {
+    setShowNotification(false);
+
     setNotification({
       type: NotificationType.INFO,
       content: '',
@@ -17,6 +20,8 @@ const NotificationContainer = () => {
 
   useEffect(() => {
     const handleNotificationEvent = (notificationEvent: CustomEvent) => {
+      setShowNotification(true);
+
       setNotification({
         content: notificationEvent.detail.content,
         type: notificationEvent.detail.type,
@@ -38,7 +43,7 @@ const NotificationContainer = () => {
 
   return (
     <>
-      {notification.content && (
+      {showNotification && (
         <Notification
           content={notification.content}
           notificationType={notification.type}

@@ -64,6 +64,7 @@
   },
   "Notification": {
     "INFO": "Información",
+    "RELOAD_MESSAGE": "La aplicación tiene nuevas actualizaciones. Haz <1>click aquí</1> para descargarlas o vuelve a cargar la página.",
     "SUCCESS": "Exitoso",
     "WARNING": "Error"
   }

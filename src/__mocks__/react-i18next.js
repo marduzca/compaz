@@ -30,7 +30,8 @@ const renderNodes = (reactNodes) => {
     }
     if (typeof child === 'object' && !isElement) {
       return Object.keys(child).reduce(
-        (str, childKey) => `${str}${child[childKey]}`
+        (str, childKey) => `${str}${child[childKey]}`,
+        ''
       );
     }
 
@@ -38,21 +39,19 @@ const renderNodes = (reactNodes) => {
   });
 };
 
-// Mock t function
-// supports t('key') and t(['key', 'fallbackKey'])
-const t = (k) => (Array.isArray(k) ? k[0] : k);
-const useMock = [t, {}];
-useMock.t = t;
+const useMock = [(k) => k, {}];
+useMock.t = (k) => k;
 useMock.i18n = {};
 
 module.exports = {
   // this mock makes sure any components using the translate HoC receive the t function as a prop
-  withTranslation: () => (Component) => {
-    // eslint-disable-next-line no-param-reassign
-    Component.defaultProps = { ...Component.defaultProps, t };
-    return Component;
-  },
-  Trans: ({ children }) => renderNodes(children),
+  withTranslation: () => (Component) => (props) =>
+    (
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      <Component t={(k) => k} {...props} />
+    ),
+  Trans: ({ children }) =>
+    Array.isArray(children) ? renderNodes(children) : renderNodes([children]),
   Translation: ({ children }) => children((k) => k, { i18n: {} }),
   useTranslation: () => useMock,
 

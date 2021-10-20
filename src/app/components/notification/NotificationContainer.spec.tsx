@@ -1,10 +1,37 @@
 import React from 'react';
 import { act, render, screen } from '@testing-library/react';
 import NotificationContainer from './NotificationContainer';
-import { NotificationType } from './Notification';
+import { NotificationType, RELOAD_EVENT } from './Notification';
 import { NotificationEvent } from '../domain';
 
 describe('NotificationContainer', () => {
+  it('renders reload info notification when reload event is triggered', () => {
+    render(<NotificationContainer />);
+
+    expect(
+      screen.queryByText(
+        'There is new content available. Click here to update.'
+      )
+    ).toBeNull();
+
+    const reloadNotificationEvent = new CustomEvent('notification', {
+      detail: {
+        type: NotificationType.INFO,
+        content: RELOAD_EVENT,
+      } as NotificationEvent,
+    });
+
+    act(() => {
+      document.dispatchEvent(reloadNotificationEvent);
+    });
+
+    expect(
+      screen.getByRole('img', { name: 'Notification.INFO' })
+    ).toBeVisible();
+    expect(screen.getByRole('link', { name: 'Reload link' })).toBeVisible();
+    expect(screen.getByText('Notification.RELOAD_MESSAGE')).toBeVisible();
+  });
+
   it('renders info notification when info notification event is triggered', () => {
     render(<NotificationContainer />);
 
