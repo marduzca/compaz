@@ -84,7 +84,7 @@ describe('NotificationContainer', () => {
     const infoNotificationEvent = new CustomEvent('notification', {
       detail: {
         type: NotificationType.ERROR,
-        content: 'this is an error notification',
+        content: 'this is an error notification test',
       } as NotificationEvent,
     });
 
@@ -95,6 +95,8 @@ describe('NotificationContainer', () => {
     expect(
       screen.getByRole('img', { name: 'Notification.ERROR' })
     ).toBeVisible();
-    expect(screen.getByText('this is an error notification')).toBeVisible();
+    expect(
+      screen.getByText('this is an error notification test')
+    ).toBeVisible();
   });
 });
