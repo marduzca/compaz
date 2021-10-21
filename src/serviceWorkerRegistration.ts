@@ -93,7 +93,7 @@ function registerValidSW(swUrl: string, config?: Config) {
                 } as NotificationEvent,
               });
 
-              document.dispatchEvent(reloadNotificationEvent);
+              window.dispatchEvent(reloadNotificationEvent);
 
               console.log(
                 'New content is available and will be used when all ' +

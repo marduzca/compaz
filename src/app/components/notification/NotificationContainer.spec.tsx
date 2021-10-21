@@ -22,7 +22,7 @@ describe('NotificationContainer', () => {
     });
 
     act(() => {
-      document.dispatchEvent(reloadNotificationEvent);
+      window.dispatchEvent(reloadNotificationEvent);
     });
 
     expect(
@@ -45,7 +45,7 @@ describe('NotificationContainer', () => {
     });
 
     act(() => {
-      document.dispatchEvent(infoNotificationEvent);
+      window.dispatchEvent(infoNotificationEvent);
     });
 
     expect(
@@ -67,7 +67,7 @@ describe('NotificationContainer', () => {
     });
 
     act(() => {
-      document.dispatchEvent(infoNotificationEvent);
+      window.dispatchEvent(infoNotificationEvent);
     });
 
     expect(
@@ -89,7 +89,7 @@ describe('NotificationContainer', () => {
     });
 
     act(() => {
-      document.dispatchEvent(infoNotificationEvent);
+      window.dispatchEvent(infoNotificationEvent);
     });
 
     expect(

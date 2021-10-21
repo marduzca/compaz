@@ -31,13 +31,13 @@ const NotificationContainer = () => {
       } as NotificationEvent);
     };
 
-    document.addEventListener(
+    window.addEventListener(
       'notification',
       handleNotificationEvent as EventListener
     );
 
     return () => {
-      document.removeEventListener(
+      window.removeEventListener(
         'notification',
         handleNotificationEvent as EventListener
       );

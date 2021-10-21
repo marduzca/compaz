@@ -35,7 +35,7 @@ const getCorrespondingTelefericoIcon = (lineColor: string): string => {
     case 'yellow':
       return yellowTelefericoIcon;
     default:
-      document.dispatchEvent(
+      window.dispatchEvent(
         new CustomEvent('notification', {
           detail: {
             type: NotificationType.ERROR,
