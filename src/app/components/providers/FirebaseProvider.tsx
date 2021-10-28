@@ -1,9 +1,12 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/analytics';
-import { useCollectionDataOnce } from 'react-firebase-hooks/firestore';
-import { Line, Station } from '../domain';
+import {
+  useCollectionDataOnce,
+  useDocumentDataOnce,
+} from 'react-firebase-hooks/firestore';
+import { Line, Station, VersionData } from '../domain';
 
 interface FirebaseContext {
   stations: Station[];
@@ -34,25 +37,80 @@ firestore.enablePersistence({ synchronizeTabs: true }).catch(() =>
   )
 );
 
+const versionDataRef = firestore.doc('metadata/versioning');
 const stationsRef = firestore.collection('stations');
 const linesRef = firestore.collection('lines');
 
+// TODO: Find out how to write these tests:
+// when nothing saved, store current data ✅
+// when saved and current version, use old data ✅
+// when saved and old version, store current data ✅
+
 export const FirebaseProvider: React.FC = (props) => {
-  const [stations] = useCollectionDataOnce<Station>(
-    stationsRef.orderBy('name'),
+  const DATA_VERSION_KEY = 'data_version';
+  const STATIONS_KEY = 'data_stations';
+  const LINES_KEY = 'data_lines';
+
+  const [dataNeedsUpdate, setDataNeedsUpdate] = useState<boolean>(false);
+  const [stations, setStations] = useState<Station[]>([]);
+  const [lines, setLines] = useState<Line[]>([]);
+
+  const [currentVersionData] = useDocumentDataOnce<VersionData>(versionDataRef);
+  const [currentStations] = useCollectionDataOnce<Station>(
+    dataNeedsUpdate ? stationsRef.orderBy('name') : undefined,
     {
       idField: 'id',
     }
   );
-  const [lines] = useCollectionDataOnce<Line>(linesRef, {
-    idField: 'id',
-  });
+  const [currentLines] = useCollectionDataOnce<Line>(
+    dataNeedsUpdate ? linesRef : undefined,
+    {
+      idField: 'id',
+    }
+  );
+
+  useEffect(() => {
+    if (currentVersionData) {
+      const storedDataVersion = localStorage.getItem(DATA_VERSION_KEY);
+
+      const newVersionAvailable =
+        !storedDataVersion ||
+        parseInt(storedDataVersion, 10) < currentVersionData.version;
+
+      if (newVersionAvailable) {
+        setDataNeedsUpdate(true);
+
+        if (currentStations && currentLines) {
+          setStations(currentStations);
+          setLines(currentLines);
+
+          localStorage.setItem(STATIONS_KEY, JSON.stringify(currentStations));
+          localStorage.setItem(LINES_KEY, JSON.stringify(currentLines));
+
+          localStorage.setItem(
+            DATA_VERSION_KEY,
+            currentVersionData.version.toString()
+          );
+        }
+      } else {
+        const storedStations = JSON.parse(
+          localStorage.getItem(STATIONS_KEY) as string
+        ) as Station[];
+        const storedLines = JSON.parse(
+          localStorage.getItem(LINES_KEY) as string
+        ) as Line[];
+
+        setStations(storedStations);
+        setLines(storedLines);
+      }
+    }
+  }, [currentLines, currentStations, currentVersionData]);
 
   return (
     <FirebaseContext.Provider
       value={{
-        stations: stations || [],
-        lines: lines || [],
+        stations,
+        lines,
       }}
     >
       {props.children}

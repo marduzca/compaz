@@ -4,25 +4,9 @@ import TripSelectorContainer from './TripSelectorContainer';
 import * as FirebaseProvider from '../../providers/FirebaseProvider';
 import * as NavigationProvider from '../../providers/NavigationProvider';
 
-jest.mock('firebase/app', () => ({
-  initializeApp: jest.fn(),
-  firestore: () => ({
-    enablePersistence: jest.fn(() => Promise.resolve()),
-    collection: jest.fn(() => ({
-      where: jest.fn(() => ({
-        get: jest.fn(),
-      })),
-    })),
-  }),
-}));
-
 describe('TripSelectorContainer', () => {
   const useFirebaseMock = jest.spyOn(FirebaseProvider, 'useFirebase');
   const useNavigationMock = jest.spyOn(NavigationProvider, 'useNavigation');
-
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
 
   describe('when stations have been loaded', () => {
     it('renders the trip selector content', () => {

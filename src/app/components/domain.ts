@@ -18,6 +18,10 @@ export interface Line {
   connectedLines: ConnectedLine[];
 }
 
+export interface VersionData {
+  version: number;
+}
+
 export interface ConnectedLine {
   id: string;
   transferTime: number;
