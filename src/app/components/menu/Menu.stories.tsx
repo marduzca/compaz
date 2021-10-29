@@ -30,6 +30,5 @@ export const mobileState = () =>
       onLogoClick={actions('onLogoClick').onLogoClick}
       onHideMobileMenu={actions('onBackButtonClick').onBackButtonClick}
       showMenuOnMobile
-      fixNightMessage
     />
   );
