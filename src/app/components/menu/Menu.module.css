@@ -68,7 +68,7 @@
 
 @media only screen and (max-width: 480px) {
   .hiddenMenu {
-    visibility: hidden;
+    transform: translateX(calc(-100% - 0.5rem));
   }
 
   .header {
@@ -84,6 +84,8 @@
     border-radius: 0 0.625rem 0.625rem 0.625rem;
     box-shadow: 0 0 0.5rem 0 grey;
     padding: 0;
+
+    transition: transform 0.75s ease;
   }
 
   .backButton {
