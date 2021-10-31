@@ -18,11 +18,6 @@ const NotificationContainer = () => {
 
   const handleCloseButtonClick = () => {
     setShowNotification(false);
-
-    setNotification({
-      type: notification.type,
-      content: '',
-    });
   };
 
   useEffect(() => {
