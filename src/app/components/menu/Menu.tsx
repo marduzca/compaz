@@ -20,9 +20,12 @@ interface HeaderItemProps {
 }
 
 const HeaderItem: React.FC<HeaderItemProps> = (props) => (
-  <li className={styles.headerItem}>
-    <span className={styles.headerItemIcon}>{props.icon}</span>
-    <span>{props.content}</span>
+  <li className={styles.headerLink}>
+    {/* eslint-disable-next-line @typescript-eslint/no-empty-function */}
+    <button type="button" onClick={() => {}} className={styles.headerItem}>
+      <span className={styles.headerItemIcon}>{props.icon}</span>
+      <span>{props.content}</span>
+    </button>
   </li>
 );
 
