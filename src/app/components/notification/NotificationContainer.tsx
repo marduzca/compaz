@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { CSSTransition } from 'react-transition-group';
 import Notification, { NotificationType } from './Notification';
 import { NotificationEvent } from '../domain';
+import styles from './Notification.module.css';
 
 export const GENERAL_ERROR_NOTIFICATION_KEY =
   'Notification.GENERAL_ERROR_MESSAGE';
 
 const NotificationContainer = () => {
+  const nodeRef = useRef(null);
+
   const [showNotification, setShowNotification] = useState<boolean>(false);
   const [notification, setNotification] = useState<NotificationEvent>({
     type: NotificationType.INFO,
@@ -16,7 +20,7 @@ const NotificationContainer = () => {
     setShowNotification(false);
 
     setNotification({
-      type: NotificationType.INFO,
+      type: notification.type,
       content: '',
     });
   };
@@ -45,15 +49,20 @@ const NotificationContainer = () => {
   }, []);
 
   return (
-    <>
-      {showNotification && (
-        <Notification
-          content={notification.content}
-          notificationType={notification.type}
-          onCloseButtonClick={handleCloseButtonClick}
-        />
-      )}
-    </>
+    <CSSTransition
+      nodeRef={nodeRef}
+      in={showNotification}
+      timeout={750}
+      classNames={{ ...styles }}
+      unmountOnExit
+    >
+      <Notification
+        nodeRef={nodeRef}
+        content={notification.content}
+        notificationType={notification.type}
+        onCloseButtonClick={handleCloseButtonClick}
+      />
+    </CSSTransition>
   );
 };
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { LegacyRef } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import successIcon from '../../static/img/success.svg';
 import errorIcon from '../../static/img/error.svg';
@@ -15,6 +15,7 @@ export enum NotificationType {
 export const RELOAD_EVENT = 'RELOAD';
 
 interface NotificationProps {
+  nodeRef?: LegacyRef<HTMLDivElement>;
   content: string;
   notificationType: NotificationType;
   onCloseButtonClick: () => void;
@@ -49,6 +50,7 @@ const Notification: React.FC<NotificationProps> = (props) => {
     <div
       role="alert"
       className={`${styles.container} ${getCorrespondingBackgroundColor()}`}
+      ref={props.nodeRef}
     >
       <img
         src={renderCorrespondingIcon()}
@@ -72,6 +74,10 @@ const Notification: React.FC<NotificationProps> = (props) => {
       </button>
     </div>
   );
+};
+
+Notification.defaultProps = {
+  nodeRef: null,
 };
 
 export default Notification;
