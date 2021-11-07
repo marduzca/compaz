@@ -18,6 +18,7 @@ interface NotificationProps {
   nodeRef?: LegacyRef<HTMLDivElement>;
   content: string;
   notificationType: NotificationType;
+  onReloadClick: () => void;
   onCloseButtonClick: () => void;
 }
 
@@ -59,7 +60,10 @@ const Notification: React.FC<NotificationProps> = (props) => {
       <p>
         {props.content === RELOAD_EVENT ? (
           <Trans i18nKey="Notification.RELOAD_MESSAGE">
-            Notification.RELOAD_MESSAGE <a href=".">Reload link</a>
+            Notification.RELOAD_MESSAGE
+            <a href="./" onClick={props.onReloadClick}>
+              Reload link
+            </a>
           </Trans>
         ) : (
           t(props.content)

@@ -12,12 +12,6 @@
 // To learn more about the benefits of this model and instructions on how to
 // opt-in, read https://cra.link/PWA
 
-import {
-  NotificationType,
-  RELOAD_EVENT,
-} from './app/components/notification/Notification';
-import { NotificationEvent } from './app/components/domain';
-
 const isLocalhost = Boolean(
   window.location.hostname === 'localhost' ||
     // [::1] is the IPv6 localhost address.
@@ -80,21 +74,6 @@ function registerValidSW(swUrl: string, config?: Config) {
         installingWorker.onstatechange = () => {
           if (installingWorker.state === 'installed') {
             if (navigator.serviceWorker.controller) {
-              // At this point, the updated precached content has been fetched,
-              // but the previous service worker will still serve the older
-              // content until all client tabs are closed.
-              // eslint-disable-next-line no-alert
-
-              // trigger reload notification event
-              const reloadNotificationEvent = new CustomEvent('notification', {
-                detail: {
-                  type: NotificationType.INFO,
-                  content: RELOAD_EVENT,
-                } as NotificationEvent,
-              });
-
-              window.dispatchEvent(reloadNotificationEvent);
-
               console.log(
                 'New content is available and will be used when all ' +
                   'tabs for this page are closed. See https://cra.link/PWA.'

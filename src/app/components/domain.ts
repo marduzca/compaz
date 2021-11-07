@@ -44,3 +44,7 @@ export interface NotificationEvent {
   type: NotificationType;
   content: string;
 }
+
+export interface UpdateAvailabilityEvent {
+  serviceWorkerRegistration: ServiceWorkerRegistration;
+}

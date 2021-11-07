@@ -1,8 +1,8 @@
 import React from 'react';
 import { act, render, screen } from '@testing-library/react';
 import NotificationContainer from './NotificationContainer';
-import { NotificationType, RELOAD_EVENT } from './Notification';
-import { NotificationEvent } from '../domain';
+import { NotificationType } from './Notification';
+import { NotificationEvent, UpdateAvailabilityEvent } from '../domain';
 
 describe('NotificationContainer', () => {
   it('renders reload info notification when reload event is triggered', () => {
@@ -14,15 +14,14 @@ describe('NotificationContainer', () => {
       )
     ).toBeNull();
 
-    const reloadNotificationEvent = new CustomEvent('notification', {
+    const updateAvailabilityEvent = new CustomEvent('updateAvailability', {
       detail: {
-        type: NotificationType.INFO,
-        content: RELOAD_EVENT,
-      } as NotificationEvent,
+        serviceWorkerRegistration: {},
+      } as UpdateAvailabilityEvent,
     });
 
     act(() => {
-      window.dispatchEvent(reloadNotificationEvent);
+      window.dispatchEvent(updateAvailabilityEvent);
     });
 
     expect(
