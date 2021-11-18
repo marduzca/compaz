@@ -80,9 +80,9 @@ const RoutesOverview: React.FC<RoutesOverviewProps> = (props) => {
           >
             <BackIcon />
           </button>
-          <span
+          <h1
             className={styles.title}
-          >{`${props.originName} - ${props.destinationName}`}</span>
+          >{`${props.originName} - ${props.destinationName}`}</h1>
         </div>
         <span>
           {i18n.language.match(/en/i)

@@ -65,6 +65,7 @@
   max-width: calc(100% - 4rem);
   white-space: nowrap;
 
+  font-size: 1.125rem;
   font-weight: 700;
 }
 
