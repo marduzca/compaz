@@ -45,24 +45,27 @@
 
 .backButton {
   position: absolute;
-  top: 0;
   left: 0;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
   padding: 0;
   background: none;
   cursor: pointer;
   border: 0;
   outline: none;
+
   height: 1.5rem;
   width: 1.5rem;
 }
 
 .backButton > svg > path {
   fill: white;
+}
+
+.title {
+  max-width: calc(100% - 4rem);
+  white-space: nowrap;
+
+  font-weight: 700;
 }
 
 .routesOverview {
