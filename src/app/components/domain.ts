@@ -4,7 +4,13 @@ export interface Station {
   id: string;
   name: string;
   lines: string[];
+  geoLocation?: GeoLocation;
   connectedStations: ConnectedStation[];
+}
+
+export interface GeoLocation {
+  lat: number;
+  lng: number;
 }
 
 export interface ConnectedStation {
@@ -16,6 +22,10 @@ export interface Line {
   id: string;
   stationsPath: string[];
   connectedLines: ConnectedLine[];
+}
+
+export interface Credentials {
+  MAPS_API_KEY: string;
 }
 
 export interface VersionData {

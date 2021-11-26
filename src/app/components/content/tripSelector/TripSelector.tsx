@@ -5,8 +5,8 @@ import { ReactComponent as SearchIcon } from '../../../static/img/chevron_right.
 import { ReactComponent as LogoWhite } from '../../../static/img/logo_white.svg';
 import { ReactComponent as MenuIcon } from '../../../static/img/menu.svg';
 import StationsSelectorContainer from './stationsSelector/StationsSelectorContainer';
-import MapImage from '../../../static/img/fake_map.png';
 import DateAndTimePickerContainer from './dateAndTimePicker/DateAndTimePickerContainer';
+import MapContainer from '../map/MapContainer';
 
 interface TripSelectorProps {
   onMenuButtonClick: () => void;
@@ -46,7 +46,7 @@ const TripSelector: React.FC<TripSelectorProps> = (props) => {
           <SearchIcon />
         </button>
       </div>
-      <img className={styles.map} alt="Map" src={MapImage} />
+      <MapContainer />
     </>
   );
 };
