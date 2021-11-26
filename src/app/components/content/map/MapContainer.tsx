@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLoadScript } from '@react-google-maps/api';
 import i18n from 'i18next';
 import Map from './Map';
@@ -14,6 +14,12 @@ const MapContainer: React.FC = () => {
         : process.env.REACT_APP_MAPS_API_KEY || '',
     language: i18n.language,
   });
+
+  useEffect(() => {
+    // Wait for API_KEY to be available
+  }, [MAPS_API_KEY]);
+
+  console.log(MAPS_API_KEY);
 
   const path = [
     { lat: -16.53806872367538, lng: -68.08744814042824 },

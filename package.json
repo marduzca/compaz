@@ -60,12 +60,12 @@
     "workbox-streams": "^6.4.1"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.15.0",
+    "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/react-hooks": "^7.0.2",
     "@testing-library/user-event": "^13.5.0",
     "@types/googlemaps": "^3.43.3",
-    "@types/jest": "^27.0.2",
+    "@types/jest": "^27.0.3",
     "@types/react-transition-group": "^4.4.4",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
@@ -76,11 +76,11 @@
     "eslint-plugin-jest": "^24.7.0",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react": "^7.27.0",
+    "eslint-plugin-react": "^7.27.1",
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-testing-library": "^4.12.4",
     "mq-polyfill": "^1.1.8",
-    "prettier": "^2.4.1"
+    "prettier": "^2.5.0"
   },
   "browserslist": {
     "production": [
