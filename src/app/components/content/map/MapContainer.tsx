@@ -1,25 +1,20 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useLoadScript } from '@react-google-maps/api';
 import i18n from 'i18next';
 import Map from './Map';
-import { useFirebase } from '../../providers/FirebaseProvider';
 
-const MapContainer: React.FC = () => {
-  const { MAPS_API_KEY } = useFirebase();
+interface MapContainerProps {
+  mapsApiKey: string;
+}
 
+const MapContainer: React.FC<MapContainerProps> = (props) => {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey:
       process.env.NODE_ENV === 'production'
-        ? MAPS_API_KEY
+        ? props.mapsApiKey
         : process.env.REACT_APP_MAPS_API_KEY || '',
     language: i18n.language,
   });
-
-  useEffect(() => {
-    // Wait for API_KEY to be available
-  }, [MAPS_API_KEY]);
-
-  console.log(MAPS_API_KEY);
 
   const path = [
     { lat: -16.53806872367538, lng: -68.08744814042824 },
