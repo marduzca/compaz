@@ -111,7 +111,7 @@ export const FirebaseProvider: React.FC = (props) => {
   }, [currentLines, currentStations, currentVersionData]);
 
   useEffect(() => {
-    fetch('https://us-central1-compaz.cloudfunctions.net/helloWorld')
+    fetch('https://us-central1-compaz-4.cloudfunctions.net/helloWorld')
       .then((response) => response.text())
       .then((data) => {
         // eslint-disable-next-line no-console
