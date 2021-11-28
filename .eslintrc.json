@@ -30,7 +30,7 @@
     "testing-library",
     "eslint-plugin-prettier"
   ],
-  "ignorePatterns": ["build/", "functions/"],
+  "ignorePatterns": ["build/"],
   "rules": {
     "import/no-extraneous-dependencies": [
       "error",

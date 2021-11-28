@@ -23,8 +23,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Frontend eslint & tests
       run: npm ci && npm run build --if-present && npm run lint && npm run only_test
-    - name: Functions eslint & tests
-      run: cd functions/ && npm ci && npm run build --if-present && npm run lint && cd ..
 
   visual_regression_test:
     needs: build_and_test
@@ -67,9 +65,7 @@ jobs:
           echo REACT_APP_MAPS_API_KEY =${{ secrets.MAPS_API_KEY }} >> .env
       - name: Frontend build
         run: npm ci && npm run build
-      - name: Functions build
-        run: cd functions/ && npm ci && npm run build && cd ..
-      - name: Deploy to Firebase Hosting and Functions
+      - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
           args: deploy
