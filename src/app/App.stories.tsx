@@ -16,7 +16,7 @@ export const normalAndMobileState = normalAndMobileStateComponent.bind({});
 normalAndMobileState.parameters = {
   mockData: [
     {
-      url: 'https://us-central1-compaz.cloudfunctions.net/helloWorld',
+      url: 'https://us-central1-compaz-4.cloudfunctions.net/helloWorld',
       method: 'GET',
       status: 200,
       response: {
