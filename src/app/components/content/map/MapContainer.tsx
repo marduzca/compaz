@@ -5,7 +5,7 @@ import Map from './Map';
 
 const MapContainer: React.FC = () => {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_MAPS_API_KEY || '',
+    googleMapsApiKey: process.env.REACT_APP_MAPS_API_KEY || 'fake-key',
     language: i18n.language,
   });
 
