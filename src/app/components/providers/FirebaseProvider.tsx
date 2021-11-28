@@ -110,6 +110,15 @@ export const FirebaseProvider: React.FC = (props) => {
     }
   }, [currentLines, currentStations, currentVersionData]);
 
+  useEffect(() => {
+    fetch('https://us-central1-compaz.cloudfunctions.net/helloWorld')
+      .then((response) => response.text())
+      .then((data) => {
+        // eslint-disable-next-line no-console
+        console.log('Response from endpoint', data);
+      });
+  }, []);
+
   return (
     <FirebaseContext.Provider
       value={{
