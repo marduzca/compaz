@@ -116,6 +116,10 @@ export const FirebaseProvider: React.FC = (props) => {
       .then((data) => {
         // eslint-disable-next-line no-console
         console.log('Response from endpoint', data);
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.log('there was an error', error.message);
       });
   }, []);
 
