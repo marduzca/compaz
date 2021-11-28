@@ -1,6 +1,3 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
-
 name: Test and deploy
 
 on:
@@ -24,9 +21,10 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm run only_test
+    - name: Frontend eslint & tests
+      run: npm ci && npm run build --if-present && npm run lint && npm run only_test
+    - name: Functions eslint & tests
+      run: cd functions/ && npm ci && npm run build --if-present && npm run lint && cd ..
 
   visual_regression_test:
     needs: build_and_test
@@ -40,8 +38,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm ci
-    - run: npm run loki:ci
+    - run: npm ci && npm run loki:ci
 
   outdated_deps:
     needs: visual_regression_test
@@ -64,7 +61,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - run: npm ci && npm run build
+      - name: Frontend build
+        run: npm ci && npm run build
+      - name: Functions build
+        run: cd functions/ && npm ci && npm run build && cd ..
       - name: Deploy to Firebase Hosting and Functions
         uses: w9jds/firebase-action@master
         with:
