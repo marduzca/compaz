@@ -64,7 +64,7 @@ jobs:
       - name: create env file
         run: |
           touch .env
-          echo REACT_APP_SEGRETISIMO =${{ secrets.SEGRETISIMO }} >> .env
+          echo REACT_APP_MAPS_API_KEY =${{ secrets.MAPS_API_KEY }} >> .env
       - name: Frontend build
         run: npm ci && npm run build
       - name: Functions build

@@ -3,16 +3,9 @@ import { useLoadScript } from '@react-google-maps/api';
 import i18n from 'i18next';
 import Map from './Map';
 
-interface MapContainerProps {
-  mapsApiKey: string;
-}
-
-const MapContainer: React.FC<MapContainerProps> = (props) => {
+const MapContainer: React.FC = () => {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey:
-      process.env.NODE_ENV === 'production'
-        ? props.mapsApiKey
-        : process.env.REACT_APP_MAPS_API_KEY || '',
+    googleMapsApiKey: process.env.REACT_APP_MAPS_API_KEY || '',
     language: i18n.language,
   });
 

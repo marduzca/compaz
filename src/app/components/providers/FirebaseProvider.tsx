@@ -6,18 +6,16 @@ import {
   useCollectionDataOnce,
   useDocumentDataOnce,
 } from 'react-firebase-hooks/firestore';
-import { Credentials, Line, Station, VersionData } from '../domain';
+import { Line, Station, VersionData } from '../domain';
 
 interface FirebaseContext {
   stations: Station[];
   lines: Line[];
-  MAPS_API_KEY: string;
 }
 
 export const FirebaseContext = createContext<FirebaseContext>({
   stations: [],
   lines: [],
-  MAPS_API_KEY: '',
 });
 
 firebase.initializeApp({
@@ -39,7 +37,6 @@ firestore.enablePersistence({ synchronizeTabs: true }).catch(() =>
   )
 );
 
-const mapsKeyRef = firestore.doc('metadata/credentials');
 const versionDataRef = firestore.doc('metadata/versioning');
 const stationsRef = firestore.collection('stations');
 const linesRef = firestore.collection('lines');
@@ -58,7 +55,6 @@ export const FirebaseProvider: React.FC = (props) => {
   const [stations, setStations] = useState<Station[]>([]);
   const [lines, setLines] = useState<Line[]>([]);
 
-  const [credentials] = useDocumentDataOnce<Credentials>(mapsKeyRef);
   const [currentVersionData] = useDocumentDataOnce<VersionData>(versionDataRef);
   const [currentStations] = useCollectionDataOnce<Station>(
     dataNeedsUpdate ? stationsRef.orderBy('name') : undefined,
@@ -128,7 +124,6 @@ export const FirebaseProvider: React.FC = (props) => {
       value={{
         stations,
         lines,
-        MAPS_API_KEY: credentials?.MAPS_API_KEY || '',
       }}
     >
       {props.children}

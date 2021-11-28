@@ -23,9 +23,6 @@ const LandscapeErrorMessage = () => {
 const App = () => {
   const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
 
-  // eslint-disable-next-line no-console
-  console.log('El ultra secreto:', process.env.REACT_APP_SEGRETISIMO);
-
   return (
     <>
       <LandscapeErrorMessage />

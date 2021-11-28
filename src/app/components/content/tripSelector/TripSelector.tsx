@@ -11,8 +11,6 @@ import MapContainer from '../map/MapContainer';
 interface TripSelectorProps {
   onMenuButtonClick: () => void;
   onSearchButtonClick: () => void;
-  // eslint-disable-next-line react/require-default-props
-  mapsApiKey?: string;
 }
 
 const TripSelector: React.FC<TripSelectorProps> = (props) => {
@@ -48,7 +46,7 @@ const TripSelector: React.FC<TripSelectorProps> = (props) => {
           <SearchIcon />
         </button>
       </div>
-      {props.mapsApiKey && <MapContainer mapsApiKey={props.mapsApiKey} />}
+      <MapContainer />
     </>
   );
 };

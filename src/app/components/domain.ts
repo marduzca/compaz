@@ -24,10 +24,6 @@ export interface Line {
   connectedLines: ConnectedLine[];
 }
 
-export interface Credentials {
-  MAPS_API_KEY: string;
-}
-
 export interface VersionData {
   version: number;
 }
