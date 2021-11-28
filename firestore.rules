@@ -1,8 +1,17 @@
-rules_version = '2';
+rules_version = '3';
 service cloud.firestore {
   match /databases/{database}/documents {
     match /{document=**} {
       allow write: if false;
+      allow read: if false;
+    }
+    match /stations/{station_id} {
+      allow read: if true;
+    }
+    match /lines/{line_id} {
+      allow read: if true;
+    }
+    match /metadata/{category_id} {
       allow read: if true;
     }
   }
