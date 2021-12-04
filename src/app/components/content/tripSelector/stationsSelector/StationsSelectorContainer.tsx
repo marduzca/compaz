@@ -4,13 +4,6 @@ import StationsSelector from './StationsSelector';
 import { useNavigation } from '../../../providers/NavigationProvider';
 import { useFirebase } from '../../../providers/FirebaseProvider';
 
-const EMPTY_STATION = {
-  connectedStations: [],
-  id: '',
-  lines: [],
-  name: '',
-};
-
 const StationsSelectorContainer: React.FC = () => {
   const { stations } = useFirebase();
   const {
@@ -45,33 +38,37 @@ const StationsSelectorContainer: React.FC = () => {
 
   const handleOriginChange = (newOrigin: string) => {
     setOriginInputValue(newOrigin);
-    setOriginValidationError(
-      shouldShowValidationError(destination.name, newOrigin)
-    );
+    if (destination) {
+      setOriginValidationError(
+        shouldShowValidationError(destination.name, newOrigin)
+      );
+    }
 
     const newOriginStation = stations.find(
       (station) => station.name === newOrigin
     );
     if (newOriginStation) {
       setOriginStation(newOriginStation);
-    } else if (origin.id) {
-      setOriginStation(EMPTY_STATION);
+    } else if (origin) {
+      setOriginStation(undefined);
     }
   };
 
   const handleDestinationChange = (newDestination: string) => {
     setDestinationInputValue(newDestination);
-    setDestinationValidationError(
-      shouldShowValidationError(origin.name, newDestination)
-    );
+    if (origin) {
+      setDestinationValidationError(
+        shouldShowValidationError(origin.name, newDestination)
+      );
+    }
 
     const newDestinationStation = stations.find(
       (station) => station.name === newDestination
     );
     if (newDestinationStation) {
       setDestinationStation(newDestinationStation);
-    } else if (destination.id) {
-      setDestinationStation(EMPTY_STATION);
+    } else if (destination) {
+      setDestinationStation(undefined);
     }
   };
 

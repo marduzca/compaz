@@ -14,31 +14,21 @@ interface ConnectedStationTimeTo {
 }
 
 interface NavigationContextProps {
-  origin: Station;
-  destination: Station;
+  origin: Station | undefined;
+  destination: Station | undefined;
   departureTime: string;
   departureDate: string;
   setNewDepartureTime: (newDepartureTime: string) => void;
   setNewDepartureDate: (newDepartureDate: string) => void;
-  setOriginStation: (newOrigin: Station) => void;
-  setDestinationStation: (newDestination: Station) => void;
+  setOriginStation: (newOrigin: Station | undefined) => void;
+  setDestinationStation: (newDestination: Station | undefined) => void;
   generateStationsMap: (stations: Station[]) => void;
   calculateRoute: (stations: Station[], lines: Line[]) => Route;
 }
 
 export const NavigationContext = createContext<NavigationContextProps>({
-  origin: {
-    connectedStations: [],
-    id: '',
-    lines: [],
-    name: '',
-  },
-  destination: {
-    connectedStations: [],
-    id: '',
-    lines: [],
-    name: '',
-  },
+  origin: undefined,
+  destination: undefined,
   departureTime: '',
   departureDate: '',
   setNewDepartureTime: () => {},
@@ -206,18 +196,10 @@ export const addTransferTimeBetweenLines = (
 };
 
 export const NavigationProvider: React.FC = (props) => {
-  const [origin, setOrigin] = useState<Station>({
-    connectedStations: [],
-    id: '',
-    lines: [],
-    name: '',
-  });
-  const [destination, setDestination] = useState<Station>({
-    connectedStations: [],
-    id: '',
-    lines: [],
-    name: '',
-  });
+  const [origin, setOrigin] = useState<Station | undefined>(undefined);
+  const [destination, setDestination] = useState<Station | undefined>(
+    undefined
+  );
   const [departureTime, setDepartureTime] = useState<string>(
     parseToSimpleTime(new Date())
   );
@@ -226,11 +208,11 @@ export const NavigationProvider: React.FC = (props) => {
   );
   const [stationsMap, setStationsMap] = useState<StationsMap>({});
 
-  const setOriginStation = (newOrigin: Station) => {
+  const setOriginStation = (newOrigin: Station | undefined) => {
     setOrigin(newOrigin);
   };
 
-  const setDestinationStation = (newDestination: Station) => {
+  const setDestinationStation = (newDestination: Station | undefined) => {
     setDestination(newDestination);
   };
 
@@ -264,7 +246,7 @@ export const NavigationProvider: React.FC = (props) => {
   ): Station[] => {
     const findPath = dijkstra.find_path;
 
-    return findPath(stationsMap, origin.id, destination.id).map(
+    return findPath(stationsMap, origin?.id, destination?.id).map(
       (stationId: string) =>
         allStations.find((station) => station.id === stationId)
     );

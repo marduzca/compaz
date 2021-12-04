@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigation } from '../../../providers/NavigationProvider';
 import RoutesOverview from './RoutesOverview';
-import { Route } from '../../../domain';
+import { NotificationEvent, Route } from '../../../domain';
 import { addMinutesToDate, reduceMinutesToDate } from '../../dateFormatter';
+import { NotificationType } from '../../../notification/Notification';
+import { GENERAL_ERROR_NOTIFICATION_KEY } from '../../../notification/NotificationContainer';
 
 interface RoutesOverviewContainerProps {
   route: Route;
@@ -30,6 +32,18 @@ const RoutesOverviewContainer: React.FC<RoutesOverviewContainerProps> = (
     addMinutesToDate(departureDateAndTime, 10),
     addMinutesToDate(departureDateAndTime, 15),
   ]);
+
+  if (!origin || !destination) {
+    // This should actually not be possible
+    window.dispatchEvent(
+      new CustomEvent('notification', {
+        detail: {
+          type: NotificationType.ERROR,
+          content: GENERAL_ERROR_NOTIFICATION_KEY,
+        } as NotificationEvent,
+      })
+    );
+  }
 
   const handleBackButtonClick = () => {
     setOriginStation({
@@ -73,8 +87,8 @@ const RoutesOverviewContainer: React.FC<RoutesOverviewContainerProps> = (
   return (
     <RoutesOverview
       route={props.route}
-      originName={origin.name}
-      destinationName={destination.name}
+      originName={origin ? origin.name : ''}
+      destinationName={destination ? destination.name : ''}
       dateAndTime={departureDateAndTime}
       displayedRouteTimes={displayedRouteTimes}
       onRouteSelection={props.onRouteSelection}
