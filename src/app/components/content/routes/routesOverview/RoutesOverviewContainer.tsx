@@ -46,19 +46,9 @@ const RoutesOverviewContainer: React.FC<RoutesOverviewContainerProps> = (
   }
 
   const handleBackButtonClick = () => {
-    setOriginStation({
-      connectedStations: [],
-      id: '',
-      lines: [],
-      name: '',
-    });
+    setOriginStation(undefined);
 
-    setDestinationStation({
-      connectedStations: [],
-      id: '',
-      lines: [],
-      name: '',
-    });
+    setDestinationStation(undefined);
 
     props.onBackButtonClick();
   };

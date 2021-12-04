@@ -15,12 +15,14 @@ describe('PageContent', () => {
     name: 'Origin station',
     lines: ['green'],
     connectedStations: [],
+    geoLocation: { latitude: 0, longitude: 0 },
   } as Station;
   const destinationStation = {
     id: 'destination_station',
     name: 'Destination station',
     lines: ['green'],
     connectedStations: [],
+    geoLocation: { latitude: 0, longitude: 0 },
   } as Station;
   const testRoute = {
     subRoutes: [

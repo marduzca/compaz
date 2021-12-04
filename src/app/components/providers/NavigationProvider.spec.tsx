@@ -307,6 +307,7 @@ describe('ShortestPathProvider', () => {
           connectedStations: [
             { id: 'station_c', timeTo: 2 },
           ] as ConnectedStation[],
+          geoLocation: { latitude: 0, longitude: 0 },
         },
         {
           id: 'station_c',
@@ -315,12 +316,14 @@ describe('ShortestPathProvider', () => {
           connectedStations: [
             { id: 'station_d', timeTo: 2 },
           ] as ConnectedStation[],
+          geoLocation: { latitude: 0, longitude: 0 },
         },
         {
           id: 'station_d',
           name: 'Station d',
           lines: ['red', 'blue'],
           connectedStations: [],
+          geoLocation: { latitude: 0, longitude: 0 },
         },
       ]);
 
@@ -333,6 +336,7 @@ describe('ShortestPathProvider', () => {
             connectedStations: [
               { id: 'station_c', timeTo: 2 },
             ] as ConnectedStation[],
+            geoLocation: { latitude: 0, longitude: 0 },
           },
           {
             id: 'station_c',
@@ -341,12 +345,14 @@ describe('ShortestPathProvider', () => {
             connectedStations: [
               { id: 'station_d', timeTo: 2 },
             ] as ConnectedStation[],
+            geoLocation: { latitude: 0, longitude: 0 },
           },
           {
             id: 'station_d',
             name: 'Station d',
             lines: ['red', 'blue'],
             connectedStations: [],
+            geoLocation: { latitude: 0, longitude: 0 },
           },
         ],
       ]);
@@ -503,24 +509,28 @@ describe('ShortestPathProvider', () => {
         name: 'First station red',
         lines: ['red'],
         connectedStations: [{ id: 'station_b', timeTo: 2 } as ConnectedStation],
+        geoLocation: { latitude: 0, longitude: 0 },
       },
       {
         id: 'station_b',
         name: 'Station b',
         lines: ['red'],
         connectedStations: [{ id: 'station_c', timeTo: 2 } as ConnectedStation],
+        geoLocation: { latitude: 0, longitude: 0 },
       },
       {
         id: 'station_c',
         name: 'Station c',
         lines: ['red'],
         connectedStations: [{ id: 'station_d', timeTo: 2 } as ConnectedStation],
+        geoLocation: { latitude: 0, longitude: 0 },
       },
       {
         id: 'last_station_red',
         name: 'Last station red',
         lines: ['red'],
         connectedStations: [],
+        geoLocation: { latitude: 0, longitude: 0 },
       },
     ] as Station[];
 
@@ -543,6 +553,7 @@ describe('ShortestPathProvider', () => {
         connectedStations: [
           { id: 'station_c', timeTo: 2 },
         ] as ConnectedStation[],
+        geoLocation: { latitude: 0, longitude: 0 },
       },
       {
         id: 'station_c',
@@ -551,6 +562,7 @@ describe('ShortestPathProvider', () => {
         connectedStations: [
           { id: 'station_d', timeTo: 2 },
         ] as ConnectedStation[],
+        geoLocation: { latitude: 0, longitude: 0 },
       },
     ];
 

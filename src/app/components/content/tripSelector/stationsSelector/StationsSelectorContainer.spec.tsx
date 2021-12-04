@@ -16,12 +16,14 @@ describe('StationsSelectorContainer', () => {
       name: 'Some station',
       lines: ['green'],
       connectedStations: [],
+      geoLocation: { latitude: 0, longitude: 0 },
     },
     {
       id: 'another_station',
       name: 'Another station',
       lines: ['silver'],
       connectedStations: [],
+      geoLocation: { latitude: 0, longitude: 0 },
     },
   ] as Station[];
 
@@ -32,18 +34,8 @@ describe('StationsSelectorContainer', () => {
     });
 
     useNavigationMock.mockReturnValue({
-      origin: {
-        connectedStations: [],
-        id: '',
-        lines: [],
-        name: '',
-      },
-      destination: {
-        connectedStations: [],
-        id: '',
-        lines: [],
-        name: '',
-      },
+      origin: undefined,
+      destination: undefined,
       departureTime: '10:24',
       departureDate: '2021-12-25',
       setNewDepartureTime: jest.fn(),
@@ -120,12 +112,7 @@ describe('StationsSelectorContainer', () => {
   it('removes the station from the destination when chosen already as origin', () => {
     useNavigationMock.mockReturnValue({
       origin: availableStations[0],
-      destination: {
-        connectedStations: [],
-        id: '',
-        lines: [],
-        name: '',
-      },
+      destination: undefined,
       departureTime: '10:24',
       departureDate: '2021-12-25',
       setNewDepartureTime: jest.fn(),
@@ -156,12 +143,7 @@ describe('StationsSelectorContainer', () => {
 
   it('removes the station from the origin when chosen already as destination', () => {
     useNavigationMock.mockReturnValue({
-      origin: {
-        connectedStations: [],
-        id: '',
-        lines: [],
-        name: '',
-      },
+      origin: undefined,
       destination: availableStations[0],
       departureTime: '10:24',
       departureDate: '2021-12-25',

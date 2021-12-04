@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from 'react';
 import { GoogleMap, Marker, Polyline } from '@react-google-maps/api';
 import stationIcon from '../../../static/img/station.svg';
@@ -30,9 +29,7 @@ const Map: React.FC<MapProps> = (props) => {
               <Marker
                 key={marker.id}
                 position={{
-                  // @ts-ignore
                   lat: marker.geoLocation.latitude,
-                  // @ts-ignore
                   lng: marker.geoLocation.longitude,
                 }}
                 icon={{
@@ -40,10 +37,9 @@ const Map: React.FC<MapProps> = (props) => {
                   labelOrigin: {
                     x: 30,
                     y: -15,
-                    equals: () => {
+                    equals: () =>
                       // This is here only to make TypeScript happy, but won't have any use
-                      return true;
-                    },
+                      true,
                   },
                 }}
                 label={{
@@ -57,7 +53,7 @@ const Map: React.FC<MapProps> = (props) => {
           {props.markers.length > 1 &&
             props.markers.map((marker, index) => {
               if (index % 2 === 0) {
-                return;
+                return <></>;
               }
 
               return (
@@ -65,15 +61,11 @@ const Map: React.FC<MapProps> = (props) => {
                   key={`line_${props.markers[index - 1].id}_to_${marker.id}`}
                   path={[
                     {
-                      // @ts-ignore
                       lat: props.markers[index - 1].geoLocation.latitude,
-                      // @ts-ignore
                       lng: props.markers[index - 1].geoLocation.longitude,
                     },
                     {
-                      // @ts-ignore
                       lat: marker.geoLocation.latitude,
-                      // @ts-ignore
                       lng: marker.geoLocation.longitude,
                     },
                   ]}

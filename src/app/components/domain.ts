@@ -4,7 +4,7 @@ export interface Station {
   id: string;
   name: string;
   lines: string[];
-  geoLocation?: GeoLocation;
+  geoLocation: GeoLocation;
   connectedStations: ConnectedStation[];
 }
 

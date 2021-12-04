@@ -12,18 +12,8 @@ describe('DateAndTimePickerContainer', () => {
 
   beforeEach(() => {
     useNavigationMock.mockReturnValue({
-      origin: {
-        connectedStations: [],
-        id: '',
-        lines: [],
-        name: '',
-      },
-      destination: {
-        connectedStations: [],
-        id: '',
-        lines: [],
-        name: '',
-      },
+      origin: undefined,
+      destination: undefined,
       departureTime: '10:24',
       departureDate: '2021-12-25',
       setNewDepartureTime: setNewDepartureTimeMock,

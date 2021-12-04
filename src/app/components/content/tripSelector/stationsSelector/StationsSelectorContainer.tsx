@@ -27,7 +27,7 @@ const StationsSelectorContainer: React.FC = () => {
   }, [stations]);
 
   const shouldShowValidationError = (
-    filterOutValue: string,
+    filterOutValue: string | undefined = '',
     searchTerm: string
   ): boolean =>
     !stations
@@ -38,11 +38,9 @@ const StationsSelectorContainer: React.FC = () => {
 
   const handleOriginChange = (newOrigin: string) => {
     setOriginInputValue(newOrigin);
-    if (destination) {
-      setOriginValidationError(
-        shouldShowValidationError(destination.name, newOrigin)
-      );
-    }
+    setOriginValidationError(
+      shouldShowValidationError(destination?.name, newOrigin)
+    );
 
     const newOriginStation = stations.find(
       (station) => station.name === newOrigin
@@ -56,11 +54,9 @@ const StationsSelectorContainer: React.FC = () => {
 
   const handleDestinationChange = (newDestination: string) => {
     setDestinationInputValue(newDestination);
-    if (origin) {
-      setDestinationValidationError(
-        shouldShowValidationError(origin.name, newDestination)
-      );
-    }
+    setDestinationValidationError(
+      shouldShowValidationError(origin?.name, newDestination)
+    );
 
     const newDestinationStation = stations.find(
       (station) => station.name === newDestination

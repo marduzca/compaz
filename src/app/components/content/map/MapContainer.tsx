@@ -5,8 +5,6 @@ import Map from './Map';
 import { useNavigation } from '../../providers/NavigationProvider';
 import { Station } from '../../domain';
 
-// TODO: Remove geolocation optional
-// TODO: Make origin/destination undefined
 const MapContainer: React.FC = () => {
   const { origin, destination } = useNavigation();
 
@@ -42,9 +40,7 @@ const MapContainer: React.FC = () => {
 
       markers.forEach((marker) => {
         bounds.extend({
-          // @ts-ignore
           lat: marker.geoLocation.latitude,
-          // @ts-ignore
           lng: marker.geoLocation.longitude,
         });
       });

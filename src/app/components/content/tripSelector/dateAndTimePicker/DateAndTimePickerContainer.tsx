@@ -22,14 +22,9 @@ const DateAndTimePickerContainer: React.FC = () => {
       return true;
     }
 
-    if (
-      hour < weekendBeginOfFunctionalHours ||
-      hour > weekendEndOfFunctionalHours
-    ) {
-      return true;
-    }
-
-    return false;
+    return (
+      hour < weekendBeginOfFunctionalHours || hour > weekendEndOfFunctionalHours
+    );
   };
 
   const {
