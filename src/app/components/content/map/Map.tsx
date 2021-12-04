@@ -12,15 +12,17 @@ interface MapProps {
 }
 
 const Map: React.FC<MapProps> = (props) => {
+  const laPazCenter = { lat: -16.494363149497282, lng: -68.1572941780699 };
+
   return (
     <>
       {props.isLoaded && (
         <GoogleMap
-          center={{ lat: -16.505348019297106, lng: -68.1387978668128 }}
-          zoom={14}
+          center={laPazCenter}
+          zoom={13}
           mapContainerClassName={styles.map}
           clickableIcons={false}
-          options={{ disableDefaultUI: true, minZoom: 10 }}
+          options={{ disableDefaultUI: true, minZoom: 11 }}
           onLoad={props.setGoogleMap}
         >
           {props.markers.length &&
@@ -35,17 +37,20 @@ const Map: React.FC<MapProps> = (props) => {
                 }}
                 icon={{
                   url: stationIcon,
-                  // @ts-ignore
                   labelOrigin: {
                     x: 30,
                     y: -15,
+                    equals: () => {
+                      // This is here only to make TypeScript happy, but won't have any use
+                      return true;
+                    },
                   },
                 }}
                 label={{
-                  text: marker.name,
-                  fontWeight: '700',
+                  text: marker.name.toUpperCase(),
+                  fontWeight: '900',
                   fontSize: '16px',
-                  color: '#1976D2',
+                  color: '#4f4f4f',
                 }}
               />
             ))}
@@ -72,6 +77,11 @@ const Map: React.FC<MapProps> = (props) => {
                       lng: marker.geoLocation.longitude,
                     },
                   ]}
+                  options={{
+                    strokeColor: '#26C6DA',
+                    strokeOpacity: 0.8,
+                    strokeWeight: 4,
+                  }}
                 />
               );
             })}
