@@ -9,8 +9,8 @@ export interface Station {
 }
 
 export interface GeoLocation {
-  lat: number;
-  lng: number;
+  latitude: number;
+  longitude: number;
 }
 
 export interface ConnectedStation {

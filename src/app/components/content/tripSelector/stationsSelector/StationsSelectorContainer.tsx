@@ -4,6 +4,13 @@ import StationsSelector from './StationsSelector';
 import { useNavigation } from '../../../providers/NavigationProvider';
 import { useFirebase } from '../../../providers/FirebaseProvider';
 
+const EMPTY_STATION = {
+  connectedStations: [],
+  id: '',
+  lines: [],
+  name: '',
+};
+
 const StationsSelectorContainer: React.FC = () => {
   const { stations } = useFirebase();
   const {
@@ -47,6 +54,8 @@ const StationsSelectorContainer: React.FC = () => {
     );
     if (newOriginStation) {
       setOriginStation(newOriginStation);
+    } else if (origin.id) {
+      setOriginStation(EMPTY_STATION);
     }
   };
 
@@ -61,6 +70,8 @@ const StationsSelectorContainer: React.FC = () => {
     );
     if (newDestinationStation) {
       setDestinationStation(newDestinationStation);
+    } else if (destination.id) {
+      setDestinationStation(EMPTY_STATION);
     }
   };
 
