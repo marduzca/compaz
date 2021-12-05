@@ -3,6 +3,11 @@ import { Meta } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 import DateAndTimePicker from './DateAndTimePicker';
 
+export default {
+  title: 'DateAndTimePicker',
+  component: DateAndTimePicker,
+} as Meta;
+
 const guaranteedSize = (child: JSX.Element): JSX.Element => (
   <div
     style={{
@@ -18,11 +23,6 @@ const guaranteedSize = (child: JSX.Element): JSX.Element => (
     {child}
   </div>
 );
-
-export default {
-  title: 'DateAndTimePicker',
-  component: DateAndTimePicker,
-} as Meta;
 
 export const basicInNormalState = () =>
   guaranteedSize(

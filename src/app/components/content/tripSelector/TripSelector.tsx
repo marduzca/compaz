@@ -17,8 +17,8 @@ const TripSelector: React.FC<TripSelectorProps> = (props) => {
   const { t } = useTranslation();
 
   return (
-    <>
-      <div className={styles.tripSelectorContainer}>
+    <div className={styles.container}>
+      <div className={styles.tripSelector}>
         <div className={styles.header}>
           <button
             title={t('GO_BACK_BUTTON')}
@@ -47,7 +47,7 @@ const TripSelector: React.FC<TripSelectorProps> = (props) => {
         </button>
       </div>
       <MapContainer />
-    </>
+    </div>
   );
 };
 

@@ -4,7 +4,6 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  height: calc(100vh * 0.175);
 }
 
 .footerItem {
