@@ -2,6 +2,7 @@
   "GO_BACK_BUTTON": "Volver",
   "LANDSCAPE_ERROR": "No funcionamos en modo horizontal, lo sentimos mucho :(",
   "LOADING": "Cargando...",
+  "LOADING_MAP": "Cargando mapa",
   "Content": {
     "Route": {
       "Lines": {

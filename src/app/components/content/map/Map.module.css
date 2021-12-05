@@ -1,11 +1,39 @@
-.map {
+@import '../../../../variables.css';
+
+.container {
   display: none;
 }
 
+.loader {
+  border: 10px solid #f3f3f3;
+  border-top: 10px solid var(--primary-color);
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @media only screen and (max-width: 480px) {
-  .map {
-    display: block;
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     height: 60%;
+    width: 100%;
+  }
+
+  .map {
+    height: 100%;
     width: 100%;
   }
 }

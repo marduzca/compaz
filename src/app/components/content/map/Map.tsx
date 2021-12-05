@@ -1,5 +1,6 @@
 import React from 'react';
 import { GoogleMap, Marker, Polyline } from '@react-google-maps/api';
+import { useTranslation } from 'react-i18next';
 import stationIcon from '../../../static/img/station.svg';
 import styles from './Map.module.css';
 import { Station } from '../../domain';
@@ -11,11 +12,12 @@ interface MapProps {
 }
 
 const Map: React.FC<MapProps> = (props) => {
+  const { t } = useTranslation();
   const laPazCenter = { lat: -16.494363149497282, lng: -68.1572941780699 };
 
   return (
-    <>
-      {props.isLoaded && (
+    <div className={styles.container}>
+      {props.isLoaded ? (
         <GoogleMap
           center={laPazCenter}
           zoom={12}
@@ -78,8 +80,10 @@ const Map: React.FC<MapProps> = (props) => {
               );
             })}
         </GoogleMap>
+      ) : (
+        <span aria-label={t('LOADING_MAP')} className={styles.loader} />
       )}
-    </>
+    </div>
   );
 };
 

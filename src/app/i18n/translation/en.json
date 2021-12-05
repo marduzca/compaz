@@ -2,6 +2,7 @@
   "GO_BACK_BUTTON": "Go back",
   "LANDSCAPE_ERROR": "We dont support landscape mode, we are very sorry :(",
   "LOADING": "Loading...",
+  "LOADING_MAP": "Loading map",
   "Content": {
     "Route": {
       "Lines": {
