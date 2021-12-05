@@ -19,13 +19,16 @@ const MapContainer: React.FC = () => {
   const [markers, setMarkers] = useState<Station[]>([]);
 
   useEffect(() => {
-    const newMarkers = [...markers];
+    let newMarkers: Station[] = [];
+    if (markers.length < 2) {
+      newMarkers = [...markers];
+    }
 
-    if (origin?.id && !markers.includes(origin)) {
+    if (origin && !newMarkers.includes(origin)) {
       newMarkers.unshift(origin);
     }
 
-    if (destination?.id && !markers.includes(destination)) {
+    if (destination && !newMarkers.includes(destination)) {
       newMarkers.push(destination);
     }
 
