@@ -7,7 +7,7 @@ import { Station } from '../../domain';
 interface MapProps {
   isLoaded: boolean;
   markers: Station[];
-  setGoogleMap: (map: google.maps.Map) => void;
+  onGoogleMapLoad: (map: google.maps.Map) => void;
 }
 
 const Map: React.FC<MapProps> = (props) => {
@@ -18,11 +18,11 @@ const Map: React.FC<MapProps> = (props) => {
       {props.isLoaded && (
         <GoogleMap
           center={laPazCenter}
-          zoom={13}
+          zoom={12}
           mapContainerClassName={styles.map}
           clickableIcons={false}
           options={{ disableDefaultUI: true, minZoom: 11 }}
-          onLoad={props.setGoogleMap}
+          onLoad={props.onGoogleMapLoad}
         >
           {props.markers.length &&
             props.markers.map((marker) => (
@@ -53,7 +53,7 @@ const Map: React.FC<MapProps> = (props) => {
           {props.markers.length > 1 &&
             props.markers.map((marker, index) => {
               if (index % 2 === 0) {
-                return <></>;
+                return null;
               }
 
               return (

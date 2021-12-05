@@ -7,17 +7,16 @@ import { Station } from '../../domain';
 
 const MapContainer: React.FC = () => {
   const { origin, destination } = useNavigation();
-
-  const [googleMap, setGoogleMap] = useState<google.maps.Map | undefined>(
-    undefined
-  );
-  const [markers, setMarkers] = useState<Station[]>([]);
-
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_MAPS_API_KEY || 'fake-key',
     language: i18n.language,
     preventGoogleFontsLoading: true,
   });
+
+  const [googleMap, setGoogleMap] = useState<google.maps.Map | undefined>(
+    undefined
+  );
+  const [markers, setMarkers] = useState<Station[]>([]);
 
   useEffect(() => {
     const newMarkers = [...markers];
@@ -53,10 +52,11 @@ const MapContainer: React.FC = () => {
     if (isLoaded) {
       fitBounds();
     }
-  }, [googleMap, isLoaded, markers]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [markers]);
 
   return (
-    <Map isLoaded={isLoaded} markers={markers} setGoogleMap={setGoogleMap} />
+    <Map isLoaded={isLoaded} markers={markers} onGoogleMapLoad={setGoogleMap} />
   );
 };
 

@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import StationsSelector from './StationsSelector';
 import { useNavigation } from '../../../providers/NavigationProvider';
@@ -24,6 +23,7 @@ const StationsSelectorContainer: React.FC = () => {
 
   useEffect(() => {
     generateStationsMap(stations);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stations]);
 
   const shouldShowValidationError = (

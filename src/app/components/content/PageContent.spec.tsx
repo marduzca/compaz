@@ -88,7 +88,7 @@ describe('PageContent', () => {
   beforeEach(() => {
     useFirebaseMock.mockReturnValue({
       stations: [originStation, destinationStation],
-      lines: [],
+      lines: [{ id: 'green', stationsPath: [], connectedLines: [] }],
     });
 
     useNavigationMock.mockReturnValue({
@@ -107,6 +107,36 @@ describe('PageContent', () => {
 
   afterAll(() => {
     jest.clearAllMocks();
+  });
+
+  it('renders the loading page when stations data is not yet ready', () => {
+    useFirebaseMock.mockReturnValue({
+      stations: [],
+      lines: [{ id: 'green', stationsPath: [], connectedLines: [] }],
+    });
+
+    render(<PageContent onMenuButtonClick={() => {}} />);
+
+    expect(
+      screen.getByRole('img', {
+        name: 'LOADING',
+      })
+    ).toBeVisible();
+  });
+
+  it('renders the loading page when lines data is not yet ready', () => {
+    useFirebaseMock.mockReturnValue({
+      stations: [originStation],
+      lines: [],
+    });
+
+    render(<PageContent onMenuButtonClick={() => {}} />);
+
+    expect(
+      screen.getByRole('img', {
+        name: 'LOADING',
+      })
+    ).toBeVisible();
   });
 
   it('navigates to routes overview when clicking on search', () => {

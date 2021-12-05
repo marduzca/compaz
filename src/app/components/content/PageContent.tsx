@@ -6,6 +6,7 @@ import { useNavigation } from '../providers/NavigationProvider';
 import { useFirebase } from '../providers/FirebaseProvider';
 import { Route } from '../domain';
 import RouteDetailsViewContainer from './routes/routeDetails/RouteDetailsViewContainer';
+import LoadingPage from './loadingPage/LoadingPage';
 
 enum AppViewState {
   TRIP_SELECTOR,
@@ -18,8 +19,8 @@ interface PageContentProps {
 }
 
 const PageContent: React.FC<PageContentProps> = (props) => {
-  const { calculateRoute } = useNavigation();
   const { stations, lines } = useFirebase();
+  const { calculateRoute } = useNavigation();
 
   const [currentAppViewState, setCurrentAppViewState] = useState<AppViewState>(
     AppViewState.TRIP_SELECTOR
@@ -76,9 +77,13 @@ const PageContent: React.FC<PageContentProps> = (props) => {
 
   return (
     <main className={styles.content}>
-      <section className={styles.container}>
-        {renderCurrentAppViewState()}
-      </section>
+      {stations.length && lines.length ? (
+        <section className={styles.container}>
+          {renderCurrentAppViewState()}
+        </section>
+      ) : (
+        <LoadingPage />
+      )}
     </main>
   );
 };
