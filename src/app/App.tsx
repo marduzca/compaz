@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import debounce from 'lodash.debounce';
 import styles from './App.module.css';
 import MenuContainer from './components/menu/MenuContainer';
 import FooterContainer from './components/footer/FooterContainer';
@@ -22,6 +23,31 @@ const LandscapeErrorMessage = () => {
 
 const App = () => {
   const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
+
+  const initialHeight = window.outerHeight;
+
+  const adjustViewportHeight = () => {
+    const metaViewport = document.querySelector('meta[name=viewport]');
+
+    if (metaViewport) {
+      metaViewport.setAttribute(
+        'content',
+        `height=${initialHeight}, width=device-width, initial-scale=1`
+      );
+    }
+  };
+
+  const debouncedEventHandler = useMemo(
+    () => debounce(adjustViewportHeight, 100),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
+
+  useEffect(() => {
+    window.addEventListener('resize', debouncedEventHandler);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
