@@ -150,10 +150,6 @@
   width: 1.5rem;
 }
 
-.clearButton > svg path {
-  fill: black;
-}
-
 .withValidationError .combobox {
   border: 2px solid #c2185b;
   border-radius: 0.625rem;
