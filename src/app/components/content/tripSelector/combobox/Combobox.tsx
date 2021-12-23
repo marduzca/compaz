@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useCombobox } from 'downshift';
 import { ReactComponent as ArrowUpIcon } from '../../../../static/img/chevron_up.svg';
 import { ReactComponent as ArrowDownIcon } from '../../../../static/img/chevron_down.svg';
+import { ReactComponent as ClearIcon } from '../../../../static/img/close.svg';
 import styles from './Combobox.module.css';
 
 export interface Option {
@@ -17,7 +18,9 @@ interface ComboboxProps {
   inputValue: string;
   onChange: (inputValue: string) => void;
   validationError?: boolean;
-  arrowButtonTitle: string;
+  toggleButtonTitle: string;
+  clearButtonTitle: string;
+  onClearButtonClick: (inputName: string) => void;
 }
 
 const Combobox: React.FC<ComboboxProps> = (props) => {
@@ -84,17 +87,27 @@ const Combobox: React.FC<ComboboxProps> = (props) => {
         <label htmlFor={props.name} {...getLabelProps()}>
           {props.placeholder}
         </label>
-        <button
-          type="button"
-          title={props.arrowButtonTitle}
-          {...getToggleButtonProps()}
-        >
-          {isOpen ? (
-            <ArrowUpIcon className={styles.toggleButton} />
-          ) : (
-            <ArrowDownIcon className={styles.toggleButton} />
-          )}
-        </button>
+        {props.inputValue ? (
+          <button
+            type="button"
+            title={props.clearButtonTitle}
+            className={styles.clearButton}
+            onClick={() => {
+              props.onClearButtonClick(props.name);
+            }}
+          >
+            <ClearIcon />
+          </button>
+        ) : (
+          <button
+            type="button"
+            title={props.toggleButtonTitle}
+            className={styles.toggleButton}
+            {...getToggleButtonProps()}
+          >
+            {isOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
+          </button>
+        )}
       </div>
       <ul {...getMenuProps()} className={styles.optionList}>
         {isOpen &&

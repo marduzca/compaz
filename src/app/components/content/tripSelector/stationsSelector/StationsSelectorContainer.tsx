@@ -68,6 +68,18 @@ const StationsSelectorContainer: React.FC = () => {
     }
   };
 
+  const handleClearButtonClick = (inputName: string) => {
+    if (inputName === 'origin') {
+      setOriginInputValue('');
+      setOriginValidationError(false);
+      setOriginStation(undefined);
+    } else {
+      setDestinationInputValue('');
+      setDestinationValidationError(false);
+      setDestinationStation(undefined);
+    }
+  };
+
   const handleSwitcherClick = () => {
     setOriginStation(destination);
     setDestinationStation(origin);
@@ -86,6 +98,7 @@ const StationsSelectorContainer: React.FC = () => {
       destinationValidationError={destinationValidationError}
       onSwitcherClick={handleSwitcherClick}
       stations={stations}
+      onClearButtonClick={handleClearButtonClick}
     />
   );
 };

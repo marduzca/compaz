@@ -33,6 +33,7 @@
       "TRANSFER_MESSAGE": "Cambiar de linea ({{transferTime}} min)"
     },
     "TripSelector": {
+      "CLEAR_INPUT": "Borrar texto",
       "DESTINATION_PLACEHOLDER": "Destino",
       "ERROR": "Estación no existente",
       "ORIGIN_PLACEHOLDER": "Salida",

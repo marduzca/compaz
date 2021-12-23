@@ -14,6 +14,7 @@ interface StationsSelectorProps {
   onOriginChange: (newOrigin: string) => void;
   onDestinationChange: (newDestination: string) => void;
   onSwitcherClick: () => void;
+  onClearButtonClick: (inputName: string) => void;
 }
 
 const StationsSelector: React.FC<StationsSelectorProps> = (props) => {
@@ -36,7 +37,9 @@ const StationsSelector: React.FC<StationsSelectorProps> = (props) => {
         inputValue={props.originInputValue}
         onChange={props.onOriginChange}
         validationError={props.originValidationError}
-        arrowButtonTitle={t('Content.TripSelector.TOGGLE_STATIONS')}
+        toggleButtonTitle={t('Content.TripSelector.TOGGLE_STATIONS')}
+        clearButtonTitle={t('Content.TripSelector.CLEAR_INPUT')}
+        onClearButtonClick={props.onClearButtonClick}
       />
       <button
         title={t('Content.TripSelector.STATIONS_SWITCHER')}
@@ -61,7 +64,9 @@ const StationsSelector: React.FC<StationsSelectorProps> = (props) => {
         inputValue={props.destinationInputValue}
         onChange={props.onDestinationChange}
         validationError={props.destinationValidationError}
-        arrowButtonTitle={t('Content.TripSelector.TOGGLE_STATIONS')}
+        toggleButtonTitle={t('Content.TripSelector.TOGGLE_STATIONS')}
+        clearButtonTitle={t('Content.TripSelector.CLEAR_INPUT')}
+        onClearButtonClick={props.onClearButtonClick}
       />
     </div>
   );

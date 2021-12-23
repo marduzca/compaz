@@ -51,6 +51,56 @@ describe('StationsSelectorContainer', () => {
     jest.clearAllMocks();
   });
 
+  it('clears station input when clicking on the clear button', () => {
+    render(<StationsSelectorContainer />);
+
+    userEvent.type(
+      screen.getByRole('textbox', {
+        name: 'Content.TripSelector.ORIGIN_PLACEHOLDER',
+      }),
+      availableStations[0].name
+    );
+
+    expect(
+      screen.getByRole('textbox', {
+        name: 'Content.TripSelector.ORIGIN_PLACEHOLDER',
+      })
+    ).toHaveValue(availableStations[0].name);
+
+    userEvent.click(
+      screen.getByRole('button', { name: 'Content.TripSelector.CLEAR_INPUT' })
+    );
+
+    expect(
+      screen.getByRole('textbox', {
+        name: 'Content.TripSelector.ORIGIN_PLACEHOLDER',
+      })
+    ).toHaveValue('');
+
+    userEvent.type(
+      screen.getByRole('textbox', {
+        name: 'Content.TripSelector.DESTINATION_PLACEHOLDER',
+      }),
+      availableStations[1].name
+    );
+
+    expect(
+      screen.getByRole('textbox', {
+        name: 'Content.TripSelector.DESTINATION_PLACEHOLDER',
+      })
+    ).toHaveValue(availableStations[1].name);
+
+    userEvent.click(
+      screen.getByRole('button', { name: 'Content.TripSelector.CLEAR_INPUT' })
+    );
+
+    expect(
+      screen.getByRole('textbox', {
+        name: 'Content.TripSelector.DESTINATION_PLACEHOLDER',
+      })
+    ).toHaveValue('');
+  });
+
   it('allows to select stations from the dropdown', () => {
     render(<StationsSelectorContainer />);
 

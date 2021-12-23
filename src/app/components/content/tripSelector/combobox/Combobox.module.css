@@ -108,7 +108,7 @@
   visibility: hidden;
 
   width: 100%;
-  max-height: 18rem;
+  max-height: calc(100vh * 0.4);
 
   position: absolute;
   left: 0;
@@ -142,8 +142,16 @@
   border-bottom: 1px dotted #e0e0e0;
 }
 
-.toggleButton {
+.toggleButton > svg {
   width: 1.5rem;
+}
+
+.clearButton > svg {
+  width: 1.5rem;
+}
+
+.clearButton > svg path {
+  fill: black;
 }
 
 .withValidationError .combobox {
