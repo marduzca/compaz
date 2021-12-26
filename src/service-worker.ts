@@ -71,6 +71,16 @@ registerRoute(
   })
 );
 
+// Cache reset.css
+registerRoute(
+  ({ url }) =>
+    url.origin === self.location.origin && url.pathname.endsWith('.css'),
+  new StaleWhileRevalidate({
+    cacheName: 'styles_reset',
+    plugins: [new ExpirationPlugin({ maxEntries: 50 })],
+  })
+);
+
 // Any other custom service worker logic can go here.
 self.addEventListener('install', () => {
   self.skipWaiting();
