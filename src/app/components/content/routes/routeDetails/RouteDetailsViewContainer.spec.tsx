@@ -3,6 +3,7 @@ import { render, within, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import RouteDetailsViewContainer from './RouteDetailsViewContainer';
 import { ConnectedStation, Route, SubRoute } from '../../../domain';
+import * as useMediaQuery from '../../../useMediaQuery';
 
 describe('RouteDetailsViewContainer', () => {
   const testRoute = {
@@ -65,6 +66,16 @@ describe('RouteDetailsViewContainer', () => {
     ] as SubRoute[],
     totalTime: 11,
   } as Route;
+
+  beforeAll(() => {
+    const useMediaQueryMock = jest.spyOn(useMediaQuery, 'default');
+
+    useMediaQueryMock.mockReturnValue(false);
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
 
   it('shows and hides intermediate stations list when clicking on intermediate stations button', () => {
     render(

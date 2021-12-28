@@ -5,6 +5,7 @@ import PageContent from './PageContent';
 import * as FirebaseProvider from '../providers/FirebaseProvider';
 import * as NavigationProvider from '../providers/NavigationProvider';
 import { ConnectedStation, Route, Station, SubRoute } from '../domain';
+import * as useMediaQuery from '../useMediaQuery';
 
 describe('PageContent', () => {
   const useFirebaseMock = jest.spyOn(FirebaseProvider, 'useFirebase');
@@ -85,7 +86,15 @@ describe('PageContent', () => {
     totalTime: 11,
   } as Route;
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   beforeEach(() => {
+    const useMediaQueryMock = jest.spyOn(useMediaQuery, 'default');
+
+    useMediaQueryMock.mockReturnValue(false);
+
     useFirebaseMock.mockReturnValue({
       stations: [originStation, destinationStation],
       lines: [{ id: 'green', stationsPath: [], connectedLines: [] }],

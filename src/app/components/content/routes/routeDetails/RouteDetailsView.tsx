@@ -1,5 +1,7 @@
 import React, { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Resizable } from 're-resizable';
+import { ReactComponent as ResizeIcon } from '../../../../static/img/resize.svg';
 import { Route } from '../../../domain';
 import SubRouteDetails from './SubRouteDetails';
 import { addMinutesToDate } from '../../dateFormatter';
@@ -9,7 +11,7 @@ import IconsRoute from '../shared/IconsRoute';
 import TotalRouteTime from '../shared/TotalRouteTime';
 import { ReactComponent as BackIcon } from '../../../../static/img/arrow_back.svg';
 
-interface RouteDetailsViewProps {
+interface DetailsContentBoxProps {
   route: Route;
   departureTime: Date;
   linesWithOpenIntermediateStations: string[];
@@ -17,7 +19,7 @@ interface RouteDetailsViewProps {
   onBackButtonClick: () => void;
 }
 
-const RouteDetailsView: React.FC<RouteDetailsViewProps> = (props) => {
+const DetailsContentBox: React.FC<DetailsContentBoxProps> = (props) => {
   const { t } = useTranslation();
 
   let passedTime = 0;
@@ -83,7 +85,7 @@ const RouteDetailsView: React.FC<RouteDetailsViewProps> = (props) => {
   };
 
   return (
-    <div className={styles.routeDetailsContainer}>
+    <>
       <header className={styles.header}>
         <button
           type="button"
@@ -96,11 +98,81 @@ const RouteDetailsView: React.FC<RouteDetailsViewProps> = (props) => {
         <IconsRoute subRoutes={props.route.subRoutes} hideTimes />
         <TotalRouteTime totalTime={props.route.totalTime} />
       </header>
-      <div className={styles.contentContainer}>
+      <main className={styles.contentContainer}>
         <ol className={styles.routeDetails}>{renderRouteDetails()}</ol>
-      </div>
-    </div>
+      </main>
+    </>
   );
 };
+
+interface RouteDetailsViewProps {
+  route: Route;
+  departureTime: Date;
+  linesWithOpenIntermediateStations: string[];
+  isMobile: boolean;
+  onIntermediateStationsButtonClick: (line: string) => void;
+  onBackButtonClick: () => void;
+}
+
+const RouteDetailsView: React.FC<RouteDetailsViewProps> = (props) => (
+  <>
+    <section className={styles.routeDetailsContainer}>
+      {props.isMobile ? (
+        <Resizable
+          className={styles.resizableBox}
+          defaultSize={{
+            width: '100%',
+            height: '80vh',
+          }}
+          enable={{
+            top: true,
+            right: false,
+            bottom: false,
+            left: false,
+            topRight: false,
+            bottomRight: false,
+            bottomLeft: false,
+            topLeft: false,
+          }}
+          handleComponent={{
+            top: <ResizeIcon />,
+          }}
+          handleClasses={{ top: styles.resizeIcon }}
+          bounds="window"
+          boundsByDirection
+        >
+          <div style={{ height: '100%' }}>
+            <DetailsContentBox
+              route={props.route}
+              departureTime={props.departureTime}
+              linesWithOpenIntermediateStations={
+                props.linesWithOpenIntermediateStations
+              }
+              onIntermediateStationsButtonClick={
+                props.onIntermediateStationsButtonClick
+              }
+              onBackButtonClick={props.onBackButtonClick}
+            />
+          </div>
+        </Resizable>
+      ) : (
+        <>
+          <DetailsContentBox
+            route={props.route}
+            departureTime={props.departureTime}
+            linesWithOpenIntermediateStations={
+              props.linesWithOpenIntermediateStations
+            }
+            onIntermediateStationsButtonClick={
+              props.onIntermediateStationsButtonClick
+            }
+            onBackButtonClick={props.onBackButtonClick}
+          />
+        </>
+      )}
+    </section>
+    <p className={styles.map}>MAP</p>
+  </>
+);
 
 export default RouteDetailsView;

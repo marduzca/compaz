@@ -16,7 +16,8 @@
   justify-content: space-between;
   align-items: center;
 
-  padding: 1.5rem 1rem;
+  padding: 0 1rem;
+  height: var(--route-details-bar-height);
 
   border-bottom: 1px solid #bdbdbd;
 }
@@ -48,6 +49,7 @@
 }
 
 .contentContainer {
+  height: calc(100% - var(--route-details-bar-height));
   padding: 1.5rem;
 
   overflow-x: auto;
@@ -106,8 +108,47 @@
   background-color: #bdbdbd;
 }
 
+.map {
+  display: none;
+}
+
 @media only screen and (max-width: 480px) {
   .routeDetailsContainer {
+    position: absolute;
+    bottom: 0;
+
+    height: auto;
     width: 100%;
+
+    border-radius: 0.625rem 0.625rem 0 0;
+
+    overflow: hidden;
+  }
+
+  .resizableBox {
+    padding-top: 0.5rem;
+
+    min-height: calc(var(--route-details-bar-height) + 0.5rem);
+  }
+
+  .resizeIcon {
+    display: flex;
+    justify-content: center;
+
+    height: fit-content !important;
+  }
+
+  .resizeIcon > svg {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .map {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: turquoise;
   }
 }

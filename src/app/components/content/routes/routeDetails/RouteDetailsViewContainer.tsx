@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import RouteDetailsView from './RouteDetailsView';
 import { Route } from '../../../domain';
+import useMediaQuery from '../../../useMediaQuery';
 
 interface RouteDetailsViewContainerProps {
   route: Route;
@@ -11,6 +12,8 @@ interface RouteDetailsViewContainerProps {
 const RouteDetailsViewContainer: React.FC<RouteDetailsViewContainerProps> = (
   props
 ) => {
+  const isMobile = useMediaQuery();
+
   const [
     linesWithOpenIntermediateStations,
     setLinesWithOpenIntermediateStations,
@@ -37,9 +40,10 @@ const RouteDetailsViewContainer: React.FC<RouteDetailsViewContainerProps> = (
     <RouteDetailsView
       route={props.route}
       departureTime={props.departureTime}
-      onBackButtonClick={props.onBackButtonClick}
       linesWithOpenIntermediateStations={linesWithOpenIntermediateStations}
       onIntermediateStationsButtonClick={handleIntermediateStationsButtonClick}
+      isMobile={isMobile}
+      onBackButtonClick={props.onBackButtonClick}
     />
   );
 };

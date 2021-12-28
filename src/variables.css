@@ -5,8 +5,12 @@
   --header-height: 6.5rem;
   --footer-height: 11.675rem;
 
+  --content-border-radius: 0.625rem;
+
   --route-icons-bar-size: 2rem;
   --gap-after-route-icons-bar: 1rem;
+
+  --route-details-bar-height: 5rem;
 
   --teleferico-blue: #4361ee;
   --teleferico-brown: #80475e;
