@@ -52,7 +52,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
       - run: npm outdated || true
-      - run: test $(npm outdated | wc -l) -lt "16"
+      - run: test $(npm outdated | wc -l) -lt "25"
 
   build_and_deploy:
     needs: visual_regression_test
