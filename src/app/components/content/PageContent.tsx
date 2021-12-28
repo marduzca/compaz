@@ -78,9 +78,14 @@ const PageContent: React.FC<PageContentProps> = (props) => {
   return (
     <main className={styles.content}>
       {stations.length && lines.length ? (
-        <section className={styles.container}>
-          {renderCurrentAppViewState()}
-        </section>
+        <>
+          <section className={styles.container}>
+            {renderCurrentAppViewState()}
+          </section>
+          {currentAppViewState === AppViewState.ROUTE_DETAILS && (
+            <p className={styles.map}>MAP</p>
+          )}
+        </>
       ) : (
         <LoadingPage />
       )}

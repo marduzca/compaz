@@ -171,7 +171,6 @@ const RouteDetailsView: React.FC<RouteDetailsViewProps> = (props) => (
         </>
       )}
     </section>
-    <p className={styles.map}>MAP</p>
   </>
 );
 
