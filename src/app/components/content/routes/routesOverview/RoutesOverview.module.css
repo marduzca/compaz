@@ -23,7 +23,7 @@
   padding: 1rem;
 
   background-color: var(--primary-color);
-  border-radius: 0.625rem 0.625rem 0 0;
+  border-radius: var(--content-border-radius) var(--content-border-radius) 0 0;
 
   color: white;
   font-size: 1.125rem;

@@ -17,7 +17,7 @@
   width: 22.75rem;
   margin: 2rem 0 2rem 6.25rem;
 
-  border-radius: 0.625rem;
+  border-radius: var(--content-border-radius);
 
   overflow: hidden;
 }

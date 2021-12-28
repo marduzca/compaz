@@ -13,7 +13,7 @@
   padding: 0.5rem;
 
   background-color: #f2f2f2;
-  border-radius: 0.625rem;
+  border-radius: var(--content-border-radius);
 
   border: 0;
   cursor: pointer;
@@ -87,7 +87,7 @@
 
   background-color: white;
   border: 2px solid #4f4f4f;
-  border-radius: 0.625rem;
+  border-radius: var(--content-border-radius);
 }
 
 .inputFields label {
@@ -135,7 +135,7 @@
   height: 2.5rem;
   padding: 0.5rem 0.75rem;
 
-  border-radius: 0.625rem;
+  border-radius: var(--content-border-radius);
   border: 2px solid var(--primary-color);
 
   color: var(--primary-color);
@@ -150,7 +150,7 @@
   padding: 0.5rem 0.75rem;
 
   background-color: var(--primary-light-color);
-  border-radius: 0.625rem;
+  border-radius: var(--content-border-radius);
 
   color: white;
 

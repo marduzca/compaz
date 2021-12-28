@@ -6,7 +6,7 @@
 }
 
 .input {
-  border-radius: 0.625rem;
+  border-radius: var(--content-border-radius);
 }
 
 .open input {
@@ -152,7 +152,7 @@
 
 .withValidationError .combobox {
   border: 2px solid #c2185b;
-  border-radius: 0.625rem;
+  border-radius: var(--content-border-radius);
 }
 
 .withValidationError .combobox input {

@@ -109,7 +109,8 @@
     background-color: white;
     height: fit-content;
     width: calc(100vw * 0.8);
-    border-radius: 0 0.625rem 0.625rem 0.625rem;
+    border-radius: 0 var(--content-border-radius) var(--content-border-radius)
+      var(--content-border-radius);
     box-shadow: 0 0 0.5rem 0 grey;
     padding: 0;
 

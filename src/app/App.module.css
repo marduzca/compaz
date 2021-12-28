@@ -44,6 +44,6 @@
   .landscapeMessage img {
     height: auto;
     width: 40%;
-    border-radius: 0.625rem;
+    border-radius: var(--content-border-radius);
   }
 }
