@@ -7,6 +7,7 @@ import { useFirebase } from '../providers/FirebaseProvider';
 import { Route } from '../domain';
 import RouteDetailsViewContainer from './routes/routeDetails/RouteDetailsViewContainer';
 import LoadingPage from './loadingPage/LoadingPage';
+import MapContainer from './map/MapContainer';
 
 enum AppViewState {
   TRIP_SELECTOR,
@@ -83,7 +84,9 @@ const PageContent: React.FC<PageContentProps> = (props) => {
             {renderCurrentAppViewState()}
           </section>
           {currentAppViewState === AppViewState.ROUTE_DETAILS && (
-            <p className={styles.map}>MAP</p>
+            <div className={styles.map}>
+              <MapContainer />
+            </div>
           )}
         </>
       ) : (

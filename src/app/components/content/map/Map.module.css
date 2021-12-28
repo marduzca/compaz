@@ -1,7 +1,17 @@
 @import '../../../../variables.css';
 
 .container {
-  display: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+  width: 100%;
+}
+
+.map {
+  height: 100%;
+  width: 100%;
 }
 
 .loader {
@@ -23,14 +33,6 @@
 }
 
 @media only screen and (max-width: 480px) {
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    width: 100%;
-  }
-
   .map {
     height: 100%;
     width: 100%;
