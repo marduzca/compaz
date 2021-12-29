@@ -1,5 +1,4 @@
-/* eslint-disable */
-import React, { useState } from 'react';
+import React from 'react';
 import { GoogleMap, Marker, Polyline } from '@react-google-maps/api';
 import { useTranslation } from 'react-i18next';
 import stationIcon from '../../../static/img/station.svg';
@@ -20,7 +19,7 @@ const StationMarker: React.FC<StationMarkerProps> = (props) => (
     icon={{
       url: stationIcon,
       labelOrigin: {
-        x: 30,
+        x: 16,
         y: -15,
         equals: () =>
           // This is here only to make TypeScript happy, but won't have any use
@@ -30,8 +29,9 @@ const StationMarker: React.FC<StationMarkerProps> = (props) => (
     label={{
       text: props.name.toUpperCase(),
       fontWeight: '900',
-      fontSize: '16px',
+      fontSize: '15px',
       color: '#4f4f4f',
+      className: styles.markerLabel,
     }}
   />
 );
@@ -95,6 +95,60 @@ const Map: React.FC<MapProps> = (props) => {
   const LA_PAZ_CENTER = { lat: -16.494363149497282, lng: -68.1572941780699 };
   const DEFAULT_CONNECTOR_COLOR = '#FFFFFF';
 
+  const mapStyles = [
+    {
+      featureType: 'all',
+      elementType: 'all',
+      stylers: [
+        {
+          saturation: '32',
+        },
+        {
+          lightness: '-3',
+        },
+        {
+          visibility: 'on',
+        },
+        {
+          weight: '1.18',
+        },
+      ],
+    },
+    {
+      featureType: 'landscape.man_made',
+      elementType: 'all',
+      stylers: [
+        {
+          saturation: '-70',
+        },
+        {
+          lightness: '14',
+        },
+      ],
+    },
+    {
+      featureType: 'transit',
+      elementType: 'all',
+      stylers: [
+        {
+          visibility: 'off',
+        },
+      ],
+    },
+    {
+      featureType: 'water',
+      elementType: 'all',
+      stylers: [
+        {
+          saturation: '100',
+        },
+        {
+          lightness: '-14',
+        },
+      ],
+    },
+  ];
+
   return (
     <div className={styles.container}>
       {props.isLoaded ? (
@@ -103,7 +157,11 @@ const Map: React.FC<MapProps> = (props) => {
           zoom={12}
           mapContainerClassName={styles.map}
           clickableIcons={false}
-          options={{ disableDefaultUI: true, minZoom: 11 }}
+          options={{
+            disableDefaultUI: true,
+            minZoom: 11,
+            styles: mapStyles,
+          }}
           onLoad={props.onGoogleMapLoad}
         >
           {props.origin && (

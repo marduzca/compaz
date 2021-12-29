@@ -14,6 +14,13 @@
   width: 100%;
 }
 
+.markerLabel {
+  width: calc(100% + 0.5rem);
+
+  background-color: white;
+  border-radius: var(--content-border-radius);
+}
+
 .loader {
   border: 10px solid #f3f3f3;
   border-top: 10px solid var(--primary-color);
