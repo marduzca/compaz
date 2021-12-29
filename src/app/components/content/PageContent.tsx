@@ -96,7 +96,7 @@ const PageContent: React.FC<PageContentProps> = (props) => {
           </section>
           {currentAppViewState === AppViewState.ROUTE_DETAILS && (
             <div className={styles.detailsMap}>
-              <MapContainer />
+              <MapContainer route={route} />
             </div>
           )}
         </>

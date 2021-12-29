@@ -1,19 +1,18 @@
-import React from 'react';
+/* eslint-disable */
+import React, { useState } from 'react';
 import { GoogleMap, Marker, Polyline } from '@react-google-maps/api';
 import { useTranslation } from 'react-i18next';
 import stationIcon from '../../../static/img/station.svg';
 import styles from './Map.module.css';
-import { GeoLocation, Station } from '../../domain';
+import { GeoLocation, Route, Station } from '../../domain';
 
 interface StationMarkerProps {
-  id: string;
   name: string;
   geoLocation: GeoLocation;
 }
 
 const StationMarker: React.FC<StationMarkerProps> = (props) => (
   <Marker
-    key={props.id}
     position={{
       lat: props.geoLocation.latitude,
       lng: props.geoLocation.longitude,
@@ -38,43 +37,63 @@ const StationMarker: React.FC<StationMarkerProps> = (props) => (
 );
 
 interface StationsConnectorProps {
-  fromId: string;
   fromGeoLocation: GeoLocation;
-  toId: string;
   toGeoLocation: GeoLocation;
+  lineColor: string;
 }
 
 const StationsConnector: React.FC<StationsConnectorProps> = (props) => (
-  <Polyline
-    key={`line_${props.fromId}_to_${props.toId}`}
-    path={[
-      {
-        lat: props.fromGeoLocation.latitude,
-        lng: props.fromGeoLocation.longitude,
-      },
-      {
-        lat: props.toGeoLocation.latitude,
-        lng: props.toGeoLocation.longitude,
-      },
-    ]}
-    options={{
-      strokeColor: '#26C6DA',
-      strokeOpacity: 0.8,
-      strokeWeight: 4,
-    }}
-  />
+  <>
+    <Polyline
+      path={[
+        {
+          lat: props.fromGeoLocation.latitude,
+          lng: props.fromGeoLocation.longitude,
+        },
+        {
+          lat: props.toGeoLocation.latitude,
+          lng: props.toGeoLocation.longitude,
+        },
+      ]}
+      options={{
+        strokeColor: props.lineColor,
+        strokeWeight: 5,
+        zIndex: 2,
+      }}
+    />
+    <Polyline
+      path={[
+        {
+          lat: props.fromGeoLocation.latitude,
+          lng: props.fromGeoLocation.longitude,
+        },
+        {
+          lat: props.toGeoLocation.latitude,
+          lng: props.toGeoLocation.longitude,
+        },
+      ]}
+      options={{
+        strokeColor: '#000000',
+        strokeWeight: 7,
+        strokeOpacity: 0.8,
+        zIndex: 1,
+      }}
+    />
+  </>
 );
 
 interface MapProps {
   isLoaded: boolean;
   origin: Station | undefined;
   destination: Station | undefined;
+  route: Route | undefined;
   onGoogleMapLoad: (map: google.maps.Map) => void;
 }
 
 const Map: React.FC<MapProps> = (props) => {
   const { t } = useTranslation();
   const LA_PAZ_CENTER = { lat: -16.494363149497282, lng: -68.1572941780699 };
+  const DEFAULT_CONNECTOR_COLOR = '#FFFFFF';
 
   return (
     <div className={styles.container}>
@@ -89,26 +108,67 @@ const Map: React.FC<MapProps> = (props) => {
         >
           {props.origin && (
             <StationMarker
-              id={props.origin.id}
               name={props.origin.name}
               geoLocation={props.origin.geoLocation}
             />
           )}
           {props.destination && (
             <StationMarker
-              id={props.destination.id}
               name={props.destination.name}
               geoLocation={props.destination.geoLocation}
             />
           )}
-          {props.origin && props.destination && (
+          {props.origin && props.destination && !props.route && (
             <StationsConnector
-              fromId={props.origin.id}
               fromGeoLocation={props.origin.geoLocation}
-              toId={props.destination.id}
               toGeoLocation={props.destination.geoLocation}
+              lineColor={DEFAULT_CONNECTOR_COLOR}
             />
           )}
+
+          {props.route &&
+            props.route.subRoutes.map((subRoute) =>
+              subRoute.stationsPath.map((station, index) => {
+                if (index === subRoute.stationsPath.length - 1) {
+                  return null;
+                }
+
+                return (
+                  <div key={station.id}>
+                    <StationMarker
+                      name={station.name}
+                      geoLocation={station.geoLocation}
+                    />
+                  </div>
+                );
+              })
+            )}
+          {props.route &&
+            props.route.subRoutes.map((subRoute) =>
+              subRoute.stationsPath.map((station, index) => {
+                if (index === 0) {
+                  return null;
+                }
+
+                return (
+                  <div
+                    key={`line_${subRoute.stationsPath[index - 1].id}_to_${
+                      station.id
+                    }`}
+                  >
+                    <StationsConnector
+                      fromGeoLocation={
+                        subRoute.stationsPath[index - 1].geoLocation
+                      }
+                      toGeoLocation={station.geoLocation}
+                      lineColor={window
+                        .getComputedStyle(document.body)
+                        .getPropertyValue(`--teleferico-${subRoute.line}`)}
+                    />
+                  </div>
+                );
+              })
+            )}
         </GoogleMap>
       ) : (
         <span aria-label={t('LOADING_MAP')} className={styles.loader} />

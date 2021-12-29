@@ -13,6 +13,7 @@ export const loadingMobileState = () => (
     isLoaded={false}
     origin={undefined}
     destination={undefined}
+    route={undefined}
     onGoogleMapLoad={actions('onGoogleMapLoad').onGoogleMapLoad}
   />
 );
