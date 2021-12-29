@@ -3,12 +3,14 @@ import { useLoadScript } from '@react-google-maps/api';
 import Map from './Map';
 import { useNavigation } from '../../providers/NavigationProvider';
 import { Route } from '../../domain';
+import useMediaQuery from '../../useMediaQuery';
 
 interface MapContainerProps {
   route?: Route;
 }
 
 const MapContainer: React.FC<MapContainerProps> = (props) => {
+  const isMobile = useMediaQuery();
   const { origin, destination } = useNavigation();
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_MAPS_API_KEY || 'fake-key',
@@ -51,6 +53,10 @@ const MapContainer: React.FC<MapContainerProps> = (props) => {
       if (googleMap) {
         if (props.route) {
           googleMap.fitBounds(bounds);
+
+          if (!isMobile) {
+            googleMap.panBy(window.innerWidth * -0.1, 0);
+          }
         } else if (origin || destination) {
           googleMap.fitBounds(bounds);
         } else {
@@ -62,7 +68,7 @@ const MapContainer: React.FC<MapContainerProps> = (props) => {
     if (isLoaded) {
       fitBounds();
     }
-  }, [origin, destination, props.route, googleMap, isLoaded]);
+  }, [origin, destination, props.route, googleMap, isLoaded, isMobile]);
 
   return (
     <Map
