@@ -68,10 +68,15 @@ const PageContent: React.FC<PageContentProps> = (props) => {
         );
       default:
         return (
-          <TripSelectorContainer
-            onMenuButtonClick={props.onMenuButtonClick}
-            onSearchButtonClick={handleSearchButtonClick}
-          />
+          <div className={styles.tripSelectorContainer}>
+            <TripSelectorContainer
+              onMenuButtonClick={props.onMenuButtonClick}
+              onSearchButtonClick={handleSearchButtonClick}
+            />
+            <div className={styles.tripSelectorMap}>
+              <MapContainer />
+            </div>
+          </div>
         );
     }
   };
@@ -80,11 +85,17 @@ const PageContent: React.FC<PageContentProps> = (props) => {
     <main className={styles.content}>
       {stations.length && lines.length ? (
         <>
-          <section className={styles.container}>
+          <section
+            className={`${styles.container} ${
+              currentAppViewState === AppViewState.ROUTE_DETAILS
+                ? styles.containedHeight
+                : ''
+            }`}
+          >
             {renderCurrentAppViewState()}
           </section>
           {currentAppViewState === AppViewState.ROUTE_DETAILS && (
-            <div className={styles.map}>
+            <div className={styles.detailsMap}>
               <MapContainer />
             </div>
           )}

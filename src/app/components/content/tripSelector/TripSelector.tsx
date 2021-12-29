@@ -6,7 +6,6 @@ import { ReactComponent as LogoWhite } from '../../../static/img/logo_white.svg'
 import { ReactComponent as MenuIcon } from '../../../static/img/menu.svg';
 import StationsSelectorContainer from './stationsSelector/StationsSelectorContainer';
 import DateAndTimePickerContainer from './dateAndTimePicker/DateAndTimePickerContainer';
-import MapContainer from '../map/MapContainer';
 
 interface TripSelectorProps {
   onMenuButtonClick: () => void;
@@ -17,36 +16,33 @@ const TripSelector: React.FC<TripSelectorProps> = (props) => {
   const { t } = useTranslation();
 
   return (
-    <div className={styles.container}>
-      <div className={styles.tripSelector}>
-        <div className={styles.header}>
-          <button
-            title={t('GO_BACK_BUTTON')}
-            type="button"
-            className={styles.menuButton}
-            onClick={props.onMenuButtonClick}
-          >
-            <MenuIcon />
-          </button>
-          <div className={styles.logo}>
-            <LogoWhite />
-          </div>
-        </div>
-        <div className={styles.inputFields}>
-          <StationsSelectorContainer />
-          <DateAndTimePickerContainer />
-        </div>
+    <div className={styles.tripSelector}>
+      <div className={styles.header}>
         <button
+          title={t('GO_BACK_BUTTON')}
           type="button"
-          title={t('Content.TripSelector.SEARCH_BUTTON')}
-          className={styles.searchButton}
-          onClick={props.onSearchButtonClick}
+          className={styles.menuButton}
+          onClick={props.onMenuButtonClick}
         >
-          <p>{t('Content.TripSelector.SEARCH_BUTTON')}</p>
-          <SearchIcon />
+          <MenuIcon />
         </button>
+        <div className={styles.logo}>
+          <LogoWhite />
+        </div>
       </div>
-      <MapContainer />
+      <div className={styles.inputFields}>
+        <StationsSelectorContainer />
+        <DateAndTimePickerContainer />
+      </div>
+      <button
+        type="button"
+        title={t('Content.TripSelector.SEARCH_BUTTON')}
+        className={styles.searchButton}
+        onClick={props.onSearchButtonClick}
+      >
+        <p>{t('Content.TripSelector.SEARCH_BUTTON')}</p>
+        <SearchIcon />
+      </button>
     </div>
   );
 };
