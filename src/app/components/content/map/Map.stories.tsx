@@ -11,7 +11,8 @@ export default {
 export const loadingMobileState = () => (
   <Map
     isLoaded={false}
-    markers={[]}
+    origin={undefined}
+    destination={undefined}
     onGoogleMapLoad={actions('onGoogleMapLoad').onGoogleMapLoad}
   />
 );

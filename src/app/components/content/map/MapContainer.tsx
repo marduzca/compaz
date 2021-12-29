@@ -1,65 +1,60 @@
 import React, { useEffect, useState } from 'react';
 import { useLoadScript } from '@react-google-maps/api';
-import i18n from 'i18next';
 import Map from './Map';
 import { useNavigation } from '../../providers/NavigationProvider';
-import { Station } from '../../domain';
 
 const MapContainer: React.FC = () => {
   const { origin, destination } = useNavigation();
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_MAPS_API_KEY || 'fake-key',
-    language: i18n.language,
+    language: navigator.language,
     preventGoogleFontsLoading: true,
   });
 
   const [googleMap, setGoogleMap] = useState<google.maps.Map | undefined>(
     undefined
   );
-  const [markers, setMarkers] = useState<Station[]>([]);
-
-  useEffect(() => {
-    let newMarkers: Station[] = [];
-    if (markers.length < 2) {
-      newMarkers = [...markers];
-    }
-
-    if (origin && !newMarkers.includes(origin)) {
-      newMarkers.unshift(origin);
-    }
-
-    if (destination && !newMarkers.includes(destination)) {
-      newMarkers.push(destination);
-    }
-
-    setMarkers(newMarkers);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [origin, destination]);
 
   useEffect(() => {
     const fitBounds = () => {
       const bounds = new window.google.maps.LatLngBounds();
 
-      markers.forEach((marker) => {
+      if (origin) {
         bounds.extend({
-          lat: marker.geoLocation.latitude,
-          lng: marker.geoLocation.longitude,
+          lat: origin.geoLocation.latitude,
+          lng: origin.geoLocation.longitude,
         });
-      });
+      }
+      if (destination) {
+        bounds.extend({
+          lat: destination.geoLocation.latitude,
+          lng: destination.geoLocation.longitude,
+        });
+      }
 
       if (googleMap) {
-        googleMap.fitBounds(bounds);
+        if (origin || destination) {
+          googleMap.fitBounds(bounds);
+        } else {
+          googleMap.setZoom(12);
+        }
       }
     };
 
     if (isLoaded) {
       fitBounds();
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [markers]);
+  }, [origin, destination]);
 
   return (
-    <Map isLoaded={isLoaded} markers={markers} onGoogleMapLoad={setGoogleMap} />
+    <Map
+      isLoaded={isLoaded}
+      origin={origin}
+      destination={destination}
+      onGoogleMapLoad={setGoogleMap}
+    />
   );
 };
 
