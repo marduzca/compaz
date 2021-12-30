@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import MenuContainer from './MenuContainer';
 
@@ -9,13 +9,23 @@ describe('MenuContainer', () => {
       <MenuContainer showMenuOnMobile={false} onHideMobileMenu={() => {}} />
     );
 
-    expect(screen.getByRole('button', { name: 'home' })).toBeVisible();
+    const withinNavigation = within(screen.getByRole('banner'));
+
     expect(
-      screen.getByRole('button', { name: 'Menu.CHANGE_LANGUAGE' })
+      withinNavigation.getByRole('link', { name: 'Menu.GO_HOME' })
     ).toBeVisible();
-    expect(screen.getByText('Menu.HISTORY')).toBeVisible();
-    expect(screen.getByText('Menu.HOW_TO_INSTALL')).toBeVisible();
-    expect(screen.getByText('Menu.CONTACT')).toBeVisible();
+    expect(
+      withinNavigation.getByRole('link', { name: /Menu.HISTORY/ })
+    ).toBeVisible();
+    expect(
+      withinNavigation.getByRole('link', { name: /Menu.HOW_TO_INSTALL/ })
+    ).toBeVisible();
+    expect(
+      withinNavigation.getByRole('link', { name: /Menu.CONTACT/ })
+    ).toBeVisible();
+    expect(
+      withinNavigation.getByRole('button', { name: 'Menu.CHANGE_LANGUAGE' })
+    ).toBeVisible();
   });
 
   describe('when switching language', () => {

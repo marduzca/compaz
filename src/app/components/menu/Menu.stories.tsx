@@ -17,7 +17,6 @@ export default {
 export const normalState = () => (
   <Menu
     onLanguageChange={actions('onLanguageChange').onLanguageChange}
-    onLogoClick={actions('onLogoClick').onLogoClick}
     onHideMobileMenu={actions('onBackButtonClick').onBackButtonClick}
     showMenuOnMobile={false}
   />
@@ -27,7 +26,6 @@ export const mobileState = () =>
   guaranteedSize(
     <Menu
       onLanguageChange={actions('onLanguageChange').onLanguageChange}
-      onLogoClick={actions('onLogoClick').onLogoClick}
       onHideMobileMenu={actions('onBackButtonClick').onBackButtonClick}
       showMenuOnMobile
     />

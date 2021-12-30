@@ -21,17 +21,16 @@ interface HeaderItemProps {
 
 const HeaderItem: React.FC<HeaderItemProps> = (props) => (
   <li className={styles.headerLink}>
-    {/* eslint-disable-next-line @typescript-eslint/no-empty-function */}
-    <button type="button" onClick={() => {}} className={styles.headerItem}>
+    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+    <a href="" className={styles.headerItem}>
       <span className={styles.headerItemIcon}>{props.icon}</span>
       <span>{props.content}</span>
-    </button>
+    </a>
   </li>
 );
 
 interface HeaderProps {
   onLanguageChange: () => void;
-  onLogoClick: () => void;
   onHideMobileMenu: () => void;
   showMenuOnMobile: boolean;
 }
@@ -110,29 +109,29 @@ const Menu: React.FC<HeaderProps> = (props) => {
       <section className={styles.message}>
         {getMessageBasedOnTimeOfTheDay()}
       </section>
-      <button
-        title="home"
-        type="button"
-        className={styles.logo}
-        onClick={props.onLogoClick}
-      >
-        <LogoBlack />
-      </button>
-      <ul className={styles.headerItems}>
-        <HeaderItem content={t('Menu.HISTORY')} icon={<HistoryIcon />} />
-        <HeaderItem content={t('Menu.HOW_TO_INSTALL')} icon={<InstallIcon />} />
-        <HeaderItem content={t('Menu.CONTACT')} icon={<ContactIcon />} />
-        <li className={styles.languageSelector}>
-          <span>{t('Menu.LANGUAGE')}</span>
-          <button
-            title={t('Menu.CHANGE_LANGUAGE')}
-            type="button"
-            onClick={props.onLanguageChange}
-          >
-            {i18n.language.match(/en/i) ? <FlagBolivia /> : <FlagUSA />}
-          </button>
-        </li>
-      </ul>
+      <nav className={styles.navBar}>
+        <a href="./" title={t('Menu.GO_HOME')} className={styles.logo}>
+          <LogoBlack />
+        </a>
+        <ul className={styles.headerItems}>
+          <HeaderItem content={t('Menu.HISTORY')} icon={<HistoryIcon />} />
+          <HeaderItem
+            content={t('Menu.HOW_TO_INSTALL')}
+            icon={<InstallIcon />}
+          />
+          <HeaderItem content={t('Menu.CONTACT')} icon={<ContactIcon />} />
+          <li className={styles.languageSelector}>
+            <span>{t('Menu.LANGUAGE')}</span>
+            <button
+              title={t('Menu.CHANGE_LANGUAGE')}
+              type="button"
+              onClick={props.onLanguageChange}
+            >
+              {i18n.language.match(/en/i) ? <FlagBolivia /> : <FlagUSA />}
+            </button>
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 };
