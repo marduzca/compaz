@@ -3,7 +3,14 @@ import StationsSelector from './StationsSelector';
 import { useNavigation } from '../../../providers/NavigationProvider';
 import { useFirebase } from '../../../providers/FirebaseProvider';
 
-const StationsSelectorContainer: React.FC = () => {
+interface StationsSelectorContainerProps {
+  showOriginMissingError: boolean;
+  showDestinationMissingError: boolean;
+}
+
+const StationsSelectorContainer: React.FC<StationsSelectorContainerProps> = (
+  props
+) => {
   const { stations } = useFirebase();
   const {
     origin,
@@ -16,9 +23,9 @@ const StationsSelectorContainer: React.FC = () => {
   const [originInputValue, setOriginInputValue] = useState<string>('');
   const [destinationInputValue, setDestinationInputValue] =
     useState<string>('');
-  const [originValidationError, setOriginValidationError] =
+  const [showOriginValidationError, setShowOriginValidationError] =
     useState<boolean>(false);
-  const [destinationValidationError, setDestinationValidationError] =
+  const [showDestinationValidationError, setShowDestinationValidationError] =
     useState<boolean>(false);
 
   useEffect(() => {
@@ -38,7 +45,7 @@ const StationsSelectorContainer: React.FC = () => {
 
   const handleOriginChange = (newOrigin: string) => {
     setOriginInputValue(newOrigin);
-    setOriginValidationError(
+    setShowOriginValidationError(
       shouldShowValidationError(destination?.name, newOrigin)
     );
 
@@ -54,7 +61,7 @@ const StationsSelectorContainer: React.FC = () => {
 
   const handleDestinationChange = (newDestination: string) => {
     setDestinationInputValue(newDestination);
-    setDestinationValidationError(
+    setShowDestinationValidationError(
       shouldShowValidationError(origin?.name, newDestination)
     );
 
@@ -71,11 +78,11 @@ const StationsSelectorContainer: React.FC = () => {
   const handleClearButtonClick = (inputName: string) => {
     if (inputName === 'origin') {
       setOriginInputValue('');
-      setOriginValidationError(false);
+      setShowOriginValidationError(false);
       setOriginStation(undefined);
     } else {
       setDestinationInputValue('');
-      setDestinationValidationError(false);
+      setShowDestinationValidationError(false);
       setDestinationStation(undefined);
     }
   };
@@ -94,8 +101,10 @@ const StationsSelectorContainer: React.FC = () => {
       destinationInputValue={destinationInputValue}
       onOriginChange={handleOriginChange}
       onDestinationChange={handleDestinationChange}
-      originValidationError={originValidationError}
-      destinationValidationError={destinationValidationError}
+      showOriginValidationError={showOriginValidationError}
+      showDestinationValidationError={showDestinationValidationError}
+      showOriginMissingError={props.showOriginMissingError}
+      showDestinationMissingError={props.showDestinationMissingError}
       onSwitcherClick={handleSwitcherClick}
       stations={stations}
       onClearButtonClick={handleClearButtonClick}

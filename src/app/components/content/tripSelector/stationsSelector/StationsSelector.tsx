@@ -9,8 +9,10 @@ interface StationsSelectorProps {
   stations: Station[];
   originInputValue: string;
   destinationInputValue: string;
-  originValidationError: boolean;
-  destinationValidationError: boolean;
+  showOriginValidationError: boolean;
+  showDestinationValidationError: boolean;
+  showOriginMissingError: boolean;
+  showDestinationMissingError: boolean;
   onOriginChange: (newOrigin: string) => void;
   onDestinationChange: (newDestination: string) => void;
   onSwitcherClick: () => void;
@@ -25,8 +27,11 @@ const StationsSelector: React.FC<StationsSelectorProps> = (props) => {
       <Combobox
         name="origin"
         placeholder={`${t('Content.TripSelector.ORIGIN_PLACEHOLDER')}${
-          props.originValidationError
-            ? ` - ${t('Content.TripSelector.ERROR')}`
+          // eslint-disable-next-line no-nested-ternary
+          props.showOriginValidationError
+            ? ` - ${t('Content.TripSelector.ERROR_VALIDATION')}`
+            : props.showOriginMissingError && !props.originInputValue.length
+            ? ` ${t('Content.TripSelector.ERROR_ORIGIN_MISSING')}`
             : ''
         }`}
         options={props.stations
@@ -36,7 +41,10 @@ const StationsSelector: React.FC<StationsSelectorProps> = (props) => {
           )}
         inputValue={props.originInputValue}
         onChange={props.onOriginChange}
-        validationError={props.originValidationError}
+        validationError={
+          props.showOriginValidationError ||
+          (props.showOriginMissingError && !props.originInputValue.length)
+        }
         toggleButtonTitle={t('Content.TripSelector.TOGGLE_STATIONS')}
         clearButtonTitle={t('Content.TripSelector.CLEAR_INPUT')}
         onClearButtonClick={props.onClearButtonClick}
@@ -52,8 +60,12 @@ const StationsSelector: React.FC<StationsSelectorProps> = (props) => {
       <Combobox
         name="destination"
         placeholder={`${t('Content.TripSelector.DESTINATION_PLACEHOLDER')} ${
-          props.destinationValidationError
-            ? ` - ${t('Content.TripSelector.ERROR')}`
+          // eslint-disable-next-line no-nested-ternary
+          props.showDestinationValidationError
+            ? ` - ${t('Content.TripSelector.ERROR_VALIDATION')}`
+            : props.showDestinationMissingError &&
+              !props.destinationInputValue.length
+            ? ` ${t('Content.TripSelector.ERROR_DESTINATION_MISSING')}`
             : ''
         }`}
         options={props.stations
@@ -63,7 +75,11 @@ const StationsSelector: React.FC<StationsSelectorProps> = (props) => {
           )}
         inputValue={props.destinationInputValue}
         onChange={props.onDestinationChange}
-        validationError={props.destinationValidationError}
+        validationError={
+          props.showDestinationValidationError ||
+          (props.showDestinationMissingError &&
+            props.destinationInputValue.length === 0)
+        }
         toggleButtonTitle={t('Content.TripSelector.TOGGLE_STATIONS')}
         clearButtonTitle={t('Content.TripSelector.CLEAR_INPUT')}
         onClearButtonClick={props.onClearButtonClick}

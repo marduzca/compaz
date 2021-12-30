@@ -52,7 +52,12 @@ describe('StationsSelectorContainer', () => {
   });
 
   it('clears station input when clicking on the clear button', () => {
-    render(<StationsSelectorContainer />);
+    render(
+      <StationsSelectorContainer
+        showOriginMissingError={false}
+        showDestinationMissingError={false}
+      />
+    );
 
     userEvent.type(
       screen.getByRole('textbox', {
@@ -102,7 +107,12 @@ describe('StationsSelectorContainer', () => {
   });
 
   it('allows to select stations from the dropdown', () => {
-    render(<StationsSelectorContainer />);
+    render(
+      <StationsSelectorContainer
+        showOriginMissingError={false}
+        showDestinationMissingError={false}
+      />
+    );
 
     fireEvent.change(
       screen.getByRole('textbox', {
@@ -133,32 +143,6 @@ describe('StationsSelectorContainer', () => {
     ).toHaveValue(availableStations[1].name);
   });
 
-  it("shows an error when the current origin input doesn't correspond to any list item", () => {
-    render(<StationsSelectorContainer />);
-
-    userEvent.type(
-      screen.getByRole('textbox', {
-        name: 'Content.TripSelector.ORIGIN_PLACEHOLDER',
-      }),
-      'This is a non-existent station'
-    );
-
-    expect(screen.getByText(/Content.TripSelector.ERROR/)).toBeVisible();
-  });
-
-  it("shows an error when the current destination input doesn't correspond to any list item", () => {
-    render(<StationsSelectorContainer />);
-
-    userEvent.type(
-      screen.getByRole('textbox', {
-        name: 'Content.TripSelector.DESTINATION_PLACEHOLDER',
-      }),
-      'This is a non-existent station'
-    );
-
-    expect(screen.getByText(/Content.TripSelector.ERROR/)).toBeVisible();
-  });
-
   it('removes the station from the destination when chosen already as origin', () => {
     useNavigationMock.mockReturnValue({
       origin: availableStations[0],
@@ -173,7 +157,12 @@ describe('StationsSelectorContainer', () => {
       calculateRoute: () => ({ subRoutes: [], totalTime: 0 }),
     });
 
-    render(<StationsSelectorContainer />);
+    render(
+      <StationsSelectorContainer
+        showOriginMissingError={false}
+        showDestinationMissingError={false}
+      />
+    );
 
     fireEvent.change(
       screen.getByRole('textbox', {
@@ -186,7 +175,7 @@ describe('StationsSelectorContainer', () => {
 
     expect(
       screen.getByText(
-        'Content.TripSelector.DESTINATION_PLACEHOLDER - Content.TripSelector.ERROR'
+        'Content.TripSelector.DESTINATION_PLACEHOLDER - Content.TripSelector.ERROR_VALIDATION'
       )
     ).toBeVisible();
   });
@@ -205,7 +194,12 @@ describe('StationsSelectorContainer', () => {
       calculateRoute: () => ({ subRoutes: [], totalTime: 0 }),
     });
 
-    render(<StationsSelectorContainer />);
+    render(
+      <StationsSelectorContainer
+        showOriginMissingError={false}
+        showDestinationMissingError={false}
+      />
+    );
 
     fireEvent.change(
       screen.getByRole('textbox', {
@@ -218,13 +212,18 @@ describe('StationsSelectorContainer', () => {
 
     expect(
       screen.getByText(
-        'Content.TripSelector.ORIGIN_PLACEHOLDER - Content.TripSelector.ERROR'
+        'Content.TripSelector.ORIGIN_PLACEHOLDER - Content.TripSelector.ERROR_VALIDATION'
       )
     ).toBeVisible();
   });
 
   it('switches origin and destination content when clicking on switcher button', () => {
-    render(<StationsSelectorContainer />);
+    render(
+      <StationsSelectorContainer
+        showOriginMissingError={false}
+        showDestinationMissingError={false}
+      />
+    );
 
     fireEvent.change(
       screen.getByRole('textbox', {
@@ -259,5 +258,127 @@ describe('StationsSelectorContainer', () => {
         name: 'Content.TripSelector.DESTINATION_PLACEHOLDER',
       })
     ).toHaveValue(availableStations[0].name);
+  });
+
+  describe('errors', () => {
+    it("shows validation error when the current origin input doesn't correspond to any list item", () => {
+      render(
+        <StationsSelectorContainer
+          showOriginMissingError={false}
+          showDestinationMissingError={false}
+        />
+      );
+
+      userEvent.type(
+        screen.getByRole('textbox', {
+          name: 'Content.TripSelector.ORIGIN_PLACEHOLDER',
+        }),
+        'This is a non-existent station'
+      );
+
+      expect(
+        screen.getByRole('textbox', {
+          name: 'Content.TripSelector.ORIGIN_PLACEHOLDER - Content.TripSelector.ERROR_VALIDATION',
+        })
+      ).toBeVisible();
+    });
+
+    it("shows validation error when the current destination input doesn't correspond to any list item", () => {
+      render(
+        <StationsSelectorContainer
+          showOriginMissingError={false}
+          showDestinationMissingError={false}
+        />
+      );
+
+      userEvent.type(
+        screen.getByRole('textbox', {
+          name: 'Content.TripSelector.DESTINATION_PLACEHOLDER',
+        }),
+        'This is a non-existent station'
+      );
+
+      expect(screen.getByText(/Content.TripSelector.ERROR/)).toBeVisible();
+    });
+
+    it('shows validation error only when missing error is also set', () => {
+      render(
+        <StationsSelectorContainer
+          showOriginMissingError
+          showDestinationMissingError
+        />
+      );
+
+      userEvent.type(
+        screen.getByRole('textbox', {
+          name: /Content.TripSelector.ORIGIN_PLACEHOLDER/,
+        }),
+        'This is a non-existent station'
+      );
+
+      userEvent.type(
+        screen.getByRole('textbox', {
+          name: /Content.TripSelector.DESTINATION_PLACEHOLDER/,
+        }),
+        'This is a non-existent station'
+      );
+
+      expect(
+        screen.getByRole('textbox', {
+          name: 'Content.TripSelector.ORIGIN_PLACEHOLDER - Content.TripSelector.ERROR_VALIDATION',
+        })
+      ).toBeVisible();
+
+      expect(
+        screen.getByRole('textbox', {
+          name: 'Content.TripSelector.DESTINATION_PLACEHOLDER - Content.TripSelector.ERROR_VALIDATION',
+        })
+      ).toBeVisible();
+    });
+
+    it('show missing error only when input is empty', () => {
+      render(
+        <StationsSelectorContainer
+          showOriginMissingError
+          showDestinationMissingError
+        />
+      );
+
+      expect(
+        screen.getByRole('textbox', {
+          name: 'Content.TripSelector.ORIGIN_PLACEHOLDER Content.TripSelector.ERROR_ORIGIN_MISSING',
+        })
+      ).toBeVisible();
+      expect(
+        screen.getByRole('textbox', {
+          name: 'Content.TripSelector.DESTINATION_PLACEHOLDER Content.TripSelector.ERROR_DESTINATION_MISSING',
+        })
+      ).toBeVisible();
+
+      userEvent.type(
+        screen.getByRole('textbox', {
+          name: /Content.TripSelector.ORIGIN_PLACEHOLDER/,
+        }),
+        availableStations[0].name
+      );
+
+      userEvent.type(
+        screen.getByRole('textbox', {
+          name: /Content.TripSelector.DESTINATION_PLACEHOLDER/,
+        }),
+        availableStations[1].name
+      );
+
+      expect(
+        screen.queryByRole('textbox', {
+          name: 'Content.TripSelector.ORIGIN_PLACEHOLDER Content.TripSelector.ERROR_ORIGIN_MISSING',
+        })
+      ).toBeNull();
+      expect(
+        screen.queryByRole('textbox', {
+          name: 'Content.TripSelector.DESTINATION_PLACEHOLDER Content.TripSelector.ERROR_DESTINATION_MISSING',
+        })
+      ).toBeNull();
+    });
   });
 });

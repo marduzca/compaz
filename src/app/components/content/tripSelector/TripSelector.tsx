@@ -8,6 +8,8 @@ import StationsSelectorContainer from './stationsSelector/StationsSelectorContai
 import DateAndTimePickerContainer from './dateAndTimePicker/DateAndTimePickerContainer';
 
 interface TripSelectorProps {
+  showOriginMissingError: boolean;
+  showDestinationMissingError: boolean;
   onMenuButtonClick: () => void;
   onSearchButtonClick: () => void;
 }
@@ -31,7 +33,10 @@ const TripSelector: React.FC<TripSelectorProps> = (props) => {
         </div>
       </div>
       <div className={styles.inputFields}>
-        <StationsSelectorContainer />
+        <StationsSelectorContainer
+          showOriginMissingError={props.showOriginMissingError}
+          showDestinationMissingError={props.showDestinationMissingError}
+        />
         <DateAndTimePickerContainer />
       </div>
       <button

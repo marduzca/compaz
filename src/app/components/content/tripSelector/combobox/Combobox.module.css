@@ -42,15 +42,18 @@
 }
 
 .combobox > label {
-  top: 0;
   position: absolute;
-  padding-left: 0.625rem;
+  top: 0;
+  left: 0.625rem;
+
   transform: translate(0, 1rem) scale(1);
   transform-origin: top left;
   transition-property: transform, opacity, font-size;
   transition-duration: 0.2s;
   transition-timing-function: ease-out;
+
   pointer-events: none;
+
   color: rgb(82, 89, 92);
 }
 
@@ -84,6 +87,8 @@
 }
 
 .selected > label {
+  top: -0.25rem;
+
   font-size: 0.75rem;
   position: absolute;
   color: rgb(120, 126, 128);

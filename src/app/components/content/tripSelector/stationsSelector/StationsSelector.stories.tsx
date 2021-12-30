@@ -24,8 +24,10 @@ export const normalState = () =>
       stations={[]}
       originInputValue=""
       destinationInputValue=""
-      originValidationError={false}
-      destinationValidationError={false}
+      showOriginValidationError={false}
+      showDestinationValidationError={false}
+      showOriginMissingError={false}
+      showDestinationMissingError={false}
       onOriginChange={actions('onOriginChange').onOriginChange}
       onDestinationChange={actions('onDestinationChange').onDestinationChange}
       onSwitcherClick={actions('onSwitcherClick').onSwitcherClick}
@@ -39,8 +41,10 @@ export const withInputTextNormalState = () =>
       stations={[]}
       originInputValue="my origin"
       destinationInputValue="my destination"
-      originValidationError={false}
-      destinationValidationError={false}
+      showOriginValidationError={false}
+      showDestinationValidationError={false}
+      showOriginMissingError={false}
+      showDestinationMissingError={false}
       onOriginChange={actions('onOriginChange').onOriginChange}
       onDestinationChange={actions('onDestinationChange').onDestinationChange}
       onSwitcherClick={actions('onSwitcherClick').onSwitcherClick}
@@ -48,14 +52,33 @@ export const withInputTextNormalState = () =>
     />
   );
 
-export const withErrorNormalState = () =>
+export const withValidationErrorNormalState = () =>
   guaranteedSize(
     <StationsSelector
       stations={[]}
       originInputValue="a non-existent location"
       destinationInputValue="a non-existent location"
-      originValidationError
-      destinationValidationError
+      showOriginValidationError
+      showDestinationValidationError
+      showOriginMissingError={false}
+      showDestinationMissingError={false}
+      onOriginChange={actions('onOriginChange').onOriginChange}
+      onDestinationChange={actions('onDestinationChange').onDestinationChange}
+      onSwitcherClick={actions('onSwitcherClick').onSwitcherClick}
+      onClearButtonClick={actions('onClearButtonClick').onClearButtonClick}
+    />
+  );
+
+export const withMissingErrorNormalState = () =>
+  guaranteedSize(
+    <StationsSelector
+      stations={[]}
+      originInputValue=""
+      destinationInputValue=""
+      showOriginValidationError={false}
+      showDestinationValidationError={false}
+      showOriginMissingError
+      showDestinationMissingError
       onOriginChange={actions('onOriginChange').onOriginChange}
       onDestinationChange={actions('onDestinationChange').onDestinationChange}
       onSwitcherClick={actions('onSwitcherClick').onSwitcherClick}

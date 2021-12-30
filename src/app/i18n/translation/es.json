@@ -35,7 +35,9 @@
     "TripSelector": {
       "CLEAR_INPUT": "Borrar texto",
       "DESTINATION_PLACEHOLDER": "Destino",
-      "ERROR": "Estación no existente",
+      "ERROR_ORIGIN_MISSING": "es necesaria",
+      "ERROR_DESTINATION_MISSING": "es necesario",
+      "ERROR_VALIDATION": "Estación no existente",
       "ORIGIN_PLACEHOLDER": "Salida",
       "SEARCH_BUTTON": "Buscar",
       "STATIONS_SWITCHER": "Intercambiar estaciones",
