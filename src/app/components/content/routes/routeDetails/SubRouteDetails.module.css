@@ -83,6 +83,8 @@
   cursor: pointer;
   border: 0;
   outline: none;
+
+  color: black;
 }
 
 .intermediateStationsButton > svg {
