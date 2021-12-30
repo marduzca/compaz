@@ -1,25 +1,35 @@
 import React from 'react';
 import { GoogleMap, Marker, Polyline } from '@react-google-maps/api';
 import { useTranslation } from 'react-i18next';
-import stationIcon from '../../../static/img/station.svg';
+import stationMarker from '../../../static/img/station_marker.svg';
 import styles from './Map.module.css';
 import { GeoLocation, Route, Station } from '../../domain';
 
 interface StationMarkerProps {
   name: string;
   geoLocation: GeoLocation;
+  isMobile: boolean;
 }
 
 const StationMarker: React.FC<StationMarkerProps> = (props) => (
   <Marker
     position={{
-      lat: props.geoLocation.latitude,
+      lat: props.geoLocation.latitude - 0.00001, // To try to align marker with polyline
       lng: props.geoLocation.longitude,
     }}
     icon={{
-      url: stationIcon,
+      url: stationMarker,
+      scaledSize: props.isMobile
+        ? {
+            height: 40,
+            width: 40,
+            equals: () =>
+              // This is here only to make TypeScript happy, but won't have any use
+              true,
+          }
+        : undefined,
       labelOrigin: {
-        x: 16,
+        x: props.isMobile ? 17 : 21,
         y: -15,
         equals: () =>
           // This is here only to make TypeScript happy, but won't have any use
@@ -29,7 +39,7 @@ const StationMarker: React.FC<StationMarkerProps> = (props) => (
     label={{
       text: props.name.toUpperCase(),
       fontWeight: '900',
-      fontSize: '15px',
+      fontSize: '1rem',
       color: '#4f4f4f',
       className: styles.markerLabel,
     }}
@@ -87,6 +97,7 @@ interface MapProps {
   origin: Station | undefined;
   destination: Station | undefined;
   route: Route | undefined;
+  isMobile: boolean;
   onGoogleMapLoad: (map: google.maps.Map) => void;
 }
 
@@ -168,12 +179,14 @@ const Map: React.FC<MapProps> = (props) => {
             <StationMarker
               name={props.origin.name}
               geoLocation={props.origin.geoLocation}
+              isMobile={props.isMobile}
             />
           )}
           {props.destination && (
             <StationMarker
               name={props.destination.name}
               geoLocation={props.destination.geoLocation}
+              isMobile={props.isMobile}
             />
           )}
           {props.origin && props.destination && !props.route && (
@@ -196,6 +209,7 @@ const Map: React.FC<MapProps> = (props) => {
                     <StationMarker
                       name={station.name}
                       geoLocation={station.geoLocation}
+                      isMobile={props.isMobile}
                     />
                   </div>
                 );

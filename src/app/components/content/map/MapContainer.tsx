@@ -76,6 +76,7 @@ const MapContainer: React.FC<MapContainerProps> = (props) => {
       origin={origin}
       destination={destination}
       route={props.route}
+      isMobile={isMobile}
       onGoogleMapLoad={setGoogleMap}
     />
   );
