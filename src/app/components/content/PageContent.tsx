@@ -85,13 +85,7 @@ const PageContent: React.FC<PageContentProps> = (props) => {
     <main className={styles.content}>
       {stations.length && lines.length ? (
         <>
-          <section
-            className={`${styles.container} ${
-              currentAppViewState === AppViewState.ROUTE_DETAILS
-                ? styles.containedHeight
-                : ''
-            }`}
-          >
+          <section className={styles.container}>
             {renderCurrentAppViewState()}
           </section>
           {currentAppViewState === AppViewState.ROUTE_DETAILS && (

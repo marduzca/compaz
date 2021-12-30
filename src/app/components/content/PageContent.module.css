@@ -12,8 +12,6 @@
 }
 
 .container {
-  z-index: 1;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,6 +21,8 @@
 
   border-radius: var(--content-border-radius);
   box-shadow: 0 0 0.5rem 0 grey;
+
+  overflow: hidden;
 }
 
 .tripSelectorContainer {
@@ -55,10 +55,6 @@
     margin: 0;
 
     border-radius: 0;
-  }
-
-  .containedHeight {
-    height: fit-content;
   }
 
   .tripSelectorContainer {
