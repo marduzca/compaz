@@ -137,7 +137,7 @@ const RouteDetailsView: React.FC<RouteDetailsViewProps> = (props) => (
           handleComponent={{
             top: <ResizeIcon />,
           }}
-          handleClasses={{ top: styles.resizeIcon }}
+          handleClasses={{ top: styles.resizeArea }}
           bounds="window"
           boundsByDirection
         >

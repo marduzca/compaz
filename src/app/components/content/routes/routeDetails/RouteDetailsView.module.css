@@ -129,14 +129,18 @@
     min-height: calc(var(--route-details-bar-height) + 0.5rem);
   }
 
-  .resizeIcon {
+  .backButton {
+    z-index: 2;
+  }
+
+  .resizeArea {
     display: flex;
     justify-content: center;
 
-    height: fit-content !important;
+    height: calc(var(--route-details-bar-height) + 0.75rem) !important;
   }
 
-  .resizeIcon > svg {
+  .resizeArea > svg {
     width: 2.5rem;
     height: 2.5rem;
   }
