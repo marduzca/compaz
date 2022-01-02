@@ -5,11 +5,12 @@
   flex-direction: column;
   justify-content: space-between;
 
-  border-radius: inherit;
-  background-color: var(--primary-color);
   height: 100%;
   width: 22.75rem;
   padding: 3.125rem 1.25rem;
+
+  border-radius: inherit;
+  background-color: var(--primary-color);
 }
 
 .header {

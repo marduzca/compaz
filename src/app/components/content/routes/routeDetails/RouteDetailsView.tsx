@@ -122,7 +122,7 @@ const RouteDetailsView: React.FC<RouteDetailsViewProps> = (props) => (
           className={styles.resizableBox}
           defaultSize={{
             width: '100%',
-            height: '80vh',
+            height: `${window.innerHeight * 0.8}px`,
           }}
           enable={{
             top: true,

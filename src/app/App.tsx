@@ -24,7 +24,7 @@ const LandscapeErrorMessage = () => {
 const App = () => {
   const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
 
-  const initialHeight = window.outerHeight;
+  const initialHeight = window.innerHeight;
 
   const adjustViewportHeight = () => {
     const metaViewport = document.querySelector('meta[name=viewport]');
@@ -38,7 +38,7 @@ const App = () => {
   };
 
   const debouncedEventHandler = useMemo(
-    () => debounce(adjustViewportHeight, 100),
+    () => debounce(adjustViewportHeight, 75),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
