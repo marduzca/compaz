@@ -2,7 +2,7 @@ import {
   addMinutesToDate,
   parseToSimpleDate,
   parseToEnglishDateString,
-  parseToSpanishDate,
+  parseToSpanishDateString,
   parseToSimpleTime,
   reduceMinutesToDate,
   isWeekday,
@@ -37,7 +37,7 @@ describe('dateFormatter', () => {
 
   describe('spanish', () => {
     it('parses a date to spanish long format correctly', () => {
-      const dateInLongFormat = parseToSpanishDate(
+      const dateInLongFormat = parseToSpanishDateString(
         new Date('2021-09-24 17:30'),
         false
       );
@@ -46,7 +46,7 @@ describe('dateFormatter', () => {
     });
 
     it('parses a date to spanish short format correctly', () => {
-      const dateInLongFormat = parseToSpanishDate(
+      const dateInLongFormat = parseToSpanishDateString(
         new Date('2021-09-24 17:30'),
         true
       );
@@ -55,7 +55,7 @@ describe('dateFormatter', () => {
     });
 
     it('adds spanish today indicator if given date is today', () => {
-      const dateInLongFormat = parseToSpanishDate(new Date(), false);
+      const dateInLongFormat = parseToSpanishDateString(new Date(), false);
 
       expect(dateInLongFormat).toContain('Hoy, ');
     });

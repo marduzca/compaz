@@ -9,7 +9,7 @@ import {
   addMinutesToDate,
   parseToEnglishDateString,
   parseToSimpleTime,
-  parseToSpanishDate,
+  parseToSpanishDateString,
 } from '../../dateFormatter';
 import i18n from '../../../../i18n/instance';
 import IconsRoute from '../shared/IconsRoute';
@@ -87,7 +87,7 @@ const RoutesOverview: React.FC<RoutesOverviewProps> = (props) => {
         <span>
           {i18n.language.match(/en/i)
             ? parseToEnglishDateString(props.dateAndTime, false)
-            : parseToSpanishDate(props.dateAndTime, false)}
+            : parseToSpanishDateString(props.dateAndTime, false)}
         </span>
       </header>
       <div className={styles.routesOverview}>

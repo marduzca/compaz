@@ -31,11 +31,11 @@ export const parseToEnglishDateString = (
   return `${todayIndicator}${weekday} ${dayOfMonth} ${month}`;
 };
 
-export const parseToSpanishDate = (
+export const parseToSpanishDateString = (
   date: Date,
   shortFormat: boolean
 ): string => {
-  const todayIndicator = isToday(date) ? 'Hoy, ' : '';
+  const todayIndicator = isToday(date) && !shortFormat ? 'Hoy, ' : '';
 
   const weekday = new Intl.DateTimeFormat('es', {
     weekday: shortFormat ? 'short' : 'long',

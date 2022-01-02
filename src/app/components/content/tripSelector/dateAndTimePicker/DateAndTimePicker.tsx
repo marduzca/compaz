@@ -6,7 +6,9 @@ import { ReactComponent as TimeIcon } from '../../../../static/img/time_picker.s
 import {
   parseToEnglishDateString,
   parseToSimpleTime,
+  parseToSpanishDateString,
 } from '../../dateFormatter';
+import i18n from '../../../../i18n/instance';
 
 interface DateAndTimePickerProps {
   departureDate: string;
@@ -63,12 +65,19 @@ const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => {
           <div className={styles.date}>
             <CalendarIcon />
             <span>
-              {parseToEnglishDateString(
-                props.departureDate
-                  ? new Date(`${props.departureDate}T12:00:00.000Z`)
-                  : new Date(),
-                true
-              )}
+              {i18n.language.match(/en/i)
+                ? parseToEnglishDateString(
+                    props.departureDate
+                      ? new Date(`${props.departureDate}T12:00:00.000Z`)
+                      : new Date(),
+                    true
+                  )
+                : parseToSpanishDateString(
+                    props.departureDate
+                      ? new Date(`${props.departureDate}T12:00:00.000Z`)
+                      : new Date(),
+                    true
+                  )}
             </span>
           </div>
           <div className={styles.time}>
