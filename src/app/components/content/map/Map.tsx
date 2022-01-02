@@ -13,6 +13,7 @@ interface StationMarkerProps {
   isMobile: boolean;
   isOrigin?: boolean;
   isDestination?: boolean;
+  isIntermediateStation: boolean;
 }
 
 const StationMarker: React.FC<StationMarkerProps> = (props) => {
@@ -31,7 +32,7 @@ const StationMarker: React.FC<StationMarkerProps> = (props) => {
   return (
     <Marker
       position={{
-        lat: props.geoLocation.latitude - 0.00001, // To try to align marker with polyline
+        lat: props.geoLocation.latitude,
         lng: props.geoLocation.longitude,
       }}
       icon={{
@@ -53,13 +54,17 @@ const StationMarker: React.FC<StationMarkerProps> = (props) => {
             true,
         },
       }}
-      label={{
-        text: props.name.toUpperCase(),
-        fontWeight: '900',
-        fontSize: '1rem',
-        color: '#4f4f4f',
-        className: styles.markerLabel,
-      }}
+      label={
+        !props.isIntermediateStation
+          ? {
+              text: props.name.toUpperCase(),
+              fontWeight: '900',
+              fontSize: '1rem',
+              color: '#4f4f4f',
+              className: styles.markerLabel,
+            }
+          : undefined
+      }
     />
   );
 };
@@ -73,6 +78,8 @@ interface StationsConnectorProps {
   fromGeoLocation: GeoLocation;
   toGeoLocation: GeoLocation;
   lineColor: string;
+  positionInRoute: number;
+  isIntermediatePath: boolean;
 }
 
 const StationsConnector: React.FC<StationsConnectorProps> = (props) => (
@@ -91,7 +98,22 @@ const StationsConnector: React.FC<StationsConnectorProps> = (props) => (
       options={{
         strokeColor: props.lineColor,
         strokeWeight: 5,
-        zIndex: 2,
+        zIndex: 100 - props.positionInRoute,
+        icons: props.isIntermediatePath
+          ? [
+              {
+                icon: {
+                  path: google.maps.SymbolPath.CIRCLE,
+                  scale: 7,
+                  fillColor: '#FFFFFF',
+                  fillOpacity: 1.0,
+                  strokeColor: '#000000',
+                  strokeOpacity: 1.0,
+                  strokeWeight: 2,
+                },
+              },
+            ]
+          : undefined,
       }}
     />
     <Polyline
@@ -203,6 +225,7 @@ const Map: React.FC<MapProps> = (props) => {
               name={props.origin.name}
               geoLocation={props.origin.geoLocation}
               isMobile={props.isMobile}
+              isIntermediateStation={false}
               isOrigin
             />
           )}
@@ -211,11 +234,14 @@ const Map: React.FC<MapProps> = (props) => {
               name={props.destination.name}
               geoLocation={props.destination.geoLocation}
               isMobile={props.isMobile}
+              isIntermediateStation={false}
               isDestination
             />
           )}
           {props.origin && props.destination && !props.route && (
             <StationsConnector
+              positionInRoute={0}
+              isIntermediatePath={false}
               fromGeoLocation={props.origin.geoLocation}
               toGeoLocation={props.destination.geoLocation}
               lineColor={DEFAULT_CONNECTOR_COLOR}
@@ -228,6 +254,7 @@ const Map: React.FC<MapProps> = (props) => {
                 if (
                   station.id === props.origin?.id ||
                   station.id === props.destination?.id ||
+                  (index > 0 && index < subRoute.stationsPath.length - 1) ||
                   index === subRoute.stationsPath.length - 1
                 ) {
                   return null;
@@ -239,6 +266,9 @@ const Map: React.FC<MapProps> = (props) => {
                       name={station.name}
                       geoLocation={station.geoLocation}
                       isMobile={props.isMobile}
+                      isIntermediateStation={
+                        index > 0 && index < subRoute.stationsPath.length - 1
+                      }
                     />
                   </div>
                 );
@@ -258,6 +288,10 @@ const Map: React.FC<MapProps> = (props) => {
                     }`}
                   >
                     <StationsConnector
+                      positionInRoute={index}
+                      isIntermediatePath={
+                        index > 0 && index < subRoute.stationsPath.length - 1
+                      }
                       fromGeoLocation={
                         subRoute.stationsPath[index - 1].geoLocation
                       }
