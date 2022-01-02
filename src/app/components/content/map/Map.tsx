@@ -2,6 +2,8 @@ import React from 'react';
 import { GoogleMap, Marker, Polyline } from '@react-google-maps/api';
 import { useTranslation } from 'react-i18next';
 import stationMarker from '../../../static/img/station_marker.svg';
+import originMarker from '../../../static/img/origin_marker.svg';
+import destinationMarker from '../../../static/img/destination_marker.svg';
 import styles from './Map.module.css';
 import { GeoLocation, Route, Station } from '../../domain';
 
@@ -9,42 +11,63 @@ interface StationMarkerProps {
   name: string;
   geoLocation: GeoLocation;
   isMobile: boolean;
+  isOrigin?: boolean;
+  isDestination?: boolean;
 }
 
-const StationMarker: React.FC<StationMarkerProps> = (props) => (
-  <Marker
-    position={{
-      lat: props.geoLocation.latitude - 0.00001, // To try to align marker with polyline
-      lng: props.geoLocation.longitude,
-    }}
-    icon={{
-      url: stationMarker,
-      scaledSize: props.isMobile
-        ? {
-            height: 40,
-            width: 40,
-            equals: () =>
-              // This is here only to make TypeScript happy, but won't have any use
-              true,
-          }
-        : undefined,
-      labelOrigin: {
-        x: props.isMobile ? 17 : 21,
-        y: -15,
-        equals: () =>
-          // This is here only to make TypeScript happy, but won't have any use
-          true,
-      },
-    }}
-    label={{
-      text: props.name.toUpperCase(),
-      fontWeight: '900',
-      fontSize: '1rem',
-      color: '#4f4f4f',
-      className: styles.markerLabel,
-    }}
-  />
-);
+const StationMarker: React.FC<StationMarkerProps> = (props) => {
+  const getCorrespondingMarker = () => {
+    if (props.isOrigin) {
+      return originMarker;
+    }
+
+    if (props.isDestination) {
+      return destinationMarker;
+    }
+
+    return stationMarker;
+  };
+
+  return (
+    <Marker
+      position={{
+        lat: props.geoLocation.latitude - 0.00001, // To try to align marker with polyline
+        lng: props.geoLocation.longitude,
+      }}
+      icon={{
+        url: getCorrespondingMarker(),
+        scaledSize: props.isMobile
+          ? {
+              height: 40,
+              width: 40,
+              equals: () =>
+                // This is here only to make TypeScript happy, but won't have any use
+                true,
+            }
+          : undefined,
+        labelOrigin: {
+          x: props.isMobile ? 17 : 21,
+          y: -15,
+          equals: () =>
+            // This is here only to make TypeScript happy, but won't have any use
+            true,
+        },
+      }}
+      label={{
+        text: props.name.toUpperCase(),
+        fontWeight: '900',
+        fontSize: '1rem',
+        color: '#4f4f4f',
+        className: styles.markerLabel,
+      }}
+    />
+  );
+};
+
+StationMarker.defaultProps = {
+  isOrigin: false,
+  isDestination: false,
+};
 
 interface StationsConnectorProps {
   fromGeoLocation: GeoLocation;
@@ -180,6 +203,7 @@ const Map: React.FC<MapProps> = (props) => {
               name={props.origin.name}
               geoLocation={props.origin.geoLocation}
               isMobile={props.isMobile}
+              isOrigin
             />
           )}
           {props.destination && (
@@ -187,6 +211,7 @@ const Map: React.FC<MapProps> = (props) => {
               name={props.destination.name}
               geoLocation={props.destination.geoLocation}
               isMobile={props.isMobile}
+              isDestination
             />
           )}
           {props.origin && props.destination && !props.route && (
@@ -200,7 +225,11 @@ const Map: React.FC<MapProps> = (props) => {
           {props.route &&
             props.route.subRoutes.map((subRoute) =>
               subRoute.stationsPath.map((station, index) => {
-                if (index === subRoute.stationsPath.length - 1) {
+                if (
+                  station.id === props.origin?.id ||
+                  station.id === props.destination?.id ||
+                  index === subRoute.stationsPath.length - 1
+                ) {
                   return null;
                 }
 
