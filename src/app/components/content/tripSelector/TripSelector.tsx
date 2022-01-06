@@ -18,7 +18,7 @@ const TripSelector: React.FC<TripSelectorProps> = (props) => {
   const { t } = useTranslation();
 
   return (
-    <div className={styles.tripSelector}>
+    <section className={styles.tripSelector}>
       <div className={styles.header}>
         <button
           title={t('GO_BACK_BUTTON')}
@@ -48,7 +48,7 @@ const TripSelector: React.FC<TripSelectorProps> = (props) => {
         <p>{t('Content.TripSelector.SEARCH_BUTTON')}</p>
         <SearchIcon />
       </button>
-    </div>
+    </section>
   );
 };
 

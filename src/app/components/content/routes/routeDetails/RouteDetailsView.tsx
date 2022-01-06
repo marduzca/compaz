@@ -115,48 +115,32 @@ interface RouteDetailsViewProps {
 }
 
 const RouteDetailsView: React.FC<RouteDetailsViewProps> = (props) => (
-  <>
-    <section className={styles.routeDetailsContainer}>
-      {props.isMobile ? (
-        <Resizable
-          className={styles.resizableBox}
-          defaultSize={{
-            width: '100%',
-            height: `${window.innerHeight * 0.8}px`,
-          }}
-          enable={{
-            top: true,
-            right: false,
-            bottom: false,
-            left: false,
-            topRight: false,
-            bottomRight: false,
-            bottomLeft: false,
-            topLeft: false,
-          }}
-          handleComponent={{
-            top: <ResizeIcon />,
-          }}
-          handleClasses={{ top: styles.resizeArea }}
-          bounds="window"
-          boundsByDirection
-        >
-          <div style={{ height: '100%' }}>
-            <DetailsContentBox
-              route={props.route}
-              departureTime={props.departureTime}
-              linesWithOpenIntermediateStations={
-                props.linesWithOpenIntermediateStations
-              }
-              onIntermediateStationsButtonClick={
-                props.onIntermediateStationsButtonClick
-              }
-              onBackButtonClick={props.onBackButtonClick}
-            />
-          </div>
-        </Resizable>
-      ) : (
-        <>
+  <section className={styles.routeDetailsContainer}>
+    {props.isMobile ? (
+      <Resizable
+        className={styles.resizableBox}
+        defaultSize={{
+          width: '100%',
+          height: `${window.innerHeight * 0.8}px`,
+        }}
+        enable={{
+          top: true,
+          right: false,
+          bottom: false,
+          left: false,
+          topRight: false,
+          bottomRight: false,
+          bottomLeft: false,
+          topLeft: false,
+        }}
+        handleComponent={{
+          top: <ResizeIcon />,
+        }}
+        handleClasses={{ top: styles.resizeArea }}
+        bounds="window"
+        boundsByDirection
+      >
+        <div style={{ height: '100%' }}>
           <DetailsContentBox
             route={props.route}
             departureTime={props.departureTime}
@@ -168,10 +152,24 @@ const RouteDetailsView: React.FC<RouteDetailsViewProps> = (props) => (
             }
             onBackButtonClick={props.onBackButtonClick}
           />
-        </>
-      )}
-    </section>
-  </>
+        </div>
+      </Resizable>
+    ) : (
+      <>
+        <DetailsContentBox
+          route={props.route}
+          departureTime={props.departureTime}
+          linesWithOpenIntermediateStations={
+            props.linesWithOpenIntermediateStations
+          }
+          onIntermediateStationsButtonClick={
+            props.onIntermediateStationsButtonClick
+          }
+          onBackButtonClick={props.onBackButtonClick}
+        />
+      </>
+    )}
+  </section>
 );
 
 export default RouteDetailsView;

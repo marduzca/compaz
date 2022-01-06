@@ -69,7 +69,7 @@ const RoutesOverview: React.FC<RoutesOverviewProps> = (props) => {
   const { t } = useTranslation();
 
   return (
-    <div className={styles.routesOverviewContainer}>
+    <section className={styles.routesOverviewContainer}>
       <header className={styles.header}>
         <div className={styles.headerTop}>
           <button
@@ -118,7 +118,7 @@ const RoutesOverview: React.FC<RoutesOverviewProps> = (props) => {
           <span>{t('Content.RoutesOverview.LATER_BUTTON')}</span>
         </button>
       </div>
-    </div>
+    </section>
   );
 };
 
