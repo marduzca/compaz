@@ -5,7 +5,7 @@
   flex-direction: column;
 
   height: 100%;
-  width: 22.75rem;
+  width: 100%;
 
   border-radius: inherit;
   background-color: white;
@@ -14,11 +14,9 @@
 .header {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 0.5rem;
+  gap: 1rem;
 
-  height: 20%;
+  height: auto;
   width: 100%;
   padding: 1rem;
 
@@ -143,13 +141,9 @@
 }
 
 @media only screen and (max-width: 480px) {
-  .routesOverviewContainer {
-    width: 100%;
-  }
-
   .header {
     border-radius: 0;
-    gap: 1rem;
+    gap: 1.5rem;
   }
 
   .adjustTimeButton {
