@@ -69,6 +69,7 @@
     "NIGHT_MESSAGE": "Buenas noches\nLa Paz"
   },
   "Notification": {
+    "CLOSE": "Cerrar notificación",
     "ERROR": "Error",
     "GENERAL_ERROR_MESSAGE": "Algo salió mal. Por favor vuelve a cargar la página e inténtalo de nuevo.",
     "INFO": "Información",

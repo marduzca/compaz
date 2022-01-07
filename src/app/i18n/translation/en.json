@@ -69,6 +69,7 @@
     "NIGHT_MESSAGE": "Good night\nLa Paz"
   },
   "Notification": {
+    "CLOSE": "Close notification",
     "ERROR": "Error",
     "GENERAL_ERROR_MESSAGE": "Something went wrong. Please refresh the page and try again.",
     "INFO": "Information",

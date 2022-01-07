@@ -71,6 +71,7 @@ const Notification: React.FC<NotificationProps> = (props) => {
       </p>
       <button
         type="button"
+        title={t('Notification.CLOSE')}
         className={styles.closeButton}
         onClick={props.onCloseButtonClick}
       >
