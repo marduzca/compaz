@@ -159,8 +159,8 @@
   cursor: pointer;
 }
 
-.nowButton:focus,
-.selectButton:focus {
+.nowButton:focus-visible,
+.selectButton:focus-visible {
   outline: var(--focus-outline-light-background) !important;
   outline-offset: var(--focus-outline-offset);
 }

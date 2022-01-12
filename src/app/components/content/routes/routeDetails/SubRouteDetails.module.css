@@ -129,8 +129,8 @@
   line-height: 1.25rem;
 }
 
-.subRouteInfoStation:focus,
-.destinationStation:focus {
+.subRouteInfoStation:focus-visible,
+.destinationStation:focus-visible {
   outline: var(--focus-outline-light-background);
   outline-offset: var(--focus-outline-offset);
 }

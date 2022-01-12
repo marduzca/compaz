@@ -109,12 +109,12 @@
   background-color: #bdbdbd;
 }
 
-.routeDetails button:focus {
+.routeDetails button:focus-visible {
   outline: var(--focus-outline-light-background);
   outline-offset: var(--focus-outline-offset);
 }
 
-.backButton:focus {
+.backButton:focus-visible {
   outline: var(--focus-outline-light-background);
 }
 

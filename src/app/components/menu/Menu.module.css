@@ -81,17 +81,18 @@
   display: none;
 }
 
-.languageSelector > button:focus,
-.logo:focus {
+.languageSelector > button:focus-visible,
+.logo:focus-visible {
   outline: var(--focus-outline-light-background) !important;
+  outline-offset: var(--focus-outline-offset);
 }
 
-.headerItem:focus {
+.headerItem:focus-visible {
   outline: none;
 }
 
 .headerItem:hover:after,
-.headerItem:focus:after {
+.headerItem:focus-visible:after {
   transform: scale(1, 1);
 }
 

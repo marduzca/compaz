@@ -80,8 +80,8 @@
   fill: white;
 }
 
-.container a:focus,
-.closeButton:focus {
+.container a:focus-visible,
+.closeButton:focus-visible {
   outline: var(--focus-outline-dark-background);
 }
 

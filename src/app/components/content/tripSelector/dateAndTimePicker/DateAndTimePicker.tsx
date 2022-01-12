@@ -58,6 +58,7 @@ const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => {
       <div className={styles.dateAndTimePickerContainer}>
         <button
           type="button"
+          aria-label={t('Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON')}
           title={t('Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON')}
           className={styles.dateAndTimePickerButton}
           onClick={props.onDateAndTimeButtonClick}

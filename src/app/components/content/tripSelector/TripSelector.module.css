@@ -44,7 +44,7 @@
   display: none;
 }
 
-.tripSelector button:focus {
+.tripSelector button:focus-visible {
   outline: var(--focus-outline-dark-background);
   outline-offset: var(--focus-outline-offset);
 }
@@ -113,7 +113,7 @@
     fill: white;
   }
 
-  .searchButton:focus {
+  .searchButton:focus-visible {
     outline: var(--focus-outline-light-background) !important;
   }
 }

@@ -137,12 +137,12 @@
   margin-top: 0.5rem;
 }
 
-.backButton:focus {
+.backButton:focus-visible {
   outline: var(--focus-outline-dark-background);
 }
 
-.singleRouteOverview:focus,
-.adjustTimeButton:focus {
+.singleRouteOverview:focus-visible,
+.adjustTimeButton:focus-visible {
   outline: var(--focus-outline-light-background);
   background-color: #e0e0e0;
 }

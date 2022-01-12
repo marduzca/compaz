@@ -34,7 +34,7 @@ const SingleRoute: React.FC<SingleRouteProps> = (props) => {
       {props.route.subRoutes.length > 0 && (
         <button
           type="button"
-          title={`${t(
+          aria-label={`${t(
             'Content.RoutesOverview.SINGLE_ROUTE_BUTTON_TITLE'
           )} ${routeClockTime}`}
           className={styles.singleRouteOverview}
