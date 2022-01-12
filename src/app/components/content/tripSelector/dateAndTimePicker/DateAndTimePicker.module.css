@@ -17,14 +17,13 @@
 
   border: 0;
   cursor: pointer;
-  outline: none;
 
   font-size: 1rem;
   font-weight: 500;
   color: black;
 }
 
-.dateAndTimePickerButton:is(:hover, :focus) {
+.dateAndTimePickerButton:hover {
   background-color: #bdbdbd;
 }
 
@@ -144,7 +143,6 @@
   color: var(--primary-color);
 
   cursor: pointer;
-  outline: none;
   background: none;
 }
 
@@ -159,12 +157,16 @@
 
   border: 0;
   cursor: pointer;
-  outline: none;
+}
+
+.nowButton:focus,
+.selectButton:focus {
+  outline: var(--focus-outline-light-background) !important;
+  outline-offset: var(--focus-outline-offset);
 }
 
 @media only screen and (max-width: 480px) {
-  .dateAndTimePickerButton:hover,
-  .dateAndTimePickerButton:focus {
+  .dateAndTimePickerButton:hover {
     background-color: #f2f2f2;
   }
 }

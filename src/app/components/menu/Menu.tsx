@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ReactComponent as LogoBlack } from '../../static/img/logo_black.svg';
@@ -21,7 +20,7 @@ interface HeaderItemProps {
 
 const HeaderItem: React.FC<HeaderItemProps> = (props) => (
   <li className={styles.headerLink}>
-    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+    {/* eslint-disable-next-line */}
     <a href="" className={styles.headerItem}>
       <span className={styles.headerItemIcon}>{props.icon}</span>
       <span>{props.content}</span>
@@ -60,6 +59,8 @@ const Menu: React.FC<HeaderProps> = (props) => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutsideOfMobileMenu);
     };
+
+    // eslint-disable-next-line
   }, [props.showMenuOnMobile]);
 
   const getMessageBasedOnTimeOfTheDay = () => {

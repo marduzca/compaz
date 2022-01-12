@@ -58,19 +58,15 @@
 }
 
 .combobox > button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-  background: none;
-  cursor: pointer;
-  border: 0;
-  outline: none;
-
   position: absolute;
-  top: 0;
-  right: 0;
-  padding: 0.625rem 0.625rem;
+  inset: auto 0 auto auto;
+
+  margin: 0.625rem 0.625rem;
+  padding: 0;
+
+  cursor: pointer;
+  background: none;
+  border: 0;
 }
 
 .selected {
@@ -153,6 +149,12 @@
 
 .clearButton > svg {
   width: 1.5rem;
+}
+
+.toggleButton:focus,
+.clearButton:focus {
+  outline: 2px solid var(--primary-color) !important;
+  outline-offset: 2px;
 }
 
 .withValidationError .combobox {

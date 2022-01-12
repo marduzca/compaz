@@ -42,7 +42,6 @@
   background: none;
   cursor: pointer;
   border: 0;
-  outline: none;
 }
 
 .backButton > svg {
@@ -108,6 +107,15 @@
 
   border-radius: 50%;
   background-color: #bdbdbd;
+}
+
+.routeDetails button:focus {
+  outline: var(--focus-outline-light-background);
+  outline-offset: var(--focus-outline-offset);
+}
+
+.backButton:focus {
+  outline: var(--focus-outline-light-background);
 }
 
 @media only screen and (max-width: 480px) {

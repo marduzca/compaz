@@ -49,7 +49,6 @@
   background: none;
   cursor: pointer;
   border: 0;
-  outline: none;
 
   height: 1.5rem;
   width: 1.5rem;
@@ -86,10 +85,9 @@
   background: none;
   cursor: pointer;
   border: 0;
-  outline: none;
 }
 
-.singleRouteOverview:is(:hover, :focus) {
+.singleRouteOverview:hover {
   background-color: #e0e0e0;
 }
 
@@ -125,7 +123,6 @@
   background: none;
   cursor: pointer;
   border: 0;
-  outline: none;
 }
 
 .adjustTimeButton > svg {
@@ -140,7 +137,21 @@
   margin-top: 0.5rem;
 }
 
+.backButton:focus {
+  outline: var(--focus-outline-dark-background);
+}
+
+.singleRouteOverview:focus,
+.adjustTimeButton:focus {
+  outline: var(--focus-outline-light-background);
+  background-color: #e0e0e0;
+}
+
 @media only screen and (max-width: 480px) {
+  .singleRouteOverview:hover {
+    background-color: white;
+  }
+
   .header {
     border-radius: 0;
     gap: 1.5rem;

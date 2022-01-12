@@ -68,7 +68,6 @@
   background: none;
   cursor: pointer;
   border: 0;
-  outline: none;
   padding: 0;
 }
 
@@ -79,6 +78,11 @@
 
 .closeButton > svg > path {
   fill: white;
+}
+
+.container a:focus,
+.closeButton:focus {
+  outline: var(--focus-outline-dark-background);
 }
 
 @media only screen and (max-width: 480px) {

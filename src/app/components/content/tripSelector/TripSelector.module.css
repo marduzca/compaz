@@ -27,7 +27,6 @@
 .searchButton {
   cursor: pointer;
   border: 0;
-  outline: none;
 
   height: 5rem;
 
@@ -43,6 +42,11 @@
 
 .searchButton > svg {
   display: none;
+}
+
+.tripSelector button:focus {
+  outline: var(--focus-outline-dark-background);
+  outline-offset: var(--focus-outline-offset);
 }
 
 @media only screen and (max-width: 480px) {
@@ -78,7 +82,6 @@
     background: none;
     cursor: pointer;
     border: 0;
-    outline: none;
     height: 2.875rem;
     width: 2.875rem;
   }
@@ -108,5 +111,9 @@
 
   .searchButton path {
     fill: white;
+  }
+
+  .searchButton:focus {
+    outline: var(--focus-outline-light-background) !important;
   }
 }

@@ -52,7 +52,7 @@ const StationsSelector: React.FC<StationsSelectorProps> = (props) => {
       <button
         title={t('Content.TripSelector.STATIONS_SWITCHER')}
         type="button"
-        className={styles.stationsSwitcher}
+        className={styles.stationsSwitcherButton}
         onClick={props.onSwitcherClick}
       >
         <Switcher />

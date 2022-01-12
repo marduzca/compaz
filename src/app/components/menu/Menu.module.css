@@ -38,16 +38,15 @@
 
 .languageSelector > button {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-  background: none;
+
   height: 2rem;
   width: 3rem;
+  margin: 0;
+  padding: 0;
+
+  background: none;
+  border: none;
   cursor: pointer;
-  border: 0;
-  outline: none;
 }
 
 .headerItem {
@@ -78,12 +77,22 @@
   transition: transform ease-in-out 400ms;
 }
 
-.headerItem:hover:after {
-  transform: scale(1, 1);
-}
-
 .headerItemIcon {
   display: none;
+}
+
+.languageSelector > button:focus,
+.logo:focus {
+  outline: var(--focus-outline-light-background) !important;
+}
+
+.headerItem:focus {
+  outline: none;
+}
+
+.headerItem:hover:after,
+.headerItem:focus:after {
+  transform: scale(1, 1);
 }
 
 @media only screen and (max-width: 480px) {
@@ -127,7 +136,7 @@
     background: none;
     cursor: pointer;
     border: 0;
-    outline: none;
+
     height: 1.5rem;
     width: 1.5rem;
 

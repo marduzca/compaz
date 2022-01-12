@@ -33,6 +33,7 @@ const Combobox: React.FC<ComboboxProps> = (props) => {
     getMenuProps,
     getItemProps,
     getLabelProps,
+    openMenu,
     highlightedIndex,
     setInputValue,
   } = useCombobox({
@@ -81,8 +82,14 @@ const Combobox: React.FC<ComboboxProps> = (props) => {
             if (!isOpen) getToggleButtonProps().onClick(e);
           }}
           className={styles.input}
-          {...getInputProps({})}
           spellCheck={false}
+          {...getInputProps({
+            onFocus: () => {
+              if (!isOpen) {
+                openMenu();
+              }
+            },
+          })}
         />
         <label htmlFor={props.name} {...getLabelProps()}>
           {props.placeholder}

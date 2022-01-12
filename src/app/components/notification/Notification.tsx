@@ -52,6 +52,7 @@ const Notification: React.FC<NotificationProps> = (props) => {
       role="alert"
       className={`${styles.container} ${getCorrespondingBackgroundColor()}`}
       ref={props.nodeRef}
+      aria-label={t(`Notification.${props.notificationType.toString()}`)}
     >
       <img
         src={renderCorrespondingIcon()}
