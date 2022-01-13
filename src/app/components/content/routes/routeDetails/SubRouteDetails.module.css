@@ -125,6 +125,7 @@
   grid-area: destination;
 
   justify-self: start;
+  align-self: center;
 
   line-height: 1.25rem;
 }
@@ -137,6 +138,8 @@
 
 .destinationTime {
   grid-area: destinationTime;
+
+  align-self: center;
 
   text-align: right;
   line-height: 1.25rem;
