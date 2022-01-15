@@ -68,7 +68,8 @@
     "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/no-noninteractive-tabindex": "off",
     "@typescript-eslint/ban-ts-comment": "off",
-    "no-shadow": "off" // https://stackoverflow.com/questions/64463299/no-shadow-false-positive-when-declaring-any-typescript-enum-in-jhipster-app
+    "no-shadow": "off", // https://stackoverflow.com/questions/64463299/no-shadow-false-positive-when-declaring-any-typescript-enum-in-jhipster-app
+    "jsx-a11y/no-autofocus": "off"
   },
   "overrides": [
     {

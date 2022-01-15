@@ -77,6 +77,11 @@ const RoutesOverview: React.FC<RoutesOverviewProps> = (props) => {
             title={t('GO_BACK_BUTTON')}
             className={styles.backButton}
             onClick={props.onBackButtonClick}
+            aria-label={t('GO_BACK_BUTTON_DESCRIPTIVE', {
+              previousPage: t('TRIP_SELECTOR'),
+              currentPage: t('ROUTES_OVERVIEW'),
+            })}
+            autoFocus
           >
             <BackIcon />
           </button>

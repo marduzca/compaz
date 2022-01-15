@@ -169,7 +169,9 @@ describe('PageContent', () => {
       screen.getByRole('button', { name: 'Content.TripSelector.SEARCH_BUTTON' })
     );
 
-    userEvent.click(screen.getByRole('button', { name: 'GO_BACK_BUTTON' }));
+    userEvent.click(
+      screen.getByRole('button', { name: 'GO_BACK_BUTTON_DESCRIPTIVE' })
+    );
 
     expect(
       screen.getByRole('button', { name: 'Content.TripSelector.SEARCH_BUTTON' })
@@ -223,7 +225,9 @@ describe('PageContent', () => {
       })
     );
 
-    userEvent.click(screen.getByRole('button', { name: 'GO_BACK_BUTTON' }));
+    userEvent.click(
+      screen.getByRole('button', { name: 'GO_BACK_BUTTON_DESCRIPTIVE' })
+    );
 
     expect(
       screen.getByRole('heading', {

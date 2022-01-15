@@ -1,8 +1,4 @@
 {
-  "GO_BACK_BUTTON": "Volver",
-  "LANDSCAPE_ERROR": "No funcionamos en modo horizontal, lo sentimos mucho :(",
-  "LOADING": "Cargando...",
-  "LOADING_MAP": "Cargando mapa",
   "Content": {
     "Route": {
       "Lines": {
@@ -75,5 +71,13 @@
     "INFO": "Información",
     "RELOAD_MESSAGE": "La aplicación tiene nuevas actualizaciones. Haz <1>click aquí</1> para descargarlas o vuelve a cargar la página.",
     "SUCCESS": "Exitoso"
-  }
+  },
+  "GO_BACK_BUTTON": "Volver",
+  "GO_BACK_BUTTON_DESCRIPTIVE": "Volver a {{previousPage}}. Actualmente en {{currentPage}}",
+  "LANDSCAPE_ERROR": "No funcionamos en modo horizontal, lo sentimos mucho :(",
+  "LOADING": "Cargando...",
+  "LOADING_MAP": "Cargando mapa",
+  "ROUTE_DETAILS": "Detalles de ruta",
+  "ROUTES_OVERVIEW": "Resumen de rutas",
+  "TRIP_SELECTOR": "Selección de viaje"
 }

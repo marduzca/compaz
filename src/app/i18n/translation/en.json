@@ -1,8 +1,4 @@
 {
-  "GO_BACK_BUTTON": "Go back",
-  "LANDSCAPE_ERROR": "We dont support landscape mode, we are very sorry :(",
-  "LOADING": "Loading...",
-  "LOADING_MAP": "Loading map",
   "Content": {
     "Route": {
       "Lines": {
@@ -75,5 +71,13 @@
     "INFO": "Information",
     "RELOAD_MESSAGE": "There are new updates to the app. <1>Click here</1> to download them or refresh the page.",
     "SUCCESS": "Success"
-  }
+  },
+  "GO_BACK_BUTTON": "Go back",
+  "GO_BACK_BUTTON_DESCRIPTIVE": "Go back to {{previousPage}}. Currently in {{currentPage}}",
+  "LANDSCAPE_ERROR": "We dont support landscape mode, we are very sorry :(",
+  "LOADING": "Loading...",
+  "LOADING_MAP": "Loading map",
+  "ROUTE_DETAILS": "Route Details page",
+  "ROUTES_OVERVIEW": "Routes Overview page",
+  "TRIP_SELECTOR": "Trip Selector page"
 }

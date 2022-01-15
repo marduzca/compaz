@@ -92,6 +92,11 @@ const DetailsContentBox: React.FC<DetailsContentBoxProps> = (props) => {
           title={t('GO_BACK_BUTTON')}
           className={styles.backButton}
           onClick={props.onBackButtonClick}
+          aria-label={t('GO_BACK_BUTTON_DESCRIPTIVE', {
+            previousPage: t('ROUTES_OVERVIEW'),
+            currentPage: t('ROUTE_DETAILS'),
+          })}
+          autoFocus
         >
           <BackIcon />
         </button>
