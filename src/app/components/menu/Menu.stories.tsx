@@ -19,6 +19,7 @@ export const normalState = () => (
     onLanguageChange={actions('onLanguageChange').onLanguageChange}
     onHideMobileMenu={actions('onBackButtonClick').onBackButtonClick}
     showMenuOnMobile={false}
+    isMobile={false}
   />
 );
 
@@ -28,5 +29,6 @@ export const mobileState = () =>
       onLanguageChange={actions('onLanguageChange').onLanguageChange}
       onHideMobileMenu={actions('onBackButtonClick').onBackButtonClick}
       showMenuOnMobile
+      isMobile
     />
   );

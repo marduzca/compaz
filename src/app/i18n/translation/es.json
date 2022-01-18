@@ -42,6 +42,7 @@
     "DateAndTimePicker": {
       "DATE_LABEL": "Fecha",
       "DATE_TIME_PICKER_BUTTON": "Seleccionar fecha y hora de salida",
+      "DATE_TIME_PICKER_BUTTON_DESCRIPTION": "Seleccionar fecha y hora de salida. La fecha actualmente seleccionada es {{selectedDate}} a las {{selectedTime}}",
       "NOW_BUTTON": "Ahora",
       "SELECT_BUTTON": "Aceptar",
       "TIME_LABEL": "Hora",
@@ -66,11 +67,12 @@
   },
   "Notification": {
     "CLOSE": "Cerrar notificación",
-    "ERROR": "Error",
+    "ERROR": "Notificación de tipo Error",
     "GENERAL_ERROR_MESSAGE": "Algo salió mal. Por favor vuelve a cargar la página e inténtalo de nuevo.",
-    "INFO": "Información",
+    "INFO": "Notificación de tipo Información",
+    "RELOAD_ANCHOR_DESCRIPTION": "Haz click aquí para descargar las últimas actualizaciones",
     "RELOAD_MESSAGE": "La aplicación tiene nuevas actualizaciones. Haz <1>click aquí</1> para descargarlas o vuelve a cargar la página.",
-    "SUCCESS": "Exitoso"
+    "SUCCESS": "Notificación de tipo Exito"
   },
   "GO_BACK_BUTTON": "Volver",
   "GO_BACK_BUTTON_DESCRIPTIVE": "Volver a {{previousPage}}. Actualmente en {{currentPage}}",

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './TripSelector.module.css';
 import { ReactComponent as SearchIcon } from '../../../static/img/chevron_right.svg';
@@ -16,6 +16,7 @@ interface TripSelectorProps {
 
 const TripSelector: React.FC<TripSelectorProps> = (props) => {
   const { t } = useTranslation();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
 
   return (
     <section className={styles.tripSelector}>
@@ -24,7 +25,11 @@ const TripSelector: React.FC<TripSelectorProps> = (props) => {
           title={t('GO_BACK_BUTTON')}
           type="button"
           className={styles.menuButton}
-          onClick={props.onMenuButtonClick}
+          onClick={() => {
+            setIsMobileMenuOpen(!isMobileMenuOpen);
+            props.onMenuButtonClick();
+          }}
+          aria-expanded={isMobileMenuOpen}
         >
           <MenuIcon />
         </button>

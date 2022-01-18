@@ -25,9 +25,13 @@ describe('NotificationContainer', () => {
     });
 
     expect(
-      screen.getByRole('img', { name: 'Notification.INFO' })
+      screen.getByRole('alert', { name: 'Notification.INFO' })
     ).toBeVisible();
-    expect(screen.getByRole('link', { name: 'Reload link' })).toBeVisible();
+    expect(
+      screen.getByRole('link', {
+        name: 'Notification.RELOAD_ANCHOR_DESCRIPTION',
+      })
+    ).toBeVisible();
     expect(screen.getByText('Notification.RELOAD_MESSAGE')).toBeVisible();
   });
 
@@ -48,7 +52,7 @@ describe('NotificationContainer', () => {
     });
 
     expect(
-      screen.getByRole('img', { name: 'Notification.INFO' })
+      screen.getByRole('alert', { name: 'Notification.INFO' })
     ).toBeVisible();
     expect(screen.getByText('this is an info notification')).toBeVisible();
   });
@@ -70,7 +74,7 @@ describe('NotificationContainer', () => {
     });
 
     expect(
-      screen.getByRole('img', { name: 'Notification.SUCCESS' })
+      screen.getByRole('alert', { name: 'Notification.SUCCESS' })
     ).toBeVisible();
     expect(screen.getByText('this is a success notification')).toBeVisible();
   });
@@ -92,7 +96,7 @@ describe('NotificationContainer', () => {
     });
 
     expect(
-      screen.getByRole('img', { name: 'Notification.ERROR' })
+      screen.getByRole('alert', { name: 'Notification.ERROR' })
     ).toBeVisible();
     expect(screen.getByText('this is an error notification')).toBeVisible();
   });

@@ -65,6 +65,7 @@ const App = () => {
               onMenuButtonClick={() => {
                 setShowMobileMenu(true);
               }}
+              isMobileMenuOpen={showMobileMenu}
             />
           </NavigationProvider>
         </FirebaseProvider>

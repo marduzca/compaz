@@ -151,12 +151,6 @@
   width: 1.5rem;
 }
 
-.toggleButton:focus-visible,
-.clearButton:focus-visible {
-  outline: 2px solid var(--primary-color) !important;
-  outline-offset: 2px;
-}
-
 .withValidationError .combobox {
   border: 2px solid #c2185b;
   border-radius: var(--content-border-radius);
@@ -168,4 +162,9 @@
 
 .withValidationError .combobox label {
   color: #c2185b;
+}
+
+.clearButton:focus-visible {
+  outline: var(--focus-outline-light-background) !important;
+  outline-offset: 0 !important;
 }

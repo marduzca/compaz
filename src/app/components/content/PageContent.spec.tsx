@@ -124,7 +124,9 @@ describe('PageContent', () => {
       lines: [{ id: 'green', stationsPath: [], connectedLines: [] }],
     });
 
-    render(<PageContent onMenuButtonClick={() => {}} />);
+    render(
+      <PageContent onMenuButtonClick={() => {}} isMobileMenuOpen={false} />
+    );
 
     expect(
       screen.getByRole('img', {
@@ -139,7 +141,9 @@ describe('PageContent', () => {
       lines: [],
     });
 
-    render(<PageContent onMenuButtonClick={() => {}} />);
+    render(
+      <PageContent onMenuButtonClick={() => {}} isMobileMenuOpen={false} />
+    );
 
     expect(
       screen.getByRole('img', {
@@ -149,7 +153,9 @@ describe('PageContent', () => {
   });
 
   it('navigates to routes overview when clicking on search', () => {
-    render(<PageContent onMenuButtonClick={() => {}} />);
+    render(
+      <PageContent onMenuButtonClick={() => {}} isMobileMenuOpen={false} />
+    );
 
     userEvent.click(
       screen.getByRole('button', { name: 'Content.TripSelector.SEARCH_BUTTON' })
@@ -163,7 +169,9 @@ describe('PageContent', () => {
   });
 
   it('navigates back to trip selection when clicking on routes overview back button', () => {
-    render(<PageContent onMenuButtonClick={() => {}} />);
+    render(
+      <PageContent onMenuButtonClick={() => {}} isMobileMenuOpen={false} />
+    );
 
     userEvent.click(
       screen.getByRole('button', { name: 'Content.TripSelector.SEARCH_BUTTON' })
@@ -179,7 +187,9 @@ describe('PageContent', () => {
   });
 
   it('navigates to route details when clicking on specific route in overview', () => {
-    render(<PageContent onMenuButtonClick={() => {}} />);
+    render(
+      <PageContent onMenuButtonClick={() => {}} isMobileMenuOpen={false} />
+    );
 
     userEvent.click(
       screen.getByRole('button', { name: 'Content.TripSelector.SEARCH_BUTTON' })
@@ -213,7 +223,9 @@ describe('PageContent', () => {
   });
 
   it('navigates back to routes overview when clicking on route details back button', () => {
-    render(<PageContent onMenuButtonClick={() => {}} />);
+    render(
+      <PageContent onMenuButtonClick={() => {}} isMobileMenuOpen={false} />
+    );
 
     userEvent.click(
       screen.getByRole('button', { name: 'Content.TripSelector.SEARCH_BUTTON' })

@@ -97,8 +97,22 @@
 }
 
 @media only screen and (max-width: 480px) {
-  .hiddenMenu {
-    transform: translateX(calc(-100% - 0.5rem));
+  .menuEntered {
+    transform: translateX(-100%);
+  }
+
+  .menuEntering {
+    transform: translateX(0%);
+    transition: transform 0.75s ease;
+  }
+
+  .menuExited {
+    transform: translateX(0%);
+  }
+
+  .menuExiting {
+    transform: translateX(-100%);
+    transition: transform 0.75s ease;
   }
 
   .header {
@@ -119,8 +133,6 @@
     border-radius: 0 var(--content-border-radius) var(--content-border-radius)
       var(--content-border-radius);
     box-shadow: 0 0 0.5rem 0 grey;
-
-    transition: transform 0.75s ease;
   }
 
   .navBar {
@@ -234,5 +246,15 @@
   .languageSelector > button {
     height: 1.75rem;
     width: 2.625rem;
+  }
+
+  .backButton:focus-visible,
+  .headerItem:focus-visible {
+    outline: var(--focus-outline-light-background);
+    outline-offset: var(--focus-outline-offset);
+  }
+
+  .headerItem:focus-visible:after {
+    outline: none;
   }
 }

@@ -36,17 +36,6 @@ const Notification: React.FC<NotificationProps> = (props) => {
     }
   };
 
-  const renderCorrespondingIcon = () => {
-    switch (props.notificationType) {
-      case NotificationType.SUCCESS:
-        return successIcon;
-      case NotificationType.ERROR:
-        return errorIcon;
-      default:
-        return infoIcon;
-    }
-  };
-
   return (
     <div
       role="alert"
@@ -55,14 +44,25 @@ const Notification: React.FC<NotificationProps> = (props) => {
       aria-label={t(`Notification.${props.notificationType.toString()}`)}
     >
       <img
-        src={renderCorrespondingIcon()}
+        src={
+          {
+            SUCCESS: successIcon,
+            ERROR: errorIcon,
+            INFO: infoIcon,
+          }[props.notificationType]
+        }
         alt={t(`Notification.${props.notificationType.toString()}`)}
+        aria-hidden
       />
       <p>
         {props.content === RELOAD_EVENT ? (
           <Trans i18nKey="Notification.RELOAD_MESSAGE">
             Notification.RELOAD_MESSAGE
-            <a href="./" onClick={props.onReloadClick}>
+            <a
+              href="./"
+              onClick={props.onReloadClick}
+              aria-label={t('Notification.RELOAD_ANCHOR_DESCRIPTION')}
+            >
               Reload link
             </a>
           </Trans>

@@ -8,6 +8,7 @@ import { Route } from '../domain';
 import RouteDetailsViewContainer from './routes/routeDetails/RouteDetailsViewContainer';
 import LoadingPage from './loadingPage/LoadingPage';
 import MapContainer from './map/MapContainer';
+import 'wicg-inert';
 
 enum AppViewState {
   TRIP_SELECTOR,
@@ -17,6 +18,7 @@ enum AppViewState {
 
 interface PageContentProps {
   onMenuButtonClick: () => void;
+  isMobileMenuOpen: boolean;
 }
 
 const PageContent: React.FC<PageContentProps> = (props) => {
@@ -82,7 +84,11 @@ const PageContent: React.FC<PageContentProps> = (props) => {
   };
 
   return (
-    <main className={styles.content}>
+    <main
+      className={styles.content}
+      // @ts-ignore
+      inert={props.isMobileMenuOpen ? '' : null}
+    >
       {stations.length && lines.length ? (
         <>
           <section className={styles.container}>

@@ -1,6 +1,7 @@
 import React from 'react';
 import Menu from './Menu';
 import i18n from '../../i18n/instance';
+import useMediaQuery from '../useMediaQuery';
 
 interface HeaderContainerProps {
   onHideMobileMenu: () => void;
@@ -8,6 +9,8 @@ interface HeaderContainerProps {
 }
 
 const MenuContainer: React.FC<HeaderContainerProps> = (props) => {
+  const isMobile = useMediaQuery();
+
   const SPANISH = 'es';
   const ENGLISH = 'en';
 
@@ -20,6 +23,7 @@ const MenuContainer: React.FC<HeaderContainerProps> = (props) => {
       onLanguageChange={handleLanguageChange}
       onHideMobileMenu={props.onHideMobileMenu}
       showMenuOnMobile={props.showMenuOnMobile}
+      isMobile={isMobile}
     />
   );
 };

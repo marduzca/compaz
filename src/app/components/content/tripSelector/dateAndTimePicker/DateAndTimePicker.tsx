@@ -58,8 +58,15 @@ const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => {
       <div className={styles.dateAndTimePickerContainer}>
         <button
           type="button"
-          aria-label={t('Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON')}
           title={t('Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON')}
+          aria-label={t(
+            'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON_DESCRIPTION',
+            {
+              selectedDate: props.departureDate,
+              selectedTime: props.departureTime,
+            }
+          )}
+          aria-expanded={props.showSelectionPanel}
           className={styles.dateAndTimePickerButton}
           onClick={props.onDateAndTimeButtonClick}
         >
@@ -103,6 +110,7 @@ const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => {
                   className={styles.dateInput}
                   defaultValue={props.departureDate}
                   onChange={props.onDatePickerChange}
+                  autoFocus
                 />
               </div>
               <div>

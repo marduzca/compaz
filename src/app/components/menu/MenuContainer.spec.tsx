@@ -2,8 +2,12 @@ import React from 'react';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import MenuContainer from './MenuContainer';
+import * as useMediaQuery from '../useMediaQuery';
 
 describe('MenuContainer', () => {
+  const useMediaQueryMock = jest.spyOn(useMediaQuery, 'default');
+  useMediaQueryMock.mockReturnValue(false);
+
   it('renders all header items', () => {
     render(
       <MenuContainer showMenuOnMobile={false} onHideMobileMenu={() => {}} />

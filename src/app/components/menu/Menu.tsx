@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import { CSSTransition } from 'react-transition-group';
 import { ReactComponent as LogoBlack } from '../../static/img/logo_black.svg';
 import { ReactComponent as FlagUSA } from '../../static/img/flag_usa.svg';
 import { ReactComponent as FlagBolivia } from '../../static/img/flag_bolivia.svg';
@@ -32,6 +33,7 @@ interface HeaderProps {
   onLanguageChange: () => void;
   onHideMobileMenu: () => void;
   showMenuOnMobile: boolean;
+  isMobile: boolean;
 }
 
 const Menu: React.FC<HeaderProps> = (props) => {
@@ -93,47 +95,61 @@ const Menu: React.FC<HeaderProps> = (props) => {
   };
 
   return (
-    <header
-      className={`${styles.header} ${
-        !props.showMenuOnMobile ? styles.hiddenMenu : ''
-      }`}
-      ref={mobileMenuRef}
+    <CSSTransition
+      nodeRef={mobileMenuRef}
+      in={!props.isMobile || props.showMenuOnMobile}
+      timeout={750}
+      classNames={{
+        enter: styles.menuEntered,
+        enterActive: styles.menuEntering,
+        exit: styles.menuExited,
+        exitActive: styles.menuExiting,
+      }}
+      unmountOnExit
     >
-      <button
-        title={t('GO_BACK_BUTTON')}
-        type="button"
-        className={styles.backButton}
-        onClick={props.onHideMobileMenu}
+      <header
+        ref={mobileMenuRef}
+        className={`${styles.header} ${
+          !props.showMenuOnMobile ? styles.hiddenMenu : ''
+        }`}
       >
-        <BackIcon />
-      </button>
-      <section className={styles.message}>
-        {getMessageBasedOnTimeOfTheDay()}
-      </section>
-      <nav className={styles.navBar}>
-        <a href="./" title={t('Menu.GO_HOME')} className={styles.logo}>
-          <LogoBlack />
-        </a>
-        <ul className={styles.headerItems}>
-          <HeaderItem content={t('Menu.HISTORY')} icon={<HistoryIcon />} />
-          <HeaderItem
-            content={t('Menu.HOW_TO_INSTALL')}
-            icon={<InstallIcon />}
-          />
-          <HeaderItem content={t('Menu.CONTACT')} icon={<ContactIcon />} />
-          <li className={styles.languageSelector}>
-            <span>{t('Menu.LANGUAGE')}</span>
-            <button
-              title={t('Menu.CHANGE_LANGUAGE')}
-              type="button"
-              onClick={props.onLanguageChange}
-            >
-              {i18n.language.match(/en/i) ? <FlagBolivia /> : <FlagUSA />}
-            </button>
-          </li>
-        </ul>
-      </nav>
-    </header>
+        <button
+          title={t('GO_BACK_BUTTON')}
+          type="button"
+          className={styles.backButton}
+          onClick={props.onHideMobileMenu}
+          autoFocus
+        >
+          <BackIcon />
+        </button>
+        <section className={styles.message}>
+          {getMessageBasedOnTimeOfTheDay()}
+        </section>
+        <nav className={styles.navBar}>
+          <a href="./" title={t('Menu.GO_HOME')} className={styles.logo}>
+            <LogoBlack />
+          </a>
+          <ul className={styles.headerItems}>
+            <HeaderItem content={t('Menu.HISTORY')} icon={<HistoryIcon />} />
+            <HeaderItem
+              content={t('Menu.HOW_TO_INSTALL')}
+              icon={<InstallIcon />}
+            />
+            <HeaderItem content={t('Menu.CONTACT')} icon={<ContactIcon />} />
+            <li className={styles.languageSelector}>
+              <span>{t('Menu.LANGUAGE')}</span>
+              <button
+                title={t('Menu.CHANGE_LANGUAGE')}
+                type="button"
+                onClick={props.onLanguageChange}
+              >
+                {i18n.language.match(/en/i) ? <FlagBolivia /> : <FlagUSA />}
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </header>
+    </CSSTransition>
   );
 };
 

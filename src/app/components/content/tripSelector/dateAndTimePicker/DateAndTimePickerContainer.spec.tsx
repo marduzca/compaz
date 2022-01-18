@@ -34,12 +34,12 @@ describe('DateAndTimePickerContainer', () => {
 
     expect(
       screen.getByRole('button', {
-        name: 'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON',
+        name: 'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON_DESCRIPTION',
       }).textContent
     ).toContain('Sat 25 Dec');
     expect(
       screen.getByRole('button', {
-        name: 'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON',
+        name: 'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON_DESCRIPTION',
       }).textContent
     ).toContain('10:24');
   });
@@ -49,7 +49,7 @@ describe('DateAndTimePickerContainer', () => {
 
     userEvent.click(
       screen.getByRole('button', {
-        name: 'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON',
+        name: 'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON_DESCRIPTION',
       })
     );
 
@@ -77,7 +77,7 @@ describe('DateAndTimePickerContainer', () => {
 
     userEvent.click(
       screen.getByRole('button', {
-        name: 'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON',
+        name: 'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON_DESCRIPTION',
       })
     );
 
@@ -105,7 +105,7 @@ describe('DateAndTimePickerContainer', () => {
 
     userEvent.click(
       screen.getByRole('button', {
-        name: 'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON',
+        name: 'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON_DESCRIPTION',
       })
     );
 
@@ -130,7 +130,7 @@ describe('DateAndTimePickerContainer', () => {
 
       userEvent.click(
         screen.getByRole('button', {
-          name: 'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON',
+          name: 'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON_DESCRIPTION',
         })
       );
 
@@ -153,7 +153,7 @@ describe('DateAndTimePickerContainer', () => {
 
       userEvent.click(
         screen.getByRole('button', {
-          name: 'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON',
+          name: 'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON_DESCRIPTION',
         })
       );
 
