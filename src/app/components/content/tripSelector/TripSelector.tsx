@@ -30,6 +30,7 @@ const TripSelector: React.FC<TripSelectorProps> = (props) => {
             props.onMenuButtonClick();
           }}
           aria-expanded={isMobileMenuOpen}
+          aria-haspopup
         >
           <MenuIcon />
         </button>

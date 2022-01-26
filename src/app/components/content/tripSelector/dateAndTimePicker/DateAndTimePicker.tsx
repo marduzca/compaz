@@ -66,9 +66,10 @@ const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => {
               selectedTime: props.departureTime,
             }
           )}
-          aria-expanded={props.showSelectionPanel}
           className={styles.dateAndTimePickerButton}
           onClick={props.onDateAndTimeButtonClick}
+          aria-expanded={props.showSelectionPanel}
+          aria-haspopup
         >
           <div className={styles.date}>
             <CalendarIcon />
