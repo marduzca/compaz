@@ -9,14 +9,23 @@
   background-color: #1976d2;
 }
 
-.line {
+.wrapper {
   position: relative;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   width: 24rem;
+  height: 100%;
+
+  overflow: hidden;
+}
+
+.line {
+  min-width: calc(100% + 1rem);
   height: 8px;
   transform: rotate(-10deg);
-
-  border-radius: 10px;
 
   background-color: white;
 }
@@ -29,23 +38,26 @@
   height: 10rem;
   transform: translate(-20%) rotate(10deg);
 
-  animation: slide 2s infinite linear;
+  animation: slide 2.5s infinite linear;
 }
 
 @keyframes slide {
   0% {
-    left: 0;
+    left: -25%;
     transform: translate(-20%) rotate(10deg);
   }
   100% {
-    left: 100%;
+    left: 125%;
     transform: translate(-80%) rotate(10deg);
   }
 }
 
 @media only screen and (max-width: 480px) {
-  .line {
+  .wrapper {
     width: 12.5rem;
+  }
+
+  .line {
     height: 3px;
   }
 

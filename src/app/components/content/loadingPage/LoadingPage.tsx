@@ -8,12 +8,14 @@ const LoadingPage: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.line}>
-        <img
-          className={styles.telefericoIcon}
-          src={telefericoIcon}
-          alt={t('LOADING')}
-        />
+      <div className={styles.wrapper}>
+        <div className={styles.line}>
+          <img
+            className={styles.telefericoIcon}
+            src={telefericoIcon}
+            alt={t('LOADING')}
+          />
+        </div>
       </div>
     </div>
   );
