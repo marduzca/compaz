@@ -1,0 +1,11 @@
+{
+  "overrides": [
+    {
+      "files": ["*.spec.ts"],
+      "rules": {
+        "jest/valid-expect": "off",
+        "jest/expect-expect": "off"
+      }
+    }
+  ]
+}

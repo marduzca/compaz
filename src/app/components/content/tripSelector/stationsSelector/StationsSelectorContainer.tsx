@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import StationsSelector from './StationsSelector';
+import StationsSelector, { ORIGIN } from './StationsSelector';
 import { useNavigation } from '../../../providers/NavigationProvider';
 import { useFirebase } from '../../../providers/FirebaseProvider';
 
@@ -76,7 +76,7 @@ const StationsSelectorContainer: React.FC<StationsSelectorContainerProps> = (
   };
 
   const handleClearButtonClick = (inputName: string) => {
-    if (inputName === 'origin') {
+    if (inputName === ORIGIN) {
       setOriginInputValue('');
       setShowOriginValidationError(false);
       setOriginStation(undefined);

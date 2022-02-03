@@ -5,6 +5,9 @@ import Combobox, { Option } from '../combobox/Combobox';
 import { ReactComponent as Switcher } from '../../../../static/img/switcher.svg';
 import { Station } from '../../../domain';
 
+export const ORIGIN = 'Content.TripSelector.ORIGIN_PLACEHOLDER';
+export const DESTINATION = 'Content.TripSelector.DESTINATION_PLACEHOLDER';
+
 interface StationsSelectorProps {
   stations: Station[];
   originInputValue: string;
@@ -25,8 +28,8 @@ const StationsSelector: React.FC<StationsSelectorProps> = (props) => {
   return (
     <div className={styles.stationsSelector}>
       <Combobox
-        name="origin"
-        placeholder={`${t('Content.TripSelector.ORIGIN_PLACEHOLDER')}${
+        name={t(ORIGIN)}
+        placeholder={`${t(ORIGIN)}${
           // eslint-disable-next-line no-nested-ternary
           props.showOriginValidationError
             ? ` - ${t('Content.TripSelector.ERROR_VALIDATION')}`
@@ -58,8 +61,8 @@ const StationsSelector: React.FC<StationsSelectorProps> = (props) => {
         <Switcher />
       </button>
       <Combobox
-        name="destination"
-        placeholder={`${t('Content.TripSelector.DESTINATION_PLACEHOLDER')} ${
+        name={t(DESTINATION)}
+        placeholder={`${t(DESTINATION)} ${
           // eslint-disable-next-line no-nested-ternary
           props.showDestinationValidationError
             ? ` - ${t('Content.TripSelector.ERROR_VALIDATION')}`

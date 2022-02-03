@@ -36,6 +36,9 @@ const WrappedComboBox: React.FC = () => {
         ] as Option[]
       }
       placeholder="placeholder"
+      toggleButtonTitle="toggleButtonTitle"
+      clearButtonTitle="clearButtonTitle"
+      onClearButtonClick={() => {}}
     />
   );
 };

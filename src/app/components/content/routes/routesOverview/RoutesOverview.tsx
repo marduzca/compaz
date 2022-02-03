@@ -24,10 +24,11 @@ interface SingleRouteProps {
 const SingleRoute: React.FC<SingleRouteProps> = (props) => {
   const { t } = useTranslation();
 
-  const routeClockTime = `${parseToSimpleTime(props.departureTime)} - 
-          ${parseToSimpleTime(
-            addMinutesToDate(props.departureTime, props.route.totalTime)
-          )}`;
+  const routeClockTime = `${parseToSimpleTime(
+    props.departureTime
+  )} - ${parseToSimpleTime(
+    addMinutesToDate(props.departureTime, props.route.totalTime)
+  )}`;
 
   return (
     <>
