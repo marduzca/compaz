@@ -2,7 +2,7 @@ import Page from '../page_objects/page';
 
 describe('General features', () => {
   it('changes language successfully', () => {
-    cy.visit('http://localhost:3000/');
+    cy.visit('/');
 
     Page.headerShouldShowLinks('History', 'How to install', 'Contact us');
 

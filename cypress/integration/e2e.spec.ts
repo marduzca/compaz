@@ -5,7 +5,7 @@ import RouteDetails from '../page_objects/routeDetails';
 
 describe('End to end', () => {
   it('Goes through the whole trip selection and visualization process successfully', () => {
-    cy.visit('http://localhost:3000/');
+    cy.visit('/');
 
     Page.waitForLoadingAnimationToDisappear();
 
