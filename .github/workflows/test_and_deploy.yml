@@ -53,7 +53,7 @@ jobs:
       - run: npm ci && npm run ci:cypress-run
 
   outdated_deps:
-    needs: [visual_regression_test, user_journey_test]
+    needs: [visual_regression_test, user_journey_test_local]
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -69,7 +69,7 @@ jobs:
       - run: test $(npm outdated | wc -l) -lt "25"
 
   build_and_deploy:
-    needs: [visual_regression_test, user_journey_test]
+    needs: [visual_regression_test, user_journey_test_local]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
