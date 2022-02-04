@@ -18,7 +18,8 @@
     "loki:test": "npm run build-storybook && loki test",
     "loki:ci": "npm run build-storybook && loki --requireReference --verboseRenderer",
     "cypress:open": "cypress open",
-    "cypress:ci": "cypress run"
+    "cypress:ci": "cypress run",
+    "ci:cypress-run": "start-server-and-test start http://localhost:3000 cypress:ci"
   },
   "dependencies": {
     "@react-google-maps/api": "^2.7.0",
@@ -87,7 +88,8 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-testing-library": "^4.12.4",
     "mq-polyfill": "^1.1.8",
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "start-server-and-test": "^1.14.0"
   },
   "browserslist": {
     "production": [

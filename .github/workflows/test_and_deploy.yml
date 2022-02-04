@@ -50,8 +50,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm ci && npm start
-      - run: npm run cypress:ci
+      - run: npm ci && npm run ci:cypress-run
 
   outdated_deps:
     needs: [visual_regression_test, user_journey_test]
