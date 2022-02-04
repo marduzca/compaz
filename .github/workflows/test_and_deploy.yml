@@ -38,8 +38,23 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci && npm run loki:ci
 
+  user_journey_test:
+    needs: build_and_test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 14.x ]
+    steps:
+      - uses: actions/checkout@master
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci && npm start
+      - run: npm run cypress:ci
+
   outdated_deps:
-    needs: visual_regression_test
+    needs: [visual_regression_test, user_journey_test]
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -55,7 +70,7 @@ jobs:
       - run: test $(npm outdated | wc -l) -lt "25"
 
   build_and_deploy:
-    needs: visual_regression_test
+    needs: [visual_regression_test, user_journey_test]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master

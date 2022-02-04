@@ -16,7 +16,9 @@
     "build-storybook": "build-storybook",
     "loki:update": "npm run build-storybook && loki update",
     "loki:test": "npm run build-storybook && loki test",
-    "loki:ci": "npm run build-storybook && loki --requireReference --verboseRenderer"
+    "loki:ci": "npm run build-storybook && loki --requireReference --verboseRenderer",
+    "cypress:open": "cypress open",
+    "cypress:ci": "cypress run"
   },
   "dependencies": {
     "@react-google-maps/api": "^2.7.0",
