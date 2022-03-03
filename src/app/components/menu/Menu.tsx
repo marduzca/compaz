@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CSSTransition } from 'react-transition-group';
+import { Link } from 'react-router-dom';
 import { ReactComponent as LogoBlack } from '../../static/img/logo_black.svg';
 import { ReactComponent as FlagUSA } from '../../static/img/flag_usa.svg';
 import { ReactComponent as FlagBolivia } from '../../static/img/flag_bolivia.svg';
@@ -17,15 +18,16 @@ import i18n from '../../i18n/instance';
 interface HeaderItemProps {
   content: string;
   icon: JSX.Element;
+  href: string;
 }
 
 const HeaderItem: React.FC<HeaderItemProps> = (props) => (
   <li className={styles.headerLink}>
     {/* eslint-disable-next-line */}
-    <a href="" className={styles.headerItem}>
+    <Link to={props.href} className={styles.headerItem}>
       <span className={styles.headerItemIcon}>{props.icon}</span>
       <span>{props.content}</span>
-    </a>
+    </Link>
   </li>
 );
 
@@ -130,12 +132,21 @@ const Menu: React.FC<HeaderProps> = (props) => {
             <LogoBlack />
           </a>
           <ul className={styles.headerItems}>
-            <HeaderItem content={t('Menu.HISTORY')} icon={<HistoryIcon />} />
+            <HeaderItem
+              content={t('Menu.HISTORY')}
+              icon={<HistoryIcon />}
+              href=""
+            />
             <HeaderItem
               content={t('Menu.HOW_TO_INSTALL')}
               icon={<InstallIcon />}
+              href=""
             />
-            <HeaderItem content={t('Menu.CONTACT')} icon={<ContactIcon />} />
+            <HeaderItem
+              content={t('Menu.CONTACT')}
+              icon={<ContactIcon />}
+              href="/contact"
+            />
             <li className={styles.languageSelector}>
               <span>{t('Menu.LANGUAGE')}</span>
               <button

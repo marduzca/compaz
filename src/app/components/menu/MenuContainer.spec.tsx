@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { MemoryRouter } from 'react-router-dom';
 import MenuContainer from './MenuContainer';
 import * as useMediaQuery from '../useMediaQuery';
 
@@ -10,7 +11,9 @@ describe('MenuContainer', () => {
 
   it('renders all header items', () => {
     render(
-      <MenuContainer showMenuOnMobile={false} onHideMobileMenu={() => {}} />
+      <MemoryRouter>
+        <MenuContainer showMenuOnMobile={false} onHideMobileMenu={() => {}} />
+      </MemoryRouter>
     );
 
     const withinNavigation = within(screen.getByRole('banner'));
@@ -38,7 +41,12 @@ describe('MenuContainer', () => {
         localStorage.setItem('i18nextLng', 'en');
 
         render(
-          <MenuContainer onHideMobileMenu={() => {}} showMenuOnMobile={false} />
+          <MemoryRouter>
+            <MenuContainer
+              onHideMobileMenu={() => {}}
+              showMenuOnMobile={false}
+            />
+          </MemoryRouter>
         );
 
         userEvent.click(
@@ -54,7 +62,12 @@ describe('MenuContainer', () => {
         localStorage.setItem('i18nextLng', 'es');
 
         render(
-          <MenuContainer showMenuOnMobile={false} onHideMobileMenu={() => {}} />
+          <MemoryRouter>
+            <MenuContainer
+              showMenuOnMobile={false}
+              onHideMobileMenu={() => {}}
+            />
+          </MemoryRouter>
         );
 
         userEvent.click(

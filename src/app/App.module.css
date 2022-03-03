@@ -3,7 +3,7 @@
 .App {
   display: grid;
   grid-template-columns: 100%;
-  grid-template-rows: 11.5% 71% 17.5%;
+  grid-template-rows: 0.15fr 1fr;
 
   height: 100%;
 }

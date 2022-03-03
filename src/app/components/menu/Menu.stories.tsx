@@ -1,6 +1,7 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
+import { MemoryRouter } from 'react-router-dom';
 import Menu from './Menu';
 
 const guaranteedSize = (child: JSX.Element): JSX.Element => (
@@ -12,6 +13,13 @@ const guaranteedSize = (child: JSX.Element): JSX.Element => (
 export default {
   title: 'Menu',
   component: Menu,
+  decorators: [
+    (Story) => (
+      <MemoryRouter>
+        <Story />
+      </MemoryRouter>
+    ),
+  ],
 } as Meta;
 
 export const normalState = () => (

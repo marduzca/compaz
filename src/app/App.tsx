@@ -1,14 +1,14 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import debounce from 'lodash.debounce';
+import { Route, Routes } from 'react-router-dom';
 import styles from './App.module.css';
 import MenuContainer from './components/menu/MenuContainer';
-import FooterContainer from './components/footer/FooterContainer';
 import PageContent from './components/content/PageContent';
-import { FirebaseProvider } from './components/providers/FirebaseProvider';
 import SadDogImage from './static/img/sad_dog.jpg';
-import { NavigationProvider } from './components/providers/NavigationProvider';
 import NotificationContainer from './components/notification/NotificationContainer';
+import { FirebaseProvider } from './components/providers/FirebaseProvider';
+import { NavigationProvider } from './components/providers/NavigationProvider';
 
 const LandscapeErrorMessage = () => {
   const { t } = useTranslation();
@@ -61,15 +61,34 @@ const App = () => {
         />
         <FirebaseProvider>
           <NavigationProvider>
-            <PageContent
-              onMenuButtonClick={() => {
-                setShowMobileMenu(true);
-              }}
-              isMobileMenuOpen={showMobileMenu}
-            />
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <PageContent
+                    onMenuButtonClick={() => {
+                      setShowMobileMenu(true);
+                    }}
+                    isMobileMenuOpen={showMobileMenu}
+                  />
+                }
+              />
+              <Route
+                path="/contact"
+                element={
+                  <main
+                    style={{
+                      background:
+                        'linear-gradient(-20deg, #1976d2 50%, white 50%)',
+                    }}
+                  >
+                    <p>Contáctame</p>
+                  </main>
+                }
+              />
+            </Routes>
           </NavigationProvider>
         </FirebaseProvider>
-        <FooterContainer />
         <NotificationContainer />
       </div>
     </>

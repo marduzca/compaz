@@ -9,6 +9,7 @@ import RouteDetailsViewContainer from './routes/routeDetails/RouteDetailsViewCon
 import LoadingPage from './loadingPage/LoadingPage';
 import MapContainer from './map/MapContainer';
 import 'wicg-inert';
+import Footer from '../footer/Footer';
 
 enum AppViewState {
   TRIP_SELECTOR,
@@ -84,26 +85,29 @@ const PageContent: React.FC<PageContentProps> = (props) => {
   };
 
   return (
-    <main
-      className={styles.content}
-      // @ts-ignore
-      inert={props.isMobileMenuOpen ? '' : null}
-    >
-      {stations.length && lines.length ? (
-        <>
-          <section className={styles.container}>
-            {renderCurrentAppViewState()}
-          </section>
-          {currentAppViewState === AppViewState.ROUTE_DETAILS && (
-            <aside className={styles.detailsMap}>
-              <MapContainer route={route} />
-            </aside>
-          )}
-        </>
-      ) : (
-        <LoadingPage />
-      )}
-    </main>
+    <>
+      <main
+        className={styles.content}
+        // @ts-ignore
+        inert={props.isMobileMenuOpen ? '' : null}
+      >
+        {stations.length && lines.length ? (
+          <>
+            <section className={styles.container}>
+              {renderCurrentAppViewState()}
+            </section>
+            {currentAppViewState === AppViewState.ROUTE_DETAILS && (
+              <aside className={styles.detailsMap}>
+                <MapContainer route={route} />
+              </aside>
+            )}
+          </>
+        ) : (
+          <LoadingPage />
+        )}
+      </main>
+      <Footer />
+    </>
   );
 };
 
