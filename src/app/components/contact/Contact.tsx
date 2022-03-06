@@ -5,10 +5,10 @@ import ContactForm from './contactForm/ContactForm';
 
 const Contact: React.FC = () => (
   <main className={styles.container}>
-    <section className={styles.content}>
+    <div className={styles.content}>
       <Introduction />
       <ContactForm />
-    </section>
+    </div>
   </main>
 );
 

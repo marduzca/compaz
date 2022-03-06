@@ -26,12 +26,14 @@
 
 .form > input {
   height: 2.5rem;
+  width: 100%;
 
   border-radius: var(--content-border-radius);
 }
 
 .form > textarea {
   height: 10rem;
+  width: 100%;
 
   resize: none;
 

@@ -19,12 +19,17 @@ interface HeaderItemProps {
   content: string;
   icon: JSX.Element;
   href: string;
+  onHideMobileMenu: () => void;
 }
 
 const HeaderItem: React.FC<HeaderItemProps> = (props) => (
   <li className={styles.headerLink}>
     {/* eslint-disable-next-line */}
-    <Link to={props.href} className={styles.headerItem}>
+    <Link
+      to={props.href}
+      className={styles.headerItem}
+      onClick={props.onHideMobileMenu}
+    >
       <span className={styles.headerItemIcon}>{props.icon}</span>
       <span>{props.content}</span>
     </Link>
@@ -136,16 +141,19 @@ const Menu: React.FC<HeaderProps> = (props) => {
               content={t('Menu.HISTORY')}
               icon={<HistoryIcon />}
               href=""
+              onHideMobileMenu={props.onHideMobileMenu}
             />
             <HeaderItem
               content={t('Menu.HOW_TO_INSTALL')}
               icon={<InstallIcon />}
               href=""
+              onHideMobileMenu={props.onHideMobileMenu}
             />
             <HeaderItem
               content={t('Menu.CONTACT')}
               icon={<ContactIcon />}
               href="/contact"
+              onHideMobileMenu={props.onHideMobileMenu}
             />
             <li className={styles.languageSelector}>
               <span>{t('Menu.LANGUAGE')}</span>
