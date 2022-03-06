@@ -1,0 +1,38 @@
+@import '../../../variables.css';
+
+.container {
+  display: grid;
+  place-items: center;
+
+  height: 100%;
+
+  background: conic-gradient(
+    from 75deg at 120% 0,
+    var(--primary-color) 50%,
+    white 50%
+  );
+}
+
+.content {
+  display: grid;
+  justify-items: center;
+
+  width: 90%;
+  height: 80%;
+  padding: 1.5rem 1rem;
+
+  background-color: white;
+
+  border-radius: var(--content-border-radius);
+  box-shadow: 0 0 0.5rem 0 grey;
+}
+
+@media only screen and (max-width: 480px) {
+  .container {
+    background: conic-gradient(
+      from 75deg at 300% 0,
+      var(--primary-color) 50%,
+      white 50%
+    );
+  }
+}

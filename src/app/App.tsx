@@ -9,6 +9,7 @@ import SadDogImage from './static/img/sad_dog.jpg';
 import NotificationContainer from './components/notification/NotificationContainer';
 import { FirebaseProvider } from './components/providers/FirebaseProvider';
 import { NavigationProvider } from './components/providers/NavigationProvider';
+import Contact from './components/contact/Contact';
 
 const LandscapeErrorMessage = () => {
   const { t } = useTranslation();
@@ -74,19 +75,7 @@ const App = () => {
                 </NavigationProvider>
               }
             />
-            <Route
-              path="/contact"
-              element={
-                <main
-                  style={{
-                    background:
-                      'linear-gradient(-20deg, #1976d2 50%, white 50%)',
-                  }}
-                >
-                  <p>Contáctame</p>
-                </main>
-              }
-            />
+            <Route path="/contact" element={<Contact />} />
           </Routes>
         </FirebaseProvider>
         <NotificationContainer />
