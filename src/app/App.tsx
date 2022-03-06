@@ -4,7 +4,7 @@ import debounce from 'lodash.debounce';
 import { Route, Routes } from 'react-router-dom';
 import styles from './App.module.css';
 import MenuContainer from './components/menu/MenuContainer';
-import PageContent from './components/content/PageContent';
+import Navigation from './components/navigation/Navigation';
 import SadDogImage from './static/img/sad_dog.jpg';
 import NotificationContainer from './components/notification/NotificationContainer';
 import { FirebaseProvider } from './components/providers/FirebaseProvider';
@@ -60,34 +60,34 @@ const App = () => {
           }}
         />
         <FirebaseProvider>
-          <NavigationProvider>
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <PageContent
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <NavigationProvider>
+                  <Navigation
                     onMenuButtonClick={() => {
                       setShowMobileMenu(true);
                     }}
                     isMobileMenuOpen={showMobileMenu}
                   />
-                }
-              />
-              <Route
-                path="/contact"
-                element={
-                  <main
-                    style={{
-                      background:
-                        'linear-gradient(-20deg, #1976d2 50%, white 50%)',
-                    }}
-                  >
-                    <p>Contáctame</p>
-                  </main>
-                }
-              />
-            </Routes>
-          </NavigationProvider>
+                </NavigationProvider>
+              }
+            />
+            <Route
+              path="/contact"
+              element={
+                <main
+                  style={{
+                    background:
+                      'linear-gradient(-20deg, #1976d2 50%, white 50%)',
+                  }}
+                >
+                  <p>Contáctame</p>
+                </main>
+              }
+            />
+          </Routes>
         </FirebaseProvider>
         <NotificationContainer />
       </div>

@@ -1,13 +1,13 @@
 import React from 'react';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import PageContent from './PageContent';
+import Navigation from './Navigation';
 import * as FirebaseProvider from '../providers/FirebaseProvider';
 import * as NavigationProvider from '../providers/NavigationProvider';
 import { ConnectedStation, Route, Station, SubRoute } from '../domain';
 import * as useMediaQuery from '../useMediaQuery';
 
-describe('PageContent', () => {
+describe('Navigation', () => {
   const useFirebaseMock = jest.spyOn(FirebaseProvider, 'useFirebase');
   const useNavigationMock = jest.spyOn(NavigationProvider, 'useNavigation');
 
@@ -125,7 +125,7 @@ describe('PageContent', () => {
     });
 
     render(
-      <PageContent onMenuButtonClick={() => {}} isMobileMenuOpen={false} />
+      <Navigation onMenuButtonClick={() => {}} isMobileMenuOpen={false} />
     );
 
     expect(
@@ -142,7 +142,7 @@ describe('PageContent', () => {
     });
 
     render(
-      <PageContent onMenuButtonClick={() => {}} isMobileMenuOpen={false} />
+      <Navigation onMenuButtonClick={() => {}} isMobileMenuOpen={false} />
     );
 
     expect(
@@ -154,7 +154,7 @@ describe('PageContent', () => {
 
   it('navigates to routes overview when clicking on search', () => {
     render(
-      <PageContent onMenuButtonClick={() => {}} isMobileMenuOpen={false} />
+      <Navigation onMenuButtonClick={() => {}} isMobileMenuOpen={false} />
     );
 
     userEvent.click(
@@ -170,7 +170,7 @@ describe('PageContent', () => {
 
   it('navigates back to trip selection when clicking on routes overview back button', () => {
     render(
-      <PageContent onMenuButtonClick={() => {}} isMobileMenuOpen={false} />
+      <Navigation onMenuButtonClick={() => {}} isMobileMenuOpen={false} />
     );
 
     userEvent.click(
@@ -188,7 +188,7 @@ describe('PageContent', () => {
 
   it('navigates to route details when clicking on specific route in overview', () => {
     render(
-      <PageContent onMenuButtonClick={() => {}} isMobileMenuOpen={false} />
+      <Navigation onMenuButtonClick={() => {}} isMobileMenuOpen={false} />
     );
 
     userEvent.click(
@@ -224,7 +224,7 @@ describe('PageContent', () => {
 
   it('navigates back to routes overview when clicking on route details back button', () => {
     render(
-      <PageContent onMenuButtonClick={() => {}} isMobileMenuOpen={false} />
+      <Navigation onMenuButtonClick={() => {}} isMobileMenuOpen={false} />
     );
 
     userEvent.click(

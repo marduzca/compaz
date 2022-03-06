@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './PageContent.module.css';
+import styles from './Navigation.module.css';
 import TripSelectorContainer from './tripSelector/TripSelectorContainer';
 import RoutesOverviewContainer from './routes/routesOverview/RoutesOverviewContainer';
 import { useNavigation } from '../providers/NavigationProvider';
@@ -17,12 +17,12 @@ enum AppViewState {
   ROUTE_DETAILS,
 }
 
-interface PageContentProps {
+interface NavigationProps {
   onMenuButtonClick: () => void;
   isMobileMenuOpen: boolean;
 }
 
-const PageContent: React.FC<PageContentProps> = (props) => {
+const Navigation: React.FC<NavigationProps> = (props) => {
   const { stations, lines } = useFirebase();
   const { calculateRoute } = useNavigation();
 
@@ -111,4 +111,4 @@ const PageContent: React.FC<PageContentProps> = (props) => {
   );
 };
 
-export default PageContent;
+export default Navigation;
