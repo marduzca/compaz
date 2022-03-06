@@ -5,21 +5,22 @@
   place-items: center;
 
   height: 100%;
+  padding: 2rem 0;
 
   background: conic-gradient(
     from 75deg at 120% 0,
-    var(--primary-color) 50%,
+    var(--primary-light-color) 50%,
     white 50%
   );
 }
 
 .content {
   display: grid;
-  justify-items: center;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 5rem;
 
-  width: 90%;
-  height: 80%;
-  padding: 1.5rem 1rem;
+  width: 80%;
+  padding: 2rem 3rem;
 
   background-color: white;
 
@@ -29,10 +30,19 @@
 
 @media only screen and (max-width: 480px) {
   .container {
+    height: fit-content;
+
     background: conic-gradient(
       from 75deg at 300% 0,
-      var(--primary-color) 50%,
+      var(--primary-light-color) 50%,
       white 50%
     );
+  }
+
+  .content {
+    grid-template-columns: 1fr;
+    row-gap: 5rem;
+
+    padding: 1.5rem 1rem;
   }
 }

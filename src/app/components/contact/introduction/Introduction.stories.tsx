@@ -6,4 +6,4 @@ export default {
   title: 'Contact / Introduction',
 };
 
-export const normalAndMobileState: React.FC = () => <Introduction />;
+export const normalState: React.FC = () => <Introduction />;
