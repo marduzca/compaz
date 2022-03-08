@@ -31,6 +31,7 @@ describe('StationsSelectorContainer', () => {
     useFirebaseMock.mockReturnValue({
       stations: availableStations,
       lines: [],
+      storeMessage: () => {},
     });
 
     useNavigationMock.mockReturnValue({

@@ -11,11 +11,13 @@ import { Line, Station, VersionData } from '../domain';
 interface FirebaseContext {
   stations: Station[];
   lines: Line[];
+  storeMessage: (name: string, email: string, message: string) => void;
 }
 
 export const FirebaseContext = createContext<FirebaseContext>({
   stations: [],
   lines: [],
+  storeMessage: () => {},
 });
 
 firebase.initializeApp({
@@ -106,11 +108,19 @@ export const FirebaseProvider: React.FC = (props) => {
     }
   }, [currentLines, currentStations, currentVersionData]);
 
+  const storeMessage = (name: string, email: string, message: string) => {
+    // eslint-disable-next-line no-console
+    console.log(
+      `Message from ${name} with email ${email}. Content: ${message}`
+    );
+  };
+
   return (
     <FirebaseContext.Provider
       value={{
         stations,
         lines,
+        storeMessage,
       }}
     >
       {props.children}

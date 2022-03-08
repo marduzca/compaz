@@ -1,13 +1,13 @@
 import React from 'react';
 import styles from './Contact.module.css';
 import Introduction from './introduction/Introduction';
-import ContactForm from './contactForm/ContactForm';
+import ContactFormContainer from './contactForm/ContactFormContainer';
 
 const Contact: React.FC = () => (
   <main className={styles.container}>
     <div className={styles.content}>
       <Introduction />
-      <ContactForm />
+      <ContactFormContainer />
     </div>
   </main>
 );

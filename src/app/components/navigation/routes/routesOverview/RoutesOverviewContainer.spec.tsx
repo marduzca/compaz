@@ -108,6 +108,7 @@ describe('RoutesOverviewContainer', () => {
           ],
         },
       ] as Line[],
+      storeMessage: () => {},
     });
 
     useNavigationMock.mockReturnValue({

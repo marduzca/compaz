@@ -98,6 +98,7 @@ describe('Navigation', () => {
     useFirebaseMock.mockReturnValue({
       stations: [originStation, destinationStation],
       lines: [{ id: 'green', stationsPath: [], connectedLines: [] }],
+      storeMessage: () => {},
     });
 
     useNavigationMock.mockReturnValue({
@@ -122,6 +123,7 @@ describe('Navigation', () => {
     useFirebaseMock.mockReturnValue({
       stations: [],
       lines: [{ id: 'green', stationsPath: [], connectedLines: [] }],
+      storeMessage: () => {},
     });
 
     render(
@@ -139,6 +141,7 @@ describe('Navigation', () => {
     useFirebaseMock.mockReturnValue({
       stations: [originStation],
       lines: [],
+      storeMessage: () => {},
     });
 
     render(

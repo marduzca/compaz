@@ -46,6 +46,7 @@ describe('TripSelectorContainer', () => {
         },
       ],
       lines: [],
+      storeMessage: () => {},
     });
 
     useNavigationMock.mockReturnValue({
