@@ -8,7 +8,7 @@ describe('ContactFormContainer', () => {
   const useFirebaseMock = jest.spyOn(FirebaseProvider, 'useFirebase');
 
   it('calls the function to store the message with name, email and content', () => {
-    const storeMessageMock = jest.fn();
+    const storeMessageMock = jest.fn().mockReturnValue(true);
 
     useFirebaseMock.mockReturnValue({
       stations: [],
@@ -29,5 +29,8 @@ describe('ContactFormContainer', () => {
     userEvent.click(screen.getByRole('button', { name: 'Enviar' }));
 
     expect(storeMessageMock).toHaveBeenCalledWith(name, email, message);
+    expect(
+      screen.getByRole('img', { name: 'Email successfully sent!' })
+    ).toBeVisible();
   });
 });

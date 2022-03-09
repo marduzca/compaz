@@ -54,6 +54,16 @@
   background-color: var(--primary-color);
 }
 
+.iconWrapper {
+  display: grid;
+  place-items: center;
+}
+
+.emailSentIcon {
+  width: 17rem;
+  aspect-ratio: 1;
+}
+
 @media only screen and (max-width: 480px) {
   .form > button {
     align-self: stretch;

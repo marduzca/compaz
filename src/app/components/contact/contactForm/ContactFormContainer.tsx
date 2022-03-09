@@ -8,6 +8,8 @@ const ContactFormContainer: React.FC = () => {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [message, setMessage] = useState<string>('');
+  const [wasMessageSuccessfullySent, setWasMessageSuccessfullySent] =
+    useState<boolean>(false);
 
   const handleNameChange = (nameInput: string) => {
     setName(nameInput);
@@ -22,7 +24,8 @@ const ContactFormContainer: React.FC = () => {
   };
 
   const handleSubmit = () => {
-    storeMessage(name, email, message);
+    const result = storeMessage(name, email, message);
+    setWasMessageSuccessfullySent(result);
   };
 
   return (
@@ -30,6 +33,7 @@ const ContactFormContainer: React.FC = () => {
       name={name}
       email={email}
       message={message}
+      wasMessageSuccessfullySent={wasMessageSuccessfullySent}
       onNameChange={handleNameChange}
       onEmailChange={handleEmailChange}
       onMessageChange={handleMessageChange}

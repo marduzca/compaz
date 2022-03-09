@@ -11,13 +11,13 @@ import { Line, Station, VersionData } from '../domain';
 interface FirebaseContext {
   stations: Station[];
   lines: Line[];
-  storeMessage: (name: string, email: string, message: string) => void;
+  storeMessage: (name: string, email: string, message: string) => boolean;
 }
 
 export const FirebaseContext = createContext<FirebaseContext>({
   stations: [],
   lines: [],
-  storeMessage: () => {},
+  storeMessage: () => true,
 });
 
 firebase.initializeApp({
@@ -42,6 +42,7 @@ firestore.enablePersistence({ synchronizeTabs: true }).catch(() =>
 const versionDataRef = firestore.doc('metadata/versioning');
 const stationsRef = firestore.collection('stations');
 const linesRef = firestore.collection('lines');
+// const messagesRef = firestore.collection('messages');
 
 // TODO: Find out how to write these tests:
 // when nothing saved, store current data ✅
@@ -108,11 +109,33 @@ export const FirebaseProvider: React.FC = (props) => {
     }
   }, [currentLines, currentStations, currentVersionData]);
 
-  const storeMessage = (name: string, email: string, message: string) => {
+  const storeMessage = (
+    name: string,
+    email: string,
+    message: string
+  ): boolean => {
     // eslint-disable-next-line no-console
     console.log(
       `Message from ${name} with email ${email}. Content: ${message}`
     );
+
+    // messagesRef
+    //   .doc(`${email}_${Date.now()}`)
+    //   .set({ name, email, message, timestamp: new Date() })
+    //   .catch(() => {
+    //     window.dispatchEvent(
+    //       new CustomEvent('notification', {
+    //         detail: {
+    //           type: NotificationType.ERROR,
+    //           content: GENERAL_ERROR_NOTIFICATION_KEY,
+    //         } as NotificationEvent,
+    //       })
+    //     );
+    //
+    //     return false;
+    //   });
+
+    return true;
   };
 
   return (
