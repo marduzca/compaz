@@ -60,7 +60,7 @@
 }
 
 .emailSentIcon {
-  width: 17rem;
+  width: 70%;
   aspect-ratio: 1;
 }
 
@@ -68,5 +68,9 @@
   .form > button {
     align-self: stretch;
     max-width: 100%;
+  }
+
+  .emailSentIcon {
+    width: 60%;
   }
 }
