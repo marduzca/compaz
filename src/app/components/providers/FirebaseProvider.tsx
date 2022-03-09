@@ -75,6 +75,22 @@ export const FirebaseProvider: React.FC = (props) => {
   );
 
   useEffect(() => {
+    const storedDataVersion = localStorage.getItem(DATA_VERSION_KEY);
+
+    if (storedDataVersion) {
+      const storedStations = JSON.parse(
+        localStorage.getItem(STATIONS_KEY) as string
+      ) as Station[];
+      const storedLines = JSON.parse(
+        localStorage.getItem(LINES_KEY) as string
+      ) as Line[];
+
+      setStations(storedStations);
+      setLines(storedLines);
+    }
+  }, []);
+
+  useEffect(() => {
     if (currentVersionData) {
       const storedDataVersion = localStorage.getItem(DATA_VERSION_KEY);
 
@@ -97,16 +113,6 @@ export const FirebaseProvider: React.FC = (props) => {
             currentVersionData.version.toString()
           );
         }
-      } else {
-        const storedStations = JSON.parse(
-          localStorage.getItem(STATIONS_KEY) as string
-        ) as Station[];
-        const storedLines = JSON.parse(
-          localStorage.getItem(LINES_KEY) as string
-        ) as Line[];
-
-        setStations(storedStations);
-        setLines(storedLines);
       }
     }
   }, [currentLines, currentStations, currentVersionData]);
@@ -116,11 +122,6 @@ export const FirebaseProvider: React.FC = (props) => {
     email: string,
     message: string
   ): boolean => {
-    // eslint-disable-next-line no-console
-    console.log(
-      `Message from ${name} with email ${email}. Content: ${message}`
-    );
-
     messagesRef
       .doc(`${email}_${Date.now()}`)
       .set({ name, email, message, timestamp: new Date() })
