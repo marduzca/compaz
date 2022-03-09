@@ -10,7 +10,7 @@ import {
 } from './NavigationProvider';
 import { ConnectedStation, Line, Route, Station, SubRoute } from '../domain';
 
-describe('ShortestPathProvider', () => {
+describe('NavigationProvider', () => {
   const listOfStationsWithTwoLines = [
     {
       id: 'station_a',

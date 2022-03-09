@@ -6,7 +6,9 @@ import {
   useCollectionDataOnce,
   useDocumentDataOnce,
 } from 'react-firebase-hooks/firestore';
-import { Line, Station, VersionData } from '../domain';
+import { Line, NotificationEvent, Station, VersionData } from '../domain';
+import { NotificationType } from '../notification/Notification';
+import { GENERAL_ERROR_NOTIFICATION_KEY } from '../notification/NotificationContainer';
 
 interface FirebaseContext {
   stations: Station[];
@@ -42,7 +44,7 @@ firestore.enablePersistence({ synchronizeTabs: true }).catch(() =>
 const versionDataRef = firestore.doc('metadata/versioning');
 const stationsRef = firestore.collection('stations');
 const linesRef = firestore.collection('lines');
-// const messagesRef = firestore.collection('messages');
+const messagesRef = firestore.collection('messages');
 
 // TODO: Find out how to write these tests:
 // when nothing saved, store current data ✅
@@ -119,21 +121,21 @@ export const FirebaseProvider: React.FC = (props) => {
       `Message from ${name} with email ${email}. Content: ${message}`
     );
 
-    // messagesRef
-    //   .doc(`${email}_${Date.now()}`)
-    //   .set({ name, email, message, timestamp: new Date() })
-    //   .catch(() => {
-    //     window.dispatchEvent(
-    //       new CustomEvent('notification', {
-    //         detail: {
-    //           type: NotificationType.ERROR,
-    //           content: GENERAL_ERROR_NOTIFICATION_KEY,
-    //         } as NotificationEvent,
-    //       })
-    //     );
-    //
-    //     return false;
-    //   });
+    messagesRef
+      .doc(`${email}_${Date.now()}`)
+      .set({ name, email, message, timestamp: new Date() })
+      .catch(() => {
+        window.dispatchEvent(
+          new CustomEvent('notification', {
+            detail: {
+              type: NotificationType.ERROR,
+              content: GENERAL_ERROR_NOTIFICATION_KEY,
+            } as NotificationEvent,
+          })
+        );
+
+        return false;
+      });
 
     return true;
   };
