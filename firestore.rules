@@ -14,5 +14,8 @@ service cloud.firestore {
     match /metadata/{category_id} {
       allow read: if true;
     }
+    match /messages/{message_id} {
+        allow write: if true;
+    }
   }
 }
