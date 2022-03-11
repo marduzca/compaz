@@ -15,6 +15,7 @@ interface ContactFormProps {
 
 const ContactForm: React.FC<ContactFormProps> = (props) => {
   const formRef = useRef<HTMLFormElement>(null);
+  const vampireSlayerRef = useRef<HTMLInputElement>(null);
 
   const formHeight = useMemo(
     () => formRef.current?.clientHeight,
@@ -32,7 +33,12 @@ const ContactForm: React.FC<ContactFormProps> = (props) => {
         <form
           className={styles.form}
           onSubmit={(event) => {
-            props.onSubmit();
+            if (
+              vampireSlayerRef.current &&
+              vampireSlayerRef.current.value.length === 0 // Verify if the input to slay bots has been filled
+            ) {
+              props.onSubmit();
+            }
             event.preventDefault();
           }}
           ref={formRef}
@@ -52,6 +58,14 @@ const ContactForm: React.FC<ContactFormProps> = (props) => {
             required
             value={props.email}
             onChange={(event) => props.onEmailChange(event.target.value)}
+          />
+          <input // Input to slay bots
+            aria-label="Url"
+            type="text"
+            ref={vampireSlayerRef}
+            name="Url"
+            placeholder="Url"
+            className={styles.vampireSlayer}
           />
           <textarea
             aria-label="Message"
