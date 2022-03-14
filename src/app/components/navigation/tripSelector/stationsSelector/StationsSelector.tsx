@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './StationsSelector.module.css';
-import Combobox, { Option } from '../combobox/Combobox';
+import Combobox, { Option } from '../../../atoms/combobox/Combobox';
 import { ReactComponent as Switcher } from '../../../../static/img/switcher.svg';
 import { Station } from '../../../domain';
 
