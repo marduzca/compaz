@@ -159,6 +159,7 @@ const Menu: React.FC<HeaderProps> = (props) => {
               <span>{t('Menu.LANGUAGE')}</span>
               <button
                 title={t('Menu.CHANGE_LANGUAGE')}
+                aria-label={t('Menu.CHANGE_LANGUAGE')}
                 type="button"
                 onClick={props.onLanguageChange}
               >

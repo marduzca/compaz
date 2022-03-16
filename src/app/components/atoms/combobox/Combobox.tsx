@@ -98,6 +98,7 @@ const Combobox: React.FC<ComboboxProps> = (props) => {
           <button
             type="button"
             title={props.clearButtonTitle}
+            aria-label={props.clearButtonTitle}
             className={styles.clearButton}
             onClick={() => {
               props.onClearButtonClick(props.name);

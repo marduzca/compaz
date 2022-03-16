@@ -99,7 +99,7 @@ const RoutesOverview: React.FC<RoutesOverviewProps> = (props) => {
       <div className={styles.routesOverview}>
         <button
           type="button"
-          title={t('Content.RoutesOverview.EARLIER_BUTTON')}
+          aria-label={t('Content.RoutesOverview.EARLIER_BUTTON')}
           className={`${styles.adjustTimeButton} ${styles.earlierButton}`}
           onClick={props.onEarlierButtonClick}
         >
@@ -116,7 +116,7 @@ const RoutesOverview: React.FC<RoutesOverviewProps> = (props) => {
         ))}
         <button
           type="button"
-          title={t('Content.RoutesOverview.LATER_BUTTON')}
+          aria-label={t('Content.RoutesOverview.LATER_BUTTON')}
           className={styles.adjustTimeButton}
           onClick={props.onLaterButtonClick}
         >

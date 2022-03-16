@@ -47,7 +47,7 @@ const TripSelector: React.FC<TripSelectorProps> = (props) => {
       </div>
       <button
         type="button"
-        title={t('Content.TripSelector.SEARCH_BUTTON')}
+        aria-label={t('Content.TripSelector.SEARCH_BUTTON')}
         className={styles.searchButton}
         onClick={props.onSearchButtonClick}
       >

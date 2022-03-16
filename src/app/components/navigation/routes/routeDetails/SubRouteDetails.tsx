@@ -31,6 +31,15 @@ const IntermediateStations: React.FC<IntermediateStationsProps> = (props) => {
                   'Content.RouteDetails.INTERMEDIATE_STATIONS_OPEN_BUTTON_TITLE'
                 )
           }
+          aria-label={
+            props.showIntermediateStations
+              ? t(
+                  'Content.RouteDetails.INTERMEDIATE_STATIONS_CLOSE_BUTTON_TITLE'
+                )
+              : t(
+                  'Content.RouteDetails.INTERMEDIATE_STATIONS_OPEN_BUTTON_TITLE'
+                )
+          }
           className={styles.intermediateStationsButton}
           onClick={() => {
             props.onIntermediateStationsButtonClick(props.subRoute.line);

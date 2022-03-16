@@ -54,6 +54,7 @@ const StationsSelector: React.FC<StationsSelectorProps> = (props) => {
       />
       <button
         title={t('Content.TripSelector.STATIONS_SWITCHER')}
+        aria-label={t('Content.TripSelector.STATIONS_SWITCHER')}
         type="button"
         className={styles.stationsSwitcherButton}
         onClick={props.onSwitcherClick}
