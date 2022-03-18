@@ -1,0 +1,55 @@
+@import '../../../../variables.css';
+
+.textBox {
+  position: relative;
+
+  height: 2.75rem;
+
+  font-size: 1rem;
+}
+
+.textBox > label {
+  position: absolute;
+  bottom: 50%;
+  left: 0.625rem;
+
+  color: #4f4f4f;
+
+  pointer-events: none;
+
+  transform: translate(0, 50%) scale(1);
+  transition-property: transform, font-size;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-out;
+}
+
+.textBox > input {
+  width: 100%;
+  height: 100%;
+  padding-inline: 0.625rem;
+  padding-top: 1.1rem;
+
+  outline: none;
+
+  font: inherit;
+  color: black;
+
+  border: 1px solid transparent;
+  border-bottom: 1px solid #bdbdbd;
+  border-radius: var(--content-border-radius);
+
+  background-color: #f2f2f2;
+}
+
+.notEmpty > label,
+.textBox > input:focus-visible + label {
+  top: 0;
+
+  font-size: 0.875rem;
+
+  transform: translate(0, 2px);
+}
+
+.textBox > input:focus-visible {
+  border-bottom-color: #4f4f4f;
+}

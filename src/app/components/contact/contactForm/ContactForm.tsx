@@ -1,6 +1,7 @@
 import React, { useMemo, useRef } from 'react';
 import styles from './ContactForm.module.css';
 import emailSentIcon from '../../../static/img/email_sent.svg';
+import TextBox from '../../atoms/textbox/TextBox';
 
 interface ContactFormProps {
   name: string;
@@ -43,23 +44,22 @@ const ContactForm: React.FC<ContactFormProps> = (props) => {
           }}
           ref={formRef}
         >
-          <input
-            aria-label="Name"
-            type="text"
-            placeholder="Nombre"
-            required
+          <TextBox
+            name="Name"
+            label="Name"
             value={props.name}
-            onChange={(event) => props.onNameChange(event.target.value)}
-          />
-          <input
-            aria-label="Email"
-            type="email"
-            placeholder="Email"
+            onChange={props.onNameChange}
             required
-            value={props.email}
-            onChange={(event) => props.onEmailChange(event.target.value)}
           />
-          <input // Input to slay bots
+          <TextBox
+            type="email"
+            name="Email"
+            label="Email"
+            value={props.email}
+            onChange={props.onEmailChange}
+            required
+          />
+          <input // Input to kill bots
             aria-label="Url"
             type="text"
             ref={vampireSlayerRef}
