@@ -45,7 +45,6 @@ const ContactForm: React.FC<ContactFormProps> = (props) => {
           ref={formRef}
         >
           <TextBox
-            name="Name"
             label="Name"
             value={props.name}
             onChange={props.onNameChange}
@@ -53,7 +52,6 @@ const ContactForm: React.FC<ContactFormProps> = (props) => {
           />
           <TextBox
             type="email"
-            name="Email"
             label="Email"
             value={props.email}
             onChange={props.onEmailChange}

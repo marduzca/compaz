@@ -4,7 +4,6 @@ import styles from './TextBox.module.css';
 interface TextBoxProps {
   value: string;
   onChange: (input: string) => void;
-  name: string;
   label: string;
   type?: string;
   required?: boolean;
@@ -13,14 +12,14 @@ interface TextBoxProps {
 const TextBox: React.FC<TextBoxProps> = (props) => (
   <div className={`${styles.textBox} ${!!props.value && styles.notEmpty}`}>
     <input
+      id={props.label}
       type={props.type}
-      name={props.name}
       value={props.value}
       onChange={(event) => props.onChange(event.target.value)}
       spellCheck={false}
       required={props.required}
     />
-    <label htmlFor={props.name}>{props.label}</label>
+    <label htmlFor={props.label}>{props.label}</label>
   </div>
 );
 

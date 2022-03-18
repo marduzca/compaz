@@ -9,19 +9,13 @@ export default {
 } as Meta;
 
 export const withoutInput: React.FC = () => (
-  <TextBox
-    value=""
-    onChange={actions('onChange').onChange}
-    name="name"
-    label="Name"
-  />
+  <TextBox value="" onChange={actions('onChange').onChange} label="Name" />
 );
 
 export const withInput: React.FC = () => (
   <TextBox
     value="El Chavito"
     onChange={actions('onChange').onChange}
-    name="name"
     label="Name"
   />
 );
