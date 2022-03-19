@@ -24,7 +24,10 @@ describe('ContactFormContainer', () => {
 
     userEvent.type(screen.getByRole('textbox', { name: 'Name' }), name);
     userEvent.type(screen.getByRole('textbox', { name: 'Email' }), email);
-    userEvent.type(screen.getByRole('textbox', { name: 'Message' }), message);
+    userEvent.type(
+      screen.getByRole('textbox', { name: 'Tu mensaje' }),
+      message
+    );
 
     userEvent.click(screen.getByRole('button', { name: 'Enviar' }));
 
@@ -52,7 +55,10 @@ describe('ContactFormContainer', () => {
     userEvent.type(screen.getByRole('textbox', { name: 'Name' }), name);
     userEvent.type(screen.getByRole('textbox', { name: 'Email' }), email);
     userEvent.type(screen.getByRole('textbox', { name: 'Url' }), 'I am a bot');
-    userEvent.type(screen.getByRole('textbox', { name: 'Message' }), message);
+    userEvent.type(
+      screen.getByRole('textbox', { name: 'Tu mensaje' }),
+      message
+    );
 
     userEvent.click(screen.getByRole('button', { name: 'Enviar' }));
 

@@ -2,11 +2,6 @@ import React from 'react';
 import { Meta } from '@storybook/react';
 import LoadingPage from './LoadingPage';
 
-export default {
-  title: 'LoadingPage',
-  component: LoadingPage,
-} as Meta;
-
 const guaranteedSize = (child: JSX.Element): JSX.Element => (
   <div
     style={{
@@ -17,5 +12,10 @@ const guaranteedSize = (child: JSX.Element): JSX.Element => (
     {child}
   </div>
 );
+
+export default {
+  title: 'LoadingPage',
+  component: LoadingPage,
+} as Meta;
 
 export const normalAndMobileState = () => guaranteedSize(<LoadingPage />);

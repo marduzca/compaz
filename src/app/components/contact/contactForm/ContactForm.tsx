@@ -2,6 +2,7 @@ import React, { useMemo, useRef } from 'react';
 import styles from './ContactForm.module.css';
 import emailSentIcon from '../../../static/img/email_sent.svg';
 import TextBox from '../../atoms/textBox/TextBox';
+import TextArea from '../../atoms/textArea/TextArea';
 
 interface ContactFormProps {
   name: string;
@@ -65,12 +66,11 @@ const ContactForm: React.FC<ContactFormProps> = (props) => {
             placeholder="Url"
             className={styles.vampireSlayer}
           />
-          <textarea
-            aria-label="Message"
-            placeholder="Tu mensaje..."
-            required
+          <TextArea
+            label="Tu mensaje"
             value={props.message}
-            onChange={(event) => props.onMessageChange(event.target.value)}
+            onChange={props.onMessageChange}
+            required
           />
           <button type="submit">Enviar</button>
         </form>
