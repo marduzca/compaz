@@ -81,7 +81,6 @@ const Combobox: React.FC<ComboboxProps> = (props) => {
           onClick={(e) => {
             if (!isOpen) getToggleButtonProps().onClick(e);
           }}
-          className={styles.input}
           spellCheck={false}
           {...getInputProps({
             onFocus: () => {

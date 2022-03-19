@@ -2,15 +2,10 @@
 
 .wrapper {
   position: relative;
-  font-size: 1rem;
-}
-
-.input {
-  border-radius: var(--content-border-radius);
 }
 
 .open input {
-  border-bottom-color: rgb(101, 107, 110) !important;
+  border-bottom-color: #4f4f4f !important;
 }
 
 .open ul {
@@ -21,40 +16,46 @@
 .combobox {
   display: flex;
   flex-direction: column;
+
   position: relative;
+
   height: 2.75rem;
+
   font-size: 1.25rem;
-  line-height: 0.85rem;
 }
 
 .combobox :hover > input {
-  border-bottom-color: rgb(101, 107, 110);
+  border-bottom-color: #4f4f4f;
 }
 
 .combobox > input {
-  font: inherit;
   height: 100%;
   padding-left: 0.625rem;
+  padding-top: 1.1rem;
+
   outline: none;
-  color: rgb(45, 51, 53);
+
+  font: inherit;
+  color: black;
+
   border: 1px solid transparent;
-  border-bottom: 1px solid rgb(198, 200, 201);
+  border-bottom: 1px solid #bdbdbd;
+  border-radius: var(--content-border-radius);
 }
 
 .combobox > label {
   position: absolute;
-  top: 0;
+  bottom: 50%;
   left: 0.625rem;
 
-  transform: translate(0, 1rem) scale(1);
-  transform-origin: top left;
-  transition-property: transform, opacity, font-size;
-  transition-duration: 0.2s;
-  transition-timing-function: ease-out;
+  color: #4f4f4f;
 
   pointer-events: none;
 
-  color: rgb(82, 89, 92);
+  transform: translate(0, 50%) scale(1);
+  transition-property: transform, opacity, font-size;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-out;
 }
 
 .combobox > button {
@@ -78,23 +79,17 @@
   border-top: 2px solid rgb(45, 51, 53);
 }
 
-.selected > input {
-  padding-top: 1rem;
+.selected > label,
+.combobox > input:focus-visible + label {
+  top: 0;
+
+  font-size: 0.875rem;
+
+  transform: translate(0, 2px);
 }
 
-.selected > label {
-  top: -0.25rem;
-
-  font-size: 0.75rem;
-  position: absolute;
-  color: rgb(120, 126, 128);
-  transform: translate(0, 0.5rem) scale(1);
-
-  transform-origin: top left;
-  transition-property: transform, opacity, font-size;
-  transition-duration: 0.2s;
-  transition-timing-function: ease-out;
-  pointer-events: none;
+.combobox > input:focus-visible {
+  border-bottom-color: #4f4f4f;
 }
 
 .selected > div {
