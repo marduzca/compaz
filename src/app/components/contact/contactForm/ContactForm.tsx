@@ -1,7 +1,7 @@
 import React, { useMemo, useRef } from 'react';
 import styles from './ContactForm.module.css';
 import emailSentIcon from '../../../static/img/email_sent.svg';
-import TextBox from '../../atoms/textbox/TextBox';
+import TextBox from '../../atoms/textBox/TextBox';
 
 interface ContactFormProps {
   name: string;
