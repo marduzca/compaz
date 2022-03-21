@@ -44,5 +44,7 @@ describe('End to end', () => {
       'Libertador',
       'El Prado'
     );
+
+    // $x('//div[@role="img" and @aria-label="IRPAVI"]')
   });
 });

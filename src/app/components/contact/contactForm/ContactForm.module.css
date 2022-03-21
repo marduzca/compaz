@@ -52,6 +52,15 @@
 
   border-radius: var(--content-border-radius);
   background-color: var(--primary-color);
+
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.form > button:focus-visible {
+  outline: var(--focus-outline-light-background);
+  outline-offset: var(--focus-outline-offset);
 }
 
 .iconWrapper {
