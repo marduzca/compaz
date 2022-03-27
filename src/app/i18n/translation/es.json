@@ -49,6 +49,18 @@
       "TIME_ERROR": "Hora fuera de horarios funcionales"
     }
   },
+  "Contact": {
+    "SKETCH_ALT": "Sketch del desarrollador autor de compaz",
+    "GITHUB_LINK": "Cuenta de Github",
+    "LINKEDIN_LINK": "Cuenta de LinkedIn",
+    "HEADER": "Contáctame",
+    "SUBHEADER": "¿Tienes alguna duda o quieres dejarme un comentario?",
+    "NAME_LABEL": "Nombre",
+    "EMAIL_LABEL": "Email",
+    "MESSAGE_PLACEHOLDER": "Tu mensaje",
+    "SEND_BUTTON": "Enviar",
+    "MESSAGE_SENT_ALT": "Mensaje enviado exitosamente"
+  },
   "Footer": {
     "GUIDE": "Tu guía para saber como llegar",
     "TIME": "Planea la duración de tu viaje",

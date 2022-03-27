@@ -1,4 +1,5 @@
 import React, { useMemo, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from './ContactForm.module.css';
 import emailSentIcon from '../../../static/img/email_sent.svg';
 import TextBox from '../../atoms/textBox/TextBox';
@@ -16,6 +17,8 @@ interface ContactFormProps {
 }
 
 const ContactForm: React.FC<ContactFormProps> = (props) => {
+  const { t } = useTranslation();
+
   const formRef = useRef<HTMLFormElement>(null);
   const vampireSlayerRef = useRef<HTMLInputElement>(null);
 
@@ -28,8 +31,8 @@ const ContactForm: React.FC<ContactFormProps> = (props) => {
   return (
     <section className={styles.container}>
       <header className={styles.header}>
-        <h1>Contáctame</h1>
-        <p>Tienes alguna duda o quieres dejarme un comentario?</p>
+        <h1>{t('Contact.HEADER')}</h1>
+        <p>{t('Contact.SUBHEADER')}</p>
       </header>
       {!props.wasMessageSuccessfullySent ? (
         <form
@@ -46,14 +49,14 @@ const ContactForm: React.FC<ContactFormProps> = (props) => {
           ref={formRef}
         >
           <TextBox
-            label="Name"
+            label={t('Contact.NAME_LABEL')}
             value={props.name}
             onChange={props.onNameChange}
             required
           />
           <TextBox
             type="email"
-            label="Email"
+            label={t('Contact.EMAIL_LABEL')}
             value={props.email}
             onChange={props.onEmailChange}
             required
@@ -67,19 +70,19 @@ const ContactForm: React.FC<ContactFormProps> = (props) => {
             className={styles.vampireSlayer}
           />
           <TextArea
-            label="Tu mensaje"
+            label={t('Contact.MESSAGE_PLACEHOLDER')}
             value={props.message}
             onChange={props.onMessageChange}
             required
           />
-          <button type="submit">Enviar</button>
+          <button type="submit">{t('Contact.SEND_BUTTON')}</button>
         </form>
       ) : (
         <div style={{ height: formHeight }} className={styles.iconWrapper}>
           <img
             className={styles.emailSentIcon}
             src={emailSentIcon}
-            alt="Email successfully sent!"
+            alt={t('Contact.MESSAGE_SENT_ALT')}
           />
         </div>
       )}

@@ -22,18 +22,26 @@ describe('ContactFormContainer', () => {
 
     render(<ContactFormContainer />);
 
-    userEvent.type(screen.getByRole('textbox', { name: 'Name' }), name);
-    userEvent.type(screen.getByRole('textbox', { name: 'Email' }), email);
     userEvent.type(
-      screen.getByRole('textbox', { name: 'Tu mensaje' }),
+      screen.getByRole('textbox', { name: 'Contact.NAME_LABEL' }),
+      name
+    );
+    userEvent.type(
+      screen.getByRole('textbox', { name: 'Contact.EMAIL_LABEL' }),
+      email
+    );
+    userEvent.type(
+      screen.getByRole('textbox', { name: 'Contact.MESSAGE_PLACEHOLDER' }),
       message
     );
 
-    userEvent.click(screen.getByRole('button', { name: 'Enviar' }));
+    userEvent.click(
+      screen.getByRole('button', { name: 'Contact.SEND_BUTTON' })
+    );
 
     expect(storeMessageMock).toHaveBeenCalledWith(name, email, message);
     expect(
-      screen.getByRole('img', { name: 'Email successfully sent!' })
+      screen.getByRole('img', { name: 'Contact.MESSAGE_SENT_ALT' })
     ).toBeVisible();
   });
 
@@ -52,19 +60,27 @@ describe('ContactFormContainer', () => {
 
     render(<ContactFormContainer />);
 
-    userEvent.type(screen.getByRole('textbox', { name: 'Name' }), name);
-    userEvent.type(screen.getByRole('textbox', { name: 'Email' }), email);
-    userEvent.type(screen.getByRole('textbox', { name: 'Url' }), 'I am a bot');
     userEvent.type(
-      screen.getByRole('textbox', { name: 'Tu mensaje' }),
+      screen.getByRole('textbox', { name: 'Contact.NAME_LABEL' }),
+      name
+    );
+    userEvent.type(
+      screen.getByRole('textbox', { name: 'Contact.EMAIL_LABEL' }),
+      email
+    );
+    userEvent.type(
+      screen.getByRole('textbox', { name: 'Contact.MESSAGE_PLACEHOLDER' }),
       message
     );
+    userEvent.type(screen.getByRole('textbox', { name: 'Url' }), 'I am a bot');
 
-    userEvent.click(screen.getByRole('button', { name: 'Enviar' }));
+    userEvent.click(
+      screen.getByRole('button', { name: 'Contact.SEND_BUTTON' })
+    );
 
     expect(storeMessageMock).not.toHaveBeenCalled();
     expect(
-      screen.queryByRole('img', { name: 'Email successfully sent!' })
+      screen.queryByRole('img', { name: 'Contact.MESSAGE_SENT_ALT' })
     ).toBeNull();
   });
 });

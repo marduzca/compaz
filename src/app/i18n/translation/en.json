@@ -49,6 +49,18 @@
       "TIME_ERROR": "Time is outside of functional hours"
     }
   },
+  "Contact": {
+    "SKETCH_ALT": "Sketch of the developer author of compaz",
+    "GITHUB_LINK": "Github account",
+    "LINKEDIN_LINK": "LinkedIn account",
+    "HEADER": "Contact me",
+    "SUBHEADER": "Do you have any questions or want to leave a comment?",
+    "NAME_LABEL": "Name",
+    "EMAIL_LABEL": "Email",
+    "MESSAGE_PLACEHOLDER": "Your message",
+    "SEND_BUTTON": "Send",
+    "MESSAGE_SENT_ALT": "Message sent successfully"
+  },
   "Footer": {
     "GUIDE": "Your guide to know how to get everywhere",
     "TIME": "Plan the duration of your trip",
