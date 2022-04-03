@@ -67,6 +67,8 @@
     "EASY": "Easy to use and at your fingertips"
   },
   "Menu": {
+    "CLOSE_BUTTON": "Close navigation menu",
+    "OPEN_BUTTON": "Open navigation menu",
     "AFTERNOON_MESSAGE": "Good afternoon\nLa Paz",
     "CHANGE_LANGUAGE": "Change language",
     "CONTACT": "Contact",

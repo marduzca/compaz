@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as LogoBlack } from '../../static/img/logo_black.svg';
 import { ReactComponent as FlagUSA } from '../../static/img/flag_usa.svg';
 import { ReactComponent as FlagBolivia } from '../../static/img/flag_bolivia.svg';
-import { ReactComponent as BackIcon } from '../../static/img/arrow_back.svg';
+import { ReactComponent as CloseIcon } from '../../static/img/close.svg';
 import { ReactComponent as MorningIcon } from '../../static/img/morning.svg';
 import { ReactComponent as AfternoonIcon } from '../../static/img/afternoon.svg';
 import { ReactComponent as NightIcon } from '../../static/img/night.svg';
@@ -120,13 +120,13 @@ const Menu: React.FC<MenuProps> = (props) => {
         }`}
       >
         <button
-          title={t('GO_BACK_BUTTON')}
+          title={t('Menu.CLOSE_BUTTON')}
           type="button"
           className={styles.backButton}
           onClick={props.onHideMobileMenu}
           autoFocus
         >
-          <BackIcon />
+          <CloseIcon />
         </button>
         <section className={styles.message}>
           {getMessageBasedOnTimeOfTheDay()}

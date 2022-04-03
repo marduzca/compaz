@@ -18,7 +18,7 @@ const MobileHeader: React.FC<MobileHeaderProps> = (props) => {
   return (
     <header className={styles.header}>
       <button
-        title={t('GO_BACK_BUTTON')}
+        title={t('Menu.OPEN_BUTTON')}
         type="button"
         className={`${styles.menuButton} ${
           props.hasLightBackground && styles.darkMenuButton
