@@ -7,7 +7,7 @@ import styles from './Footer.module.css';
 
 interface FooterItemProps {
   text: string;
-  icon: JSX.Element;
+  icon: React.ReactNode;
 }
 
 const FooterItem: React.FC<FooterItemProps> = (props) => (

@@ -24,7 +24,7 @@ interface FeatureFlagProps {
   children: React.ReactChildren;
 }
 
-const FeatureFlag = (props: FeatureFlagProps): JSX.Element | null => {
+const FeatureFlag = (props: FeatureFlagProps): React.ReactNode | null => {
   if (isFeatureFlagSet(props.flag)) {
     return <>{props.children}</>;
   }

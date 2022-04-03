@@ -4,7 +4,7 @@ import { actions } from '@storybook/addon-actions';
 import { MemoryRouter } from 'react-router-dom';
 import Menu from './Menu';
 
-const guaranteedSize = (child: JSX.Element): JSX.Element => (
+const guaranteedSize = (child: React.ReactNode): React.ReactNode => (
   <div style={{ height: '500px', width: '400px', display: 'flex' }}>
     {child}
   </div>

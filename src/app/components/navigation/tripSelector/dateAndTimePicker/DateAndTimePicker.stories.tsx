@@ -8,7 +8,7 @@ export default {
   component: DateAndTimePicker,
 } as Meta;
 
-const guaranteedSize = (child: JSX.Element): JSX.Element => (
+const guaranteedSize = (child: React.ReactNode): React.ReactNode => (
   <div
     style={{
       width: '400px',
