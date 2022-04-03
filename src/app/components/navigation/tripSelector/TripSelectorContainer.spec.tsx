@@ -95,7 +95,7 @@ describe('TripSelectorContainer', () => {
   });
 
   describe('Search button', () => {
-    it('calls the corresponding function when both origin and destination are selected', () => {
+    it('calls the corresponding function when both origin and destination are selected', async () => {
       useNavigationMock.mockReturnValue({
         origin: availableStations[0],
         destination: availableStations[1],
@@ -118,7 +118,7 @@ describe('TripSelectorContainer', () => {
         />
       );
 
-      userEvent.click(
+      await userEvent.click(
         screen.getByRole('button', {
           name: 'Content.TripSelector.SEARCH_BUTTON',
         })
@@ -127,7 +127,7 @@ describe('TripSelectorContainer', () => {
       expect(onSearchButtonClickMock).toHaveBeenCalledTimes(1);
     });
 
-    it('shows error message in origin when origin is not selected', () => {
+    it('shows error message in origin when origin is not selected', async () => {
       useNavigationMock.mockReturnValue({
         origin: undefined,
         destination: availableStations[1],
@@ -150,7 +150,7 @@ describe('TripSelectorContainer', () => {
         />
       );
 
-      userEvent.click(
+      await userEvent.click(
         screen.getByRole('button', {
           name: 'Content.TripSelector.SEARCH_BUTTON',
         })
@@ -164,7 +164,7 @@ describe('TripSelectorContainer', () => {
       ).toBeVisible();
     });
 
-    it('shows error message in destination when destination is not selected', () => {
+    it('shows error message in destination when destination is not selected', async () => {
       useNavigationMock.mockReturnValue({
         origin: availableStations[0],
         destination: undefined,
@@ -187,7 +187,7 @@ describe('TripSelectorContainer', () => {
         />
       );
 
-      userEvent.click(
+      await userEvent.click(
         screen.getByRole('button', {
           name: 'Content.TripSelector.SEARCH_BUTTON',
         })
@@ -201,7 +201,7 @@ describe('TripSelectorContainer', () => {
       ).toBeVisible();
     });
 
-    it('shows error message in origin and destination when neither is selected', () => {
+    it('shows error message in origin and destination when neither is selected', async () => {
       useNavigationMock.mockReturnValue({
         origin: undefined,
         destination: undefined,
@@ -224,7 +224,7 @@ describe('TripSelectorContainer', () => {
         />
       );
 
-      userEvent.click(
+      await userEvent.click(
         screen.getByRole('button', {
           name: 'Content.TripSelector.SEARCH_BUTTON',
         })

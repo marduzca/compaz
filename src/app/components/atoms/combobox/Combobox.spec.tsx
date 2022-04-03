@@ -58,7 +58,7 @@ describe('ComboBox', () => {
       expect(screen.queryByRole('option', { name: 'opt 1' })).toBeNull();
       expect(screen.getByText('placeholder')).toBeVisible();
 
-      userEvent.click(screen.getByText('placeholder'));
+      await userEvent.click(screen.getByText('placeholder'));
 
       expect(screen.getByRole('option', { name: 'opt 1' })).toBeVisible();
     });
@@ -67,7 +67,7 @@ describe('ComboBox', () => {
       expect(screen.queryByRole('option', { name: 'opt 1' })).toBeNull();
       expect(screen.getByText('placeholder')).toBeVisible();
 
-      userEvent.click(screen.getByRole('button'));
+      await userEvent.click(screen.getByRole('button'));
 
       expect(screen.getByRole('option', { name: 'opt 1' })).toBeVisible();
     });
@@ -76,10 +76,10 @@ describe('ComboBox', () => {
       expect(screen.queryByRole('option', { name: 'opt 1' })).toBeNull();
       expect(screen.getByText('placeholder')).toBeVisible();
 
-      userEvent.click(screen.getByText('placeholder'));
+      await userEvent.click(screen.getByText('placeholder'));
       expect(screen.getByRole('option', { name: 'opt 1' })).toBeVisible();
 
-      userEvent.click(screen.getByRole('button'));
+      await userEvent.click(screen.getByRole('button'));
       expect(screen.queryByRole('option', { name: 'opt 1' })).toBeNull();
     });
 
@@ -87,11 +87,11 @@ describe('ComboBox', () => {
       expect(screen.queryByRole('option', { name: 'opt 1' })).toBeNull();
       expect(screen.getByText('placeholder')).toBeVisible();
 
-      userEvent.click(screen.getByText('placeholder'));
+      await userEvent.click(screen.getByText('placeholder'));
       expect(screen.getByRole('option', { name: 'opt 1' })).toBeVisible();
       expect(screen.getByRole('option', { name: 'opt 2' })).toBeVisible();
 
-      userEvent.click(screen.getByRole('option', { name: 'opt 1' }));
+      await userEvent.click(screen.getByRole('option', { name: 'opt 1' }));
       expect(screen.queryByRole('option', { name: 'opt 2' })).toBeNull();
 
       expect(
@@ -102,11 +102,11 @@ describe('ComboBox', () => {
   });
 
   describe('with input filtering', () => {
-    it('only shows options that match the input value', () => {
+    it('only shows options that match the input value', async () => {
       expect(screen.queryByRole('option', { name: 'opt 1' })).toBeNull();
       expect(screen.getByText('placeholder')).toBeVisible();
 
-      userEvent.click(screen.getByText('placeholder'));
+      await userEvent.click(screen.getByText('placeholder'));
 
       fireEvent.change(screen.getByRole('textbox', { name: 'placeholder' }), {
         target: { value: 'opt 2' },
@@ -117,7 +117,7 @@ describe('ComboBox', () => {
       expect(screen.getByRole('option', { name: 'opt 2' })).toBeVisible();
       expect(screen.getByRole('option', { name: 'opt 20' })).toBeVisible();
 
-      userEvent.click(screen.getByRole('option', { name: 'opt 2' }));
+      await userEvent.click(screen.getByRole('option', { name: 'opt 2' }));
 
       expect(screen.queryByRole('option', { name: 'opt 2' })).toBeNull();
 

@@ -37,7 +37,7 @@ describe('MenuContainer', () => {
 
   describe('when switching language', () => {
     describe('when clicking the Bolivian Flag', () => {
-      it('switches the language to Spanish', () => {
+      it('switches the language to Spanish', async () => {
         localStorage.setItem('i18nextLng', 'en');
 
         render(
@@ -49,7 +49,7 @@ describe('MenuContainer', () => {
           </MemoryRouter>
         );
 
-        userEvent.click(
+        await userEvent.click(
           screen.getByRole('button', { name: 'Menu.CHANGE_LANGUAGE' })
         );
 
@@ -58,7 +58,7 @@ describe('MenuContainer', () => {
     });
 
     describe('when clicking the USA Flag', () => {
-      it('switches the language to English', () => {
+      it('switches the language to English', async () => {
         localStorage.setItem('i18nextLng', 'es');
 
         render(
@@ -70,7 +70,7 @@ describe('MenuContainer', () => {
           </MemoryRouter>
         );
 
-        userEvent.click(
+        await userEvent.click(
           screen.getByRole('button', { name: 'Menu.CHANGE_LANGUAGE' })
         );
 
