@@ -182,7 +182,7 @@ describe('RoutesOverviewContainer', () => {
     expect(withinFirstRouteSection.getByText('4')).toBeVisible();
   });
 
-  it('displays earlier route time when clicking on earlier button', async () => {
+  it('displays earlier route time when clicking on earlier button', () => {
     render(
       <RoutesOverviewContainer
         route={simpleRoute}
@@ -191,7 +191,7 @@ describe('RoutesOverviewContainer', () => {
       />
     );
 
-    await userEvent.click(
+    userEvent.click(
       screen.getByRole('button', {
         name: 'Content.RoutesOverview.EARLIER_BUTTON',
       })
@@ -200,7 +200,7 @@ describe('RoutesOverviewContainer', () => {
     expect(screen.getByText('17:25 - 17:34')).toBeVisible();
   });
 
-  it('displays later route time when clicking on later button', async () => {
+  it('displays later route time when clicking on later button', () => {
     render(
       <RoutesOverviewContainer
         route={simpleRoute}
@@ -209,7 +209,7 @@ describe('RoutesOverviewContainer', () => {
       />
     );
 
-    await userEvent.click(
+    userEvent.click(
       screen.getByRole('button', {
         name: 'Content.RoutesOverview.LATER_BUTTON',
       })

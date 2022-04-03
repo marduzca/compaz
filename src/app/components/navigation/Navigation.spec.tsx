@@ -155,12 +155,12 @@ describe('Navigation', () => {
     ).toBeVisible();
   });
 
-  it('navigates to routes overview when clicking on search', async () => {
+  it('navigates to routes overview when clicking on search', () => {
     render(
       <Navigation onMenuButtonClick={() => {}} isMobileMenuOpen={false} />
     );
 
-    await await userEvent.click(
+    userEvent.click(
       screen.getByRole('button', { name: 'Content.TripSelector.SEARCH_BUTTON' })
     );
 
@@ -171,16 +171,16 @@ describe('Navigation', () => {
     ).toBeVisible();
   });
 
-  it('navigates back to trip selection when clicking on routes overview back button', async () => {
+  it('navigates back to trip selection when clicking on routes overview back button', () => {
     render(
       <Navigation onMenuButtonClick={() => {}} isMobileMenuOpen={false} />
     );
 
-    await await userEvent.click(
+    userEvent.click(
       screen.getByRole('button', { name: 'Content.TripSelector.SEARCH_BUTTON' })
     );
 
-    await await userEvent.click(
+    userEvent.click(
       screen.getByRole('button', { name: 'GO_BACK_BUTTON_DESCRIPTIVE' })
     );
 
@@ -189,16 +189,16 @@ describe('Navigation', () => {
     ).toBeVisible();
   });
 
-  it('navigates to route details when clicking on specific route in overview', async () => {
+  it('navigates to route details when clicking on specific route in overview', () => {
     render(
       <Navigation onMenuButtonClick={() => {}} isMobileMenuOpen={false} />
     );
 
-    await await userEvent.click(
+    userEvent.click(
       screen.getByRole('button', { name: 'Content.TripSelector.SEARCH_BUTTON' })
     );
 
-    await await userEvent.click(
+    userEvent.click(
       screen.getByRole('button', {
         name: 'Content.RoutesOverview.SINGLE_ROUTE_BUTTON_TITLE 17:30 - 17:41',
       })
@@ -225,22 +225,22 @@ describe('Navigation', () => {
     expect(withinBlueLine.getByText('Destination Station')).toBeVisible();
   });
 
-  it('navigates back to routes overview when clicking on route details back button', async () => {
+  it('navigates back to routes overview when clicking on route details back button', () => {
     render(
       <Navigation onMenuButtonClick={() => {}} isMobileMenuOpen={false} />
     );
 
-    await await userEvent.click(
+    userEvent.click(
       screen.getByRole('button', { name: 'Content.TripSelector.SEARCH_BUTTON' })
     );
 
-    await await userEvent.click(
+    userEvent.click(
       screen.getByRole('button', {
         name: 'Content.RoutesOverview.SINGLE_ROUTE_BUTTON_TITLE 17:30 - 17:41',
       })
     );
 
-    await await userEvent.click(
+    userEvent.click(
       screen.getByRole('button', { name: 'GO_BACK_BUTTON_DESCRIPTIVE' })
     );
 

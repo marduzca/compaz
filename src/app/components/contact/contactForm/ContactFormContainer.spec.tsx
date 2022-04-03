@@ -7,7 +7,7 @@ import ContactFormContainer from './ContactFormContainer';
 describe('ContactFormContainer', () => {
   const useFirebaseMock = jest.spyOn(FirebaseProvider, 'useFirebase');
 
-  it('calls the function to store the message with name, email and content', async () => {
+  it('calls the function to store the message with name, email and content', () => {
     const storeMessageMock = jest.fn().mockReturnValue(true);
 
     useFirebaseMock.mockReturnValue({
@@ -22,20 +22,20 @@ describe('ContactFormContainer', () => {
 
     render(<ContactFormContainer />);
 
-    await userEvent.type(
+    userEvent.type(
       screen.getByRole('textbox', { name: 'Contact.NAME_LABEL' }),
       name
     );
-    await userEvent.type(
+    userEvent.type(
       screen.getByRole('textbox', { name: 'Contact.EMAIL_LABEL' }),
       email
     );
-    await userEvent.type(
+    userEvent.type(
       screen.getByRole('textbox', { name: 'Contact.MESSAGE_PLACEHOLDER' }),
       message
     );
 
-    await userEvent.click(
+    userEvent.click(
       screen.getByRole('button', { name: 'Contact.SEND_BUTTON' })
     );
 
@@ -45,7 +45,7 @@ describe('ContactFormContainer', () => {
     ).toBeVisible();
   });
 
-  it('avoids storing message if url input was filled (only discoverable by bots)', async () => {
+  it('avoids storing message if url input was filled (only discoverable by bots)', () => {
     const storeMessageMock = jest.fn().mockReturnValue(true);
 
     useFirebaseMock.mockReturnValue({
@@ -60,24 +60,21 @@ describe('ContactFormContainer', () => {
 
     render(<ContactFormContainer />);
 
-    await userEvent.type(
+    userEvent.type(
       screen.getByRole('textbox', { name: 'Contact.NAME_LABEL' }),
       name
     );
-    await userEvent.type(
+    userEvent.type(
       screen.getByRole('textbox', { name: 'Contact.EMAIL_LABEL' }),
       email
     );
-    await userEvent.type(
+    userEvent.type(
       screen.getByRole('textbox', { name: 'Contact.MESSAGE_PLACEHOLDER' }),
       message
     );
-    await userEvent.type(
-      screen.getByRole('textbox', { name: 'Url' }),
-      'I am a bot'
-    );
+    userEvent.type(screen.getByRole('textbox', { name: 'Url' }), 'I am a bot');
 
-    await userEvent.click(
+    userEvent.click(
       screen.getByRole('button', { name: 'Contact.SEND_BUTTON' })
     );
 
