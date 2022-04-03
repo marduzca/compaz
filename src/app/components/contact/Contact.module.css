@@ -14,6 +14,10 @@
   );
 }
 
+.container > header {
+  display: none;
+}
+
 .content {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -38,6 +42,10 @@
       var(--primary-light-color) 50%,
       white 50%
     );
+  }
+
+  .container > header {
+    display: flex;
   }
 
   .content {

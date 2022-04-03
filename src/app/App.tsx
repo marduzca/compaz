@@ -75,7 +75,16 @@ const App = () => {
                 </NavigationProvider>
               }
             />
-            <Route path="/contact" element={<Contact />} />
+            <Route
+              path="/contact"
+              element={
+                <Contact
+                  onMenuButtonClick={() => {
+                    setShowMobileMenu(true);
+                  }}
+                />
+              }
+            />
           </Routes>
         </FirebaseProvider>
         <NotificationContainer />
