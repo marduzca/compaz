@@ -15,14 +15,14 @@ import { ReactComponent as ContactIcon } from '../../static/img/contact.svg';
 import styles from './Menu.module.css';
 import i18n from '../../i18n/instance';
 
-interface HeaderItemProps {
+interface MenuItemProps {
   content: string;
-  icon: JSX.Element;
+  icon: React.ReactNode;
   href: string;
   onHideMobileMenu: () => void;
 }
 
-const HeaderItem: React.FC<HeaderItemProps> = (props) => (
+const MenuItem: React.FC<MenuItemProps> = (props) => (
   <li className={styles.headerLink}>
     <Link
       to={props.href}
@@ -35,14 +35,14 @@ const HeaderItem: React.FC<HeaderItemProps> = (props) => (
   </li>
 );
 
-interface HeaderProps {
+interface MenuProps {
   onLanguageChange: () => void;
   onHideMobileMenu: () => void;
   showMenuOnMobile: boolean;
   isMobile: boolean;
 }
 
-const Menu: React.FC<HeaderProps> = (props) => {
+const Menu: React.FC<MenuProps> = (props) => {
   const { t } = useTranslation();
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
@@ -136,19 +136,19 @@ const Menu: React.FC<HeaderProps> = (props) => {
             <LogoBlack />
           </a>
           <ul className={styles.headerItems}>
-            <HeaderItem
+            <MenuItem
               content={t('Menu.HISTORY')}
               icon={<HistoryIcon />}
               href=""
               onHideMobileMenu={props.onHideMobileMenu}
             />
-            <HeaderItem
+            <MenuItem
               content={t('Menu.HOW_TO_INSTALL')}
               icon={<InstallIcon />}
               href=""
               onHideMobileMenu={props.onHideMobileMenu}
             />
-            <HeaderItem
+            <MenuItem
               content={t('Menu.CONTACT')}
               icon={<ContactIcon />}
               href="/contact"

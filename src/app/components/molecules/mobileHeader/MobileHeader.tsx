@@ -32,9 +32,9 @@ const MobileHeader: React.FC<MobileHeaderProps> = (props) => {
       >
         <MenuIcon />
       </button>
-      <div className={styles.logo}>
+      <a href="./" title={t('Menu.GO_HOME')} className={styles.logo}>
         {props.hasLightBackground ? <LogoBlack /> : <LogoWhite />}
-      </div>
+      </a>
     </header>
   );
 };
