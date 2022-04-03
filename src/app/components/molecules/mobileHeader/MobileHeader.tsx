@@ -3,9 +3,11 @@ import { useTranslation } from 'react-i18next';
 import styles from './MobileHeader.module.css';
 import { ReactComponent as MenuIcon } from '../../../static/img/menu.svg';
 import { ReactComponent as LogoWhite } from '../../../static/img/logo_white.svg';
+import { ReactComponent as LogoBlack } from '../../../static/img/logo_black.svg';
 
 interface MobileHeaderProps {
   onMenuButtonClick: () => void;
+  hasLightBackground: boolean;
 }
 
 const MobileHeader: React.FC<MobileHeaderProps> = (props) => {
@@ -14,11 +16,13 @@ const MobileHeader: React.FC<MobileHeaderProps> = (props) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
 
   return (
-    <div className={styles.header}>
+    <header className={styles.header}>
       <button
         title={t('GO_BACK_BUTTON')}
         type="button"
-        className={styles.menuButton}
+        className={`${styles.menuButton} ${
+          props.hasLightBackground && styles.darkMenuButton
+        }`}
         onClick={() => {
           setIsMobileMenuOpen(!isMobileMenuOpen);
           props.onMenuButtonClick();
@@ -29,9 +33,9 @@ const MobileHeader: React.FC<MobileHeaderProps> = (props) => {
         <MenuIcon />
       </button>
       <div className={styles.logo}>
-        <LogoWhite />
+        {props.hasLightBackground ? <LogoBlack /> : <LogoWhite />}
       </div>
-    </div>
+    </header>
   );
 };
 
