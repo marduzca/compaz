@@ -13,6 +13,7 @@ const TextBox: React.FC<TextBoxProps> = (props) => (
   <div className={`${styles.textBox} ${!!props.value && styles.notEmpty}`}>
     <input
       id={props.label}
+      name={props.label}
       type={props.type}
       value={props.value}
       onChange={(event) => props.onChange(event.target.value)}

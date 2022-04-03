@@ -24,7 +24,6 @@ interface HeaderItemProps {
 
 const HeaderItem: React.FC<HeaderItemProps> = (props) => (
   <li className={styles.headerLink}>
-    {/* eslint-disable-next-line */}
     <Link
       to={props.href}
       className={styles.headerItem}

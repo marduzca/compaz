@@ -1,6 +1,8 @@
+import Page from './page';
+
 const selectStations = (origin: string, destination: string) => {
-  cy.get('input[name="Origin"]').type(`${origin}{downarrow}{enter}`);
-  cy.get('input[name="Destination"]').type(`${destination}{downarrow}{enter}`);
+  Page.typeInField('Origin', `${origin}{downarrow}{enter}`);
+  Page.typeInField('Destination', `${destination}{downarrow}{enter}`);
 };
 
 const selectDateAndTime = (date: string, time: string) => {

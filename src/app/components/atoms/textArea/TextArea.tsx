@@ -10,6 +10,7 @@ interface TextAreaProps {
 
 const TextArea: React.FC<TextAreaProps> = (props) => (
   <textarea
+    name={props.label}
     aria-label={props.label}
     placeholder={props.label}
     value={props.value}

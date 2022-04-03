@@ -4,7 +4,7 @@ import RoutesOverview from '../page_objects/routesOverview';
 import RouteDetails from '../page_objects/routeDetails';
 import Map from '../page_objects/map';
 
-describe('End to end', () => {
+describe('Navigation', () => {
   it('Goes through the whole trip selection and visualization process successfully', () => {
     cy.visit('/');
 

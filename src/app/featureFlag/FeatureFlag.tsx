@@ -1,5 +1,7 @@
 import React from 'react';
 
+export const DISABLE_MESSAGE_STORAGE_FLAG = 'disableMessageStorage';
+
 const getParam = (key: string) => {
   const searchParams = new URLSearchParams(window.location.search);
   const param = searchParams.get(key);

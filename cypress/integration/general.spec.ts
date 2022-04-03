@@ -1,15 +1,15 @@
-import Page from '../page_objects/page';
+import Header from '../page_objects/header';
 
 describe('General features', () => {
   it('changes language successfully', () => {
     cy.visit('/');
 
-    Page.headerShouldShowLinks('History', 'How to install', 'Contact us');
+    Header.headerShouldShowLinks('History', 'How to install', 'Contact');
 
-    Page.changeLanguage('en');
+    Header.changeLanguage('en');
 
-    Page.headerShouldShowLinks('Historial', 'Como instalar', 'Contactanos');
+    Header.headerShouldShowLinks('Historial', 'Como instalar', 'Contacto');
 
-    Page.changeLanguage('es');
+    Header.changeLanguage('es');
   });
 });

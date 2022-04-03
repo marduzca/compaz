@@ -2,26 +2,21 @@ const waitForLoadingAnimationToDisappear = () => {
   cy.get('img[alt="Loading..."]', { timeout: 10000 }).should('not.exist');
 };
 
-const changeLanguage = (currentLanguage: string) => {
-  cy.get(
-    `button[title="${
-      currentLanguage === 'en' ? 'Change language' : 'Cambiar idioma'
-    }"]`
-  ).click();
+const setLocalStorageItem = (key: string, value: string) => {
+  cy.window().its('localStorage').invoke('setItem', key, value);
 };
 
-const headerShouldShowLinks = (
-  history: string,
-  howToInstall: string,
-  contactUs: string
-) => {
-  cy.contains('a', history).should('be.visible');
-  cy.contains('a', howToInstall).should('be.visible');
-  cy.contains('a', contactUs).should('be.visible');
+const removeLocalStorageItem = (key: string) => {
+  cy.window().its('localStorage').invoke('removeItem', key);
+};
+
+const typeInField = (label: string, text: string) => {
+  cy.get(`input[name="${label}"]`).type(text);
 };
 
 export default {
   waitForLoadingAnimationToDisappear,
-  changeLanguage,
-  headerShouldShowLinks,
+  setLocalStorageItem,
+  removeLocalStorageItem,
+  typeInField,
 };

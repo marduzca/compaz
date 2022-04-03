@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import ContactForm from './ContactForm';
 import { useFirebase } from '../../providers/FirebaseProvider';
+import {
+  DISABLE_MESSAGE_STORAGE_FLAG,
+  isFeatureFlagSet,
+} from '../../../featureFlag/FeatureFlag';
 
 const ContactFormContainer: React.FC = () => {
   const { storeMessage } = useFirebase();
@@ -24,6 +28,11 @@ const ContactFormContainer: React.FC = () => {
   };
 
   const handleSubmit = () => {
+    if (isFeatureFlagSet(DISABLE_MESSAGE_STORAGE_FLAG)) {
+      setWasMessageSuccessfullySent(true);
+      return;
+    }
+
     const result = storeMessage(name, email, message);
     setWasMessageSuccessfullySent(result);
   };
