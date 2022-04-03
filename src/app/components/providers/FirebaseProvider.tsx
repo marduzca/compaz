@@ -34,13 +34,6 @@ firebase.initializeApp({
 
 const firestore = firebase.firestore();
 
-firestore.enablePersistence({ synchronizeTabs: true }).catch(() =>
-  // eslint-disable-next-line no-console
-  console.warn(
-    "Enable persistence failed. Currently retrieved data won't be persisted"
-  )
-);
-
 const versionDataRef = firestore.doc('metadata/versioning');
 const stationsRef = firestore.collection('stations');
 const linesRef = firestore.collection('lines');
