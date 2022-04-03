@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './TripSelector.module.css';
 import { ReactComponent as SearchIcon } from '../../../static/img/chevron_right.svg';
-import { ReactComponent as LogoWhite } from '../../../static/img/logo_white.svg';
-import { ReactComponent as MenuIcon } from '../../../static/img/menu.svg';
 import StationsSelectorContainer from './stationsSelector/StationsSelectorContainer';
 import DateAndTimePickerContainer from './dateAndTimePicker/DateAndTimePickerContainer';
+import MobileHeader from '../../molecules/mobileHeader/MobileHeader';
 
 interface TripSelectorProps {
   showOriginMissingError: boolean;
@@ -16,28 +15,10 @@ interface TripSelectorProps {
 
 const TripSelector: React.FC<TripSelectorProps> = (props) => {
   const { t } = useTranslation();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
 
   return (
     <section className={styles.tripSelector}>
-      <div className={styles.header}>
-        <button
-          title={t('GO_BACK_BUTTON')}
-          type="button"
-          className={styles.menuButton}
-          onClick={() => {
-            setIsMobileMenuOpen(!isMobileMenuOpen);
-            props.onMenuButtonClick();
-          }}
-          aria-expanded={isMobileMenuOpen}
-          aria-haspopup
-        >
-          <MenuIcon />
-        </button>
-        <div className={styles.logo}>
-          <LogoWhite />
-        </div>
-      </div>
+      <MobileHeader onMenuButtonClick={props.onMenuButtonClick} />
       <div className={styles.inputFields}>
         <StationsSelectorContainer
           showOriginMissingError={props.showOriginMissingError}

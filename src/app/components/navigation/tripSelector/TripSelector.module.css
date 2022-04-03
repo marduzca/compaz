@@ -13,10 +13,6 @@
   background-color: var(--primary-color);
 }
 
-.header {
-  display: none;
-}
-
 .inputFields {
   display: flex;
   flex-direction: column;
@@ -56,39 +52,9 @@
     padding: 1rem 1.25rem;
   }
 
-  .header {
-    position: relative;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
   .inputFields {
     height: 100%;
     justify-content: center;
-  }
-
-  .menuButton {
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-    background: none;
-    cursor: pointer;
-    border: 0;
-    height: 2.875rem;
-    width: 2.875rem;
-  }
-
-  .logo {
-    height: 2.875rem;
-    width: 11.575rem;
   }
 
   .searchButton {
