@@ -42,7 +42,7 @@
 }
 
 .notEmpty > label,
-.textBox > input:focus-visible + label {
+.textBox > input:focus + label {
   top: 0;
 
   font-size: 0.875rem;
@@ -50,6 +50,6 @@
   transform: translate(0, 2px);
 }
 
-.textBox > input:focus-visible {
+.textBox > input:focus {
   border-bottom-color: #4f4f4f;
 }
