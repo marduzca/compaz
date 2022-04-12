@@ -11,7 +11,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint . --ext .js,.ts,.tsx --max-warnings=0 && prettier --check 'src/**/*.{js,ts,tsx,css,scss,json,html}'",
     "lint_fix": "eslint . --fix --ext .js,.ts,.tsx && prettier --write 'src/**/*.{js,ts,tsx,css,scss,json,html}'",
-    "upgrade_deps": "npm outdated || true && npm update && npm outdated || true && npm install && npm test && npm run build && npm run loki:ci && git add . && git commit -m \"update deps\"",
+    "update_deps": "npm outdated || true && npm update && npm outdated || true && npm install && npm test && npm run build && npm run loki:ci && git add . && git commit -m \"update deps\"",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "loki:update": "npm run build-storybook && loki update",
