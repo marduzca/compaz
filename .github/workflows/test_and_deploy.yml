@@ -50,12 +50,16 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      - name: create env file
+        run: |
+          touch .env
+          echo REACT_APP_MAPS_API_KEY =${{ secrets.TEST_MAPS_API_KEY }} >> .env
       - run: npm ci && npm run ci:cypress-run
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         if: failure()
         with:
-          name: user_journey_test_screenshot
+          name: user_journey_test_local_screenshot
           path: cypress/screenshots/**
 
   outdated_deps:
@@ -105,3 +109,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm ci && CYPRESS_BASE_URL=https://compaz-4.web.app npm run cypress:ci
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: user_journey_test_prod_screenshot
+          path: cypress/screenshots/**
