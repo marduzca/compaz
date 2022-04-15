@@ -51,6 +51,12 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm ci && npm run ci:cypress-run
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: user_journey_test_screenshot
+          path: cypress/screenshots/**
 
   outdated_deps:
     needs: [visual_regression_test, user_journey_test_local]
