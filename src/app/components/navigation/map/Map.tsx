@@ -1,5 +1,5 @@
 import React from 'react';
-import { GoogleMap, Marker, Polyline } from '@react-google-maps/api';
+import { GoogleMap, MarkerF, PolylineF } from '@react-google-maps/api';
 import { useTranslation } from 'react-i18next';
 import stationMarker from '../../../static/img/station_marker.svg';
 import originMarker from '../../../static/img/origin_marker.svg';
@@ -30,7 +30,7 @@ const StationMarker: React.FC<StationMarkerProps> = (props) => {
   };
 
   return (
-    <Marker
+    <MarkerF
       position={{
         lat: props.geoLocation.latitude,
         lng: props.geoLocation.longitude,
@@ -84,7 +84,7 @@ interface StationsConnectorProps {
 
 const StationsConnector: React.FC<StationsConnectorProps> = (props) => (
   <>
-    <Polyline
+    <PolylineF
       path={[
         {
           lat: props.fromGeoLocation.latitude,
@@ -116,7 +116,7 @@ const StationsConnector: React.FC<StationsConnectorProps> = (props) => (
           : undefined,
       }}
     />
-    <Polyline
+    <PolylineF
       path={[
         {
           lat: props.fromGeoLocation.latitude,

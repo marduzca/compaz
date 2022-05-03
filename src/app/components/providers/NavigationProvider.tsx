@@ -198,7 +198,13 @@ export const addTransferTimeBetweenLines = (
   return subRoutesWithTimeLineAndTransferInfo;
 };
 
-export const NavigationProvider: React.FC = (props) => {
+interface NavigationProviderProps {
+  children: React.ReactNode;
+}
+
+export const NavigationProvider: React.FC<NavigationProviderProps> = (
+  props
+) => {
   const [origin, setOrigin] = useState<Station | undefined>(undefined);
   const [destination, setDestination] = useState<Station | undefined>(
     undefined

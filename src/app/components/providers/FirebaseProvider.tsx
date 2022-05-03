@@ -44,7 +44,11 @@ const messagesRef = firestore.collection('messages');
 // when saved and current version, use old data ✅
 // when saved and old version, store current data ✅
 
-export const FirebaseProvider: React.FC = (props) => {
+interface FirebaseProviderProps {
+  children: React.ReactNode;
+}
+
+export const FirebaseProvider: React.FC<FirebaseProviderProps> = (props) => {
   const DATA_VERSION_KEY = 'data_version';
   const STATIONS_KEY = 'data_stations';
   const LINES_KEY = 'data_lines';
