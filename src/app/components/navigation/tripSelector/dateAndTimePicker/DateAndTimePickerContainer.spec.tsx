@@ -44,25 +44,32 @@ describe('DateAndTimePickerContainer', () => {
     ).toContain('10:24');
   });
 
-  it('selects and displays selected date and time', () => {
+  it('selects and displays selected date and time', async () => {
     render(<DateAndTimePickerContainer />);
 
-    userEvent.click(
+    await userEvent.click(
       screen.getByRole('button', {
         name: 'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON_DESCRIPTION',
       })
     );
 
-    userEvent.type(
+    await userEvent.clear(
+      screen.getByLabelText('Content.DateAndTimePicker.DATE_LABEL')
+    );
+    await userEvent.type(
       screen.getByLabelText('Content.DateAndTimePicker.DATE_LABEL'),
       '1993-03-15'
     );
-    userEvent.type(
+
+    await userEvent.clear(
+      screen.getByLabelText('Content.DateAndTimePicker.TIME_LABEL')
+    );
+    await userEvent.type(
       screen.getByLabelText('Content.DateAndTimePicker.TIME_LABEL'),
       '09:30'
     );
 
-    userEvent.click(
+    await userEvent.click(
       screen.getByRole('button', {
         name: 'Content.DateAndTimePicker.SELECT_BUTTON',
       })
@@ -72,16 +79,16 @@ describe('DateAndTimePickerContainer', () => {
     expect(setNewDepartureDateMock).toHaveBeenLastCalledWith('1993-03-15');
   });
 
-  it('selects current date and time when clicking on Now button', () => {
+  it('selects current date and time when clicking on Now button', async () => {
     render(<DateAndTimePickerContainer />);
 
-    userEvent.click(
+    await userEvent.click(
       screen.getByRole('button', {
         name: 'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON_DESCRIPTION',
       })
     );
 
-    userEvent.click(
+    await userEvent.click(
       screen.getByRole('button', {
         name: 'Content.DateAndTimePicker.NOW_BUTTON',
       })
@@ -95,7 +102,7 @@ describe('DateAndTimePickerContainer', () => {
     );
   });
 
-  it('hides selection panel when clicking outside of it', () => {
+  it('hides selection panel when clicking outside of it', async () => {
     render(
       <div>
         <DateAndTimePickerContainer />
@@ -103,7 +110,7 @@ describe('DateAndTimePickerContainer', () => {
       </div>
     );
 
-    userEvent.click(
+    await userEvent.click(
       screen.getByRole('button', {
         name: 'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON_DESCRIPTION',
       })
@@ -115,7 +122,7 @@ describe('DateAndTimePickerContainer', () => {
       })
     ).toBeVisible();
 
-    userEvent.click(screen.getByText('This is outside the panel'));
+    await userEvent.click(screen.getByText('This is outside the panel'));
 
     expect(
       screen.queryByRole('button', {
@@ -125,20 +132,27 @@ describe('DateAndTimePickerContainer', () => {
   });
 
   describe('error message', () => {
-    it('shows error message when time outside of functional hours during the week', () => {
+    it('shows error message when time outside of functional hours during the week', async () => {
       render(<DateAndTimePickerContainer />);
 
-      userEvent.click(
+      await userEvent.click(
         screen.getByRole('button', {
           name: 'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON_DESCRIPTION',
         })
       );
 
-      userEvent.type(
+      await userEvent.clear(
+        screen.getByLabelText('Content.DateAndTimePicker.DATE_LABEL')
+      );
+      await userEvent.type(
         screen.getByLabelText('Content.DateAndTimePicker.DATE_LABEL'),
         '1993-03-17'
       );
-      userEvent.type(
+
+      await userEvent.clear(
+        screen.getByLabelText('Content.DateAndTimePicker.TIME_LABEL')
+      );
+      await userEvent.type(
         screen.getByLabelText('Content.DateAndTimePicker.TIME_LABEL'),
         '23:00'
       );
@@ -148,20 +162,27 @@ describe('DateAndTimePickerContainer', () => {
       ).toBeVisible();
     });
 
-    it('shows error message when time outside of functional hours during the weekend', () => {
+    it('shows error message when time outside of functional hours during the weekend', async () => {
       render(<DateAndTimePickerContainer />);
 
-      userEvent.click(
+      await userEvent.click(
         screen.getByRole('button', {
           name: 'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON_DESCRIPTION',
         })
       );
 
-      userEvent.type(
+      await userEvent.clear(
+        screen.getByLabelText('Content.DateAndTimePicker.DATE_LABEL')
+      );
+      await userEvent.type(
         screen.getByLabelText('Content.DateAndTimePicker.DATE_LABEL'),
         '1993-03-13'
       );
-      userEvent.type(
+
+      await userEvent.clear(
+        screen.getByLabelText('Content.DateAndTimePicker.TIME_LABEL')
+      );
+      await userEvent.type(
         screen.getByLabelText('Content.DateAndTimePicker.TIME_LABEL'),
         '20:00'
       );

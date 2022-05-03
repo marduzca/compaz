@@ -52,7 +52,7 @@ describe('StationsSelectorContainer', () => {
     jest.clearAllMocks();
   });
 
-  it('clears station input when clicking on the clear button', () => {
+  it('clears station input when clicking on the clear button', async () => {
     render(
       <StationsSelectorContainer
         showOriginMissingError={false}
@@ -60,7 +60,7 @@ describe('StationsSelectorContainer', () => {
       />
     );
 
-    userEvent.type(
+    await userEvent.type(
       screen.getByRole('textbox', {
         name: 'Content.TripSelector.ORIGIN_PLACEHOLDER',
       }),
@@ -73,7 +73,7 @@ describe('StationsSelectorContainer', () => {
       })
     ).toHaveValue(availableStations[0].name);
 
-    userEvent.click(
+    await userEvent.click(
       screen.getByRole('button', { name: 'Content.TripSelector.CLEAR_INPUT' })
     );
 
@@ -83,7 +83,7 @@ describe('StationsSelectorContainer', () => {
       })
     ).toHaveValue('');
 
-    userEvent.type(
+    await userEvent.type(
       screen.getByRole('textbox', {
         name: 'Content.TripSelector.DESTINATION_PLACEHOLDER',
       }),
@@ -96,7 +96,7 @@ describe('StationsSelectorContainer', () => {
       })
     ).toHaveValue(availableStations[1].name);
 
-    userEvent.click(
+    await userEvent.click(
       screen.getByRole('button', { name: 'Content.TripSelector.CLEAR_INPUT' })
     );
 
@@ -218,7 +218,7 @@ describe('StationsSelectorContainer', () => {
     ).toBeVisible();
   });
 
-  it('switches origin and destination content when clicking on switcher button', () => {
+  it('switches origin and destination content when clicking on switcher button', async () => {
     render(
       <StationsSelectorContainer
         showOriginMissingError={false}
@@ -243,7 +243,7 @@ describe('StationsSelectorContainer', () => {
       }
     );
 
-    userEvent.click(
+    await userEvent.click(
       screen.getByRole('button', {
         name: 'Content.TripSelector.STATIONS_SWITCHER',
       })
@@ -262,7 +262,7 @@ describe('StationsSelectorContainer', () => {
   });
 
   describe('errors', () => {
-    it("shows validation error when the current origin input doesn't correspond to any list item", () => {
+    it("shows validation error when the current origin input doesn't correspond to any list item", async () => {
       render(
         <StationsSelectorContainer
           showOriginMissingError={false}
@@ -270,7 +270,7 @@ describe('StationsSelectorContainer', () => {
         />
       );
 
-      userEvent.type(
+      await userEvent.type(
         screen.getByRole('textbox', {
           name: 'Content.TripSelector.ORIGIN_PLACEHOLDER',
         }),
@@ -284,7 +284,7 @@ describe('StationsSelectorContainer', () => {
       ).toBeVisible();
     });
 
-    it("shows validation error when the current destination input doesn't correspond to any list item", () => {
+    it("shows validation error when the current destination input doesn't correspond to any list item", async () => {
       render(
         <StationsSelectorContainer
           showOriginMissingError={false}
@@ -292,7 +292,7 @@ describe('StationsSelectorContainer', () => {
         />
       );
 
-      userEvent.type(
+      await userEvent.type(
         screen.getByRole('textbox', {
           name: 'Content.TripSelector.DESTINATION_PLACEHOLDER',
         }),
@@ -302,7 +302,7 @@ describe('StationsSelectorContainer', () => {
       expect(screen.getByText(/Content.TripSelector.ERROR/)).toBeVisible();
     });
 
-    it('shows validation error only when missing error is also set', () => {
+    it('shows validation error only when missing error is also set', async () => {
       render(
         <StationsSelectorContainer
           showOriginMissingError
@@ -310,14 +310,14 @@ describe('StationsSelectorContainer', () => {
         />
       );
 
-      userEvent.type(
+      await userEvent.type(
         screen.getByRole('textbox', {
           name: /Content.TripSelector.ORIGIN_PLACEHOLDER/,
         }),
         'This is a non-existent station'
       );
 
-      userEvent.type(
+      await userEvent.type(
         screen.getByRole('textbox', {
           name: /Content.TripSelector.DESTINATION_PLACEHOLDER/,
         }),
@@ -337,7 +337,7 @@ describe('StationsSelectorContainer', () => {
       ).toBeVisible();
     });
 
-    it('show missing error only when input is empty', () => {
+    it('show missing error only when input is empty', async () => {
       render(
         <StationsSelectorContainer
           showOriginMissingError
@@ -356,14 +356,14 @@ describe('StationsSelectorContainer', () => {
         })
       ).toBeVisible();
 
-      userEvent.type(
+      await userEvent.type(
         screen.getByRole('textbox', {
           name: /Content.TripSelector.ORIGIN_PLACEHOLDER/,
         }),
         availableStations[0].name
       );
 
-      userEvent.type(
+      await userEvent.type(
         screen.getByRole('textbox', {
           name: /Content.TripSelector.DESTINATION_PLACEHOLDER/,
         }),

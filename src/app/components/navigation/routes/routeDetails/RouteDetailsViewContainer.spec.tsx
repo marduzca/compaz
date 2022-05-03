@@ -77,7 +77,7 @@ describe('RouteDetailsViewContainer', () => {
     jest.clearAllMocks();
   });
 
-  it('shows and hides intermediate stations list when clicking on intermediate stations button', () => {
+  it('shows and hides intermediate stations list when clicking on intermediate stations button', async () => {
     render(
       <RouteDetailsViewContainer
         route={testRoute}
@@ -92,7 +92,7 @@ describe('RouteDetailsViewContainer', () => {
 
     expect(withinPurpleLine.queryByText('A.5 Station')).toBeNull();
 
-    userEvent.click(
+    await userEvent.click(
       withinPurpleLine.getByRole('button', {
         name: 'Content.RouteDetails.INTERMEDIATE_STATIONS_OPEN_BUTTON_TITLE',
       })
@@ -100,7 +100,7 @@ describe('RouteDetailsViewContainer', () => {
 
     expect(withinPurpleLine.getByText('A.5 Station')).toBeVisible();
 
-    userEvent.click(
+    await userEvent.click(
       withinPurpleLine.getByRole('button', {
         name: 'Content.RouteDetails.INTERMEDIATE_STATIONS_CLOSE_BUTTON_TITLE',
       })
