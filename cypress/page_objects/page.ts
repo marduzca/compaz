@@ -11,7 +11,7 @@ const removeLocalStorageItem = (key: string) => {
 };
 
 const typeInField = (label: string, text: string) => {
-  cy.get(`input[name="${label}"]`).type(text);
+  cy.get(`input[name="${label}"]`).should('be.visible').type(text);
 };
 
 export default {
