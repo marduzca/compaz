@@ -1,14 +1,27 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import firebase from 'firebase/app';
-import 'firebase/firestore';
-import 'firebase/analytics';
+import { initializeApp } from 'firebase/app';
 import {
-  useCollectionDataOnce,
-  useDocumentDataOnce,
+  collection,
+  doc,
+  getFirestore,
+  orderBy,
+  query,
+  setDoc,
+} from 'firebase/firestore';
+import 'firebase/analytics';
+import 'firebase/performance';
+import {
+  useCollectionData,
+  useDocumentData,
 } from 'react-firebase-hooks/firestore';
 import { Line, NotificationEvent, Station, VersionData } from '../domain';
 import { NotificationType } from '../notification/Notification';
 import { GENERAL_ERROR_NOTIFICATION_KEY } from '../notification/NotificationContainer';
+import {
+  stationConverter,
+  lineConverter,
+  versionDataConverter,
+} from './firestoreConverters';
 
 interface FirebaseContext {
   stations: Station[];
@@ -22,7 +35,7 @@ export const FirebaseContext = createContext<FirebaseContext>({
   storeMessage: () => true,
 });
 
-firebase.initializeApp({
+const firebaseApp = initializeApp({
   apiKey: 'AIzaSyCOp-cYAUCxncqLQAcWCCNzD5Wj6NOTDTc',
   authDomain: 'compaz-4.firebaseapp.com',
   projectId: 'compaz-4',
@@ -32,12 +45,16 @@ firebase.initializeApp({
   measurementId: 'G-BG76THH0ZB',
 });
 
-const firestore = firebase.firestore();
+const firestore = getFirestore(firebaseApp);
 
-const versionDataRef = firestore.doc('metadata/versioning');
-const stationsRef = firestore.collection('stations');
-const linesRef = firestore.collection('lines');
-const messagesRef = firestore.collection('messages');
+const versionDataRef = doc(firestore, 'metadata', 'versioning').withConverter(
+  versionDataConverter
+);
+const stationsRef = query(
+  collection(firestore, 'stations').withConverter(stationConverter),
+  orderBy('name')
+);
+const linesRef = collection(firestore, 'lines').withConverter(lineConverter);
 
 // TODO: Find out how to write these tests:
 // when nothing saved, store current data ✅
@@ -57,18 +74,12 @@ export const FirebaseProvider: React.FC<FirebaseProviderProps> = (props) => {
   const [stations, setStations] = useState<Station[]>([]);
   const [lines, setLines] = useState<Line[]>([]);
 
-  const [currentVersionData] = useDocumentDataOnce<VersionData>(versionDataRef);
-  const [currentStations] = useCollectionDataOnce<Station>(
-    dataNeedsUpdate ? stationsRef.orderBy('name') : undefined,
-    {
-      idField: 'id',
-    }
+  const [currentVersionData] = useDocumentData<VersionData>(versionDataRef); // TODO: go back to use..Once hook when ready
+  const [currentStations] = useCollectionData<Station>( // TODO: go back to use..Once hook when ready
+    dataNeedsUpdate ? stationsRef : undefined
   );
-  const [currentLines] = useCollectionDataOnce<Line>(
-    dataNeedsUpdate ? linesRef : undefined,
-    {
-      idField: 'id',
-    }
+  const [currentLines] = useCollectionData<Line>( // TODO: go back to use..Once hook when ready
+    dataNeedsUpdate ? linesRef : undefined
   );
 
   useEffect(() => {
@@ -119,21 +130,23 @@ export const FirebaseProvider: React.FC<FirebaseProviderProps> = (props) => {
     email: string,
     message: string
   ): boolean => {
-    messagesRef
-      .doc(`${email}_${Date.now()}`)
-      .set({ name, email, message, timestamp: new Date() })
-      .catch(() => {
-        window.dispatchEvent(
-          new CustomEvent('notification', {
-            detail: {
-              type: NotificationType.ERROR,
-              content: GENERAL_ERROR_NOTIFICATION_KEY,
-            } as NotificationEvent,
-          })
-        );
+    setDoc(doc(firestore, 'messages', `${email}_${Date.now()}`), {
+      name,
+      email,
+      message,
+      timestamp: new Date(),
+    }).catch(() => {
+      window.dispatchEvent(
+        new CustomEvent('notification', {
+          detail: {
+            type: NotificationType.ERROR,
+            content: GENERAL_ERROR_NOTIFICATION_KEY,
+          } as NotificationEvent,
+        })
+      );
 
-        return false;
-      });
+      return false;
+    });
 
     return true;
   };
