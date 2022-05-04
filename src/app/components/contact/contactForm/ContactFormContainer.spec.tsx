@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import * as FirebaseProvider from '../../providers/FirebaseProvider';
+import * as FirebaseProvider from '../../providers/firebase/FirebaseProvider';
 import ContactFormContainer from './ContactFormContainer';
 
 describe('ContactFormContainer', () => {

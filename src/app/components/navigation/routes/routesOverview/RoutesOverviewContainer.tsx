@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigation } from '../../../providers/NavigationProvider';
+import { useNavigation } from '../../../providers/navigation/NavigationProvider';
 import RoutesOverview from './RoutesOverview';
 import { NotificationEvent, Route } from '../../../domain';
 import { addMinutesToDate, reduceMinutesToDate } from '../../dateFormatter';

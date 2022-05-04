@@ -2,8 +2,8 @@ import React from 'react';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import RoutesOverviewContainer from './RoutesOverviewContainer';
-import * as NavigationProvider from '../../../providers/NavigationProvider';
-import * as FirebaseProvider from '../../../providers/FirebaseProvider';
+import * as NavigationProvider from '../../../providers/navigation/NavigationProvider';
+import * as FirebaseProvider from '../../../providers/firebase/FirebaseProvider';
 import {
   ConnectedStation,
   Line,

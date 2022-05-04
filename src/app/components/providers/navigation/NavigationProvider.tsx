@@ -1,9 +1,9 @@
 import React, { createContext, useContext, useState } from 'react';
-import { Line, Route, Station, SubRoute } from '../domain';
+import { Line, Route, Station, SubRoute } from '../../domain';
 import {
   parseToSimpleDate,
   parseToSimpleTime,
-} from '../navigation/dateFormatter';
+} from '../../navigation/dateFormatter';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const dijkstra = require('dijkstrajs');

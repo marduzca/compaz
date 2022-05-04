@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import TripSelector from './TripSelector';
-import { useNavigation } from '../../providers/NavigationProvider';
+import { useNavigation } from '../../providers/navigation/NavigationProvider';
 
 interface TripSelectorContainerProps {
   onMenuButtonClick: () => void;

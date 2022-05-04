@@ -3,7 +3,7 @@ import {
   QueryDocumentSnapshot,
   SnapshotOptions,
 } from 'firebase/firestore';
-import { Line, Station, VersionData } from '../domain';
+import { Line, Station, VersionData } from '../../domain';
 
 export const stationConverter: FirestoreDataConverter<Station> = {
   toFirestore() {

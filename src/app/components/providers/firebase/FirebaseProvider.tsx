@@ -14,9 +14,9 @@ import {
   useCollectionData,
   useDocumentData,
 } from 'react-firebase-hooks/firestore';
-import { Line, NotificationEvent, Station, VersionData } from '../domain';
-import { NotificationType } from '../notification/Notification';
-import { GENERAL_ERROR_NOTIFICATION_KEY } from '../notification/NotificationContainer';
+import { Line, NotificationEvent, Station, VersionData } from '../../domain';
+import { NotificationType } from '../../notification/Notification';
+import { GENERAL_ERROR_NOTIFICATION_KEY } from '../../notification/NotificationContainer';
 import {
   stationConverter,
   lineConverter,

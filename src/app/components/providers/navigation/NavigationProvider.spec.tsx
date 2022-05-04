@@ -8,7 +8,7 @@ import {
   useNavigation,
   calculateDirectionOfSubRoute,
 } from './NavigationProvider';
-import { ConnectedStation, Line, Route, Station, SubRoute } from '../domain';
+import { ConnectedStation, Line, Route, Station, SubRoute } from '../../domain';
 
 describe('NavigationProvider', () => {
   const listOfStationsWithTwoLines = [

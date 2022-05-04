@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import DateAndTimePicker from './DateAndTimePicker';
-import { useNavigation } from '../../../providers/NavigationProvider';
+import { useNavigation } from '../../../providers/navigation/NavigationProvider';
 import {
   isWeekday,
   parseToSimpleDate,

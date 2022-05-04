@@ -7,8 +7,8 @@ import MenuContainer from './components/menu/MenuContainer';
 import Navigation from './components/navigation/Navigation';
 import SadDogImage from './static/img/sad_dog.jpg';
 import NotificationContainer from './components/notification/NotificationContainer';
-import { FirebaseProvider } from './components/providers/FirebaseProvider';
-import { NavigationProvider } from './components/providers/NavigationProvider';
+import { FirebaseProvider } from './components/providers/firebase/FirebaseProvider';
+import { NavigationProvider } from './components/providers/navigation/NavigationProvider';
 import Contact from './components/contact/Contact';
 
 const LandscapeErrorMessage = () => {
