@@ -1,4 +1,6 @@
 const waitForLoadingAnimationToDisappear = () => {
+  cy.get('img[alt="Loading..."]').should('be.visible');
+
   cy.get('img[alt="Loading..."]', { timeout: 10000 }).should('not.exist');
 };
 
