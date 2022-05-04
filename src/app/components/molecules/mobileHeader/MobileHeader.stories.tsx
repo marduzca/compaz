@@ -8,14 +8,14 @@ export default {
   title: 'Molecules / MobileHeader',
 } as Meta;
 
-export const onLightBackground: React.FC = () => (
+export const OnLightBackground: React.FC = () => (
   <MobileHeader
     onMenuButtonClick={actions('onMenuButtonClick').onMenuButtonClick}
     hasLightBackground
   />
 );
 
-export const onDarkBackground: React.FC = () => (
+export const OnDarkBackground: React.FC = () => (
   <div style={{ backgroundColor: '#1976d2' }}>
     <MobileHeader
       onMenuButtonClick={actions('onMenuButtonClick').onMenuButtonClick}

@@ -19,7 +19,7 @@ export default {
   title: 'Atoms / TextArea',
 } as Meta;
 
-export const withoutInput: React.FC = () =>
+export const WithoutInput: React.FC = () =>
   guaranteedSize(
     <TextArea
       value=""
@@ -28,7 +28,7 @@ export const withoutInput: React.FC = () =>
     />
   );
 
-export const withInput: React.FC = () =>
+export const WithInput: React.FC = () =>
   guaranteedSize(
     <TextArea
       value="Le queria decir que su app es excelente! :D"

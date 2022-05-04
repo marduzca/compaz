@@ -12,7 +12,7 @@ export default {
   title: 'Contact',
 } as Meta;
 
-export const normalAndMobileState: React.FC = () =>
+export const NormalAndMobileState: React.FC = () =>
   guaranteedSize(
     <Contact
       onMenuButtonClick={actions('onMenuButtonClick').onMenuButtonClick}

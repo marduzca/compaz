@@ -9,7 +9,8 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:react-hooks/recommended",
     "plugin:jsx-a11y/recommended",
-    "plugin:import/warnings"
+    "plugin:import/warnings",
+    "plugin:storybook/recommended"
   ],
   "env": {
     "browser": true,
@@ -35,7 +36,7 @@
     "import/no-extraneous-dependencies": [
       "error",
       {
-        "devDependencies": ["src/app/**/*.spec.{ts,tsx}", "src/setupTests.ts"]
+        "devDependencies": ["src/app/**/*.spec.{ts,tsx}", "src/setupTests.ts", "**/*.stories.tsx"]
       }
     ],
     "prettier/prettier": [
@@ -69,7 +70,16 @@
     "jsx-a11y/no-noninteractive-tabindex": "off",
     "@typescript-eslint/ban-ts-comment": "off",
     "no-shadow": "off", // https://stackoverflow.com/questions/64463299/no-shadow-false-positive-when-declaring-any-typescript-enum-in-jhipster-app
-    "jsx-a11y/no-autofocus": "off"
+    "jsx-a11y/no-autofocus": "off",
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
+    "react/jsx-no-useless-fragment": ["error", { "allowExpressions": true }],
+    "react/jsx-no-constructed-context-values": "off"
   },
   "overrides": [
     {

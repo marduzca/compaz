@@ -7,4 +7,4 @@ export default {
   component: Footer,
 } as Meta;
 
-export const normalState = () => <Footer />;
+export const NormalState = () => <Footer />;

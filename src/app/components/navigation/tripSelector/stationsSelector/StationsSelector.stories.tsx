@@ -18,7 +18,7 @@ const guaranteedSize = (child: React.ReactNode): React.ReactNode => (
   </div>
 );
 
-export const normalState = () =>
+export const NormalState = () =>
   guaranteedSize(
     <StationsSelector
       stations={[]}
@@ -35,7 +35,7 @@ export const normalState = () =>
     />
   );
 
-export const withInputTextNormalState = () =>
+export const WithInputTextNormalState = () =>
   guaranteedSize(
     <StationsSelector
       stations={[]}
@@ -52,7 +52,7 @@ export const withInputTextNormalState = () =>
     />
   );
 
-export const withValidationErrorNormalState = () =>
+export const WithValidationErrorNormalState = () =>
   guaranteedSize(
     <StationsSelector
       stations={[]}
@@ -69,7 +69,7 @@ export const withValidationErrorNormalState = () =>
     />
   );
 
-export const withMissingErrorNormalState = () =>
+export const WithMissingErrorNormalState = () =>
   guaranteedSize(
     <StationsSelector
       stations={[]}

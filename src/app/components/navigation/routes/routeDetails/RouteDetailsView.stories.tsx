@@ -9,7 +9,7 @@ export default {
   component: RouteDetailsView,
 } as Meta;
 
-export const basicInNormalState = () => (
+export const BasicInNormalState = () => (
   <RouteDetailsView
     isMobile={false}
     route={{
@@ -82,7 +82,7 @@ export const basicInNormalState = () => (
   />
 );
 
-export const basicInMobileState = () => (
+export const BasicInMobileState = () => (
   <RouteDetailsView
     isMobile
     route={{

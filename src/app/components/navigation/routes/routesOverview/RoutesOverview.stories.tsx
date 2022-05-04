@@ -9,7 +9,7 @@ export default {
   component: RoutesOverview,
 } as Meta;
 
-export const normalAndMobileState = () => (
+export const NormalAndMobileState = () => (
   <RoutesOverview
     route={
       {
@@ -79,7 +79,7 @@ export const normalAndMobileState = () => (
   />
 );
 
-export const tooLongConnectionInNormalAndMobileState = () => (
+export const TooLongConnectionInNormalAndMobileState = () => (
   <RoutesOverview
     route={
       {
@@ -218,7 +218,7 @@ export const tooLongConnectionInNormalAndMobileState = () => (
   />
 );
 
-export const timeAboveOneHourInNormalAndMobileState = () => (
+export const TimeAboveOneHourInNormalAndMobileState = () => (
   <RoutesOverview
     route={
       {

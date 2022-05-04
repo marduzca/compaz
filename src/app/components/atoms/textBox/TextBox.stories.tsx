@@ -8,11 +8,11 @@ export default {
   title: 'Atoms / TextBox',
 } as Meta;
 
-export const withoutInput: React.FC = () => (
+export const WithoutInput: React.FC = () => (
   <TextBox value="" onChange={actions('onChange').onChange} label="Name" />
 );
 
-export const withInput: React.FC = () => (
+export const WithInput: React.FC = () => (
   <TextBox
     value="El Chavito"
     onChange={actions('onChange').onChange}

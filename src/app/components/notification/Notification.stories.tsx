@@ -7,7 +7,7 @@ export default {
   title: 'Notification',
 };
 
-export const infoNotificationNormalState = () => (
+export const InfoNotificationNormalState = () => (
   <Notification
     notificationType={NotificationType.INFO}
     content="This is an info message."
@@ -16,7 +16,7 @@ export const infoNotificationNormalState = () => (
   />
 );
 
-export const errorNotificationNormalState = () => (
+export const ErrorNotificationNormalState = () => (
   <Notification
     notificationType={NotificationType.ERROR}
     content="This is an error message."
@@ -25,7 +25,7 @@ export const errorNotificationNormalState = () => (
   />
 );
 
-export const successNotificationNormalState = () => (
+export const SuccessNotificationNormalState = () => (
   <Notification
     notificationType={NotificationType.SUCCESS}
     content="This is a success message."
@@ -34,7 +34,7 @@ export const successNotificationNormalState = () => (
   />
 );
 
-export const withLongTextNormalState = () => (
+export const WithLongTextNormalState = () => (
   <Notification
     notificationType={NotificationType.ERROR}
     content="This is a long message that is supposed to be long enough to break to a
@@ -46,7 +46,7 @@ export const withLongTextNormalState = () => (
   />
 );
 
-export const withReloadMessageNormalState = () => (
+export const WithReloadMessageNormalState = () => (
   <Notification
     notificationType={NotificationType.INFO}
     content={RELOAD_EVENT}

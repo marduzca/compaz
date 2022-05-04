@@ -8,7 +8,7 @@ export default {
   title: 'Atoms / Combobox',
 } as Meta;
 
-export const withoutInput: React.FC = () => (
+export const WithoutInput: React.FC = () => (
   <Combobox
     toggleButtonTitle=""
     onChange={actions('onChange').onChange}
@@ -21,7 +21,7 @@ export const withoutInput: React.FC = () => (
   />
 );
 
-export const withInput: React.FC = () => (
+export const WithInput: React.FC = () => (
   <Combobox
     toggleButtonTitle=""
     onChange={actions('onChange').onChange}

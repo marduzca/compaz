@@ -16,7 +16,7 @@ describe('dateFormatter', () => {
         false
       );
 
-      expect(dateInLongFormat).toEqual('Friday 24 September');
+      expect(dateInLongFormat).toBe('Friday 24 September');
     });
 
     it('parses a date to english short format correctly', () => {
@@ -25,7 +25,7 @@ describe('dateFormatter', () => {
         true
       );
 
-      expect(dateInLongFormat).toEqual('Fri 24 Sep');
+      expect(dateInLongFormat).toBe('Fri 24 Sep');
     });
 
     it('adds english today indicator if given date is today', () => {
@@ -42,7 +42,7 @@ describe('dateFormatter', () => {
         false
       );
 
-      expect(dateInLongFormat).toEqual('Viernes 24 Septiembre');
+      expect(dateInLongFormat).toBe('Viernes 24 Septiembre');
     });
 
     it('parses a date to spanish short format correctly', () => {
@@ -51,7 +51,7 @@ describe('dateFormatter', () => {
         true
       );
 
-      expect(dateInLongFormat).toEqual('Vie 24 Sept');
+      expect(dateInLongFormat).toBe('Vie 24 Sept');
     });
 
     it('adds spanish today indicator if given date is today', () => {
@@ -78,7 +78,7 @@ describe('dateFormatter', () => {
   it('parses date to input date format correctly', () => {
     const timeInSimpleFormat = parseToSimpleDate(new Date('2021-09-24 17:30'));
 
-    expect(timeInSimpleFormat).toEqual('2021-09-24');
+    expect(timeInSimpleFormat).toBe('2021-09-24');
   });
 
   it('adds given minutes to given date correctly', () => {
@@ -87,8 +87,8 @@ describe('dateFormatter', () => {
       30
     );
 
-    expect(dateWithAddedMinutes.getHours()).toEqual(18);
-    expect(dateWithAddedMinutes.getMinutes()).toEqual(5);
+    expect(dateWithAddedMinutes.getHours()).toBe(18);
+    expect(dateWithAddedMinutes.getMinutes()).toBe(5);
   });
 
   it('reduces given minutes to given date correctly', () => {
@@ -97,13 +97,13 @@ describe('dateFormatter', () => {
       40
     );
 
-    expect(dateWithAddedMinutes.getHours()).toEqual(16);
-    expect(dateWithAddedMinutes.getMinutes()).toEqual(55);
+    expect(dateWithAddedMinutes.getHours()).toBe(16);
+    expect(dateWithAddedMinutes.getMinutes()).toBe(55);
   });
 
   it('parses date to simple time format correctly', () => {
     const timeInSimpleFormat = parseToSimpleTime(new Date('2021-09-24 17:30'));
 
-    expect(timeInSimpleFormat).toEqual('17:30');
+    expect(timeInSimpleFormat).toBe('17:30');
   });
 });

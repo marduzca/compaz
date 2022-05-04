@@ -24,7 +24,7 @@ const guaranteedSize = (child: React.ReactNode): React.ReactNode => (
   </div>
 );
 
-export const basicInNormalState = () =>
+export const BasicInNormalState = () =>
   guaranteedSize(
     <DateAndTimePicker
       departureDate="2021-09-24"
@@ -44,7 +44,7 @@ export const basicInNormalState = () =>
     />
   );
 
-export const withOpenSelectionPanelInNormalState = () =>
+export const WithOpenSelectionPanelInNormalState = () =>
   guaranteedSize(
     <DateAndTimePicker
       departureDate="2021-09-24"
@@ -64,7 +64,7 @@ export const withOpenSelectionPanelInNormalState = () =>
     />
   );
 
-export const withTimeError = () =>
+export const WithTimeError = () =>
   guaranteedSize(
     <DateAndTimePicker
       departureDate="2021-09-24"

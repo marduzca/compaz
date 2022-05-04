@@ -160,19 +160,17 @@ const RouteDetailsView: React.FC<RouteDetailsViewProps> = (props) => (
         </div>
       </Resizable>
     ) : (
-      <>
-        <DetailsContentBox
-          route={props.route}
-          departureTime={props.departureTime}
-          linesWithOpenIntermediateStations={
-            props.linesWithOpenIntermediateStations
-          }
-          onIntermediateStationsButtonClick={
-            props.onIntermediateStationsButtonClick
-          }
-          onBackButtonClick={props.onBackButtonClick}
-        />
-      </>
+      <DetailsContentBox
+        route={props.route}
+        departureTime={props.departureTime}
+        linesWithOpenIntermediateStations={
+          props.linesWithOpenIntermediateStations
+        }
+        onIntermediateStationsButtonClick={
+          props.onIntermediateStationsButtonClick
+        }
+        onBackButtonClick={props.onBackButtonClick}
+      />
     )}
   </section>
 );

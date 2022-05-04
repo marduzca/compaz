@@ -23,7 +23,7 @@ export default {
   component: TripSelector,
 } as Meta;
 
-export const normalState = () =>
+export const NormalState = () =>
   guaranteedSize(
     <TripSelector
       showOriginMissingError={false}
@@ -33,7 +33,7 @@ export const normalState = () =>
     />
   );
 
-export const mobileState = () => (
+export const MobileState = () => (
   <TripSelector
     showOriginMissingError={false}
     showDestinationMissingError={false}

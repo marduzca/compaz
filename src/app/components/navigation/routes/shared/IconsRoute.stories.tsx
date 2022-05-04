@@ -48,10 +48,10 @@ export default {
   component: IconsRoute,
 } as Meta;
 
-export const basicInNormalState = () => (
+export const BasicInNormalState = () => (
   <IconsRoute subRoutes={testSubRoutes} />
 );
 
-export const withHiddenTimesInNormalState = () => (
+export const WithHiddenTimesInNormalState = () => (
   <IconsRoute subRoutes={testSubRoutes} hideTimes />
 );

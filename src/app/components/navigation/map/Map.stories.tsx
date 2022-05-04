@@ -8,7 +8,7 @@ export default {
   component: Map,
 } as Meta;
 
-export const loadingMobileState = () => (
+export const LoadingMobileState = () => (
   <Map
     isLoaded={false}
     origin={undefined}

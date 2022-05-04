@@ -54,108 +54,106 @@ const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => {
   }, [props.showSelectionPanel]);
 
   return (
-    <>
-      <div className={styles.dateAndTimePickerContainer}>
-        <button
-          type="button"
-          title={t('Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON')}
-          aria-label={t(
-            'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON_DESCRIPTION',
-            {
-              selectedDate: props.departureDate,
-              selectedTime: props.departureTime,
-            }
-          )}
-          className={styles.dateAndTimePickerButton}
-          onClick={props.onDateAndTimeButtonClick}
-          aria-expanded={props.showSelectionPanel}
-          aria-haspopup
-        >
-          <div className={styles.date}>
-            <CalendarIcon />
-            <span>
-              {i18n.language.match(/en/i)
-                ? parseToEnglishDateString(
-                    props.departureDate
-                      ? new Date(`${props.departureDate}T12:00:00.000Z`)
-                      : new Date(),
-                    true
-                  )
-                : parseToSpanishDateString(
-                    props.departureDate
-                      ? new Date(`${props.departureDate}T12:00:00.000Z`)
-                      : new Date(),
-                    true
-                  )}
-            </span>
-          </div>
-          <div className={styles.time}>
-            <TimeIcon />
-            <span>
-              {props.departureTime
-                ? props.departureTime
-                : parseToSimpleTime(new Date())}
-            </span>
-          </div>
-        </button>
-        {props.showSelectionPanel && (
-          <div className={styles.menu} ref={dateAndTimeSelectionPanelRef}>
-            <div className={styles.inputFields}>
-              <div>
-                <label htmlFor="dateInput">
-                  {t('Content.DateAndTimePicker.DATE_LABEL')}
-                </label>
-                <input
-                  type="date"
-                  id="dateInput"
-                  className={styles.dateInput}
-                  defaultValue={props.departureDate}
-                  onChange={props.onDatePickerChange}
-                  autoFocus
-                />
-              </div>
-              <div>
-                <label htmlFor="timeInput">
-                  {t('Content.DateAndTimePicker.TIME_LABEL')}
-                </label>
-                <input
-                  type="time"
-                  id="timeInput"
-                  defaultValue={props.departureTime}
-                  onChange={props.onTimePickerChange}
-                  className={
-                    props.isSelectedTimeOutsideOfFunctionalHours
-                      ? styles.outsideOfFunctionalHours
-                      : ''
-                  }
-                />
-              </div>
-            </div>
-            {props.isSelectedTimeOutsideOfFunctionalHours && (
-              <p className={styles.timeError}>
-                {t('Content.DateAndTimePicker.TIME_ERROR')}
-              </p>
-            )}
-            <div className={styles.footer}>
-              <button
-                type="button"
-                className={styles.nowButton}
-                onClick={props.onNowButtonClick}
-              >
-                {t('Content.DateAndTimePicker.NOW_BUTTON')}
-              </button>
-              <button
-                type="button"
-                className={styles.selectButton}
-                onClick={props.onSelectButtonClick}
-              >
-                {t('Content.DateAndTimePicker.SELECT_BUTTON')}
-              </button>
-            </div>
-          </div>
+    <div className={styles.dateAndTimePickerContainer}>
+      <button
+        type="button"
+        title={t('Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON')}
+        aria-label={t(
+          'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON_DESCRIPTION',
+          {
+            selectedDate: props.departureDate,
+            selectedTime: props.departureTime,
+          }
         )}
-      </div>
-    </>
+        className={styles.dateAndTimePickerButton}
+        onClick={props.onDateAndTimeButtonClick}
+        aria-expanded={props.showSelectionPanel}
+        aria-haspopup
+      >
+        <div className={styles.date}>
+          <CalendarIcon />
+          <span>
+            {i18n.language.match(/en/i)
+              ? parseToEnglishDateString(
+                  props.departureDate
+                    ? new Date(`${props.departureDate}T12:00:00.000Z`)
+                    : new Date(),
+                  true
+                )
+              : parseToSpanishDateString(
+                  props.departureDate
+                    ? new Date(`${props.departureDate}T12:00:00.000Z`)
+                    : new Date(),
+                  true
+                )}
+          </span>
+        </div>
+        <div className={styles.time}>
+          <TimeIcon />
+          <span>
+            {props.departureTime
+              ? props.departureTime
+              : parseToSimpleTime(new Date())}
+          </span>
+        </div>
+      </button>
+      {props.showSelectionPanel && (
+        <div className={styles.menu} ref={dateAndTimeSelectionPanelRef}>
+          <div className={styles.inputFields}>
+            <div>
+              <label htmlFor="dateInput">
+                {t('Content.DateAndTimePicker.DATE_LABEL')}
+              </label>
+              <input
+                type="date"
+                id="dateInput"
+                className={styles.dateInput}
+                defaultValue={props.departureDate}
+                onChange={props.onDatePickerChange}
+                autoFocus
+              />
+            </div>
+            <div>
+              <label htmlFor="timeInput">
+                {t('Content.DateAndTimePicker.TIME_LABEL')}
+              </label>
+              <input
+                type="time"
+                id="timeInput"
+                defaultValue={props.departureTime}
+                onChange={props.onTimePickerChange}
+                className={
+                  props.isSelectedTimeOutsideOfFunctionalHours
+                    ? styles.outsideOfFunctionalHours
+                    : ''
+                }
+              />
+            </div>
+          </div>
+          {props.isSelectedTimeOutsideOfFunctionalHours && (
+            <p className={styles.timeError}>
+              {t('Content.DateAndTimePicker.TIME_ERROR')}
+            </p>
+          )}
+          <div className={styles.footer}>
+            <button
+              type="button"
+              className={styles.nowButton}
+              onClick={props.onNowButtonClick}
+            >
+              {t('Content.DateAndTimePicker.NOW_BUTTON')}
+            </button>
+            <button
+              type="button"
+              className={styles.selectButton}
+              onClick={props.onSelectButtonClick}
+            >
+              {t('Content.DateAndTimePicker.SELECT_BUTTON')}
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 

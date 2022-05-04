@@ -22,7 +22,7 @@ export default {
   ],
 } as Meta;
 
-export const normalState = () => (
+export const NormalState = () => (
   <Menu
     onLanguageChange={actions('onLanguageChange').onLanguageChange}
     onHideMobileMenu={actions('onBackButtonClick').onBackButtonClick}
@@ -31,7 +31,7 @@ export const normalState = () => (
   />
 );
 
-export const mobileState = () =>
+export const MobileState = () =>
   guaranteedSize(
     <Menu
       onLanguageChange={actions('onLanguageChange').onLanguageChange}

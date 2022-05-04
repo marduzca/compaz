@@ -7,7 +7,7 @@ export default {
   title: 'Contact / ContactForm',
 };
 
-export const normalState: React.FC = () => (
+export const NormalState: React.FC = () => (
   <ContactForm
     name=""
     email=""
@@ -20,7 +20,7 @@ export const normalState: React.FC = () => (
   />
 );
 
-export const normalStateWithEmailSent: React.FC = () => (
+export const NormalStateWithEmailSent: React.FC = () => (
   <ContactForm
     name=""
     email=""

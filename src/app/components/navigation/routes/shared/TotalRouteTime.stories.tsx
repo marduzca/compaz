@@ -7,6 +7,6 @@ export default {
   component: TotalRouteTime,
 } as Meta;
 
-export const onlyMinutesInNormalState = () => <TotalRouteTime totalTime={16} />;
+export const OnlyMinutesInNormalState = () => <TotalRouteTime totalTime={16} />;
 
-export const overOneHourInNormalState = () => <TotalRouteTime totalTime={75} />;
+export const OverOneHourInNormalState = () => <TotalRouteTime totalTime={75} />;

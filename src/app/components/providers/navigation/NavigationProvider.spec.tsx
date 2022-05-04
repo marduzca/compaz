@@ -487,7 +487,7 @@ describe('NavigationProvider', () => {
         listOfStationsWithTwoLines
       );
 
-      expect(calculatedTotalTime).toEqual(6);
+      expect(calculatedTotalTime).toBe(6);
     });
   });
 
@@ -573,7 +573,7 @@ describe('NavigationProvider', () => {
         routeHeadingEndOfLine
       );
 
-      expect(subRouteDirection).toEqual('Last station red');
+      expect(subRouteDirection).toBe('Last station red');
     });
 
     it('calculates direction of route correctly when heading towards start of line', () => {
@@ -583,7 +583,7 @@ describe('NavigationProvider', () => {
         routeHeadingEndOfLine.reverse()
       );
 
-      expect(subRouteDirection).toEqual('First station red');
+      expect(subRouteDirection).toBe('First station red');
     });
   });
 

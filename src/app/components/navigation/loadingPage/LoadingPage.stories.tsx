@@ -18,4 +18,4 @@ export default {
   component: LoadingPage,
 } as Meta;
 
-export const normalAndMobileState = () => guaranteedSize(<LoadingPage />);
+export const NormalAndMobileState = () => guaranteedSize(<LoadingPage />);
