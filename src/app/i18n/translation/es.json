@@ -83,6 +83,7 @@
     "CLOSE": "Cerrar notificación",
     "ERROR": "Notificación de tipo Error",
     "GENERAL_ERROR_MESSAGE": "Algo salió mal. Por favor vuelve a cargar la página e inténtalo de nuevo.",
+    "OFFLINE_ERROR_MESSAGE": "Esta funcionalidad solo esta disponible con conexión al internet. Por favor conéctate a una red e inténtalo de nuevo.",
     "INFO": "Notificación de tipo Información",
     "RELOAD_ANCHOR_DESCRIPTION": "Haz click aquí para descargar las últimas actualizaciones",
     "RELOAD_MESSAGE": "La aplicación tiene nuevas actualizaciones. Haz <1>click aquí</1> para descargarlas o vuelve a cargar la página.",

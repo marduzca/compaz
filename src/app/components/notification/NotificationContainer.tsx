@@ -6,6 +6,8 @@ import styles from './Notification.module.css';
 
 export const GENERAL_ERROR_NOTIFICATION_KEY =
   'Notification.GENERAL_ERROR_MESSAGE';
+export const OFFLINE_ERROR_NOTIFICATION_KEY =
+  'Notification.OFFLINE_ERROR_MESSAGE';
 
 const NotificationContainer = () => {
   const nodeRef = useRef(null);

@@ -18,21 +18,25 @@ import { Line, NotificationEvent, Station, VersionData } from '../../domain';
 import { NotificationType } from '../../notification/Notification';
 import { GENERAL_ERROR_NOTIFICATION_KEY } from '../../notification/NotificationContainer';
 import {
-  stationConverter,
   lineConverter,
+  stationConverter,
   versionDataConverter,
 } from './firestoreConverters';
 
 interface FirebaseContext {
   stations: Station[];
   lines: Line[];
-  storeMessage: (name: string, email: string, message: string) => boolean;
+  storeMessage: (
+    name: string,
+    email: string,
+    message: string
+  ) => Promise<boolean>;
 }
 
 export const FirebaseContext = createContext<FirebaseContext>({
   stations: [],
   lines: [],
-  storeMessage: () => true,
+  storeMessage: async () => true,
 });
 
 const firebaseApp = initializeApp({
@@ -125,17 +129,21 @@ export const FirebaseProvider: React.FC<FirebaseProviderProps> = (props) => {
     }
   }, [currentLines, currentStations, currentVersionData]);
 
-  const storeMessage = (
+  const storeMessage = async (
     name: string,
     email: string,
     message: string
-  ): boolean => {
-    setDoc(doc(firestore, 'messages', `${email}_${Date.now()}`), {
-      name,
-      email,
-      message,
-      timestamp: new Date(),
-    }).catch(() => {
+  ): Promise<boolean> => {
+    try {
+      await setDoc(doc(firestore, 'message', `${email}_${Date.now()}`), {
+        name,
+        email,
+        message,
+        timestamp: new Date(),
+      });
+
+      return true;
+    } catch (error) {
       window.dispatchEvent(
         new CustomEvent('notification', {
           detail: {
@@ -146,9 +154,7 @@ export const FirebaseProvider: React.FC<FirebaseProviderProps> = (props) => {
       );
 
       return false;
-    });
-
-    return true;
+    }
   };
 
   return (

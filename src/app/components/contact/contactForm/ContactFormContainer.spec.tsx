@@ -3,12 +3,29 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import * as FirebaseProvider from '../../providers/firebase/FirebaseProvider';
 import ContactFormContainer from './ContactFormContainer';
+import { NotificationType } from '../../notification/Notification';
+import { OFFLINE_ERROR_NOTIFICATION_KEY } from '../../notification/NotificationContainer';
+import { NotificationEvent } from '../../domain';
 
 describe('ContactFormContainer', () => {
   const useFirebaseMock = jest.spyOn(FirebaseProvider, 'useFirebase');
 
+  const storeMessageMock = jest.fn().mockResolvedValue(true);
+
+  beforeEach(() => {
+    useFirebaseMock.mockReturnValue({
+      stations: [],
+      lines: [],
+      storeMessage: storeMessageMock,
+    });
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('calls the function to store the message with name, email and content', async () => {
-    const storeMessageMock = jest.fn().mockReturnValue(true);
+    const storeMessageMock = jest.fn().mockResolvedValue(true);
 
     useFirebaseMock.mockReturnValue({
       stations: [],
@@ -41,37 +58,26 @@ describe('ContactFormContainer', () => {
 
     expect(storeMessageMock).toHaveBeenCalledWith(name, email, message);
     expect(
-      screen.getByRole('img', { name: 'Contact.MESSAGE_SENT_ALT' })
+      await screen.findByRole('img', { name: 'Contact.MESSAGE_SENT_ALT' })
     ).toBeVisible();
   });
 
   it('avoids storing message if url input was filled (only discoverable by bots)', async () => {
-    const storeMessageMock = jest.fn().mockReturnValue(true);
-
-    useFirebaseMock.mockReturnValue({
-      stations: [],
-      lines: [],
-      storeMessage: storeMessageMock,
-    });
-
-    const name = 'El Chavo';
-    const email = 'chavonet@pokemail.com';
-    const message = 'Eso eso eso...';
-
     render(<ContactFormContainer />);
 
     await userEvent.type(
       screen.getByRole('textbox', { name: 'Contact.NAME_LABEL' }),
-      name
+      'name'
     );
     await userEvent.type(
       screen.getByRole('textbox', { name: 'Contact.EMAIL_LABEL' }),
-      email
+      'email@email.com'
     );
     await userEvent.type(
       screen.getByRole('textbox', { name: 'Contact.MESSAGE_PLACEHOLDER' }),
-      message
+      'message'
     );
+
     await userEvent.type(
       screen.getByRole('textbox', { name: 'Url' }),
       'I am a bot'
@@ -82,6 +88,44 @@ describe('ContactFormContainer', () => {
     );
 
     expect(storeMessageMock).not.toHaveBeenCalled();
+    expect(
+      screen.queryByRole('img', { name: 'Contact.MESSAGE_SENT_ALT' })
+    ).toBeNull();
+  });
+
+  it("doesn't store message and dispatches error event for notification to pop-up while offline", async () => {
+    const dispatchEventSpy = jest.spyOn(window, 'dispatchEvent');
+    const navigatorOnlineSpy = jest.spyOn(window.navigator, 'onLine', 'get');
+    navigatorOnlineSpy.mockReturnValue(false);
+
+    render(<ContactFormContainer />);
+
+    await userEvent.type(
+      screen.getByRole('textbox', { name: 'Contact.NAME_LABEL' }),
+      'name'
+    );
+    await userEvent.type(
+      screen.getByRole('textbox', { name: 'Contact.EMAIL_LABEL' }),
+      'email@email.com'
+    );
+    await userEvent.type(
+      screen.getByRole('textbox', { name: 'Contact.MESSAGE_PLACEHOLDER' }),
+      'message'
+    );
+
+    await userEvent.click(
+      screen.getByRole('button', { name: 'Contact.SEND_BUTTON' })
+    );
+
+    expect(storeMessageMock).not.toHaveBeenCalled();
+    expect(dispatchEventSpy).toHaveBeenCalledWith(
+      new CustomEvent('notification', {
+        detail: {
+          type: NotificationType.ERROR,
+          content: OFFLINE_ERROR_NOTIFICATION_KEY,
+        } as NotificationEvent,
+      })
+    );
     expect(
       screen.queryByRole('img', { name: 'Contact.MESSAGE_SENT_ALT' })
     ).toBeNull();

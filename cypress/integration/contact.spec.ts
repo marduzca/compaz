@@ -18,4 +18,6 @@ describe('Contact', () => {
 
     Page.removeLocalStorageItem('disableMessageStorage');
   });
+
+  // TODO: Test error notification if offline, once Cypress supports simulating offline mode
 });

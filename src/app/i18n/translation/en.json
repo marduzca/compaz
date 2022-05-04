@@ -83,6 +83,7 @@
     "CLOSE": "Close notification",
     "ERROR": "Error notification",
     "GENERAL_ERROR_MESSAGE": "Something went wrong. Please refresh the page and try again.",
+    "OFFLINE_ERROR_MESSAGE": "This functionality is only available while online. Connect to a network and try again.",
     "INFO": "Information notification",
     "RELOAD_ANCHOR_DESCRIPTION": "Click here to refresh the page and download the newest updates",
     "RELOAD_MESSAGE": "There are new updates to the app. <1>Click here</1> to download them or refresh the page.",
