@@ -44,7 +44,7 @@
 
   display: flex;
   gap: 1.25rem;
-  align-items: start;
+  align-items: flex-start;
 }
 
 .benefits > ul > li > svg {
