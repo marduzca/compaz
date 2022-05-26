@@ -10,6 +10,7 @@ import NotificationContainer from './components/notification/NotificationContain
 import { FirebaseProvider } from './components/providers/firebase/FirebaseProvider';
 import { NavigationProvider } from './components/providers/navigation/NavigationProvider';
 import Contact from './components/contact/Contact';
+import HowToInstall from './components/howToInstall/HowToInstall';
 
 const LandscapeErrorMessage = () => {
   const { t } = useTranslation();
@@ -73,6 +74,16 @@ const App = () => {
                     isMobileMenuOpen={showMobileMenu}
                   />
                 </NavigationProvider>
+              }
+            />
+            <Route
+              path="/how-to-install"
+              element={
+                <HowToInstall
+                  onMenuButtonClick={() => {
+                    setShowMobileMenu(true);
+                  }}
+                />
               }
             />
             <Route

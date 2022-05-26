@@ -145,7 +145,7 @@ const Menu: React.FC<MenuProps> = (props) => {
             <MenuItem
               content={t('Menu.HOW_TO_INSTALL')}
               icon={<InstallIcon />}
-              href=""
+              href="/how-to-install"
               onHideMobileMenu={props.onHideMobileMenu}
             />
             <MenuItem
