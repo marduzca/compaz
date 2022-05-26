@@ -83,6 +83,7 @@ const ContactForm: React.FC<ContactFormProps> = (props) => {
             className={styles.emailSentIcon}
             src={emailSentIcon}
             alt={t('Contact.MESSAGE_SENT_ALT')}
+            loading="lazy"
           />
         </div>
       )}

@@ -67,6 +67,7 @@ const DetailsContentBox: React.FC<DetailsContentBoxProps> = (props) => {
               <img
                 src={transferIcon}
                 alt={t('Content.RoutesOverview.TRANSFER')}
+                loading="lazy"
               />
               <span>
                 {t('Content.RouteDetails.TRANSFER_MESSAGE', {

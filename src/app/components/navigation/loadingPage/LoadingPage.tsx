@@ -14,6 +14,7 @@ const LoadingPage: React.FC = () => {
             className={styles.telefericoIcon}
             src={telefericoIcon}
             alt={t('LOADING')}
+            loading="lazy"
           />
         </div>
       </div>

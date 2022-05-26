@@ -101,6 +101,7 @@ const SubRouteDetails: React.FC<SubRouteDetailsProps> = (props) => {
           key={`${props.subRoute.line}`}
           alt={t(`Content.Route.Lines.${props.subRoute.line.toUpperCase()}`)}
           src={getCorrespondingTelefericoIcon(props.subRoute.line)}
+          loading="lazy"
         />
       </div>
       <div className={styles.originStation}>

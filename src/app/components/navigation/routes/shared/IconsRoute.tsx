@@ -20,6 +20,7 @@ const IconsRoute: React.FC<SimpleIconsRouteProps> = (props) => {
           key={`${subRoute.line}`}
           alt={t(`Content.Route.Lines.${subRoute.line.toUpperCase()}`)}
           src={getCorrespondingTelefericoIcon(subRoute.line)}
+          loading="lazy"
         />
         {!props.hideTimes && <span>{subRoute.totalTime}</span>}
       </li>
@@ -39,6 +40,7 @@ const IconsRoute: React.FC<SimpleIconsRouteProps> = (props) => {
             <img
               src={transferIcon}
               alt={t('Content.RoutesOverview.TRANSFER')}
+              loading="lazy"
             />
           </li>
         );

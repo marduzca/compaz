@@ -52,6 +52,7 @@ const Notification: React.FC<NotificationProps> = (props) => {
           }[props.notificationType]
         }
         alt={t(`Notification.${props.notificationType.toString()}`)}
+        loading="lazy"
         aria-hidden
       />
       <p>

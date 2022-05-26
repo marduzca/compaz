@@ -15,6 +15,7 @@ const Introduction: React.FC = () => {
           className={styles.sketch}
           src={sketch}
           alt={t('Contact.SKETCH_ALT')}
+          loading="lazy"
         />
       </div>
       <div className={styles.text}>
