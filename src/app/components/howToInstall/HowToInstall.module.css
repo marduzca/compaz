@@ -27,9 +27,12 @@
 }
 
 .benefits > img {
-  min-width: 26.25rem;
-  min-height: 18.75rem;
   aspect-ratio: 1.4;
+
+  width: 100%;
+
+  min-width: 26.25rem;
+  max-width: 40.5rem;
 }
 
 .benefits > ul {
@@ -87,7 +90,7 @@
 
   .benefits > img {
     min-width: auto;
-    min-height: auto;
+    max-width: none;
   }
 
   .benefits > ul {
