@@ -1,6 +1,6 @@
 import React from 'react';
-import devices from '../../static/img/devices.png';
 import { ReactComponent as BulletPoint } from '../../static/img/bullet.svg';
+import devices from '../../static/img/devices.png';
 import styles from './HowToInstall.module.css';
 import MobileHeader from '../molecules/mobileHeader/MobileHeader';
 

@@ -8,6 +8,7 @@
 
 .content {
   display: grid;
+  gap: 2rem;
 }
 
 .content > h1 {
@@ -17,14 +18,18 @@
 }
 
 .benefits {
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+
   align-items: center;
   gap: 2rem;
 }
 
 .benefits > img {
-  width: 46.875rem;
+  min-width: 26.25rem;
+  min-height: 18.75rem;
+  aspect-ratio: 1.4;
 }
 
 .benefits > ul {
@@ -78,6 +83,11 @@
     justify-content: space-between;
     align-items: normal;
     gap: 1.5rem;
+  }
+
+  .benefits > img {
+    min-width: auto;
+    min-height: auto;
   }
 
   .benefits > ul {
