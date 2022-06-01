@@ -57,9 +57,9 @@ const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => {
     <div className={styles.dateAndTimePickerContainer}>
       <button
         type="button"
-        title={t('Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON')}
+        title={t('Navigation.DateAndTimePicker.DATE_TIME_PICKER_BUTTON')}
         aria-label={t(
-          'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON_DESCRIPTION',
+          'Navigation.DateAndTimePicker.DATE_TIME_PICKER_BUTTON_DESCRIPTION',
           {
             selectedDate: props.departureDate,
             selectedTime: props.departureTime,
@@ -102,7 +102,7 @@ const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => {
           <div className={styles.inputFields}>
             <div>
               <label htmlFor="dateInput">
-                {t('Content.DateAndTimePicker.DATE_LABEL')}
+                {t('Navigation.DateAndTimePicker.DATE_LABEL')}
               </label>
               <input
                 type="date"
@@ -115,7 +115,7 @@ const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => {
             </div>
             <div>
               <label htmlFor="timeInput">
-                {t('Content.DateAndTimePicker.TIME_LABEL')}
+                {t('Navigation.DateAndTimePicker.TIME_LABEL')}
               </label>
               <input
                 type="time"
@@ -132,7 +132,7 @@ const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => {
           </div>
           {props.isSelectedTimeOutsideOfFunctionalHours && (
             <p className={styles.timeError}>
-              {t('Content.DateAndTimePicker.TIME_ERROR')}
+              {t('Navigation.DateAndTimePicker.TIME_ERROR')}
             </p>
           )}
           <div className={styles.footer}>
@@ -141,14 +141,14 @@ const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => {
               className={styles.nowButton}
               onClick={props.onNowButtonClick}
             >
-              {t('Content.DateAndTimePicker.NOW_BUTTON')}
+              {t('Navigation.DateAndTimePicker.NOW_BUTTON')}
             </button>
             <button
               type="button"
               className={styles.selectButton}
               onClick={props.onSelectButtonClick}
             >
-              {t('Content.DateAndTimePicker.SELECT_BUTTON')}
+              {t('Navigation.DateAndTimePicker.SELECT_BUTTON')}
             </button>
           </div>
         </div>

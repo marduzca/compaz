@@ -12,7 +12,7 @@
     "LANGUAGE": "Language",
     "NIGHT_MESSAGE": "Good night\nLa Paz"
   },
-  "Content": {
+  "Navigation": {
     "Route": {
       "Lines": {
         "BLUE": "Blue line",

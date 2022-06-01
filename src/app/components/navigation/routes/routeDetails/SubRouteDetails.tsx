@@ -25,19 +25,19 @@ const IntermediateStations: React.FC<IntermediateStationsProps> = (props) => {
           title={
             props.showIntermediateStations
               ? t(
-                  'Content.RouteDetails.INTERMEDIATE_STATIONS_CLOSE_BUTTON_TITLE'
+                  'Navigation.RouteDetails.INTERMEDIATE_STATIONS_CLOSE_BUTTON_TITLE'
                 )
               : t(
-                  'Content.RouteDetails.INTERMEDIATE_STATIONS_OPEN_BUTTON_TITLE'
+                  'Navigation.RouteDetails.INTERMEDIATE_STATIONS_OPEN_BUTTON_TITLE'
                 )
           }
           aria-label={
             props.showIntermediateStations
               ? t(
-                  'Content.RouteDetails.INTERMEDIATE_STATIONS_CLOSE_BUTTON_TITLE'
+                  'Navigation.RouteDetails.INTERMEDIATE_STATIONS_CLOSE_BUTTON_TITLE'
                 )
               : t(
-                  'Content.RouteDetails.INTERMEDIATE_STATIONS_OPEN_BUTTON_TITLE'
+                  'Navigation.RouteDetails.INTERMEDIATE_STATIONS_OPEN_BUTTON_TITLE'
                 )
           }
           className={styles.intermediateStationsButton}
@@ -47,7 +47,7 @@ const IntermediateStations: React.FC<IntermediateStationsProps> = (props) => {
         >
           {props.showIntermediateStations ? <ArrowUpIcon /> : <ArrowDownIcon />}
           <span>
-            {t('Content.RouteDetails.INTERMEDIATE_STATIONS_MESSAGE', {
+            {t('Navigation.RouteDetails.INTERMEDIATE_STATIONS_MESSAGE', {
               stopsNumber: props.subRoute.stationsPath.length - 1,
               time: props.subRoute.totalTime,
             })}
@@ -55,7 +55,7 @@ const IntermediateStations: React.FC<IntermediateStationsProps> = (props) => {
         </button>
       ) : (
         <span>
-          {t('Content.RouteDetails.SINGLE_INTERMEDIATE_STATIONS_MESSAGE', {
+          {t('Navigation.RouteDetails.SINGLE_INTERMEDIATE_STATIONS_MESSAGE', {
             time: props.subRoute.totalTime,
           })}
         </span>
@@ -90,7 +90,7 @@ const SubRouteDetails: React.FC<SubRouteDetailsProps> = (props) => {
 
   return (
     <li
-      title={t(`Content.Route.Lines.${props.subRoute.line.toUpperCase()}`)}
+      title={t(`Navigation.Route.Lines.${props.subRoute.line.toUpperCase()}`)}
       className={styles.subRouteBlock}
     >
       <div
@@ -99,7 +99,7 @@ const SubRouteDetails: React.FC<SubRouteDetailsProps> = (props) => {
       >
         <img
           key={`${props.subRoute.line}`}
-          alt={t(`Content.Route.Lines.${props.subRoute.line.toUpperCase()}`)}
+          alt={t(`Navigation.Route.Lines.${props.subRoute.line.toUpperCase()}`)}
           src={getCorrespondingTelefericoIcon(props.subRoute.line)}
           loading="lazy"
         />
@@ -109,7 +109,7 @@ const SubRouteDetails: React.FC<SubRouteDetailsProps> = (props) => {
           {props.subRoute.stationsPath[0].name}
         </span>
         <span className={styles.subRouteDirection}>
-          {t('Content.RouteDetails.DIRECTION', {
+          {t('Navigation.RouteDetails.DIRECTION', {
             direction: props.subRoute.direction,
           })}
         </span>

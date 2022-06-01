@@ -87,14 +87,14 @@ describe('RouteDetailsViewContainer', () => {
     );
 
     const withinPurpleLine = within(
-      screen.getByTitle('Content.Route.Lines.PURPLE')
+      screen.getByTitle('Navigation.Route.Lines.PURPLE')
     );
 
     expect(withinPurpleLine.queryByText('A.5 Station')).toBeNull();
 
     await userEvent.click(
       withinPurpleLine.getByRole('button', {
-        name: 'Content.RouteDetails.INTERMEDIATE_STATIONS_OPEN_BUTTON_TITLE',
+        name: 'Navigation.RouteDetails.INTERMEDIATE_STATIONS_OPEN_BUTTON_TITLE',
       })
     );
 
@@ -102,7 +102,7 @@ describe('RouteDetailsViewContainer', () => {
 
     await userEvent.click(
       withinPurpleLine.getByRole('button', {
-        name: 'Content.RouteDetails.INTERMEDIATE_STATIONS_CLOSE_BUTTON_TITLE',
+        name: 'Navigation.RouteDetails.INTERMEDIATE_STATIONS_CLOSE_BUTTON_TITLE',
       })
     );
 
@@ -119,11 +119,11 @@ describe('RouteDetailsViewContainer', () => {
     );
 
     const withinPurpleLine = within(
-      screen.getByTitle('Content.Route.Lines.PURPLE')
+      screen.getByTitle('Navigation.Route.Lines.PURPLE')
     );
 
     const withinBlueLine = within(
-      screen.getByTitle('Content.Route.Lines.BLUE')
+      screen.getByTitle('Navigation.Route.Lines.BLUE')
     );
 
     expect(withinPurpleLine.getByText('09:30')).toBeVisible();
@@ -143,24 +143,26 @@ describe('RouteDetailsViewContainer', () => {
     );
 
     const withinPurpleLine = within(
-      screen.getByTitle('Content.Route.Lines.PURPLE')
+      screen.getByTitle('Navigation.Route.Lines.PURPLE')
     );
 
     const withinBlueLine = within(
-      screen.getByTitle('Content.Route.Lines.BLUE')
+      screen.getByTitle('Navigation.Route.Lines.BLUE')
     );
 
     expect(
-      withinPurpleLine.getByRole('img', { name: 'Content.Route.Lines.PURPLE' })
+      withinPurpleLine.getByRole('img', {
+        name: 'Navigation.Route.Lines.PURPLE',
+      })
     ).toBeVisible();
     expect(withinPurpleLine.getByText('Origin Station')).toBeVisible();
     expect(
-      withinPurpleLine.getByText('Content.RouteDetails.DIRECTION')
+      withinPurpleLine.getByText('Navigation.RouteDetails.DIRECTION')
     ).toBeVisible();
     expect(withinPurpleLine.getByText('Intermediate Station')).toBeVisible();
 
     expect(
-      withinBlueLine.getByRole('img', { name: 'Content.Route.Lines.BLUE' })
+      withinBlueLine.getByRole('img', { name: 'Navigation.Route.Lines.BLUE' })
     ).toBeVisible();
     expect(withinBlueLine.getByText('Intermediate Station')).toBeVisible();
     expect(withinBlueLine.getByText('Destination Station')).toBeVisible();
@@ -176,16 +178,16 @@ describe('RouteDetailsViewContainer', () => {
     );
 
     const withinTransferBlock = within(
-      screen.getByTitle('Content.RoutesOverview.TRANSFER')
+      screen.getByTitle('Navigation.RoutesOverview.TRANSFER')
     );
 
     expect(
       withinTransferBlock.getByRole('img', {
-        name: 'Content.RoutesOverview.TRANSFER',
+        name: 'Navigation.RoutesOverview.TRANSFER',
       })
     ).toBeVisible();
     expect(
-      withinTransferBlock.getByText('Content.RouteDetails.TRANSFER_MESSAGE')
+      withinTransferBlock.getByText('Navigation.RouteDetails.TRANSFER_MESSAGE')
     ).toBeVisible();
   });
 });

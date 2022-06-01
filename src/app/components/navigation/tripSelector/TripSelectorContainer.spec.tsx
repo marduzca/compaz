@@ -78,17 +78,17 @@ describe('TripSelectorContainer', () => {
 
       expect(
         screen.getByRole('textbox', {
-          name: 'Content.TripSelector.ORIGIN_PLACEHOLDER',
+          name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER',
         })
       ).toBeVisible();
       expect(
         screen.getByRole('textbox', {
-          name: 'Content.TripSelector.DESTINATION_PLACEHOLDER',
+          name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER',
         })
       ).toBeVisible();
       expect(
         screen.getByRole('button', {
-          name: 'Content.TripSelector.SEARCH_BUTTON',
+          name: 'Navigation.TripSelector.SEARCH_BUTTON',
         })
       ).toBeVisible();
     });
@@ -120,7 +120,7 @@ describe('TripSelectorContainer', () => {
 
       await userEvent.click(
         screen.getByRole('button', {
-          name: 'Content.TripSelector.SEARCH_BUTTON',
+          name: 'Navigation.TripSelector.SEARCH_BUTTON',
         })
       );
 
@@ -152,14 +152,14 @@ describe('TripSelectorContainer', () => {
 
       await userEvent.click(
         screen.getByRole('button', {
-          name: 'Content.TripSelector.SEARCH_BUTTON',
+          name: 'Navigation.TripSelector.SEARCH_BUTTON',
         })
       );
 
       expect(onSearchButtonClickMock).not.toHaveBeenCalled();
       expect(
         screen.getByRole('textbox', {
-          name: 'Content.TripSelector.ORIGIN_PLACEHOLDER Content.TripSelector.ERROR_ORIGIN_MISSING',
+          name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER Navigation.TripSelector.ERROR_ORIGIN_MISSING',
         })
       ).toBeVisible();
     });
@@ -189,14 +189,14 @@ describe('TripSelectorContainer', () => {
 
       await userEvent.click(
         screen.getByRole('button', {
-          name: 'Content.TripSelector.SEARCH_BUTTON',
+          name: 'Navigation.TripSelector.SEARCH_BUTTON',
         })
       );
 
       expect(onSearchButtonClickMock).not.toHaveBeenCalled();
       expect(
         screen.getByRole('textbox', {
-          name: 'Content.TripSelector.DESTINATION_PLACEHOLDER Content.TripSelector.ERROR_DESTINATION_MISSING',
+          name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER Navigation.TripSelector.ERROR_DESTINATION_MISSING',
         })
       ).toBeVisible();
     });
@@ -226,19 +226,19 @@ describe('TripSelectorContainer', () => {
 
       await userEvent.click(
         screen.getByRole('button', {
-          name: 'Content.TripSelector.SEARCH_BUTTON',
+          name: 'Navigation.TripSelector.SEARCH_BUTTON',
         })
       );
 
       expect(onSearchButtonClickMock).not.toHaveBeenCalled();
       expect(
         screen.getByRole('textbox', {
-          name: 'Content.TripSelector.ORIGIN_PLACEHOLDER Content.TripSelector.ERROR_ORIGIN_MISSING',
+          name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER Navigation.TripSelector.ERROR_ORIGIN_MISSING',
         })
       ).toBeVisible();
       expect(
         screen.getByRole('textbox', {
-          name: 'Content.TripSelector.DESTINATION_PLACEHOLDER Content.TripSelector.ERROR_DESTINATION_MISSING',
+          name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER Navigation.TripSelector.ERROR_DESTINATION_MISSING',
         })
       ).toBeVisible();
     });

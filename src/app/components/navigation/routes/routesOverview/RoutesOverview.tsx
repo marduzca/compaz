@@ -36,7 +36,7 @@ const SingleRoute: React.FC<SingleRouteProps> = (props) => {
         <button
           type="button"
           aria-label={`${t(
-            'Content.RoutesOverview.SINGLE_ROUTE_BUTTON_TITLE'
+            'Navigation.RoutesOverview.SINGLE_ROUTE_BUTTON_TITLE'
           )} ${routeClockTime}`}
           className={styles.singleRouteOverview}
           onClick={() => {
@@ -99,12 +99,12 @@ const RoutesOverview: React.FC<RoutesOverviewProps> = (props) => {
       <div className={styles.routesOverview}>
         <button
           type="button"
-          aria-label={t('Content.RoutesOverview.EARLIER_BUTTON')}
+          aria-label={t('Navigation.RoutesOverview.EARLIER_BUTTON')}
           className={`${styles.adjustTimeButton} ${styles.earlierButton}`}
           onClick={props.onEarlierButtonClick}
         >
           <ArrowUpIcon />
-          <span>{t('Content.RoutesOverview.EARLIER_BUTTON')}</span>
+          <span>{t('Navigation.RoutesOverview.EARLIER_BUTTON')}</span>
         </button>
         {props.displayedRouteTimes.map((routeDepartureTime) => (
           <SingleRoute
@@ -116,12 +116,12 @@ const RoutesOverview: React.FC<RoutesOverviewProps> = (props) => {
         ))}
         <button
           type="button"
-          aria-label={t('Content.RoutesOverview.LATER_BUTTON')}
+          aria-label={t('Navigation.RoutesOverview.LATER_BUTTON')}
           className={styles.adjustTimeButton}
           onClick={props.onLaterButtonClick}
         >
           <ArrowDownIcon />
-          <span>{t('Content.RoutesOverview.LATER_BUTTON')}</span>
+          <span>{t('Navigation.RoutesOverview.LATER_BUTTON')}</span>
         </button>
       </div>
     </section>

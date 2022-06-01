@@ -161,7 +161,9 @@ describe('Navigation', () => {
     );
 
     await userEvent.click(
-      screen.getByRole('button', { name: 'Content.TripSelector.SEARCH_BUTTON' })
+      screen.getByRole('button', {
+        name: 'Navigation.TripSelector.SEARCH_BUTTON',
+      })
     );
 
     expect(
@@ -177,7 +179,9 @@ describe('Navigation', () => {
     );
 
     await userEvent.click(
-      screen.getByRole('button', { name: 'Content.TripSelector.SEARCH_BUTTON' })
+      screen.getByRole('button', {
+        name: 'Navigation.TripSelector.SEARCH_BUTTON',
+      })
     );
 
     await userEvent.click(
@@ -185,7 +189,9 @@ describe('Navigation', () => {
     );
 
     expect(
-      screen.getByRole('button', { name: 'Content.TripSelector.SEARCH_BUTTON' })
+      screen.getByRole('button', {
+        name: 'Navigation.TripSelector.SEARCH_BUTTON',
+      })
     ).toBeVisible();
   });
 
@@ -195,31 +201,35 @@ describe('Navigation', () => {
     );
 
     await userEvent.click(
-      screen.getByRole('button', { name: 'Content.TripSelector.SEARCH_BUTTON' })
+      screen.getByRole('button', {
+        name: 'Navigation.TripSelector.SEARCH_BUTTON',
+      })
     );
 
     await userEvent.click(
       screen.getByRole('button', {
-        name: 'Content.RoutesOverview.SINGLE_ROUTE_BUTTON_TITLE 17:30 - 17:41',
+        name: 'Navigation.RoutesOverview.SINGLE_ROUTE_BUTTON_TITLE 17:30 - 17:41',
       })
     );
 
     const withinPurpleLine = within(
-      screen.getByTitle('Content.Route.Lines.PURPLE')
+      screen.getByTitle('Navigation.Route.Lines.PURPLE')
     );
 
     const withinBlueLine = within(
-      screen.getByTitle('Content.Route.Lines.BLUE')
+      screen.getByTitle('Navigation.Route.Lines.BLUE')
     );
 
     expect(
-      withinPurpleLine.getByRole('img', { name: 'Content.Route.Lines.PURPLE' })
+      withinPurpleLine.getByRole('img', {
+        name: 'Navigation.Route.Lines.PURPLE',
+      })
     ).toBeVisible();
     expect(withinPurpleLine.getByText('Origin Station')).toBeVisible();
     expect(withinPurpleLine.getByText('Intermediate Station')).toBeVisible();
 
     expect(
-      withinBlueLine.getByRole('img', { name: 'Content.Route.Lines.BLUE' })
+      withinBlueLine.getByRole('img', { name: 'Navigation.Route.Lines.BLUE' })
     ).toBeVisible();
     expect(withinBlueLine.getByText('Intermediate Station')).toBeVisible();
     expect(withinBlueLine.getByText('Destination Station')).toBeVisible();
@@ -231,12 +241,14 @@ describe('Navigation', () => {
     );
 
     await userEvent.click(
-      screen.getByRole('button', { name: 'Content.TripSelector.SEARCH_BUTTON' })
+      screen.getByRole('button', {
+        name: 'Navigation.TripSelector.SEARCH_BUTTON',
+      })
     );
 
     await userEvent.click(
       screen.getByRole('button', {
-        name: 'Content.RoutesOverview.SINGLE_ROUTE_BUTTON_TITLE 17:30 - 17:41',
+        name: 'Navigation.RoutesOverview.SINGLE_ROUTE_BUTTON_TITLE 17:30 - 17:41',
       })
     );
 

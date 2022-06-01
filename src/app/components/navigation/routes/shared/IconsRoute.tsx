@@ -18,7 +18,7 @@ const IconsRoute: React.FC<SimpleIconsRouteProps> = (props) => {
       <li key={subRoute.line} className={styles.teleferico}>
         <img
           key={`${subRoute.line}`}
-          alt={t(`Content.Route.Lines.${subRoute.line.toUpperCase()}`)}
+          alt={t(`Navigation.Route.Lines.${subRoute.line.toUpperCase()}`)}
           src={getCorrespondingTelefericoIcon(subRoute.line)}
           loading="lazy"
         />
@@ -39,7 +39,7 @@ const IconsRoute: React.FC<SimpleIconsRouteProps> = (props) => {
             )}
             <img
               src={transferIcon}
-              alt={t('Content.RoutesOverview.TRANSFER')}
+              alt={t('Navigation.RoutesOverview.TRANSFER')}
               loading="lazy"
             />
           </li>

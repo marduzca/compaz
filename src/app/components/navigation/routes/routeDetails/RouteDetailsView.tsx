@@ -60,17 +60,17 @@ const DetailsContentBox: React.FC<DetailsContentBoxProps> = (props) => {
           0,
           <li
             key={`transfer-${index}`}
-            title={t('Content.RoutesOverview.TRANSFER')}
+            title={t('Navigation.RoutesOverview.TRANSFER')}
             className={styles.transfer}
           >
             <div className={styles.transferMessage}>
               <img
                 src={transferIcon}
-                alt={t('Content.RoutesOverview.TRANSFER')}
+                alt={t('Navigation.RoutesOverview.TRANSFER')}
                 loading="lazy"
               />
               <span>
-                {t('Content.RouteDetails.TRANSFER_MESSAGE', {
+                {t('Navigation.RouteDetails.TRANSFER_MESSAGE', {
                   transferTime:
                     props.route.subRoutes[Math.floor(index / 2)]
                       .transferTimeToNextLine,

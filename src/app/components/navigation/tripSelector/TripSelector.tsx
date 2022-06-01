@@ -31,11 +31,11 @@ const TripSelector: React.FC<TripSelectorProps> = (props) => {
       </div>
       <button
         type="button"
-        aria-label={t('Content.TripSelector.SEARCH_BUTTON')}
+        aria-label={t('Navigation.TripSelector.SEARCH_BUTTON')}
         className={styles.searchButton}
         onClick={props.onSearchButtonClick}
       >
-        <p>{t('Content.TripSelector.SEARCH_BUTTON')}</p>
+        <p>{t('Navigation.TripSelector.SEARCH_BUTTON')}</p>
         <SearchIcon />
       </button>
     </section>

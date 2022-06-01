@@ -62,47 +62,51 @@ describe('StationsSelectorContainer', () => {
 
     await userEvent.type(
       screen.getByRole('textbox', {
-        name: 'Content.TripSelector.ORIGIN_PLACEHOLDER',
+        name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER',
       }),
       availableStations[0].name
     );
 
     expect(
       screen.getByRole('textbox', {
-        name: 'Content.TripSelector.ORIGIN_PLACEHOLDER',
+        name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER',
       })
     ).toHaveValue(availableStations[0].name);
 
     await userEvent.click(
-      screen.getByRole('button', { name: 'Content.TripSelector.CLEAR_INPUT' })
+      screen.getByRole('button', {
+        name: 'Navigation.TripSelector.CLEAR_INPUT',
+      })
     );
 
     expect(
       screen.getByRole('textbox', {
-        name: 'Content.TripSelector.ORIGIN_PLACEHOLDER',
+        name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER',
       })
     ).toHaveValue('');
 
     await userEvent.type(
       screen.getByRole('textbox', {
-        name: 'Content.TripSelector.DESTINATION_PLACEHOLDER',
+        name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER',
       }),
       availableStations[1].name
     );
 
     expect(
       screen.getByRole('textbox', {
-        name: 'Content.TripSelector.DESTINATION_PLACEHOLDER',
+        name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER',
       })
     ).toHaveValue(availableStations[1].name);
 
     await userEvent.click(
-      screen.getByRole('button', { name: 'Content.TripSelector.CLEAR_INPUT' })
+      screen.getByRole('button', {
+        name: 'Navigation.TripSelector.CLEAR_INPUT',
+      })
     );
 
     expect(
       screen.getByRole('textbox', {
-        name: 'Content.TripSelector.DESTINATION_PLACEHOLDER',
+        name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER',
       })
     ).toHaveValue('');
   });
@@ -117,7 +121,7 @@ describe('StationsSelectorContainer', () => {
 
     fireEvent.change(
       screen.getByRole('textbox', {
-        name: 'Content.TripSelector.ORIGIN_PLACEHOLDER',
+        name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER',
       }),
       {
         target: { value: availableStations[0].name },
@@ -125,7 +129,7 @@ describe('StationsSelectorContainer', () => {
     );
     fireEvent.change(
       screen.getByRole('textbox', {
-        name: 'Content.TripSelector.DESTINATION_PLACEHOLDER',
+        name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER',
       }),
       {
         target: { value: availableStations[1].name },
@@ -134,12 +138,12 @@ describe('StationsSelectorContainer', () => {
 
     expect(
       screen.getByRole('textbox', {
-        name: 'Content.TripSelector.ORIGIN_PLACEHOLDER',
+        name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER',
       })
     ).toHaveValue(availableStations[0].name);
     expect(
       screen.getByRole('textbox', {
-        name: 'Content.TripSelector.DESTINATION_PLACEHOLDER',
+        name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER',
       })
     ).toHaveValue(availableStations[1].name);
   });
@@ -167,7 +171,7 @@ describe('StationsSelectorContainer', () => {
 
     fireEvent.change(
       screen.getByRole('textbox', {
-        name: 'Content.TripSelector.DESTINATION_PLACEHOLDER',
+        name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER',
       }),
       {
         target: { value: availableStations[0].name },
@@ -176,7 +180,7 @@ describe('StationsSelectorContainer', () => {
 
     expect(
       screen.getByText(
-        'Content.TripSelector.DESTINATION_PLACEHOLDER - Content.TripSelector.ERROR_VALIDATION'
+        'Navigation.TripSelector.DESTINATION_PLACEHOLDER - Navigation.TripSelector.ERROR_VALIDATION'
       )
     ).toBeVisible();
   });
@@ -204,7 +208,7 @@ describe('StationsSelectorContainer', () => {
 
     fireEvent.change(
       screen.getByRole('textbox', {
-        name: 'Content.TripSelector.ORIGIN_PLACEHOLDER',
+        name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER',
       }),
       {
         target: { value: availableStations[0].name },
@@ -213,7 +217,7 @@ describe('StationsSelectorContainer', () => {
 
     expect(
       screen.getByText(
-        'Content.TripSelector.ORIGIN_PLACEHOLDER - Content.TripSelector.ERROR_VALIDATION'
+        'Navigation.TripSelector.ORIGIN_PLACEHOLDER - Navigation.TripSelector.ERROR_VALIDATION'
       )
     ).toBeVisible();
   });
@@ -228,7 +232,7 @@ describe('StationsSelectorContainer', () => {
 
     fireEvent.change(
       screen.getByRole('textbox', {
-        name: 'Content.TripSelector.ORIGIN_PLACEHOLDER',
+        name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER',
       }),
       {
         target: { value: availableStations[0].name },
@@ -236,7 +240,7 @@ describe('StationsSelectorContainer', () => {
     );
     fireEvent.change(
       screen.getByRole('textbox', {
-        name: 'Content.TripSelector.DESTINATION_PLACEHOLDER',
+        name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER',
       }),
       {
         target: { value: availableStations[1].name },
@@ -245,18 +249,18 @@ describe('StationsSelectorContainer', () => {
 
     await userEvent.click(
       screen.getByRole('button', {
-        name: 'Content.TripSelector.STATIONS_SWITCHER',
+        name: 'Navigation.TripSelector.STATIONS_SWITCHER',
       })
     );
 
     expect(
       screen.getByRole('textbox', {
-        name: 'Content.TripSelector.ORIGIN_PLACEHOLDER',
+        name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER',
       })
     ).toHaveValue(availableStations[1].name);
     expect(
       screen.getByRole('textbox', {
-        name: 'Content.TripSelector.DESTINATION_PLACEHOLDER',
+        name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER',
       })
     ).toHaveValue(availableStations[0].name);
   });
@@ -272,14 +276,14 @@ describe('StationsSelectorContainer', () => {
 
       await userEvent.type(
         screen.getByRole('textbox', {
-          name: 'Content.TripSelector.ORIGIN_PLACEHOLDER',
+          name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER',
         }),
         'This is a non-existent station'
       );
 
       expect(
         screen.getByRole('textbox', {
-          name: 'Content.TripSelector.ORIGIN_PLACEHOLDER - Content.TripSelector.ERROR_VALIDATION',
+          name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER - Navigation.TripSelector.ERROR_VALIDATION',
         })
       ).toBeVisible();
     });
@@ -294,12 +298,12 @@ describe('StationsSelectorContainer', () => {
 
       await userEvent.type(
         screen.getByRole('textbox', {
-          name: 'Content.TripSelector.DESTINATION_PLACEHOLDER',
+          name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER',
         }),
         'This is a non-existent station'
       );
 
-      expect(screen.getByText(/Content.TripSelector.ERROR/)).toBeVisible();
+      expect(screen.getByText(/Navigation.TripSelector.ERROR/)).toBeVisible();
     });
 
     it('shows validation error only when missing error is also set', async () => {
@@ -312,27 +316,27 @@ describe('StationsSelectorContainer', () => {
 
       await userEvent.type(
         screen.getByRole('textbox', {
-          name: /Content.TripSelector.ORIGIN_PLACEHOLDER/,
+          name: /Navigation.TripSelector.ORIGIN_PLACEHOLDER/,
         }),
         'This is a non-existent station'
       );
 
       await userEvent.type(
         screen.getByRole('textbox', {
-          name: /Content.TripSelector.DESTINATION_PLACEHOLDER/,
+          name: /Navigation.TripSelector.DESTINATION_PLACEHOLDER/,
         }),
         'This is a non-existent station'
       );
 
       expect(
         screen.getByRole('textbox', {
-          name: 'Content.TripSelector.ORIGIN_PLACEHOLDER - Content.TripSelector.ERROR_VALIDATION',
+          name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER - Navigation.TripSelector.ERROR_VALIDATION',
         })
       ).toBeVisible();
 
       expect(
         screen.getByRole('textbox', {
-          name: 'Content.TripSelector.DESTINATION_PLACEHOLDER - Content.TripSelector.ERROR_VALIDATION',
+          name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER - Navigation.TripSelector.ERROR_VALIDATION',
         })
       ).toBeVisible();
     });
@@ -347,37 +351,37 @@ describe('StationsSelectorContainer', () => {
 
       expect(
         screen.getByRole('textbox', {
-          name: 'Content.TripSelector.ORIGIN_PLACEHOLDER Content.TripSelector.ERROR_ORIGIN_MISSING',
+          name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER Navigation.TripSelector.ERROR_ORIGIN_MISSING',
         })
       ).toBeVisible();
       expect(
         screen.getByRole('textbox', {
-          name: 'Content.TripSelector.DESTINATION_PLACEHOLDER Content.TripSelector.ERROR_DESTINATION_MISSING',
+          name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER Navigation.TripSelector.ERROR_DESTINATION_MISSING',
         })
       ).toBeVisible();
 
       await userEvent.type(
         screen.getByRole('textbox', {
-          name: /Content.TripSelector.ORIGIN_PLACEHOLDER/,
+          name: /Navigation.TripSelector.ORIGIN_PLACEHOLDER/,
         }),
         availableStations[0].name
       );
 
       await userEvent.type(
         screen.getByRole('textbox', {
-          name: /Content.TripSelector.DESTINATION_PLACEHOLDER/,
+          name: /Navigation.TripSelector.DESTINATION_PLACEHOLDER/,
         }),
         availableStations[1].name
       );
 
       expect(
         screen.queryByRole('textbox', {
-          name: 'Content.TripSelector.ORIGIN_PLACEHOLDER Content.TripSelector.ERROR_ORIGIN_MISSING',
+          name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER Navigation.TripSelector.ERROR_ORIGIN_MISSING',
         })
       ).toBeNull();
       expect(
         screen.queryByRole('textbox', {
-          name: 'Content.TripSelector.DESTINATION_PLACEHOLDER Content.TripSelector.ERROR_DESTINATION_MISSING',
+          name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER Navigation.TripSelector.ERROR_DESTINATION_MISSING',
         })
       ).toBeNull();
     });

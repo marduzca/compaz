@@ -34,12 +34,12 @@ describe('DateAndTimePickerContainer', () => {
 
     expect(
       screen.getByRole('button', {
-        name: 'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON_DESCRIPTION',
+        name: 'Navigation.DateAndTimePicker.DATE_TIME_PICKER_BUTTON_DESCRIPTION',
       }).textContent
     ).toContain('Sat 25 Dec');
     expect(
       screen.getByRole('button', {
-        name: 'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON_DESCRIPTION',
+        name: 'Navigation.DateAndTimePicker.DATE_TIME_PICKER_BUTTON_DESCRIPTION',
       }).textContent
     ).toContain('10:24');
   });
@@ -49,29 +49,29 @@ describe('DateAndTimePickerContainer', () => {
 
     await userEvent.click(
       screen.getByRole('button', {
-        name: 'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON_DESCRIPTION',
+        name: 'Navigation.DateAndTimePicker.DATE_TIME_PICKER_BUTTON_DESCRIPTION',
       })
     );
 
     await userEvent.clear(
-      screen.getByLabelText('Content.DateAndTimePicker.DATE_LABEL')
+      screen.getByLabelText('Navigation.DateAndTimePicker.DATE_LABEL')
     );
     await userEvent.type(
-      screen.getByLabelText('Content.DateAndTimePicker.DATE_LABEL'),
+      screen.getByLabelText('Navigation.DateAndTimePicker.DATE_LABEL'),
       '1993-03-15'
     );
 
     await userEvent.clear(
-      screen.getByLabelText('Content.DateAndTimePicker.TIME_LABEL')
+      screen.getByLabelText('Navigation.DateAndTimePicker.TIME_LABEL')
     );
     await userEvent.type(
-      screen.getByLabelText('Content.DateAndTimePicker.TIME_LABEL'),
+      screen.getByLabelText('Navigation.DateAndTimePicker.TIME_LABEL'),
       '09:30'
     );
 
     await userEvent.click(
       screen.getByRole('button', {
-        name: 'Content.DateAndTimePicker.SELECT_BUTTON',
+        name: 'Navigation.DateAndTimePicker.SELECT_BUTTON',
       })
     );
 
@@ -84,13 +84,13 @@ describe('DateAndTimePickerContainer', () => {
 
     await userEvent.click(
       screen.getByRole('button', {
-        name: 'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON_DESCRIPTION',
+        name: 'Navigation.DateAndTimePicker.DATE_TIME_PICKER_BUTTON_DESCRIPTION',
       })
     );
 
     await userEvent.click(
       screen.getByRole('button', {
-        name: 'Content.DateAndTimePicker.NOW_BUTTON',
+        name: 'Navigation.DateAndTimePicker.NOW_BUTTON',
       })
     );
 
@@ -112,13 +112,13 @@ describe('DateAndTimePickerContainer', () => {
 
     await userEvent.click(
       screen.getByRole('button', {
-        name: 'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON_DESCRIPTION',
+        name: 'Navigation.DateAndTimePicker.DATE_TIME_PICKER_BUTTON_DESCRIPTION',
       })
     );
 
     expect(
       screen.getByRole('button', {
-        name: 'Content.DateAndTimePicker.NOW_BUTTON',
+        name: 'Navigation.DateAndTimePicker.NOW_BUTTON',
       })
     ).toBeVisible();
 
@@ -126,7 +126,7 @@ describe('DateAndTimePickerContainer', () => {
 
     expect(
       screen.queryByRole('button', {
-        name: 'Content.DateAndTimePicker.NOW_BUTTON',
+        name: 'Navigation.DateAndTimePicker.NOW_BUTTON',
       })
     ).toBeNull();
   });
@@ -137,28 +137,28 @@ describe('DateAndTimePickerContainer', () => {
 
       await userEvent.click(
         screen.getByRole('button', {
-          name: 'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON_DESCRIPTION',
+          name: 'Navigation.DateAndTimePicker.DATE_TIME_PICKER_BUTTON_DESCRIPTION',
         })
       );
 
       await userEvent.clear(
-        screen.getByLabelText('Content.DateAndTimePicker.DATE_LABEL')
+        screen.getByLabelText('Navigation.DateAndTimePicker.DATE_LABEL')
       );
       await userEvent.type(
-        screen.getByLabelText('Content.DateAndTimePicker.DATE_LABEL'),
+        screen.getByLabelText('Navigation.DateAndTimePicker.DATE_LABEL'),
         '1993-03-17'
       );
 
       await userEvent.clear(
-        screen.getByLabelText('Content.DateAndTimePicker.TIME_LABEL')
+        screen.getByLabelText('Navigation.DateAndTimePicker.TIME_LABEL')
       );
       await userEvent.type(
-        screen.getByLabelText('Content.DateAndTimePicker.TIME_LABEL'),
+        screen.getByLabelText('Navigation.DateAndTimePicker.TIME_LABEL'),
         '23:00'
       );
 
       expect(
-        screen.getByText('Content.DateAndTimePicker.TIME_ERROR')
+        screen.getByText('Navigation.DateAndTimePicker.TIME_ERROR')
       ).toBeVisible();
     });
 
@@ -167,28 +167,28 @@ describe('DateAndTimePickerContainer', () => {
 
       await userEvent.click(
         screen.getByRole('button', {
-          name: 'Content.DateAndTimePicker.DATE_TIME_PICKER_BUTTON_DESCRIPTION',
+          name: 'Navigation.DateAndTimePicker.DATE_TIME_PICKER_BUTTON_DESCRIPTION',
         })
       );
 
       await userEvent.clear(
-        screen.getByLabelText('Content.DateAndTimePicker.DATE_LABEL')
+        screen.getByLabelText('Navigation.DateAndTimePicker.DATE_LABEL')
       );
       await userEvent.type(
-        screen.getByLabelText('Content.DateAndTimePicker.DATE_LABEL'),
+        screen.getByLabelText('Navigation.DateAndTimePicker.DATE_LABEL'),
         '1993-03-13'
       );
 
       await userEvent.clear(
-        screen.getByLabelText('Content.DateAndTimePicker.TIME_LABEL')
+        screen.getByLabelText('Navigation.DateAndTimePicker.TIME_LABEL')
       );
       await userEvent.type(
-        screen.getByLabelText('Content.DateAndTimePicker.TIME_LABEL'),
+        screen.getByLabelText('Navigation.DateAndTimePicker.TIME_LABEL'),
         '20:00'
       );
 
       expect(
-        screen.getByText('Content.DateAndTimePicker.TIME_ERROR')
+        screen.getByText('Navigation.DateAndTimePicker.TIME_ERROR')
       ).toBeVisible();
     });
   });

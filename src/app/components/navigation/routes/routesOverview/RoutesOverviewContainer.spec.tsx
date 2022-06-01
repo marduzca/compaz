@@ -156,27 +156,27 @@ describe('RoutesOverviewContainer', () => {
 
     const withinFirstRouteSection = within(
       screen.getByRole('button', {
-        name: 'Content.RoutesOverview.SINGLE_ROUTE_BUTTON_TITLE 17:30 - 17:39',
+        name: 'Navigation.RoutesOverview.SINGLE_ROUTE_BUTTON_TITLE 17:30 - 17:39',
       })
     );
 
     expect(
       withinFirstRouteSection.getByRole('img', {
-        name: 'Content.Route.Lines.GREEN',
+        name: 'Navigation.Route.Lines.GREEN',
       })
     ).toBeVisible();
     expect(withinFirstRouteSection.getByText('3')).toBeVisible();
 
     expect(
       withinFirstRouteSection.getByRole('img', {
-        name: 'Content.RoutesOverview.TRANSFER',
+        name: 'Navigation.RoutesOverview.TRANSFER',
       })
     ).toBeVisible();
     expect(withinFirstRouteSection.getByText('2')).toBeVisible();
 
     expect(
       withinFirstRouteSection.getByRole('img', {
-        name: 'Content.Route.Lines.RED',
+        name: 'Navigation.Route.Lines.RED',
       })
     ).toBeVisible();
     expect(withinFirstRouteSection.getByText('4')).toBeVisible();
@@ -193,7 +193,7 @@ describe('RoutesOverviewContainer', () => {
 
     await userEvent.click(
       screen.getByRole('button', {
-        name: 'Content.RoutesOverview.EARLIER_BUTTON',
+        name: 'Navigation.RoutesOverview.EARLIER_BUTTON',
       })
     );
 
@@ -211,7 +211,7 @@ describe('RoutesOverviewContainer', () => {
 
     await userEvent.click(
       screen.getByRole('button', {
-        name: 'Content.RoutesOverview.LATER_BUTTON',
+        name: 'Navigation.RoutesOverview.LATER_BUTTON',
       })
     );
 
@@ -230,7 +230,7 @@ describe('RoutesOverviewContainer', () => {
 
       const withinFirstRouteSection = within(
         screen.getByRole('button', {
-          name: 'Content.RoutesOverview.SINGLE_ROUTE_BUTTON_TITLE 17:30 - 17:39',
+          name: 'Navigation.RoutesOverview.SINGLE_ROUTE_BUTTON_TITLE 17:30 - 17:39',
         })
       );
 
@@ -307,7 +307,7 @@ describe('RoutesOverviewContainer', () => {
 
       const withinFirstRouteSection = within(
         screen.getByRole('button', {
-          name: 'Content.RoutesOverview.SINGLE_ROUTE_BUTTON_TITLE 17:30 - 18:45',
+          name: 'Navigation.RoutesOverview.SINGLE_ROUTE_BUTTON_TITLE 17:30 - 18:45',
         })
       );
 
@@ -398,7 +398,7 @@ describe('RoutesOverviewContainer', () => {
 
       const withinFirstRouteSection = within(
         screen.getByRole('button', {
-          name: 'Content.RoutesOverview.SINGLE_ROUTE_BUTTON_TITLE 17:30 - 18:30',
+          name: 'Navigation.RoutesOverview.SINGLE_ROUTE_BUTTON_TITLE 17:30 - 18:30',
         })
       );
 
