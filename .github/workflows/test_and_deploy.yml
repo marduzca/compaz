@@ -76,7 +76,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
       - run: npm outdated || true
-      - run: test $(npm outdated | wc -l) -lt "5"
+      - run: test $(npm outdated | wc -l) -lt "10"
 
   build_and_deploy:
     needs: [visual_regression_test, user_journey_test_local]
