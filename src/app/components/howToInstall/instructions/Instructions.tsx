@@ -1,7 +1,11 @@
 import React from 'react';
 import install from '../../../static/gif/install.gif';
 
-const Instructions: React.FC = () => (
+interface InstructionsProps {
+  forVisualRegressionTest?: boolean;
+}
+
+const Instructions: React.FC<InstructionsProps> = (props) => (
   <section aria-labelledby="instructions">
     <h2 id="instructions">Instructions</h2>
     {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
@@ -21,7 +25,9 @@ const Instructions: React.FC = () => (
       </select>
     </label>
     <div>
-      <img src={install} alt="Animation showing installations process" />
+      {!props.forVisualRegressionTest && (
+        <img src={install} alt="Animation showing installations process" />
+      )}
       <ol>
         <li>Click on Install icon</li>
         <li>Confirm by clicking on Install</li>
@@ -29,5 +35,9 @@ const Instructions: React.FC = () => (
     </div>
   </section>
 );
+
+Instructions.defaultProps = {
+  forVisualRegressionTest: false,
+};
 
 export default Instructions;

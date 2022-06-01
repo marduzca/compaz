@@ -8,6 +8,7 @@ import Instructions from './instructions/Instructions';
 
 interface HowToInstallProps {
   onMenuButtonClick: () => void;
+  forVisualRegressionTest?: boolean;
 }
 
 const HowToInstall: React.FC<HowToInstallProps> = (props) => {
@@ -42,10 +43,14 @@ const HowToInstall: React.FC<HowToInstallProps> = (props) => {
             loading="lazy"
           />
         </section>
-        <Instructions />
+        <Instructions forVisualRegressionTest={props.forVisualRegressionTest} />
       </div>
     </main>
   );
+};
+
+HowToInstall.defaultProps = {
+  forVisualRegressionTest: false,
 };
 
 export default HowToInstall;
