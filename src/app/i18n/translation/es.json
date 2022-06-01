@@ -1,4 +1,17 @@
 {
+  "Menu": {
+    "CLOSE_BUTTON": "Cerrar menú de navegación",
+    "OPEN_BUTTON": "Abrir menú de navegación",
+    "AFTERNOON_MESSAGE": "Buenas tardes\nLa Paz",
+    "CHANGE_LANGUAGE": "Cambiar idioma",
+    "CONTACT": "Contacto",
+    "MORNING_MESSAGE": "Buenos días\nLa Paz",
+    "HISTORY": "Historial",
+    "GO_HOME": "Ir a la página principal",
+    "HOW_TO_INSTALL": "Como instalar",
+    "LANGUAGE": "Idioma",
+    "NIGHT_MESSAGE": "Buenas noches\nLa Paz"
+  },
   "Content": {
     "Route": {
       "Lines": {
@@ -61,23 +74,16 @@
     "SEND_BUTTON": "Enviar",
     "MESSAGE_SENT_ALT": "Mensaje enviado exitosamente"
   },
+  "HowToInstall": {
+    "ANY_DEVICE_BENEFIT": "Funciona perfectamente en cualquiera de tus dispositivos",
+    "NATIVE_APP_BENEFIT": "Tendrás el aspecto y la sensación de interactuar con una aplicación nativa",
+    "OFFLINE_BENEFIT": "Ahorra tus datos móviles: Funciona incluso si estas offline!",
+    "DEVICES_IMAGE_ALT": "Diferentes dispositivos (Laptop, tablet y móvil) con la aplicación compaz"
+  },
   "Footer": {
     "GUIDE": "Tu guía para saber como llegar",
     "TIME": "Planea la duración de tu viaje",
     "EASY": "Fácil y al alcance de la mano"
-  },
-  "Menu": {
-    "CLOSE_BUTTON": "Cerrar menú de navegación",
-    "OPEN_BUTTON": "Abrir menú de navegación",
-    "AFTERNOON_MESSAGE": "Buenas tardes\nLa Paz",
-    "CHANGE_LANGUAGE": "Cambiar idioma",
-    "CONTACT": "Contacto",
-    "MORNING_MESSAGE": "Buenos días\nLa Paz",
-    "HISTORY": "Historial",
-    "GO_HOME": "Ir a la página principal",
-    "HOW_TO_INSTALL": "Como instalar",
-    "LANGUAGE": "Idioma",
-    "NIGHT_MESSAGE": "Buenas noches\nLa Paz"
   },
   "Notification": {
     "CLOSE": "Cerrar notificación",
