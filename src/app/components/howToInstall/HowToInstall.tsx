@@ -1,8 +1,9 @@
 import React from 'react';
-import { ReactComponent as BulletPoint } from '../../static/img/bullet.svg';
+import { ReactComponent as BulletPoint } from '../../static/svg/bullet.svg';
 import devices from '../../static/img/devices.png';
 import styles from './HowToInstall.module.css';
 import MobileHeader from '../molecules/mobileHeader/MobileHeader';
+import Instructions from './instructions/Instructions';
 
 interface HowToInstallProps {
   onMenuButtonClick: () => void;
@@ -37,26 +38,7 @@ const HowToInstall: React.FC<HowToInstallProps> = (props) => (
           loading="lazy"
         />
       </section>
-      <section>
-        <h2>Instructions</h2>
-        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-        <label>
-          <span>Device</span>
-          <select id="device">
-            <option>Smartphone / Tablet</option>
-            <option>Mobile</option>
-          </select>
-        </label>
-        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-        <label>
-          <span>Browser</span>
-          <select id="device">
-            <option>Google Chrome</option>
-            <option>Mozilla Firefox</option>
-          </select>
-        </label>
-      </section>
-      <div>STEPS</div>
+      <Instructions />
     </div>
   </main>
 );

@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './IconsRoute.module.css';
 import getCorrespondingTelefericoIcon from '../utils';
-import transferIcon from '../../../../static/img/double_arrow.svg';
+import transferIcon from '../../../../static/svg/double_arrow.svg';
 import { SubRoute } from '../../../domain';
 
 interface SimpleIconsRouteProps {

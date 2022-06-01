@@ -1,9 +1,9 @@
 import React, { LegacyRef } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import successIcon from '../../static/img/success.svg';
-import errorIcon from '../../static/img/error.svg';
-import infoIcon from '../../static/img/info.svg';
-import { ReactComponent as CloseIcon } from '../../static/img/close.svg';
+import successIcon from '../../static/svg/success.svg';
+import errorIcon from '../../static/svg/error.svg';
+import infoIcon from '../../static/svg/info.svg';
+import { ReactComponent as CloseIcon } from '../../static/svg/close.svg';
 import styles from './Notification.module.css';
 
 export enum NotificationType {

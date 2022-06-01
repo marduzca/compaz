@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import telefericoIcon from '../../../static/img/teleferico_loading.svg';
+import telefericoIcon from '../../../static/svg/teleferico_loading.svg';
 import styles from './LoadingPage.module.css';
 
 const LoadingPage: React.FC = () => {

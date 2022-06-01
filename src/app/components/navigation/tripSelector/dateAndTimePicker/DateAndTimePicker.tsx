@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './DateAndTimePicker.module.css';
-import { ReactComponent as CalendarIcon } from '../../../../static/img/date_picker.svg';
-import { ReactComponent as TimeIcon } from '../../../../static/img/time_picker.svg';
+import { ReactComponent as CalendarIcon } from '../../../../static/svg/date_picker.svg';
+import { ReactComponent as TimeIcon } from '../../../../static/svg/time_picker.svg';
 import {
   parseToEnglishDateString,
   parseToSimpleTime,

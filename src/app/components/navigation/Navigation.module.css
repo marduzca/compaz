@@ -7,7 +7,7 @@
   align-items: stretch;
   justify-content: flex-start;
 
-  background-image: url('../../static/img/background_banner.svg');
+  background-image: url('../../static/svg/background_banner.svg');
   background-size: cover;
 
   overflow: hidden;

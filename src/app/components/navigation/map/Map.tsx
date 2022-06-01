@@ -1,9 +1,9 @@
 import React from 'react';
 import { GoogleMap, MarkerF, PolylineF } from '@react-google-maps/api';
 import { useTranslation } from 'react-i18next';
-import stationMarker from '../../../static/img/station_marker.svg';
-import originMarker from '../../../static/img/origin_marker.svg';
-import destinationMarker from '../../../static/img/destination_marker.svg';
+import stationMarker from '../../../static/svg/station_marker.svg';
+import originMarker from '../../../static/svg/origin_marker.svg';
+import destinationMarker from '../../../static/svg/destination_marker.svg';
 import styles from './Map.module.css';
 import { GeoLocation, Route, Station } from '../../domain';
 

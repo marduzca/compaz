@@ -1,7 +1,7 @@
 import React, { useMemo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './ContactForm.module.css';
-import emailSentIcon from '../../../static/img/email_sent.svg';
+import emailSentIcon from '../../../static/svg/email_sent.svg';
 import TextBox from '../../atoms/textBox/TextBox';
 import TextArea from '../../atoms/textArea/TextArea';
 
