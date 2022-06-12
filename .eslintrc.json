@@ -79,7 +79,11 @@
       }
     ],
     "react/jsx-no-useless-fragment": ["error", { "allowExpressions": true }],
-    "react/jsx-no-constructed-context-values": "off"
+    "react/jsx-no-constructed-context-values": "off",
+    "jsx-a11y/label-has-associated-control": [ 2, {
+      "labelComponents": ["label"],
+      "labelAttributes": ["htmlFor"]
+    }]
   },
   "overrides": [
     {

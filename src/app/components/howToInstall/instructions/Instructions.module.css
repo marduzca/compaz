@@ -1,0 +1,52 @@
+.container > h2 {
+  margin-bottom: 2rem;
+
+  font-size: 3rem;
+  font-weight: 500;
+}
+
+.content {
+  display: grid;
+  row-gap: 3rem;
+}
+
+.selectors {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+}
+
+.selectors > label {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2rem;
+}
+
+.selectors > label > span {
+  font-size: 1.5rem;
+}
+
+.selectors > label > select {
+  max-width: 60%;
+
+  /* to be replaced with actual component later */
+  background-color: #f2f2f2;
+  border-radius: var(--content-border-radius);
+  border: 1px solid transparent;
+}
+
+@media only screen and (max-width: 480px) {
+  .selectors {
+    grid-template-columns: 1fr;
+    row-gap: 1.5rem;
+  }
+
+  .selectors > label {
+    display: grid;
+    grid-template-columns: 30% 1fr;
+    gap: 2rem;
+  }
+
+  .selectors > label > select {
+    max-width: initial;
+  }
+}

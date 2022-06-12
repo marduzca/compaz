@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './Instructions.module.css';
 import install from '../../../static/gif/install.gif';
 
 interface InstructionsProps {
@@ -6,32 +7,35 @@ interface InstructionsProps {
 }
 
 const Instructions: React.FC<InstructionsProps> = (props) => (
-  <section aria-labelledby="instructions">
+  <section className={styles.container} aria-labelledby="instructions">
     <h2 id="instructions">Instructions</h2>
-    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-    <label>
-      <span>Device</span>
-      <select id="device">
-        <option>Smartphone / Tablet</option>
-        <option>Mobile</option>
-      </select>
-    </label>
-    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-    <label>
-      <span>Browser</span>
-      <select id="device">
-        <option>Google Chrome</option>
-        <option>Mozilla Firefox</option>
-      </select>
-    </label>
-    <div>
-      {!props.forVisualRegressionTest && (
-        <img src={install} alt="Animation showing installations process" />
-      )}
-      <ol>
-        <li>Click on Install icon</li>
-        <li>Confirm by clicking on Install</li>
-      </ol>
+    <div className={styles.content}>
+      <header className={styles.selectors}>
+        <label>
+          <span>Device</span>
+          <select>
+            <option>Smartphone / Tablet</option>
+            <option>Laptop</option>
+          </select>
+        </label>
+        <label>
+          <span>Browser</span>
+          <select id="device">
+            <option>Google Chrome</option>
+            <option>Mozilla Firefox</option>
+            <option>Safari</option>
+          </select>
+        </label>
+      </header>
+      <div>
+        {!props.forVisualRegressionTest && (
+          <img src={install} alt="Animation showing installations process" />
+        )}
+        <ol>
+          <li>Click on Install icon</li>
+          <li>Confirm by clicking on Install</li>
+        </ol>
+      </div>
     </div>
   </section>
 );
