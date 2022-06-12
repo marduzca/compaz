@@ -34,6 +34,25 @@
   border: 1px solid transparent;
 }
 
+.steps {
+  padding: 2.5rem;
+
+  border-radius: var(--content-border-radius);
+  box-shadow: 0 0 0.5rem 0 grey;
+}
+
+.steps > img {
+  margin: 0 auto 3rem auto;
+}
+
+.steps > ol {
+  display: grid;
+  row-gap: 1rem;
+
+  margin: 0;
+  padding-inline-start: 1.5rem;
+}
+
 @media only screen and (max-width: 480px) {
   .selectors {
     grid-template-columns: 1fr;
@@ -48,5 +67,9 @@
 
   .selectors > label > select {
     max-width: initial;
+  }
+
+  .steps {
+    padding: 1.5rem 1rem;
   }
 }

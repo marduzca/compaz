@@ -27,13 +27,23 @@ const Instructions: React.FC<InstructionsProps> = (props) => (
           </select>
         </label>
       </header>
-      <div>
+      <div className={styles.steps}>
         {!props.forVisualRegressionTest && (
           <img src={install} alt="Animation showing installations process" />
         )}
         <ol>
-          <li>Click on Install icon</li>
-          <li>Confirm by clicking on Install</li>
+          <li>
+            Go to compaz.com and click the Install icon on the address bar.
+          </li>
+          <li>In the newly opened window, confirm by clicking `Install`</li>
+          <li>
+            The compaz icon is now visible in your desktop as an installed app.
+            Click the icon to open it.
+          </li>
+          <li>
+            You can now see compaz running with the look-and-feel of a native
+            app and enjoy all the benefits that come with it!
+          </li>
         </ol>
       </div>
     </div>
