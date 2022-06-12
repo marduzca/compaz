@@ -36,7 +36,7 @@
     "import/no-extraneous-dependencies": [
       "error",
       {
-        "devDependencies": ["src/app/**/*.spec.{ts,tsx}", "src/setupTests.ts", "**/*.stories.tsx"]
+        "devDependencies": ["src/app/**/*.spec.{ts,tsx}", "src/setupTests.ts", "**/*.stories.tsx", "cypress.config.ts"]
       }
     ],
     "prettier/prettier": [
@@ -93,6 +93,12 @@
       "rules": {
         "@typescript-eslint/no-empty-function": "off", // required for mock functions
         "@typescript-eslint/no-non-null-assertion": "off" // testing stateful behaviour with delayed initialisation
+      }
+    },
+    {
+      "files": ["cypress/**/*.cy.ts"],
+      "rules": {
+        "jest/expect-expect": "off" // required for the initial context
       }
     }
   ],
