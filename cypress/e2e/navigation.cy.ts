@@ -10,11 +10,8 @@ describe('Navigation', () => {
 
     Page.waitForLoadingAnimationToDisappear();
 
-    cy.get(`input[name="Origin"]`).should('be.visible').click(); // TODO: seems that cypress type started failing since the last release, we will need to take this unnecessary step until fixed
-
-    // Trip selector
-    TripSelector.selectStations('Irpavi', 'El Prado');
     TripSelector.selectDateAndTime('1993-03-15', '09:30');
+    TripSelector.selectStations('Irpavi', 'El Prado');
     TripSelector.search();
 
     // Routes overview
