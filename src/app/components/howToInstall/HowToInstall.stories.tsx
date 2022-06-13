@@ -10,6 +10,5 @@ export default {
 export const NormalAndMobileState: React.FC = () => (
   <HowToInstall
     onMenuButtonClick={actions('onMenuButtonClick').onMenuButtonClick}
-    forVisualRegressionTest
   />
 );

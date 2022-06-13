@@ -4,11 +4,10 @@ import { ReactComponent as BulletPoint } from '../../static/svg/bullet.svg';
 import devices from '../../static/img/devices.png';
 import styles from './HowToInstall.module.css';
 import MobileHeader from '../molecules/mobileHeader/MobileHeader';
-import Instructions from './instructions/Instructions';
+import InstructionsContainer from './instructions/InstructionsContainer';
 
 interface HowToInstallProps {
   onMenuButtonClick: () => void;
-  forVisualRegressionTest?: boolean;
 }
 
 const HowToInstall: React.FC<HowToInstallProps> = (props) => {
@@ -43,14 +42,10 @@ const HowToInstall: React.FC<HowToInstallProps> = (props) => {
             loading="lazy"
           />
         </section>
-        <Instructions forVisualRegressionTest={props.forVisualRegressionTest} />
+        <InstructionsContainer />
       </div>
     </main>
   );
-};
-
-HowToInstall.defaultProps = {
-  forVisualRegressionTest: false,
 };
 
 export default HowToInstall;

@@ -7,6 +7,4 @@ export default {
   title: 'HowToInstall / Instructions',
 } as Meta;
 
-export const NormalAndMobileState: React.FC = () => (
-  <Instructions forVisualRegressionTest />
-);
+export const NormalAndMobileState: React.FC = () => <Instructions />;

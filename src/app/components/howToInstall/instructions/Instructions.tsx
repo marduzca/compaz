@@ -2,11 +2,7 @@ import React from 'react';
 import styles from './Instructions.module.css';
 import install from '../../../static/gif/install.gif';
 
-interface InstructionsProps {
-  forVisualRegressionTest?: boolean;
-}
-
-const Instructions: React.FC<InstructionsProps> = (props) => (
+const Instructions: React.FC = () => (
   <section className={styles.container} aria-labelledby="instructions">
     <h2 id="instructions">Instructions</h2>
     <div className={styles.content}>
@@ -28,7 +24,7 @@ const Instructions: React.FC<InstructionsProps> = (props) => (
         </label>
       </header>
       <div className={styles.steps}>
-        {!props.forVisualRegressionTest && (
+        {!localStorage.getItem('replaceGifForVisualRegressionTest') && (
           <img src={install} alt="Animation showing installations process" />
         )}
         <ol>
