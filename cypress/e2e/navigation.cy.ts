@@ -11,7 +11,7 @@ describe('Navigation', () => {
     Page.waitForLoadingAnimationToDisappear();
 
     TripSelector.selectDateAndTime('1993-03-15', '09:30');
-    TripSelector.selectStations('Irpavi', 'El Prado');
+    TripSelector.selectStations('Irpavi', 'Prado');
     TripSelector.search();
 
     // Routes overview
