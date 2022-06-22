@@ -12,8 +12,10 @@ const removeLocalStorageItem = (key: string) => {
   cy.window().its('localStorage').invoke('removeItem', key);
 };
 
-const typeInField = (label: string, text: string) => {
-  cy.get(`input[name="${label}"]`).should('be.visible').type(text);
+const typeInField = (label: string, text: string, keypressDelay?: number) => {
+  cy.get(`input[name="${label}"]`)
+    .should('be.visible')
+    .type(text, { delay: keypressDelay });
 };
 
 export default {

@@ -1,10 +1,8 @@
 import Page from './page';
 
 const selectStations = (origin: string, destination: string) => {
-  Page.typeInField('Origin', origin);
-  Page.typeInField('Origin', '{downarrow}{enter}');
-  Page.typeInField('Destination', destination);
-  Page.typeInField('Destination', '{downarrow}{enter}');
+  Page.typeInField('Origin', `${origin}{downarrow}{enter}`, 50);
+  Page.typeInField('Destination', `${destination}{downarrow}{enter}`, 50);
 };
 
 const selectDateAndTime = (date: string, time: string) => {
