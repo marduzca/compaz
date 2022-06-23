@@ -5,7 +5,6 @@ import Navigation from './Navigation';
 import * as FirebaseProvider from '../providers/firebase/FirebaseProvider';
 import * as NavigationProvider from '../providers/navigation/NavigationProvider';
 import { ConnectedStation, Route, Station, SubRoute } from '../domain';
-import * as useMediaQuery from '../useMediaQuery';
 
 describe('Navigation', () => {
   const useFirebaseMock = jest.spyOn(FirebaseProvider, 'useFirebase');
@@ -91,10 +90,6 @@ describe('Navigation', () => {
   });
 
   beforeEach(() => {
-    const useMediaQueryMock = jest.spyOn(useMediaQuery, 'default');
-
-    useMediaQueryMock.mockReturnValue(false);
-
     useFirebaseMock.mockReturnValue({
       stations: [originStation, destinationStation],
       lines: [{ id: 'green', stationsPath: [], connectedLines: [] }],
