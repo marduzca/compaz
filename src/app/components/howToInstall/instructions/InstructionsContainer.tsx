@@ -29,16 +29,26 @@ const InstructionsContainer: React.FC = () => {
   const [selectedDevice, setSelectedDevice] = useState<Device>(
     Device.SMARTPHONE_TABLET
   );
+  const [selectedBrowser, setSelectedBrowser] = useState<Browser>(
+    Browser.GOOGLE_CHROME
+  );
 
   const handleDeviceSelection = (newDevice: string) => {
     const typedDeviceString = newDevice as keyof typeof Device;
     setSelectedDevice(Device[typedDeviceString]);
   };
 
+  const handleBrowserSelection = (newBrowser: string) => {
+    const typedBrowserString = newBrowser as keyof typeof Browser;
+    setSelectedBrowser(Browser[typedBrowserString]);
+  };
+
   return (
     <Instructions
       selectedDevice={selectedDevice}
       onDeviceSelection={handleDeviceSelection}
+      selectedBrowser={selectedBrowser}
+      onBrowserSelection={handleBrowserSelection}
       availableBrowsers={availableBrowsersForDevice[selectedDevice]}
     />
   );

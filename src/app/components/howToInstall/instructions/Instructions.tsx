@@ -7,6 +7,8 @@ import { Browser, Device } from './InstructionsContainer';
 interface InstructionsProps {
   selectedDevice: Device;
   onDeviceSelection: (newDevice: string) => void;
+  selectedBrowser: Browser;
+  onBrowserSelection: (newBrowser: string) => void;
   availableBrowsers: Browser[];
 }
 
@@ -33,7 +35,10 @@ const Instructions: React.FC<InstructionsProps> = (props) => {
           </label>
           <label>
             <span>{t('HowToInstall.Instructions.BROWSER_SELECTOR_LABEL')}</span>
-            <select id="device">
+            <select
+              value={props.selectedBrowser}
+              onChange={(event) => props.onBrowserSelection(event.target.value)}
+            >
               {props.availableBrowsers.map((browser) => (
                 <option value={browser} key={browser}>
                   {browser}

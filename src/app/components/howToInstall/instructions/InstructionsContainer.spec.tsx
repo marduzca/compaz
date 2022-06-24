@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import InstructionsContainer from './InstructionsContainer';
+import InstructionsContainer, { Browser } from './InstructionsContainer';
 
 describe('InstructionsContainer', () => {
   it('allows to select a device from the device selector', async () => {
@@ -22,6 +22,27 @@ describe('InstructionsContainer', () => {
 
     expect(laptopOption.selected).toBeTruthy();
   });
+
+  it('allows to select a browser from the browser selector', async () => {
+    render(<InstructionsContainer />);
+
+    const safariOption = screen.getByRole('option', {
+      name: Browser.SAFARI,
+    }) as HTMLOptionElement;
+
+    expect(safariOption.selected).toBeFalsy();
+
+    await userEvent.selectOptions(
+      screen.getByRole('combobox', {
+        name: 'HowToInstall.Instructions.BROWSER_SELECTOR_LABEL',
+      }),
+      safariOption
+    );
+
+    expect(safariOption.selected).toBeTruthy();
+  });
+
+  // It should fall back to chrome if changing device
 
   it('should show only the available browsers for the selected device type', async () => {
     render(<InstructionsContainer />);
