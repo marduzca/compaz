@@ -2,8 +2,14 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './Instructions.module.css';
 import install from '../../../static/gif/install.gif';
+import { Device } from './InstructionsContainer';
 
-const Instructions: React.FC = () => {
+interface InstructionsProps {
+  selectedDevice: string;
+  onDeviceSelection: (newDevice: string) => void;
+}
+
+const Instructions: React.FC<InstructionsProps> = (props) => {
   const { t } = useTranslation();
 
   return (
@@ -13,11 +19,15 @@ const Instructions: React.FC = () => {
         <header className={styles.selectors}>
           <label>
             <span>{t('HowToInstall.Instructions.DEVICE_SELECTOR_LABEL')}</span>
-            <select>
-              <option>
-                {t('HowToInstall.Instructions.SMARTPHONE_TABLET_OPTION')}
-              </option>
-              <option>{t('HowToInstall.Instructions.LAPTOP_OPTION')}</option>
+            <select
+              value={props.selectedDevice}
+              onChange={(event) => props.onDeviceSelection(event.target.value)}
+            >
+              {Object.keys(Device).map((device) => (
+                <option value={device.valueOf()} key={device.valueOf()}>
+                  {t(`HowToInstall.Instructions.${device.valueOf()}_OPTION`)}
+                </option>
+              ))}
             </select>
           </label>
           <label>
