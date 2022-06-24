@@ -75,6 +75,20 @@
     "MESSAGE_SENT_ALT": "Mensaje enviado exitosamente"
   },
   "HowToInstall": {
+    "Instructions": {
+      "HEADING": "Instrucciones",
+      "DEVICE_SELECTOR_LABEL": "Dispositivo",
+      "BROWSER_SELECTOR_LABEL": "Navegador",
+      "LAPTOP_OPTION": "Laptop",
+      "SMARTPHONE_TABLET_OPTION": "Celular / Tablet",
+      "INSTALLATION_GIF_ALT": "Animación mostrando proceso de instalación en un(a) {{device}} usando {{browser}}.",
+      "STEP_1_LAPTOP": "Ir a compaz.com y hacer click en el ícono de Instalar en la barra de direcciones.",
+      "STEP_1_MOBILE": "Ir a compaz.com y abrir el menú del navegador haciendo click en los tres puntos de arriba a la derecha de la pantalla.",
+      "STEP_2_LAPTOP": "En la ventana recien abierta, confirmar haciendo click en 'Instalar'.",
+      "STEP_2_MOBILE": "En el menú recien abierta, hacer click en 'Instalar compaz'.",
+      "STEP_3": "El ícono de compaz debería ahora ser visible en la página principal / ordenador como cualquier otra aplicación instalada. Haz click en el ícono para abrirla.",
+      "STEP_4": "Ahora puedes ver la aplicación de compaz corriendo con el aspecto y la sensación de una aplicación nativa y podrás disfrutar the todos los beneficios que vienen con ello!"
+    },
     "ANY_DEVICE_BENEFIT": "Funciona perfectamente en cualquiera de tus dispositivos",
     "NATIVE_APP_BENEFIT": "Tendrás el aspecto y la sensación de interactuar con una aplicación nativa",
     "OFFLINE_BENEFIT": "Ahorra tus datos móviles: Funciona incluso si estas offline!",
