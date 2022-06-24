@@ -71,10 +71,10 @@
 
   height: 3px;
 
-  background-color: #828282;
+  background-color: var(--primary-color);
 
   transform: scale(0, 1);
-  transition: transform ease-in-out 400ms;
+  transition: transform ease-in-out 300ms;
 }
 
 .headerItemIcon {
