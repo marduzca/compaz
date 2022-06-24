@@ -24,8 +24,20 @@ const Instructions: React.FC = () => (
         </label>
       </header>
       <div className={styles.steps}>
-        {!localStorage.getItem('replaceGifForVisualRegressionTest') && (
-          <img src={install} alt="Animation showing installations process" />
+        {!localStorage.getItem('replaceGifForVisualRegressionTest') ? (
+          <img
+            src={install}
+            alt="Animation showing installations process"
+            className={styles.installationGif}
+          />
+        ) : (
+          <div
+            role="img"
+            aria-label="FAKE GIF"
+            className={`${styles.installationGif} ${styles.fakeGif}`}
+          >
+            FAKE GIF
+          </div>
         )}
         <ol>
           <li>
