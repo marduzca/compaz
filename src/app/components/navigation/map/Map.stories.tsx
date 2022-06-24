@@ -4,7 +4,7 @@ import { actions } from '@storybook/addon-actions';
 import Map from './Map';
 
 export default {
-  title: 'Map',
+  title: 'General / Map',
   component: Map,
 } as Meta;
 

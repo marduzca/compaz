@@ -14,7 +14,7 @@ const guaranteedSize = (child: React.ReactNode): React.ReactNode => (
 );
 
 export default {
-  title: 'LoadingPage',
+  title: 'Navigation / LoadingPage',
   component: LoadingPage,
 } as Meta;
 

@@ -4,7 +4,7 @@ import Notification, { NotificationType, RELOAD_EVENT } from './Notification';
 
 export default {
   component: Notification,
-  title: 'Notification',
+  title: 'General / Notification',
 };
 
 export const InfoNotificationNormalState = () => (

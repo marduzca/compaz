@@ -11,7 +11,7 @@ const guaranteedSize = (child: React.ReactNode): React.ReactNode => (
 );
 
 export default {
-  title: 'Menu',
+  title: 'General / Menu',
   component: Menu,
   decorators: [
     (Story) => (

@@ -5,7 +5,7 @@ import RouteDetailsView from './RouteDetailsView';
 import { ConnectedStation, SubRoute } from '../../../domain';
 
 export default {
-  title: 'RouteDetailsView',
+  title: 'Navigation / RouteDetailsView',
   component: RouteDetailsView,
 } as Meta;
 

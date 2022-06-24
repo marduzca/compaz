@@ -3,7 +3,7 @@ import React from 'react';
 import TotalRouteTime from './TotalRouteTime';
 
 export default {
-  title: 'TotalRouteTime',
+  title: 'Navigation / RoutesOverview / TotalRouteTime',
   component: TotalRouteTime,
 } as Meta;
 
