@@ -2,11 +2,12 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './Instructions.module.css';
 import install from '../../../static/gif/install.gif';
-import { Device } from './InstructionsContainer';
+import { Browser, Device } from './InstructionsContainer';
 
 interface InstructionsProps {
-  selectedDevice: string;
+  selectedDevice: Device;
   onDeviceSelection: (newDevice: string) => void;
+  availableBrowsers: Browser[];
 }
 
 const Instructions: React.FC<InstructionsProps> = (props) => {
@@ -24,8 +25,8 @@ const Instructions: React.FC<InstructionsProps> = (props) => {
               onChange={(event) => props.onDeviceSelection(event.target.value)}
             >
               {Object.keys(Device).map((device) => (
-                <option value={device.valueOf()} key={device.valueOf()}>
-                  {t(`HowToInstall.Instructions.${device.valueOf()}_OPTION`)}
+                <option value={device} key={device}>
+                  {t(`HowToInstall.Instructions.${device}_OPTION`)}
                 </option>
               ))}
             </select>
@@ -33,9 +34,11 @@ const Instructions: React.FC<InstructionsProps> = (props) => {
           <label>
             <span>{t('HowToInstall.Instructions.BROWSER_SELECTOR_LABEL')}</span>
             <select id="device">
-              <option>Google Chrome</option>
-              <option>Mozilla Firefox</option>
-              <option>Safari</option>
+              {props.availableBrowsers.map((browser) => (
+                <option value={browser} key={browser}>
+                  {browser}
+                </option>
+              ))}
             </select>
           </label>
         </header>

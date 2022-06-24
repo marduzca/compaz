@@ -2,7 +2,7 @@ import React from 'react';
 import { Meta } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 import Instructions from './Instructions';
-import { Device } from './InstructionsContainer';
+import { Browser, Device } from './InstructionsContainer';
 
 export default {
   component: Instructions,
@@ -11,7 +11,8 @@ export default {
 
 export const NormalAndMobileState: React.FC = () => (
   <Instructions
-    selectedDevice={Device.SMARTPHONE_TABLET.toString()}
+    selectedDevice={Device.SMARTPHONE_TABLET}
     onDeviceSelection={actions('onDeviceSelection').onDeviceSelection}
+    availableBrowsers={[Browser.GOOGLE_CHROME, Browser.SAFARI]}
   />
 );
