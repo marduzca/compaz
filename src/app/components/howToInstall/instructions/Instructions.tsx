@@ -2,10 +2,10 @@ import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './Instructions.module.css';
 import installLaptopChromeSource from '../../../static/gif/install_laptop_chrome.gif';
-import installAndroidChrome from '../../../static/gif/install_android_chrome.gif';
-import installAndroidFirefox from '../../../static/gif/install_android_firefox.png';
-import installAndroidSamsung from '../../../static/gif/install_android_samsung.gif';
-import installIphoneSafari from '../../../static/gif/install_iphone_safari.gif';
+import installAndroidChromeSource from '../../../static/gif/install_android_chrome.gif';
+import installAndroidFirefoxSource from '../../../static/gif/install_android_firefox.png';
+import installAndroidSamsungSource from '../../../static/gif/install_android_samsung.gif';
+import installIphoneSafariSource from '../../../static/gif/install_iphone_safari.gif';
 import { Browser, Device } from './InstructionsContainer';
 
 interface InstructionsProps {
@@ -24,15 +24,15 @@ const Instructions: React.FC<InstructionsProps> = (props) => {
       case Device.ANDROID_AND_TABLET:
         switch (props.selectedBrowser) {
           case Browser.MOZILLA_FIREFOX:
-            return installAndroidFirefox;
+            return installAndroidFirefoxSource;
           case Browser.SAMSUNG_INTERNET:
-            return installAndroidSamsung;
+            return installAndroidSamsungSource;
           default:
-            return installAndroidChrome;
+            return installAndroidChromeSource;
         }
 
       case Device.IPHONE_AND_IPAD:
-        return installIphoneSafari;
+        return installIphoneSafariSource;
 
       default:
         return installLaptopChromeSource;
