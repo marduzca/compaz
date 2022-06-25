@@ -42,7 +42,31 @@ describe('InstructionsContainer', () => {
     expect(safariOption.selected).toBeTruthy();
   });
 
-  // It should fall back to chrome if changing device
+  it('should fallback to Chrome browser when another browser selected and switching from device from mobile to laptop', async () => {
+    render(<InstructionsContainer />);
+
+    await userEvent.selectOptions(
+      screen.getByRole('combobox', {
+        name: 'HowToInstall.Instructions.BROWSER_SELECTOR_LABEL',
+      }),
+      Browser.SAFARI
+    );
+
+    await userEvent.selectOptions(
+      screen.getByRole('combobox', {
+        name: 'HowToInstall.Instructions.DEVICE_SELECTOR_LABEL',
+      }),
+      'HowToInstall.Instructions.LAPTOP_OPTION'
+    );
+
+    expect(
+      (
+        screen.getByRole('option', {
+          name: Browser.GOOGLE_CHROME,
+        }) as HTMLOptionElement
+      ).selected
+    ).toBeTruthy();
+  });
 
   it('should show only the available browsers for the selected device type', async () => {
     render(<InstructionsContainer />);

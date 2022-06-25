@@ -36,10 +36,23 @@ const InstructionsContainer: React.FC = () => {
   const handleDeviceSelection = (newDevice: string) => {
     const typedDeviceString = newDevice as keyof typeof Device;
     setSelectedDevice(Device[typedDeviceString]);
+
+    if (
+      !availableBrowsersForDevice[Device[typedDeviceString]].includes(
+        selectedBrowser
+      )
+    ) {
+      setSelectedBrowser(
+        availableBrowsersForDevice[Device[typedDeviceString]][0]
+      );
+    }
   };
 
   const handleBrowserSelection = (newBrowser: string) => {
-    const typedBrowserString = newBrowser as keyof typeof Browser;
+    const typedBrowserString = newBrowser
+      .toLocaleUpperCase()
+      .replace(/ /g, '_') as keyof typeof Browser;
+
     setSelectedBrowser(Browser[typedBrowserString]);
   };
 
