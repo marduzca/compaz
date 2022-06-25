@@ -82,7 +82,7 @@
       "LAPTOP_OPTION": "Laptop",
       "ANDROID_AND_TABLET_OPTION": "Android / Tablet",
       "IPHONE_AND_IPAD_OPTION": "iPhone / iPad",
-      "INSTALLATION_GIF_ALT": "Animación mostrando proceso de instalación en un(a) {{device}} usando {{browser}}.",
+      "INSTALLATION_GIF_ALT": "Animación mostrando proceso de instalación en {{device}} usando {{browser}}.",
       "STEP_1_LAPTOP": "Ir a compaz.com y hacer click en el ícono de Instalar en la barra de direcciones.",
       "STEP_1_MOBILE": "Ir a compaz.com y abrir el menú del navegador haciendo click en los tres puntos de arriba a la derecha de la pantalla.",
       "STEP_2_LAPTOP": "En la ventana recien abierta, confirmar haciendo click en 'Instalar'.",

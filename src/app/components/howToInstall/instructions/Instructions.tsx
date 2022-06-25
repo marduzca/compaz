@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './Instructions.module.css';
-import install from '../../../static/gif/install.gif';
+import installLaptopChromeSource from '../../../static/gif/install_laptop_chrome.gif';
+import installAndroidChrome from '../../../static/gif/install_android_chrome.gif';
+import installAndroidFirefox from '../../../static/gif/install_android_firefox.png';
+import installAndroidSamsung from '../../../static/gif/install_android_samsung.gif';
+import installIphoneSafari from '../../../static/gif/install_iphone_safari.gif';
 import { Browser, Device } from './InstructionsContainer';
 
 interface InstructionsProps {
@@ -14,6 +18,26 @@ interface InstructionsProps {
 
 const Instructions: React.FC<InstructionsProps> = (props) => {
   const { t } = useTranslation();
+
+  const installationGifSource = useMemo(() => {
+    switch (props.selectedDevice) {
+      case Device.ANDROID_AND_TABLET:
+        switch (props.selectedBrowser) {
+          case Browser.MOZILLA_FIREFOX:
+            return installAndroidFirefox;
+          case Browser.SAMSUNG_INTERNET:
+            return installAndroidSamsung;
+          default:
+            return installAndroidChrome;
+        }
+
+      case Device.IPHONE_AND_IPAD:
+        return installIphoneSafari;
+
+      default:
+        return installLaptopChromeSource;
+    }
+  }, [props.selectedDevice, props.selectedBrowser]);
 
   return (
     <section className={styles.container} aria-labelledby="instructions">
@@ -50,10 +74,12 @@ const Instructions: React.FC<InstructionsProps> = (props) => {
         <div className={styles.steps}>
           {!localStorage.getItem('replaceGifForVisualRegressionTest') ? (
             <img
-              src={install}
+              src={installationGifSource}
               alt={t('HowToInstall.Instructions.INSTALLATION_GIF_ALT', {
-                device: t('HowToInstall.Instructions.LAPTOP_OPTION'),
-                browser: 'Google Chrome',
+                device: t(
+                  `HowToInstall.Instructions.${props.selectedDevice}_OPTION`
+                ),
+                browser: props.selectedBrowser,
               })}
               className={styles.installationGif}
               loading="lazy"
@@ -62,7 +88,9 @@ const Instructions: React.FC<InstructionsProps> = (props) => {
             <div
               role="img"
               aria-label="FAKE GIF"
-              className={`${styles.installationGif} ${styles.fakeGif}`}
+              className={`${styles.installationGif} ${styles.fakeGif} ${
+                props.selectedDevice !== Device.LAPTOP && styles.fakeGifMobile
+              }`}
             >
               FAKE GIF
             </div>

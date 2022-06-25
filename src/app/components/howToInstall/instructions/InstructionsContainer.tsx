@@ -11,6 +11,7 @@ export enum Browser {
   GOOGLE_CHROME = 'Google Chrome',
   SAFARI = 'Safari',
   MOZILLA_FIREFOX = 'Mozilla Firefox',
+  SAMSUNG_INTERNET = 'Samsung Internet',
 }
 
 type DeviceToBrowsersMap = {
@@ -18,7 +19,11 @@ type DeviceToBrowsersMap = {
 };
 
 const availableBrowsersForDevice: DeviceToBrowsersMap = {
-  [Device.ANDROID_AND_TABLET]: [Browser.GOOGLE_CHROME, Browser.MOZILLA_FIREFOX],
+  [Device.ANDROID_AND_TABLET]: [
+    Browser.GOOGLE_CHROME,
+    Browser.MOZILLA_FIREFOX,
+    Browser.SAMSUNG_INTERNET,
+  ],
   [Device.IPHONE_AND_IPAD]: [Browser.SAFARI],
   [Device.LAPTOP]: [Browser.GOOGLE_CHROME],
 };

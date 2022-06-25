@@ -9,11 +9,21 @@ export default {
   title: 'HowToInstall / Instructions',
 } as Meta;
 
-export const NormalAndMobileState: React.FC = () => (
+export const WithDesktopGifInNormalAndMobileState: React.FC = () => (
+  <Instructions
+    selectedDevice={Device.LAPTOP}
+    onDeviceSelection={actions('onDeviceSelection').onDeviceSelection}
+    selectedBrowser={Browser.GOOGLE_CHROME}
+    onBrowserSelection={actions('onBrowserSelection').onBrowserSelection}
+    availableBrowsers={[Browser.GOOGLE_CHROME, Browser.SAFARI]}
+  />
+);
+
+export const WithMobileGifInNormalState: React.FC = () => (
   <Instructions
     selectedDevice={Device.ANDROID_AND_TABLET}
     onDeviceSelection={actions('onDeviceSelection').onDeviceSelection}
-    selectedBrowser={Browser.GOOGLE_CHROME}
+    selectedBrowser={Browser.MOZILLA_FIREFOX}
     onBrowserSelection={actions('onBrowserSelection').onBrowserSelection}
     availableBrowsers={[Browser.GOOGLE_CHROME, Browser.SAFARI]}
   />

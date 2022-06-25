@@ -4,42 +4,87 @@ import userEvent from '@testing-library/user-event';
 import InstructionsContainer, { Browser } from './InstructionsContainer';
 
 describe('InstructionsContainer', () => {
-  it('allows to select a device from the device selector', async () => {
+  it('should show only the available browsers for the selected device type', async () => {
     render(<InstructionsContainer />);
 
-    const laptopOption = screen.getByRole('option', {
-      name: 'HowToInstall.Instructions.LAPTOP_OPTION',
-    }) as HTMLOptionElement;
+    const browserOptionsForMobile = within(
+      screen.getByRole('combobox', {
+        name: 'HowToInstall.Instructions.BROWSER_SELECTOR_LABEL',
+      })
+    ).getAllByRole('option');
 
-    expect(laptopOption.selected).toBeFalsy();
+    expect(browserOptionsForMobile).toHaveLength(3);
+    expect(browserOptionsForMobile[0]).toHaveValue(Browser.GOOGLE_CHROME);
+    expect(browserOptionsForMobile[1]).toHaveValue(Browser.MOZILLA_FIREFOX);
+    expect(browserOptionsForMobile[2]).toHaveValue(Browser.SAMSUNG_INTERNET);
 
     await userEvent.selectOptions(
       screen.getByRole('combobox', {
         name: 'HowToInstall.Instructions.DEVICE_SELECTOR_LABEL',
       }),
-      laptopOption
+      'HowToInstall.Instructions.LAPTOP_OPTION'
     );
 
-    expect(laptopOption.selected).toBeTruthy();
+    const browserOptionsForLaptop = within(
+      screen.getByRole('combobox', {
+        name: 'HowToInstall.Instructions.BROWSER_SELECTOR_LABEL',
+      })
+    ).getAllByRole('option');
+
+    expect(browserOptionsForLaptop).toHaveLength(1);
+    expect(browserOptionsForLaptop[0]).toHaveValue(Browser.GOOGLE_CHROME);
   });
 
-  it('allows to select a browser from the browser selector', async () => {
+  it('shows the correct installation gif when switch devices and browsers', async () => {
     render(<InstructionsContainer />);
 
-    const safariOption = screen.getByRole('option', {
-      name: Browser.MOZILLA_FIREFOX,
-    }) as HTMLOptionElement;
-
-    expect(safariOption.selected).toBeFalsy();
+    expect((screen.getByRole('img') as HTMLImageElement).src).toMatch(
+      /install_android_chrome/
+    );
 
     await userEvent.selectOptions(
       screen.getByRole('combobox', {
         name: 'HowToInstall.Instructions.BROWSER_SELECTOR_LABEL',
       }),
-      safariOption
+      Browser.MOZILLA_FIREFOX
     );
 
-    expect(safariOption.selected).toBeTruthy();
+    expect((screen.getByRole('img') as HTMLImageElement).src).toMatch(
+      /install_android_firefox/
+    );
+
+    await userEvent.selectOptions(
+      screen.getByRole('combobox', {
+        name: 'HowToInstall.Instructions.BROWSER_SELECTOR_LABEL',
+      }),
+      Browser.SAMSUNG_INTERNET
+    );
+
+    expect((screen.getByRole('img') as HTMLImageElement).src).toMatch(
+      /install_android_samsung/
+    );
+
+    await userEvent.selectOptions(
+      screen.getByRole('combobox', {
+        name: 'HowToInstall.Instructions.DEVICE_SELECTOR_LABEL',
+      }),
+      'HowToInstall.Instructions.IPHONE_AND_IPAD_OPTION'
+    );
+
+    expect((screen.getByRole('img') as HTMLImageElement).src).toMatch(
+      /install_iphone_safari/
+    );
+
+    await userEvent.selectOptions(
+      screen.getByRole('combobox', {
+        name: 'HowToInstall.Instructions.DEVICE_SELECTOR_LABEL',
+      }),
+      'HowToInstall.Instructions.LAPTOP_OPTION'
+    );
+
+    expect((screen.getByRole('img') as HTMLImageElement).src).toMatch(
+      /install_laptop_chrome/
+    );
   });
 
   it('should fallback to first available browser when switching device and another unsupported browser is selected', async () => {
@@ -50,6 +95,10 @@ describe('InstructionsContainer', () => {
         name: 'HowToInstall.Instructions.BROWSER_SELECTOR_LABEL',
       }),
       Browser.MOZILLA_FIREFOX
+    );
+
+    expect((screen.getByRole('img') as HTMLImageElement).src).toMatch(
+      /install_android_firefox/
     );
 
     await userEvent.selectOptions(
@@ -66,35 +115,8 @@ describe('InstructionsContainer', () => {
         }) as HTMLOptionElement
       ).selected
     ).toBeTruthy();
-  });
-
-  it('should show only the available browsers for the selected device type', async () => {
-    render(<InstructionsContainer />);
-
-    const browserOptionsForMobile = within(
-      screen.getByRole('combobox', {
-        name: 'HowToInstall.Instructions.BROWSER_SELECTOR_LABEL',
-      })
-    ).getAllByRole('option');
-
-    expect(browserOptionsForMobile).toHaveLength(2);
-    expect(browserOptionsForMobile[0]).toHaveValue('Google Chrome');
-    expect(browserOptionsForMobile[1]).toHaveValue('Mozilla Firefox');
-
-    await userEvent.selectOptions(
-      screen.getByRole('combobox', {
-        name: 'HowToInstall.Instructions.DEVICE_SELECTOR_LABEL',
-      }),
-      'HowToInstall.Instructions.LAPTOP_OPTION'
+    expect((screen.getByRole('img') as HTMLImageElement).src).toMatch(
+      /install_iphone_safari/
     );
-
-    const browserOptionsForLaptop = within(
-      screen.getByRole('combobox', {
-        name: 'HowToInstall.Instructions.BROWSER_SELECTOR_LABEL',
-      })
-    ).getAllByRole('option');
-
-    expect(browserOptionsForLaptop).toHaveLength(1);
-    expect(browserOptionsForLaptop[0]).toHaveValue('Google Chrome');
   });
 });
