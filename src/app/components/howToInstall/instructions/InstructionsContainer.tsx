@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import Instructions from './Instructions';
 
 export enum Device {
-  SMARTPHONE_TABLET = 'SMARTPHONE_TABLET',
+  ANDROID_AND_TABLET = 'ANDROID_AND_TABLET',
+  IPHONE_AND_IPAD = 'IPHONE_AND_IPAD',
   LAPTOP = 'LAPTOP',
 }
 
@@ -17,17 +18,14 @@ type DeviceToBrowsersMap = {
 };
 
 const availableBrowsersForDevice: DeviceToBrowsersMap = {
-  [Device.SMARTPHONE_TABLET]: [
-    Browser.GOOGLE_CHROME,
-    Browser.SAFARI,
-    Browser.MOZILLA_FIREFOX,
-  ],
+  [Device.ANDROID_AND_TABLET]: [Browser.GOOGLE_CHROME, Browser.MOZILLA_FIREFOX],
+  [Device.IPHONE_AND_IPAD]: [Browser.SAFARI],
   [Device.LAPTOP]: [Browser.GOOGLE_CHROME],
 };
 
 const InstructionsContainer: React.FC = () => {
   const [selectedDevice, setSelectedDevice] = useState<Device>(
-    Device.SMARTPHONE_TABLET
+    Device.ANDROID_AND_TABLET
   );
   const [selectedBrowser, setSelectedBrowser] = useState<Browser>(
     Browser.GOOGLE_CHROME

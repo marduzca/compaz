@@ -56,6 +56,7 @@ const Instructions: React.FC<InstructionsProps> = (props) => {
                 browser: 'Google Chrome',
               })}
               className={styles.installationGif}
+              loading="lazy"
             />
           ) : (
             <div

@@ -11,7 +11,7 @@ export default {
 
 export const NormalAndMobileState: React.FC = () => (
   <Instructions
-    selectedDevice={Device.SMARTPHONE_TABLET}
+    selectedDevice={Device.ANDROID_AND_TABLET}
     onDeviceSelection={actions('onDeviceSelection').onDeviceSelection}
     selectedBrowser={Browser.GOOGLE_CHROME}
     onBrowserSelection={actions('onBrowserSelection').onBrowserSelection}

@@ -27,7 +27,7 @@ describe('InstructionsContainer', () => {
     render(<InstructionsContainer />);
 
     const safariOption = screen.getByRole('option', {
-      name: Browser.SAFARI,
+      name: Browser.MOZILLA_FIREFOX,
     }) as HTMLOptionElement;
 
     expect(safariOption.selected).toBeFalsy();
@@ -42,27 +42,27 @@ describe('InstructionsContainer', () => {
     expect(safariOption.selected).toBeTruthy();
   });
 
-  it('should fallback to Chrome browser when another browser selected and switching from device from mobile to laptop', async () => {
+  it('should fallback to first available browser when switching device and another unsupported browser is selected', async () => {
     render(<InstructionsContainer />);
 
     await userEvent.selectOptions(
       screen.getByRole('combobox', {
         name: 'HowToInstall.Instructions.BROWSER_SELECTOR_LABEL',
       }),
-      Browser.SAFARI
+      Browser.MOZILLA_FIREFOX
     );
 
     await userEvent.selectOptions(
       screen.getByRole('combobox', {
         name: 'HowToInstall.Instructions.DEVICE_SELECTOR_LABEL',
       }),
-      'HowToInstall.Instructions.LAPTOP_OPTION'
+      'HowToInstall.Instructions.IPHONE_AND_IPAD_OPTION'
     );
 
     expect(
       (
         screen.getByRole('option', {
-          name: Browser.GOOGLE_CHROME,
+          name: Browser.SAFARI,
         }) as HTMLOptionElement
       ).selected
     ).toBeTruthy();
@@ -77,10 +77,9 @@ describe('InstructionsContainer', () => {
       })
     ).getAllByRole('option');
 
-    expect(browserOptionsForMobile).toHaveLength(3);
+    expect(browserOptionsForMobile).toHaveLength(2);
     expect(browserOptionsForMobile[0]).toHaveValue('Google Chrome');
-    expect(browserOptionsForMobile[1]).toHaveValue('Safari');
-    expect(browserOptionsForMobile[2]).toHaveValue('Mozilla Firefox');
+    expect(browserOptionsForMobile[1]).toHaveValue('Mozilla Firefox');
 
     await userEvent.selectOptions(
       screen.getByRole('combobox', {
