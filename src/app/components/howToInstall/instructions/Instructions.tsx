@@ -96,8 +96,24 @@ const Instructions: React.FC<InstructionsProps> = (props) => {
             </div>
           )}
           <ol>
-            <li>{t('HowToInstall.Instructions.STEP_1_LAPTOP')}</li>
-            <li>{t('HowToInstall.Instructions.STEP_2_LAPTOP')}</li>
+            <li>
+              {t(
+                `HowToInstall.Instructions.STEP_1_${
+                  props.selectedDevice
+                }_${props.selectedBrowser
+                  .toLocaleUpperCase()
+                  .replace(/ /g, '_')}`
+              )}
+            </li>
+            <li>
+              {t(
+                `HowToInstall.Instructions.STEP_2_${
+                  props.selectedDevice
+                }_${props.selectedBrowser
+                  .toLocaleUpperCase()
+                  .replace(/ /g, '_')}`
+              )}
+            </li>
             <li>{t('HowToInstall.Instructions.STEP_3')}</li>
             <li>{t('HowToInstall.Instructions.STEP_4')}</li>
           </ol>
