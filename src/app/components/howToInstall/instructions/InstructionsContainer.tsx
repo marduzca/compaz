@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Instructions from './Instructions';
+import useMediaQuery from '../../useMediaQuery';
 
 export enum Device {
   ANDROID_AND_TABLET = 'ANDROID_AND_TABLET',
@@ -29,8 +30,10 @@ const availableBrowsersForDevice: DeviceToBrowsersMap = {
 };
 
 const InstructionsContainer: React.FC = () => {
+  const isMobile = useMediaQuery();
+
   const [selectedDevice, setSelectedDevice] = useState<Device>(
-    Device.ANDROID_AND_TABLET
+    isMobile ? Device.ANDROID_AND_TABLET : Device.LAPTOP
   );
   const [selectedBrowser, setSelectedBrowser] = useState<Browser>(
     Browser.GOOGLE_CHROME
