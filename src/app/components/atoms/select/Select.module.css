@@ -1,0 +1,74 @@
+.wrapper {
+  position: relative;
+}
+
+.container {
+  display: flex;
+  gap: 0.25rem;
+  flex-direction: column;
+}
+
+.toggleButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 0.5rem;
+
+  height: 2.75rem;
+
+  padding-inline: 0.75rem;
+
+  border: 1px solid transparent;
+  border-bottom: 1px solid #bdbdbd;
+  border-radius: var(--content-border-radius);
+
+  background-color: #f2f2f2;
+}
+
+.toggleButton > span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.toggleButton > svg {
+  min-width: 1.5rem;
+  max-width: 1.5rem;
+  min-height: 1.5rem;
+  max-height: 1.5rem;
+}
+
+.optionsList {
+  position: absolute;
+  left: 0;
+  right: 0;
+
+  z-index: 999;
+
+  overflow: auto;
+
+  margin: 0;
+
+  box-shadow: 0 0 0.25rem 0 grey;
+  background-color: white;
+}
+
+.optionsList > li:not(:last-child) {
+  border-bottom: 1px dotted #e0e0e0;
+}
+
+.option {
+  line-height: 1.25rem;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+}
+
+.selectedOption {
+  font-weight: 700;
+}
+
+.highlightedOption {
+  background-color: rgb(236, 237, 237);
+  color: rgb(45, 51, 53);
+}
