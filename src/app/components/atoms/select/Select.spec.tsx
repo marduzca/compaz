@@ -19,22 +19,27 @@ describe('Select', () => {
 
   it('shows options when clicked and closes them when clicking again', async () => {
     render(
-      <Select onChange={() => {}} selectedOption={books[0]} options={books} />
+      <Select
+        onChange={() => {}}
+        selectedOption={books[0]}
+        options={books}
+        ariaLabel="Books combobox"
+      />
     );
 
     expect(screen.queryAllByRole('option')).toHaveLength(0);
 
     await userEvent.click(
-      screen.getByRole('button', {
-        name: 'Choose your favorite book: toggle menu',
+      screen.getByRole('combobox', {
+        name: 'Books combobox',
       })
     );
 
     expect(screen.queryAllByRole('option')).toHaveLength(10);
 
     await userEvent.click(
-      screen.getByRole('button', {
-        name: 'Choose your favorite book: toggle menu',
+      screen.getByRole('combobox', {
+        name: 'Books combobox',
       })
     );
 
@@ -52,6 +57,7 @@ describe('Select', () => {
           }}
           selectedOption={selectedOption}
           options={books}
+          ariaLabel="Books combobox"
         />
       );
     };
@@ -59,8 +65,8 @@ describe('Select', () => {
     render(<SelectWrapper />);
 
     await userEvent.click(
-      screen.getByRole('button', {
-        name: 'Choose your favorite book: toggle menu',
+      screen.getByRole('combobox', {
+        name: 'Books combobox',
       })
     );
 
@@ -79,17 +85,22 @@ describe('Select', () => {
   it('triggers onChange handler when selecting a new option', async () => {
     const handlerFn = jest.fn();
     render(
-      <Select onChange={handlerFn} selectedOption={books[0]} options={books} />
+      <Select
+        onChange={handlerFn}
+        selectedOption={books[0]}
+        options={books}
+        ariaLabel="Books combobox"
+      />
     );
 
     await userEvent.click(
-      screen.getByRole('button', {
-        name: 'Choose your favorite book: toggle menu',
+      screen.getByRole('combobox', {
+        name: 'Books combobox',
       })
     );
     await userEvent.selectOptions(
       screen.getByRole('listbox', {
-        name: 'Choose your favorite book:',
+        name: 'Books combobox',
       }),
       screen.getByRole('option', {
         name: 'A Picture of Dorian Gray',

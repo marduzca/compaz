@@ -1,14 +1,13 @@
-/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/jsx-props-no-spreading,jsx-a11y/role-has-required-aria-props */
 import React from 'react';
 import { useSelect } from 'downshift';
 import { ReactComponent as ArrowUpIcon } from '../../../static/svg/chevron_up.svg';
 import { ReactComponent as ArrowDownIcon } from '../../../static/svg/chevron_down.svg';
 import styles from './Select.module.css';
 
-// Extract label
 // Make fancy outline
 // Max height?
-// Mention selected option in button accessible name
+// Think of fancier way of dealing with text/value options in Instructions
 
 export interface Option {
   value: string;
@@ -19,6 +18,8 @@ export interface SelectProps {
   onChange: (newOption: Option) => void;
   selectedOption: Option;
   options: Option[];
+  labelId?: string;
+  ariaLabel?: string;
 }
 
 const Select: React.FC<SelectProps> = (props) => {
@@ -27,7 +28,6 @@ const Select: React.FC<SelectProps> = (props) => {
     selectedItem,
     highlightedIndex,
     getToggleButtonProps,
-    getLabelProps,
     getMenuProps,
     getItemProps,
   } = useSelect({
@@ -43,20 +43,23 @@ const Select: React.FC<SelectProps> = (props) => {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.container}>
-        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-        <label {...getLabelProps()}>Choose your favorite book:</label>
-        <button
-          {...getToggleButtonProps()}
-          type="button"
-          aria-label="toggle menu"
-          className={styles.toggleButton}
-        >
-          <span>{props.selectedOption.text}</span>
-          {isOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
-        </button>
-      </div>
-      <ul {...getMenuProps()} className={styles.optionsList}>
+      <button
+        {...getToggleButtonProps()}
+        type="button"
+        role="combobox"
+        className={styles.toggleButton}
+        aria-labelledby={props.labelId}
+        aria-label={props.ariaLabel} // aria-labelledby is higher ranked than aria-label, so aria-label is only for exceptions like when no visible label is present or for tests
+      >
+        <span>{props.selectedOption.text}</span>
+        {isOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
+      </button>
+      <ul
+        {...getMenuProps()}
+        aria-labelledby={props.labelId}
+        aria-label={props.ariaLabel} // aria-labelledby is higher ranked than aria-label, so aria-label is only for exceptions like when no visible label is present or for tests
+        className={styles.optionsList}
+      >
         {isOpen &&
           props.options.map((item, index) => (
             <li
@@ -73,6 +76,11 @@ const Select: React.FC<SelectProps> = (props) => {
       </ul>
     </div>
   );
+};
+
+Select.defaultProps = {
+  labelId: 'no id',
+  ariaLabel: 'Select combobox',
 };
 
 export default Select;

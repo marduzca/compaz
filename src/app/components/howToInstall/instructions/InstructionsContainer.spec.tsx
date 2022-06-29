@@ -4,35 +4,66 @@ import userEvent from '@testing-library/user-event';
 import InstructionsContainer, { Browser } from './InstructionsContainer';
 
 describe('InstructionsContainer', () => {
+  const selectOptionFromDropdown = async (
+    selectLabel: string,
+    option: string
+  ) => {
+    await userEvent.click(
+      screen.getByRole('combobox', {
+        name: selectLabel,
+      })
+    );
+    await userEvent.selectOptions(
+      screen.getByRole('listbox', {
+        name: selectLabel,
+      }),
+      screen.getByRole('option', {
+        name: option,
+      })
+    );
+  };
+
   it('should show only the available browsers for the selected device type', async () => {
     render(<InstructionsContainer />);
 
-    const browserOptionsForLaptop = within(
+    await userEvent.click(
       screen.getByRole('combobox', {
+        name: 'HowToInstall.Instructions.BROWSER_SELECTOR_LABEL',
+      })
+    );
+    const browserOptionsForLaptop = within(
+      screen.getByRole('listbox', {
         name: 'HowToInstall.Instructions.BROWSER_SELECTOR_LABEL',
       })
     ).getAllByRole('option');
 
     expect(browserOptionsForLaptop).toHaveLength(1);
-    expect(browserOptionsForLaptop[0]).toHaveValue(Browser.GOOGLE_CHROME);
+    expect(browserOptionsForLaptop[0]).toHaveTextContent(Browser.GOOGLE_CHROME);
 
-    await userEvent.selectOptions(
-      screen.getByRole('combobox', {
-        name: 'HowToInstall.Instructions.DEVICE_SELECTOR_LABEL',
-      }),
+    await selectOptionFromDropdown(
+      'HowToInstall.Instructions.DEVICE_SELECTOR_LABEL',
       'HowToInstall.Instructions.ANDROID_AND_TABLET_OPTION'
     );
 
-    const browserOptionsForMobile = within(
+    await userEvent.click(
       screen.getByRole('combobox', {
+        name: 'HowToInstall.Instructions.BROWSER_SELECTOR_LABEL',
+      })
+    );
+    const browserOptionsForMobile = within(
+      screen.getByRole('listbox', {
         name: 'HowToInstall.Instructions.BROWSER_SELECTOR_LABEL',
       })
     ).getAllByRole('option');
 
     expect(browserOptionsForMobile).toHaveLength(3);
-    expect(browserOptionsForMobile[0]).toHaveValue(Browser.GOOGLE_CHROME);
-    expect(browserOptionsForMobile[1]).toHaveValue(Browser.MOZILLA_FIREFOX);
-    expect(browserOptionsForMobile[2]).toHaveValue(Browser.SAMSUNG_INTERNET);
+    expect(browserOptionsForMobile[0]).toHaveTextContent(Browser.GOOGLE_CHROME);
+    expect(browserOptionsForMobile[1]).toHaveTextContent(
+      Browser.MOZILLA_FIREFOX
+    );
+    expect(browserOptionsForMobile[2]).toHaveTextContent(
+      Browser.SAMSUNG_INTERNET
+    );
   });
 
   it('shows the correct installation gif and steps when switching devices and browsers', async () => {
@@ -48,10 +79,8 @@ describe('InstructionsContainer', () => {
       screen.getByText('HowToInstall.Instructions.STEP_2_LAPTOP_GOOGLE_CHROME')
     ).toBeVisible();
 
-    await userEvent.selectOptions(
-      screen.getByRole('combobox', {
-        name: 'HowToInstall.Instructions.DEVICE_SELECTOR_LABEL',
-      }),
+    await selectOptionFromDropdown(
+      'HowToInstall.Instructions.DEVICE_SELECTOR_LABEL',
       'HowToInstall.Instructions.ANDROID_AND_TABLET_OPTION'
     );
 
@@ -69,10 +98,8 @@ describe('InstructionsContainer', () => {
       )
     ).toBeVisible();
 
-    await userEvent.selectOptions(
-      screen.getByRole('combobox', {
-        name: 'HowToInstall.Instructions.BROWSER_SELECTOR_LABEL',
-      }),
+    await selectOptionFromDropdown(
+      'HowToInstall.Instructions.BROWSER_SELECTOR_LABEL',
       Browser.MOZILLA_FIREFOX
     );
 
@@ -90,10 +117,8 @@ describe('InstructionsContainer', () => {
       )
     ).toBeVisible();
 
-    await userEvent.selectOptions(
-      screen.getByRole('combobox', {
-        name: 'HowToInstall.Instructions.BROWSER_SELECTOR_LABEL',
-      }),
+    await selectOptionFromDropdown(
+      'HowToInstall.Instructions.BROWSER_SELECTOR_LABEL',
       Browser.SAMSUNG_INTERNET
     );
 
@@ -111,10 +136,8 @@ describe('InstructionsContainer', () => {
       )
     ).toBeVisible();
 
-    await userEvent.selectOptions(
-      screen.getByRole('combobox', {
-        name: 'HowToInstall.Instructions.DEVICE_SELECTOR_LABEL',
-      }),
+    await selectOptionFromDropdown(
+      'HowToInstall.Instructions.DEVICE_SELECTOR_LABEL',
       'HowToInstall.Instructions.IPHONE_AND_IPAD_OPTION'
     );
 
@@ -136,17 +159,13 @@ describe('InstructionsContainer', () => {
   it('should fallback to first available browser when switching device and another unsupported browser is selected', async () => {
     render(<InstructionsContainer />);
 
-    await userEvent.selectOptions(
-      screen.getByRole('combobox', {
-        name: 'HowToInstall.Instructions.DEVICE_SELECTOR_LABEL',
-      }),
+    await selectOptionFromDropdown(
+      'HowToInstall.Instructions.DEVICE_SELECTOR_LABEL',
       'HowToInstall.Instructions.ANDROID_AND_TABLET_OPTION'
     );
 
-    await userEvent.selectOptions(
-      screen.getByRole('combobox', {
-        name: 'HowToInstall.Instructions.BROWSER_SELECTOR_LABEL',
-      }),
+    await selectOptionFromDropdown(
+      'HowToInstall.Instructions.BROWSER_SELECTOR_LABEL',
       Browser.MOZILLA_FIREFOX
     );
 
@@ -154,20 +173,18 @@ describe('InstructionsContainer', () => {
       /install_android_firefox/
     );
 
-    await userEvent.selectOptions(
-      screen.getByRole('combobox', {
-        name: 'HowToInstall.Instructions.DEVICE_SELECTOR_LABEL',
-      }),
+    await selectOptionFromDropdown(
+      'HowToInstall.Instructions.DEVICE_SELECTOR_LABEL',
       'HowToInstall.Instructions.IPHONE_AND_IPAD_OPTION'
     );
 
     expect(
-      (
-        screen.getByRole('option', {
-          name: Browser.SAFARI,
-        }) as HTMLOptionElement
-      ).selected
-    ).toBeTruthy();
+      within(
+        screen.getByRole('combobox', {
+          name: 'HowToInstall.Instructions.BROWSER_SELECTOR_LABEL',
+        }) as HTMLSelectElement
+      ).getByText(Browser.SAFARI)
+    ).toBeVisible();
     expect((screen.getByRole('img') as HTMLImageElement).src).toMatch(
       /install_iphone_safari/
     );

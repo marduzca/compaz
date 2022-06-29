@@ -2,12 +2,6 @@
   position: relative;
 }
 
-.container {
-  display: flex;
-  gap: 0.25rem;
-  flex-direction: column;
-}
-
 .toggleButton {
   display: flex;
   align-items: center;
@@ -16,6 +10,7 @@
   gap: 0.5rem;
 
   height: 2.75rem;
+  width: 100%;
 
   padding-inline: 0.75rem;
 

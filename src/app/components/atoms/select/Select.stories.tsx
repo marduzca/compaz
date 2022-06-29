@@ -27,6 +27,7 @@ export const BasicInNormalState: React.FC = () => {
       options={books}
       onChange={actions('onChange').onChange}
       selectedOption={books[0]}
+      ariaLabel="randomLabel"
     />
   );
 };

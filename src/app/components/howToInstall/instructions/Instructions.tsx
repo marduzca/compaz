@@ -7,6 +7,7 @@ import installAndroidFirefoxSource from '../../../static/gif/install_android_fir
 import installAndroidSamsungSource from '../../../static/gif/install_android_samsung.gif';
 import installIphoneSafariSource from '../../../static/gif/install_iphone_safari.gif';
 import { Browser, Device } from './InstructionsContainer';
+import Select, { Option } from '../../atoms/select/Select';
 
 interface InstructionsProps {
   selectedDevice: Device;
@@ -15,6 +16,9 @@ interface InstructionsProps {
   onBrowserSelection: (newBrowser: string) => void;
   availableBrowsers: Browser[];
 }
+
+const DEVICE_SELECTOR_LABEL_ID = 'deviceSelectorId';
+const BROWSER_SELECTOR_LABEL_ID = 'browserSelectorId';
 
 const Instructions: React.FC<InstructionsProps> = (props) => {
   const { t } = useTranslation();
@@ -44,32 +48,46 @@ const Instructions: React.FC<InstructionsProps> = (props) => {
       <h2 id="instructions">{t('HowToInstall.Instructions.HEADING')}</h2>
       <div className={styles.content}>
         <header className={styles.selectors}>
-          <label>
-            <span>{t('HowToInstall.Instructions.DEVICE_SELECTOR_LABEL')}</span>
-            <select
-              value={props.selectedDevice}
-              onChange={(event) => props.onDeviceSelection(event.target.value)}
-            >
-              {Object.keys(Device).map((device) => (
-                <option value={device} key={device}>
-                  {t(`HowToInstall.Instructions.${device}_OPTION`)}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label>
-            <span>{t('HowToInstall.Instructions.BROWSER_SELECTOR_LABEL')}</span>
-            <select
-              value={props.selectedBrowser}
-              onChange={(event) => props.onBrowserSelection(event.target.value)}
-            >
-              {props.availableBrowsers.map((browser) => (
-                <option value={browser} key={browser}>
-                  {browser}
-                </option>
-              ))}
-            </select>
-          </label>
+          <div className={styles.selectorWithLabel}>
+            <label id={DEVICE_SELECTOR_LABEL_ID}>
+              {t('HowToInstall.Instructions.DEVICE_SELECTOR_LABEL')}
+            </label>
+            <Select
+              labelId={DEVICE_SELECTOR_LABEL_ID}
+              onChange={(option: Option) =>
+                props.onDeviceSelection(option.value)
+              }
+              selectedOption={{
+                value: props.selectedDevice,
+                text: t(
+                  `HowToInstall.Instructions.${props.selectedDevice}_OPTION`
+                ),
+              }}
+              options={Object.keys(Device).map((device) => ({
+                value: device,
+                text: t(`HowToInstall.Instructions.${device}_OPTION`),
+              }))}
+            />
+          </div>
+          <div className={styles.selectorWithLabel}>
+            <label id={BROWSER_SELECTOR_LABEL_ID}>
+              {t('HowToInstall.Instructions.BROWSER_SELECTOR_LABEL')}
+            </label>
+            <Select
+              labelId={BROWSER_SELECTOR_LABEL_ID}
+              onChange={(option: Option) =>
+                props.onBrowserSelection(option.value)
+              }
+              selectedOption={{
+                value: props.selectedBrowser,
+                text: props.selectedBrowser,
+              }}
+              options={props.availableBrowsers.map((browser) => ({
+                value: browser,
+                text: browser,
+              }))}
+            />
+          </div>
         </header>
         <div className={styles.steps}>
           {!localStorage.getItem('replaceGifForVisualRegressionTest') ? (
