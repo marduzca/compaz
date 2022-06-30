@@ -11,8 +11,9 @@
 
   height: 2.75rem;
   width: 100%;
-
   padding-inline: 0.75rem;
+
+  color: black;
 
   border: 1px solid transparent;
   border-bottom: 1px solid #bdbdbd;
@@ -55,8 +56,10 @@
 }
 
 .option {
-  line-height: 1.25rem;
   padding: 0.5rem 0.75rem;
+
+  line-height: 1.25rem;
+
   cursor: pointer;
 }
 
@@ -65,6 +68,10 @@
 }
 
 .highlightedOption {
-  background-color: rgb(236, 237, 237);
-  color: rgb(45, 51, 53);
+  background-color: var(--combobox-highlighted-background-color);
+}
+
+.toggleButton:focus-visible,
+.optionsList:focus-visible {
+  outline: var(--focus-outline-light-background);
 }

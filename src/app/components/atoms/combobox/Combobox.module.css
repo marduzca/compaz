@@ -128,8 +128,7 @@
 }
 
 .highlighted {
-  background-color: rgb(236, 237, 237);
-  color: rgb(45, 51, 53);
+  background-color: var(--combobox-highlighted-background-color);
 }
 
 .option {

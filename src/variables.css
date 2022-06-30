@@ -2,8 +2,10 @@
   --primary-color: #1976d2;
   --primary-light-color: #63a4ff;
 
-  --focus-outline-light-background: 3px solid var(--primary-color);
-  --focus-outline-dark-background: 3px solid white;
+  --combobox-highlighted-background-color: rgba(99, 164, 255, 0.2);
+
+  --focus-outline-light-background: 2px solid var(--primary-color);
+  --focus-outline-dark-background: 2px solid white;
   --focus-outline-offset: 3px;
 
   --content-border-radius: 0.625rem;
