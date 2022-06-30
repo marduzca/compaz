@@ -96,6 +96,7 @@
       "STEP_3": "El ícono de compaz debería ahora ser visible en la página principal / ordenador como cualquier otra aplicación instalada. Haz click en el ícono para abrirla.",
       "STEP_4": "Ahora puedes ver la aplicación de compaz corriendo con el aspecto y la sensación de una aplicación nativa y podrás disfrutar the todos los beneficios que vienen con ello!"
     },
+    "BENEFITS": "Beneficios",
     "ANY_DEVICE_BENEFIT": "Funciona perfectamente en cualquiera de tus dispositivos",
     "NATIVE_APP_BENEFIT": "Tendrás el aspecto y la sensación de interactuar con una aplicación nativa",
     "OFFLINE_BENEFIT": "Ahorra tus datos móviles: Funciona incluso si estas offline!",

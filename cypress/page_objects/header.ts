@@ -20,8 +20,13 @@ const goToContactPage = () => {
   cy.contains('a', 'Contact').click();
 };
 
+const goToHowToInstallPage = () => {
+  cy.contains('a', 'How to install').click();
+};
+
 export default {
   changeLanguage,
   headerShouldShowLinks,
   goToContactPage,
+  goToHowToInstallPage,
 };

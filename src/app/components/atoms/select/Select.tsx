@@ -75,8 +75,8 @@ const Select: React.FC<SelectProps> = (props) => {
 };
 
 Select.defaultProps = {
-  labelId: 'no id',
-  ariaLabel: 'Select combobox',
+  labelId: undefined,
+  ariaLabel: undefined,
 };
 
 export default Select;

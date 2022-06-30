@@ -21,7 +21,10 @@ const HowToInstall: React.FC<HowToInstallProps> = (props) => {
       />
       <div className={styles.content}>
         <h1>{t('Menu.HOW_TO_INSTALL')}</h1>
-        <section className={styles.benefits}>
+        <section
+          className={styles.benefits}
+          aria-label={t('HowToInstall.BENEFITS')}
+        >
           <ul>
             <li>
               <BulletPoint aria-hidden />

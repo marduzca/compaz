@@ -96,6 +96,7 @@
       "STEP_3": "The compaz icon should now be visible in your home screen / desktop as an installed app. Click the icon to open it.",
       "STEP_4": "You can now see compaz running with the look-and-feel of a native app and enjoy all the benefits that come with it!"
     },
+    "BENEFITS": "Benefits",
     "ANY_DEVICE_BENEFIT": "Runs properly in any of your devices",
     "NATIVE_APP_BENEFIT": "You will have the look and feel of interacting with a native app",
     "OFFLINE_BENEFIT": "Save on your mobile data: It works even if you are offline!",
