@@ -6,7 +6,6 @@ import { ReactComponent as ArrowDownIcon } from '../../../static/svg/chevron_dow
 import styles from './Select.module.css';
 
 // Make fancy outline
-// Max height?
 // Think of fancier way of dealing with text/value options in Instructions
 
 export interface Option {
