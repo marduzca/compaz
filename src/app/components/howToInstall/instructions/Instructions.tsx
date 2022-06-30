@@ -57,16 +57,21 @@ const Instructions: React.FC<InstructionsProps> = (props) => {
               onChange={(option: Option) =>
                 props.onDeviceSelection(option.value)
               }
-              selectedOption={{
-                value: props.selectedDevice,
-                text: t(
-                  `HowToInstall.Instructions.${props.selectedDevice}_OPTION`
-                ),
-              }}
-              options={Object.keys(Device).map((device) => ({
-                value: device,
-                text: t(`HowToInstall.Instructions.${device}_OPTION`),
-              }))}
+              selectedOption={
+                {
+                  value: props.selectedDevice,
+                  text: t(
+                    `HowToInstall.Instructions.${props.selectedDevice}_OPTION`
+                  ),
+                } as Option
+              }
+              options={Object.keys(Device).map(
+                (device) =>
+                  ({
+                    value: device,
+                    text: t(`HowToInstall.Instructions.${device}_OPTION`),
+                  } as Option)
+              )}
             />
           </div>
           <div className={styles.selectorWithLabel}>
@@ -78,14 +83,19 @@ const Instructions: React.FC<InstructionsProps> = (props) => {
               onChange={(option: Option) =>
                 props.onBrowserSelection(option.value)
               }
-              selectedOption={{
-                value: props.selectedBrowser,
-                text: props.selectedBrowser,
-              }}
-              options={props.availableBrowsers.map((browser) => ({
-                value: browser,
-                text: browser,
-              }))}
+              selectedOption={
+                {
+                  value: props.selectedBrowser,
+                  text: props.selectedBrowser,
+                } as Option
+              }
+              options={props.availableBrowsers.map(
+                (browser) =>
+                  ({
+                    value: browser,
+                    text: browser,
+                  } as Option)
+              )}
             />
           </div>
         </header>

@@ -5,8 +5,6 @@ import { ReactComponent as ArrowUpIcon } from '../../../static/svg/chevron_up.sv
 import { ReactComponent as ArrowDownIcon } from '../../../static/svg/chevron_down.svg';
 import styles from './Select.module.css';
 
-// Think of fancier way of dealing with text/value options in Instructions
-
 export interface Option {
   value: string;
   text: string;
