@@ -31,7 +31,12 @@ export const NormalState = () =>
       onOriginChange={actions('onOriginChange').onOriginChange}
       onDestinationChange={actions('onDestinationChange').onDestinationChange}
       onSwitcherClick={actions('onSwitcherClick').onSwitcherClick}
-      onClearButtonClick={actions('onClearButtonClick').onClearButtonClick}
+      onClearOriginButtonClick={
+        actions('onClearOriginButtonClick').onClearOriginButtonClick
+      }
+      onClearDestinationButtonClick={
+        actions('onClearDestinationButtonClick').onClearDestinationButtonClick
+      }
     />
   );
 
@@ -48,7 +53,12 @@ export const WithInputTextNormalState = () =>
       onOriginChange={actions('onOriginChange').onOriginChange}
       onDestinationChange={actions('onDestinationChange').onDestinationChange}
       onSwitcherClick={actions('onSwitcherClick').onSwitcherClick}
-      onClearButtonClick={actions('onClearButtonClick').onClearButtonClick}
+      onClearOriginButtonClick={
+        actions('onClearOriginButtonClick').onClearOriginButtonClick
+      }
+      onClearDestinationButtonClick={
+        actions('onClearDestinationButtonClick').onClearDestinationButtonClick
+      }
     />
   );
 
@@ -65,7 +75,12 @@ export const WithValidationErrorNormalState = () =>
       onOriginChange={actions('onOriginChange').onOriginChange}
       onDestinationChange={actions('onDestinationChange').onDestinationChange}
       onSwitcherClick={actions('onSwitcherClick').onSwitcherClick}
-      onClearButtonClick={actions('onClearButtonClick').onClearButtonClick}
+      onClearOriginButtonClick={
+        actions('onClearOriginButtonClick').onClearOriginButtonClick
+      }
+      onClearDestinationButtonClick={
+        actions('onClearDestinationButtonClick').onClearDestinationButtonClick
+      }
     />
   );
 
@@ -82,6 +97,11 @@ export const WithMissingErrorNormalState = () =>
       onOriginChange={actions('onOriginChange').onOriginChange}
       onDestinationChange={actions('onDestinationChange').onDestinationChange}
       onSwitcherClick={actions('onSwitcherClick').onSwitcherClick}
-      onClearButtonClick={actions('onClearButtonClick').onClearButtonClick}
+      onClearOriginButtonClick={
+        actions('onClearOriginButtonClick').onClearOriginButtonClick
+      }
+      onClearDestinationButtonClick={
+        actions('onClearDestinationButtonClick').onClearDestinationButtonClick
+      }
     />
   );

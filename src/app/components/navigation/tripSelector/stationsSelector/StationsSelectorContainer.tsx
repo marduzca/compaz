@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import StationsSelector, { ORIGIN } from './StationsSelector';
+import StationsSelector from './StationsSelector';
 import { useNavigation } from '../../../providers/navigation/NavigationProvider';
 import { useFirebase } from '../../../providers/firebase/FirebaseProvider';
 
@@ -75,16 +75,16 @@ const StationsSelectorContainer: React.FC<StationsSelectorContainerProps> = (
     }
   };
 
-  const handleClearButtonClick = (inputName: string) => {
-    if (inputName === ORIGIN) {
-      setOriginInputValue('');
-      setShowOriginValidationError(false);
-      setOriginStation(undefined);
-    } else {
-      setDestinationInputValue('');
-      setShowDestinationValidationError(false);
-      setDestinationStation(undefined);
-    }
+  const handleClearOriginButtonClick = () => {
+    setOriginInputValue('');
+    setShowOriginValidationError(false);
+    setOriginStation(undefined);
+  };
+
+  const handleClearDestinationButtonClick = () => {
+    setDestinationInputValue('');
+    setShowDestinationValidationError(false);
+    setDestinationStation(undefined);
   };
 
   const handleSwitcherClick = () => {
@@ -107,7 +107,8 @@ const StationsSelectorContainer: React.FC<StationsSelectorContainerProps> = (
       showDestinationMissingError={props.showDestinationMissingError}
       onSwitcherClick={handleSwitcherClick}
       stations={stations}
-      onClearButtonClick={handleClearButtonClick}
+      onClearOriginButtonClick={handleClearOriginButtonClick}
+      onClearDestinationButtonClick={handleClearDestinationButtonClick}
     />
   );
 };

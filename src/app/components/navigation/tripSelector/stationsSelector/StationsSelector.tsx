@@ -5,8 +5,8 @@ import Combobox, { Option } from '../../../atoms/combobox/Combobox';
 import { ReactComponent as Switcher } from '../../../../static/svg/switcher.svg';
 import { Station } from '../../../domain';
 
-export const ORIGIN = 'Navigation.TripSelector.ORIGIN_PLACEHOLDER';
-export const DESTINATION = 'Navigation.TripSelector.DESTINATION_PLACEHOLDER';
+const ORIGIN = 'Navigation.TripSelector.ORIGIN_PLACEHOLDER';
+const DESTINATION = 'Navigation.TripSelector.DESTINATION_PLACEHOLDER';
 
 interface StationsSelectorProps {
   stations: Station[];
@@ -19,7 +19,8 @@ interface StationsSelectorProps {
   onOriginChange: (newOrigin: string) => void;
   onDestinationChange: (newDestination: string) => void;
   onSwitcherClick: () => void;
-  onClearButtonClick: (inputName: string) => void;
+  onClearOriginButtonClick: () => void;
+  onClearDestinationButtonClick: () => void;
 }
 
 const StationsSelector: React.FC<StationsSelectorProps> = (props) => {
@@ -50,7 +51,7 @@ const StationsSelector: React.FC<StationsSelectorProps> = (props) => {
         }
         toggleButtonTitle={t('Navigation.TripSelector.TOGGLE_STATIONS')}
         clearButtonTitle={t('Navigation.TripSelector.CLEAR_INPUT')}
-        onClearButtonClick={props.onClearButtonClick}
+        onClearButtonClick={props.onClearOriginButtonClick}
       />
       <button
         title={t('Navigation.TripSelector.STATIONS_SWITCHER')}
@@ -86,7 +87,7 @@ const StationsSelector: React.FC<StationsSelectorProps> = (props) => {
         }
         toggleButtonTitle={t('Navigation.TripSelector.TOGGLE_STATIONS')}
         clearButtonTitle={t('Navigation.TripSelector.CLEAR_INPUT')}
-        onClearButtonClick={props.onClearButtonClick}
+        onClearButtonClick={props.onClearDestinationButtonClick}
       />
     </div>
   );
