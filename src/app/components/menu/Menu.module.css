@@ -91,6 +91,11 @@
   outline: none;
 }
 
+.currentPage {
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
 .headerItem:hover:after,
 .headerItem:focus-visible:after {
   transform: scale(1, 1);

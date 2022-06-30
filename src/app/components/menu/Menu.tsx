@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CSSTransition } from 'react-transition-group';
 import { Link } from 'react-router-dom';
@@ -15,19 +15,29 @@ import { ReactComponent as ContactIcon } from '../../static/svg/contact.svg';
 import styles from './Menu.module.css';
 import i18n from '../../i18n/instance';
 
+enum NavigationLink {
+  HOME = '/',
+  CONTACT = '/contact',
+  HOW_TO_INSTALL = '/how-to-install',
+}
+
 interface MenuItemProps {
   content: string;
   icon: React.ReactNode;
   href: string;
-  onHideMobileMenu: () => void;
+  isCurrentPage: boolean;
+  onLinkClick: (href: string) => void;
 }
 
 const MenuItem: React.FC<MenuItemProps> = (props) => (
   <li className={styles.headerLink}>
     <Link
       to={props.href}
-      className={styles.headerItem}
-      onClick={props.onHideMobileMenu}
+      className={`${styles.headerItem} ${
+        props.isCurrentPage && styles.currentPage
+      }`}
+      onClick={() => props.onLinkClick(props.href)}
+      aria-current={props.isCurrentPage ? 'page' : undefined}
     >
       <span className={styles.headerItemIcon}>{props.icon}</span>
       <span>{props.content}</span>
@@ -45,6 +55,10 @@ interface MenuProps {
 const Menu: React.FC<MenuProps> = (props) => {
   const { t } = useTranslation();
   const mobileMenuRef = useRef<HTMLDivElement>(null);
+
+  const [currentPage, setCurrentPage] = useState<string>(
+    window.location.pathname
+  );
 
   const handleClickOutsideOfMobileMenu = (e: MouseEvent) => {
     if (
@@ -132,7 +146,14 @@ const Menu: React.FC<MenuProps> = (props) => {
           {getMessageBasedOnTimeOfTheDay()}
         </section>
         <nav className={styles.navBar}>
-          <a href="./" title={t('Menu.GO_HOME')} className={styles.logo}>
+          <a
+            href={NavigationLink.HOME}
+            title={t('Menu.GO_HOME')}
+            className={styles.logo}
+            aria-current={
+              currentPage === NavigationLink.HOME ? 'page' : undefined
+            }
+          >
             <LogoBlack />
           </a>
           <ul className={styles.headerItems}>
@@ -140,19 +161,31 @@ const Menu: React.FC<MenuProps> = (props) => {
               content={t('Menu.HISTORY')}
               icon={<HistoryIcon />}
               href=""
-              onHideMobileMenu={props.onHideMobileMenu}
+              onLinkClick={(href: string) => {
+                setCurrentPage(href);
+                props.onHideMobileMenu();
+              }}
+              isCurrentPage={currentPage === ''}
             />
             <MenuItem
               content={t('Menu.HOW_TO_INSTALL')}
               icon={<InstallIcon />}
-              href="/how-to-install"
-              onHideMobileMenu={props.onHideMobileMenu}
+              href={NavigationLink.HOW_TO_INSTALL}
+              onLinkClick={(href: string) => {
+                setCurrentPage(href);
+                props.onHideMobileMenu();
+              }}
+              isCurrentPage={currentPage === NavigationLink.HOW_TO_INSTALL}
             />
             <MenuItem
               content={t('Menu.CONTACT')}
               icon={<ContactIcon />}
-              href="/contact"
-              onHideMobileMenu={props.onHideMobileMenu}
+              href={NavigationLink.CONTACT}
+              onLinkClick={(href: string) => {
+                setCurrentPage(href);
+                props.onHideMobileMenu();
+              }}
+              isCurrentPage={currentPage === NavigationLink.CONTACT}
             />
             <li className={styles.languageSelector}>
               <span>{t('Menu.LANGUAGE')}</span>

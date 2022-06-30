@@ -1,34 +1,41 @@
 import React from 'react';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter, Router } from 'react-router-dom';
+import { createMemoryHistory } from 'history';
 import MenuContainer from './MenuContainer';
 
 describe('MenuContainer', () => {
-  it('renders all header items', () => {
+  it('goes to the corresponding url when clicking on a nav link', async () => {
+    const history = createMemoryHistory();
+
     render(
-      <MemoryRouter>
+      <Router location={history.location} navigator={history}>
         <MenuContainer showMenuOnMobile={false} onHideMobileMenu={() => {}} />
-      </MemoryRouter>
+      </Router>
     );
 
     const withinNavigation = within(screen.getByRole('banner'));
 
     expect(
       withinNavigation.getByRole('link', { name: 'Menu.GO_HOME' })
-    ).toBeVisible();
-    expect(
-      withinNavigation.getByRole('link', { name: /Menu.HISTORY/ })
-    ).toBeVisible();
+    ).toHaveAttribute('aria-current', 'page');
+
+    await userEvent.click(
+      withinNavigation.getByRole('link', { name: /Menu.HOW_TO_INSTALL/ })
+    );
+    expect(history.location.pathname).toBe('/how-to-install');
     expect(
       withinNavigation.getByRole('link', { name: /Menu.HOW_TO_INSTALL/ })
-    ).toBeVisible();
+    ).toHaveAttribute('aria-current', 'page');
+
+    await userEvent.click(
+      withinNavigation.getByRole('link', { name: /Menu.CONTACT/ })
+    );
+    expect(history.location.pathname).toBe('/contact');
     expect(
       withinNavigation.getByRole('link', { name: /Menu.CONTACT/ })
-    ).toBeVisible();
-    expect(
-      withinNavigation.getByRole('button', { name: 'Menu.CHANGE_LANGUAGE' })
-    ).toBeVisible();
+    ).toHaveAttribute('aria-current', 'page');
   });
 
   describe('when switching language', () => {
