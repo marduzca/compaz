@@ -24,4 +24,6 @@ i18n
     },
   });
 
+document.documentElement.setAttribute('lang', i18n.language);
+
 export default i18n;

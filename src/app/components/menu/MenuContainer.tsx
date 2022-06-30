@@ -8,14 +8,17 @@ interface HeaderContainerProps {
   showMenuOnMobile: boolean;
 }
 
+const SPANISH = 'es';
+const ENGLISH = 'en';
+
 const MenuContainer: React.FC<HeaderContainerProps> = (props) => {
   const isMobile = useMediaQuery();
 
-  const SPANISH = 'es';
-  const ENGLISH = 'en';
-
   const handleLanguageChange = () => {
-    i18n.changeLanguage(i18n.language.match(/en/i) ? SPANISH : ENGLISH);
+    const newLanguage = i18n.language.match(/en/i) ? SPANISH : ENGLISH;
+
+    i18n.changeLanguage(newLanguage);
+    document.documentElement.setAttribute('lang', newLanguage);
   };
 
   return (
