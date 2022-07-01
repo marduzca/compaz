@@ -46,7 +46,12 @@ const App = () => {
   );
 
   useEffect(() => {
-    window.addEventListener('resize', debouncedEventHandler);
+    window.addEventListener('resize', (event: Event) => {
+      // Only fix height if we are on portrait mode
+      if ((event.target as Window).innerHeight > 480) {
+        debouncedEventHandler();
+      }
+    });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
