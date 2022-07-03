@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { initializeApp } from 'firebase/app';
+import { getAnalytics } from 'firebase/analytics';
+import { getPerformance } from 'firebase/performance';
 import {
   collection,
   doc,
@@ -8,8 +10,6 @@ import {
   query,
   setDoc,
 } from 'firebase/firestore';
-import 'firebase/analytics';
-import 'firebase/performance';
 import {
   useCollectionData,
   useDocumentData,
@@ -48,6 +48,9 @@ const firebaseApp = initializeApp({
   appId: '1:650973362685:web:5f5ea20f88b0788c5c8194',
   measurementId: 'G-BG76THH0ZB',
 });
+
+getAnalytics(firebaseApp);
+getPerformance(firebaseApp);
 
 const firestore = getFirestore(firebaseApp);
 
