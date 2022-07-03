@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { initializeApp } from 'firebase/app';
-import { getAnalytics } from 'firebase/analytics';
+import { getAnalytics, isSupported } from 'firebase/analytics';
 import { getPerformance } from 'firebase/performance';
 import {
   collection,
@@ -49,8 +49,12 @@ const firebaseApp = initializeApp({
   measurementId: 'G-BG76THH0ZB',
 });
 
-getAnalytics(firebaseApp);
-getPerformance(firebaseApp);
+isSupported().then((isAnalyticsSupported) => () => {
+  if (isAnalyticsSupported) {
+    getAnalytics(firebaseApp);
+    getPerformance(firebaseApp);
+  }
+});
 
 const firestore = getFirestore(firebaseApp);
 
