@@ -15,7 +15,7 @@ const shouldShowCorrespondingInstallationGif = (
     .should('be.visible');
 
 const selectOptionFromDropdown = (label: string, option: string) => {
-  cy.get(`button[role="combobox"][aria-labelledby="${label}"]`)
+  cy.get(`div[role="combobox"][aria-labelledby="${label}"]`)
     .should('be.visible')
     .click();
 
