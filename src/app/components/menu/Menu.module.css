@@ -8,6 +8,7 @@
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
+  column-gap: 2rem;
 
   padding: 0 4.625rem;
 }
@@ -57,6 +58,7 @@
   color: black;
   line-height: inherit;
 
+  white-space: nowrap;
   text-decoration: none;
 }
 
@@ -101,7 +103,7 @@
   transform: scale(1, 1);
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 950px) {
   .menuEntered {
     transform: translateX(-100%);
   }
@@ -131,7 +133,7 @@
     align-items: center;
 
     height: fit-content;
-    width: calc(100vw * 0.8);
+    max-width: calc(100vw * 0.8);
 
     background-color: white;
 

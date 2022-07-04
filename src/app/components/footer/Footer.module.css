@@ -27,7 +27,7 @@
   width: 2.5rem;
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 950px) {
   .footer {
     display: none;
   }

@@ -42,7 +42,7 @@
   width: 100%;
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 950px) {
   .content {
     background: none;
   }
