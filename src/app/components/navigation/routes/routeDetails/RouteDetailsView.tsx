@@ -104,9 +104,9 @@ const DetailsContentBox: React.FC<DetailsContentBoxProps> = (props) => {
         <IconsRoute subRoutes={props.route.subRoutes} hideTimes />
         <TotalRouteTime totalTime={props.route.totalTime} />
       </header>
-      <main className={styles.contentContainer}>
+      <div className={styles.contentContainer}>
         <ol className={styles.routeDetails}>{renderRouteDetails()}</ol>
-      </main>
+      </div>
     </>
   );
 };

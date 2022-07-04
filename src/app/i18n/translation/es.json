@@ -13,6 +13,11 @@
     "NIGHT_MESSAGE": "Buenas noches\nLa Paz"
   },
   "Navigation": {
+    "Heading": {
+      "TRIP_SELECTOR": "Navegación > Selección de viaje",
+      "ROUTES_OVERVIEW": "Navegación > Resumen de rutas",
+      "ROUTE_DETAILS": "Navegación > Detalles de ruta"
+    },
     "Route": {
       "Lines": {
         "BLUE": "Linea azul",

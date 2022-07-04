@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from './Navigation.module.css';
 import TripSelectorContainer from './tripSelector/TripSelectorContainer';
 import RoutesOverviewContainer from './routes/routesOverview/RoutesOverviewContainer';
@@ -12,9 +13,9 @@ import 'wicg-inert';
 import Footer from '../footer/Footer';
 
 enum AppViewState {
-  TRIP_SELECTOR,
-  ROUTES_OVERVIEW,
-  ROUTE_DETAILS,
+  TRIP_SELECTOR = 'TRIP_SELECTOR',
+  ROUTES_OVERVIEW = 'ROUTES_OVERVIEW',
+  ROUTE_DETAILS = 'ROUTE_DETAILS',
 }
 
 interface NavigationProps {
@@ -22,7 +23,10 @@ interface NavigationProps {
   isMobileMenuOpen: boolean;
 }
 
+const NAVIGATION_HEADING_ID = 'navigationHeadingId';
+
 const Navigation: React.FC<NavigationProps> = (props) => {
+  const { t } = useTranslation();
   const { stations, lines } = useFirebase();
   const { calculateRoute } = useNavigation();
 
@@ -91,9 +95,15 @@ const Navigation: React.FC<NavigationProps> = (props) => {
         // @ts-ignore
         inert={props.isMobileMenuOpen ? '' : null}
       >
+        <h1 id={NAVIGATION_HEADING_ID}>
+          {t(`Navigation.Heading.${currentAppViewState}`)}
+        </h1>
         {stations.length && lines.length ? (
           <>
-            <section className={styles.container}>
+            <section
+              className={styles.container}
+              aria-labelledby={NAVIGATION_HEADING_ID}
+            >
               {renderCurrentAppViewState()}
             </section>
             {currentAppViewState === AppViewState.ROUTE_DETAILS && (
