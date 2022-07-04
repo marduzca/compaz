@@ -49,8 +49,8 @@ const firebaseApp = initializeApp({
   measurementId: 'G-BG76THH0ZB',
 });
 
-isSupported().then((isAnalyticsSupported) => () => {
-  if (isAnalyticsSupported) {
+isSupported().then((isAnalyticsSupported) => {
+  if (isAnalyticsSupported && !window.location.href.match(/localhost/)) {
     getAnalytics(firebaseApp);
     getPerformance(firebaseApp);
   }
