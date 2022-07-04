@@ -11,6 +11,7 @@ import { FirebaseProvider } from './components/providers/firebase/FirebaseProvid
 import { NavigationProvider } from './components/providers/navigation/NavigationProvider';
 import Contact from './components/contact/Contact';
 import HowToInstall from './components/howToInstall/HowToInstall';
+import useMediaQuery from './components/useMediaQuery';
 
 const LandscapeErrorMessage = () => {
   const { t } = useTranslation();
@@ -24,6 +25,7 @@ const LandscapeErrorMessage = () => {
 };
 
 const App = () => {
+  const isMobile = useMediaQuery();
   const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
 
   const initialHeight = window.innerHeight;
@@ -46,12 +48,14 @@ const App = () => {
   );
 
   useEffect(() => {
-    window.addEventListener('resize', (event: Event) => {
-      // Only fix height if we are on portrait mode
-      if ((event.target as Window).innerHeight > 480) {
-        debouncedEventHandler();
-      }
-    });
+    if (isMobile) {
+      window.addEventListener('resize', (event: Event) => {
+        // Only fix height if we are on portrait mode
+        if ((event.target as Window).innerHeight > 480) {
+          debouncedEventHandler();
+        }
+      });
+    }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
