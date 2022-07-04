@@ -39,9 +39,8 @@ const Select: React.FC<SelectProps> = (props) => {
 
   return (
     <div className={styles.wrapper}>
-      <button
+      <div
         {...getToggleButtonProps()}
-        type="button"
         role="combobox"
         className={styles.toggleButton}
         aria-labelledby={props.labelId}
@@ -49,7 +48,7 @@ const Select: React.FC<SelectProps> = (props) => {
       >
         <span>{props.selectedOption.text}</span>
         {isOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
-      </button>
+      </div>
       <ul
         {...getMenuProps()}
         aria-labelledby={props.labelId}
