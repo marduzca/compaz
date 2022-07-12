@@ -13,6 +13,7 @@
     "NIGHT_MESSAGE": "Good night\nLa Paz"
   },
   "Navigation": {
+    "NAVIGATION_TITLE": "Your teleférico guide in La Paz",
     "Heading": {
       "TRIP_SELECTOR": "Navigation > Trip selector",
       "ROUTES_OVERVIEW": "Navigation > Routes overview",
@@ -68,6 +69,7 @@
     }
   },
   "Contact": {
+    "CONTACT_TITLE": "Contact",
     "SKETCH_ALT": "Sketch of the developer author of compaz",
     "GITHUB_LINK": "Github account",
     "LINKEDIN_LINK": "LinkedIn account",
@@ -80,6 +82,7 @@
     "MESSAGE_SENT_ALT": "Message sent successfully"
   },
   "HowToInstall": {
+    "HOW_TO_INSTALL_TITLE": "How to install",
     "Instructions": {
       "HEADING": "Instructions",
       "DEVICE_SELECTOR_LABEL": "Device",

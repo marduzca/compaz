@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './Navigation.module.css';
 import TripSelectorContainer from './tripSelector/TripSelectorContainer';
@@ -11,6 +11,7 @@ import LoadingPage from './loadingPage/LoadingPage';
 import MapContainer from './map/MapContainer';
 import 'wicg-inert';
 import Footer from '../footer/Footer';
+import { TITLE_PREFIX } from '../../App';
 
 enum AppViewState {
   TRIP_SELECTOR = 'TRIP_SELECTOR',
@@ -36,6 +37,11 @@ const Navigation: React.FC<NavigationProps> = (props) => {
   const [route, setRoute] = useState<Route>({ subRoutes: [], totalTime: 0 });
   const [selectedRouteDepartureTime, setSelectedRouteDepartureTime] =
     useState<Date>(new Date());
+
+  useEffect(() => {
+    document.title = `${TITLE_PREFIX} ${t('Navigation.NAVIGATION_TITLE')}`;
+    // eslint-disable-next-line
+  }, []);
 
   const handleSearchButtonClick = () => {
     setRoute(calculateRoute(stations, lines));
