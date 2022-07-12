@@ -11,7 +11,7 @@ import LoadingPage from './loadingPage/LoadingPage';
 import MapContainer from './map/MapContainer';
 import 'wicg-inert';
 import Footer from '../footer/Footer';
-import { TITLE_PREFIX } from '../../App';
+import { PAGE_TITLE_PREFIX } from '../../App';
 
 enum AppViewState {
   TRIP_SELECTOR = 'TRIP_SELECTOR',
@@ -39,7 +39,7 @@ const Navigation: React.FC<NavigationProps> = (props) => {
     useState<Date>(new Date());
 
   useEffect(() => {
-    document.title = `${TITLE_PREFIX} ${t('Navigation.NAVIGATION_TITLE')}`;
+    document.title = `${PAGE_TITLE_PREFIX} ${t('Navigation.NAVIGATION_TITLE')}`;
     // eslint-disable-next-line
   }, []);
 

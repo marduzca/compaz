@@ -13,7 +13,7 @@ import Contact from './components/contact/Contact';
 import HowToInstall from './components/howToInstall/HowToInstall';
 import useMediaQuery from './components/useMediaQuery';
 
-export const TITLE_PREFIX = 'compaz |';
+export const PAGE_TITLE_PREFIX = 'compaz |';
 
 const LandscapeErrorMessage = () => {
   const { t } = useTranslation();

@@ -5,7 +5,7 @@ import devices from '../../static/img/devices.png';
 import styles from './HowToInstall.module.css';
 import MobileHeader from '../molecules/mobileHeader/MobileHeader';
 import InstructionsContainer from './instructions/InstructionsContainer';
-import { TITLE_PREFIX } from '../../App';
+import { PAGE_TITLE_PREFIX } from '../../App';
 
 interface HowToInstallProps {
   onMenuButtonClick: () => void;
@@ -15,7 +15,7 @@ const HowToInstall: React.FC<HowToInstallProps> = (props) => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    document.title = `${TITLE_PREFIX} ${t(
+    document.title = `${PAGE_TITLE_PREFIX} ${t(
       'HowToInstall.HOW_TO_INSTALL_TITLE'
     )}`;
     // eslint-disable-next-line
