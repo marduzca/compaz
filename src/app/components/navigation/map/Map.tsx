@@ -6,6 +6,7 @@ import originMarker from '../../../static/svg/origin_marker.svg';
 import destinationMarker from '../../../static/svg/destination_marker.svg';
 import styles from './Map.module.css';
 import { GeoLocation, Route, Station } from '../../domain';
+import Loader from '../../atoms/loader/Loader';
 
 interface StationMarkerProps {
   name: string;
@@ -306,7 +307,7 @@ const Map: React.FC<MapProps> = (props) => {
             )}
         </GoogleMap>
       ) : (
-        <span aria-label={t('LOADING_MAP')} className={styles.loader} />
+        <Loader ariaLabel={t('LOADING_MAP')} />
       )}
     </div>
   );
