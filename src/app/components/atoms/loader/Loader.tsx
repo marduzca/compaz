@@ -6,7 +6,12 @@ interface LoaderProps {
 }
 
 const Loader: React.FC<LoaderProps> = (props) => (
-  <span aria-label={props.ariaLabel} className={styles.loader} />
+  <span
+    role="alert"
+    aria-busy
+    aria-label={props.ariaLabel}
+    className={styles.loader}
+  />
 );
 
 export default Loader;

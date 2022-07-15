@@ -79,6 +79,7 @@
     "EMAIL_LABEL": "Email",
     "MESSAGE_PLACEHOLDER": "Your message",
     "SEND_BUTTON": "Send",
+    "MESSAGE_LOADER": "Trying to send message",
     "MESSAGE_SENT_ALT": "Message sent successfully"
   },
   "HowToInstall": {

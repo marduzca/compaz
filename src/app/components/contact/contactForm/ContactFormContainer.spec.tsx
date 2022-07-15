@@ -25,8 +25,13 @@ describe('ContactFormContainer', () => {
   });
 
   it('calls the function to store the message with name, email and content', async () => {
-    const storeMessageMock = jest.fn().mockResolvedValue(true);
-
+    const storeMessageMock = jest.fn().mockImplementation(async () => {
+      // Wait before returning to give time to the test to verify that the loader is shown
+      await new Promise((resolve) => {
+        setTimeout(resolve, 100);
+      });
+      return true;
+    });
     useFirebaseMock.mockReturnValue({
       stations: [],
       lines: [],
@@ -56,9 +61,15 @@ describe('ContactFormContainer', () => {
       screen.getByRole('button', { name: 'Contact.SEND_BUTTON' })
     );
 
+    // First we see the loader
+    expect(
+      await screen.getByRole('alert', { name: 'Contact.MESSAGE_LOADER' })
+    ).toBeVisible();
+
+    // After the message was successfully sent, we see the success icon
     expect(storeMessageMock).toHaveBeenCalledWith(name, email, message);
     expect(
-      await screen.findByRole('img', { name: 'Contact.MESSAGE_SENT_ALT' })
+      await screen.findByRole('alert', { name: 'Contact.MESSAGE_SENT_ALT' })
     ).toBeVisible();
   });
 

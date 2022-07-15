@@ -4,11 +4,13 @@ import styles from './ContactForm.module.css';
 import emailSentIcon from '../../../static/svg/email_sent.svg';
 import TextBox from '../../atoms/textBox/TextBox';
 import TextArea from '../../atoms/textArea/TextArea';
+import Loader from '../../atoms/loader/Loader';
 
 interface ContactFormProps {
   name: string;
   email: string;
   message: string;
+  isMessageSendingInProgress: boolean;
   wasMessageSuccessfullySent: boolean;
   onNameChange: (name: string) => void;
   onEmailChange: (email: string) => void;
@@ -75,11 +77,16 @@ const ContactForm: React.FC<ContactFormProps> = (props) => {
             onChange={props.onMessageChange}
             required
           />
-          <button type="submit">{t('Contact.SEND_BUTTON')}</button>
+          {props.isMessageSendingInProgress ? (
+            <Loader ariaLabel={t('Contact.MESSAGE_LOADER')} />
+          ) : (
+            <button type="submit">{t('Contact.SEND_BUTTON')}</button>
+          )}
         </form>
       ) : (
         <div style={{ height: formHeight }} className={styles.iconWrapper}>
           <img
+            role="alert"
             className={styles.emailSentIcon}
             src={emailSentIcon}
             alt={t('Contact.MESSAGE_SENT_ALT')}

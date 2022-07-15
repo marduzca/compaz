@@ -17,6 +17,8 @@ const ContactFormContainer: React.FC = () => {
   const [message, setMessage] = useState<string>('');
   const [wasMessageSuccessfullySent, setWasMessageSuccessfullySent] =
     useState<boolean>(false);
+  const [isMessageSendingInProgress, setIsMessageSendingInProgress] =
+    useState<boolean>(false);
 
   const handleNameChange = (nameInput: string) => {
     setName(nameInput);
@@ -31,8 +33,11 @@ const ContactFormContainer: React.FC = () => {
   };
 
   const handleSubmit = async () => {
+    setIsMessageSendingInProgress(true);
+
     if (isFeatureFlagSet(DISABLE_MESSAGE_STORAGE_FLAG)) {
       setWasMessageSuccessfullySent(true);
+      setIsMessageSendingInProgress(false);
       return;
     }
 
@@ -47,11 +52,13 @@ const ContactFormContainer: React.FC = () => {
       );
 
       setWasMessageSuccessfullySent(false);
+      setIsMessageSendingInProgress(false);
       return;
     }
 
     const result = await storeMessage(name, email, message);
     setWasMessageSuccessfullySent(result);
+    setIsMessageSendingInProgress(false);
   };
 
   return (
@@ -60,6 +67,7 @@ const ContactFormContainer: React.FC = () => {
       email={email}
       message={message}
       wasMessageSuccessfullySent={wasMessageSuccessfullySent}
+      isMessageSendingInProgress={isMessageSendingInProgress}
       onNameChange={handleNameChange}
       onEmailChange={handleEmailChange}
       onMessageChange={handleMessageChange}

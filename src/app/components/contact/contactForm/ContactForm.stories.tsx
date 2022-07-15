@@ -13,6 +13,21 @@ export const NormalState: React.FC = () => (
     email=""
     message=""
     wasMessageSuccessfullySent={false}
+    isMessageSendingInProgress={false}
+    onSubmit={actions('onSubmit').onSubmit}
+    onNameChange={actions('onNameChange').onNameChange}
+    onEmailChange={actions('onEmailChange').onEmailChange}
+    onMessageChange={actions('onMessageChange').onMessageChange}
+  />
+);
+
+export const NormalStateWithLoader: React.FC = () => (
+  <ContactForm
+    name="Roberto Gomez Bolañoz"
+    email="chespirito@chavonet.com"
+    message="Fue sin querer queriendo"
+    wasMessageSuccessfullySent={false}
+    isMessageSendingInProgress
     onSubmit={actions('onSubmit').onSubmit}
     onNameChange={actions('onNameChange').onNameChange}
     onEmailChange={actions('onEmailChange').onEmailChange}
@@ -26,6 +41,7 @@ export const NormalStateWithEmailSent: React.FC = () => (
     email=""
     message=""
     wasMessageSuccessfullySent
+    isMessageSendingInProgress={false}
     onSubmit={actions('onSubmit').onSubmit}
     onNameChange={actions('onNameChange').onNameChange}
     onEmailChange={actions('onEmailChange').onEmailChange}
