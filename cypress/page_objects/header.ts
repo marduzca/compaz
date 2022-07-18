@@ -6,12 +6,7 @@ const changeLanguage = (currentLanguage: string) => {
   ).click();
 };
 
-const headerShouldShowLinks = (
-  history: string,
-  howToInstall: string,
-  contactUs: string
-) => {
-  cy.contains('a', history).should('be.visible');
+const headerShouldShowLinks = (howToInstall: string, contactUs: string) => {
   cy.contains('a', howToInstall).should('be.visible');
   cy.contains('a', contactUs).should('be.visible');
 };
