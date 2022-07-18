@@ -17,7 +17,6 @@
   display: flex;
   gap: 5.75rem;
   align-items: center;
-  list-style: none;
 }
 
 .backButton {
@@ -50,57 +49,10 @@
   cursor: pointer;
 }
 
-.headerItem {
-  position: relative;
-
-  font-weight: 500;
-  font-size: 1.25rem;
-  color: black;
-  line-height: inherit;
-
-  white-space: nowrap;
-  text-decoration: none;
-}
-
-.headerItem:after {
-  content: '';
-
-  display: block;
-  position: absolute;
-  bottom: -0.5rem;
-  left: 0;
-  right: 0;
-
-  height: 3px;
-
-  background-color: var(--primary-color);
-
-  transform: scale(0, 1);
-  transition: transform ease-in-out 300ms;
-}
-
-.headerItemIcon {
-  display: none;
-}
-
 .languageSelector > button:focus-visible,
 .logo:focus-visible {
   outline: var(--focus-outline-light-background) !important;
   outline-offset: var(--focus-outline-offset);
-}
-
-.headerItem:focus-visible {
-  outline: none;
-}
-
-.currentPage {
-  color: var(--primary-color);
-  font-weight: 700;
-}
-
-.headerItem:hover:after,
-.headerItem:focus-visible:after {
-  transform: scale(1, 1);
 }
 
 @media only screen and (max-width: 950px) {
@@ -198,51 +150,6 @@
     gap: 0;
   }
 
-  .headerLink {
-    display: flex;
-    flex-direction: column;
-
-    width: 100%;
-  }
-
-  .headerLink:not(:last-child):after {
-    content: '';
-
-    width: 3.5rem;
-    height: 1px;
-
-    background-color: grey;
-  }
-
-  .headerItem {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-
-    width: 100%;
-    margin-block: 1rem;
-
-    font-weight: 500;
-    font-size: 1.25rem;
-    line-height: inherit;
-    text-align: left;
-  }
-
-  .headerItem:after {
-    display: none;
-  }
-
-  .headerItemIcon {
-    display: inline-block;
-    height: 1.75rem;
-    width: 1.75rem;
-    margin-right: 0.5rem;
-  }
-
-  .headerItemIcon > svg > path {
-    fill: var(--primary-color);
-  }
-
   .languageSelector {
     display: flex;
     align-items: center;
@@ -263,13 +170,8 @@
     width: 2.625rem;
   }
 
-  .backButton:focus-visible,
-  .headerItem:focus-visible {
+  .backButton:focus-visible {
     outline: var(--focus-outline-light-background);
     outline-offset: var(--focus-outline-offset);
-  }
-
-  .headerItem:focus-visible:after {
-    outline: none;
   }
 }

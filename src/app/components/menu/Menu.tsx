@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CSSTransition } from 'react-transition-group';
-import { Link } from 'react-router-dom';
 import { ReactComponent as LogoBlack } from '../../static/svg/logo_black.svg';
 import { ReactComponent as FlagUSA } from '../../static/svg/flag_usa.svg';
 import { ReactComponent as FlagBolivia } from '../../static/svg/flag_bolivia.svg';
@@ -14,36 +13,13 @@ import { ReactComponent as InstallIcon } from '../../static/svg/install.svg';
 import { ReactComponent as ContactIcon } from '../../static/svg/contact.svg';
 import styles from './Menu.module.css';
 import i18n from '../../i18n/instance';
+import MenuItem from './menuItem/MenuItem';
 
 enum NavigationLink {
   HOME = '/',
   CONTACT = '/contact',
   HOW_TO_INSTALL = '/how-to-install',
 }
-
-interface MenuItemProps {
-  content: string;
-  icon: React.ReactNode;
-  href: string;
-  isCurrentPage: boolean;
-  onLinkClick: (href: string) => void;
-}
-
-const MenuItem: React.FC<MenuItemProps> = (props) => (
-  <li className={styles.headerLink}>
-    <Link
-      to={props.href}
-      className={`${styles.headerItem} ${
-        props.isCurrentPage && styles.currentPage
-      }`}
-      onClick={() => props.onLinkClick(props.href)}
-      aria-current={props.isCurrentPage ? 'page' : undefined}
-    >
-      <span className={styles.headerItemIcon}>{props.icon}</span>
-      <span>{props.content}</span>
-    </Link>
-  </li>
-);
 
 interface MenuProps {
   onLanguageChange: () => void;
