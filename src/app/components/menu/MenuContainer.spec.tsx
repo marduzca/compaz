@@ -22,6 +22,14 @@ describe('MenuContainer', () => {
     ).toHaveAttribute('aria-current', 'page');
 
     await userEvent.click(
+      withinNavigation.getByRole('link', { name: /Menu.HOME/ })
+    );
+    expect(history.location.pathname).toBe('/');
+    expect(
+      withinNavigation.getByRole('link', { name: /Menu.HOME/ })
+    ).toHaveAttribute('aria-current', 'page');
+
+    await userEvent.click(
       withinNavigation.getByRole('link', { name: /Menu.HOW_TO_INSTALL/ })
     );
     expect(history.location.pathname).toBe('/how-to-install');

@@ -8,7 +8,7 @@ import { ReactComponent as CloseIcon } from '../../static/svg/close.svg';
 import { ReactComponent as MorningIcon } from '../../static/svg/morning.svg';
 import { ReactComponent as AfternoonIcon } from '../../static/svg/afternoon.svg';
 import { ReactComponent as NightIcon } from '../../static/svg/night.svg';
-import { ReactComponent as HistoryIcon } from '../../static/svg/history.svg';
+import { ReactComponent as HomeIcon } from '../../static/svg/home.svg';
 import { ReactComponent as InstallIcon } from '../../static/svg/install.svg';
 import { ReactComponent as ContactIcon } from '../../static/svg/contact.svg';
 import styles from './Menu.module.css';
@@ -134,14 +134,14 @@ const Menu: React.FC<MenuProps> = (props) => {
           </a>
           <ul className={styles.headerItems}>
             <MenuItem
-              content={t('Menu.HISTORY')}
-              icon={<HistoryIcon />}
-              href=""
+              content={t('Menu.HOME')}
+              icon={<HomeIcon />}
+              href={NavigationLink.HOME}
               onLinkClick={(href: string) => {
                 setCurrentPage(href);
                 props.onHideMobileMenu();
               }}
-              isCurrentPage={currentPage === ''}
+              isCurrentPage={currentPage === NavigationLink.HOME}
             />
             <MenuItem
               content={t('Menu.HOW_TO_INSTALL')}

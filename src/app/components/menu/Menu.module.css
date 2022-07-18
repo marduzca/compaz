@@ -19,6 +19,10 @@
   align-items: center;
 }
 
+.headerItems > li:first-child {
+  display: none;
+}
+
 .backButton {
   display: none;
 }
@@ -148,6 +152,10 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 0;
+  }
+
+  .headerItems > li:first-child {
+    display: inherit;
   }
 
   .languageSelector {

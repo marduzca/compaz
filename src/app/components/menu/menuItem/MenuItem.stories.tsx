@@ -3,7 +3,7 @@ import { Meta } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 import { MemoryRouter } from 'react-router-dom';
 import MenuItem from './MenuItem';
-import { ReactComponent as ContactIcon } from '../../../static/svg/contact.svg';
+import { ReactComponent as HomeIcon } from '../../../static/svg/home.svg';
 
 export default {
   title: 'General / Menu / MenuItem',
@@ -19,8 +19,18 @@ export default {
 
 export const MarkedAsCurrentPageInNormalState = () => (
   <MenuItem
-    content="Contact"
-    icon={<ContactIcon />}
+    content="Home"
+    icon={<HomeIcon />}
+    href=""
+    isCurrentPage
+    onLinkClick={actions('onLinkClick').onLinkClick}
+  />
+);
+
+export const MarkedAsCurrentPageInMobileState = () => (
+  <MenuItem
+    content="Home"
+    icon={<HomeIcon />}
     href=""
     isCurrentPage
     onLinkClick={actions('onLinkClick').onLinkClick}

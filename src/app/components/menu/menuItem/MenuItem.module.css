@@ -7,7 +7,7 @@
 
   font-size: 1.25rem;
   color: black;
-  line-height: inherit;
+  line-height: 100%;
 
   white-space: nowrap;
   text-decoration: none;
@@ -69,6 +69,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    gap: 0.5rem;
 
     width: 100%;
     margin-block: 1rem;
@@ -85,10 +86,9 @@
     display: inline-block;
     height: 1.75rem;
     width: 1.75rem;
-    margin-right: 0.5rem;
   }
 
-  .headerItemIcon > svg > path {
+  .headerItemIcon > svg path {
     fill: var(--primary-color);
   }
 
