@@ -43,6 +43,7 @@ const Select: React.FC<SelectProps> = (props) => {
         {...getToggleButtonProps()}
         role="combobox"
         className={styles.toggleButton}
+        tabIndex={0}
         aria-labelledby={props.labelId}
         aria-label={props.ariaLabel} // aria-labelledby is higher ranked than aria-label, so aria-label is only for exceptions like when no visible label is present or for tests
       >
