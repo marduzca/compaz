@@ -50,12 +50,16 @@ describe('ComboBox', () => {
 
   describe('visible functionality', () => {
     it('initially closed and shows placeholder', () => {
-      expect(screen.queryByRole('option', { name: 'opt 1' })).toBeNull();
+      expect(
+        screen.queryByRole('option', { name: 'opt 1' })
+      ).not.toBeInTheDocument();
       expect(screen.getByText('placeholder')).toBeVisible();
     });
 
     it('shows options when focused', async () => {
-      expect(screen.queryByRole('option', { name: 'opt 1' })).toBeNull();
+      expect(
+        screen.queryByRole('option', { name: 'opt 1' })
+      ).not.toBeInTheDocument();
       expect(screen.getByText('placeholder')).toBeVisible();
 
       await userEvent.click(screen.getByText('placeholder'));
@@ -64,7 +68,9 @@ describe('ComboBox', () => {
     });
 
     it('shows options when toggle button clicked', async () => {
-      expect(screen.queryByRole('option', { name: 'opt 1' })).toBeNull();
+      expect(
+        screen.queryByRole('option', { name: 'opt 1' })
+      ).not.toBeInTheDocument();
       expect(screen.getByText('placeholder')).toBeVisible();
 
       await userEvent.click(screen.getByRole('button'));
@@ -73,18 +79,24 @@ describe('ComboBox', () => {
     });
 
     it('closes when clicking on toggle button again', async () => {
-      expect(screen.queryByRole('option', { name: 'opt 1' })).toBeNull();
+      expect(
+        screen.queryByRole('option', { name: 'opt 1' })
+      ).not.toBeInTheDocument();
       expect(screen.getByText('placeholder')).toBeVisible();
 
       await userEvent.click(screen.getByText('placeholder'));
       expect(screen.getByRole('option', { name: 'opt 1' })).toBeVisible();
 
       await userEvent.click(screen.getByRole('button'));
-      expect(screen.queryByRole('option', { name: 'opt 1' })).toBeNull();
+      expect(
+        screen.queryByRole('option', { name: 'opt 1' })
+      ).not.toBeInTheDocument();
     });
 
     it('shows selected value and when clicked closes the options', async () => {
-      expect(screen.queryByRole('option', { name: 'opt 1' })).toBeNull();
+      expect(
+        screen.queryByRole('option', { name: 'opt 1' })
+      ).not.toBeInTheDocument();
       expect(screen.getByText('placeholder')).toBeVisible();
 
       await userEvent.click(screen.getByText('placeholder'));
@@ -92,7 +104,9 @@ describe('ComboBox', () => {
       expect(screen.getByRole('option', { name: 'opt 2' })).toBeVisible();
 
       await userEvent.click(screen.getByRole('option', { name: 'opt 1' }));
-      expect(screen.queryByRole('option', { name: 'opt 2' })).toBeNull();
+      expect(
+        screen.queryByRole('option', { name: 'opt 2' })
+      ).not.toBeInTheDocument();
 
       expect(
         screen.getByRole('textbox', { name: 'placeholder' })
@@ -103,7 +117,9 @@ describe('ComboBox', () => {
 
   describe('with input filtering', () => {
     it('only shows options that match the input value', async () => {
-      expect(screen.queryByRole('option', { name: 'opt 1' })).toBeNull();
+      expect(
+        screen.queryByRole('option', { name: 'opt 1' })
+      ).not.toBeInTheDocument();
       expect(screen.getByText('placeholder')).toBeVisible();
 
       await userEvent.click(screen.getByText('placeholder'));
@@ -112,14 +128,20 @@ describe('ComboBox', () => {
         target: { value: 'opt 2' },
       });
 
-      expect(screen.queryByRole('option', { name: 'opt 1' })).toBeNull();
-      expect(screen.queryByRole('option', { name: 'opt 12' })).toBeNull();
+      expect(
+        screen.queryByRole('option', { name: 'opt 1' })
+      ).not.toBeInTheDocument();
+      expect(
+        screen.queryByRole('option', { name: 'opt 12' })
+      ).not.toBeInTheDocument();
       expect(screen.getByRole('option', { name: 'opt 2' })).toBeVisible();
       expect(screen.getByRole('option', { name: 'opt 20' })).toBeVisible();
 
       await userEvent.click(screen.getByRole('option', { name: 'opt 2' }));
 
-      expect(screen.queryByRole('option', { name: 'opt 2' })).toBeNull();
+      expect(
+        screen.queryByRole('option', { name: 'opt 2' })
+      ).not.toBeInTheDocument();
 
       expect(
         screen.getByRole('textbox', { name: 'placeholder' })

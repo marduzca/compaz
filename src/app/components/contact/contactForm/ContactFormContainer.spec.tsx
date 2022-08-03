@@ -101,7 +101,7 @@ describe('ContactFormContainer', () => {
     expect(storeMessageMock).not.toHaveBeenCalled();
     expect(
       screen.queryByRole('img', { name: 'Contact.MESSAGE_SENT_ALT' })
-    ).toBeNull();
+    ).not.toBeInTheDocument();
   });
 
   it("doesn't store message and dispatches error event for notification to pop-up while offline", async () => {
@@ -139,6 +139,6 @@ describe('ContactFormContainer', () => {
     );
     expect(
       screen.queryByRole('img', { name: 'Contact.MESSAGE_SENT_ALT' })
-    ).toBeNull();
+    ).not.toBeInTheDocument();
   });
 });

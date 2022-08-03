@@ -378,12 +378,12 @@ describe('StationsSelectorContainer', () => {
         screen.queryByRole('textbox', {
           name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER Navigation.TripSelector.ERROR_ORIGIN_MISSING',
         })
-      ).toBeNull();
+      ).not.toBeInTheDocument();
       expect(
         screen.queryByRole('textbox', {
           name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER Navigation.TripSelector.ERROR_DESTINATION_MISSING',
         })
-      ).toBeNull();
+      ).not.toBeInTheDocument();
     });
   });
 });

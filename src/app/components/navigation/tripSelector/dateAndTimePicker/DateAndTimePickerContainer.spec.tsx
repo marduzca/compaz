@@ -128,7 +128,7 @@ describe('DateAndTimePickerContainer', () => {
       screen.queryByRole('button', {
         name: 'Navigation.DateAndTimePicker.NOW_BUTTON',
       })
-    ).toBeNull();
+    ).not.toBeInTheDocument();
   });
 
   describe('error message', () => {

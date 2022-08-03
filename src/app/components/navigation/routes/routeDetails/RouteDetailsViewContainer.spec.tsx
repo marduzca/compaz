@@ -79,7 +79,7 @@ describe('RouteDetailsViewContainer', () => {
       screen.getByTitle('Navigation.Route.Lines.PURPLE')
     );
 
-    expect(withinPurpleLine.queryByText('A.5 Station')).toBeNull();
+    expect(withinPurpleLine.queryByText('A.5 Station')).not.toBeInTheDocument();
 
     await userEvent.click(
       withinPurpleLine.getByRole('button', {
@@ -95,7 +95,7 @@ describe('RouteDetailsViewContainer', () => {
       })
     );
 
-    expect(withinPurpleLine.queryByText('A.5 Station')).toBeNull();
+    expect(withinPurpleLine.queryByText('A.5 Station')).not.toBeInTheDocument();
   });
 
   it('calculates the correct start and end times of each block', () => {

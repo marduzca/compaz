@@ -404,7 +404,9 @@ describe('RoutesOverviewContainer', () => {
 
       expect(screen.getByText('Friday 24 September')).toBeVisible();
       expect(withinFirstRouteSection.getByText('1 h')).toBeVisible();
-      expect(withinFirstRouteSection.queryByText(/min/)).toBeNull();
+      expect(
+        withinFirstRouteSection.queryByText(/min/)
+      ).not.toBeInTheDocument();
       expect(withinFirstRouteSection.getByText('17:30 - 18:30')).toBeVisible();
     });
   });

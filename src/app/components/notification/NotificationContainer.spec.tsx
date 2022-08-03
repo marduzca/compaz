@@ -12,7 +12,7 @@ describe('NotificationContainer', () => {
       screen.queryByText(
         'There is new content available. Click here to update.'
       )
-    ).toBeNull();
+    ).not.toBeInTheDocument();
 
     const updateAvailabilityEvent = new CustomEvent('updateAvailability', {
       detail: {
@@ -38,7 +38,9 @@ describe('NotificationContainer', () => {
   it('renders info notification when info notification event is triggered', () => {
     render(<NotificationContainer />);
 
-    expect(screen.queryByText('this is an info notification')).toBeNull();
+    expect(
+      screen.queryByText('this is an info notification')
+    ).not.toBeInTheDocument();
 
     const infoNotificationEvent = new CustomEvent('notification', {
       detail: {
@@ -60,7 +62,9 @@ describe('NotificationContainer', () => {
   it('renders success notification when success notification event is triggered', () => {
     render(<NotificationContainer />);
 
-    expect(screen.queryByText('this is a success notification')).toBeNull();
+    expect(
+      screen.queryByText('this is a success notification')
+    ).not.toBeInTheDocument();
 
     const infoNotificationEvent = new CustomEvent('notification', {
       detail: {
@@ -82,7 +86,9 @@ describe('NotificationContainer', () => {
   it('renders error notification when error notification event is triggered', () => {
     render(<NotificationContainer />);
 
-    expect(screen.queryByText('this is an error notification')).toBeNull();
+    expect(
+      screen.queryByText('this is an error notification')
+    ).not.toBeInTheDocument();
 
     const infoNotificationEvent = new CustomEvent('notification', {
       detail: {
