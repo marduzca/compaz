@@ -23,7 +23,7 @@ import {
   versionDataConverter,
 } from './firestoreConverters';
 
-interface FirebaseContext {
+interface FirebaseContextInterface {
   stations: Station[];
   lines: Line[];
   storeMessage: (
@@ -33,7 +33,7 @@ interface FirebaseContext {
   ) => Promise<boolean>;
 }
 
-export const FirebaseContext = createContext<FirebaseContext>({
+export const FirebaseContext = createContext<FirebaseContextInterface>({
   stations: [],
   lines: [],
   storeMessage: async () => true,
@@ -177,7 +177,7 @@ export const FirebaseProvider: React.FC<FirebaseProviderProps> = (props) => {
   );
 };
 
-const useFirebase = (): FirebaseContext =>
-  useContext<FirebaseContext>(FirebaseContext);
+const useFirebase = (): FirebaseContextInterface =>
+  useContext<FirebaseContextInterface>(FirebaseContext);
 
 export { useFirebase };

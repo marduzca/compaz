@@ -16,7 +16,7 @@ interface ConnectedStationTimeTo {
   [connectedStationID: string]: number;
 }
 
-interface NavigationContextProps {
+interface NavigationContextInterface {
   origin: Station | undefined;
   destination: Station | undefined;
   departureTime: string;
@@ -29,7 +29,7 @@ interface NavigationContextProps {
   calculateRoute: (stations: Station[], lines: Line[]) => Route;
 }
 
-export const NavigationContext = createContext<NavigationContextProps>({
+export const NavigationContext = createContext<NavigationContextInterface>({
   origin: undefined,
   destination: undefined,
   departureTime: '',
@@ -325,7 +325,7 @@ export const NavigationProvider: React.FC<NavigationProviderProps> = (
   );
 };
 
-const useNavigation = (): NavigationContextProps =>
-  useContext<NavigationContextProps>(NavigationContext);
+const useNavigation = (): NavigationContextInterface =>
+  useContext<NavigationContextInterface>(NavigationContext);
 
 export { useNavigation };
