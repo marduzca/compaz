@@ -69,7 +69,7 @@
     "@testing-library/react-hooks": "^8.0.1",
     "@testing-library/user-event": "^14.4.3",
     "@types/google.maps": "^3.50.0",
-    "@types/jest": "^28.1.8",
+    "@types/jest": "^29.0.0",
     "@types/lodash.debounce": "^4.0.7",
     "@types/node": "^18.7.14",
     "@types/react": "^18.0.18",
