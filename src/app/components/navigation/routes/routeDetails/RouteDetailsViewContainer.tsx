@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import RouteDetailsView from './RouteDetailsView';
 import { Route } from '../../../domain';
-import useMediaQuery from '../../../useMediaQuery';
+import useMediaQuery from '../../../hooks/useMediaQuery';
 
 interface RouteDetailsViewContainerProps {
   route: Route;

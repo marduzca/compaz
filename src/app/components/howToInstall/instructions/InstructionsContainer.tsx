@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Instructions from './Instructions';
-import useMediaQuery from '../../useMediaQuery';
+import useMediaQuery from '../../hooks/useMediaQuery';
 
 export enum Device {
   ANDROID_AND_TABLET = 'ANDROID_AND_TABLET',

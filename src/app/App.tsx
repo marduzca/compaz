@@ -11,7 +11,7 @@ import { FirebaseProvider } from './components/providers/firebase/FirebaseProvid
 import { NavigationProvider } from './components/providers/navigation/NavigationProvider';
 import Contact from './components/contact/Contact';
 import HowToInstall from './components/howToInstall/HowToInstall';
-import useMediaQuery from './components/useMediaQuery';
+import useMediaQuery from './components/hooks/useMediaQuery';
 
 export const PAGE_TITLE_PREFIX = 'compaz |';
 

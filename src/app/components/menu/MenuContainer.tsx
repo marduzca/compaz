@@ -1,7 +1,7 @@
 import React from 'react';
 import Menu from './Menu';
 import i18n from '../../i18n/instance';
-import useMediaQuery from '../useMediaQuery';
+import useMediaQuery from '../hooks/useMediaQuery';
 
 interface HeaderContainerProps {
   onHideMobileMenu: () => void;

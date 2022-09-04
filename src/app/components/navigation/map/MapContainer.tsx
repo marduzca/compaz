@@ -3,7 +3,7 @@ import { useLoadScript } from '@react-google-maps/api';
 import Map from './Map';
 import { useNavigation } from '../../providers/navigation/NavigationProvider';
 import { Route } from '../../domain';
-import useMediaQuery from '../../useMediaQuery';
+import useMediaQuery from '../../hooks/useMediaQuery';
 
 interface MapContainerProps {
   route?: Route;
