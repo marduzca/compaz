@@ -84,7 +84,8 @@
       "labelComponents": ["label"],
       "labelAttributes": ["htmlFor"]
     }],
-    "jsx-a11y/role-supports-aria-props": "off"
+    "jsx-a11y/role-supports-aria-props": "off",
+    "react/no-unknown-property": ["error", { "ignore": ["inert"] }]
   },
   "overrides": [
     {

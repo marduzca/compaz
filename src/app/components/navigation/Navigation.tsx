@@ -98,7 +98,7 @@ const Navigation: React.FC<NavigationProps> = (props) => {
     <>
       <main
         className={styles.content}
-        // @ts-ignore
+        // @ts-ignore : Until inert is added to the React types for HTML
         inert={props.isMobileMenuOpen ? '' : null}
       >
         <h1 id={NAVIGATION_HEADING_ID}>
