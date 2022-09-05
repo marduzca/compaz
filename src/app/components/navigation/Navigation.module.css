@@ -7,10 +7,17 @@
   align-items: stretch;
   justify-content: flex-start;
 
-  background-image: url('../../static/svg/background_banner.svg');
   background-size: cover;
 
   overflow: hidden;
+}
+
+.backgroundDay {
+  background-image: url('../../static/svg/background_banner_day.svg');
+}
+
+.backgroundNight {
+  background-image: url('../../static/svg/background_banner_night.svg');
 }
 
 .content > h1 {
@@ -71,5 +78,7 @@
 
   .tripSelectorMap {
     display: inline;
+
+    min-height: calc(100vh * 0.3); /* For visual regression test */
   }
 }

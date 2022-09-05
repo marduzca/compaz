@@ -12,6 +12,7 @@ import MapContainer from './map/MapContainer';
 import 'wicg-inert';
 import Footer from '../footer/Footer';
 import { PAGE_TITLE_PREFIX } from '../../App';
+import useTimeOfTheDay from '../hooks/useTimeOfTheDay/useTimeOfTheDay';
 
 enum AppViewState {
   TRIP_SELECTOR = 'TRIP_SELECTOR',
@@ -30,6 +31,7 @@ const Navigation: React.FC<NavigationProps> = (props) => {
   const { t } = useTranslation();
   const { stations, lines } = useFirebase();
   const { calculateRoute } = useNavigation();
+  const { isNight } = useTimeOfTheDay();
 
   const [currentAppViewState, setCurrentAppViewState] = useState<AppViewState>(
     AppViewState.TRIP_SELECTOR
@@ -97,7 +99,9 @@ const Navigation: React.FC<NavigationProps> = (props) => {
   return (
     <>
       <main
-        className={styles.content}
+        className={`${styles.content} ${
+          isNight ? styles.backgroundNight : styles.backgroundDay
+        }`}
         // @ts-ignore : Until inert is added to the React types for HTML
         inert={props.isMobileMenuOpen ? '' : null}
       >
