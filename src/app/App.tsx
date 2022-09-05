@@ -12,6 +12,8 @@ import { NavigationProvider } from './components/providers/navigation/Navigation
 import Contact from './components/contact/Contact';
 import HowToInstall from './components/howToInstall/HowToInstall';
 import useMediaQuery from './components/hooks/useMediaQuery';
+import { NavigationLink } from './components/menu/Menu';
+import About from './components/about/About';
 
 export const PAGE_TITLE_PREFIX = 'compaz |';
 
@@ -75,7 +77,7 @@ const App = () => {
         <FirebaseProvider>
           <Routes>
             <Route
-              path="/"
+              path={NavigationLink.HOME}
               element={
                 <NavigationProvider>
                   <Navigation
@@ -88,7 +90,7 @@ const App = () => {
               }
             />
             <Route
-              path="/how-to-install"
+              path={NavigationLink.HOW_TO_INSTALL}
               element={
                 <HowToInstall
                   onMenuButtonClick={() => {
@@ -98,9 +100,19 @@ const App = () => {
               }
             />
             <Route
-              path="/contact"
+              path={NavigationLink.CONTACT}
               element={
                 <Contact
+                  onMenuButtonClick={() => {
+                    setShowMobileMenu(true);
+                  }}
+                />
+              }
+            />
+            <Route
+              path={NavigationLink.ABOUT}
+              element={
+                <About
                   onMenuButtonClick={() => {
                     setShowMobileMenu(true);
                   }}

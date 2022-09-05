@@ -16,9 +16,10 @@ import i18n from '../../i18n/instance';
 import MenuItem from './menuItem/MenuItem';
 import useTimeOfTheDay from '../hooks/useTimeOfTheDay/useTimeOfTheDay';
 
-enum NavigationLink {
+export enum NavigationLink {
   HOME = '/',
   CONTACT = '/contact',
+  ABOUT = '/about',
   HOW_TO_INSTALL = '/how-to-install',
 }
 
@@ -160,6 +161,16 @@ const Menu: React.FC<MenuProps> = (props) => {
                 props.onHideMobileMenu();
               }}
               isCurrentPage={currentPage === NavigationLink.CONTACT}
+            />
+            <MenuItem
+              content={t('Menu.ABOUT')}
+              icon={<ContactIcon />}
+              href={NavigationLink.ABOUT}
+              onLinkClick={(href: string) => {
+                setCurrentPage(href);
+                props.onHideMobileMenu();
+              }}
+              isCurrentPage={currentPage === NavigationLink.ABOUT}
             />
             <li className={styles.languageSelector}>
               <span>{t('Menu.LANGUAGE')}</span>

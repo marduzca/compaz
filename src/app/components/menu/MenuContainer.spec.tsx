@@ -44,6 +44,14 @@ describe('MenuContainer', () => {
     expect(
       withinNavigation.getByRole('link', { name: /Menu.CONTACT/ })
     ).toHaveAttribute('aria-current', 'page');
+
+    await userEvent.click(
+      withinNavigation.getByRole('link', { name: /Menu.ABOUT/ })
+    );
+    expect(history.location.pathname).toBe('/about');
+    expect(
+      withinNavigation.getByRole('link', { name: /Menu.ABOUT/ })
+    ).toHaveAttribute('aria-current', 'page');
   });
 
   describe('when switching language', () => {
