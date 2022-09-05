@@ -2,6 +2,10 @@ import { renderHook } from '@testing-library/react';
 import useTimeOfTheDay from './useTimeOfTheDay';
 
 describe('useTimeOfTheDay', () => {
+  afterAll(() => {
+    jest.useRealTimers();
+  });
+
   it('should tell it is morning if it is 7 or later', () => {
     jest.useFakeTimers().setSystemTime(new Date('2021-09-24 07:00'));
 

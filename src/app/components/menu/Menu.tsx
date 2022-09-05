@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CSSTransition } from 'react-transition-group';
 import { ReactComponent as LogoBlack } from '../../static/svg/logo_black.svg';
@@ -14,6 +14,7 @@ import { ReactComponent as ContactIcon } from '../../static/svg/contact.svg';
 import styles from './Menu.module.css';
 import i18n from '../../i18n/instance';
 import MenuItem from './menuItem/MenuItem';
+import useTimeOfTheDay from '../hooks/useTimeOfTheDay/useTimeOfTheDay';
 
 enum NavigationLink {
   HOME = '/',
@@ -30,6 +31,7 @@ interface MenuProps {
 
 const Menu: React.FC<MenuProps> = (props) => {
   const { t } = useTranslation();
+  const { isMorning, isAfternoon } = useTimeOfTheDay();
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   const [currentPage, setCurrentPage] = useState<string>(
@@ -61,10 +63,8 @@ const Menu: React.FC<MenuProps> = (props) => {
     // eslint-disable-next-line
   }, [props.showMenuOnMobile]);
 
-  const getMessageBasedOnTimeOfTheDay = () => {
-    const currentTime = new Date().getHours();
-
-    if (currentTime > 6 && currentTime < 13) {
+  const greetingMessage = useMemo(() => {
+    if (isMorning) {
       return (
         <>
           <MorningIcon />
@@ -73,7 +73,7 @@ const Menu: React.FC<MenuProps> = (props) => {
       );
     }
 
-    if (currentTime >= 13 && currentTime < 19) {
+    if (isAfternoon) {
       return (
         <>
           <AfternoonIcon />
@@ -88,7 +88,7 @@ const Menu: React.FC<MenuProps> = (props) => {
         <span>{t('Menu.NIGHT_MESSAGE')}</span>
       </>
     );
-  };
+  }, [isMorning, isAfternoon, t]);
 
   return (
     <CSSTransition
@@ -118,9 +118,7 @@ const Menu: React.FC<MenuProps> = (props) => {
         >
           <CloseIcon />
         </button>
-        <section className={styles.message}>
-          {getMessageBasedOnTimeOfTheDay()}
-        </section>
+        <section className={styles.message}>{greetingMessage}</section>
         <nav className={styles.navBar}>
           <a
             href={NavigationLink.HOME}
