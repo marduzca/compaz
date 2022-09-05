@@ -78,7 +78,5 @@
 
   .tripSelectorMap {
     display: inline;
-
-    min-height: calc(100vh * 0.3); /* For visual regression test */
   }
 }

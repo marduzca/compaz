@@ -43,7 +43,7 @@ export const NormalStateWithNightBackground = () => {
   );
 };
 
-export const NormalAndMobileStateWithDayBackground = () => {
+export const NormalStateWithDayBackground = () => {
   MockDate.set('1993-03-15T09:30:00.000Z');
 
   return (
