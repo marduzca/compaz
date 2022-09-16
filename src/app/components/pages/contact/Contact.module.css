@@ -1,0 +1,74 @@
+@import '../../../../variables.css';
+
+.container {
+  display: grid;
+  place-items: center;
+
+  height: 100%;
+
+  background: conic-gradient(
+    from 75deg at 120% 0,
+    var(--primary-light-color) 50%,
+    white 50%
+  );
+}
+
+.container > header {
+  display: none;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 5rem;
+  align-items: center;
+
+  width: 70%;
+  padding: 2rem 3rem;
+
+  background-color: white;
+
+  border-radius: var(--content-border-radius);
+  box-shadow: 0 0 0.5rem 0 grey;
+}
+
+@media only screen and (max-width: 1120px) {
+  .content {
+    margin-block: 2rem;
+    width: 85%;
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  .container {
+    row-gap: 2rem;
+
+    height: fit-content;
+
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+
+    background: conic-gradient(
+      from 75deg at 300% 0,
+      var(--primary-light-color) 50%,
+      white 50%
+    );
+  }
+
+  .container > header {
+    display: flex;
+  }
+
+  .container > header > button {
+    left: 1.25rem;
+  }
+
+  .content {
+    grid-template-columns: 1fr;
+    row-gap: 5rem;
+
+    width: 90%;
+    padding: 1.5rem 1rem;
+    margin: 0;
+  }
+}

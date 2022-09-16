@@ -1,0 +1,152 @@
+@import '../../../../../../variables.css';
+
+.subRouteBlock {
+  display: grid;
+  grid-template-areas:
+    '  teleferico     origin        originTime'
+    '    .         intermediate         .'
+    '  circle       destination   destinationTime';
+  grid-template-columns: auto 2fr 0.5fr;
+  grid-template-rows: minmax(1rem, max-content) auto minmax(1rem, max-content);
+  column-gap: var(--gap-after-route-icons-bar);
+  row-gap: 2rem;
+
+  min-height: 12rem;
+  width: 100%;
+
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.telefericoIcon {
+  grid-area: teleferico;
+  grid-row: span 2 / auto;
+
+  position: relative;
+}
+
+.telefericoIcon > img {
+  width: var(--route-icons-bar-size);
+  height: var(--route-icons-bar-size);
+}
+
+.telefericoIcon:after {
+  content: '';
+  position: absolute;
+  top: var(--route-icons-bar-size);
+  left: 50%;
+  transform: translate(-50%);
+  z-index: 1;
+
+  width: 0.75rem;
+  height: calc(100% + 0.5rem);
+
+  border: 1px solid black;
+  border-top: none;
+  color: inherit;
+  background-color: currentColor;
+}
+
+.originStation {
+  grid-area: origin;
+
+  margin-top: 0.5rem;
+}
+
+.subRouteInfoStation {
+  font-weight: 700;
+}
+
+.subRouteDirection {
+  display: block;
+}
+
+.originTime {
+  grid-area: originTime;
+
+  margin-top: 0.5rem;
+
+  text-align: right;
+}
+
+.intermediateStations {
+  grid-area: intermediate;
+
+  font-size: 0.875rem;
+}
+
+.intermediateStationsButton {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+
+  padding: 0;
+
+  background: none;
+  cursor: pointer;
+  border: 0;
+
+  color: black;
+}
+
+.intermediateStationsButton > svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.intermediateStationsButton > span {
+  text-align: left;
+}
+
+.intermediateStationsList {
+  margin: 0.25rem 0 0 2rem;
+
+  list-style: none;
+
+  font-size: 0.875rem;
+}
+
+.circleIcon {
+  grid-area: circle;
+  justify-self: center;
+
+  z-index: 2;
+}
+
+.circleIcon > svg {
+  grid-area: circle;
+  justify-self: center;
+
+  width: 1rem;
+  height: 1rem;
+}
+
+.destinationStation {
+  grid-area: destination;
+
+  justify-self: start;
+  align-self: center;
+
+  line-height: 1.25rem;
+}
+
+.subRouteInfoStation:focus-visible,
+.destinationStation:focus-visible {
+  outline: var(--focus-outline-light-background);
+  outline-offset: var(--focus-outline-offset);
+}
+
+.destinationTime {
+  grid-area: destinationTime;
+
+  align-self: center;
+
+  text-align: right;
+  line-height: 1.25rem;
+}
+
+@media only screen and (max-width: 950px) {
+  .intermediateStations {
+    font-size: 1rem;
+  }
+}

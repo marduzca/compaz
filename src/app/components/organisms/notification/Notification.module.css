@@ -1,0 +1,92 @@
+@import '../../../../variables.css';
+
+.enter {
+  transform: translateY(100%);
+}
+
+.enterActive {
+  transform: translateY(0%);
+  transition: transform 0.75s ease;
+}
+
+.exit {
+  transform: translateY(0%);
+}
+
+.exitActive {
+  transform: translateY(100%);
+  transition: transform 0.75s ease;
+}
+
+.container {
+  z-index: 100;
+  position: fixed;
+  bottom: 0;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  width: 100%;
+  padding: 1.5rem;
+
+  border-radius: var(--content-border-radius);
+  box-shadow: 0 0 0.25rem 0 grey;
+}
+
+.success {
+  background-color: #19d275;
+}
+
+.error {
+  background-color: #d2191a;
+}
+
+.info {
+  background-color: var(--primary-color);
+}
+
+.container > p {
+  margin: auto 2rem auto 1.25rem;
+
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.container > img {
+  width: 1.825rem;
+  height: 1.825rem;
+}
+
+.closeButton {
+  margin-left: auto;
+
+  width: 1.825rem;
+  height: 1.825rem;
+
+  background: none;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+}
+
+.closeButton > svg {
+  width: 1.825rem;
+  height: 1.825rem;
+}
+
+.closeButton > svg > path {
+  fill: white;
+}
+
+.container a:focus-visible,
+.closeButton:focus-visible {
+  outline: var(--focus-outline-dark-background);
+}
+
+@media only screen and (max-width: 950px) {
+  .container {
+    padding: 1rem;
+  }
+}

@@ -1,4 +1,4 @@
-import { NotificationType } from './notification/Notification';
+import { NotificationType } from './organisms/notification/Notification';
 
 export interface Station {
   id: string;

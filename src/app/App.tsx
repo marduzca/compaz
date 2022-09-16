@@ -3,17 +3,17 @@ import { useTranslation } from 'react-i18next';
 import debounce from 'lodash.debounce';
 import { Route, Routes } from 'react-router-dom';
 import styles from './App.module.css';
-import MenuContainer from './components/menu/MenuContainer';
-import Navigation from './components/navigation/Navigation';
+import MenuContainer from './components/organisms/menu/MenuContainer';
+import Navigation from './components/pages/navigation/Navigation';
 import SadDogImage from './static/img/sad_dog.jpg';
-import NotificationContainer from './components/notification/NotificationContainer';
+import NotificationContainer from './components/organisms/notification/NotificationContainer';
 import { FirebaseProvider } from './components/providers/firebase/FirebaseProvider';
 import { NavigationProvider } from './components/providers/navigation/NavigationProvider';
-import Contact from './components/contact/Contact';
-import HowToInstall from './components/howToInstall/HowToInstall';
+import Contact from './components/pages/contact/Contact';
+import HowToInstall from './components/pages/howToInstall/HowToInstall';
 import useMediaQuery from './components/hooks/useMediaQuery';
-import { NavigationLink } from './components/menu/Menu';
-import About from './components/about/About';
+import { NavigationLink } from './components/organisms/menu/Menu';
+import About from './components/pages/about/About';
 
 export const PAGE_TITLE_PREFIX = 'compaz |';
 

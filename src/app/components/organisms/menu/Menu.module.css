@@ -1,0 +1,185 @@
+@import '../../../../variables.css';
+
+.header {
+  display: grid;
+}
+
+.navBar {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  column-gap: 2rem;
+
+  padding: 0 4.625rem;
+}
+
+.headerItems {
+  display: flex;
+  gap: 5.75rem;
+  align-items: center;
+}
+
+.headerItems > li:first-child {
+  display: none;
+}
+
+.backButton {
+  display: none;
+}
+
+.message {
+  display: none;
+}
+
+.logo {
+  height: 2.875rem;
+  width: 11.575rem;
+}
+
+.languageSelector > span {
+  display: none;
+}
+
+.languageSelector > button {
+  display: flex;
+
+  height: 2rem;
+  width: 3rem;
+  margin: 0;
+  padding: 0;
+
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.languageSelector > button:focus-visible,
+.logo:focus-visible {
+  outline: var(--focus-outline-light-background) !important;
+  outline-offset: var(--focus-outline-offset);
+}
+
+@media only screen and (max-width: 950px) {
+  .menuEntered {
+    transform: translateX(-100%);
+  }
+
+  .menuEntering {
+    transform: translateX(0%);
+    transition: transform 0.75s ease;
+  }
+
+  .menuExited {
+    transform: translateX(0%);
+  }
+
+  .menuExiting {
+    transform: translateX(-100%);
+    transition: transform 0.75s ease;
+  }
+
+  .header {
+    position: absolute;
+    z-index: 4;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    height: fit-content;
+    max-width: calc(100vw * 0.8);
+
+    background-color: white;
+
+    border-radius: 0 var(--content-border-radius) var(--content-border-radius)
+      var(--content-border-radius);
+    box-shadow: 0 0 0.5rem 0 grey;
+  }
+
+  .navBar {
+    align-self: flex-start;
+
+    width: 100%;
+    padding: 0;
+  }
+
+  .backButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    background: none;
+    cursor: pointer;
+    border: 0;
+
+    height: 1.5rem;
+    width: 1.5rem;
+
+    align-self: flex-start;
+    margin: 1.5rem 0 0 1.5rem;
+  }
+
+  .message {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 1.875rem;
+  }
+
+  .message > span {
+    white-space: pre-line;
+    text-align: left;
+    font-weight: 700;
+    font-size: 1.25rem;
+  }
+
+  .message > svg {
+    height: 3rem;
+    width: 3rem;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .headerItems {
+    align-self: flex-start;
+    margin: 3.125rem 3.125rem 3.125rem 2.5rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .headerItems > li:first-child {
+    display: inherit;
+  }
+
+  .languageSelector {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    padding-block: 1rem;
+  }
+
+  .languageSelector > span {
+    display: inline-block;
+    font-weight: 400;
+    font-size: 1.25rem;
+    margin-right: 1.5rem;
+  }
+
+  .languageSelector > button {
+    height: 1.75rem;
+    width: 2.625rem;
+  }
+
+  .backButton:focus-visible {
+    outline: var(--focus-outline-light-background);
+    outline-offset: var(--focus-outline-offset);
+  }
+}

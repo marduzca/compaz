@@ -1,0 +1,92 @@
+@import '../../../../../variables.css';
+
+.tripSelector {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  height: 100%;
+  width: 22.75rem;
+  padding: 3.125rem 1.25rem;
+
+  border-radius: inherit;
+  background-color: var(--primary-color);
+}
+.tripSelector > header {
+  display: none;
+}
+
+.inputFields {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.875rem;
+}
+
+.searchButton {
+  cursor: pointer;
+  border: 0;
+
+  height: 5rem;
+
+  border-radius: var(--content-border-radius);
+  background-color: var(--primary-light-color);
+}
+
+.searchButton p {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+}
+
+.searchButton > svg {
+  display: none;
+}
+
+.tripSelector button:focus-visible {
+  outline: var(--focus-outline-dark-background);
+  outline-offset: var(--focus-outline-offset);
+}
+
+@media only screen and (max-width: 950px) {
+  .tripSelector {
+    width: 100%;
+    height: 100%;
+    padding: 1rem 1.25rem;
+  }
+
+  .tripSelector > header {
+    display: flex;
+  }
+
+  .inputFields {
+    height: 100%;
+    justify-content: center;
+  }
+
+  .searchButton {
+    z-index: 2;
+
+    border-radius: 50%;
+    width: 5rem;
+    align-self: center;
+    position: absolute;
+    bottom: 2.5rem;
+  }
+
+  .searchButton p {
+    display: none;
+  }
+
+  .searchButton > svg {
+    display: block;
+  }
+
+  .searchButton path {
+    fill: white;
+  }
+
+  .searchButton:focus-visible {
+    outline: var(--focus-outline-light-background) !important;
+  }
+}

@@ -1,0 +1,31 @@
+@import '../../../../../../variables.css';
+
+.stationsSelector {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  gap: 0.625rem;
+  position: relative;
+}
+
+.stationsSwitcherButton {
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  right: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 1.75rem;
+  height: 1.75rem;
+  margin: -0.875rem -0.875rem 0 0;
+  padding: 0.2rem;
+
+  border-radius: 360px;
+  background-color: var(--primary-light-color);
+
+  cursor: pointer;
+  border: 0;
+}
