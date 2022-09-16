@@ -11,6 +11,7 @@ import { ReactComponent as NightIcon } from '../../static/svg/night.svg';
 import { ReactComponent as HomeIcon } from '../../static/svg/home.svg';
 import { ReactComponent as InstallIcon } from '../../static/svg/install.svg';
 import { ReactComponent as ContactIcon } from '../../static/svg/contact.svg';
+import { ReactComponent as AboutIcon } from '../../static/svg/about.svg';
 import styles from './Menu.module.css';
 import i18n from '../../i18n/instance';
 import MenuItem from './menuItem/MenuItem';
@@ -164,7 +165,7 @@ const Menu: React.FC<MenuProps> = (props) => {
             />
             <MenuItem
               content={t('Menu.ABOUT')}
-              icon={<ContactIcon />}
+              icon={<AboutIcon />}
               href={NavigationLink.ABOUT}
               onLinkClick={(href: string) => {
                 setCurrentPage(href);
