@@ -24,7 +24,7 @@ const About: React.FC<AboutProps> = (props) => {
       />
       <div className={styles.content}>
         <div>
-          <h2>Que es compaz?</h2>
+          <h2 style={{ color: 'var(--primary-color)' }}>Que es compaz?</h2>
           <section style={{ display: 'grid', rowGap: '1rem' }}>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis
@@ -50,7 +50,7 @@ const About: React.FC<AboutProps> = (props) => {
           </section>
         </div>
         <div>
-          <h2>Por que compaz?</h2>
+          <h2 style={{ color: 'var(--primary-color)' }}>Por que compaz?</h2>
           <section style={{ display: 'grid', rowGap: '1rem' }}>
             <p>
               Integer non rutrum purus. Class aptent taciti sociosqu ad litora
