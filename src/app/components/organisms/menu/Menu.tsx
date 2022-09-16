@@ -14,8 +14,8 @@ import { ReactComponent as ContactIcon } from '../../../static/svg/contact.svg';
 import { ReactComponent as AboutIcon } from '../../../static/svg/about.svg';
 import styles from './Menu.module.css';
 import i18n from '../../../i18n/instance';
-import MenuItem from './menuItem/MenuItem';
 import useTimeOfTheDay from '../../hooks/useTimeOfTheDay/useTimeOfTheDay';
+import MenuLink from './menuLink/MenuLink';
 
 export enum NavigationLink {
   HOME = '/',
@@ -23,6 +23,35 @@ export enum NavigationLink {
   ABOUT = '/about',
   HOW_TO_INSTALL = '/how-to-install',
 }
+
+interface MenuItem {
+  name: string;
+  icon: React.ReactNode;
+  navigationLink: NavigationLink;
+}
+
+const menuItems = [
+  {
+    name: 'Menu.HOME',
+    icon: <HomeIcon />,
+    navigationLink: NavigationLink.HOME,
+  },
+  {
+    name: 'Menu.HOW_TO_INSTALL',
+    icon: <InstallIcon />,
+    navigationLink: NavigationLink.HOW_TO_INSTALL,
+  },
+  {
+    name: 'Menu.CONTACT',
+    icon: <ContactIcon />,
+    navigationLink: NavigationLink.CONTACT,
+  },
+  {
+    name: 'Menu.ABOUT',
+    icon: <AboutIcon />,
+    navigationLink: NavigationLink.ABOUT,
+  },
+] as MenuItem[];
 
 interface MenuProps {
   onLanguageChange: () => void;
@@ -133,46 +162,19 @@ const Menu: React.FC<MenuProps> = (props) => {
             <LogoBlack />
           </a>
           <ul className={styles.headerItems}>
-            <MenuItem
-              content={t('Menu.HOME')}
-              icon={<HomeIcon />}
-              href={NavigationLink.HOME}
-              onLinkClick={(href: string) => {
-                setCurrentPage(href);
-                props.onHideMobileMenu();
-              }}
-              isCurrentPage={currentPage === NavigationLink.HOME}
-            />
-            <MenuItem
-              content={t('Menu.HOW_TO_INSTALL')}
-              icon={<InstallIcon />}
-              href={NavigationLink.HOW_TO_INSTALL}
-              onLinkClick={(href: string) => {
-                setCurrentPage(href);
-                props.onHideMobileMenu();
-              }}
-              isCurrentPage={currentPage === NavigationLink.HOW_TO_INSTALL}
-            />
-            <MenuItem
-              content={t('Menu.CONTACT')}
-              icon={<ContactIcon />}
-              href={NavigationLink.CONTACT}
-              onLinkClick={(href: string) => {
-                setCurrentPage(href);
-                props.onHideMobileMenu();
-              }}
-              isCurrentPage={currentPage === NavigationLink.CONTACT}
-            />
-            <MenuItem
-              content={t('Menu.ABOUT')}
-              icon={<AboutIcon />}
-              href={NavigationLink.ABOUT}
-              onLinkClick={(href: string) => {
-                setCurrentPage(href);
-                props.onHideMobileMenu();
-              }}
-              isCurrentPage={currentPage === NavigationLink.ABOUT}
-            />
+            {menuItems.map((menuItem) => (
+              <MenuLink
+                key={menuItem.name}
+                name={t(menuItem.name)}
+                icon={menuItem.icon}
+                href={menuItem.navigationLink}
+                onLinkClick={(href: string) => {
+                  setCurrentPage(href);
+                  props.onHideMobileMenu();
+                }}
+                isCurrentPage={currentPage === menuItem.navigationLink}
+              />
+            ))}
             <li className={styles.languageSelector}>
               <span>{t('Menu.LANGUAGE')}</span>
               <button

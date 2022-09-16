@@ -2,12 +2,12 @@ import React from 'react';
 import { Meta } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 import { MemoryRouter } from 'react-router-dom';
-import MenuItem from './MenuItem';
+import MenuLink from './MenuLink';
 import { ReactComponent as HomeIcon } from '../../../../static/svg/home.svg';
 
 export default {
-  title: 'General / Menu / MenuItem',
-  component: MenuItem,
+  title: 'General / Menu / MenuLink',
+  component: MenuLink,
   decorators: [
     (Story) => (
       <MemoryRouter>
@@ -18,8 +18,8 @@ export default {
 } as Meta;
 
 export const MarkedAsCurrentPageInNormalState = () => (
-  <MenuItem
-    content="Home"
+  <MenuLink
+    name="Home"
     icon={<HomeIcon />}
     href=""
     isCurrentPage
@@ -28,8 +28,8 @@ export const MarkedAsCurrentPageInNormalState = () => (
 );
 
 export const MarkedAsCurrentPageInMobileState = () => (
-  <MenuItem
-    content="Home"
+  <MenuLink
+    name="Home"
     icon={<HomeIcon />}
     href=""
     isCurrentPage

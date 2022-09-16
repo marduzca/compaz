@@ -1,16 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styles from './MenuItem.module.css';
+import styles from './MenuLink.module.css';
 
-interface MenuItemProps {
-  content: string;
+interface MenuLinkProps {
+  name: string;
   icon: React.ReactNode;
   href: string;
   isCurrentPage: boolean;
   onLinkClick: (href: string) => void;
 }
 
-const MenuItem: React.FC<MenuItemProps> = (props) => (
+const MenuLink: React.FC<MenuLinkProps> = (props) => (
   <li className={styles.headerLink}>
     <Link
       to={props.href}
@@ -21,9 +21,9 @@ const MenuItem: React.FC<MenuItemProps> = (props) => (
       aria-current={props.isCurrentPage ? 'page' : undefined}
     >
       <span className={styles.headerItemIcon}>{props.icon}</span>
-      <span>{props.content}</span>
+      <span>{props.name}</span>
     </Link>
   </li>
 );
 
-export default MenuItem;
+export default MenuLink;
