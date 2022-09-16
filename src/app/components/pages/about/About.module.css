@@ -1,0 +1,10 @@
+@import '../../../../variables.css';
+
+.columnHeading {
+  color: var(--primary-color);
+}
+
+.textBlock {
+  display: grid;
+  row-gap: 1rem;
+}

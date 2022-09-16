@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import styles from './Contact.module.css';
 import Introduction from './introduction/Introduction';
 import ContactFormContainer from './contactForm/ContactFormContainer';
-import MobileHeader from '../../molecules/mobileHeader/MobileHeader';
 import { PAGE_TITLE_PREFIX } from '../../../App';
+import PageContentContainer from '../pageContentContainer/PageContentContainer';
 
 interface ContactProps {
   onMenuButtonClick: () => void;
@@ -19,16 +18,10 @@ const Contact: React.FC<ContactProps> = (props) => {
   }, []);
 
   return (
-    <main className={styles.container}>
-      <MobileHeader
-        onMenuButtonClick={props.onMenuButtonClick}
-        hasLightBackground
-      />
-      <div className={styles.content}>
-        <Introduction />
-        <ContactFormContainer />
-      </div>
-    </main>
+    <PageContentContainer onMenuButtonClick={props.onMenuButtonClick}>
+      <Introduction />
+      <ContactFormContainer />
+    </PageContentContainer>
   );
 };
 
