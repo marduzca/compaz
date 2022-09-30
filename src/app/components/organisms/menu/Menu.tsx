@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CSSTransition } from 'react-transition-group';
+import { useLocation } from 'react-router-dom';
 import { ReactComponent as LogoBlack } from '../../../static/svg/logo_black.svg';
 import { ReactComponent as FlagUSA } from '../../../static/svg/flag_usa.svg';
 import { ReactComponent as FlagBolivia } from '../../../static/svg/flag_bolivia.svg';
@@ -18,10 +19,13 @@ import useTimeOfTheDay from '../../hooks/useTimeOfTheDay/useTimeOfTheDay';
 import MenuLink from './menuLink/MenuLink';
 
 export enum NavigationLink {
-  HOME = '/',
+  BASE = '/',
+  NAVIGATION = '/navigation',
   CONTACT = '/contact',
   ABOUT = '/about',
   HOW_TO_INSTALL = '/how-to-install',
+  ROUTES_OVERVIEW = '/overview',
+  ROUTE_DETAILS = '/details',
 }
 
 interface MenuItem {
@@ -34,7 +38,7 @@ const menuItems = [
   {
     name: 'Menu.HOME',
     icon: <HomeIcon />,
-    navigationLink: NavigationLink.HOME,
+    navigationLink: NavigationLink.NAVIGATION,
   },
   {
     name: 'Menu.HOW_TO_INSTALL',
@@ -62,12 +66,11 @@ interface MenuProps {
 
 const Menu: React.FC<MenuProps> = (props) => {
   const { t } = useTranslation();
+  const location = useLocation();
   const { isMorning, isAfternoon } = useTimeOfTheDay();
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
-  const [currentPage, setCurrentPage] = useState<string>(
-    window.location.pathname
-  );
+  const [currentPage, setCurrentPage] = useState<string>(location.pathname);
 
   const handleClickOutsideOfMobileMenu = (e: MouseEvent) => {
     if (
@@ -152,11 +155,11 @@ const Menu: React.FC<MenuProps> = (props) => {
         <section className={styles.message}>{greetingMessage}</section>
         <nav className={styles.navBar}>
           <a
-            href={NavigationLink.HOME}
+            href={NavigationLink.NAVIGATION}
             title={t('Menu.GO_HOME')}
             className={styles.logo}
             aria-current={
-              currentPage === NavigationLink.HOME ? 'page' : undefined
+              currentPage === NavigationLink.NAVIGATION ? 'page' : undefined
             }
           >
             <LogoBlack />

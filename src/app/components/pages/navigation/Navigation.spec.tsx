@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { MemoryRouter } from 'react-router-dom';
 import Navigation from './Navigation';
 import * as FirebaseProvider from '../../providers/firebase/FirebaseProvider';
 import * as NavigationProvider from '../../providers/navigation/NavigationProvider';
@@ -114,6 +115,12 @@ describe('Navigation', () => {
     jest.clearAllMocks();
   });
 
+  const NavigationWithRouter: React.FC = () => (
+    <MemoryRouter>
+      <Navigation onMenuButtonClick={() => {}} isMobileMenuOpen={false} />
+    </MemoryRouter>
+  );
+
   it('renders the loading page when stations data is not yet ready', () => {
     useFirebaseMock.mockReturnValue({
       stations: [],
@@ -121,9 +128,7 @@ describe('Navigation', () => {
       storeMessage: async () => true,
     });
 
-    render(
-      <Navigation onMenuButtonClick={() => {}} isMobileMenuOpen={false} />
-    );
+    render(<NavigationWithRouter />);
 
     expect(
       screen.getByRole('img', {
@@ -139,9 +144,7 @@ describe('Navigation', () => {
       storeMessage: async () => true,
     });
 
-    render(
-      <Navigation onMenuButtonClick={() => {}} isMobileMenuOpen={false} />
-    );
+    render(<NavigationWithRouter />);
 
     expect(
       screen.getByRole('img', {
@@ -151,9 +154,7 @@ describe('Navigation', () => {
   });
 
   it('navigates to routes overview when clicking on search', async () => {
-    render(
-      <Navigation onMenuButtonClick={() => {}} isMobileMenuOpen={false} />
-    );
+    render(<NavigationWithRouter />);
 
     await userEvent.click(
       screen.getByRole('button', {
@@ -169,9 +170,7 @@ describe('Navigation', () => {
   });
 
   it('navigates back to trip selection when clicking on routes overview back button', async () => {
-    render(
-      <Navigation onMenuButtonClick={() => {}} isMobileMenuOpen={false} />
-    );
+    render(<NavigationWithRouter />);
 
     await userEvent.click(
       screen.getByRole('button', {
@@ -191,9 +190,7 @@ describe('Navigation', () => {
   });
 
   it('navigates to route details when clicking on specific route in overview', async () => {
-    render(
-      <Navigation onMenuButtonClick={() => {}} isMobileMenuOpen={false} />
-    );
+    render(<NavigationWithRouter />);
 
     await userEvent.click(
       screen.getByRole('button', {
@@ -231,9 +228,7 @@ describe('Navigation', () => {
   });
 
   it('navigates back to routes overview when clicking on route details back button', async () => {
-    render(
-      <Navigation onMenuButtonClick={() => {}} isMobileMenuOpen={false} />
-    );
+    render(<NavigationWithRouter />);
 
     await userEvent.click(
       screen.getByRole('button', {

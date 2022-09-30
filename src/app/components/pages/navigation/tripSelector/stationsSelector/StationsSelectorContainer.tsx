@@ -20,9 +20,12 @@ const StationsSelectorContainer: React.FC<StationsSelectorContainerProps> = (
     generateStationsMap,
   } = useNavigation();
 
-  const [originInputValue, setOriginInputValue] = useState<string>('');
-  const [destinationInputValue, setDestinationInputValue] =
-    useState<string>('');
+  const [originInputValue, setOriginInputValue] = useState<string>(
+    origin?.name || ''
+  );
+  const [destinationInputValue, setDestinationInputValue] = useState<string>(
+    destination?.name || ''
+  );
   const [showOriginValidationError, setShowOriginValidationError] =
     useState<boolean>(false);
   const [showDestinationValidationError, setShowDestinationValidationError] =
