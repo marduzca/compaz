@@ -3,6 +3,7 @@ import { Meta } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 import * as MockDate from 'mockdate';
 
+import { MemoryRouter } from 'react-router-dom';
 import Navigation from './Navigation';
 import { FirebaseContext } from '../../providers/firebase/FirebaseProvider';
 
@@ -26,7 +27,9 @@ export default {
           storeMessage: async () => true,
         }}
       >
-        <Story />
+        <MemoryRouter>
+          <Story />
+        </MemoryRouter>
       </FirebaseContext.Provider>
     ),
   ],
