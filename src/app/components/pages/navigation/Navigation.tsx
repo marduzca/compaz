@@ -53,7 +53,8 @@ const Navigation: React.FC<NavigationProps> = (props) => {
     document.title = `${PAGE_TITLE_PREFIX} ${t('Navigation.NAVIGATION_TITLE')}`;
 
     if (
-      location.pathname !== NavigationLink.NAVIGATION &&
+      (location.pathname.includes(NavigationLink.ROUTES_OVERVIEW) ||
+        location.pathname.includes(NavigationLink.ROUTE_DETAILS)) &&
       route.subRoutes.length === 0
     )
       window.location.replace(NavigationLink.NAVIGATION);
