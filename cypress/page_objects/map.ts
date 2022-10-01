@@ -4,9 +4,7 @@ const withinMap = (scopedFunction: () => void) => {
 
 const shouldShowStationMarker = (name: string) => {
   withinMap(() => {
-    cy.get(`div[aria-label="${name}"]`, { timeout: 30000 }).should(
-      'be.visible'
-    );
+    cy.get(`div[aria-label="${name}"]`).should('be.visible');
   });
 };
 

@@ -45,7 +45,7 @@ describe('Navigation', () => {
       'El Prado'
     );
 
-    cy.get('div[aria-label="Map"]', { timeout: 30000 }).should('be.visible');
+    cy.get('div[aria-label="Map"]').should('be.visible');
 
     Map.shouldShowStationMarker('IRPAVI');
     Map.shouldShowStationMarker('LIBERTADOR');
