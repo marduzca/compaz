@@ -6,6 +6,7 @@ import Navigation from './Navigation';
 import * as FirebaseProvider from '../../providers/firebase/FirebaseProvider';
 import * as NavigationProvider from '../../providers/navigation/NavigationProvider';
 import { ConnectedStation, Route, Station, SubRoute } from '../../domain';
+import { NavigationLink } from '../../organisms/menu/Menu';
 
 describe('Navigation', () => {
   const useFirebaseMock = jest.spyOn(FirebaseProvider, 'useFirebase');
@@ -86,6 +87,18 @@ describe('Navigation', () => {
     totalTime: 11,
   } as Route;
 
+  beforeAll(() => {
+    // eslint-disable-next-line no-global-assign
+    window = Object.create(window);
+    Object.defineProperty(window, 'location', {
+      value: {
+        href: '',
+        replace: jest.fn(),
+      },
+      writable: true,
+    });
+  });
+
   afterEach(() => {
     jest.clearAllMocks();
   });
@@ -115,11 +128,15 @@ describe('Navigation', () => {
     jest.clearAllMocks();
   });
 
-  const NavigationWithRouter: React.FC = () => (
-    <MemoryRouter>
-      <Navigation onMenuButtonClick={() => {}} isMobileMenuOpen={false} />
-    </MemoryRouter>
-  );
+  const renderNavigationWithRouter = (initialLocation?: string) => {
+    render(
+      <MemoryRouter
+        initialEntries={initialLocation ? [initialLocation] : undefined}
+      >
+        <Navigation onMenuButtonClick={() => {}} isMobileMenuOpen={false} />
+      </MemoryRouter>
+    );
+  };
 
   it('renders the loading page when stations data is not yet ready', () => {
     useFirebaseMock.mockReturnValue({
@@ -128,7 +145,7 @@ describe('Navigation', () => {
       storeMessage: async () => true,
     });
 
-    render(<NavigationWithRouter />);
+    renderNavigationWithRouter();
 
     expect(
       screen.getByRole('img', {
@@ -144,7 +161,7 @@ describe('Navigation', () => {
       storeMessage: async () => true,
     });
 
-    render(<NavigationWithRouter />);
+    renderNavigationWithRouter();
 
     expect(
       screen.getByRole('img', {
@@ -153,8 +170,29 @@ describe('Navigation', () => {
     ).toBeVisible();
   });
 
+  it('should redirect to the trip selector when we are in one of the other pages without route information', () => {
+    useNavigationMock.mockReturnValue({
+      origin: originStation,
+      destination: destinationStation,
+      departureTime: '17:30',
+      departureDate: '2021-09-24',
+      setNewDepartureTime: jest.fn(),
+      setNewDepartureDate: jest.fn(),
+      setOriginStation: jest.fn(),
+      setDestinationStation: jest.fn(),
+      generateStationsMap: jest.fn(),
+      calculateRoute: () => ({ subRoutes: [], totalTime: 0 } as Route), // Route is not set
+    });
+
+    renderNavigationWithRouter(NavigationLink.ROUTES_OVERVIEW);
+
+    expect(
+      screen.getByRole('heading', { name: 'Navigation.Heading.TRIP_SELECTOR' })
+    ).toBeVisible();
+  });
+
   it('navigates to routes overview when clicking on search', async () => {
-    render(<NavigationWithRouter />);
+    renderNavigationWithRouter();
 
     await userEvent.click(
       screen.getByRole('button', {
@@ -170,7 +208,7 @@ describe('Navigation', () => {
   });
 
   it('navigates back to trip selection when clicking on routes overview back button', async () => {
-    render(<NavigationWithRouter />);
+    renderNavigationWithRouter();
 
     await userEvent.click(
       screen.getByRole('button', {
@@ -190,7 +228,7 @@ describe('Navigation', () => {
   });
 
   it('navigates to route details when clicking on specific route in overview', async () => {
-    render(<NavigationWithRouter />);
+    renderNavigationWithRouter();
 
     await userEvent.click(
       screen.getByRole('button', {
@@ -228,7 +266,7 @@ describe('Navigation', () => {
   });
 
   it('navigates back to routes overview when clicking on route details back button', async () => {
-    render(<NavigationWithRouter />);
+    renderNavigationWithRouter();
 
     await userEvent.click(
       screen.getByRole('button', {

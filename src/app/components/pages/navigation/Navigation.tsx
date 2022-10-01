@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Route as Path, Routes, useNavigate } from 'react-router-dom';
+import {
+  Route as Path,
+  Routes,
+  useLocation,
+  useNavigate,
+} from 'react-router-dom';
 import styles from './Navigation.module.css';
 import TripSelectorContainer from './tripSelector/TripSelectorContainer';
 import RoutesOverviewContainer from './routes/routesOverview/RoutesOverviewContainer';
@@ -35,6 +40,7 @@ const Navigation: React.FC<NavigationProps> = (props) => {
   const { calculateRoute } = useNavigation();
   const { isNight } = useTimeOfTheDay();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [currentAppViewState, setCurrentAppViewState] = useState<AppViewState>(
     AppViewState.TRIP_SELECTOR
@@ -45,6 +51,13 @@ const Navigation: React.FC<NavigationProps> = (props) => {
 
   useEffect(() => {
     document.title = `${PAGE_TITLE_PREFIX} ${t('Navigation.NAVIGATION_TITLE')}`;
+
+    if (
+      location.pathname !== NavigationLink.NAVIGATION &&
+      route.subRoutes.length === 0
+    )
+      window.location.replace(NavigationLink.NAVIGATION);
+
     // eslint-disable-next-line
   }, []);
 

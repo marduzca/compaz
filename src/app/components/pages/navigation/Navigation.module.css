@@ -41,6 +41,8 @@
 
 .tripSelectorContainer {
   height: 100%;
+
+  border-radius: inherit;
 }
 
 .tripSelectorMap {
