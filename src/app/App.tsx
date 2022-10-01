@@ -70,6 +70,9 @@ const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // eslint-disable-next-line no-console
+  console.log(process.env.REACT_APP_VERSION);
+
   return (
     <>
       <LandscapeErrorMessage />
