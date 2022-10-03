@@ -3,6 +3,7 @@ import { CSSTransition } from 'react-transition-group';
 import Notification, { NotificationType, RELOAD_EVENT } from './Notification';
 import { NotificationEvent } from '../../domain';
 import styles from './Notification.module.css';
+import packageJson from '../../../../../package.json';
 
 export const GENERAL_ERROR_NOTIFICATION_KEY =
   'Notification.GENERAL_ERROR_MESSAGE';
@@ -23,22 +24,28 @@ const NotificationContainer = () => {
 
   useEffect(() => {
     const handleNotificationEvent = (notificationEvent: CustomEvent) => {
-      setShowNotification(true);
-
       if (notificationEvent.detail.serviceWorkerRegistration) {
-        setServiceWorkerRegistration(
-          notificationEvent.detail.serviceWorkerRegistration
-        );
+        const currentAppVersion = localStorage.getItem('app_version');
 
-        setNotification({
-          content: RELOAD_EVENT,
-          type: NotificationType.INFO,
-        } as NotificationEvent);
+        if (currentAppVersion && currentAppVersion !== packageJson.version) {
+          setServiceWorkerRegistration(
+            notificationEvent.detail.serviceWorkerRegistration
+          );
+
+          setNotification({
+            content: RELOAD_EVENT,
+            type: NotificationType.INFO,
+          } as NotificationEvent);
+
+          setShowNotification(true);
+        }
       } else {
         setNotification({
           content: notificationEvent.detail.content,
           type: notificationEvent.detail.type,
         } as NotificationEvent);
+
+        setShowNotification(true);
       }
     };
 

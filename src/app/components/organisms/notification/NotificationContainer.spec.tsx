@@ -4,37 +4,17 @@ import NotificationContainer from './NotificationContainer';
 import { NotificationType } from './Notification';
 import { NotificationEvent, UpdateAvailabilityEvent } from '../../domain';
 
+const currentAppVersion = '1.2.0';
+
+jest.mock(
+  '../../../../../package.json',
+  () => ({
+    version: '1.2.0',
+  }),
+  { virtual: true }
+);
+
 describe('NotificationContainer', () => {
-  it('renders reload info notification when reload event is triggered', () => {
-    render(<NotificationContainer />);
-
-    expect(
-      screen.queryByText(
-        'There is new content available. Click here to update.'
-      )
-    ).not.toBeInTheDocument();
-
-    const updateAvailabilityEvent = new CustomEvent('updateAvailability', {
-      detail: {
-        serviceWorkerRegistration: {},
-      } as UpdateAvailabilityEvent,
-    });
-
-    act(() => {
-      window.dispatchEvent(updateAvailabilityEvent);
-    });
-
-    expect(
-      screen.getByRole('alert', { name: 'Notification.INFO' })
-    ).toBeVisible();
-    expect(
-      screen.getByRole('link', {
-        name: 'Notification.RELOAD_ANCHOR_DESCRIPTION',
-      })
-    ).toBeVisible();
-    expect(screen.getByText('Notification.RELOAD_MESSAGE')).toBeVisible();
-  });
-
   it('renders info notification when info notification event is triggered', () => {
     render(<NotificationContainer />);
 
@@ -105,5 +85,51 @@ describe('NotificationContainer', () => {
       screen.getByRole('alert', { name: 'Notification.ERROR' })
     ).toBeVisible();
     expect(screen.getByText('this is an error notification')).toBeVisible();
+  });
+
+  describe('versioning', () => {
+    afterEach(() => {
+      localStorage.clear();
+    });
+
+    it('should not render update notification when the current and stored app versions are the same', () => {
+      localStorage.setItem('app_version', currentAppVersion);
+
+      render(<NotificationContainer />);
+
+      const updateAvailabilityEvent = new CustomEvent('updateAvailability', {
+        detail: {
+          serviceWorkerRegistration: {},
+        } as UpdateAvailabilityEvent,
+      });
+
+      act(() => {
+        window.dispatchEvent(updateAvailabilityEvent);
+      });
+
+      expect(
+        screen.queryByRole('alert', { name: 'Notification.INFO' })
+      ).not.toBeInTheDocument();
+    });
+
+    it('should render update notification when the current app version is different to the stored version', () => {
+      localStorage.setItem('app_version', '1.0.0');
+
+      render(<NotificationContainer />);
+
+      const updateAvailabilityEvent = new CustomEvent('updateAvailability', {
+        detail: {
+          serviceWorkerRegistration: {},
+        } as UpdateAvailabilityEvent,
+      });
+
+      act(() => {
+        window.dispatchEvent(updateAvailabilityEvent);
+      });
+
+      expect(
+        screen.getByRole('alert', { name: 'Notification.INFO' })
+      ).toBeVisible();
+    });
   });
 });

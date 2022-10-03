@@ -14,7 +14,6 @@ import HowToInstall from './components/pages/howToInstall/HowToInstall';
 import useMediaQuery from './components/hooks/useMediaQuery';
 import { NavigationLink } from './components/organisms/menu/Menu';
 import About from './components/pages/about/About';
-import packageJson from '../../package.json';
 
 export const PAGE_TITLE_PREFIX = 'compaz |';
 
@@ -70,9 +69,6 @@ const App = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  // eslint-disable-next-line no-console
-  console.log(packageJson.version);
 
   return (
     <>
