@@ -3,7 +3,7 @@ import { CSSTransition } from 'react-transition-group';
 import Notification, { NotificationType, RELOAD_EVENT } from './Notification';
 import { NotificationEvent } from '../../domain';
 import styles from './Notification.module.css';
-import packageJson from '../../../../../package.json';
+import appInfo from '../../../../../package.json';
 
 export const GENERAL_ERROR_NOTIFICATION_KEY =
   'Notification.GENERAL_ERROR_MESSAGE';
@@ -27,7 +27,7 @@ const NotificationContainer = () => {
       if (notificationEvent.detail.serviceWorkerRegistration) {
         const currentAppVersion = localStorage.getItem('app_version');
 
-        if (currentAppVersion && currentAppVersion !== packageJson.version) {
+        if (currentAppVersion && currentAppVersion !== appInfo.version) {
           setServiceWorkerRegistration(
             notificationEvent.detail.serviceWorkerRegistration
           );
@@ -38,6 +38,8 @@ const NotificationContainer = () => {
           } as NotificationEvent);
 
           setShowNotification(true);
+
+          localStorage.setItem('app_version', appInfo.version);
         }
       } else {
         setNotification({

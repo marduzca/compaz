@@ -112,7 +112,7 @@ describe('NotificationContainer', () => {
       ).not.toBeInTheDocument();
     });
 
-    it('should render update notification when the current app version is different to the stored version', () => {
+    it('should render update notification and store new version when the current app version is different to the stored version', () => {
       localStorage.setItem('app_version', '1.0.0');
 
       render(<NotificationContainer />);
@@ -130,6 +130,7 @@ describe('NotificationContainer', () => {
       expect(
         screen.getByRole('alert', { name: 'Notification.INFO' })
       ).toBeVisible();
+      expect(localStorage.getItem('app_version')).toBe(currentAppVersion);
     });
   });
 });
