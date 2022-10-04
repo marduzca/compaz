@@ -14,8 +14,8 @@ import { createHandlerBoundToURL, precacheAndRoute } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
 import { StaleWhileRevalidate } from 'workbox-strategies';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires,@typescript-eslint/no-unused-vars
-const VERSION = require('../package.json').version;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const APP_VERSION = '0.6.0';
 
 declare const self: ServiceWorkerGlobalScope;
 
