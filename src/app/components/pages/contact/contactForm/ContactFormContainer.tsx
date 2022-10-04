@@ -5,7 +5,10 @@ import {
   DISABLE_MESSAGE_STORAGE_FLAG,
   isFeatureFlagSet,
 } from '../../../../featureFlag/FeatureFlag';
-import { NotificationType } from '../../../organisms/notification/Notification';
+import {
+  EventType,
+  NotificationType,
+} from '../../../organisms/notification/Notification';
 import { OFFLINE_ERROR_NOTIFICATION_KEY } from '../../../organisms/notification/NotificationContainer';
 import { NotificationEvent } from '../../../domain';
 
@@ -43,7 +46,7 @@ const ContactFormContainer: React.FC = () => {
 
     if (!window.navigator.onLine) {
       window.dispatchEvent(
-        new CustomEvent('notification', {
+        new CustomEvent(EventType.NOTIFICATION, {
           detail: {
             type: NotificationType.ERROR,
             content: OFFLINE_ERROR_NOTIFICATION_KEY,

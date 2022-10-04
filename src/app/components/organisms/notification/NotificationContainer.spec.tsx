@@ -3,7 +3,7 @@ import { act, render, screen, within } from '@testing-library/react';
 import NotificationContainer, {
   APP_VERSION_KEY,
 } from './NotificationContainer';
-import { NotificationType, RELOAD_EVENT } from './Notification';
+import { EventType, NotificationType, RELOAD_EVENT } from './Notification';
 import { NotificationEvent, UpdateAvailabilityEvent } from '../../domain';
 
 const currentAppVersion = '1.2.0';
@@ -24,7 +24,7 @@ describe('NotificationContainer', () => {
       screen.queryByText('this is an info notification')
     ).not.toBeInTheDocument();
 
-    const infoNotificationEvent = new CustomEvent('notification', {
+    const infoNotificationEvent = new CustomEvent(EventType.NOTIFICATION, {
       detail: {
         type: NotificationType.INFO,
         content: 'this is an info notification',
@@ -48,7 +48,7 @@ describe('NotificationContainer', () => {
       screen.queryByText('this is a success notification')
     ).not.toBeInTheDocument();
 
-    const infoNotificationEvent = new CustomEvent('notification', {
+    const infoNotificationEvent = new CustomEvent(EventType.NOTIFICATION, {
       detail: {
         type: NotificationType.SUCCESS,
         content: 'this is a success notification',
@@ -72,7 +72,7 @@ describe('NotificationContainer', () => {
       screen.queryByText('this is an error notification')
     ).not.toBeInTheDocument();
 
-    const infoNotificationEvent = new CustomEvent('notification', {
+    const infoNotificationEvent = new CustomEvent(EventType.NOTIFICATION, {
       detail: {
         type: NotificationType.ERROR,
         content: 'this is an error notification',
@@ -99,11 +99,14 @@ describe('NotificationContainer', () => {
 
       render(<NotificationContainer />);
 
-      const updateAvailabilityEvent = new CustomEvent('updateAvailability', {
-        detail: {
-          serviceWorkerRegistration: {},
-        } as UpdateAvailabilityEvent,
-      });
+      const updateAvailabilityEvent = new CustomEvent(
+        EventType.UPDATE_AVAILABILITY,
+        {
+          detail: {
+            serviceWorkerRegistration: {},
+          } as UpdateAvailabilityEvent,
+        }
+      );
 
       act(() => {
         window.dispatchEvent(updateAvailabilityEvent);
@@ -115,17 +118,18 @@ describe('NotificationContainer', () => {
     });
 
     it('should render update notification and store new version when the current app version is different to the stored version', () => {
-      localStorage.setItem(APP_VERSION_KEY, '1.0.0');
-
       render(<NotificationContainer />);
 
-      const updateAvailabilityEvent = new CustomEvent('updateAvailability', {
-        detail: {
-          serviceWorkerRegistration: {},
-          type: NotificationType.INFO,
-          content: RELOAD_EVENT,
-        } as UpdateAvailabilityEvent,
-      });
+      const updateAvailabilityEvent = new CustomEvent(
+        EventType.UPDATE_AVAILABILITY,
+        {
+          detail: {
+            serviceWorkerRegistration: {},
+            type: NotificationType.INFO,
+            content: RELOAD_EVENT,
+          } as UpdateAvailabilityEvent,
+        }
+      );
 
       act(() => {
         window.dispatchEvent(updateAvailabilityEvent);

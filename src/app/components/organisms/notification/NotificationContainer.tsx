@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
-import Notification, { NotificationType } from './Notification';
+import Notification, { EventType, NotificationType } from './Notification';
 import { NotificationEvent } from '../../domain';
 import styles from './Notification.module.css';
 import appInfo from '../../../../../package.json';
@@ -56,23 +56,23 @@ const NotificationContainer = () => {
     };
 
     window.addEventListener(
-      'notification',
+      EventType.NOTIFICATION,
       triggerNotification as EventListener
     );
 
     window.addEventListener(
-      'updateAvailability',
+      EventType.UPDATE_AVAILABILITY,
       handleUpdateAvailabilityEvent as EventListener
     );
 
     return () => {
       window.removeEventListener(
-        'notification',
+        EventType.NOTIFICATION,
         triggerNotification as EventListener
       );
 
       window.removeEventListener(
-        'updateAvailability',
+        EventType.UPDATE_AVAILABILITY,
         handleUpdateAvailabilityEvent as EventListener
       );
     };

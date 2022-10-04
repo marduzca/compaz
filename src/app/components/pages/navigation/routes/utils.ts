@@ -8,7 +8,10 @@ import redTelefericoIcon from '../../../../static/svg/red_teleferico.svg';
 import silverTelefericoIcon from '../../../../static/svg/silver_teleferico.svg';
 import whiteTelefericoIcon from '../../../../static/svg/white_teleferico.svg';
 import yellowTelefericoIcon from '../../../../static/svg/yellow_teleferico.svg';
-import { NotificationType } from '../../../organisms/notification/Notification';
+import {
+  EventType,
+  NotificationType,
+} from '../../../organisms/notification/Notification';
 import { NotificationEvent } from '../../../domain';
 import { GENERAL_ERROR_NOTIFICATION_KEY } from '../../../organisms/notification/NotificationContainer';
 
@@ -36,7 +39,7 @@ const getCorrespondingTelefericoIcon = (lineColor: string): string => {
       return yellowTelefericoIcon;
     default:
       window.dispatchEvent(
-        new CustomEvent('notification', {
+        new CustomEvent(EventType.NOTIFICATION, {
           detail: {
             type: NotificationType.ERROR,
             content: GENERAL_ERROR_NOTIFICATION_KEY,

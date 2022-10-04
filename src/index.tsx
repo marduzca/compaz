@@ -8,6 +8,7 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import { UpdateAvailabilityEvent } from './app/components/domain';
 import {
+  EventType,
   NotificationType,
   RELOAD_EVENT,
 } from './app/components/organisms/notification/Notification';
@@ -28,7 +29,7 @@ root.render(
 serviceWorkerRegistration.register({
   onUpdate: (serviceWorkerRegistration: ServiceWorkerRegistration) => {
     window.dispatchEvent(
-      new CustomEvent('updateAvailability', {
+      new CustomEvent(EventType.UPDATE_AVAILABILITY, {
         detail: {
           serviceWorkerRegistration,
           type: NotificationType.INFO,

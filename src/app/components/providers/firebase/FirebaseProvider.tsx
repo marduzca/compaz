@@ -15,7 +15,10 @@ import {
   useDocumentData,
 } from 'react-firebase-hooks/firestore';
 import { Line, NotificationEvent, Station, VersionData } from '../../domain';
-import { NotificationType } from '../../organisms/notification/Notification';
+import {
+  EventType,
+  NotificationType,
+} from '../../organisms/notification/Notification';
 import { GENERAL_ERROR_NOTIFICATION_KEY } from '../../organisms/notification/NotificationContainer';
 import {
   lineConverter,
@@ -152,7 +155,7 @@ export const FirebaseProvider: React.FC<FirebaseProviderProps> = (props) => {
       return true;
     } catch (error) {
       window.dispatchEvent(
-        new CustomEvent('notification', {
+        new CustomEvent(EventType.NOTIFICATION, {
           detail: {
             type: NotificationType.ERROR,
             content: GENERAL_ERROR_NOTIFICATION_KEY,

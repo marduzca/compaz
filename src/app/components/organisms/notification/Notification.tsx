@@ -12,6 +12,11 @@ export enum NotificationType {
   ERROR = 'ERROR',
 }
 
+export enum EventType {
+  NOTIFICATION = 'notification',
+  UPDATE_AVAILABILITY = 'updateAvailability',
+}
+
 export const RELOAD_EVENT = 'RELOAD';
 
 interface NotificationProps {

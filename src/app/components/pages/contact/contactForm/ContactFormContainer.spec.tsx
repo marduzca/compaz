@@ -3,7 +3,10 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import * as FirebaseProvider from '../../../providers/firebase/FirebaseProvider';
 import ContactFormContainer from './ContactFormContainer';
-import { NotificationType } from '../../../organisms/notification/Notification';
+import {
+  EventType,
+  NotificationType,
+} from '../../../organisms/notification/Notification';
 import { OFFLINE_ERROR_NOTIFICATION_KEY } from '../../../organisms/notification/NotificationContainer';
 import { NotificationEvent } from '../../../domain';
 
@@ -130,7 +133,7 @@ describe('ContactFormContainer', () => {
 
     expect(storeMessageMock).not.toHaveBeenCalled();
     expect(dispatchEventSpy).toHaveBeenCalledWith(
-      new CustomEvent('notification', {
+      new CustomEvent(EventType.NOTIFICATION, {
         detail: {
           type: NotificationType.ERROR,
           content: OFFLINE_ERROR_NOTIFICATION_KEY,
