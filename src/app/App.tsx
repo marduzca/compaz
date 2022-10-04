@@ -15,10 +15,6 @@ import useMediaQuery from './components/hooks/useMediaQuery';
 import { NavigationLink } from './components/organisms/menu/Menu';
 import About from './components/pages/about/About';
 
-// This is used to trigger a service worker update whenever we release a new version that gets updated here via the release script. DON'T CHANGE MANUALLY!
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const APP_VERSION = '0.14.0';
-
 export const PAGE_TITLE_PREFIX = 'compaz |';
 
 const LandscapeErrorMessage = () => {
