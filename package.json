@@ -9,9 +9,10 @@
     "build": "react-scripts build",
     "test": "npm run lint && react-scripts test --watchAll=false",
     "only-test": "react-scripts test --watchAll=false",
-    "eject": "react-scripts eject",
     "lint": "eslint . --ext .js,.ts,.tsx --max-warnings=0 && prettier --check 'src/**/*.{js,ts,tsx,css,scss,json,html}'",
     "lint:fix": "eslint . --fix --ext .js,.ts,.tsx && prettier --write 'src/**/*.{js,ts,tsx,css,scss,json,html}'",
+    "release:major": "npm version major",
+    "release:minor": "npm version minor",
     "update-deps": "npm outdated || true && npm update && npm outdated || true && npm install && npm test && npm run build && npm run loki:ci && git add . && git commit -m \"update deps\"",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
@@ -20,7 +21,8 @@
     "loki:ci": "npm run build-storybook && loki --requireReference --verboseRenderer",
     "cypress:open": "cypress open",
     "cypress:ci": "cypress run",
-    "ci:cypress-run": "start-server-and-test start http://localhost:3000 cypress:ci"
+    "ci:cypress-run": "start-server-and-test start http://localhost:3000 cypress:ci",
+    "eject": "react-scripts eject"
   },
   "dependencies": {
     "@react-google-maps/api": "^2.13.1",
