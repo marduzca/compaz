@@ -39,7 +39,7 @@ const NotificationContainer = () => {
     ) => {
       const currentAppVersion = localStorage.getItem(APP_VERSION_KEY);
 
-      if (!currentAppVersion || currentAppVersion === appInfo.version) {
+      if (currentAppVersion && currentAppVersion === appInfo.version) {
         return;
       }
       if (!updateAvailabilityEvent.detail.serviceWorkerRegistration) {
