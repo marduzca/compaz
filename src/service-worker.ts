@@ -15,7 +15,7 @@ import { registerRoute } from 'workbox-routing';
 import { StaleWhileRevalidate } from 'workbox-strategies';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const APP_VERSION = '0.7.0';
+const APP_VERSION = '0.8.0';
 
 declare const self: ServiceWorkerGlobalScope;
 
