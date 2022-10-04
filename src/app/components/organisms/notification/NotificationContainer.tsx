@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
-import Notification, { NotificationType, RELOAD_EVENT } from './Notification';
+import Notification, { NotificationType } from './Notification';
 import { NotificationEvent } from '../../domain';
 import styles from './Notification.module.css';
 import appInfo from '../../../../../package.json';
@@ -9,6 +9,8 @@ export const GENERAL_ERROR_NOTIFICATION_KEY =
   'Notification.GENERAL_ERROR_MESSAGE';
 export const OFFLINE_ERROR_NOTIFICATION_KEY =
   'Notification.OFFLINE_ERROR_MESSAGE';
+
+export const APP_VERSION_KEY = 'app_version';
 
 const NotificationContainer = () => {
   const nodeRef = useRef(null);
@@ -23,53 +25,55 @@ const NotificationContainer = () => {
   });
 
   useEffect(() => {
-    const handleNotificationEvent = (notificationEvent: CustomEvent) => {
-      if (notificationEvent.detail.serviceWorkerRegistration) {
-        const currentAppVersion = localStorage.getItem('app_version');
+    const triggerNotification = (notificationEvent: CustomEvent) => {
+      setNotification({
+        content: notificationEvent.detail.content,
+        type: notificationEvent.detail.type,
+      } as NotificationEvent);
 
-        if (currentAppVersion && currentAppVersion !== appInfo.version) {
-          setServiceWorkerRegistration(
-            notificationEvent.detail.serviceWorkerRegistration
-          );
+      setShowNotification(true);
+    };
 
-          setNotification({
-            content: RELOAD_EVENT,
-            type: NotificationType.INFO,
-          } as NotificationEvent);
+    const handleUpdateAvailabilityEvent = (
+      updateAvailabilityEvent: CustomEvent
+    ) => {
+      const currentAppVersion = localStorage.getItem(APP_VERSION_KEY);
 
-          setShowNotification(true);
-
-          localStorage.setItem('app_version', appInfo.version);
-        }
-      } else {
-        setNotification({
-          content: notificationEvent.detail.content,
-          type: notificationEvent.detail.type,
-        } as NotificationEvent);
-
-        setShowNotification(true);
+      if (!currentAppVersion || currentAppVersion === appInfo.version) {
+        return;
       }
+      if (!updateAvailabilityEvent.detail.serviceWorkerRegistration) {
+        return;
+      }
+
+      setServiceWorkerRegistration(
+        updateAvailabilityEvent.detail.serviceWorkerRegistration
+      );
+
+      triggerNotification(updateAvailabilityEvent);
+
+      localStorage.setItem(APP_VERSION_KEY, appInfo.version);
     };
 
     window.addEventListener(
       'notification',
-      handleNotificationEvent as EventListener
+      triggerNotification as EventListener
     );
 
     window.addEventListener(
       'updateAvailability',
-      handleNotificationEvent as EventListener
+      handleUpdateAvailabilityEvent as EventListener
     );
 
     return () => {
       window.removeEventListener(
         'notification',
-        handleNotificationEvent as EventListener
+        triggerNotification as EventListener
       );
 
       window.removeEventListener(
         'updateAvailability',
-        handleNotificationEvent as EventListener
+        handleUpdateAvailabilityEvent as EventListener
       );
     };
   }, []);

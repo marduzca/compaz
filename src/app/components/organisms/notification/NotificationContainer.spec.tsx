@@ -1,7 +1,9 @@
 import React from 'react';
-import { act, render, screen } from '@testing-library/react';
-import NotificationContainer from './NotificationContainer';
-import { NotificationType } from './Notification';
+import { act, render, screen, within } from '@testing-library/react';
+import NotificationContainer, {
+  APP_VERSION_KEY,
+} from './NotificationContainer';
+import { NotificationType, RELOAD_EVENT } from './Notification';
 import { NotificationEvent, UpdateAvailabilityEvent } from '../../domain';
 
 const currentAppVersion = '1.2.0';
@@ -93,7 +95,7 @@ describe('NotificationContainer', () => {
     });
 
     it('should not render update notification when the current and stored app versions are the same', () => {
-      localStorage.setItem('app_version', currentAppVersion);
+      localStorage.setItem(APP_VERSION_KEY, currentAppVersion);
 
       render(<NotificationContainer />);
 
@@ -113,13 +115,15 @@ describe('NotificationContainer', () => {
     });
 
     it('should render update notification and store new version when the current app version is different to the stored version', () => {
-      localStorage.setItem('app_version', '1.0.0');
+      localStorage.setItem(APP_VERSION_KEY, '1.0.0');
 
       render(<NotificationContainer />);
 
       const updateAvailabilityEvent = new CustomEvent('updateAvailability', {
         detail: {
           serviceWorkerRegistration: {},
+          type: NotificationType.INFO,
+          content: RELOAD_EVENT,
         } as UpdateAvailabilityEvent,
       });
 
@@ -127,10 +131,19 @@ describe('NotificationContainer', () => {
         window.dispatchEvent(updateAvailabilityEvent);
       });
 
-      expect(
+      const withinNotification = within(
         screen.getByRole('alert', { name: 'Notification.INFO' })
+      );
+
+      expect(
+        withinNotification.getByRole('link', {
+          name: 'Notification.RELOAD_ANCHOR_DESCRIPTION',
+        })
       ).toBeVisible();
-      expect(localStorage.getItem('app_version')).toBe(currentAppVersion);
+      expect(
+        withinNotification.getByText('Notification.RELOAD_MESSAGE')
+      ).toBeVisible();
+      expect(localStorage.getItem(APP_VERSION_KEY)).toBe(currentAppVersion);
     });
   });
 });

@@ -51,6 +51,6 @@ export interface NotificationEvent {
   content: string;
 }
 
-export interface UpdateAvailabilityEvent {
+export type UpdateAvailabilityEvent = NotificationEvent & {
   serviceWorkerRegistration: ServiceWorkerRegistration;
-}
+};

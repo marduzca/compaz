@@ -7,6 +7,10 @@ import App from './app/App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import { UpdateAvailabilityEvent } from './app/components/domain';
+import {
+  NotificationType,
+  RELOAD_EVENT,
+} from './app/components/organisms/notification/Notification';
 
 const root = createRoot(document.getElementById('root') as HTMLElement);
 
@@ -27,6 +31,8 @@ serviceWorkerRegistration.register({
       new CustomEvent('updateAvailability', {
         detail: {
           serviceWorkerRegistration,
+          type: NotificationType.INFO,
+          content: RELOAD_EVENT,
         } as UpdateAvailabilityEvent,
       })
     );

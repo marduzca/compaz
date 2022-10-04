@@ -72,15 +72,15 @@ const linesRef = collection(firestore, 'lines').withConverter(lineConverter);
 // when saved and current version, use old data ✅
 // when saved and old version, store current data ✅
 
+const DATA_VERSION_KEY = 'data_version';
+const STATIONS_KEY = 'data_stations';
+const LINES_KEY = 'data_lines';
+
 interface FirebaseProviderProps {
   children: React.ReactNode;
 }
 
 export const FirebaseProvider: React.FC<FirebaseProviderProps> = (props) => {
-  const DATA_VERSION_KEY = 'data_version';
-  const STATIONS_KEY = 'data_stations';
-  const LINES_KEY = 'data_lines';
-
   const [dataNeedsUpdate, setDataNeedsUpdate] = useState<boolean>(false);
   const [stations, setStations] = useState<Station[]>([]);
   const [lines, setLines] = useState<Line[]>([]);
