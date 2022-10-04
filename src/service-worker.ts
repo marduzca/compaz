@@ -13,6 +13,10 @@ import { ExpirationPlugin } from 'workbox-expiration';
 import { createHandlerBoundToURL, precacheAndRoute } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
 import { StaleWhileRevalidate } from 'workbox-strategies';
+import appInfo from '../package.json';
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const currentAppVersion = appInfo.version;
 
 declare const self: ServiceWorkerGlobalScope;
 
