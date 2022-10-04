@@ -81,6 +81,7 @@ const App = () => {
           }}
         />
         <FirebaseProvider>
+          <span>Test without version update</span>
           <Routes>
             <Route
               path={`${NavigationLink.NAVIGATION}/*`}
