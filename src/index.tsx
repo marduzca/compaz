@@ -13,10 +13,6 @@ import {
   RELOAD_EVENT,
 } from './app/components/organisms/notification/Notification';
 
-// This is used to trigger a service worker update whenever we release a new version that gets updated here via the release script. DON'T CHANGE MANUALLY!
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const APP_VERSION = '0.13.0';
-
 const root = createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
