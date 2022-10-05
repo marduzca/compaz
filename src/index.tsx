@@ -12,6 +12,11 @@ import {
   NotificationType,
   RELOAD_EVENT,
 } from './app/components/organisms/notification/Notification';
+import { APP_VERSION_KEY } from './app/components/organisms/notification/NotificationContainer';
+import appInfo from '../package.json';
+
+if (localStorage.getItem(APP_VERSION_KEY) !== appInfo.version)
+  localStorage.setItem(APP_VERSION_KEY, appInfo.version);
 
 const root = createRoot(document.getElementById('root') as HTMLElement);
 
