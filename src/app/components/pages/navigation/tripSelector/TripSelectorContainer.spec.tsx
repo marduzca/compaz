@@ -77,12 +77,12 @@ describe('TripSelectorContainer', () => {
       );
 
       expect(
-        screen.getByRole('textbox', {
+        screen.getByRole('combobox', {
           name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER',
         })
       ).toBeVisible();
       expect(
-        screen.getByRole('textbox', {
+        screen.getByRole('combobox', {
           name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER',
         })
       ).toBeVisible();
@@ -158,7 +158,7 @@ describe('TripSelectorContainer', () => {
 
       expect(onSearchButtonClickMock).not.toHaveBeenCalled();
       expect(
-        screen.getByRole('textbox', {
+        screen.getByRole('combobox', {
           name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER Navigation.TripSelector.ERROR_ORIGIN_MISSING',
         })
       ).toBeVisible();
@@ -195,7 +195,7 @@ describe('TripSelectorContainer', () => {
 
       expect(onSearchButtonClickMock).not.toHaveBeenCalled();
       expect(
-        screen.getByRole('textbox', {
+        screen.getByRole('combobox', {
           name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER Navigation.TripSelector.ERROR_DESTINATION_MISSING',
         })
       ).toBeVisible();
@@ -232,12 +232,12 @@ describe('TripSelectorContainer', () => {
 
       expect(onSearchButtonClickMock).not.toHaveBeenCalled();
       expect(
-        screen.getByRole('textbox', {
+        screen.getByRole('combobox', {
           name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER Navigation.TripSelector.ERROR_ORIGIN_MISSING',
         })
       ).toBeVisible();
       expect(
-        screen.getByRole('textbox', {
+        screen.getByRole('combobox', {
           name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER Navigation.TripSelector.ERROR_DESTINATION_MISSING',
         })
       ).toBeVisible();

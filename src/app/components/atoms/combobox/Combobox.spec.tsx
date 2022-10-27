@@ -109,7 +109,7 @@ describe('ComboBox', () => {
       ).not.toBeInTheDocument();
 
       expect(
-        screen.getByRole('textbox', { name: 'placeholder' })
+        screen.getByRole('combobox', { name: 'placeholder' })
       ).toHaveAttribute('value', 'opt 1');
       expect(screen.getByText('placeholder')).toBeVisible();
     });
@@ -124,7 +124,7 @@ describe('ComboBox', () => {
 
       await userEvent.click(screen.getByText('placeholder'));
 
-      fireEvent.change(screen.getByRole('textbox', { name: 'placeholder' }), {
+      fireEvent.change(screen.getByRole('combobox', { name: 'placeholder' }), {
         target: { value: 'opt 2' },
       });
 
@@ -144,7 +144,7 @@ describe('ComboBox', () => {
       ).not.toBeInTheDocument();
 
       expect(
-        screen.getByRole('textbox', { name: 'placeholder' })
+        screen.getByRole('combobox', { name: 'placeholder' })
       ).toHaveAttribute('value', 'opt 2');
     });
   });

@@ -28,7 +28,6 @@ const Combobox: React.FC<ComboboxProps> = (props) => {
   const {
     isOpen,
     getInputProps,
-    getComboboxProps,
     getToggleButtonProps,
     getMenuProps,
     getItemProps,
@@ -71,7 +70,6 @@ const Combobox: React.FC<ComboboxProps> = (props) => {
       } ${isOpen && inputOptions.length > 0 ? styles.open : ''}`}
     >
       <div
-        {...getComboboxProps()}
         className={`${styles.combobox} ${
           props.inputValue && props.inputValue !== '' ? styles.selected : ''
         }`}

@@ -61,14 +61,14 @@ describe('StationsSelectorContainer', () => {
     );
 
     await userEvent.type(
-      screen.getByRole('textbox', {
+      screen.getByRole('combobox', {
         name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER',
       }),
       availableStations[0].name
     );
 
     expect(
-      screen.getByRole('textbox', {
+      screen.getByRole('combobox', {
         name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER',
       })
     ).toHaveValue(availableStations[0].name);
@@ -80,20 +80,20 @@ describe('StationsSelectorContainer', () => {
     );
 
     expect(
-      screen.getByRole('textbox', {
+      screen.getByRole('combobox', {
         name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER',
       })
     ).toHaveValue('');
 
     await userEvent.type(
-      screen.getByRole('textbox', {
+      screen.getByRole('combobox', {
         name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER',
       }),
       availableStations[1].name
     );
 
     expect(
-      screen.getByRole('textbox', {
+      screen.getByRole('combobox', {
         name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER',
       })
     ).toHaveValue(availableStations[1].name);
@@ -105,7 +105,7 @@ describe('StationsSelectorContainer', () => {
     );
 
     expect(
-      screen.getByRole('textbox', {
+      screen.getByRole('combobox', {
         name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER',
       })
     ).toHaveValue('');
@@ -120,7 +120,7 @@ describe('StationsSelectorContainer', () => {
     );
 
     fireEvent.change(
-      screen.getByRole('textbox', {
+      screen.getByRole('combobox', {
         name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER',
       }),
       {
@@ -128,7 +128,7 @@ describe('StationsSelectorContainer', () => {
       }
     );
     fireEvent.change(
-      screen.getByRole('textbox', {
+      screen.getByRole('combobox', {
         name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER',
       }),
       {
@@ -137,12 +137,12 @@ describe('StationsSelectorContainer', () => {
     );
 
     expect(
-      screen.getByRole('textbox', {
+      screen.getByRole('combobox', {
         name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER',
       })
     ).toHaveValue(availableStations[0].name);
     expect(
-      screen.getByRole('textbox', {
+      screen.getByRole('combobox', {
         name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER',
       })
     ).toHaveValue(availableStations[1].name);
@@ -170,7 +170,7 @@ describe('StationsSelectorContainer', () => {
     );
 
     fireEvent.change(
-      screen.getByRole('textbox', {
+      screen.getByRole('combobox', {
         name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER',
       }),
       {
@@ -207,7 +207,7 @@ describe('StationsSelectorContainer', () => {
     );
 
     fireEvent.change(
-      screen.getByRole('textbox', {
+      screen.getByRole('combobox', {
         name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER',
       }),
       {
@@ -231,7 +231,7 @@ describe('StationsSelectorContainer', () => {
     );
 
     fireEvent.change(
-      screen.getByRole('textbox', {
+      screen.getByRole('combobox', {
         name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER',
       }),
       {
@@ -239,7 +239,7 @@ describe('StationsSelectorContainer', () => {
       }
     );
     fireEvent.change(
-      screen.getByRole('textbox', {
+      screen.getByRole('combobox', {
         name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER',
       }),
       {
@@ -254,12 +254,12 @@ describe('StationsSelectorContainer', () => {
     );
 
     expect(
-      screen.getByRole('textbox', {
+      screen.getByRole('combobox', {
         name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER',
       })
     ).toHaveValue(availableStations[1].name);
     expect(
-      screen.getByRole('textbox', {
+      screen.getByRole('combobox', {
         name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER',
       })
     ).toHaveValue(availableStations[0].name);
@@ -275,14 +275,14 @@ describe('StationsSelectorContainer', () => {
       );
 
       await userEvent.type(
-        screen.getByRole('textbox', {
+        screen.getByRole('combobox', {
           name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER',
         }),
         'This is a non-existent station'
       );
 
       expect(
-        screen.getByRole('textbox', {
+        screen.getByRole('combobox', {
           name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER - Navigation.TripSelector.ERROR_VALIDATION',
         })
       ).toBeVisible();
@@ -297,7 +297,7 @@ describe('StationsSelectorContainer', () => {
       );
 
       await userEvent.type(
-        screen.getByRole('textbox', {
+        screen.getByRole('combobox', {
           name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER',
         }),
         'This is a non-existent station'
@@ -315,27 +315,27 @@ describe('StationsSelectorContainer', () => {
       );
 
       await userEvent.type(
-        screen.getByRole('textbox', {
+        screen.getByRole('combobox', {
           name: /Navigation.TripSelector.ORIGIN_PLACEHOLDER/,
         }),
         'This is a non-existent station'
       );
 
       await userEvent.type(
-        screen.getByRole('textbox', {
+        screen.getByRole('combobox', {
           name: /Navigation.TripSelector.DESTINATION_PLACEHOLDER/,
         }),
         'This is a non-existent station'
       );
 
       expect(
-        screen.getByRole('textbox', {
+        screen.getByRole('combobox', {
           name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER - Navigation.TripSelector.ERROR_VALIDATION',
         })
       ).toBeVisible();
 
       expect(
-        screen.getByRole('textbox', {
+        screen.getByRole('combobox', {
           name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER - Navigation.TripSelector.ERROR_VALIDATION',
         })
       ).toBeVisible();
@@ -350,37 +350,37 @@ describe('StationsSelectorContainer', () => {
       );
 
       expect(
-        screen.getByRole('textbox', {
+        screen.getByRole('combobox', {
           name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER Navigation.TripSelector.ERROR_ORIGIN_MISSING',
         })
       ).toBeVisible();
       expect(
-        screen.getByRole('textbox', {
+        screen.getByRole('combobox', {
           name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER Navigation.TripSelector.ERROR_DESTINATION_MISSING',
         })
       ).toBeVisible();
 
       await userEvent.type(
-        screen.getByRole('textbox', {
+        screen.getByRole('combobox', {
           name: /Navigation.TripSelector.ORIGIN_PLACEHOLDER/,
         }),
         availableStations[0].name
       );
 
       await userEvent.type(
-        screen.getByRole('textbox', {
+        screen.getByRole('combobox', {
           name: /Navigation.TripSelector.DESTINATION_PLACEHOLDER/,
         }),
         availableStations[1].name
       );
 
       expect(
-        screen.queryByRole('textbox', {
+        screen.queryByRole('combobox', {
           name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER Navigation.TripSelector.ERROR_ORIGIN_MISSING',
         })
       ).not.toBeInTheDocument();
       expect(
-        screen.queryByRole('textbox', {
+        screen.queryByRole('combobox', {
           name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER Navigation.TripSelector.ERROR_DESTINATION_MISSING',
         })
       ).not.toBeInTheDocument();
