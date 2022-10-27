@@ -14,7 +14,7 @@ import {
   useCollectionData,
   useDocumentData,
 } from 'react-firebase-hooks/firestore';
-import { Line, NotificationEvent, Station, VersionData } from '../../domain';
+import { Line, NotificationEvent, Station, Version } from '../../domain';
 import {
   EventType,
   NotificationType,
@@ -23,7 +23,7 @@ import { GENERAL_ERROR_NOTIFICATION_KEY } from '../../organisms/notification/Not
 import {
   lineConverter,
   stationConverter,
-  versionDataConverter,
+  versionConverter,
 } from './firestoreConverters';
 
 interface FirebaseContextInterface {
@@ -61,8 +61,11 @@ isSupported().then((isAnalyticsSupported) => {
 
 const firestore = getFirestore(firebaseApp);
 
-const versionDataRef = doc(firestore, 'metadata', 'versioning').withConverter(
-  versionDataConverter
+const appVersionRef = doc(firestore, 'metadata', 'app').withConverter(
+  versionConverter
+);
+const dataVersionRef = doc(firestore, 'metadata', 'data').withConverter(
+  versionConverter
 );
 const stationsRef = query(
   collection(firestore, 'stations').withConverter(stationConverter),
@@ -75,6 +78,8 @@ const linesRef = collection(firestore, 'lines').withConverter(lineConverter);
 // when saved and current version, use old data ✅
 // when saved and old version, store current data ✅
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const APP_VERSION_KEY = 'app_version';
 const DATA_VERSION_KEY = 'data_version';
 const STATIONS_KEY = 'data_stations';
 const LINES_KEY = 'data_lines';
@@ -88,7 +93,9 @@ export const FirebaseProvider: React.FC<FirebaseProviderProps> = (props) => {
   const [stations, setStations] = useState<Station[]>([]);
   const [lines, setLines] = useState<Line[]>([]);
 
-  const [currentVersionData] = useDocumentData<VersionData>(versionDataRef); // TODO: go back to use..Once hook when ready
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [currentAppVersion] = useDocumentData<Version>(appVersionRef); // TODO: go back to use..Once hook when ready
+  const [currentDataVersion] = useDocumentData<Version>(dataVersionRef); // TODO: go back to use..Once hook when ready
   const [currentStations] = useCollectionData<Station>( // TODO: go back to use..Once hook when ready
     dataNeedsUpdate ? stationsRef : undefined
   );
@@ -113,12 +120,11 @@ export const FirebaseProvider: React.FC<FirebaseProviderProps> = (props) => {
   }, []);
 
   useEffect(() => {
-    if (currentVersionData) {
+    if (currentDataVersion) {
       const storedDataVersion = localStorage.getItem(DATA_VERSION_KEY);
 
       const newVersionAvailable =
-        !storedDataVersion ||
-        parseInt(storedDataVersion, 10) < currentVersionData.version;
+        !storedDataVersion || storedDataVersion !== currentDataVersion.version;
 
       if (newVersionAvailable) {
         setDataNeedsUpdate(true);
@@ -132,12 +138,12 @@ export const FirebaseProvider: React.FC<FirebaseProviderProps> = (props) => {
 
           localStorage.setItem(
             DATA_VERSION_KEY,
-            currentVersionData.version.toString()
+            currentDataVersion.version.toString()
           );
         }
       }
     }
-  }, [currentLines, currentStations, currentVersionData]);
+  }, [currentLines, currentStations, currentDataVersion]);
 
   const storeMessage = async (
     name: string,

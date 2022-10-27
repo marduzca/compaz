@@ -24,8 +24,8 @@ export interface Line {
   connectedLines: ConnectedLine[];
 }
 
-export interface VersionData {
-  version: number;
+export interface Version {
+  version: string;
 }
 
 export interface ConnectedLine {

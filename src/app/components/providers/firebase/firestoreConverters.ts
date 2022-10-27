@@ -3,7 +3,7 @@ import {
   QueryDocumentSnapshot,
   SnapshotOptions,
 } from 'firebase/firestore';
-import { Line, Station, VersionData } from '../../domain';
+import { Line, Station, Version } from '../../domain';
 
 export const stationConverter: FirestoreDataConverter<Station> = {
   toFirestore() {
@@ -41,14 +41,14 @@ export const lineConverter: FirestoreDataConverter<Line> = {
   },
 };
 
-export const versionDataConverter: FirestoreDataConverter<VersionData> = {
+export const versionConverter: FirestoreDataConverter<Version> = {
   toFirestore() {
     return {};
   },
   fromFirestore(
     snapshot: QueryDocumentSnapshot,
     options: SnapshotOptions
-  ): VersionData {
+  ): Version {
     const data = snapshot.data(options);
     return {
       version: data.version,
