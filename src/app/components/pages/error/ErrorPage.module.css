@@ -13,6 +13,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 2rem;
 
   color: white;
 
@@ -23,11 +24,15 @@
 .text > span {
   font-size: 4rem;
   font-weight: bold;
+
+  line-height: 1;
 }
 
 .text > strong {
   font-family: 'Righteous', sans-serif;
   font-size: 15rem;
+
+  line-height: 1;
 }
 
 .content > img {
@@ -57,6 +62,10 @@
     gap: 1.5rem;
 
     overflow-x: hidden;
+  }
+
+  .text {
+    gap: 1rem;
   }
 
   .text > h1,
