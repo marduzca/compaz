@@ -26,9 +26,8 @@
 }
 
 .text > strong {
-  font-family: Righteous, Roboto, sans-serif;
+  font-family: 'Righteous', sans-serif;
   font-size: 15rem;
-  font-weight: bolder;
 }
 
 .content > img {
