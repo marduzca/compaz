@@ -1,20 +1,8 @@
 import React from 'react';
 import { act, render, screen, within } from '@testing-library/react';
-import NotificationContainer, {
-  APP_VERSION_KEY,
-} from './NotificationContainer';
+import NotificationContainer from './NotificationContainer';
 import { EventType, NotificationType, RELOAD_EVENT } from './Notification';
 import { NotificationEvent, UpdateAvailabilityEvent } from '../../domain';
-
-const currentAppVersion = '1.2.0';
-
-jest.mock(
-  '../../../../../package.json',
-  () => ({
-    version: '1.2.0',
-  }),
-  { virtual: true }
-);
 
 describe('NotificationContainer', () => {
   it('renders info notification when info notification event is triggered', () => {
@@ -89,65 +77,35 @@ describe('NotificationContainer', () => {
     expect(screen.getByText('this is an error notification')).toBeVisible();
   });
 
-  describe('versioning', () => {
-    afterEach(() => {
-      localStorage.clear();
+  it('should render update notification when new version is available', () => {
+    render(<NotificationContainer />);
+
+    const updateAvailabilityEvent = new CustomEvent(
+      EventType.UPDATE_AVAILABILITY,
+      {
+        detail: {
+          serviceWorkerRegistration: {},
+          type: NotificationType.INFO,
+          content: RELOAD_EVENT,
+        } as UpdateAvailabilityEvent,
+      }
+    );
+
+    act(() => {
+      window.dispatchEvent(updateAvailabilityEvent);
     });
 
-    it('should not render update notification when the current and stored app versions are the same', () => {
-      localStorage.setItem(APP_VERSION_KEY, currentAppVersion);
+    const withinNotification = within(
+      screen.getByRole('alert', { name: 'Notification.INFO' })
+    );
 
-      render(<NotificationContainer />);
-
-      const updateAvailabilityEvent = new CustomEvent(
-        EventType.UPDATE_AVAILABILITY,
-        {
-          detail: {
-            serviceWorkerRegistration: {},
-          } as UpdateAvailabilityEvent,
-        }
-      );
-
-      act(() => {
-        window.dispatchEvent(updateAvailabilityEvent);
-      });
-
-      expect(
-        screen.queryByRole('alert', { name: 'Notification.INFO' })
-      ).not.toBeInTheDocument();
-    });
-
-    it('should render update notification and store new version when the current app version is different to the stored version', () => {
-      render(<NotificationContainer />);
-
-      const updateAvailabilityEvent = new CustomEvent(
-        EventType.UPDATE_AVAILABILITY,
-        {
-          detail: {
-            serviceWorkerRegistration: {},
-            type: NotificationType.INFO,
-            content: RELOAD_EVENT,
-          } as UpdateAvailabilityEvent,
-        }
-      );
-
-      act(() => {
-        window.dispatchEvent(updateAvailabilityEvent);
-      });
-
-      const withinNotification = within(
-        screen.getByRole('alert', { name: 'Notification.INFO' })
-      );
-
-      expect(
-        withinNotification.getByRole('link', {
-          name: 'Notification.RELOAD_ANCHOR_DESCRIPTION',
-        })
-      ).toBeVisible();
-      expect(
-        withinNotification.getByText('Notification.RELOAD_MESSAGE')
-      ).toBeVisible();
-      expect(localStorage.getItem(APP_VERSION_KEY)).toBe(currentAppVersion);
-    });
+    expect(
+      withinNotification.getByRole('link', {
+        name: 'Notification.RELOAD_ANCHOR_DESCRIPTION',
+      })
+    ).toBeVisible();
+    expect(
+      withinNotification.getByText('Notification.RELOAD_MESSAGE')
+    ).toBeVisible();
   });
 });

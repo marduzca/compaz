@@ -61,9 +61,6 @@ isSupported().then((isAnalyticsSupported) => {
 
 const firestore = getFirestore(firebaseApp);
 
-const appVersionRef = doc(firestore, 'metadata', 'app').withConverter(
-  versionConverter
-);
 const dataVersionRef = doc(firestore, 'metadata', 'data').withConverter(
   versionConverter
 );
@@ -93,8 +90,6 @@ export const FirebaseProvider: React.FC<FirebaseProviderProps> = (props) => {
   const [stations, setStations] = useState<Station[]>([]);
   const [lines, setLines] = useState<Line[]>([]);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [currentAppVersion] = useDocumentData<Version>(appVersionRef); // TODO: go back to use..Once hook when ready
   const [currentDataVersion] = useDocumentData<Version>(dataVersionRef); // TODO: go back to use..Once hook when ready
   const [currentStations] = useCollectionData<Station>( // TODO: go back to use..Once hook when ready
     dataNeedsUpdate ? stationsRef : undefined
