@@ -1,0 +1,77 @@
+.content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  height: 100%;
+
+  background-image: url('../../../static/svg/space-background.svg');
+  background-size: cover;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  color: white;
+
+  text-align: center;
+}
+
+.text > h1,
+.text > span {
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+.text > strong {
+  font-family: Righteous, Roboto, sans-serif;
+  font-size: 15rem;
+  font-weight: bolder;
+}
+
+.content > img {
+  max-height: 25rem;
+
+  transform: rotate(-25deg);
+}
+
+@media only screen and (max-width: 950px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container > header {
+    margin-block: 1rem;
+  }
+
+  .container > header > button {
+    left: 1.25rem;
+  }
+
+  .content {
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    gap: 1.5rem;
+
+    overflow-x: hidden;
+  }
+
+  .text > h1,
+  .text > span {
+    font-size: 2.5em;
+  }
+
+  .text > strong {
+    font-size: 10rem;
+  }
+
+  .content > img {
+    max-height: 15rem;
+
+    align-self: flex-end;
+  }
+}

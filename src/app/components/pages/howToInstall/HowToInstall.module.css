@@ -2,10 +2,6 @@
   padding: 2rem 5rem;
 }
 
-.container > header {
-  display: none;
-}
-
 .content {
   display: grid;
   gap: 3rem;
@@ -67,7 +63,6 @@
   }
 
   .container > header {
-    display: flex;
     margin-bottom: 2rem;
   }
 

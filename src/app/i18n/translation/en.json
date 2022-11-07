@@ -115,6 +115,11 @@
     "OFFLINE_BENEFIT": "Save on your mobile data: It works even if you are offline!",
     "DEVICES_IMAGE_ALT": "Different devices (Laptop, tablet and mobile) running the compaz app"
   },
+  "ErrorPage": {
+    "SPACE_ALT": "Cute llama with astronaut helmet with the view of space in the background",
+    "OOPS": "Ooops...",
+    "PAGE_NOT_FOUND": "PAGE NOT FOUND"
+  },
   "Footer": {
     "GUIDE": "Your guide to know how to get everywhere",
     "TIME": "Plan the duration of your trip",

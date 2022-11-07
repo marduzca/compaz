@@ -12,9 +12,6 @@
   border-radius: inherit;
   background-color: var(--primary-color);
 }
-.tripSelector > header {
-  display: none;
-}
 
 .inputFields {
   display: flex;
@@ -53,10 +50,6 @@
     width: 100%;
     height: 100%;
     padding: 1rem 1.25rem;
-  }
-
-  .tripSelector > header {
-    display: flex;
   }
 
   .inputFields {
