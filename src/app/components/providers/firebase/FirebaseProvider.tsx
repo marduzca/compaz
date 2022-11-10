@@ -11,8 +11,8 @@ import {
   setDoc,
 } from 'firebase/firestore';
 import {
-  useCollectionData,
-  useDocumentData,
+  useCollectionDataOnce,
+  useDocumentDataOnce,
 } from 'react-firebase-hooks/firestore';
 import { Line, NotificationEvent, Station, Version } from '../../domain';
 import {
@@ -90,11 +90,11 @@ export const FirebaseProvider: React.FC<FirebaseProviderProps> = (props) => {
   const [stations, setStations] = useState<Station[]>([]);
   const [lines, setLines] = useState<Line[]>([]);
 
-  const [currentDataVersion] = useDocumentData<Version>(dataVersionRef); // TODO: go back to use..Once hook when ready
-  const [currentStations] = useCollectionData<Station>( // TODO: go back to use..Once hook when ready
+  const [currentDataVersion] = useDocumentDataOnce<Version>(dataVersionRef);
+  const [currentStations] = useCollectionDataOnce<Station>(
     dataNeedsUpdate ? stationsRef : undefined
   );
-  const [currentLines] = useCollectionData<Line>( // TODO: go back to use..Once hook when ready
+  const [currentLines] = useCollectionDataOnce<Line>(
     dataNeedsUpdate ? linesRef : undefined
   );
 
