@@ -26,7 +26,7 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "@react-google-maps/api": "^2.15.0",
+    "@react-google-maps/api": "^2.16.1",
     "dijkstrajs": "^1.0.2",
     "downshift": "^7.0.1",
     "firebase": "^9.13.0",
@@ -78,8 +78,8 @@
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.8",
     "@types/react-transition-group": "^4.4.5",
-    "@typescript-eslint/eslint-plugin": "^5.42.0",
-    "@typescript-eslint/parser": "^5.42.0",
+    "@typescript-eslint/eslint-plugin": "^5.42.1",
+    "@typescript-eslint/parser": "^5.42.1",
     "cypress": "^11.0.1",
     "eslint": "^8.27.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -98,7 +98,7 @@
     "mq-polyfill": "^1.1.8",
     "prettier": "^2.7.1",
     "start-server-and-test": "^1.14.0",
-    "webpack": "^5.74.0"
+    "webpack": "^5.75.0"
   },
   "browserslist": {
     "production": [
