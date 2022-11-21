@@ -22,7 +22,7 @@
     "loki:ci": "npm run build-storybook && loki --requireReference --verboseRenderer",
     "cypress:open": "cypress open",
     "cypress:ci": "cypress run",
-    "ci:cypress-run": "start-server-and-test start localhost:3000 cypress:ci",
+    "ci:cypress-run": "start-server-and-test start http://localhost:3000 cypress:ci",
     "eject": "react-scripts eject"
   },
   "dependencies": {
