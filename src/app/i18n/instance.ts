@@ -6,6 +6,12 @@ import { initReactI18next } from 'react-i18next';
 import en from './translation/en.json';
 import es from './translation/es.json';
 
+declare module 'i18next' {
+  interface CustomTypeOptions {
+    returnNull: false;
+  }
+}
+
 i18n
   .use(HttpApi)
   .use(LanguageDetector)
@@ -22,6 +28,7 @@ i18n
     react: {
       useSuspense: false,
     },
+    returnNull: false,
   });
 
 document.documentElement.setAttribute('lang', i18n.language);
