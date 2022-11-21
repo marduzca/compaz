@@ -53,7 +53,7 @@ const firebaseApp = initializeApp({
 });
 
 isSupported().then((isAnalyticsSupported) => {
-  if (isAnalyticsSupported && window.location.href.match(/compaz-4.web.app/)) {
+  if (isAnalyticsSupported && window.location.href.match(/compaz.app/)) {
     getAnalytics(firebaseApp);
     getPerformance(firebaseApp);
   }

@@ -109,7 +109,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm ci && CYPRESS_BASE_URL=https://compaz-4.web.app npm run cypress:ci
+      - run: npm ci && CYPRESS_BASE_URL=https://compaz.app npm run cypress:ci
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         if: failure()
