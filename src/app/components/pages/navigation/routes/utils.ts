@@ -1,13 +1,13 @@
-import blueTelefericoIcon from '../../../../static/svg/blue_teleferico.svg';
-import brownTelefericoIcon from '../../../../static/svg/brown_teleferico.svg';
-import greenTelefericoIcon from '../../../../static/svg/green_teleferico.svg';
-import lightBlueTelefericoIcon from '../../../../static/svg/light_blue_teleferico.svg';
-import orangeTelefericoIcon from '../../../../static/svg/orange_teleferico.svg';
-import purpleTelefericoIcon from '../../../../static/svg/purple_teleferico.svg';
-import redTelefericoIcon from '../../../../static/svg/red_teleferico.svg';
-import silverTelefericoIcon from '../../../../static/svg/silver_teleferico.svg';
-import whiteTelefericoIcon from '../../../../static/svg/white_teleferico.svg';
-import yellowTelefericoIcon from '../../../../static/svg/yellow_teleferico.svg';
+import blueTelefericoIcon from '../../../../static/svg/teleferico_azul.svg';
+import brownTelefericoIcon from '../../../../static/svg/teleferico_cafe.svg';
+import greenTelefericoIcon from '../../../../static/svg/teleferico_verde.svg';
+import lightBlueTelefericoIcon from '../../../../static/svg/teleferico_celeste.svg';
+import orangeTelefericoIcon from '../../../../static/svg/teleferico_naranja.svg';
+import purpleTelefericoIcon from '../../../../static/svg/teleferico_morado.svg';
+import redTelefericoIcon from '../../../../static/svg/teleferico_rojo.svg';
+import silverTelefericoIcon from '../../../../static/svg/teleferico_plateado.svg';
+import whiteTelefericoIcon from '../../../../static/svg/teleferico_blanco.svg';
+import yellowTelefericoIcon from '../../../../static/svg/teleferico_amarillo.svg';
 import {
   EventType,
   NotificationType,
