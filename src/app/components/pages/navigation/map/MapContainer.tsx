@@ -56,6 +56,8 @@ const MapContainer: React.FC<MapContainerProps> = (props) => {
 
           if (!isMobile) {
             googleMap.panBy(window.innerWidth * -0.1, 0);
+          } else {
+            googleMap.panBy(0, window.innerHeight * 0.2);
           }
         } else if (origin || destination) {
           googleMap.fitBounds(bounds);
