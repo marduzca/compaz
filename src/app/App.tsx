@@ -77,30 +77,32 @@ const App = () => {
         />
         <FirebaseProvider>
           <Routes>
-            <NavigationProvider>
-              <Route
-                index
-                element={
+            <Route
+              index
+              element={
+                <NavigationProvider>
                   <Navigation
                     onMenuButtonClick={() => {
                       setShowMobileMenu(true);
                     }}
                     isMobileMenuOpen={showMobileMenu}
                   />
-                }
-              />
-              <Route
-                path={`${NavigationLink.NAVIGATION}/*`}
-                element={
+                </NavigationProvider>
+              }
+            />
+            <Route
+              path={`${NavigationLink.NAVIGATION}/*`}
+              element={
+                <NavigationProvider>
                   <Navigation
                     onMenuButtonClick={() => {
                       setShowMobileMenu(true);
                     }}
                     isMobileMenuOpen={showMobileMenu}
                   />
-                }
-              />
-            </NavigationProvider>
+                </NavigationProvider>
+              }
+            />
             <Route
               path={NavigationLink.HOW_TO_INSTALL}
               element={
