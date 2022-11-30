@@ -57,7 +57,7 @@ const Navigation: React.FC<NavigationProps> = (props) => {
         location.pathname.includes(NavigationLink.ROUTE_DETAILS)) &&
       route.subRoutes.length === 0
     )
-      window.location.replace(NavigationLink.NAVIGATION);
+      window.location.replace(NavigationLink.BASE);
 
     // eslint-disable-next-line
   }, []);
@@ -66,7 +66,7 @@ const Navigation: React.FC<NavigationProps> = (props) => {
     setRoute(calculateRoute(stations, lines));
     setCurrentAppViewState(AppViewState.ROUTES_OVERVIEW);
 
-    navigate(`.${NavigationLink.ROUTES_OVERVIEW}`);
+    navigate(NavigationLink.ROUTES_OVERVIEW);
   };
 
   const handleBackButtonClick = (previousPage: AppViewState) => {
@@ -79,7 +79,7 @@ const Navigation: React.FC<NavigationProps> = (props) => {
     setSelectedRouteDepartureTime(departureTime);
     setCurrentAppViewState(AppViewState.ROUTE_DETAILS);
 
-    navigate(`.${NavigationLink.ROUTE_DETAILS}`);
+    navigate(NavigationLink.ROUTE_DETAILS);
   };
 
   return (

@@ -24,8 +24,8 @@ export enum NavigationLink {
   CONTACT = '/contact',
   ABOUT = '/about',
   HOW_TO_INSTALL = '/how-to-install',
-  ROUTES_OVERVIEW = '/overview',
-  ROUTE_DETAILS = '/details',
+  ROUTES_OVERVIEW = `/navigation/overview`,
+  ROUTE_DETAILS = '/navigation/details',
 }
 
 interface MenuItem {
@@ -38,7 +38,7 @@ const menuItems = [
   {
     name: 'Menu.HOME',
     icon: <HomeIcon />,
-    navigationLink: NavigationLink.NAVIGATION,
+    navigationLink: NavigationLink.BASE,
   },
   {
     name: 'Menu.HOW_TO_INSTALL',
@@ -155,11 +155,11 @@ const Menu: React.FC<MenuProps> = (props) => {
         <section className={styles.message}>{greetingMessage}</section>
         <nav className={styles.navBar}>
           <a
-            href={NavigationLink.NAVIGATION}
+            href={NavigationLink.BASE}
             title={t('Menu.GO_HOME')}
             className={styles.logo}
             aria-current={
-              currentPage === NavigationLink.NAVIGATION ? 'page' : undefined
+              currentPage === NavigationLink.BASE ? 'page' : undefined
             }
           >
             <LogoBlack />

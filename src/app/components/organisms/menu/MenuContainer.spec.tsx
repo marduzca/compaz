@@ -9,7 +9,7 @@ import { NavigationLink } from './Menu';
 describe('MenuContainer', () => {
   it('goes to the corresponding url when clicking on a nav link', async () => {
     const history = createMemoryHistory({
-      initialEntries: [NavigationLink.NAVIGATION],
+      initialEntries: [NavigationLink.BASE],
     });
 
     render(
@@ -27,7 +27,7 @@ describe('MenuContainer', () => {
     await userEvent.click(
       withinNavigation.getByRole('link', { name: /Menu.HOME/ })
     );
-    expect(history.location.pathname).toBe(NavigationLink.NAVIGATION);
+    expect(history.location.pathname).toBe(NavigationLink.BASE);
     expect(
       withinNavigation.getByRole('link', { name: /Menu.HOME/ })
     ).toHaveAttribute('aria-current', 'page');

@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import debounce from 'lodash.debounce';
-import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import styles from './App.module.css';
 import MenuContainer from './components/organisms/menu/MenuContainer';
 import Navigation from './components/pages/navigation/Navigation';
@@ -30,9 +30,6 @@ const LandscapeErrorMessage = () => {
 };
 
 const App = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-
   const isMobile = useMediaQuery();
   const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
 
@@ -65,9 +62,6 @@ const App = () => {
       });
     }
 
-    if (location.pathname === NavigationLink.BASE)
-      navigate(NavigationLink.NAVIGATION);
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -83,19 +77,30 @@ const App = () => {
         />
         <FirebaseProvider>
           <Routes>
-            <Route
-              path={`${NavigationLink.NAVIGATION}/*`}
-              element={
-                <NavigationProvider>
+            <NavigationProvider>
+              <Route
+                index
+                element={
                   <Navigation
                     onMenuButtonClick={() => {
                       setShowMobileMenu(true);
                     }}
                     isMobileMenuOpen={showMobileMenu}
                   />
-                </NavigationProvider>
-              }
-            />
+                }
+              />
+              <Route
+                path={`${NavigationLink.NAVIGATION}/*`}
+                element={
+                  <Navigation
+                    onMenuButtonClick={() => {
+                      setShowMobileMenu(true);
+                    }}
+                    isMobileMenuOpen={showMobileMenu}
+                  />
+                }
+              />
+            </NavigationProvider>
             <Route
               path={NavigationLink.HOW_TO_INSTALL}
               element={
