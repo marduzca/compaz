@@ -78,7 +78,7 @@ const App = () => {
         <FirebaseProvider>
           <Routes>
             <Route
-              index
+              path={`${NavigationLink.BASE}/*`}
               element={
                 <NavigationProvider>
                   <Navigation
@@ -134,7 +134,7 @@ const App = () => {
               }
             />
             <Route
-              path="*"
+              path="/*"
               element={
                 <ErrorPage
                   onMenuButtonClick={() => {

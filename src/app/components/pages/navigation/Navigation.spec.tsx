@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter, Route as Path, Routes } from 'react-router-dom';
 import Navigation from './Navigation';
 import * as FirebaseProvider from '../../providers/firebase/FirebaseProvider';
 import * as NavigationProvider from '../../providers/navigation/NavigationProvider';
@@ -128,12 +128,29 @@ describe('Navigation', () => {
     jest.clearAllMocks();
   });
 
-  const renderNavigationWithRouter = (initialLocation?: string) => {
+  const renderNavigationWithRouter = (
+    initialLocation: string = NavigationLink.NAVIGATION
+  ) => {
     render(
       <MemoryRouter
         initialEntries={initialLocation ? [initialLocation] : undefined}
       >
-        <Navigation onMenuButtonClick={() => {}} isMobileMenuOpen={false} />
+        <Routes>
+          {[`${NavigationLink.BASE}/*`, `${NavigationLink.NAVIGATION}/*`].map(
+            (path) => (
+              <Path
+                path={path}
+                element={
+                  <Navigation
+                    onMenuButtonClick={() => {}}
+                    isMobileMenuOpen={false}
+                  />
+                }
+                key={path}
+              />
+            )
+          )}
+        </Routes>
       </MemoryRouter>
     );
   };
@@ -184,7 +201,9 @@ describe('Navigation', () => {
       calculateRoute: () => ({ subRoutes: [], totalTime: 0 } as Route), // Route is not set
     });
 
-    renderNavigationWithRouter(NavigationLink.ROUTES_OVERVIEW);
+    renderNavigationWithRouter(
+      `${NavigationLink.NAVIGATION}${NavigationLink.ROUTES_OVERVIEW}`
+    );
 
     expect(
       screen.getByRole('heading', { name: 'Navigation.Heading.TRIP_SELECTOR' })

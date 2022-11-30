@@ -66,7 +66,7 @@ const Navigation: React.FC<NavigationProps> = (props) => {
     setRoute(calculateRoute(stations, lines));
     setCurrentAppViewState(AppViewState.ROUTES_OVERVIEW);
 
-    navigate(NavigationLink.ROUTES_OVERVIEW);
+    navigate(`${NavigationLink.NAVIGATION}${NavigationLink.ROUTES_OVERVIEW}`);
   };
 
   const handleBackButtonClick = (previousPage: AppViewState) => {
@@ -79,7 +79,7 @@ const Navigation: React.FC<NavigationProps> = (props) => {
     setSelectedRouteDepartureTime(departureTime);
     setCurrentAppViewState(AppViewState.ROUTE_DETAILS);
 
-    navigate(NavigationLink.ROUTE_DETAILS);
+    navigate(`${NavigationLink.NAVIGATION}${NavigationLink.ROUTE_DETAILS}`);
   };
 
   return (
@@ -101,7 +101,7 @@ const Navigation: React.FC<NavigationProps> = (props) => {
           >
             <Routes>
               <Path
-                path={NavigationLink.BASE}
+                index
                 element={
                   <div className={styles.tripSelectorContainer}>
                     <TripSelectorContainer
@@ -115,7 +115,7 @@ const Navigation: React.FC<NavigationProps> = (props) => {
                 }
               />
               <Path
-                path={NavigationLink.ROUTES_OVERVIEW}
+                path={`${NavigationLink.ROUTES_OVERVIEW}`}
                 element={
                   <RoutesOverviewContainer
                     route={route}
@@ -127,7 +127,7 @@ const Navigation: React.FC<NavigationProps> = (props) => {
                 }
               />
               <Path
-                path={NavigationLink.ROUTE_DETAILS}
+                path={`${NavigationLink.ROUTE_DETAILS}`}
                 element={
                   <>
                     <RouteDetailsViewContainer

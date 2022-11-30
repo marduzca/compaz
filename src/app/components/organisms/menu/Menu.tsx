@@ -24,8 +24,8 @@ export enum NavigationLink {
   CONTACT = '/contact',
   ABOUT = '/about',
   HOW_TO_INSTALL = '/how-to-install',
-  ROUTES_OVERVIEW = `/navigation/overview`,
-  ROUTE_DETAILS = '/navigation/details',
+  ROUTES_OVERVIEW = `/overview`,
+  ROUTE_DETAILS = '/details',
 }
 
 interface MenuItem {
