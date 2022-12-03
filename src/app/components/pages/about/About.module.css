@@ -1,10 +1,31 @@
 @import '../../../../variables.css';
 
+.container {
+  width: 70%;
+}
+
+.whatSection .compaz {
+  font-weight: bold;
+  font-style: italic;
+}
+
+.whatSection ul {
+  display: grid;
+  row-gap: 1rem;
+}
+
+.whatSection ul > li::marker {
+  color: var(--primary-color);
+  font-size: 1.5rem;
+}
+
 .columnHeading {
   color: var(--primary-color);
+
+  margin-bottom: 1.5rem;
 }
 
 .textBlock {
   display: grid;
-  row-gap: 1rem;
+  row-gap: 2rem;
 }

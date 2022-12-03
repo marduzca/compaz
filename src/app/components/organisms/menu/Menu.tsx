@@ -84,6 +84,10 @@ const Menu: React.FC<MenuProps> = (props) => {
   };
 
   useEffect(() => {
+    setCurrentPage(location.pathname);
+  }, [location]);
+
+  useEffect(() => {
     if (props.showMenuOnMobile) {
       document.addEventListener('mousedown', handleClickOutsideOfMobileMenu);
     } else {

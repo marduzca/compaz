@@ -3,6 +3,7 @@ import styles from './PageContentContainer.module.css';
 import MobileHeader from '../../molecules/mobileHeader/MobileHeader';
 
 interface PageContentContainerProps {
+  wrapperClassName?: string;
   children: React.ReactNode;
   onMenuButtonClick: () => void;
 }
@@ -13,7 +14,14 @@ const PageContentContainer: React.FC<PageContentContainerProps> = (props) => (
       onMenuButtonClick={props.onMenuButtonClick}
       hasLightBackground
     />
-    <div className={styles.content}>{props.children}</div>
+    <div className={`${styles.content} ${props.wrapperClassName}`}>
+      {props.children}
+    </div>
   </main>
 );
+
+PageContentContainer.defaultProps = {
+  wrapperClassName: '',
+};
+
 export default PageContentContainer;
