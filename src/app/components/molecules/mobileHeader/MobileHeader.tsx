@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import styles from './MobileHeader.module.css';
 import { ReactComponent as MenuIcon } from '../../../static/svg/menu.svg';
 import { ReactComponent as LogoWhite } from '../../../static/svg/logo_white.svg';
-import { ReactComponent as LogoBlack } from '../../../static/svg/logo_black.svg';
+import { ReactComponent as LogoBlue } from '../../../static/svg/logo_blue.svg';
 
 interface MobileHeaderProps {
   onMenuButtonClick: () => void;
@@ -21,7 +21,7 @@ const MobileHeader: React.FC<MobileHeaderProps> = (props) => {
         title={t('Menu.OPEN_BUTTON')}
         type="button"
         className={`${styles.menuButton} ${
-          props.hasLightBackground && styles.darkMenuButton
+          props.hasLightBackground && styles.blueMenuButton
         }`}
         onClick={() => {
           setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -33,7 +33,7 @@ const MobileHeader: React.FC<MobileHeaderProps> = (props) => {
         <MenuIcon />
       </button>
       <a href="./" title={t('Menu.GO_HOME')} className={styles.logo}>
-        {props.hasLightBackground ? <LogoBlack /> : <LogoWhite />}
+        {props.hasLightBackground ? <LogoBlue /> : <LogoWhite />}
       </a>
     </header>
   );

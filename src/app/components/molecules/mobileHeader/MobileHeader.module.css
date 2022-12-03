@@ -1,3 +1,5 @@
+@import '../../../../variables.css';
+
 .header {
   display: none;
 }
@@ -15,15 +17,12 @@
 
   .menuButton {
     position: absolute;
-    top: 0;
+    top: 50%;
+    transform: translate(0, -50%);
     left: 0;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    height: 2.875rem;
-    width: 2.875rem;
+    height: 3rem;
+    aspect-ratio: 1;
     margin: 0;
     padding: 0;
 
@@ -32,12 +31,12 @@
     border: 0;
   }
 
-  .darkMenuButton > svg > path {
-    fill: #323232;
+  .blueMenuButton > svg > path {
+    fill: var(--primary-color);
   }
 
   .logo {
-    height: 2.875rem;
+    height: 3rem;
     width: 11.575rem;
   }
 }

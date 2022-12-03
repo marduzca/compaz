@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CSSTransition } from 'react-transition-group';
 import { useLocation } from 'react-router-dom';
-import { ReactComponent as LogoBlack } from '../../../static/svg/logo_black.svg';
+import { ReactComponent as LogoBlue } from '../../../static/svg/logo_blue.svg';
 import { ReactComponent as FlagUSA } from '../../../static/svg/flag_usa.svg';
 import { ReactComponent as FlagBolivia } from '../../../static/svg/flag_bolivia.svg';
 import { ReactComponent as CloseIcon } from '../../../static/svg/close.svg';
@@ -162,7 +162,7 @@ const Menu: React.FC<MenuProps> = (props) => {
               currentPage === NavigationLink.BASE ? 'page' : undefined
             }
           >
-            <LogoBlack />
+            <LogoBlue />
           </a>
           <ul className={styles.headerItems}>
             {menuItems.map((menuItem) => (
