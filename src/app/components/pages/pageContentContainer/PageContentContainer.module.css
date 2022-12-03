@@ -59,7 +59,7 @@
     grid-template-columns: 1fr;
     row-gap: 3rem;
 
-    width: 90%;
+    width: 90% !important;
     padding: 1.5rem 1rem;
     margin: 0;
   }
