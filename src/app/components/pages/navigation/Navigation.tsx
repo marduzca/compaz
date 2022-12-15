@@ -17,7 +17,6 @@ import LoadingPage from './loadingPage/LoadingPage';
 import MapContainer from './map/MapContainer';
 import 'wicg-inert';
 import Footer from '../../organisms/footer/Footer';
-import { PAGE_TITLE_PREFIX } from '../../../App';
 import useTimeOfTheDay from '../../hooks/useTimeOfTheDay/useTimeOfTheDay';
 import { NavigationLink } from '../../organisms/menu/Menu';
 
@@ -50,8 +49,6 @@ const Navigation: React.FC<NavigationProps> = (props) => {
     useState<Date>(new Date());
 
   useEffect(() => {
-    document.title = `${PAGE_TITLE_PREFIX} ${t('Navigation.NAVIGATION_TITLE')}`;
-
     if (
       (location.pathname.includes(NavigationLink.ROUTES_OVERVIEW) ||
         location.pathname.includes(NavigationLink.ROUTE_DETAILS)) &&
