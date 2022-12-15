@@ -6,6 +6,9 @@ import { initReactI18next } from 'react-i18next';
 import en from './translation/en.json';
 import es from './translation/es.json';
 
+export const SPANISH = 'es';
+export const ENGLISH = 'en';
+
 declare module 'i18next' {
   interface CustomTypeOptions {
     returnNull: false;
@@ -31,6 +34,7 @@ i18n
     returnNull: false,
   });
 
-document.documentElement.setAttribute('lang', i18n.language);
+const currentLanguage = i18n.language.match(/en/i) ? SPANISH : ENGLISH;
+document.documentElement.setAttribute('lang', currentLanguage);
 
 export default i18n;
