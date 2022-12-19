@@ -70,7 +70,15 @@
     }
   },
   "About": {
-    "ABOUT_TITLE": "About"
+    "ABOUT_TITLE": "About",
+    "WhatSection": {
+      "HEADING": "What is compaz?",
+      "PARAGRAPH": "A web application to navigate the teleférico in the city of La Paz, Bolivia. <1>compaz</1> offers the following:",
+      "WHAT_ITEM_1": "It helps you to find out the optimal route you need to take to get to your destination.",
+      "WHAT_ITEM_2": "It will also give you an estimate of the time needed for a route. Please note that the time estimate doesn’t include queuing time (if relevant). The estimates assume a normal route in which line changes are made at an average pace and without queuing.",
+      "WHAT_ITEM_3": "The integrated map will help you visualize the route to be taken to know where in the city you are starting from and where you are arriving.",
+      "WHAT_ITEM_4": "The application can be easily installed on any device and be run as if it were a native application. To find out how, go to our <1>How to Install</1> page."
+    }
   },
   "Contact": {
     "CONTACT_TITLE": "Contact",

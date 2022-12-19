@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { PAGE_TITLE_PREFIX } from '../../../App';
 import styles from './About.module.css';
@@ -24,34 +24,25 @@ const About: React.FC<AboutProps> = (props) => {
       onMenuButtonClick={props.onMenuButtonClick}
     >
       <section className={styles.whatSection}>
-        <h2 className={styles.columnHeading}>¿Qué es compaz?</h2>
+        <h2 className={styles.columnHeading}>
+          {t('About.WhatSection.HEADING')}
+        </h2>
         <div>
           <p>
-            Una aplicación web para transportarse en el teleférico de la ciudad
-            de La Paz, Bolivia. <span className={styles.compaz}>compaz </span>
-            te ofrece lo siguiente:
+            <Trans i18nKey="About.WhatSection.PARAGRAPH">
+              About.WhatSection.PARAGRAPH
+              <span className={styles.compaz} />
+            </Trans>
           </p>
           <ul>
+            <li>{t('About.WhatSection.WHAT_ITEM_1')}</li>
+            <li>{t('About.WhatSection.WHAT_ITEM_2')}</li>
+            <li>{t('About.WhatSection.WHAT_ITEM_3')}</li>
             <li>
-              Te ayuda a saber la ruta óptima que necesitas tomar para llegar a
-              tu destino.
-            </li>
-            <li>
-              También te dará un estimado del tiempo necesario para esa ruta. Se
-              debe tomar en cuenta que el estimado de tiempo no incluye el
-              tiempo de fila (si es el caso). Los estimados asumen una ruta
-              normal en la que los cambios de línea se realizan a paso promedio
-              y sin filas.
-            </li>
-            <li>
-              El mapa integrado te ayudará a visualizar la ruta que se tomará
-              para saber de qué lugar de la ciudad se parte y a cual se llega.
-            </li>
-            <li>
-              La aplicación puede ser instalada fácilmente en cualquier
-              dispositivo como si se tratara de una aplicación nativa. Para
-              saber cómo, ve a nuestra página de{' '}
-              <Link to={NavigationLink.HOW_TO_INSTALL}>Como instalar</Link>.
+              <Trans i18nKey="About.WhatSection.WHAT_ITEM_4">
+                About.WhatSection.WHAT_ITEM_4
+                <Link to={NavigationLink.HOW_TO_INSTALL} />
+              </Trans>
             </li>
           </ul>
         </div>

@@ -70,7 +70,15 @@
     }
   },
   "About": {
-    "ABOUT_TITLE": "Acerca de"
+    "ABOUT_TITLE": "Acerca de",
+    "WhatSection": {
+      "HEADING": "¿Qué es compaz?",
+      "PARAGRAPH": "Una aplicación web para transportarse en el teleférico de la ciudad de La Paz, Bolivia. <1>compaz</1> te ofrece lo siguiente:",
+      "WHAT_ITEM_1": "Te ayuda a saber la ruta óptima que necesitas tomar para llegar a tu destino.",
+      "WHAT_ITEM_2": "También te dará un estimado del tiempo necesario para esa ruta. Se debe tomar en cuenta que el estimado de tiempo no incluye el tiempo de fila (si es el caso). Los estimados asumen una ruta normal en la que los cambios de línea se realizan a paso promedio y sin filas.",
+      "WHAT_ITEM_3": "El mapa integrado te ayudará a visualizar la ruta que se tomará para saber de qué lugar de la ciudad se parte y a cual se llega.",
+      "WHAT_ITEM_4": "La aplicación puede ser instalada fácilmente en cualquier dispositivo como si se tratara de una aplicación nativa. Para saber cómo, ve a nuestra página de <1>Como Instalar</1>."
+    }
   },
   "Contact": {
     "CONTACT_TITLE": "Contacto",
