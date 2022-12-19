@@ -78,6 +78,17 @@
       "WHAT_ITEM_2": "También te dará un estimado del tiempo necesario para esa ruta. Se debe tomar en cuenta que el estimado de tiempo no incluye el tiempo de fila (si es el caso). Los estimados asumen una ruta normal en la que los cambios de línea se realizan a paso promedio y sin filas.",
       "WHAT_ITEM_3": "El mapa integrado te ayudará a visualizar la ruta que se tomará para saber de qué lugar de la ciudad se parte y a cual se llega.",
       "WHAT_ITEM_4": "La aplicación puede ser instalada fácilmente en cualquier dispositivo como si se tratara de una aplicación nativa. Para saber cómo, ve a nuestra página de <1>Como Instalar</1>."
+    },
+    "WhySection": {
+      "HEADING": "¿Por qué compaz?",
+      "SIMPLE_HEADING": "Simple",
+      "SIMPLE_PARAGRAPH": "Fácil y al alcance de la mano. Descubre tu ruta con solo un par de clicks en vez de estar calculando manualmente.",
+      "SAVE_HEADING": "Ahorra",
+      "SAVE_PARAGRAPH": "La aplicación funciona incluso estando offline. ¡No gastes tus datos móviles! La primera vez que utilices la aplicación, los archivos más importantes serán guardados en tu dispositivo y esto permitirá que la puedas volver a usar sin necesitar internet.",
+      "TOURIST_HEADING": "Tourist-friendly",
+      "TOURIST_PARAGRAPH": "¡Perfecto para turistas! Disponible también 100% en inglés.",
+      "ACCESSIBLE_HEADING": "Accesible",
+      "ACCESSIBLE_PARAGRAPH": "Desarrollada con mucho cuidado para poder garantizar el uso a usuarios que requieran de lectores de pantalla o solo usen el teclado para navegar el internet."
     }
   },
   "Contact": {

@@ -48,35 +48,25 @@ const About: React.FC<AboutProps> = (props) => {
         </div>
       </section>
       <section>
-        <h2 className={styles.columnHeading}>¿Por qué compaz?</h2>
+        <h2 className={styles.columnHeading}>
+          {t('About.WhySection.HEADING')}
+        </h2>
         <div className={styles.textBlock}>
           <section>
-            <h3>Simple</h3>
-            <p>
-              Fácil y al alcance de la mano. Descubre tu ruta con solo un par de
-              clicks en vez de estar calculando manualmente.
-            </p>
+            <h3>{t('About.WhySection.SIMPLE_HEADING')}</h3>
+            <p>{t('About.WhySection.SIMPLE_PARAGRAPH')}</p>
           </section>
           <section>
-            <h3>Ahorra</h3>
-            <p>
-              La aplicación funciona incluso estando offline. ¡No gastes tus
-              datos móviles! La primera vez que utilices la aplicación, los
-              archivos más importantes serán guardados en tu dispositivo y esto
-              permitirá que la puedas volver a usar sin necesitar internet.
-            </p>
+            <h3>{t('About.WhySection.SAVE_HEADING')}</h3>
+            <p>{t('About.WhySection.SAVE_PARAGRAPH')}</p>
           </section>
           <section>
-            <h3>Tourist-friendly</h3>
-            <p>¡Perfecto para turistas! Disponible también 100% en inglés.</p>
+            <h3>{t('About.WhySection.TOURIST_HEADING')}</h3>
+            <p>{t('About.WhySection.TOURIST_PARAGRAPH')}</p>
           </section>
           <section>
-            <h3>Accesible</h3>
-            <p>
-              Desarrollada con mucho cuidado para poder garantizar el uso a
-              usuarios que requieran de lectores de pantalla o solo usen el
-              teclado para navegar el internet.
-            </p>
+            <h3>{t('About.WhySection.ACCESSIBLE_HEADING')}</h3>
+            <p>{t('About.WhySection.ACCESSIBLE_PARAGRAPH')}</p>
           </section>
         </div>
       </section>

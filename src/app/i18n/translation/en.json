@@ -78,6 +78,17 @@
       "WHAT_ITEM_2": "It will also give you an estimate of the time needed for a route. Please note that the time estimate doesn’t include queuing time (if relevant). The estimates assume a normal route in which line changes are made at an average pace and without queuing.",
       "WHAT_ITEM_3": "The integrated map will help you visualize the route to be taken to know where in the city you are starting from and where you are arriving.",
       "WHAT_ITEM_4": "The application can be easily installed on any device and be run as if it were a native application. To find out how, go to our <1>How to Install</1> page."
+    },
+    "WhySection": {
+      "HEADING": "Why compaz?",
+      "SIMPLE_HEADING": "Simple",
+      "SIMPLE_PARAGRAPH": "Easy and at your fingertips. Discover your route with just a couple of clicks instead of calculating it manually.",
+      "SAVE_HEADING": "Save",
+      "SAVE_PARAGRAPH": "The application works even when offline - don't waste your mobile data! The first time you use the application, the most important files will be saved on your device and this will allow you to use it again without needing an internet connection.",
+      "TOURIST_HEADING": "Tourist-friendly",
+      "TOURIST_PARAGRAPH": "Perfect for tourists! Available also 100% in English.",
+      "ACCESSIBLE_HEADING": "Accessible",
+      "ACCESSIBLE_PARAGRAPH": "Developed with great care to ensure usability for users who require screen readers or only use the keyboard to browse the Internet."
     }
   },
   "Contact": {
