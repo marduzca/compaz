@@ -31,6 +31,6 @@ describe('HowToInstall', () => {
     HowToInstall.shouldShowCorrespondingInstallationGif(
       'Android / Tablet',
       'Samsung Internet'
-    );
+    ).scrollIntoView();
   });
 });
