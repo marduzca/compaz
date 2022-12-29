@@ -78,4 +78,8 @@
   .tripSelectorMap {
     display: inline;
   }
+
+  .detailsMap {
+    position: fixed;
+  }
 }
