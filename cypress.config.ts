@@ -15,4 +15,5 @@ export default defineConfig({
     },
     baseUrl: 'http://localhost:3000',
   },
+  blockHosts: ['www.google-analytics.com', 'ssl.google-analytics.com'],
 });
