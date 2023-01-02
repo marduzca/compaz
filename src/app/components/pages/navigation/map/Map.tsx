@@ -7,6 +7,7 @@ import destinationMarker from '../../../../static/svg/destination_marker.svg';
 import styles from './Map.module.css';
 import { GeoLocation, Route, Station } from '../../../domain';
 import Loader from '../../../atoms/loader/Loader';
+import OfflineMapMessage from './offlineMapMessage/OfflineMapMessage';
 
 interface StationMarkerProps {
   name: string;
@@ -147,68 +148,71 @@ interface MapProps {
   onGoogleMapLoad: (map: google.maps.Map) => void;
 }
 
+const LA_PAZ_CENTER = { lat: -16.494363149497282, lng: -68.1572941780699 };
+const DEFAULT_CONNECTOR_COLOR = '#FFFFFF';
+const MAP_STYLES = [
+  {
+    featureType: 'all',
+    elementType: 'all',
+    stylers: [
+      {
+        saturation: '32',
+      },
+      {
+        lightness: '-3',
+      },
+      {
+        visibility: 'on',
+      },
+      {
+        weight: '1.18',
+      },
+    ],
+  },
+  {
+    featureType: 'landscape.man_made',
+    elementType: 'all',
+    stylers: [
+      {
+        saturation: '-70',
+      },
+      {
+        lightness: '14',
+      },
+    ],
+  },
+  {
+    featureType: 'transit',
+    elementType: 'all',
+    stylers: [
+      {
+        visibility: 'off',
+      },
+    ],
+  },
+  {
+    featureType: 'water',
+    elementType: 'all',
+    stylers: [
+      {
+        saturation: '100',
+      },
+      {
+        lightness: '-14',
+      },
+    ],
+  },
+];
+
 const Map: React.FC<MapProps> = (props) => {
   const { t } = useTranslation();
-  const LA_PAZ_CENTER = { lat: -16.494363149497282, lng: -68.1572941780699 };
-  const DEFAULT_CONNECTOR_COLOR = '#FFFFFF';
-
-  const mapStyles = [
-    {
-      featureType: 'all',
-      elementType: 'all',
-      stylers: [
-        {
-          saturation: '32',
-        },
-        {
-          lightness: '-3',
-        },
-        {
-          visibility: 'on',
-        },
-        {
-          weight: '1.18',
-        },
-      ],
-    },
-    {
-      featureType: 'landscape.man_made',
-      elementType: 'all',
-      stylers: [
-        {
-          saturation: '-70',
-        },
-        {
-          lightness: '14',
-        },
-      ],
-    },
-    {
-      featureType: 'transit',
-      elementType: 'all',
-      stylers: [
-        {
-          visibility: 'off',
-        },
-      ],
-    },
-    {
-      featureType: 'water',
-      elementType: 'all',
-      stylers: [
-        {
-          saturation: '100',
-        },
-        {
-          lightness: '-14',
-        },
-      ],
-    },
-  ];
 
   return (
     <div className={styles.container}>
-      {props.isLoaded ? (
+      {/* eslint-disable-next-line no-nested-ternary */}
+      {!window.navigator.onLine && (!props.origin || !props.destination) ? (
+        <OfflineMapMessage />
+      ) : props.isLoaded ? (
         <GoogleMap
           center={LA_PAZ_CENTER}
           zoom={12}
@@ -217,7 +221,7 @@ const Map: React.FC<MapProps> = (props) => {
           options={{
             disableDefaultUI: true,
             minZoom: 11,
-            styles: mapStyles,
+            styles: MAP_STYLES,
           }}
           onLoad={props.onGoogleMapLoad}
         >
@@ -307,7 +311,7 @@ const Map: React.FC<MapProps> = (props) => {
             )}
         </GoogleMap>
       ) : (
-        <Loader ariaLabel={t('LOADING_MAP')} />
+        <Loader ariaLabel={t('Map.LOADING_MAP')} />
       )}
     </div>
   );
