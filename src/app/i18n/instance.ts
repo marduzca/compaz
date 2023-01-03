@@ -20,10 +20,10 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    fallbackLng: 'es',
+    fallbackLng: SPANISH,
     resources: {
-      en: { translation: en },
       es: { translation: es },
+      en: { translation: en },
     },
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
@@ -34,7 +34,8 @@ i18n
     returnNull: false,
   });
 
-const currentLanguage = i18n.language.match(/en/i) ? SPANISH : ENGLISH;
+const currentLanguage = i18n.language.match(/en/i) ? ENGLISH : SPANISH;
+i18n.changeLanguage(currentLanguage);
 document.documentElement.setAttribute('lang', currentLanguage);
 
 export default i18n;
