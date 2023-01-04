@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import i18n from 'i18next';
 import { PAGE_TITLE_PREFIX } from '../../../App';
 import styles from './About.module.css';
 import PageContentContainer from '../pageContentContainer/PageContentContainer';
@@ -16,7 +17,7 @@ const About: React.FC<AboutProps> = (props) => {
   useEffect(() => {
     document.title = `${PAGE_TITLE_PREFIX} ${t('About.ABOUT_TITLE')}`;
     // eslint-disable-next-line
-  }, []);
+  }, [i18n.language]);
 
   return (
     <PageContentContainer

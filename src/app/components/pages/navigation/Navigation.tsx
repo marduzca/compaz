@@ -6,6 +6,7 @@ import {
   useLocation,
   useNavigate,
 } from 'react-router-dom';
+import i18n from 'i18next';
 import styles from './Navigation.module.css';
 import TripSelectorContainer from './tripSelector/TripSelectorContainer';
 import RoutesOverviewContainer from './routes/routesOverview/RoutesOverviewContainer';
@@ -50,8 +51,6 @@ const Navigation: React.FC<NavigationProps> = (props) => {
     useState<Date>(new Date());
 
   useEffect(() => {
-    document.title = `${PAGE_TITLE_PREFIX} ${t('Navigation.NAVIGATION_TITLE')}`;
-
     if (
       (location.pathname.includes(NavigationLink.ROUTES_OVERVIEW) ||
         location.pathname.includes(NavigationLink.ROUTE_DETAILS)) &&
@@ -61,6 +60,11 @@ const Navigation: React.FC<NavigationProps> = (props) => {
 
     // eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    document.title = `${PAGE_TITLE_PREFIX} ${t('Navigation.NAVIGATION_TITLE')}`;
+    // eslint-disable-next-line
+  }, [i18n.language]);
 
   const handleSearchButtonClick = () => {
     setRoute(calculateRoute(stations, lines));

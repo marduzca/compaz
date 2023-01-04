@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import i18n from 'i18next';
 import { ReactComponent as BulletPoint } from '../../../static/svg/bullet.svg';
 import devices from '../../../static/img/devices.png';
 import styles from './HowToInstall.module.css';
@@ -19,7 +20,7 @@ const HowToInstall: React.FC<HowToInstallProps> = (props) => {
       'HowToInstall.HOW_TO_INSTALL_TITLE'
     )}`;
     // eslint-disable-next-line
-  }, []);
+  }, [i18n.language]);
 
   return (
     <main className={styles.container}>
