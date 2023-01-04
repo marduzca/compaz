@@ -34,8 +34,12 @@ i18n
     returnNull: false,
   });
 
+const isCurrentUserAgentABot =
+  /bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent);
+
+if (isCurrentUserAgentABot) i18n.changeLanguage(SPANISH).then();
+
 const currentLanguage = i18n.language.match(/en/i) ? ENGLISH : SPANISH;
-i18n.changeLanguage(currentLanguage);
 document.documentElement.setAttribute('lang', currentLanguage);
 
 export default i18n;
