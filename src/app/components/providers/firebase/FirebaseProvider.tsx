@@ -42,7 +42,7 @@ export const FirebaseContext = createContext<FirebaseContextInterface>({
   storeMessage: async () => true,
 });
 
-const firebaseApp = initializeApp({
+const firebaseProdConfig = {
   apiKey: 'AIzaSyCOp-cYAUCxncqLQAcWCCNzD5Wj6NOTDTc',
   authDomain: 'compaz-4.firebaseapp.com',
   projectId: 'compaz-4',
@@ -50,7 +50,21 @@ const firebaseApp = initializeApp({
   messagingSenderId: '650973362685',
   appId: '1:650973362685:web:5f5ea20f88b0788c5c8194',
   measurementId: 'G-BG76THH0ZB',
-});
+};
+
+const firebaseDevConfig = {
+  apiKey: 'AIzaSyAT1dGP4E4sQ5mDmK46DST0hBxwiE8aRhs',
+  authDomain: 'compaz-dev.firebaseapp.com',
+  projectId: 'compaz-dev',
+  storageBucket: 'compaz-dev.appspot.com',
+  messagingSenderId: '160278539724',
+  appId: '1:160278539724:web:df58d3fa75515f91e70169',
+  measurementId: 'G-N6C1W6MZS9',
+};
+
+const firebaseApp = initializeApp(
+  process.env.NODE_ENV === 'production' ? firebaseProdConfig : firebaseDevConfig
+);
 
 isSupported().then((isAnalyticsSupported) => {
   if (isAnalyticsSupported && window.location.href.match(/compaz.app/)) {

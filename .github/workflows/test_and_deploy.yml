@@ -78,8 +78,46 @@ jobs:
       - run: npm outdated || true
       - run: test $(npm outdated | wc -l) -lt "10"
 
-  build_and_deploy:
-    needs: [visual_regression_test, user_journey_test_local]
+  build_and_deploy_dev:
+    needs: [ visual_regression_test, user_journey_test_local ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: create env file
+        run: |
+          touch .env
+          echo REACT_APP_MAPS_API_KEY =${{ secrets.DEV_MAPS_API_KEY }} >> .env
+      - name: Frontend build
+        run: npm ci && npm run build
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy
+        env:
+          FIREBASE_TOKEN: ${{ secrets.DEV_FIREBASE_TOKEN }}
+
+  user_journey_test_dev:
+    needs: build_and_deploy_dev
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 14.x ]
+    steps:
+      - uses: actions/checkout@master
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci && CYPRESS_BASE_URL=https://compaz-dev.web.app npm run cypress:ci
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: user_journey_test_prod_screenshot
+          path: cypress/screenshots/**
+
+  build_and_deploy_prod:
+    needs: [user_journey_test_dev]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -87,7 +125,6 @@ jobs:
         run: |
           touch .env
           echo REACT_APP_MAPS_API_KEY =${{ secrets.MAPS_API_KEY }} >> .env
-          echo REACT_APP_VERSION=$npm_package_version >> .env
       - name: Frontend build
         run: npm ci && npm run build
       - name: Deploy to Firebase
@@ -98,7 +135,7 @@ jobs:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
 
   user_journey_test_prod:
-    needs: build_and_deploy
+    needs: build_and_deploy_prod
     runs-on: ubuntu-latest
     strategy:
       matrix:

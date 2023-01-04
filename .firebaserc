@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "compaz-4"
-  }
+    "default": "compaz-4",
+    "development": "compaz-dev"
+  },
+  "targets": {}
 }
