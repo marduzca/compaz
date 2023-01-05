@@ -22,14 +22,14 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Cache node modules
-        id: cache-npm
+      - name: Cache Node Modules
+        id: node-cache
         uses: actions/cache@v3
         env:
           cache-name: cache-node-modules
         with:
-          path: ~/.npm
-          key: node-modules-${{ hashFiles('**/package-lock.json') }}
+          path: node_modules
+          key: node-modules-${{ hashFiles('package-lock.json') }}
 
       - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
         name: List the state of node modules
@@ -37,6 +37,7 @@ jobs:
         run: npm list
 
       - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
         run: npm install
 
       - name: Build
@@ -57,12 +58,6 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-
-    - uses: actions/cache@v3
-      id: cache-npm
-      with:
-        path: ~/.npm
-        key: node-modules-${{ hashFiles('**/package-lock.json') }}
 
     - name: Install Dependencies
       if: steps.cache.outputs.cache-hit != 'true'
@@ -88,11 +83,14 @@ jobs:
           touch .env
           echo REACT_APP_MAPS_API_KEY =${{ secrets.DEV_MAPS_API_KEY }} >> .env
 
-      - uses: actions/cache@v3
-        id: cache-npm
+      - name: Cache Node Modules
+        id: node-cache
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
         with:
-          path: ~/.npm
-          key: node-modules-${{ hashFiles('**/package-lock.json') }}
+          path: node_modules
+          key: node-modules-${{ hashFiles('package-lock.json') }}
 
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
