@@ -97,10 +97,6 @@ jobs:
           path: node_modules
           key: node-modules-${{ hashFiles('package-lock.json') }}
 
-      - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: npm install
-
       - name: Install Cypress
         run: ./node_modules/cypress/bin/cypress install
 
@@ -127,6 +123,15 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      - name: Cache Node Modules
+        id: node-cache
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: node_modules
+          key: node-modules-${{ hashFiles('package-lock.json') }}
+
       - name: Show outdated deps
         run: npm outdated || true
       - name: Check outdated deps limit
@@ -141,8 +146,19 @@ jobs:
         run: |
           touch .env
           echo REACT_APP_MAPS_API_KEY =${{ secrets.DEV_MAPS_API_KEY }} >> .env
-      - name: Frontend build
-        run: npm ci && npm run build
+
+      - name: Cache Node Modules
+        id: node-cache
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: node_modules
+          key: node-modules-${{ hashFiles('package-lock.json') }}
+
+      - name: Build
+        run: npm run build --if-present
+
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
@@ -162,12 +178,27 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm ci && CYPRESS_BASE_URL=https://compaz-dev.web.app npm run cypress:ci
+
+      - name: Cache Node Modules
+        id: node-cache
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: node_modules
+          key: node-modules-${{ hashFiles('package-lock.json') }}
+
+      - name: Install Cypress
+        run: ./node_modules/cypress/bin/cypress install
+
+      - name: Run User Journey tests
+        run: CYPRESS_BASE_URL=https://compaz-dev.web.app npm run cypress:ci
+
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         if: failure()
         with:
-          name: user_journey_test_prod_screenshot
+          name: user_journey_test_dev_screenshot
           path: cypress/screenshots/**
 
   build_and_deploy_prod:
@@ -179,8 +210,19 @@ jobs:
         run: |
           touch .env
           echo REACT_APP_MAPS_API_KEY =${{ secrets.MAPS_API_KEY }} >> .env
-      - name: Frontend build
-        run: npm ci && npm run build
+
+      - name: Cache Node Modules
+        id: node-cache
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: node_modules
+          key: node-modules-${{ hashFiles('package-lock.json') }}
+
+      - name: Build
+        run: npm run build --if-present
+
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
@@ -200,7 +242,22 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm ci && CYPRESS_BASE_URL=https://compaz.app npm run cypress:ci
+
+      - name: Cache Node Modules
+        id: node-cache
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: node_modules
+          key: node-modules-${{ hashFiles('package-lock.json') }}
+
+      - name: Install Cypress
+        run: ./node_modules/cypress/bin/cypress install
+
+      - name: Run User Journey tests
+        run: CYPRESS_BASE_URL=https://compaz.app npm run cypress:ci
+
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         if: failure()
