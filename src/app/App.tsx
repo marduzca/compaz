@@ -23,7 +23,7 @@ const LandscapeErrorMessage = () => {
 
   return (
     <div className={styles.landscapeMessage}>
-      <p>{t('LANDSCAPE_ERROR_error')}</p>
+      <p>{t('LANDSCAPE_ERROR')}</p>
       <img alt="Sad dog" src={SadDogImage} loading="lazy" />
     </div>
   );
