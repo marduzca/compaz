@@ -31,14 +31,14 @@ jobs:
           path: node_modules
           key: node-modules-${{ hashFiles('package-lock.json') }}
 
-      - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
-        name: List the state of node modules
+      - name: List the state of node modules
+        if: steps.cache.outputs.cache-hit != 'true'
         continue-on-error: true
         run: npm list
 
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: npm install
+        run: CYPRESS_INSTALL_BINARY=0 npm install
 
       - name: Build
         run: npm run build --if-present
@@ -59,9 +59,14 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: Install Dependencies
-      if: steps.cache.outputs.cache-hit != 'true'
-      run: npm install
+    - name: Cache Node Modules
+      id: node-cache
+      uses: actions/cache@v3
+      env:
+        cache-name: cache-node-modules
+      with:
+        path: node_modules
+        key: node-modules-${{ hashFiles('package-lock.json') }}
 
     - name: Run visual regression tests
       run: npm run loki:ci
@@ -92,11 +97,14 @@ jobs:
           path: node_modules
           key: node-modules-${{ hashFiles('package-lock.json') }}
 
-      - name: Install Dependencies
+      - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm install
 
-      - name: Run functional tests
+      - name: Install Cypress
+        run: ./node_modules/cypress/bin/cypress install
+
+      - name: Run User Journey tests
         run: npm run ci:cypress-run
 
       - name: Upload artifact
@@ -118,9 +126,11 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm ci
-      - run: npm outdated || true
-      - run: test $(npm outdated | wc -l) -lt "10"
+
+      - name: Show outdated deps
+        run: npm outdated || true
+      - name: Check outdated deps limit
+        run: test $(npm outdated | wc -l) -lt "10"
 
   build_and_deploy_dev:
     needs: [ visual_regression_test, user_journey_test_local ]
