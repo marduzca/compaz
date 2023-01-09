@@ -20,7 +20,7 @@ export const stationConverter: FirestoreDataConverter<Station> = {
       lines: data.lines,
       geoLocation: data.geoLocation,
       connectedStations: data.connectedStations,
-    };
+    } as Station;
   },
 };
 
@@ -37,7 +37,7 @@ export const lineConverter: FirestoreDataConverter<Line> = {
       id: snapshot.id,
       stationsPath: data.stationsPath,
       connectedLines: data.connectedLines,
-    };
+    } as Line;
   },
 };
 
@@ -52,6 +52,6 @@ export const versionConverter: FirestoreDataConverter<Version> = {
     const data = snapshot.data(options);
     return {
       version: data.version,
-    };
+    } as Version;
   },
 };
