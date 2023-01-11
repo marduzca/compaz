@@ -1,9 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './StationsSelector.module.css';
-import Combobox, { Option } from '../../../../atoms/combobox/Combobox';
-import { ReactComponent as Switcher } from '../../../../../static/svg/switcher.svg';
-import { Station } from '../../../../domain';
+import Combobox, { Option } from '../../../../../atoms/combobox/Combobox';
+import { ReactComponent as Switcher } from '../../../../../../static/svg/switcher.svg';
+import { Station } from '../../../../../domain';
 
 const ORIGIN = 'Navigation.TripSelector.ORIGIN_PLACEHOLDER';
 const DESTINATION = 'Navigation.TripSelector.DESTINATION_PLACEHOLDER';

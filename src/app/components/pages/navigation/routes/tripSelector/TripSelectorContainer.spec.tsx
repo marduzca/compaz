@@ -2,9 +2,9 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import TripSelectorContainer from './TripSelectorContainer';
-import * as FirebaseProvider from '../../../providers/firebase/FirebaseProvider';
-import * as NavigationProvider from '../../../providers/navigation/NavigationProvider';
-import { Station } from '../../../domain';
+import * as FirebaseProvider from '../../../../providers/firebase/FirebaseProvider';
+import * as NavigationProvider from '../../../../providers/navigation/NavigationProvider';
+import { Station } from '../../../../domain';
 
 describe('TripSelectorContainer', () => {
   const useFirebaseMock = jest.spyOn(FirebaseProvider, 'useFirebase');

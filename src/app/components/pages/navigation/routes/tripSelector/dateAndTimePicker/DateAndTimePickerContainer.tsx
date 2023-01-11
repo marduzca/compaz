@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import DateAndTimePicker from './DateAndTimePicker';
-import { useNavigation } from '../../../../providers/navigation/NavigationProvider';
+import { useNavigation } from '../../../../../providers/navigation/NavigationProvider';
 import {
   isWeekday,
   parseToSimpleDate,
   parseToSimpleTime,
-} from '../../dateFormatter';
+} from '../../../dateFormatter';
 
 const DateAndTimePickerContainer: React.FC = () => {
   const weekdayBeginOfFunctionalHours = 6;

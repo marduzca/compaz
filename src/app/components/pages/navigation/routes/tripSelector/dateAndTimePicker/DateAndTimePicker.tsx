@@ -1,14 +1,14 @@
 import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './DateAndTimePicker.module.css';
-import { ReactComponent as CalendarIcon } from '../../../../../static/svg/date_picker.svg';
-import { ReactComponent as TimeIcon } from '../../../../../static/svg/time_picker.svg';
+import { ReactComponent as CalendarIcon } from '../../../../../../static/svg/date_picker.svg';
+import { ReactComponent as TimeIcon } from '../../../../../../static/svg/time_picker.svg';
 import {
   parseToEnglishDateString,
   parseToSimpleTime,
   parseToSpanishDateString,
-} from '../../dateFormatter';
-import i18n from '../../../../../i18n/instance';
+} from '../../../dateFormatter';
+import i18n from '../../../../../../i18n/instance';
 
 interface DateAndTimePickerProps {
   departureDate: string;

@@ -2,8 +2,8 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import DateAndTimePickerContainer from './DateAndTimePickerContainer';
-import * as NavigationProvider from '../../../../providers/navigation/NavigationProvider';
-import { parseToSimpleDate, parseToSimpleTime } from '../../dateFormatter';
+import * as NavigationProvider from '../../../../../providers/navigation/NavigationProvider';
+import { parseToSimpleDate, parseToSimpleTime } from '../../../dateFormatter';
 
 describe('DateAndTimePickerContainer', () => {
   const useNavigationMock = jest.spyOn(NavigationProvider, 'useNavigation');

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import StationsSelector from './StationsSelector';
-import { useNavigation } from '../../../../providers/navigation/NavigationProvider';
-import { useFirebase } from '../../../../providers/firebase/FirebaseProvider';
+import { useNavigation } from '../../../../../providers/navigation/NavigationProvider';
+import { useFirebase } from '../../../../../providers/firebase/FirebaseProvider';
 
 interface StationsSelectorContainerProps {
   showOriginMissingError: boolean;

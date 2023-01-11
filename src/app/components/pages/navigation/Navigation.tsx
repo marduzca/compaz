@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 import i18n from 'i18next';
 import styles from './Navigation.module.css';
-import TripSelectorContainer from './tripSelector/TripSelectorContainer';
+import TripSelectorContainer from './routes/tripSelector/TripSelectorContainer';
 import RoutesOverviewContainer from './routes/routesOverview/RoutesOverviewContainer';
 import { useNavigation } from '../../providers/navigation/NavigationProvider';
 import { useFirebase } from '../../providers/firebase/FirebaseProvider';

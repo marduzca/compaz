@@ -1,10 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './TripSelector.module.css';
-import { ReactComponent as SearchIcon } from '../../../../static/svg/chevron_right.svg';
+import { ReactComponent as SearchIcon } from '../../../../../static/svg/chevron_right.svg';
 import StationsSelectorContainer from './stationsSelector/StationsSelectorContainer';
 import DateAndTimePickerContainer from './dateAndTimePicker/DateAndTimePickerContainer';
-import MobileHeader from '../../../molecules/mobileHeader/MobileHeader';
+import MobileHeader from '../../../../molecules/mobileHeader/MobileHeader';
 
 interface TripSelectorProps {
   showOriginMissingError: boolean;
