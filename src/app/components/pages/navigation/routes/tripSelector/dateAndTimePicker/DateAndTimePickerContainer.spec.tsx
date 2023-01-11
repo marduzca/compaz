@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event';
 import DateAndTimePickerContainer from './DateAndTimePickerContainer';
 import * as NavigationProvider from '../../../../../providers/navigation/NavigationProvider';
 import { parseToSimpleDate, parseToSimpleTime } from '../../../dateFormatter';
+import { Route } from '../../../../../domain';
 
 describe('DateAndTimePickerContainer', () => {
   const useNavigationMock = jest.spyOn(NavigationProvider, 'useNavigation');
@@ -21,7 +22,8 @@ describe('DateAndTimePickerContainer', () => {
       setOriginStation: jest.fn(),
       setDestinationStation: jest.fn(),
       generateStationsMap: jest.fn(),
-      calculateRoute: () => ({ subRoutes: [], totalTime: 0 }),
+      calculateRoute: () =>
+        ({ subRoutes: [], totalTime: 0, price: 0 } as Route),
     });
   });
 

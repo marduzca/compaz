@@ -64,6 +64,7 @@ describe('RouteDetailsViewContainer', () => {
       },
     ] as SubRoute[],
     totalTime: 11,
+    price: 5,
   } as Route;
 
   it('shows and hides intermediate stations list when clicking on intermediate stations button', async () => {

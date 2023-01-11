@@ -266,6 +266,7 @@ describe('NavigationProvider', () => {
     expect(route).toEqual({
       subRoutes: routeWithOneTransfer as SubRoute[],
       totalTime: 8,
+      price: 5,
     } as Route);
   });
 
@@ -294,6 +295,7 @@ describe('NavigationProvider', () => {
     expect(route).toEqual({
       subRoutes: routeWithMultipleTransfers as SubRoute[],
       totalTime: 13,
+      price: 7,
     } as Route);
   });
 

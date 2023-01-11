@@ -83,6 +83,7 @@ describe('RoutesOverviewContainer', () => {
       },
     ] as SubRoute[],
     totalTime: 9,
+    price: 5,
   } as Route;
 
   const useFirebaseMock = jest.spyOn(FirebaseProvider, 'useFirebase');
@@ -121,7 +122,8 @@ describe('RoutesOverviewContainer', () => {
       setOriginStation: jest.fn(),
       setDestinationStation: jest.fn(),
       generateStationsMap: jest.fn(),
-      calculateRoute: () => ({ subRoutes: [], totalTime: 0 }),
+      calculateRoute: () =>
+        ({ subRoutes: [], totalTime: 0, price: 0 } as Route),
     });
   });
 
@@ -295,6 +297,7 @@ describe('RoutesOverviewContainer', () => {
           },
         ] as SubRoute[],
         totalTime: 75,
+        price: 5,
       } as Route;
 
       render(
@@ -373,6 +376,7 @@ describe('RoutesOverviewContainer', () => {
           },
         ] as SubRoute[],
         totalTime: 60,
+        price: 5,
       } as Route;
 
       useNavigationMock.mockReturnValue({

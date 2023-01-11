@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import TripSelectorContainer from './TripSelectorContainer';
 import * as FirebaseProvider from '../../../../providers/firebase/FirebaseProvider';
 import * as NavigationProvider from '../../../../providers/navigation/NavigationProvider';
-import { Station } from '../../../../domain';
+import { Route, Station } from '../../../../domain';
 
 describe('TripSelectorContainer', () => {
   const useFirebaseMock = jest.spyOn(FirebaseProvider, 'useFirebase');
@@ -59,7 +59,8 @@ describe('TripSelectorContainer', () => {
       setOriginStation: jest.fn(),
       setDestinationStation: jest.fn(),
       generateStationsMap: jest.fn(),
-      calculateRoute: () => ({ subRoutes: [], totalTime: 0 }),
+      calculateRoute: () =>
+        ({ subRoutes: [], totalTime: 0, price: 0 } as Route),
     });
   });
 
@@ -106,7 +107,8 @@ describe('TripSelectorContainer', () => {
         setOriginStation: jest.fn(),
         setDestinationStation: jest.fn(),
         generateStationsMap: jest.fn(),
-        calculateRoute: () => ({ subRoutes: [], totalTime: 0 }),
+        calculateRoute: () =>
+          ({ subRoutes: [], totalTime: 0, price: 0 } as Route),
       });
 
       const onSearchButtonClickMock = jest.fn();
@@ -138,7 +140,8 @@ describe('TripSelectorContainer', () => {
         setOriginStation: jest.fn(),
         setDestinationStation: jest.fn(),
         generateStationsMap: jest.fn(),
-        calculateRoute: () => ({ subRoutes: [], totalTime: 0 }),
+        calculateRoute: () =>
+          ({ subRoutes: [], totalTime: 0, price: 0 } as Route),
       });
 
       const onSearchButtonClickMock = jest.fn();
@@ -175,7 +178,8 @@ describe('TripSelectorContainer', () => {
         setOriginStation: jest.fn(),
         setDestinationStation: jest.fn(),
         generateStationsMap: jest.fn(),
-        calculateRoute: () => ({ subRoutes: [], totalTime: 0 }),
+        calculateRoute: () =>
+          ({ subRoutes: [], totalTime: 0, price: 0 } as Route),
       });
 
       const onSearchButtonClickMock = jest.fn();
@@ -212,7 +216,8 @@ describe('TripSelectorContainer', () => {
         setOriginStation: jest.fn(),
         setDestinationStation: jest.fn(),
         generateStationsMap: jest.fn(),
-        calculateRoute: () => ({ subRoutes: [], totalTime: 0 }),
+        calculateRoute: () =>
+          ({ subRoutes: [], totalTime: 0, price: 0 } as Route),
       });
 
       const onSearchButtonClickMock = jest.fn();

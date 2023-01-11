@@ -61,6 +61,7 @@ export const NormalAndMobileState = () => (
           },
         ] as SubRoute[],
         totalTime: 6,
+        price: 5,
       } as Route
     }
     originName="Station a"
@@ -200,6 +201,7 @@ export const TooLongConnectionInNormalAndMobileState = () => (
           },
         ] as SubRoute[],
         totalTime: 10,
+        price: 11,
       } as Route
     }
     originName="Station a"
@@ -270,6 +272,7 @@ export const TimeAboveOneHourInNormalAndMobileState = () => (
           },
         ] as SubRoute[],
         totalTime: 80,
+        price: 5,
       } as Route
     }
     originName="Station a"

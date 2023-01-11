@@ -39,7 +39,7 @@ export const NavigationContext = createContext<NavigationContextInterface>({
   setOriginStation: () => {},
   setDestinationStation: () => {},
   generateStationsMap: () => {},
-  calculateRoute: () => ({ subRoutes: [], totalTime: 0 }),
+  calculateRoute: () => ({ subRoutes: [], totalTime: 0, price: 0 } as Route),
 });
 
 const identifyTransferPositions = (stationsPath: Station[]): number[] => {
@@ -299,9 +299,12 @@ export const NavigationProvider: React.FC<NavigationProviderProps> = (
       }
     });
 
+    const routePrice = 3 + 2 * (subRoutes.length - 1);
+
     return {
       subRoutes: subRoutesWithTimeLineAndTransferInfo,
       totalTime: totalTimeOfFullRoute,
+      price: routePrice,
     } as Route;
   };
 

@@ -105,12 +105,12 @@ const RoutesOverview: React.FC<RoutesOverviewProps> = (props) => {
             <MoneyIcon aria-label={t('Navigation.RoutesOverview.PRICE')} />
             <div>
               <p>
-                {`${t('Navigation.RoutesOverview.NORMAL_RATE')}:`}
-                <span> 7 Bs.</span>
+                {t('Navigation.RoutesOverview.NORMAL_RATE')}:
+                <span>{` ${props.route.price}  Bs.`}</span>
               </p>
               <p>
-                {`${t('Navigation.RoutesOverview.PREFERENTIAL_RATE')}:`}
-                <span> 3.5 Bs.</span>
+                {t('Navigation.RoutesOverview.PREFERENTIAL_RATE')}:
+                <span> {`${props.route.price / 2}  Bs.`}</span>
               </p>
             </div>
           </div>

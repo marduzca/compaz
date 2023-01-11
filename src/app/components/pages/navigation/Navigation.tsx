@@ -46,7 +46,11 @@ const Navigation: React.FC<NavigationProps> = (props) => {
   const [currentAppViewState, setCurrentAppViewState] = useState<AppViewState>(
     AppViewState.TRIP_SELECTOR
   );
-  const [route, setRoute] = useState<Route>({ subRoutes: [], totalTime: 0 });
+  const [route, setRoute] = useState<Route>({
+    subRoutes: [],
+    totalTime: 0,
+    price: 0,
+  });
   const [selectedRouteDepartureTime, setSelectedRouteDepartureTime] =
     useState<Date>(new Date());
 

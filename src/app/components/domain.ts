@@ -36,6 +36,7 @@ export interface ConnectedLine {
 export interface Route {
   subRoutes: SubRoute[];
   totalTime: number;
+  price: number;
 }
 
 export interface SubRoute {

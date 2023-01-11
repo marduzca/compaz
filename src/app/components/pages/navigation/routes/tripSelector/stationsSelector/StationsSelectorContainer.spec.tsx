@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import StationsSelectorContainer from './StationsSelectorContainer';
-import { Station } from '../../../../../domain';
+import { Route, Station } from '../../../../../domain';
 import * as NavigationProvider from '../../../../../providers/navigation/NavigationProvider';
 import * as FirebaseProvider from '../../../../../providers/firebase/FirebaseProvider';
 
@@ -44,7 +44,8 @@ describe('StationsSelectorContainer', () => {
       setOriginStation: jest.fn(),
       setDestinationStation: jest.fn(),
       generateStationsMap: jest.fn(),
-      calculateRoute: () => ({ subRoutes: [], totalTime: 0 }),
+      calculateRoute: () =>
+        ({ subRoutes: [], totalTime: 0, price: 0 } as Route),
     });
   });
 
@@ -159,7 +160,8 @@ describe('StationsSelectorContainer', () => {
       setOriginStation: jest.fn(),
       setDestinationStation: jest.fn(),
       generateStationsMap: jest.fn(),
-      calculateRoute: () => ({ subRoutes: [], totalTime: 0 }),
+      calculateRoute: () =>
+        ({ subRoutes: [], totalTime: 0, price: 0 } as Route),
     });
 
     render(
@@ -196,7 +198,8 @@ describe('StationsSelectorContainer', () => {
       setOriginStation: jest.fn(),
       setDestinationStation: jest.fn(),
       generateStationsMap: jest.fn(),
-      calculateRoute: () => ({ subRoutes: [], totalTime: 0 }),
+      calculateRoute: () =>
+        ({ subRoutes: [], totalTime: 0, price: 0 } as Route),
     });
 
     render(

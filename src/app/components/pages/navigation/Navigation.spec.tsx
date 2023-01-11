@@ -85,6 +85,7 @@ describe('Navigation', () => {
       },
     ] as SubRoute[],
     totalTime: 11,
+    price: 5,
   } as Route;
 
   beforeAll(() => {
@@ -198,7 +199,8 @@ describe('Navigation', () => {
       setOriginStation: jest.fn(),
       setDestinationStation: jest.fn(),
       generateStationsMap: jest.fn(),
-      calculateRoute: () => ({ subRoutes: [], totalTime: 0 } as Route), // Route is not set
+      calculateRoute: () =>
+        ({ subRoutes: [], totalTime: 0, price: 0 } as Route), // Route is not set
     });
 
     renderNavigationWithRouter(
