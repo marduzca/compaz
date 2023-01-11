@@ -15,10 +15,6 @@ import {
 import i18n from '../../../../../i18n/instance';
 import IconsRoute from '../shared/IconsRoute';
 import TotalRouteTime from '../shared/TotalRouteTime';
-import {
-  isFeatureFlagSet,
-  ROUTE_PRICE_FLAG,
-} from '../../../../../featureFlag/FeatureFlag';
 
 interface SingleRouteProps {
   route: Route;
@@ -100,21 +96,19 @@ const RoutesOverview: React.FC<RoutesOverviewProps> = (props) => {
             ? parseToEnglishDateString(props.dateAndTime, false)
             : parseToSpanishDateString(props.dateAndTime, false)}
         </span>
-        {isFeatureFlagSet(ROUTE_PRICE_FLAG) && (
-          <div className={styles.price}>
-            <MoneyIcon aria-label={t('Navigation.RoutesOverview.PRICE')} />
-            <div>
-              <p>
-                {t('Navigation.RoutesOverview.NORMAL_RATE')}:
-                <span>{` ${props.route.price}  Bs.`}</span>
-              </p>
-              <p>
-                {t('Navigation.RoutesOverview.PREFERENTIAL_RATE')}:
-                <span> {`${props.route.price / 2}  Bs.`}</span>
-              </p>
-            </div>
+        <div className={styles.price}>
+          <MoneyIcon aria-label={t('Navigation.RoutesOverview.PRICE')} />
+          <div>
+            <p>
+              {t('Navigation.RoutesOverview.NORMAL_RATE')}:
+              <span>{` ${props.route.price}  Bs.`}</span>
+            </p>
+            <p>
+              {t('Navigation.RoutesOverview.PREFERENTIAL_RATE')}:
+              <span> {`${props.route.price / 2}  Bs.`}</span>
+            </p>
           </div>
-        )}
+        </div>
       </header>
       <div className={styles.routesOverview}>
         <button
