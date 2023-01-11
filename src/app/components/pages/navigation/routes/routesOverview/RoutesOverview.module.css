@@ -65,6 +65,23 @@
   font-weight: 700;
 }
 
+.price {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  column-gap: 1.5rem;
+
+  font-size: 1rem;
+}
+
+.price > svg {
+  max-height: 2.5rem;
+}
+
+.price p > span {
+  font-weight: bold;
+}
+
 .routesOverview {
   display: flex;
   flex-direction: column;

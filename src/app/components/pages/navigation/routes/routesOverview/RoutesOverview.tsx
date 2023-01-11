@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ReactComponent as ArrowUpIcon } from '../../../../../static/svg/chevron_up.svg';
 import { ReactComponent as ArrowDownIcon } from '../../../../../static/svg/chevron_down.svg';
 import { ReactComponent as BackIcon } from '../../../../../static/svg/arrow_back.svg';
+import { ReactComponent as MoneyIcon } from '../../../../../static/svg/money.svg';
 import styles from './RoutesOverview.module.css';
 import { Route } from '../../../../domain';
 import {
@@ -14,6 +15,10 @@ import {
 import i18n from '../../../../../i18n/instance';
 import IconsRoute from '../shared/IconsRoute';
 import TotalRouteTime from '../shared/TotalRouteTime';
+import {
+  isFeatureFlagSet,
+  ROUTE_PRICE_FLAG,
+} from '../../../../../featureFlag/FeatureFlag';
 
 interface SingleRouteProps {
   route: Route;
@@ -95,6 +100,21 @@ const RoutesOverview: React.FC<RoutesOverviewProps> = (props) => {
             ? parseToEnglishDateString(props.dateAndTime, false)
             : parseToSpanishDateString(props.dateAndTime, false)}
         </span>
+        {isFeatureFlagSet(ROUTE_PRICE_FLAG) && (
+          <div className={styles.price}>
+            <MoneyIcon aria-label={t('Navigation.RoutesOverview.PRICE')} />
+            <div>
+              <p>
+                {`${t('Navigation.RoutesOverview.NORMAL_RATE')}:`}
+                <span> 7 Bs.</span>
+              </p>
+              <p>
+                {`${t('Navigation.RoutesOverview.PREFERENTIAL_RATE')}:`}
+                <span> 3.5 Bs.</span>
+              </p>
+            </div>
+          </div>
+        )}
       </header>
       <div className={styles.routesOverview}>
         <button

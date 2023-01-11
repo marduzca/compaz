@@ -38,7 +38,10 @@
       "EARLIER_BUTTON": "Earlier",
       "LATER_BUTTON": "Later",
       "SINGLE_ROUTE_BUTTON_TITLE": "Route with times",
-      "TRANSFER": "Transfer"
+      "TRANSFER": "Transfer",
+      "PRICE": "Price",
+      "NORMAL_RATE": "Normal",
+      "PREFERENTIAL_RATE": "Preferential"
     },
     "RouteDetails": {
       "DIRECTION": "Direction: {{direction}}",
