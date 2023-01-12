@@ -198,6 +198,9 @@ export const addTransferTimeBetweenLines = (
   return subRoutesWithTimeLineAndTransferInfo;
 };
 
+const INITIAL_PRICE = 3;
+const TRANSFER_PRICE = 2;
+
 interface NavigationProviderProps {
   children: React.ReactNode;
 }
@@ -299,7 +302,7 @@ export const NavigationProvider: React.FC<NavigationProviderProps> = (
       }
     });
 
-    const routePrice = 3 + 2 * (subRoutes.length - 1);
+    const routePrice = INITIAL_PRICE + TRANSFER_PRICE * (subRoutes.length - 1);
 
     return {
       subRoutes: subRoutesWithTimeLineAndTransferInfo,
