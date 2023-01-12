@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ReactComponent as ArrowUpIcon } from '../../../../../static/svg/chevron_up.svg';
 import { ReactComponent as ArrowDownIcon } from '../../../../../static/svg/chevron_down.svg';
 import { ReactComponent as BackIcon } from '../../../../../static/svg/arrow_back.svg';
-import { ReactComponent as MoneyIcon } from '../../../../../static/svg/money.svg';
+import { ReactComponent as CoinIcon } from '../../../../../static/svg/boliviano.svg';
 import styles from './RoutesOverview.module.css';
 import { Route } from '../../../../domain';
 import {
@@ -97,7 +97,7 @@ const RoutesOverview: React.FC<RoutesOverviewProps> = (props) => {
             : parseToSpanishDateString(props.dateAndTime, false)}
         </span>
         <div className={styles.price}>
-          <MoneyIcon aria-label={t('Navigation.RoutesOverview.PRICE')} />
+          <CoinIcon aria-label={t('Navigation.RoutesOverview.PRICE')} />
           <div>
             <p>
               {t('Navigation.RoutesOverview.NORMAL_RATE')}:
