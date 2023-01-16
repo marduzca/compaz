@@ -17,12 +17,17 @@ import styles from './Menu.module.css';
 import i18n from '../../../i18n/instance';
 import useTimeOfTheDay from '../../hooks/useTimeOfTheDay/useTimeOfTheDay';
 import MenuLink from './menuLink/MenuLink';
+import {
+  isFeatureFlagSet,
+  MAP_PAGE_FLAG,
+} from '../../../featureFlag/FeatureFlag';
 
 export enum NavigationLink {
   BASE = '/',
   NAVIGATION = '/navigation',
   CONTACT = '/contact',
   ABOUT = '/about',
+  MAP = '/map',
   HOW_TO_INSTALL = '/how-to-install',
   ROUTES_OVERVIEW = `/overview`,
   ROUTE_DETAILS = '/details',
@@ -72,6 +77,13 @@ const Menu: React.FC<MenuProps> = (props) => {
 
   const [currentPage, setCurrentPage] = useState<string>(location.pathname);
 
+  if (menuItems.length === 4 && isFeatureFlagSet(MAP_PAGE_FLAG)) {
+    menuItems.splice(1, 0, {
+      name: 'Menu.MAP',
+      icon: <InstallIcon />,
+      navigationLink: NavigationLink.MAP,
+    });
+  }
   const handleClickOutsideOfMobileMenu = (e: MouseEvent) => {
     if (
       mobileMenuRef.current &&

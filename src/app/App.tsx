@@ -15,6 +15,7 @@ import useMediaQuery from './components/hooks/useMediaQuery';
 import { NavigationLink } from './components/organisms/menu/Menu';
 import About from './components/pages/about/About';
 import ErrorPage from './components/pages/error/ErrorPage';
+import MapPageContainer from './components/pages/map/MapPageContainer';
 
 export const PAGE_TITLE_PREFIX = 'compaz |';
 
@@ -103,6 +104,7 @@ const App = () => {
                 </NavigationProvider>
               }
             />
+            <Route path={NavigationLink.MAP} element={<MapPageContainer />} />
             <Route
               path={NavigationLink.HOW_TO_INSTALL}
               element={
