@@ -104,7 +104,16 @@ const App = () => {
                 </NavigationProvider>
               }
             />
-            <Route path={NavigationLink.MAP} element={<MapPageContainer />} />
+            <Route
+              path={NavigationLink.MAP}
+              element={
+                <MapPageContainer
+                  onMenuButtonClick={() => {
+                    setShowMobileMenu(true);
+                  }}
+                />
+              }
+            />
             <Route
               path={NavigationLink.HOW_TO_INSTALL}
               element={

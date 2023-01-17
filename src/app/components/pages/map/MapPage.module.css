@@ -1,0 +1,7 @@
+.container > header {
+  padding: 1rem;
+}
+
+.container > header > button {
+  left: 1.25rem;
+}
