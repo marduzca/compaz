@@ -5,4 +5,5 @@
 
   background-color: white;
   border-radius: var(--content-border-radius);
+  border: 1px black solid;
 }

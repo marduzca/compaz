@@ -152,7 +152,7 @@ const Map: React.FC<MapProps> = (props) => {
               <StationMarker
                 name={station.name}
                 geoLocation={station.geoLocation}
-                isIntermediateStation={false}
+                isLinesMap
               />
             </div>
           ))
@@ -164,10 +164,11 @@ const Map: React.FC<MapProps> = (props) => {
             }
 
             return (
-              <div key={`line_${line.color}`}>
+              <div
+                key={`line_${line.stationsPath[index - 1].id}_to_${station.id}`}
+              >
                 <StationsConnector
                   positionInRoute={index}
-                  isIntermediatePath={false}
                   fromGeoLocation={line.stationsPath[index - 1].geoLocation}
                   toGeoLocation={station.geoLocation}
                   lineColor={window
@@ -204,7 +205,6 @@ const Map: React.FC<MapProps> = (props) => {
             <StationMarker
               name={props.origin.name}
               geoLocation={props.origin.geoLocation}
-              isIntermediateStation={false}
               isOrigin
             />
           )}
@@ -212,14 +212,12 @@ const Map: React.FC<MapProps> = (props) => {
             <StationMarker
               name={props.destination.name}
               geoLocation={props.destination.geoLocation}
-              isIntermediateStation={false}
               isDestination
             />
           )}
           {props.origin && props.destination && !props.route && (
             <StationsConnector
               positionInRoute={0}
-              isIntermediatePath={false}
               fromGeoLocation={props.origin.geoLocation}
               toGeoLocation={props.destination.geoLocation}
               lineColor={DEFAULT_CONNECTOR_COLOR}
