@@ -72,21 +72,26 @@ const MapContainer: React.FC<MapContainerProps> = (props) => {
 
         googleMap.fitBounds(bounds);
 
-        if (props.route) {
-          if (!isMobile) {
-            googleMap.panBy(window.innerWidth * -0.1, 0);
-          } else {
-            googleMap.panBy(0, window.innerHeight * 0.2);
+        google.maps.event.addListenerOnce(googleMap, 'idle', () => {
+          if (props.route) {
+            if (window.innerHeight > window.innerWidth) {
+              googleMap.panBy(
+                window.innerWidth * -0.1,
+                window.innerHeight * -0.03
+              );
+            } else {
+              googleMap.panBy(0, window.innerHeight * 0.2);
+            }
           }
-        }
 
-        if (props.lines?.length) {
-          if (window.innerHeight > window.innerWidth || isMobile) {
-            googleMap.setZoom(13);
-          } else {
-            googleMap.panBy(0, window.innerHeight * -0.03);
+          if (props.lines?.length) {
+            if (window.innerHeight > window.innerWidth) {
+              googleMap.setZoom(13);
+            } else {
+              googleMap.panBy(0, window.innerHeight * -0.03);
+            }
           }
-        }
+        });
       }
     };
 
