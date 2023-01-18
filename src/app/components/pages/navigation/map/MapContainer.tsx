@@ -52,19 +52,42 @@ const MapContainer: React.FC<MapContainerProps> = (props) => {
         }
       }
 
-      if (googleMap) {
-        if (props.route) {
-          googleMap.fitBounds(bounds);
+      if (props.lines?.length) {
+        props.lines.forEach((line) =>
+          line.stationsPath.forEach((station) => {
+            bounds.extend({
+              lat: station.geoLocation.latitude,
+              lng: station.geoLocation.longitude,
+            });
+          })
+        );
+      }
 
+      if (googleMap) {
+        if (!props.lines?.length && !props.route && !origin && !destination) {
+          googleMap.setZoom(12);
+
+          return;
+        }
+
+        googleMap.fitBounds(bounds);
+
+        if (props.route) {
           if (!isMobile) {
             googleMap.panBy(window.innerWidth * -0.1, 0);
           } else {
             googleMap.panBy(0, window.innerHeight * 0.2);
           }
-        } else if (origin || destination) {
+        }
+
+        if (props.lines?.length) {
           googleMap.fitBounds(bounds);
-        } else {
-          googleMap.setZoom(12);
+
+          if (!(window.innerHeight > window.innerWidth)) {
+            googleMap.panBy(0, window.innerHeight * -0.03);
+          } else {
+            googleMap.setZoom(13);
+          }
         }
       }
     };
@@ -72,7 +95,15 @@ const MapContainer: React.FC<MapContainerProps> = (props) => {
     if (isLoaded) {
       fitBounds();
     }
-  }, [origin, destination, props.route, googleMap, isLoaded, isMobile]);
+  }, [
+    origin,
+    destination,
+    props.route,
+    googleMap,
+    isLoaded,
+    isMobile,
+    props.lines,
+  ]);
 
   return (
     <Map

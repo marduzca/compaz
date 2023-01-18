@@ -10,7 +10,7 @@
   align-items: center;
   column-gap: 2rem;
 
-  padding: 0 4.625rem;
+  padding-inline: 4.625rem;
 }
 
 .headerItems {
@@ -181,5 +181,15 @@
   .backButton:focus-visible {
     outline: var(--focus-outline-light-background);
     outline-offset: var(--focus-outline-offset);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .navBar {
+    padding-inline: 2rem;
+  }
+
+  .headerItems {
+    gap: 3rem;
   }
 }
