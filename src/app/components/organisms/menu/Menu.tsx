@@ -10,6 +10,7 @@ import { ReactComponent as MorningIcon } from '../../../static/svg/morning.svg';
 import { ReactComponent as AfternoonIcon } from '../../../static/svg/afternoon.svg';
 import { ReactComponent as NightIcon } from '../../../static/svg/night.svg';
 import { ReactComponent as HomeIcon } from '../../../static/svg/home.svg';
+import { ReactComponent as MapIcon } from '../../../static/svg/map.svg';
 import { ReactComponent as InstallIcon } from '../../../static/svg/install.svg';
 import { ReactComponent as ContactIcon } from '../../../static/svg/contact.svg';
 import { ReactComponent as AboutIcon } from '../../../static/svg/about.svg';
@@ -80,7 +81,7 @@ const Menu: React.FC<MenuProps> = (props) => {
   if (menuItems.length === 4 && isFeatureFlagSet(MAP_PAGE_FLAG)) {
     menuItems.splice(1, 0, {
       name: 'Menu.MAP',
-      icon: <InstallIcon />,
+      icon: <MapIcon />,
       navigationLink: NavigationLink.MAP,
     });
   }
