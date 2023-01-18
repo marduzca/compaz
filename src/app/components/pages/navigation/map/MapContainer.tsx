@@ -81,12 +81,10 @@ const MapContainer: React.FC<MapContainerProps> = (props) => {
         }
 
         if (props.lines?.length) {
-          googleMap.fitBounds(bounds);
-
-          if (!(window.innerHeight > window.innerWidth)) {
-            googleMap.panBy(0, window.innerHeight * -0.03);
-          } else {
+          if (window.innerHeight > window.innerWidth || isMobile) {
             googleMap.setZoom(13);
+          } else {
+            googleMap.panBy(0, window.innerHeight * -0.03);
           }
         }
       }
