@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { GoogleMap } from '@react-google-maps/api';
 import { useTranslation } from 'react-i18next';
 import styles from './Map.module.css';
@@ -76,6 +76,69 @@ const MAP_STYLES = [
 const Map: React.FC<MapProps> = (props) => {
   const { t } = useTranslation();
 
+  const routeMarkers = useMemo(() => {
+    if (!props.route) {
+      return null;
+    }
+
+    return (
+      <>
+        {props.route.subRoutes.map((subRoute) =>
+          subRoute.stationsPath.map((station, index) => {
+            if (
+              station.id === props.origin?.id ||
+              station.id === props.destination?.id ||
+              (index > 0 && index < subRoute.stationsPath.length - 1) ||
+              index === subRoute.stationsPath.length - 1
+            ) {
+              return null;
+            }
+
+            return (
+              <div key={station.id}>
+                <StationMarker
+                  name={station.name}
+                  geoLocation={station.geoLocation}
+                  isMobile={props.isMobile}
+                  isIntermediateStation={
+                    index > 0 && index < subRoute.stationsPath.length - 1
+                  }
+                />
+              </div>
+            );
+          })
+        )}
+        {props.route.subRoutes.map((subRoute) =>
+          subRoute.stationsPath.map((station, index) => {
+            if (index === 0) {
+              return null;
+            }
+
+            return (
+              <div
+                key={`line_${subRoute.stationsPath[index - 1].id}_to_${
+                  station.id
+                }`}
+              >
+                <StationsConnector
+                  positionInRoute={index}
+                  isIntermediatePath={
+                    index > 0 && index < subRoute.stationsPath.length - 1
+                  }
+                  fromGeoLocation={subRoute.stationsPath[index - 1].geoLocation}
+                  toGeoLocation={station.geoLocation}
+                  lineColor={window
+                    .getComputedStyle(document.body)
+                    .getPropertyValue(`--teleferico-${subRoute.line}`)}
+                />
+              </div>
+            );
+          })
+        )}
+      </>
+    );
+  }, [props.destination, props.isMobile, props.origin, props.route]);
+
   return (
     <div className={styles.container}>
       {/* eslint-disable-next-line no-nested-ternary */}
@@ -122,62 +185,7 @@ const Map: React.FC<MapProps> = (props) => {
             />
           )}
 
-          {props.route &&
-            props.route.subRoutes.map((subRoute) =>
-              subRoute.stationsPath.map((station, index) => {
-                if (
-                  station.id === props.origin?.id ||
-                  station.id === props.destination?.id ||
-                  (index > 0 && index < subRoute.stationsPath.length - 1) ||
-                  index === subRoute.stationsPath.length - 1
-                ) {
-                  return null;
-                }
-
-                return (
-                  <div key={station.id}>
-                    <StationMarker
-                      name={station.name}
-                      geoLocation={station.geoLocation}
-                      isMobile={props.isMobile}
-                      isIntermediateStation={
-                        index > 0 && index < subRoute.stationsPath.length - 1
-                      }
-                    />
-                  </div>
-                );
-              })
-            )}
-          {props.route &&
-            props.route.subRoutes.map((subRoute) =>
-              subRoute.stationsPath.map((station, index) => {
-                if (index === 0) {
-                  return null;
-                }
-
-                return (
-                  <div
-                    key={`line_${subRoute.stationsPath[index - 1].id}_to_${
-                      station.id
-                    }`}
-                  >
-                    <StationsConnector
-                      positionInRoute={index}
-                      isIntermediatePath={
-                        index > 0 && index < subRoute.stationsPath.length - 1
-                      }
-                      fromGeoLocation={
-                        subRoute.stationsPath[index - 1].geoLocation
-                      }
-                      toGeoLocation={station.geoLocation}
-                      lineColor={window
-                        .getComputedStyle(document.body)
-                        .getPropertyValue(`--teleferico-${subRoute.line}`)}
-                    />
-                  </div>
-                );
-              })
-            )}
+          {props.route && routeMarkers}
         </GoogleMap>
       ) : (
         <Loader ariaLabel={t('Map.LOADING_MAP')} />
