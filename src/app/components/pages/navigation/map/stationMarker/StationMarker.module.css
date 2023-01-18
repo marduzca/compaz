@@ -1,0 +1,8 @@
+@import '../../../../../../variables.css';
+
+.markerLabel {
+  width: calc(100% + 0.5rem);
+
+  background-color: white;
+  border-radius: var(--content-border-radius);
+}
