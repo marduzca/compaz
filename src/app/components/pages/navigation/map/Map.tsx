@@ -7,14 +7,15 @@ import Loader from '../../../atoms/loader/Loader';
 import OfflineMapMessage from './offlineMapMessage/OfflineMapMessage';
 import StationMarker from './stationMarker/StationMarker';
 import StationsConnector from './stationsConnector/StationsConnector';
+import { MapLine } from '../../map/MapPageContainer';
 
 interface MapProps {
   isLoaded: boolean;
   origin: Station | undefined;
   destination: Station | undefined;
   route: Route | undefined;
-  isMobile: boolean;
   onGoogleMapLoad: (map: google.maps.Map) => void;
+  lines?: MapLine[];
 }
 
 const LA_PAZ_CENTER = { lat: -16.494363149497282, lng: -68.1572941780699 };
@@ -99,7 +100,6 @@ const Map: React.FC<MapProps> = (props) => {
                 <StationMarker
                   name={station.name}
                   geoLocation={station.geoLocation}
-                  isMobile={props.isMobile}
                   isIntermediateStation={
                     index > 0 && index < subRoute.stationsPath.length - 1
                   }
@@ -137,7 +137,50 @@ const Map: React.FC<MapProps> = (props) => {
         )}
       </>
     );
-  }, [props.destination, props.isMobile, props.origin, props.route]);
+  }, [props.destination, props.origin, props.route]);
+
+  const lineMarkers = useMemo(() => {
+    if (!props.lines?.length) {
+      return null;
+    }
+
+    return (
+      <>
+        {props.lines.map((line) =>
+          line.stationsPath.map((station) => (
+            <div key={station.id}>
+              <StationMarker
+                name={station.name}
+                geoLocation={station.geoLocation}
+                isIntermediateStation={false}
+              />
+            </div>
+          ))
+        )}
+        {props.lines.map((line) =>
+          line.stationsPath.map((station, index) => {
+            if (index === 0) {
+              return null;
+            }
+
+            return (
+              <div key={`line_${line.color}`}>
+                <StationsConnector
+                  positionInRoute={index}
+                  isIntermediatePath={false}
+                  fromGeoLocation={line.stationsPath[index - 1].geoLocation}
+                  toGeoLocation={station.geoLocation}
+                  lineColor={window
+                    .getComputedStyle(document.body)
+                    .getPropertyValue(`--teleferico-${line.color}`)}
+                />
+              </div>
+            );
+          })
+        )}
+      </>
+    );
+  }, [props.lines]);
 
   return (
     <div className={styles.container}>
@@ -161,7 +204,6 @@ const Map: React.FC<MapProps> = (props) => {
             <StationMarker
               name={props.origin.name}
               geoLocation={props.origin.geoLocation}
-              isMobile={props.isMobile}
               isIntermediateStation={false}
               isOrigin
             />
@@ -170,7 +212,6 @@ const Map: React.FC<MapProps> = (props) => {
             <StationMarker
               name={props.destination.name}
               geoLocation={props.destination.geoLocation}
-              isMobile={props.isMobile}
               isIntermediateStation={false}
               isDestination
             />
@@ -186,6 +227,7 @@ const Map: React.FC<MapProps> = (props) => {
           )}
 
           {props.route && routeMarkers}
+          {props.lines?.length && lineMarkers}
         </GoogleMap>
       ) : (
         <Loader ariaLabel={t('Map.LOADING_MAP')} />
@@ -193,5 +235,7 @@ const Map: React.FC<MapProps> = (props) => {
     </div>
   );
 };
+
+Map.defaultProps = { lines: undefined };
 
 export default Map;

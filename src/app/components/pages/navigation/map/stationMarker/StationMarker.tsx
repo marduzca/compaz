@@ -5,17 +5,19 @@ import originMarker from '../../../../../static/svg/origin_marker.svg';
 import destinationMarker from '../../../../../static/svg/destination_marker.svg';
 import stationMarker from '../../../../../static/svg/station_marker.svg';
 import styles from './StationMarker.module.css';
+import useMediaQuery from '../../../../hooks/useMediaQuery';
 
 interface StationMarkerProps {
   name: string;
   geoLocation: GeoLocation;
-  isMobile: boolean;
   isOrigin?: boolean;
   isDestination?: boolean;
   isIntermediateStation: boolean;
 }
 
 const StationMarker: React.FC<StationMarkerProps> = (props) => {
+  const isMobile = useMediaQuery();
+
   const getCorrespondingMarker = () => {
     if (props.isOrigin) {
       return originMarker;
@@ -36,7 +38,7 @@ const StationMarker: React.FC<StationMarkerProps> = (props) => {
       }}
       icon={{
         url: getCorrespondingMarker(),
-        scaledSize: props.isMobile
+        scaledSize: isMobile
           ? {
               height: 40,
               width: 40,
@@ -46,7 +48,7 @@ const StationMarker: React.FC<StationMarkerProps> = (props) => {
             }
           : undefined,
         labelOrigin: {
-          x: props.isMobile ? 17 : 21,
+          x: isMobile ? 17 : 21,
           y: -15,
           equals: () =>
             // This is here only to make TypeScript happy, but won't have any use

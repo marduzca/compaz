@@ -4,9 +4,11 @@ import Map from './Map';
 import { useNavigation } from '../../../providers/navigation/NavigationProvider';
 import { Route } from '../../../domain';
 import useMediaQuery from '../../../hooks/useMediaQuery';
+import { MapLine } from '../../map/MapPageContainer';
 
 interface MapContainerProps {
   route?: Route;
+  lines?: MapLine[];
 }
 
 const MapContainer: React.FC<MapContainerProps> = (props) => {
@@ -78,12 +80,12 @@ const MapContainer: React.FC<MapContainerProps> = (props) => {
       origin={origin}
       destination={destination}
       route={props.route}
-      isMobile={isMobile}
       onGoogleMapLoad={setGoogleMap}
+      lines={props.lines}
     />
   );
 };
 
-MapContainer.defaultProps = { route: undefined };
+MapContainer.defaultProps = { route: undefined, lines: undefined };
 
 export default MapContainer;
