@@ -75,12 +75,12 @@ const MapContainer: React.FC<MapContainerProps> = (props) => {
         google.maps.event.addListenerOnce(googleMap, 'idle', () => {
           if (props.route) {
             if (window.innerHeight > window.innerWidth) {
+              googleMap.panBy(0, window.innerHeight * 0.2);
+            } else {
               googleMap.panBy(
                 window.innerWidth * -0.1,
                 window.innerHeight * -0.03
               );
-            } else {
-              googleMap.panBy(0, window.innerHeight * 0.2);
             }
           }
 
