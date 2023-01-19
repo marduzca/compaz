@@ -68,6 +68,7 @@
 .price {
   display: grid;
   grid-template-columns: auto 1fr;
+  justify-items: start;
   align-items: center;
   column-gap: 1.5rem;
 
@@ -177,5 +178,16 @@
 
   .routeClock {
     margin-top: 1.75rem;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .price > svg {
+    max-height: 2rem;
+  }
+
+  .price > div {
+    display: flex;
+    gap: 1rem;
   }
 }
