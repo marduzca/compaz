@@ -70,9 +70,14 @@
   grid-template-columns: auto 1fr;
   justify-items: start;
   align-items: center;
-  column-gap: 1.5rem;
+  column-gap: 0.5rem;
 
   font-size: 1rem;
+}
+
+.price > div {
+  display: flex;
+  gap: 1rem;
 }
 
 .price > svg {
@@ -173,22 +178,15 @@
     gap: 1.5rem;
   }
 
+  .price > div {
+    display: initial;
+  }
+
   .adjustTimeButton {
     min-height: 3rem;
   }
 
   .routeClock {
     margin-top: 1.75rem;
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  .price > svg {
-    max-width: 2rem;
-  }
-
-  .price > div {
-    display: flex;
-    gap: 1rem;
   }
 }
