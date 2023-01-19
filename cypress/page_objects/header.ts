@@ -11,6 +11,10 @@ const headerShouldShowLinks = (howToInstall: string, contactUs: string) => {
   cy.contains('a', contactUs).should('be.visible');
 };
 
+const goToMapPage = () => {
+  cy.contains('a', 'Map').click();
+};
+
 const goToContactPage = () => {
   cy.contains('a', 'Contact').click();
 };
@@ -22,6 +26,7 @@ const goToHowToInstallPage = () => {
 export default {
   changeLanguage,
   headerShouldShowLinks,
+  goToMapPage,
   goToContactPage,
   goToHowToInstallPage,
 };
