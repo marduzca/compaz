@@ -1,0 +1,10 @@
+.menuButton {
+  height: 3rem;
+  aspect-ratio: 1;
+  margin: 0;
+  padding: 0;
+
+  background: none;
+  cursor: pointer;
+  border: 0;
+}
