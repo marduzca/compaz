@@ -18,10 +18,7 @@ const TripSelector: React.FC<TripSelectorProps> = (props) => {
 
   return (
     <section className={styles.tripSelector}>
-      <MobileHeader
-        onMenuButtonClick={props.onMenuButtonClick}
-        hasLightBackground={false}
-      />
+      <MobileHeader onMenuButtonClick={props.onMenuButtonClick} />
       <div className={styles.inputFields}>
         <StationsSelectorContainer
           showOriginMissingError={props.showOriginMissingError}

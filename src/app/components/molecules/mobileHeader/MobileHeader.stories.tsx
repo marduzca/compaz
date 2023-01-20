@@ -19,7 +19,13 @@ export const OnDarkBackground: React.FC = () => (
   <div style={{ backgroundColor: '#1976d2' }}>
     <MobileHeader
       onMenuButtonClick={actions('onMenuButtonClick').onMenuButtonClick}
-      hasLightBackground={false}
     />
   </div>
+);
+
+export const WithMenuButtonOnly: React.FC = () => (
+  <MobileHeader
+    onMenuButtonClick={actions('onMenuButtonClick').onMenuButtonClick}
+    hasMenuButtonOnly
+  />
 );

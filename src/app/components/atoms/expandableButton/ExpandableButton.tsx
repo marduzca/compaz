@@ -6,6 +6,7 @@ interface ExpandableButtonProps {
   icon: React.ReactNode;
   onClick: () => void;
   className?: string;
+  isRounded?: boolean;
 }
 
 const ExpandableButton: React.FC<ExpandableButtonProps> = (props) => {
@@ -16,7 +17,9 @@ const ExpandableButton: React.FC<ExpandableButtonProps> = (props) => {
       aria-label={props.accessibleName}
       title={props.accessibleName}
       type="button"
-      className={`${styles.menuButton} ${props.className}`}
+      className={`${styles.expandableButton} ${props.className} ${
+        props.isRounded && styles.roundedButton
+      }`}
       onClick={() => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
         props.onClick();
@@ -31,6 +34,7 @@ const ExpandableButton: React.FC<ExpandableButtonProps> = (props) => {
 
 ExpandableButton.defaultProps = {
   className: '',
+  isRounded: false,
 };
 
 export default ExpandableButton;

@@ -13,7 +13,7 @@ const MapPage: React.FC<MapPageProps> = (props) => (
   <main className={styles.container}>
     <MobileHeader
       onMenuButtonClick={props.onMenuButtonClick}
-      hasLightBackground
+      hasMenuButtonOnly
     />
     <MapContainer lines={props.lines} />
   </main>

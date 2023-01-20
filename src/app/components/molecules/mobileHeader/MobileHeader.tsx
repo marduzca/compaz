@@ -8,27 +8,38 @@ import ExpandableButton from '../../atoms/expandableButton/ExpandableButton';
 
 interface MobileHeaderProps {
   onMenuButtonClick: () => void;
-  hasLightBackground: boolean;
+  hasLightBackground?: boolean;
+  hasMenuButtonOnly?: boolean;
 }
 
 const MobileHeader: React.FC<MobileHeaderProps> = (props) => {
   const { t } = useTranslation();
 
   return (
-    <header className={styles.header}>
+    <header
+      className={`${
+        props.hasMenuButtonOnly ? styles.invisibleHeader : styles.header
+      }`}
+    >
       <ExpandableButton
         accessibleName={t('Menu.OPEN_BUTTON')}
         icon={<MenuIcon />}
         onClick={props.onMenuButtonClick}
-        className={`${styles.menuButton} ${
+        className={`${!props.hasMenuButtonOnly && styles.menuButton} ${
           props.hasLightBackground && styles.blueMenuButton
         }`}
+        isRounded={props.hasMenuButtonOnly}
       />
       <a href="./" title={t('Menu.GO_HOME')} className={styles.logo}>
         {props.hasLightBackground ? <LogoBlue /> : <LogoWhite />}
       </a>
     </header>
   );
+};
+
+MobileHeader.defaultProps = {
+  hasMenuButtonOnly: false,
+  hasLightBackground: false,
 };
 
 export default MobileHeader;

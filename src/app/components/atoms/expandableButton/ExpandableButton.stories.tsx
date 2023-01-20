@@ -1,0 +1,28 @@
+import React from 'react';
+import { Meta } from '@storybook/react';
+import { actions } from '@storybook/addon-actions';
+import ExpandableButton from './ExpandableButton';
+import { ReactComponent as MenuIcon } from '../../../static/svg/menu.svg';
+
+export default {
+  component: ExpandableButton,
+  title: 'Atoms / ExpandableButton',
+} as Meta;
+
+export const RoundedButtonInNormalState: React.FC = () => (
+  <div
+    style={{
+      backgroundColor: '#1976d2',
+      maxWidth: 'fit-content',
+      maxHeight: 'fit-content',
+      padding: '3rem',
+    }}
+  >
+    <ExpandableButton
+      onClick={actions('onClick').onClick}
+      icon={<MenuIcon />}
+      accessibleName="Menu button"
+      isRounded
+    />
+  </div>
+);
