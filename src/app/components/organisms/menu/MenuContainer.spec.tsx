@@ -33,6 +33,14 @@ describe('MenuContainer', () => {
     ).toHaveAttribute('aria-current', 'page');
 
     await userEvent.click(
+      withinNavigation.getByRole('link', { name: /Menu.MAP/ })
+    );
+    expect(history.location.pathname).toBe(NavigationLink.MAP);
+    expect(
+      withinNavigation.getByRole('link', { name: /Menu.MAP/ })
+    ).toHaveAttribute('aria-current', 'page');
+
+    await userEvent.click(
       withinNavigation.getByRole('link', { name: /Menu.HOW_TO_INSTALL/ })
     );
     expect(history.location.pathname).toBe(NavigationLink.HOW_TO_INSTALL);

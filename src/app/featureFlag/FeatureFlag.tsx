@@ -1,7 +1,6 @@
 import React from 'react';
 
 export const DISABLE_MESSAGE_STORAGE_FLAG = 'disableMessageStorage';
-export const MAP_PAGE_FLAG = 'mapPageFlag';
 
 const getParam = (key: string) => {
   const searchParams = new URLSearchParams(window.location.search);
