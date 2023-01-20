@@ -173,7 +173,7 @@ describe('Map', () => {
         },
         {
           id: 'plaza_villaroel',
-          name: 'Plaza Villaroel',
+          name: 'Plaza Villarroel',
           geoLocation: {
             latitude: -16.48471098846887,
             longitude: -68.12201188173509,
@@ -273,7 +273,7 @@ describe('Map', () => {
       stationsPath: [
         {
           id: 'plaza_villaroel',
-          name: 'Plaza Villaroel',
+          name: 'Plaza Villarroel',
           geoLocation: {
             latitude: -16.48471098846887,
             longitude: -68.12201188173509,
