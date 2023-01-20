@@ -1,6 +1,6 @@
 import Header from '../page_objects/header';
-import { MapLine } from '../../src/app/components/pages/map/MapPageContainer';
 import Map from '../page_objects/map';
+import { MapLine } from '../../src/app/components/pages/map/MapPage';
 
 describe('Map', () => {
   const mapLines: MapLine[] = [

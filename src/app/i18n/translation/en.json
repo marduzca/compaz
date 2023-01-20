@@ -164,6 +164,7 @@
     "SUCCESS": "Success notification"
   },
   "Map": {
+    "MAP_TITLE": "Map",
     "LOADING_MAP": "Loading map",
     "OFFLINE_MAP": "Sorry, the map is not available offline."
   },

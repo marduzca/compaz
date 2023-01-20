@@ -4,7 +4,7 @@ import Map from './Map';
 import { useNavigation } from '../../../providers/navigation/NavigationProvider';
 import { Route } from '../../../domain';
 import useMediaQuery from '../../../hooks/useMediaQuery';
-import { MapLine } from '../../map/MapPageContainer';
+import { MapLine } from '../../map/MapPage';
 
 interface MapContainerProps {
   route?: Route;

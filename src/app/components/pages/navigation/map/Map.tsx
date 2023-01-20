@@ -7,7 +7,7 @@ import Loader from '../../../atoms/loader/Loader';
 import OfflineMapMessage from './offlineMapMessage/OfflineMapMessage';
 import StationMarker from './stationMarker/StationMarker';
 import StationsConnector from './stationsConnector/StationsConnector';
-import { MapLine } from '../../map/MapPageContainer';
+import { MapLine } from '../../map/MapPage';
 
 interface MapProps {
   isLoaded: boolean;

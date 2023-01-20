@@ -164,6 +164,7 @@
     "SUCCESS": "Notificación de tipo Exito"
   },
   "Map": {
+    "MAP_TITLE": "Mapa",
     "LOADING_MAP": "Loading map",
     "OFFLINE_MAP": "Lo sentimos, el mapa no está disponible sin internet."
   },

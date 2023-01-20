@@ -13,7 +13,7 @@ import HowToInstall from './components/pages/howToInstall/HowToInstall';
 import { NavigationLink } from './components/organisms/menu/Menu';
 import About from './components/pages/about/About';
 import ErrorPage from './components/pages/error/ErrorPage';
-import MapPageContainer from './components/pages/map/MapPageContainer';
+import MapPage from './components/pages/map/MapPage';
 
 export const PAGE_TITLE_PREFIX = 'compaz |';
 
@@ -72,7 +72,7 @@ const App = () => {
             <Route
               path={NavigationLink.MAP}
               element={
-                <MapPageContainer
+                <MapPage
                   onMenuButtonClick={() => {
                     setShowMobileMenu(true);
                   }}
