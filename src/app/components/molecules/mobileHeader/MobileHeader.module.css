@@ -12,8 +12,8 @@
     position: absolute;
     z-index: 2;
 
-    top: 1.5rem;
-    left: 1.5rem;
+    top: 1rem;
+    left: 1rem;
   }
 
   .invisibleHeader > a {
