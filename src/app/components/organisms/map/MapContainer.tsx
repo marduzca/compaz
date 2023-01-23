@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useLoadScript } from '@react-google-maps/api';
 import Map from './Map';
-import { useNavigation } from '../../../providers/navigation/NavigationProvider';
-import { Route } from '../../../domain';
-import useMediaQuery from '../../../hooks/useMediaQuery';
-import { MapLine } from '../../map/MapPage';
+import { useNavigation } from '../../providers/navigation/NavigationProvider';
+import { Route } from '../../domain';
+import useMediaQuery from '../../hooks/useMediaQuery';
+import { MapLine } from '../../pages/map/MapPage';
 
 interface MapContainerProps {
   route?: Route;

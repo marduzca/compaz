@@ -4,7 +4,7 @@ import { Resizable } from 're-resizable';
 import { ReactComponent as ResizeIcon } from '../../../../../static/svg/resize.svg';
 import { Route } from '../../../../domain';
 import SubRouteDetails from './SubRouteDetails';
-import { addMinutesToDate } from '../../dateFormatter';
+import { addMinutesToDate } from '../../util/dateFormatter';
 import styles from './RouteDetailsView.module.css';
 import transferIcon from '../../../../../static/svg/transfer.svg';
 import IconsRoute from '../shared/IconsRoute';

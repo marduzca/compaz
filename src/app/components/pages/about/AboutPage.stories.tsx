@@ -2,11 +2,11 @@ import { Meta } from '@storybook/react';
 import React from 'react';
 import { actions } from '@storybook/addon-actions';
 import { MemoryRouter } from 'react-router-dom';
-import About from './About';
+import AboutPage from './AboutPage';
 
 export default {
-  component: About,
-  title: 'About',
+  component: AboutPage,
+  title: 'AboutPage',
   decorators: [
     (Story) => (
       <MemoryRouter>
@@ -17,5 +17,7 @@ export default {
 } as Meta;
 
 export const NormalAndMobileState: React.FC = () => (
-  <About onMenuButtonClick={actions('onMenuButtonClick').onMenuButtonClick} />
+  <AboutPage
+    onMenuButtonClick={actions('onMenuButtonClick').onMenuButtonClick}
+  />
 );

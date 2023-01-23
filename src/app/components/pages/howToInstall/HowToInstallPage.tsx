@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import i18n from 'i18next';
 import { ReactComponent as BulletPoint } from '../../../static/svg/bullet.svg';
 import devices from '../../../static/img/devices.png';
-import styles from './HowToInstall.module.css';
+import styles from './HowToInstallPage.module.css';
 import MobileHeader from '../../molecules/mobileHeader/MobileHeader';
 import InstructionsContainer from './instructions/InstructionsContainer';
 import { PAGE_TITLE_PREFIX } from '../../../App';
@@ -12,7 +12,7 @@ interface HowToInstallProps {
   onMenuButtonClick: () => void;
 }
 
-const HowToInstall: React.FC<HowToInstallProps> = (props) => {
+const HowToInstallPage: React.FC<HowToInstallProps> = (props) => {
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -60,4 +60,4 @@ const HowToInstall: React.FC<HowToInstallProps> = (props) => {
   );
 };
 
-export default HowToInstall;
+export default HowToInstallPage;

@@ -1,14 +1,14 @@
 import React from 'react';
 import { actions } from '@storybook/addon-actions';
-import HowToInstall from './HowToInstall';
+import HowToInstallPage from './HowToInstallPage';
 
 export default {
-  component: HowToInstall,
-  title: 'HowToInstall',
+  component: HowToInstallPage,
+  title: 'HowToInstallPage',
 };
 
 export const NormalAndMobileState: React.FC = () => (
-  <HowToInstall
+  <HowToInstallPage
     onMenuButtonClick={actions('onMenuButtonClick').onMenuButtonClick}
   />
 );

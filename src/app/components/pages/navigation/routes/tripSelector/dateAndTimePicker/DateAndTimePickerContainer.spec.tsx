@@ -3,7 +3,10 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import DateAndTimePickerContainer from './DateAndTimePickerContainer';
 import * as NavigationProvider from '../../../../../providers/navigation/NavigationProvider';
-import { parseToSimpleDate, parseToSimpleTime } from '../../../dateFormatter';
+import {
+  parseToSimpleDate,
+  parseToSimpleTime,
+} from '../../../util/dateFormatter';
 import { Route } from '../../../../../domain';
 
 describe('DateAndTimePickerContainer', () => {

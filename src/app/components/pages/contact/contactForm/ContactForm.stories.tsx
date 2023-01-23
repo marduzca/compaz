@@ -4,7 +4,7 @@ import ContactForm from './ContactForm';
 
 export default {
   component: ContactForm,
-  title: 'Contact / ContactForm',
+  title: 'ContactPage / ContactForm',
 };
 
 export const NormalState: React.FC = () => (

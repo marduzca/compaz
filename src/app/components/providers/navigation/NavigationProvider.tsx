@@ -3,7 +3,7 @@ import { Line, Route, Station, SubRoute } from '../../domain';
 import {
   parseToSimpleDate,
   parseToSimpleTime,
-} from '../../pages/navigation/dateFormatter';
+} from '../../pages/navigation/util/dateFormatter';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const dijkstra = require('dijkstrajs');

@@ -6,7 +6,7 @@ import { Browser, Device } from './InstructionsContainer';
 
 export default {
   component: Instructions,
-  title: 'HowToInstall / Instructions',
+  title: 'HowToInstallPage / Instructions',
 } as Meta;
 
 export const WithDesktopGifInNormalAndMobileState: React.FC = () => (

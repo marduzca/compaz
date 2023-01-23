@@ -10,7 +10,7 @@ interface ContactProps {
   onMenuButtonClick: () => void;
 }
 
-const Contact: React.FC<ContactProps> = (props) => {
+const ContactPage: React.FC<ContactProps> = (props) => {
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -26,4 +26,4 @@ const Contact: React.FC<ContactProps> = (props) => {
   );
 };
 
-export default Contact;
+export default ContactPage;

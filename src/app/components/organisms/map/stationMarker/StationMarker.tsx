@@ -1,11 +1,11 @@
 import React, { useMemo } from 'react';
 import { MarkerF } from '@react-google-maps/api';
-import { GeoLocation } from '../../../../domain';
-import originMarker from '../../../../../static/svg/origin_marker.svg';
-import destinationMarker from '../../../../../static/svg/destination_marker.svg';
-import stationMarker from '../../../../../static/svg/station_marker.svg';
+import { GeoLocation } from '../../../domain';
+import originMarker from '../../../../static/svg/origin_marker.svg';
+import destinationMarker from '../../../../static/svg/destination_marker.svg';
+import stationMarker from '../../../../static/svg/station_marker.svg';
 import styles from './StationMarker.module.css';
-import useMediaQuery from '../../../../hooks/useMediaQuery';
+import useMediaQuery from '../../../hooks/useMediaQuery';
 
 interface StationMarkerProps {
   name: string;

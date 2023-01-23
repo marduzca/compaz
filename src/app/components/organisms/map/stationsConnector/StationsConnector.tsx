@@ -1,6 +1,6 @@
 import React from 'react';
 import { PolylineF } from '@react-google-maps/api';
-import { GeoLocation } from '../../../../domain';
+import { GeoLocation } from '../../../domain';
 
 interface StationsConnectorProps {
   fromGeoLocation: GeoLocation;

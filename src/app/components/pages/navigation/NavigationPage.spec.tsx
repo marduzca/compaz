@@ -2,13 +2,13 @@ import React from 'react';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Route as Path, Routes } from 'react-router-dom';
-import Navigation from './Navigation';
+import NavigationPage from './NavigationPage';
 import * as FirebaseProvider from '../../providers/firebase/FirebaseProvider';
 import * as NavigationProvider from '../../providers/navigation/NavigationProvider';
 import { ConnectedStation, Route, Station, SubRoute } from '../../domain';
 import { NavigationLink } from '../../organisms/menu/Menu';
 
-describe('Navigation', () => {
+describe('NavigationPage', () => {
   const useFirebaseMock = jest.spyOn(FirebaseProvider, 'useFirebase');
   const useNavigationMock = jest.spyOn(NavigationProvider, 'useNavigation');
 
@@ -142,7 +142,7 @@ describe('Navigation', () => {
               <Path
                 path={path}
                 element={
-                  <Navigation
+                  <NavigationPage
                     onMenuButtonClick={() => {}}
                     isMobileMenuOpen={false}
                   />

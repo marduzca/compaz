@@ -19,7 +19,7 @@ const guaranteedSize = (child: React.ReactNode): React.ReactNode => (
 );
 
 export default {
-  title: 'Navigation / TripSelector',
+  title: 'NavigationPage / TripSelector',
   component: TripSelector,
 } as Meta;
 

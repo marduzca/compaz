@@ -7,7 +7,7 @@ import {
   useNavigate,
 } from 'react-router-dom';
 import i18n from 'i18next';
-import styles from './Navigation.module.css';
+import styles from './NavigationPage.module.css';
 import TripSelectorContainer from './routes/tripSelector/TripSelectorContainer';
 import RoutesOverviewContainer from './routes/routesOverview/RoutesOverviewContainer';
 import { useNavigation } from '../../providers/navigation/NavigationProvider';
@@ -15,7 +15,7 @@ import { useFirebase } from '../../providers/firebase/FirebaseProvider';
 import { Route } from '../../domain';
 import RouteDetailsViewContainer from './routes/routeDetails/RouteDetailsViewContainer';
 import LoadingPage from './loadingPage/LoadingPage';
-import MapContainer from './map/MapContainer';
+import MapContainer from '../../organisms/map/MapContainer';
 import 'wicg-inert';
 import Footer from '../../organisms/footer/Footer';
 import { PAGE_TITLE_PREFIX } from '../../../App';
@@ -35,7 +35,7 @@ interface NavigationProps {
 
 const NAVIGATION_HEADING_ID = 'navigationHeadingId';
 
-const Navigation: React.FC<NavigationProps> = (props) => {
+const NavigationPage: React.FC<NavigationProps> = (props) => {
   const { t } = useTranslation();
   const { stations, lines } = useFirebase();
   const { calculateRoute } = useNavigation();
@@ -162,4 +162,4 @@ const Navigation: React.FC<NavigationProps> = (props) => {
   );
 };
 
-export default Navigation;
+export default NavigationPage;

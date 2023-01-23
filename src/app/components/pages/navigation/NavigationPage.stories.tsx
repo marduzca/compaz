@@ -4,12 +4,12 @@ import { actions } from '@storybook/addon-actions';
 import * as MockDate from 'mockdate';
 
 import { MemoryRouter } from 'react-router-dom';
-import Navigation from './Navigation';
+import NavigationPage from './NavigationPage';
 import { FirebaseContext } from '../../providers/firebase/FirebaseProvider';
 
 export default {
-  component: Navigation,
-  title: 'Navigation',
+  component: NavigationPage,
+  title: 'NavigationPage',
   decorators: [
     (Story) => (
       <FirebaseContext.Provider
@@ -39,7 +39,7 @@ export const NormalStateWithNightBackground = () => {
   MockDate.set('1993-03-15T19:30:00.000Z');
 
   return (
-    <Navigation
+    <NavigationPage
       onMenuButtonClick={actions('onMenuButtonClick').onMenuButtonClick}
       isMobileMenuOpen={false}
     />
@@ -50,7 +50,7 @@ export const NormalStateWithDayBackground = () => {
   MockDate.set('1993-03-15T09:30:00.000Z');
 
   return (
-    <Navigation
+    <NavigationPage
       onMenuButtonClick={actions('onMenuButtonClick').onMenuButtonClick}
       isMobileMenuOpen={false}
     />

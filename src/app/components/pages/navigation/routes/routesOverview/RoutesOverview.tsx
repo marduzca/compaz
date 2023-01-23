@@ -11,7 +11,7 @@ import {
   parseToEnglishDateString,
   parseToSimpleTime,
   parseToSpanishDateString,
-} from '../../dateFormatter';
+} from '../../util/dateFormatter';
 import i18n from '../../../../../i18n/instance';
 import IconsRoute from '../shared/IconsRoute';
 import TotalRouteTime from '../shared/TotalRouteTime';

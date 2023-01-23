@@ -44,7 +44,7 @@ const testSubRoutes = [
 ] as SubRoute[];
 
 export default {
-  title: 'Navigation / RoutesOverview / IconsRoute',
+  title: 'NavigationPage / RoutesOverview / IconsRoute',
   component: IconsRoute,
 } as Meta;
 

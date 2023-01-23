@@ -3,7 +3,7 @@ import Introduction from './Introduction';
 
 export default {
   component: Introduction,
-  title: 'Contact / Introduction',
+  title: 'ContactPage / Introduction',
 };
 
 export const NormalState: React.FC = () => <Introduction />;

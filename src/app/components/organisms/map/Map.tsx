@@ -2,12 +2,12 @@ import React, { useMemo } from 'react';
 import { GoogleMap } from '@react-google-maps/api';
 import { useTranslation } from 'react-i18next';
 import styles from './Map.module.css';
-import { Route, Station } from '../../../domain';
-import Loader from '../../../atoms/loader/Loader';
+import { Route, Station } from '../../domain';
+import Loader from '../../atoms/loader/Loader';
 import OfflineMapMessage from './offlineMapMessage/OfflineMapMessage';
 import StationMarker from './stationMarker/StationMarker';
 import StationsConnector from './stationsConnector/StationsConnector';
-import { MapLine } from '../../map/MapPage';
+import { MapLine } from '../../pages/map/MapPage';
 
 interface MapProps {
   isLoaded: boolean;

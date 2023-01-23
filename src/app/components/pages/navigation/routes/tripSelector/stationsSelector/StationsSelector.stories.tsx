@@ -4,7 +4,7 @@ import { actions } from '@storybook/addon-actions';
 import StationsSelector from './StationsSelector';
 
 export default {
-  title: 'Navigation / TripSelector /StationsSelector',
+  title: 'NavigationPage / TripSelector /StationsSelector',
   component: StationsSelector,
 } as Meta;
 

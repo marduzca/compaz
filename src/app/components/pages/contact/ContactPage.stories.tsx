@@ -1,20 +1,20 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
-import Contact from './Contact';
+import ContactPage from './ContactPage';
 
 const guaranteedSize = (child: JSX.Element): JSX.Element => (
   <div style={{ height: '750px' }}>{child}</div>
 );
 
 export default {
-  component: Contact,
-  title: 'Contact',
+  component: ContactPage,
+  title: 'ContactPage',
 } as Meta;
 
 export const NormalAndMobileState: React.FC = () =>
   guaranteedSize(
-    <Contact
+    <ContactPage
       onMenuButtonClick={actions('onMenuButtonClick').onMenuButtonClick}
     />
   );

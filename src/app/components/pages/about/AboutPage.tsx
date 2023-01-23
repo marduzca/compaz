@@ -3,15 +3,15 @@ import { Trans, useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import i18n from 'i18next';
 import { PAGE_TITLE_PREFIX } from '../../../App';
-import styles from './About.module.css';
+import styles from './AboutPage.module.css';
 import PageContentContainer from '../pageContentContainer/PageContentContainer';
 import { NavigationLink } from '../../organisms/menu/Menu';
 
-interface AboutProps {
+interface AboutPageProps {
   onMenuButtonClick: () => void;
 }
 
-const About: React.FC<AboutProps> = (props) => {
+const AboutPage: React.FC<AboutPageProps> = (props) => {
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -75,4 +75,4 @@ const About: React.FC<AboutProps> = (props) => {
   );
 };
 
-export default About;
+export default AboutPage;

@@ -3,7 +3,7 @@ import { Meta } from '@storybook/react';
 import Footer from './Footer';
 
 export default {
-  title: 'Navigation / Footer',
+  title: 'NavigationPage / Footer',
   component: Footer,
 } as Meta;
 

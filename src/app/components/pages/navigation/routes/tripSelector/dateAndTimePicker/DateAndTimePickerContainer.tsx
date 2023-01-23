@@ -5,7 +5,7 @@ import {
   isWeekday,
   parseToSimpleDate,
   parseToSimpleTime,
-} from '../../../dateFormatter';
+} from '../../../util/dateFormatter';
 
 const DateAndTimePickerContainer: React.FC = () => {
   const weekdayBeginOfFunctionalHours = 6;

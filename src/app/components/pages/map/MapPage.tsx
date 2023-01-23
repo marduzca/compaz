@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import i18n from 'i18next';
 import styles from './MapPage.module.css';
 import MobileHeader from '../../molecules/mobileHeader/MobileHeader';
-import MapContainer from '../navigation/map/MapContainer';
+import MapContainer from '../../organisms/map/MapContainer';
 import { useFirebase } from '../../providers/firebase/FirebaseProvider';
 import { GeoLocation, Station } from '../../domain';
 import { PAGE_TITLE_PREFIX } from '../../../App';

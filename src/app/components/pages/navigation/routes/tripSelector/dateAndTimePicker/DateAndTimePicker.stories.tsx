@@ -4,7 +4,7 @@ import { actions } from '@storybook/addon-actions';
 import DateAndTimePicker from './DateAndTimePicker';
 
 export default {
-  title: 'Navigation / TripSelector / DateAndTimePicker',
+  title: 'NavigationPage / TripSelector / DateAndTimePicker',
   component: DateAndTimePicker,
 } as Meta;
 
