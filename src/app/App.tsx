@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Route, Routes } from 'react-router-dom';
 import styles from './App.module.css';
 import MenuContainer from './components/organisms/menu/MenuContainer';
 import NavigationPage from './components/pages/navigation/NavigationPage';
-import SadDogImage from './static/img/sad_dog.jpg';
 import NotificationContainer from './components/organisms/notification/NotificationContainer';
 import { FirebaseProvider } from './components/providers/firebase/FirebaseProvider';
 import { NavigationProvider } from './components/providers/navigation/NavigationProvider';
@@ -17,23 +15,14 @@ import MapPage from './components/pages/map/MapPage';
 
 export const PAGE_TITLE_PREFIX = 'compaz |';
 
-const LandscapeErrorMessage = () => {
-  const { t } = useTranslation();
-
-  return (
-    <div className={styles.landscapeMessage}>
-      <p>{t('LANDSCAPE_ERROR')}</p>
-      <img alt="Sad dog" src={SadDogImage} loading="lazy" />
-    </div>
-  );
-};
-
 const App = () => {
   const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
 
   return (
     <>
-      <LandscapeErrorMessage />
+      <div className={styles.landscapeMessage}>
+        <ErrorPage landscapeError />
+      </div>
       <div className={styles.App}>
         <MenuContainer
           showMenuOnMobile={showMobileMenu}

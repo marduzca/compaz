@@ -146,7 +146,8 @@
   "ErrorPage": {
     "SPACE_ALT": "Cute llama with astronaut helmet with the view of space in the background",
     "OOPS": "Ooops...",
-    "PAGE_NOT_FOUND": "PAGE NOT FOUND"
+    "PAGE_NOT_FOUND": "PAGE NOT FOUND",
+    "LANDSCAPE_ERROR": "We are sorry, we dont support landscape mode."
   },
   "Footer": {
     "GUIDE": "Your guide to know how to get everywhere",
@@ -170,7 +171,6 @@
   },
   "GO_BACK_BUTTON": "Go back",
   "GO_BACK_BUTTON_DESCRIPTIVE": "Go back to {{previousPage}}. Currently in {{currentPage}}",
-  "LANDSCAPE_ERROR": "We dont support landscape mode, we are very sorry :(",
   "LOADING": "Loading...",
   "ROUTE_DETAILS": "Route Details page",
   "ROUTES_OVERVIEW": "Routes Overview page",

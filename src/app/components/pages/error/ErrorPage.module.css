@@ -83,3 +83,22 @@
     align-self: flex-end;
   }
 }
+
+@media only screen and (max-device-height: 480px) {
+  .container {
+    display: block;
+    height: 100%;
+  }
+
+  .content {
+    flex-direction: unset;
+  }
+
+  .content > img {
+    align-self: center;
+  }
+
+  .text {
+    max-width: 50%;
+  }
+}

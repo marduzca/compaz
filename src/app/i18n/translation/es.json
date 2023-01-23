@@ -146,7 +146,8 @@
   "ErrorPage": {
     "SPACE_ALT": "Llama tierna usando un casco de astronauta con una vista al espacio en el fondo",
     "OOPS": "Ups...",
-    "PAGE_NOT_FOUND": "PÁGINA NO ENCONTRADA"
+    "PAGE_NOT_FOUND": "PÁGINA NO ENCONTRADA",
+    "LANDSCAPE_ERROR": "Lo sentimos, no funcionamos en modo horizontal."
   },
   "Footer": {
     "GUIDE": "Tu guía para saber como llegar",
@@ -170,7 +171,6 @@
   },
   "GO_BACK_BUTTON": "Volver",
   "GO_BACK_BUTTON_DESCRIPTIVE": "Volver a {{previousPage}}. Actualmente en {{currentPage}}",
-  "LANDSCAPE_ERROR": "No funcionamos en modo horizontal, lo sentimos mucho :(",
   "LOADING": "Cargando...",
   "ROUTE_DETAILS": "Detalles de ruta",
   "ROUTES_OVERVIEW": "Resumen de rutas",
