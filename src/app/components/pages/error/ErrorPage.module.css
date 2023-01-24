@@ -84,7 +84,7 @@
   }
 }
 
-@media only screen and (max-device-height: 480px) {
+@media only screen and (max-height: 480px) {
   .container {
     display: block;
     height: 100%;

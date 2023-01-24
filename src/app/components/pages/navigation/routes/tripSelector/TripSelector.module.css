@@ -74,7 +74,7 @@
     border-radius: 50%;
 
     max-width: 5rem;
-    aspect-ratio: 1;
+    max-height: 5rem;
   }
 
   .searchButton p {
@@ -91,5 +91,21 @@
 
   .searchButton:focus-visible {
     outline: var(--focus-outline-light-background) !important;
+  }
+}
+
+@media only screen and (max-height: 610px) {
+  .tripSelector {
+    gap: 0.5rem;
+  }
+
+  .searchButton {
+    bottom: calc(100vh * -0.45);
+  }
+}
+
+@media only screen and (max-height: 550px) {
+  .searchButton {
+    bottom: calc(100vh * -0.4);
   }
 }
