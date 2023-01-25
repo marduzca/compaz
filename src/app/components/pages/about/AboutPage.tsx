@@ -39,9 +39,10 @@ const AboutPage: React.FC<AboutPageProps> = (props) => {
             <li>{t('About.WhatSection.WHAT_ITEM_1')}</li>
             <li>{t('About.WhatSection.WHAT_ITEM_2')}</li>
             <li>{t('About.WhatSection.WHAT_ITEM_3')}</li>
+            <li>{t('About.WhatSection.WHAT_ITEM_4')}</li>
             <li>
-              <Trans i18nKey="About.WhatSection.WHAT_ITEM_4">
-                About.WhatSection.WHAT_ITEM_4
+              <Trans i18nKey="About.WhatSection.WHAT_ITEM_5">
+                About.WhatSection.WHAT_ITEM_5
                 <Link to={NavigationLink.HOW_TO_INSTALL} />
               </Trans>
             </li>
