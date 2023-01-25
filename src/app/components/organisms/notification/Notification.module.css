@@ -46,6 +46,10 @@
   background-color: var(--primary-color);
 }
 
+.container a:visited {
+  color: white;
+}
+
 .container > p {
   margin: auto 2rem auto 1.25rem;
 
