@@ -35,8 +35,6 @@ describe('Navigation', () => {
       0
     ).toUpperCase()}${LineColor.GREEN.slice(1)}`;
 
-    console.log(capitalizedGreenLine);
-
     RouteDetails.withinLineSubRoute(capitalizedGreenLine, () => {
       RouteDetails.showIntermediateStations();
       RouteDetails.shouldShowStations(['Obrajes 17', 'Alto Obrajes']);
