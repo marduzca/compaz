@@ -3,6 +3,7 @@ import TripSelector from '../page_objects/tripSelector';
 import RoutesOverview from '../page_objects/routesOverview';
 import RouteDetails from '../page_objects/routeDetails';
 import Map from '../page_objects/map';
+import { LineColor } from '../../src/app/components/domain';
 
 describe('Navigation', () => {
   it('Goes through the whole trip selection and visualization process successfully', () => {
