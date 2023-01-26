@@ -7,9 +7,6 @@ describe('Contact', () => {
     render(<Introduction />);
 
     expect(
-      screen.getByRole('link', { name: 'Contact.GITHUB_LINK' })
-    ).toHaveAttribute('href', 'https://github.com/marduzca');
-    expect(
       screen.getByRole('link', { name: 'Contact.LINKEDIN_LINK' })
     ).toHaveAttribute('href', 'https://www.linkedin.com/in/miguelarduz/');
   });

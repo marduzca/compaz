@@ -1,7 +1,6 @@
 import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import sketch from '../../../../static/img/sketch.png';
-import { ReactComponent as GithubIcon } from '../../../../static/svg/github.svg';
 import { ReactComponent as LinkedinIcon } from '../../../../static/svg/linkedin.svg';
 import styles from './Introduction.module.css';
 
@@ -35,15 +34,8 @@ const Introduction: React.FC = () => {
       </div>
       <div className={styles.socialNetworks}>
         <a
-          href="https://github.com/marduzca"
-          aria-label={t('Contact.GITHUB_LINK')}
-          target="_blank"
-          rel="noreferrer"
-        >
-          <GithubIcon />
-        </a>
-        <a
           href="https://www.linkedin.com/in/miguelarduz/"
+          title={t('Contact.LINKEDIN_LINK')}
           aria-label={t('Contact.LINKEDIN_LINK')}
           target="_blank"
           rel="noreferrer"
