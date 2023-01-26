@@ -31,13 +31,18 @@ describe('Navigation', () => {
     RoutesOverview.selectRouteWithGivenTimes('09:45', '10:14');
 
     // Route details
-    RouteDetails.withinLineSubRoute(LineColor.GREEN, () => {
+    const capitalizedGreenLine =
+      LineColor.GREEN.charAt(0).toUpperCase() + LineColor.GREEN.slice(1);
+
+    console.log(capitalizedGreenLine);
+
+    RouteDetails.withinLineSubRoute(capitalizedGreenLine, () => {
       RouteDetails.showIntermediateStations();
       RouteDetails.shouldShowStations(['Obrajes 17', 'Alto Obrajes']);
     });
 
     RouteDetails.shouldShowSubRouteWithInfo(
-      LineColor.GREEN,
+      capitalizedGreenLine,
       'Irpavi',
       'Libertador'
     );
