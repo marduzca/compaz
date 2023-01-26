@@ -8,32 +8,39 @@ import {
   useNavigation,
   calculateDirectionOfSubRoute,
 } from './NavigationProvider';
-import { ConnectedStation, Line, Route, Station, SubRoute } from '../../domain';
+import {
+  ConnectedStation,
+  Line,
+  LineColor,
+  Route,
+  Station,
+  SubRoute,
+} from '../../domain';
 
 describe('NavigationProvider', () => {
   const listOfStationsWithTwoLines = [
     {
       id: 'station_a',
       name: 'Station a',
-      lines: ['green'],
+      lines: [LineColor.GREEN],
       connectedStations: [{ id: 'station_b', timeTo: 2 } as ConnectedStation],
     },
     {
       id: 'station_b',
       name: 'Station b',
-      lines: ['green', 'red'],
+      lines: [LineColor.GREEN, LineColor.RED],
       connectedStations: [{ id: 'station_c', timeTo: 2 } as ConnectedStation],
     },
     {
       id: 'station_c',
       name: 'Station c',
-      lines: ['red'],
+      lines: [LineColor.RED],
       connectedStations: [{ id: 'station_d', timeTo: 2 } as ConnectedStation],
     },
     {
       id: 'station_d',
       name: 'Station d',
-      lines: ['red'],
+      lines: [LineColor.RED],
       connectedStations: [],
     },
   ] as Station[];
@@ -41,25 +48,25 @@ describe('NavigationProvider', () => {
     {
       id: 'station_a',
       name: 'Station a',
-      lines: ['green'],
+      lines: [LineColor.GREEN],
       connectedStations: [{ id: 'station_b', timeTo: 2 } as ConnectedStation],
     },
     {
       id: 'station_b',
       name: 'Station b',
-      lines: ['green', 'red'],
+      lines: [LineColor.GREEN, LineColor.RED],
       connectedStations: [{ id: 'station_c', timeTo: 2 } as ConnectedStation],
     },
     {
       id: 'station_c',
       name: 'Station c',
-      lines: ['red'],
+      lines: [LineColor.RED],
       connectedStations: [{ id: 'station_d', timeTo: 2 } as ConnectedStation],
     },
     {
       id: 'station_d',
       name: 'Station d',
-      lines: ['red', 'blue'],
+      lines: [LineColor.RED, LineColor.BLUE],
       connectedStations: [
         { id: 'station_c', timeTo: 2 },
         { id: 'station_e', timeTo: 2 },
@@ -68,7 +75,7 @@ describe('NavigationProvider', () => {
     {
       id: 'station_e',
       name: 'Station e',
-      lines: ['blue'],
+      lines: [LineColor.BLUE],
       connectedStations: [{ id: 'station_e', timeTo: 2 } as ConnectedStation],
     },
   ] as Station[];
@@ -79,7 +86,7 @@ describe('NavigationProvider', () => {
         {
           id: 'station_a',
           name: 'Station a',
-          lines: ['green'],
+          lines: [LineColor.GREEN],
           connectedStations: [
             { id: 'station_b', timeTo: 2 },
           ] as ConnectedStation[],
@@ -87,14 +94,14 @@ describe('NavigationProvider', () => {
         {
           id: 'station_b',
           name: 'Station b',
-          lines: ['green', 'red'],
+          lines: [LineColor.GREEN, LineColor.RED],
           connectedStations: [
             { id: 'station_c', timeTo: 2 },
           ] as ConnectedStation[],
         },
       ],
       totalTime: 2,
-      line: 'green',
+      line: LineColor.GREEN,
       direction: 'Station b',
       transferTimeToNextLine: 2,
     },
@@ -103,7 +110,7 @@ describe('NavigationProvider', () => {
         {
           id: 'station_b',
           name: 'Station b',
-          lines: ['green', 'red'],
+          lines: [LineColor.GREEN, LineColor.RED],
           connectedStations: [
             { id: 'station_c', timeTo: 2 },
           ] as ConnectedStation[],
@@ -111,7 +118,7 @@ describe('NavigationProvider', () => {
         {
           id: 'station_c',
           name: 'Station c',
-          lines: ['red'],
+          lines: [LineColor.RED],
           connectedStations: [
             { id: 'station_d', timeTo: 2 },
           ] as ConnectedStation[],
@@ -119,12 +126,12 @@ describe('NavigationProvider', () => {
         {
           id: 'station_d',
           name: 'Station d',
-          lines: ['red'],
+          lines: [LineColor.RED],
           connectedStations: [],
         },
       ],
       totalTime: 4,
-      line: 'red',
+      line: LineColor.RED,
       direction: 'Station d',
     },
   ] as SubRoute[];
@@ -135,7 +142,7 @@ describe('NavigationProvider', () => {
         {
           id: 'station_a',
           name: 'Station a',
-          lines: ['green'],
+          lines: [LineColor.GREEN],
           connectedStations: [
             { id: 'station_b', timeTo: 2 },
           ] as ConnectedStation[],
@@ -143,14 +150,14 @@ describe('NavigationProvider', () => {
         {
           id: 'station_b',
           name: 'Station b',
-          lines: ['green', 'red'],
+          lines: [LineColor.GREEN, LineColor.RED],
           connectedStations: [
             { id: 'station_c', timeTo: 2 },
           ] as ConnectedStation[],
         },
       ],
       totalTime: 2,
-      line: 'green',
+      line: LineColor.GREEN,
       direction: 'Station b',
       transferTimeToNextLine: 2,
     },
@@ -159,7 +166,7 @@ describe('NavigationProvider', () => {
         {
           id: 'station_b',
           name: 'Station b',
-          lines: ['green', 'red'],
+          lines: [LineColor.GREEN, LineColor.RED],
           connectedStations: [
             { id: 'station_c', timeTo: 2 },
           ] as ConnectedStation[],
@@ -167,7 +174,7 @@ describe('NavigationProvider', () => {
         {
           id: 'station_c',
           name: 'Station c',
-          lines: ['red'],
+          lines: [LineColor.RED],
           connectedStations: [
             { id: 'station_d', timeTo: 2 },
           ] as ConnectedStation[],
@@ -175,7 +182,7 @@ describe('NavigationProvider', () => {
         {
           id: 'station_d',
           name: 'Station d',
-          lines: ['red', 'blue'],
+          lines: [LineColor.RED, LineColor.BLUE],
           connectedStations: [
             { id: 'station_c', timeTo: 2 },
             { id: 'station_e', timeTo: 2 },
@@ -183,7 +190,7 @@ describe('NavigationProvider', () => {
         },
       ],
       totalTime: 4,
-      line: 'red',
+      line: LineColor.RED,
       direction: 'Station d',
       transferTimeToNextLine: 3,
     },
@@ -192,7 +199,7 @@ describe('NavigationProvider', () => {
         {
           id: 'station_d',
           name: 'Station d',
-          lines: ['red', 'blue'],
+          lines: [LineColor.RED, LineColor.BLUE],
           connectedStations: [
             { id: 'station_c', timeTo: 2 },
             { id: 'station_e', timeTo: 2 },
@@ -201,42 +208,42 @@ describe('NavigationProvider', () => {
         {
           id: 'station_e',
           name: 'Station e',
-          lines: ['blue'],
+          lines: [LineColor.BLUE],
           connectedStations: [
             { id: 'station_e', timeTo: 2 },
           ] as ConnectedStation[],
         },
       ],
       totalTime: 2,
-      line: 'blue',
+      line: LineColor.BLUE,
       direction: 'Station e',
     },
   ] as SubRoute[];
 
   const lines = [
     {
-      id: 'green',
+      id: LineColor.GREEN,
       stationsPath: ['station_a', 'station_b'],
       connectedLines: [
-        { id: 'yellow', transferTime: 2 },
-        { id: 'red', transferTime: 2 },
+        { id: LineColor.YELLOW, transferTime: 2 },
+        { id: LineColor.RED, transferTime: 2 },
       ],
     },
     {
-      id: 'red',
+      id: LineColor.RED,
       stationsPath: ['station_b', 'station_c', 'station_d'],
       connectedLines: [
-        { id: 'blue', transferTime: 3 },
-        { id: 'silver', transferTime: 2 },
-        { id: 'green', transferTime: 2 },
+        { id: LineColor.BLUE, transferTime: 3 },
+        { id: LineColor.SILVER, transferTime: 2 },
+        { id: LineColor.GREEN, transferTime: 2 },
       ],
     },
     {
-      id: 'blue',
+      id: LineColor.BLUE,
       stationsPath: ['station_d', 'station_e'],
       connectedLines: [
-        { id: 'red', transferTime: 3 },
-        { id: 'silver', transferTime: 2 },
+        { id: LineColor.RED, transferTime: 3 },
+        { id: LineColor.SILVER, transferTime: 2 },
       ],
     },
   ] as Line[];
@@ -299,13 +306,102 @@ describe('NavigationProvider', () => {
     } as Route);
   });
 
+  it('calculates prices reduction for white-lightblue lines combination exception', () => {
+    const linesWithWhiteLightBlueException = [
+      {
+        id: LineColor.WHITE,
+        stationsPath: ['station_a', 'station_b'],
+        connectedLines: [
+          { id: LineColor.YELLOW, transferTime: 2 },
+          { id: LineColor.LIGHT_BLUE, transferTime: 2 },
+        ],
+      },
+      {
+        id: LineColor.LIGHT_BLUE,
+        stationsPath: ['station_b', 'station_c', 'station_d'],
+        connectedLines: [
+          { id: LineColor.GREEN, transferTime: 3 },
+          { id: LineColor.SILVER, transferTime: 2 },
+          { id: LineColor.WHITE, transferTime: 2 },
+        ],
+      },
+      {
+        id: LineColor.GREEN,
+        stationsPath: ['station_d', 'station_e'],
+        connectedLines: [
+          { id: LineColor.LIGHT_BLUE, transferTime: 3 },
+          { id: LineColor.SILVER, transferTime: 2 },
+        ],
+      },
+    ] as Line[];
+
+    const stationsWithWhiteLightBlueLines = [
+      {
+        id: 'station_a',
+        name: 'Station a',
+        lines: [LineColor.WHITE],
+        connectedStations: [{ id: 'station_b', timeTo: 2 } as ConnectedStation],
+      },
+      {
+        id: 'station_b',
+        name: 'Station b',
+        lines: [LineColor.WHITE, LineColor.LIGHT_BLUE],
+        connectedStations: [{ id: 'station_c', timeTo: 2 } as ConnectedStation],
+      },
+      {
+        id: 'station_c',
+        name: 'Station c',
+        lines: [LineColor.LIGHT_BLUE],
+        connectedStations: [{ id: 'station_d', timeTo: 2 } as ConnectedStation],
+      },
+      {
+        id: 'station_d',
+        name: 'Station d',
+        lines: [LineColor.LIGHT_BLUE, LineColor.GREEN],
+        connectedStations: [
+          { id: 'station_c', timeTo: 2 },
+          { id: 'station_e', timeTo: 2 },
+        ] as ConnectedStation[],
+      },
+      {
+        id: 'station_e',
+        name: 'Station e',
+        lines: [LineColor.GREEN],
+        connectedStations: [{ id: 'station_e', timeTo: 2 } as ConnectedStation],
+      },
+    ] as Station[];
+
+    const { result } = renderHook(() => useNavigation(), {
+      wrapper: NavigationProvider,
+    });
+
+    act(() => {
+      result.current.generateStationsMap(stationsWithWhiteLightBlueLines);
+    });
+
+    act(() => {
+      result.current.setOriginStation(stationsWithWhiteLightBlueLines[0]);
+    });
+
+    act(() => {
+      result.current.setDestinationStation(stationsWithWhiteLightBlueLines[4]);
+    });
+
+    const route = result.current.calculateRoute(
+      stationsWithWhiteLightBlueLines,
+      linesWithWhiteLightBlueException
+    );
+
+    expect(route.price).toBe(5);
+  });
+
   describe('extractSubRoutes', () => {
     it('extracts sub route correctly from route without transfers', () => {
       const calculatedSubRoutes = extractSubRoutes([
         {
           id: 'station_b',
           name: 'Station b',
-          lines: ['green', 'red'],
+          lines: [LineColor.GREEN, LineColor.RED],
           connectedStations: [
             { id: 'station_c', timeTo: 2 },
           ] as ConnectedStation[],
@@ -314,7 +410,7 @@ describe('NavigationProvider', () => {
         {
           id: 'station_c',
           name: 'Station c',
-          lines: ['red'],
+          lines: [LineColor.RED],
           connectedStations: [
             { id: 'station_d', timeTo: 2 },
           ] as ConnectedStation[],
@@ -323,7 +419,7 @@ describe('NavigationProvider', () => {
         {
           id: 'station_d',
           name: 'Station d',
-          lines: ['red', 'blue'],
+          lines: [LineColor.RED, LineColor.BLUE],
           connectedStations: [],
           geoLocation: { latitude: 0, longitude: 0 },
         },
@@ -334,7 +430,7 @@ describe('NavigationProvider', () => {
           {
             id: 'station_b',
             name: 'Station b',
-            lines: ['green', 'red'],
+            lines: [LineColor.GREEN, LineColor.RED],
             connectedStations: [
               { id: 'station_c', timeTo: 2 },
             ] as ConnectedStation[],
@@ -343,7 +439,7 @@ describe('NavigationProvider', () => {
           {
             id: 'station_c',
             name: 'Station c',
-            lines: ['red'],
+            lines: [LineColor.RED],
             connectedStations: [
               { id: 'station_d', timeTo: 2 },
             ] as ConnectedStation[],
@@ -352,7 +448,7 @@ describe('NavigationProvider', () => {
           {
             id: 'station_d',
             name: 'Station d',
-            lines: ['red', 'blue'],
+            lines: [LineColor.RED, LineColor.BLUE],
             connectedStations: [],
             geoLocation: { latitude: 0, longitude: 0 },
           },
@@ -368,7 +464,7 @@ describe('NavigationProvider', () => {
           {
             id: 'station_a',
             name: 'Station a',
-            lines: ['green'],
+            lines: [LineColor.GREEN],
             connectedStations: [
               { id: 'station_b', timeTo: 2 },
             ] as ConnectedStation[],
@@ -376,7 +472,7 @@ describe('NavigationProvider', () => {
           {
             id: 'station_b',
             name: 'Station b',
-            lines: ['green', 'red'],
+            lines: [LineColor.GREEN, LineColor.RED],
             connectedStations: [
               { id: 'station_c', timeTo: 2 },
             ] as ConnectedStation[],
@@ -386,7 +482,7 @@ describe('NavigationProvider', () => {
           {
             id: 'station_b',
             name: 'Station b',
-            lines: ['green', 'red'],
+            lines: [LineColor.GREEN, LineColor.RED],
             connectedStations: [
               { id: 'station_c', timeTo: 2 },
             ] as ConnectedStation[],
@@ -394,7 +490,7 @@ describe('NavigationProvider', () => {
           {
             id: 'station_c',
             name: 'Station c',
-            lines: ['red'],
+            lines: [LineColor.RED],
             connectedStations: [
               { id: 'station_d', timeTo: 2 },
             ] as ConnectedStation[],
@@ -402,7 +498,7 @@ describe('NavigationProvider', () => {
           {
             id: 'station_d',
             name: 'Station d',
-            lines: ['red'],
+            lines: [LineColor.RED],
             connectedStations: [],
           },
         ],
@@ -419,7 +515,7 @@ describe('NavigationProvider', () => {
           {
             id: 'station_a',
             name: 'Station a',
-            lines: ['green'],
+            lines: [LineColor.GREEN],
             connectedStations: [
               { id: 'station_b', timeTo: 2 },
             ] as ConnectedStation[],
@@ -427,7 +523,7 @@ describe('NavigationProvider', () => {
           {
             id: 'station_b',
             name: 'Station b',
-            lines: ['green', 'red'],
+            lines: [LineColor.GREEN, LineColor.RED],
             connectedStations: [
               { id: 'station_c', timeTo: 2 },
             ] as ConnectedStation[],
@@ -437,7 +533,7 @@ describe('NavigationProvider', () => {
           {
             id: 'station_b',
             name: 'Station b',
-            lines: ['green', 'red'],
+            lines: [LineColor.GREEN, LineColor.RED],
             connectedStations: [
               { id: 'station_c', timeTo: 2 },
             ] as ConnectedStation[],
@@ -445,7 +541,7 @@ describe('NavigationProvider', () => {
           {
             id: 'station_c',
             name: 'Station c',
-            lines: ['red'],
+            lines: [LineColor.RED],
             connectedStations: [
               { id: 'station_d', timeTo: 2 },
             ] as ConnectedStation[],
@@ -453,7 +549,7 @@ describe('NavigationProvider', () => {
           {
             id: 'station_d',
             name: 'Station d',
-            lines: ['red', 'blue'],
+            lines: [LineColor.RED, LineColor.BLUE],
             connectedStations: [
               { id: 'station_c', timeTo: 2 },
               { id: 'station_e', timeTo: 2 },
@@ -464,7 +560,7 @@ describe('NavigationProvider', () => {
           {
             id: 'station_d',
             name: 'Station d',
-            lines: ['red', 'blue'],
+            lines: [LineColor.RED, LineColor.BLUE],
             connectedStations: [
               { id: 'station_c', timeTo: 2 },
               { id: 'station_e', timeTo: 2 },
@@ -473,7 +569,7 @@ describe('NavigationProvider', () => {
           {
             id: 'station_e',
             name: 'Station e',
-            lines: ['blue'],
+            lines: [LineColor.BLUE],
             connectedStations: [
               { id: 'station_e', timeTo: 2 },
             ] as ConnectedStation[],
@@ -509,35 +605,35 @@ describe('NavigationProvider', () => {
       {
         id: 'first_station_red',
         name: 'First station red',
-        lines: ['red'],
+        lines: [LineColor.RED],
         connectedStations: [{ id: 'station_b', timeTo: 2 } as ConnectedStation],
         geoLocation: { latitude: 0, longitude: 0 },
       },
       {
         id: 'station_b',
         name: 'Station b',
-        lines: ['red'],
+        lines: [LineColor.RED],
         connectedStations: [{ id: 'station_c', timeTo: 2 } as ConnectedStation],
         geoLocation: { latitude: 0, longitude: 0 },
       },
       {
         id: 'station_c',
         name: 'Station c',
-        lines: ['red'],
+        lines: [LineColor.RED],
         connectedStations: [{ id: 'station_d', timeTo: 2 } as ConnectedStation],
         geoLocation: { latitude: 0, longitude: 0 },
       },
       {
         id: 'last_station_red',
         name: 'Last station red',
-        lines: ['red'],
+        lines: [LineColor.RED],
         connectedStations: [],
         geoLocation: { latitude: 0, longitude: 0 },
       },
     ] as Station[];
 
     const redLine = {
-      id: 'red',
+      id: LineColor.RED,
       stationsPath: [
         'first_station_red',
         'station_b',
@@ -551,7 +647,7 @@ describe('NavigationProvider', () => {
       {
         id: 'station_b',
         name: 'Station b',
-        lines: ['red'],
+        lines: [LineColor.RED],
         connectedStations: [
           { id: 'station_c', timeTo: 2 },
         ] as ConnectedStation[],
@@ -560,7 +656,7 @@ describe('NavigationProvider', () => {
       {
         id: 'station_c',
         name: 'Station c',
-        lines: ['red'],
+        lines: [LineColor.RED],
         connectedStations: [
           { id: 'station_d', timeTo: 2 },
         ] as ConnectedStation[],

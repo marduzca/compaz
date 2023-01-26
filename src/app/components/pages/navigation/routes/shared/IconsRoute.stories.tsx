@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
 import IconsRoute from './IconsRoute';
-import { ConnectedStation, SubRoute } from '../../../../domain';
+import { ConnectedStation, LineColor, SubRoute } from '../../../../domain';
 
 const testSubRoutes = [
   {
@@ -9,18 +9,18 @@ const testSubRoutes = [
       {
         id: 'station_a',
         name: 'Station a',
-        lines: ['green'],
+        lines: [LineColor.GREEN],
         connectedStations: [{ id: 'station_b', timeTo: 2 } as ConnectedStation],
       },
       {
         id: 'station_b',
         name: 'Station b',
-        lines: ['green', 'red'],
+        lines: [LineColor.GREEN, LineColor.RED],
         connectedStations: [{ id: 'station_c', timeTo: 2 } as ConnectedStation],
       },
     ],
     totalTime: 2,
-    line: 'blue',
+    line: LineColor.BLUE,
     transferTimeToNextLine: 3,
   },
   {
@@ -28,18 +28,18 @@ const testSubRoutes = [
       {
         id: 'station_b',
         name: 'Station b',
-        lines: ['green', 'red'],
+        lines: [LineColor.GREEN, LineColor.RED],
         connectedStations: [{ id: 'station_c', timeTo: 2 } as ConnectedStation],
       },
       {
         id: 'station_c',
         name: 'Station c',
-        lines: ['red'],
+        lines: [LineColor.RED],
         connectedStations: [{ id: 'station_d', timeTo: 2 } as ConnectedStation],
       },
     ],
     totalTime: 2,
-    line: 'red',
+    line: LineColor.RED,
   },
 ] as SubRoute[];
 

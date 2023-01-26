@@ -5,7 +5,13 @@ import { MemoryRouter, Route as Path, Routes } from 'react-router-dom';
 import NavigationPage from './NavigationPage';
 import * as FirebaseProvider from '../../providers/firebase/FirebaseProvider';
 import * as NavigationProvider from '../../providers/navigation/NavigationProvider';
-import { ConnectedStation, Route, Station, SubRoute } from '../../domain';
+import {
+  ConnectedStation,
+  LineColor,
+  Route,
+  Station,
+  SubRoute,
+} from '../../domain';
 import { NavigationLink } from '../../organisms/menu/Menu';
 
 describe('NavigationPage', () => {
@@ -15,14 +21,14 @@ describe('NavigationPage', () => {
   const originStation = {
     id: 'origin_station',
     name: 'Origin station',
-    lines: ['green'],
+    lines: [LineColor.GREEN],
     connectedStations: [],
     geoLocation: { latitude: 0, longitude: 0 },
   } as Station;
   const destinationStation = {
     id: 'destination_station',
     name: 'Destination station',
-    lines: ['green'],
+    lines: [LineColor.GREEN],
     connectedStations: [],
     geoLocation: { latitude: 0, longitude: 0 },
   } as Station;
@@ -33,7 +39,7 @@ describe('NavigationPage', () => {
           {
             id: 'station_a',
             name: 'Origin Station',
-            lines: ['purple'],
+            lines: [LineColor.PURPLE],
             connectedStations: [
               { id: 'station_a_half', timeTo: 2 } as ConnectedStation,
             ],
@@ -41,7 +47,7 @@ describe('NavigationPage', () => {
           {
             id: 'station_a_half',
             name: 'A.5 Station',
-            lines: ['purple'],
+            lines: [LineColor.PURPLE],
             connectedStations: [
               { id: 'station_b', timeTo: 4 } as ConnectedStation,
             ],
@@ -49,14 +55,14 @@ describe('NavigationPage', () => {
           {
             id: 'station_b',
             name: 'Intermediate Station',
-            lines: ['purple', 'blue'],
+            lines: [LineColor.PURPLE, LineColor.BLUE],
             connectedStations: [
               { id: 'station_c', timeTo: 2 } as ConnectedStation,
             ],
           },
         ],
         totalTime: 6,
-        line: 'purple',
+        line: LineColor.PURPLE,
         direction: 'End Station Purple Line',
         transferTimeToNextLine: 3,
       },
@@ -65,7 +71,7 @@ describe('NavigationPage', () => {
           {
             id: 'station_b',
             name: 'Intermediate Station',
-            lines: ['blue', 'purple'],
+            lines: [LineColor.BLUE, LineColor.PURPLE],
             connectedStations: [
               { id: 'station_c', timeTo: 2 } as ConnectedStation,
             ],
@@ -73,14 +79,14 @@ describe('NavigationPage', () => {
           {
             id: 'station_c',
             name: 'Destination Station',
-            lines: ['blue'],
+            lines: [LineColor.BLUE],
             connectedStations: [
               { id: 'station_d', timeTo: 2 } as ConnectedStation,
             ],
           },
         ],
         totalTime: 2,
-        line: 'blue',
+        line: LineColor.BLUE,
         direction: 'Start Station Blue Line',
       },
     ] as SubRoute[],
@@ -107,7 +113,7 @@ describe('NavigationPage', () => {
   beforeEach(() => {
     useFirebaseMock.mockReturnValue({
       stations: [originStation, destinationStation],
-      lines: [{ id: 'green', stationsPath: [], connectedLines: [] }],
+      lines: [{ id: LineColor.GREEN, stationsPath: [], connectedLines: [] }],
       storeMessage: async () => true,
     });
 
@@ -159,7 +165,7 @@ describe('NavigationPage', () => {
   it('renders the loading page when stations data is not yet ready', () => {
     useFirebaseMock.mockReturnValue({
       stations: [],
-      lines: [{ id: 'green', stationsPath: [], connectedLines: [] }],
+      lines: [{ id: LineColor.GREEN, stationsPath: [], connectedLines: [] }],
       storeMessage: async () => true,
     });
 

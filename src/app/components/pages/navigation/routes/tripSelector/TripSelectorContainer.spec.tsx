@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import TripSelectorContainer from './TripSelectorContainer';
 import * as FirebaseProvider from '../../../../providers/firebase/FirebaseProvider';
 import * as NavigationProvider from '../../../../providers/navigation/NavigationProvider';
-import { Route, Station } from '../../../../domain';
+import { LineColor, Route, Station } from '../../../../domain';
 
 describe('TripSelectorContainer', () => {
   const useFirebaseMock = jest.spyOn(FirebaseProvider, 'useFirebase');
@@ -14,14 +14,14 @@ describe('TripSelectorContainer', () => {
     {
       id: 'some_station',
       name: 'Some station',
-      lines: ['green'],
+      lines: [LineColor.GREEN],
       connectedStations: [],
       geoLocation: { latitude: 0, longitude: 0 },
     },
     {
       id: 'another_station',
       name: 'Another station',
-      lines: ['green'],
+      lines: [LineColor.GREEN],
       connectedStations: [],
       geoLocation: { latitude: 0, longitude: 0 },
     },
@@ -33,14 +33,14 @@ describe('TripSelectorContainer', () => {
         {
           id: 'some_station',
           name: 'Some station',
-          lines: ['green'],
+          lines: [LineColor.GREEN],
           connectedStations: [],
           geoLocation: { latitude: 0, longitude: 0 },
         },
         {
           id: 'another_station',
           name: 'Another station',
-          lines: ['green'],
+          lines: [LineColor.GREEN],
           connectedStations: [],
           geoLocation: { latitude: 0, longitude: 0 },
         },

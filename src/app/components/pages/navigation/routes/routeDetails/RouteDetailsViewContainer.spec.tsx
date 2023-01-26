@@ -2,7 +2,12 @@ import React from 'react';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import RouteDetailsViewContainer from './RouteDetailsViewContainer';
-import { ConnectedStation, Route, SubRoute } from '../../../../domain';
+import {
+  ConnectedStation,
+  LineColor,
+  Route,
+  SubRoute,
+} from '../../../../domain';
 
 describe('RouteDetailsViewContainer', () => {
   const testRoute = {
@@ -12,7 +17,7 @@ describe('RouteDetailsViewContainer', () => {
           {
             id: 'station_a',
             name: 'Origin Station',
-            lines: ['purple'],
+            lines: [LineColor.PURPLE],
             connectedStations: [
               { id: 'station_a_half', timeTo: 2 } as ConnectedStation,
             ],
@@ -20,7 +25,7 @@ describe('RouteDetailsViewContainer', () => {
           {
             id: 'station_a_half',
             name: 'A.5 Station',
-            lines: ['purple'],
+            lines: [LineColor.PURPLE],
             connectedStations: [
               { id: 'station_b', timeTo: 4 } as ConnectedStation,
             ],
@@ -28,14 +33,14 @@ describe('RouteDetailsViewContainer', () => {
           {
             id: 'station_b',
             name: 'Intermediate Station',
-            lines: ['purple', 'blue'],
+            lines: [LineColor.PURPLE, LineColor.BLUE],
             connectedStations: [
               { id: 'station_c', timeTo: 2 } as ConnectedStation,
             ],
           },
         ],
         totalTime: 6,
-        line: 'purple',
+        line: LineColor.PURPLE,
         direction: 'End Station Purple Line',
         transferTimeToNextLine: 3,
       },
@@ -44,7 +49,7 @@ describe('RouteDetailsViewContainer', () => {
           {
             id: 'station_b',
             name: 'Intermediate Station',
-            lines: ['blue', 'purple'],
+            lines: [LineColor.BLUE, LineColor.PURPLE],
             connectedStations: [
               { id: 'station_c', timeTo: 2 } as ConnectedStation,
             ],
@@ -52,14 +57,14 @@ describe('RouteDetailsViewContainer', () => {
           {
             id: 'station_c',
             name: 'Destination Station',
-            lines: ['blue'],
+            lines: [LineColor.BLUE],
             connectedStations: [
               { id: 'station_d', timeTo: 2 } as ConnectedStation,
             ],
           },
         ],
         totalTime: 2,
-        line: 'blue',
+        line: LineColor.BLUE,
         direction: 'Start Station Blue Line',
       },
     ] as SubRoute[],

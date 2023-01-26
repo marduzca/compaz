@@ -1,11 +1,12 @@
 import Header from '../page_objects/header';
 import Map from '../page_objects/map';
 import { MapLine } from '../../src/app/components/pages/map/MapPage';
+import { LineColor } from '../../src/app/components/domain';
 
 describe('Map', () => {
   const mapLines: MapLine[] = [
     {
-      color: 'blue',
+      color: LineColor.BLUE,
       stationsPath: [
         {
           id: 'ex_tranca_rio_seco',
@@ -50,7 +51,7 @@ describe('Map', () => {
       ],
     },
     {
-      color: 'brown',
+      color: LineColor.BROWN,
       stationsPath: [
         {
           id: 'busch',
@@ -71,7 +72,7 @@ describe('Map', () => {
       ],
     },
     {
-      color: 'green',
+      color: LineColor.GREEN,
       stationsPath: [
         {
           id: 'libertador',
@@ -108,7 +109,7 @@ describe('Map', () => {
       ],
     },
     {
-      color: 'light_blue',
+      color: LineColor.LIGHT_BLUE,
       stationsPath: [
         {
           id: 'el_prado',
@@ -145,7 +146,7 @@ describe('Map', () => {
       ],
     },
     {
-      color: 'orange',
+      color: LineColor.ORANGE,
       stationsPath: [
         {
           id: 'central',
@@ -182,7 +183,7 @@ describe('Map', () => {
       ],
     },
     {
-      color: 'purple',
+      color: LineColor.PURPLE,
       stationsPath: [
         {
           id: '6_de_marzo',
@@ -211,7 +212,7 @@ describe('Map', () => {
       ],
     },
     {
-      color: 'red',
+      color: LineColor.RED,
       stationsPath: [
         {
           id: '16_de_julio',
@@ -240,7 +241,7 @@ describe('Map', () => {
       ],
     },
     {
-      color: 'silver',
+      color: LineColor.SILVER,
       stationsPath: [
         {
           id: '16_de_julio',
@@ -269,7 +270,7 @@ describe('Map', () => {
       ],
     },
     {
-      color: 'white',
+      color: LineColor.WHITE,
       stationsPath: [
         {
           id: 'plaza_villaroel',
@@ -306,7 +307,7 @@ describe('Map', () => {
       ],
     },
     {
-      color: 'yellow',
+      color: LineColor.YELLOW,
       stationsPath: [
         {
           id: 'mirador',

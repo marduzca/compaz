@@ -7,6 +7,7 @@ import * as FirebaseProvider from '../../../../providers/firebase/FirebaseProvid
 import {
   ConnectedStation,
   Line,
+  LineColor,
   Route,
   Station,
   SubRoute,
@@ -16,14 +17,14 @@ describe('RoutesOverviewContainer', () => {
   const originStation = {
     id: 'origin_station',
     name: 'Origin station',
-    lines: ['green'],
+    lines: [LineColor.GREEN],
     connectedStations: [],
     geoLocation: { latitude: 0, longitude: 0 },
   } as Station;
   const destinationStation = {
     id: 'destination_station',
     name: 'Destination station',
-    lines: ['green'],
+    lines: [LineColor.GREEN],
     connectedStations: [],
     geoLocation: { latitude: 0, longitude: 0 },
   } as Station;
@@ -35,7 +36,7 @@ describe('RoutesOverviewContainer', () => {
           {
             id: 'station_a',
             name: 'Station a',
-            lines: ['green'],
+            lines: [LineColor.GREEN],
             connectedStations: [
               { id: 'station_b', timeTo: 2 } as ConnectedStation,
             ],
@@ -43,14 +44,14 @@ describe('RoutesOverviewContainer', () => {
           {
             id: 'station_b',
             name: 'Station b',
-            lines: ['green', 'red'],
+            lines: [LineColor.GREEN, LineColor.RED],
             connectedStations: [
               { id: 'station_c', timeTo: 2 } as ConnectedStation,
             ],
           },
         ],
         totalTime: 3,
-        line: 'green',
+        line: LineColor.GREEN,
         transferTimeToNextLine: 2,
       },
       {
@@ -58,7 +59,7 @@ describe('RoutesOverviewContainer', () => {
           {
             id: 'station_b',
             name: 'Station b',
-            lines: ['green', 'red'],
+            lines: [LineColor.GREEN, LineColor.RED],
             connectedStations: [
               { id: 'station_c', timeTo: 2 } as ConnectedStation,
             ],
@@ -66,7 +67,7 @@ describe('RoutesOverviewContainer', () => {
           {
             id: 'station_c',
             name: 'Station c',
-            lines: ['red'],
+            lines: [LineColor.RED],
             connectedStations: [
               { id: 'station_d', timeTo: 2 } as ConnectedStation,
             ],
@@ -74,12 +75,12 @@ describe('RoutesOverviewContainer', () => {
           {
             id: 'station_d',
             name: 'Station d',
-            lines: ['red'],
+            lines: [LineColor.RED],
             connectedStations: [],
           },
         ],
         totalTime: 4,
-        line: 'red',
+        line: LineColor.RED,
       },
     ] as SubRoute[],
     totalTime: 9,
@@ -94,18 +95,18 @@ describe('RoutesOverviewContainer', () => {
       stations: [originStation, destinationStation],
       lines: [
         {
-          id: 'green',
+          id: LineColor.GREEN,
           connectedLines: [
-            { id: 'yellow', transferTime: 2 },
-            { id: 'red', transferTime: 2 },
+            { id: LineColor.YELLOW, transferTime: 2 },
+            { id: LineColor.RED, transferTime: 2 },
           ],
         },
         {
-          id: 'red',
+          id: LineColor.RED,
           connectedLines: [
-            { id: 'blue', transferTime: 3 },
-            { id: 'silver', transferTime: 2 },
-            { id: 'green', transferTime: 2 },
+            { id: LineColor.BLUE, transferTime: 3 },
+            { id: LineColor.SILVER, transferTime: 2 },
+            { id: LineColor.GREEN, transferTime: 2 },
           ],
         },
       ] as Line[],
@@ -249,7 +250,7 @@ describe('RoutesOverviewContainer', () => {
               {
                 id: 'station_a',
                 name: 'Station a',
-                lines: ['green'],
+                lines: [LineColor.GREEN],
                 connectedStations: [
                   { id: 'station_b', timeTo: 2 } as ConnectedStation,
                 ],
@@ -257,14 +258,14 @@ describe('RoutesOverviewContainer', () => {
               {
                 id: 'station_b',
                 name: 'Station b',
-                lines: ['green', 'red'],
+                lines: [LineColor.GREEN, LineColor.RED],
                 connectedStations: [
                   { id: 'station_c', timeTo: 2 } as ConnectedStation,
                 ],
               },
             ],
             totalTime: 35,
-            line: 'green',
+            line: LineColor.GREEN,
             transferTimeToNextLine: 10,
           },
           {
@@ -272,7 +273,7 @@ describe('RoutesOverviewContainer', () => {
               {
                 id: 'station_b',
                 name: 'Station b',
-                lines: ['green', 'red'],
+                lines: [LineColor.GREEN, LineColor.RED],
                 connectedStations: [
                   { id: 'station_c', timeTo: 2 } as ConnectedStation,
                 ],
@@ -280,7 +281,7 @@ describe('RoutesOverviewContainer', () => {
               {
                 id: 'station_c',
                 name: 'Station c',
-                lines: ['red'],
+                lines: [LineColor.RED],
                 connectedStations: [
                   { id: 'station_d', timeTo: 2 } as ConnectedStation,
                 ],
@@ -288,12 +289,12 @@ describe('RoutesOverviewContainer', () => {
               {
                 id: 'station_d',
                 name: 'Station d',
-                lines: ['red'],
+                lines: [LineColor.RED],
                 connectedStations: [],
               },
             ],
             totalTime: 30,
-            line: 'red',
+            line: LineColor.RED,
           },
         ] as SubRoute[],
         totalTime: 75,
@@ -328,7 +329,7 @@ describe('RoutesOverviewContainer', () => {
               {
                 id: 'station_a',
                 name: 'Station a',
-                lines: ['green'],
+                lines: [LineColor.GREEN],
                 connectedStations: [
                   { id: 'station_b', timeTo: 2 } as ConnectedStation,
                 ],
@@ -336,14 +337,14 @@ describe('RoutesOverviewContainer', () => {
               {
                 id: 'station_b',
                 name: 'Station b',
-                lines: ['green', 'red'],
+                lines: [LineColor.GREEN, LineColor.RED],
                 connectedStations: [
                   { id: 'station_c', timeTo: 2 } as ConnectedStation,
                 ],
               },
             ],
             totalTime: 25,
-            line: 'green',
+            line: LineColor.GREEN,
             transferTimeToNextLine: 5,
           },
           {
@@ -351,7 +352,7 @@ describe('RoutesOverviewContainer', () => {
               {
                 id: 'station_b',
                 name: 'Station b',
-                lines: ['green', 'red'],
+                lines: [LineColor.GREEN, LineColor.RED],
                 connectedStations: [
                   { id: 'station_c', timeTo: 2 } as ConnectedStation,
                 ],
@@ -359,7 +360,7 @@ describe('RoutesOverviewContainer', () => {
               {
                 id: 'station_c',
                 name: 'Station c',
-                lines: ['red'],
+                lines: [LineColor.RED],
                 connectedStations: [
                   { id: 'station_d', timeTo: 2 } as ConnectedStation,
                 ],
@@ -367,12 +368,12 @@ describe('RoutesOverviewContainer', () => {
               {
                 id: 'station_d',
                 name: 'Station d',
-                lines: ['red'],
+                lines: [LineColor.RED],
                 connectedStations: [],
               },
             ],
             totalTime: 30,
-            line: 'red',
+            line: LineColor.RED,
           },
         ] as SubRoute[],
         totalTime: 60,

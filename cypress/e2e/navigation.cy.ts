@@ -30,12 +30,16 @@ describe('Navigation', () => {
     RoutesOverview.selectRouteWithGivenTimes('09:45', '10:14');
 
     // Route details
-    RouteDetails.withinLineSubRoute('Green', () => {
+    RouteDetails.withinLineSubRoute(LineColor.GREEN, () => {
       RouteDetails.showIntermediateStations();
       RouteDetails.shouldShowStations(['Obrajes 17', 'Alto Obrajes']);
     });
 
-    RouteDetails.shouldShowSubRouteWithInfo('Green', 'Irpavi', 'Libertador');
+    RouteDetails.shouldShowSubRouteWithInfo(
+      LineColor.GREEN,
+      'Irpavi',
+      'Libertador'
+    );
 
     RouteDetails.shouldShowTransfer();
 

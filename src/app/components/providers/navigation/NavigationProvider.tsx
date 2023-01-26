@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
-import { Line, Route, Station, SubRoute } from '../../domain';
+import { Line, LineColor, Route, Station, SubRoute } from '../../domain';
 import {
   parseToSimpleDate,
   parseToSimpleTime,
@@ -201,6 +201,25 @@ export const addTransferTimeBetweenLines = (
 const INITIAL_PRICE = 3;
 const TRANSFER_PRICE = 2;
 
+const calculateRoutePrice = (subRoutes: SubRoute[]): number => {
+  let routePrice = INITIAL_PRICE + TRANSFER_PRICE * (subRoutes.length - 1);
+
+  // Price exception for white-lightblue line: If there is a connection that connects both, the transfer is free
+  subRoutes.forEach((subRoute, index) => {
+    if (
+      subRoute.line === LineColor.WHITE &&
+      ((subRoutes[index - 1] &&
+        subRoutes[index - 1].line === LineColor.LIGHT_BLUE) ||
+        (subRoutes[index + 1] &&
+          subRoutes[index + 1].line === LineColor.LIGHT_BLUE))
+    ) {
+      routePrice -= 2;
+    }
+  });
+
+  return routePrice;
+};
+
 interface NavigationProviderProps {
   children: React.ReactNode;
 }
@@ -302,7 +321,7 @@ export const NavigationProvider: React.FC<NavigationProviderProps> = (
       }
     });
 
-    const routePrice = INITIAL_PRICE + TRANSFER_PRICE * (subRoutes.length - 1);
+    const routePrice = calculateRoutePrice(subRoutesWithTimeAndLineInfo);
 
     return {
       subRoutes: subRoutesWithTimeLineAndTransferInfo,

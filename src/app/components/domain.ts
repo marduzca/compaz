@@ -55,3 +55,16 @@ export interface NotificationEvent {
 export type UpdateAvailabilityEvent = NotificationEvent & {
   serviceWorkerRegistration: ServiceWorkerRegistration;
 };
+
+export enum LineColor {
+  BLUE = 'blue',
+  BROWN = 'brown',
+  GREEN = 'green',
+  LIGHT_BLUE = 'light_blue',
+  ORANGE = 'orange',
+  PURPLE = 'purple',
+  RED = 'red',
+  SILVER = 'silver',
+  WHITE = 'white',
+  YELLOW = 'yellow',
+}

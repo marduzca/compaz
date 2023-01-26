@@ -12,30 +12,30 @@ import {
   EventType,
   NotificationType,
 } from '../../../organisms/notification/Notification';
-import { NotificationEvent } from '../../../domain';
+import { LineColor, NotificationEvent } from '../../../domain';
 import { GENERAL_ERROR_NOTIFICATION_KEY } from '../../../organisms/notification/NotificationContainer';
 
 const getCorrespondingTelefericoIcon = (lineColor: string): string => {
   switch (lineColor) {
-    case 'blue':
+    case LineColor.BLUE:
       return blueTelefericoIcon;
-    case 'brown':
+    case LineColor.BROWN:
       return brownTelefericoIcon;
-    case 'green':
+    case LineColor.GREEN:
       return greenTelefericoIcon;
-    case 'light_blue':
+    case LineColor.LIGHT_BLUE:
       return lightBlueTelefericoIcon;
-    case 'orange':
+    case LineColor.ORANGE:
       return orangeTelefericoIcon;
-    case 'purple':
+    case LineColor.PURPLE:
       return purpleTelefericoIcon;
-    case 'red':
+    case LineColor.RED:
       return redTelefericoIcon;
-    case 'silver':
+    case LineColor.SILVER:
       return silverTelefericoIcon;
-    case 'white':
+    case LineColor.WHITE:
       return whiteTelefericoIcon;
-    case 'yellow':
+    case LineColor.YELLOW:
       return yellowTelefericoIcon;
     default:
       window.dispatchEvent(

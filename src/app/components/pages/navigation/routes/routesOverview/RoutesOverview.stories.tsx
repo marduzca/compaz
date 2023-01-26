@@ -2,7 +2,12 @@ import React from 'react';
 import { Meta } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 import RoutesOverview from './RoutesOverview';
-import { ConnectedStation, Route, SubRoute } from '../../../../domain';
+import {
+  ConnectedStation,
+  LineColor,
+  Route,
+  SubRoute,
+} from '../../../../domain';
 
 export default {
   title: 'NavigationPage / RoutesOverview',
@@ -19,7 +24,7 @@ export const NormalAndMobileState = () => (
               {
                 id: 'station_a',
                 name: 'Station a',
-                lines: ['green'],
+                lines: [LineColor.GREEN],
                 connectedStations: [
                   { id: 'station_b', timeTo: 2 } as ConnectedStation,
                 ],
@@ -27,14 +32,14 @@ export const NormalAndMobileState = () => (
               {
                 id: 'station_b',
                 name: 'Station b',
-                lines: ['green', 'red'],
+                lines: [LineColor.GREEN, LineColor.RED],
                 connectedStations: [
                   { id: 'station_c', timeTo: 2 } as ConnectedStation,
                 ],
               },
             ],
             totalTime: 2,
-            line: 'blue',
+            line: LineColor.BLUE,
             transferTimeToNextLine: 3,
           },
           {
@@ -42,7 +47,7 @@ export const NormalAndMobileState = () => (
               {
                 id: 'station_b',
                 name: 'Station b',
-                lines: ['green', 'red'],
+                lines: [LineColor.GREEN, LineColor.RED],
                 connectedStations: [
                   { id: 'station_c', timeTo: 2 } as ConnectedStation,
                 ],
@@ -50,14 +55,14 @@ export const NormalAndMobileState = () => (
               {
                 id: 'station_c',
                 name: 'Station c',
-                lines: ['red'],
+                lines: [LineColor.RED],
                 connectedStations: [
                   { id: 'station_d', timeTo: 2 } as ConnectedStation,
                 ],
               },
             ],
             totalTime: 2,
-            line: 'red',
+            line: LineColor.RED,
           },
         ] as SubRoute[],
         totalTime: 6,
@@ -90,7 +95,7 @@ export const TooLongConnectionInNormalAndMobileState = () => (
               {
                 id: 'station_a',
                 name: 'Station a',
-                lines: ['blue'],
+                lines: [LineColor.BLUE],
                 connectedStations: [
                   { id: 'station_b', timeTo: 2 } as ConnectedStation,
                 ],
@@ -98,14 +103,14 @@ export const TooLongConnectionInNormalAndMobileState = () => (
               {
                 id: 'station_b',
                 name: 'Station b',
-                lines: ['green', 'red'],
+                lines: [LineColor.GREEN, LineColor.RED],
                 connectedStations: [
                   { id: 'station_c', timeTo: 2 } as ConnectedStation,
                 ],
               },
             ],
             totalTime: 2,
-            line: 'blue',
+            line: LineColor.BLUE,
             transferTimeToNextLine: 3,
           },
           {
@@ -113,7 +118,7 @@ export const TooLongConnectionInNormalAndMobileState = () => (
               {
                 id: 'station_b',
                 name: 'Station b',
-                lines: ['blue', 'red'],
+                lines: [LineColor.BLUE, LineColor.RED],
                 connectedStations: [
                   { id: 'station_c', timeTo: 2 } as ConnectedStation,
                 ],
@@ -121,14 +126,14 @@ export const TooLongConnectionInNormalAndMobileState = () => (
               {
                 id: 'station_c',
                 name: 'Station c',
-                lines: ['red', 'green'],
+                lines: [LineColor.RED, LineColor.GREEN],
                 connectedStations: [
                   { id: 'station_d', timeTo: 2 } as ConnectedStation,
                 ],
               },
             ],
             totalTime: 2,
-            line: 'red',
+            line: LineColor.RED,
             transferTimeToNextLine: 2,
           },
           {
@@ -136,7 +141,7 @@ export const TooLongConnectionInNormalAndMobileState = () => (
               {
                 id: 'station_b',
                 name: 'Station b',
-                lines: ['green', 'red'],
+                lines: [LineColor.GREEN, LineColor.RED],
                 connectedStations: [
                   { id: 'station_c', timeTo: 2 } as ConnectedStation,
                 ],
@@ -144,14 +149,14 @@ export const TooLongConnectionInNormalAndMobileState = () => (
               {
                 id: 'station_c',
                 name: 'Station c',
-                lines: ['green', 'white'],
+                lines: [LineColor.GREEN, LineColor.WHITE],
                 connectedStations: [
                   { id: 'station_d', timeTo: 2 } as ConnectedStation,
                 ],
               },
             ],
             totalTime: 2,
-            line: 'green',
+            line: LineColor.GREEN,
             transferTimeToNextLine: 4,
           },
           {
@@ -159,7 +164,7 @@ export const TooLongConnectionInNormalAndMobileState = () => (
               {
                 id: 'station_b',
                 name: 'Station b',
-                lines: ['white', 'green'],
+                lines: [LineColor.WHITE, LineColor.GREEN],
                 connectedStations: [
                   { id: 'station_c', timeTo: 2 } as ConnectedStation,
                 ],
@@ -167,14 +172,14 @@ export const TooLongConnectionInNormalAndMobileState = () => (
               {
                 id: 'station_c',
                 name: 'Station c',
-                lines: ['white', 'purple'],
+                lines: [LineColor.WHITE, LineColor.PURPLE],
                 connectedStations: [
                   { id: 'station_d', timeTo: 2 } as ConnectedStation,
                 ],
               },
             ],
             totalTime: 2,
-            line: 'white',
+            line: LineColor.WHITE,
             transferTimeToNextLine: 2,
           },
           {
@@ -182,7 +187,7 @@ export const TooLongConnectionInNormalAndMobileState = () => (
               {
                 id: 'station_b',
                 name: 'Station b',
-                lines: ['white', 'purple'],
+                lines: [LineColor.WHITE, LineColor.PURPLE],
                 connectedStations: [
                   { id: 'station_c', timeTo: 2 } as ConnectedStation,
                 ],
@@ -190,14 +195,14 @@ export const TooLongConnectionInNormalAndMobileState = () => (
               {
                 id: 'station_c',
                 name: 'Station c',
-                lines: ['purple'],
+                lines: [LineColor.PURPLE],
                 connectedStations: [
                   { id: 'station_d', timeTo: 2 } as ConnectedStation,
                 ],
               },
             ],
             totalTime: 2,
-            line: 'purple',
+            line: LineColor.PURPLE,
           },
         ] as SubRoute[],
         totalTime: 10,
@@ -230,7 +235,7 @@ export const TimeAboveOneHourInNormalAndMobileState = () => (
               {
                 id: 'station_a',
                 name: 'Station a',
-                lines: ['green'],
+                lines: [LineColor.GREEN],
                 connectedStations: [
                   { id: 'station_b', timeTo: 2 } as ConnectedStation,
                 ],
@@ -238,14 +243,14 @@ export const TimeAboveOneHourInNormalAndMobileState = () => (
               {
                 id: 'station_b',
                 name: 'Station b',
-                lines: ['green', 'red'],
+                lines: [LineColor.GREEN, LineColor.RED],
                 connectedStations: [
                   { id: 'station_c', timeTo: 2 } as ConnectedStation,
                 ],
               },
             ],
             totalTime: 35,
-            line: 'blue',
+            line: LineColor.BLUE,
             transferTimeToNextLine: 10,
           },
           {
@@ -253,7 +258,7 @@ export const TimeAboveOneHourInNormalAndMobileState = () => (
               {
                 id: 'station_b',
                 name: 'Station b',
-                lines: ['green', 'red'],
+                lines: [LineColor.GREEN, LineColor.RED],
                 connectedStations: [
                   { id: 'station_c', timeTo: 2 } as ConnectedStation,
                 ],
@@ -261,14 +266,14 @@ export const TimeAboveOneHourInNormalAndMobileState = () => (
               {
                 id: 'station_c',
                 name: 'Station c',
-                lines: ['red'],
+                lines: [LineColor.RED],
                 connectedStations: [
                   { id: 'station_d', timeTo: 2 } as ConnectedStation,
                 ],
               },
             ],
             totalTime: 35,
-            line: 'red',
+            line: LineColor.RED,
           },
         ] as SubRoute[],
         totalTime: 80,

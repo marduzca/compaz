@@ -6,6 +6,7 @@ import * as MockDate from 'mockdate';
 import { MemoryRouter } from 'react-router-dom';
 import NavigationPage from './NavigationPage';
 import { FirebaseContext } from '../../providers/firebase/FirebaseProvider';
+import { LineColor } from '../../domain';
 
 export default {
   component: NavigationPage,
@@ -14,12 +15,14 @@ export default {
     (Story) => (
       <FirebaseContext.Provider
         value={{
-          lines: [{ id: 'green', stationsPath: [], connectedLines: [] }],
+          lines: [
+            { id: LineColor.GREEN, stationsPath: [], connectedLines: [] },
+          ],
           stations: [
             {
               id: 'origin_station',
               name: 'Origin station',
-              lines: ['green'],
+              lines: [LineColor.GREEN],
               connectedStations: [],
               geoLocation: { latitude: 0, longitude: 0 },
             },

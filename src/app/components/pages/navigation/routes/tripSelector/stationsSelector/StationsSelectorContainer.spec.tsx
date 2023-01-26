@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import StationsSelectorContainer from './StationsSelectorContainer';
-import { Route, Station } from '../../../../../domain';
+import { LineColor, Route, Station } from '../../../../../domain';
 import * as NavigationProvider from '../../../../../providers/navigation/NavigationProvider';
 import * as FirebaseProvider from '../../../../../providers/firebase/FirebaseProvider';
 
@@ -14,14 +14,14 @@ describe('StationsSelectorContainer', () => {
     {
       id: 'some_station',
       name: 'Some station',
-      lines: ['green'],
+      lines: [LineColor.GREEN],
       connectedStations: [],
       geoLocation: { latitude: 0, longitude: 0 },
     },
     {
       id: 'another_station',
       name: 'Another station',
-      lines: ['silver'],
+      lines: [LineColor.SILVER],
       connectedStations: [],
       geoLocation: { latitude: 0, longitude: 0 },
     },
