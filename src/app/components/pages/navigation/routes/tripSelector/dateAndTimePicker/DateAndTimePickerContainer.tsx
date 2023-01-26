@@ -9,9 +9,9 @@ import {
 
 const DateAndTimePickerContainer: React.FC = () => {
   const weekdayBeginOfFunctionalHours = 6;
-  const weekdayEndOfFunctionalHours = 21;
+  const weekdayEndOfFunctionalHours = 22;
   const weekendBeginOfFunctionalHours = 7;
-  const weekendEndOfFunctionalHours = 19;
+  const weekendEndOfFunctionalHours = 21;
 
   const isTimeOutsideOfFunctionalHours = (hour: number) => {
     if (

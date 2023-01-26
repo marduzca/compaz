@@ -189,7 +189,7 @@ describe('DateAndTimePickerContainer', () => {
       );
       await userEvent.type(
         screen.getByLabelText('Navigation.DateAndTimePicker.TIME_LABEL'),
-        '20:00'
+        '22:00'
       );
 
       expect(
