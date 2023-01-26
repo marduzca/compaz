@@ -306,32 +306,25 @@ describe('NavigationProvider', () => {
     } as Route);
   });
 
-  it('calculates prices reduction for white-lightblue lines combination exception', () => {
-    const linesWithWhiteLightBlueException = [
+  it('calculates price reduction for white-lightblue lines combination exception correctly', () => {
+    const linesWithWhiteLightBlueLinesException = [
       {
         id: LineColor.WHITE,
         stationsPath: ['station_a', 'station_b'],
-        connectedLines: [
-          { id: LineColor.YELLOW, transferTime: 2 },
-          { id: LineColor.LIGHT_BLUE, transferTime: 2 },
-        ],
+        connectedLines: [{ id: LineColor.LIGHT_BLUE, transferTime: 2 }],
       },
       {
         id: LineColor.LIGHT_BLUE,
         stationsPath: ['station_b', 'station_c', 'station_d'],
         connectedLines: [
           { id: LineColor.GREEN, transferTime: 3 },
-          { id: LineColor.SILVER, transferTime: 2 },
           { id: LineColor.WHITE, transferTime: 2 },
         ],
       },
       {
         id: LineColor.GREEN,
         stationsPath: ['station_d', 'station_e'],
-        connectedLines: [
-          { id: LineColor.LIGHT_BLUE, transferTime: 3 },
-          { id: LineColor.SILVER, transferTime: 2 },
-        ],
+        connectedLines: [{ id: LineColor.LIGHT_BLUE, transferTime: 3 }],
       },
     ] as Line[];
 
@@ -389,10 +382,75 @@ describe('NavigationProvider', () => {
 
     const route = result.current.calculateRoute(
       stationsWithWhiteLightBlueLines,
-      linesWithWhiteLightBlueException
+      linesWithWhiteLightBlueLinesException
     );
 
     expect(route.price).toBe(5);
+  });
+
+  it('calculates prices reduction for brown line exception correctly', () => {
+    const linesWithBrownLineException = [
+      {
+        id: LineColor.WHITE,
+        stationsPath: ['station_a', 'station_b'],
+        connectedLines: [{ id: LineColor.BROWN, transferTime: 2 }],
+      },
+      {
+        id: LineColor.BROWN,
+        stationsPath: ['station_b', 'station_c', 'station_d'],
+        connectedLines: [{ id: LineColor.WHITE, transferTime: 2 }],
+      },
+    ] as Line[];
+
+    const stationsWithBrownLine = [
+      {
+        id: 'station_a',
+        name: 'Station a',
+        lines: [LineColor.WHITE],
+        connectedStations: [{ id: 'station_b', timeTo: 2 } as ConnectedStation],
+      },
+      {
+        id: 'station_b',
+        name: 'Station b',
+        lines: [LineColor.WHITE, LineColor.BROWN],
+        connectedStations: [{ id: 'station_c', timeTo: 2 } as ConnectedStation],
+      },
+      {
+        id: 'station_c',
+        name: 'Station c',
+        lines: [LineColor.BROWN],
+        connectedStations: [{ id: 'station_d', timeTo: 2 } as ConnectedStation],
+      },
+      {
+        id: 'station_d',
+        name: 'Station d',
+        lines: [LineColor.BROWN],
+        connectedStations: [],
+      },
+    ] as Station[];
+
+    const { result } = renderHook(() => useNavigation(), {
+      wrapper: NavigationProvider,
+    });
+
+    act(() => {
+      result.current.generateStationsMap(stationsWithBrownLine);
+    });
+
+    act(() => {
+      result.current.setOriginStation(stationsWithBrownLine[0]);
+    });
+
+    act(() => {
+      result.current.setDestinationStation(stationsWithBrownLine[3]);
+    });
+
+    const route = result.current.calculateRoute(
+      stationsWithBrownLine,
+      linesWithBrownLineException
+    );
+
+    expect(route.price).toBe(3);
   });
 
   describe('extractSubRoutes', () => {

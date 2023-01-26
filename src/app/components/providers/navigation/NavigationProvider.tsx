@@ -204,8 +204,8 @@ const TRANSFER_PRICE = 2;
 const calculateRoutePrice = (subRoutes: SubRoute[]): number => {
   let routePrice = INITIAL_PRICE + TRANSFER_PRICE * (subRoutes.length - 1);
 
-  // Price exception for white-lightblue line: If there is a connection that connects both, the transfer is free
   subRoutes.forEach((subRoute, index) => {
+    // Price exception for white-lightblue line: If there is a connection that connects both, the transfer is free
     if (
       subRoute.line === LineColor.WHITE &&
       ((subRoutes[index - 1] &&
@@ -213,6 +213,11 @@ const calculateRoutePrice = (subRoutes: SubRoute[]): number => {
         (subRoutes[index + 1] &&
           subRoutes[index + 1].line === LineColor.LIGHT_BLUE))
     ) {
+      routePrice -= 2;
+    }
+
+    // Price exception for brown line: If you use the brown line connecting with others (not just that line), the transfer is free
+    if (subRoute.line === LineColor.BROWN && subRoutes.length > 1) {
       routePrice -= 2;
     }
   });
