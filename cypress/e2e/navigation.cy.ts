@@ -31,8 +31,9 @@ describe('Navigation', () => {
     RoutesOverview.selectRouteWithGivenTimes('09:45', '10:14');
 
     // Route details
-    const capitalizedGreenLine =
-      LineColor.GREEN.charAt(0).toUpperCase() + LineColor.GREEN.slice(1);
+    const capitalizedGreenLine = `${LineColor.GREEN.charAt(
+      0
+    ).toUpperCase()}${LineColor.GREEN.slice(1)}`;
 
     console.log(capitalizedGreenLine);
 
