@@ -270,11 +270,11 @@ describe('NavigationPage', () => {
     );
 
     const withinPurpleLine = within(
-      screen.getByTitle('Navigation.Route.Lines.PURPLE')
+      screen.getByRole('listitem', { name: 'Navigation.Route.Lines.PURPLE' })
     );
 
     const withinBlueLine = within(
-      screen.getByTitle('Navigation.Route.Lines.BLUE')
+      screen.getByRole('listitem', { name: 'Navigation.Route.Lines.BLUE' })
     );
 
     expect(

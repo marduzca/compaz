@@ -82,7 +82,7 @@ describe('RouteDetailsViewContainer', () => {
     );
 
     const withinPurpleLine = within(
-      screen.getByTitle('Navigation.Route.Lines.PURPLE')
+      screen.getByRole('listitem', { name: 'Navigation.Route.Lines.PURPLE' })
     );
 
     expect(withinPurpleLine.queryByText('A.5 Station')).not.toBeInTheDocument();
@@ -114,11 +114,11 @@ describe('RouteDetailsViewContainer', () => {
     );
 
     const withinPurpleLine = within(
-      screen.getByTitle('Navigation.Route.Lines.PURPLE')
+      screen.getByRole('listitem', { name: 'Navigation.Route.Lines.PURPLE' })
     );
 
     const withinBlueLine = within(
-      screen.getByTitle('Navigation.Route.Lines.BLUE')
+      screen.getByRole('listitem', { name: 'Navigation.Route.Lines.BLUE' })
     );
 
     expect(withinPurpleLine.getByText('09:30')).toBeVisible();
@@ -138,11 +138,11 @@ describe('RouteDetailsViewContainer', () => {
     );
 
     const withinPurpleLine = within(
-      screen.getByTitle('Navigation.Route.Lines.PURPLE')
+      screen.getByRole('listitem', { name: 'Navigation.Route.Lines.PURPLE' })
     );
 
     const withinBlueLine = within(
-      screen.getByTitle('Navigation.Route.Lines.BLUE')
+      screen.getByRole('listitem', { name: 'Navigation.Route.Lines.BLUE' })
     );
 
     expect(
