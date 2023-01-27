@@ -63,7 +63,9 @@ const firebaseDevConfig = {
 };
 
 const firebaseApp = initializeApp(
-  process.env.NODE_ENV === 'production' ? firebaseProdConfig : firebaseDevConfig
+  window.location.href.match(/compaz.app/)
+    ? firebaseProdConfig
+    : firebaseDevConfig
 );
 
 isSupported().then((isAnalyticsSupported) => {
