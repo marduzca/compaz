@@ -26,8 +26,6 @@ export const NormalState = () =>
       destinationInputValue=""
       showOriginValidationError={false}
       showDestinationValidationError={false}
-      showOriginMissingError={false}
-      showDestinationMissingError={false}
       onOriginChange={actions('onOriginChange').onOriginChange}
       onDestinationChange={actions('onDestinationChange').onDestinationChange}
       onSwitcherClick={actions('onSwitcherClick').onSwitcherClick}
@@ -48,8 +46,6 @@ export const WithInputTextNormalState = () =>
       destinationInputValue="my destination"
       showOriginValidationError={false}
       showDestinationValidationError={false}
-      showOriginMissingError={false}
-      showDestinationMissingError={false}
       onOriginChange={actions('onOriginChange').onOriginChange}
       onDestinationChange={actions('onDestinationChange').onDestinationChange}
       onSwitcherClick={actions('onSwitcherClick').onSwitcherClick}
@@ -70,30 +66,6 @@ export const WithValidationErrorNormalState = () =>
       destinationInputValue="a non-existent location"
       showOriginValidationError
       showDestinationValidationError
-      showOriginMissingError={false}
-      showDestinationMissingError={false}
-      onOriginChange={actions('onOriginChange').onOriginChange}
-      onDestinationChange={actions('onDestinationChange').onDestinationChange}
-      onSwitcherClick={actions('onSwitcherClick').onSwitcherClick}
-      onClearOriginButtonClick={
-        actions('onClearOriginButtonClick').onClearOriginButtonClick
-      }
-      onClearDestinationButtonClick={
-        actions('onClearDestinationButtonClick').onClearDestinationButtonClick
-      }
-    />
-  );
-
-export const WithMissingErrorNormalState = () =>
-  guaranteedSize(
-    <StationsSelector
-      stations={[]}
-      originInputValue=""
-      destinationInputValue=""
-      showOriginValidationError={false}
-      showDestinationValidationError={false}
-      showOriginMissingError
-      showDestinationMissingError
       onOriginChange={actions('onOriginChange').onOriginChange}
       onDestinationChange={actions('onDestinationChange').onDestinationChange}
       onSwitcherClick={actions('onSwitcherClick').onSwitcherClick}

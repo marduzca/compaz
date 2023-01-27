@@ -3,14 +3,7 @@ import StationsSelector from './StationsSelector';
 import { useNavigation } from '../../../../../providers/navigation/NavigationProvider';
 import { useFirebase } from '../../../../../providers/firebase/FirebaseProvider';
 
-interface StationsSelectorContainerProps {
-  showOriginMissingError: boolean;
-  showDestinationMissingError: boolean;
-}
-
-const StationsSelectorContainer: React.FC<StationsSelectorContainerProps> = (
-  props
-) => {
+const StationsSelectorContainer: React.FC = () => {
   const { stations } = useFirebase();
   const {
     origin,
@@ -106,8 +99,6 @@ const StationsSelectorContainer: React.FC<StationsSelectorContainerProps> = (
       onDestinationChange={handleDestinationChange}
       showOriginValidationError={showOriginValidationError}
       showDestinationValidationError={showDestinationValidationError}
-      showOriginMissingError={props.showOriginMissingError}
-      showDestinationMissingError={props.showDestinationMissingError}
       onSwitcherClick={handleSwitcherClick}
       stations={stations}
       onClearOriginButtonClick={handleClearOriginButtonClick}

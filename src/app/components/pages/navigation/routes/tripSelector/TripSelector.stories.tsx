@@ -26,18 +26,14 @@ export default {
 export const NormalState = () =>
   guaranteedSize(
     <TripSelector
-      showOriginMissingError={false}
-      showDestinationMissingError={false}
       onMenuButtonClick={actions('onMenuButtonClick').onMenuButtonClick}
-      onSearchButtonClick={actions('onSearchButtonClick').onSearchButtonClick}
+      onSubmit={actions('onSubmit').onSubmit}
     />
   );
 
 export const MobileState = () => (
   <TripSelector
-    showOriginMissingError={false}
-    showDestinationMissingError={false}
     onMenuButtonClick={actions('onMenuButtonClick').onMenuButtonClick}
-    onSearchButtonClick={actions('onSearchButtonClick').onSearchButtonClick}
+    onSubmit={actions('onSubmit').onSubmit}
   />
 );

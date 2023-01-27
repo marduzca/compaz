@@ -111,6 +111,7 @@ const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => {
                 defaultValue={props.departureDate}
                 onChange={props.onDatePickerChange}
                 autoFocus
+                required
               />
             </div>
             <div>
@@ -127,6 +128,7 @@ const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => {
                     ? styles.outsideOfFunctionalHours
                     : ''
                 }
+                required
               />
             </div>
           </div>

@@ -54,12 +54,7 @@ describe('StationsSelectorContainer', () => {
   });
 
   it('clears station input when clicking on the clear button', async () => {
-    render(
-      <StationsSelectorContainer
-        showOriginMissingError={false}
-        showDestinationMissingError={false}
-      />
-    );
+    render(<StationsSelectorContainer />);
 
     await userEvent.type(
       screen.getByRole('combobox', {
@@ -113,12 +108,7 @@ describe('StationsSelectorContainer', () => {
   });
 
   it('allows to select stations from the dropdown', () => {
-    render(
-      <StationsSelectorContainer
-        showOriginMissingError={false}
-        showDestinationMissingError={false}
-      />
-    );
+    render(<StationsSelectorContainer />);
 
     fireEvent.change(
       screen.getByRole('combobox', {
@@ -164,12 +154,7 @@ describe('StationsSelectorContainer', () => {
         ({ subRoutes: [], totalTime: 0, price: 0 } as Route),
     });
 
-    render(
-      <StationsSelectorContainer
-        showOriginMissingError={false}
-        showDestinationMissingError={false}
-      />
-    );
+    render(<StationsSelectorContainer />);
 
     fireEvent.change(
       screen.getByRole('combobox', {
@@ -202,12 +187,7 @@ describe('StationsSelectorContainer', () => {
         ({ subRoutes: [], totalTime: 0, price: 0 } as Route),
     });
 
-    render(
-      <StationsSelectorContainer
-        showOriginMissingError={false}
-        showDestinationMissingError={false}
-      />
-    );
+    render(<StationsSelectorContainer />);
 
     fireEvent.change(
       screen.getByRole('combobox', {
@@ -226,12 +206,7 @@ describe('StationsSelectorContainer', () => {
   });
 
   it('switches origin and destination content when clicking on switcher button', async () => {
-    render(
-      <StationsSelectorContainer
-        showOriginMissingError={false}
-        showDestinationMissingError={false}
-      />
-    );
+    render(<StationsSelectorContainer />);
 
     fireEvent.change(
       screen.getByRole('combobox', {
@@ -270,12 +245,7 @@ describe('StationsSelectorContainer', () => {
 
   describe('errors', () => {
     it("shows validation error when the current origin input doesn't correspond to any list item", async () => {
-      render(
-        <StationsSelectorContainer
-          showOriginMissingError={false}
-          showDestinationMissingError={false}
-        />
-      );
+      render(<StationsSelectorContainer />);
 
       await userEvent.type(
         screen.getByRole('combobox', {
@@ -292,12 +262,7 @@ describe('StationsSelectorContainer', () => {
     });
 
     it("shows validation error when the current destination input doesn't correspond to any list item", async () => {
-      render(
-        <StationsSelectorContainer
-          showOriginMissingError={false}
-          showDestinationMissingError={false}
-        />
-      );
+      render(<StationsSelectorContainer />);
 
       await userEvent.type(
         screen.getByRole('combobox', {
@@ -307,86 +272,6 @@ describe('StationsSelectorContainer', () => {
       );
 
       expect(screen.getByText(/Navigation.TripSelector.ERROR/)).toBeVisible();
-    });
-
-    it('shows validation error only when missing error is also set', async () => {
-      render(
-        <StationsSelectorContainer
-          showOriginMissingError
-          showDestinationMissingError
-        />
-      );
-
-      await userEvent.type(
-        screen.getByRole('combobox', {
-          name: /Navigation.TripSelector.ORIGIN_PLACEHOLDER/,
-        }),
-        'This is a non-existent station'
-      );
-
-      await userEvent.type(
-        screen.getByRole('combobox', {
-          name: /Navigation.TripSelector.DESTINATION_PLACEHOLDER/,
-        }),
-        'This is a non-existent station'
-      );
-
-      expect(
-        screen.getByRole('combobox', {
-          name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER - Navigation.TripSelector.ERROR_VALIDATION',
-        })
-      ).toBeVisible();
-
-      expect(
-        screen.getByRole('combobox', {
-          name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER - Navigation.TripSelector.ERROR_VALIDATION',
-        })
-      ).toBeVisible();
-    });
-
-    it('show missing error only when input is empty', async () => {
-      render(
-        <StationsSelectorContainer
-          showOriginMissingError
-          showDestinationMissingError
-        />
-      );
-
-      expect(
-        screen.getByRole('combobox', {
-          name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER Navigation.TripSelector.ERROR_ORIGIN_MISSING',
-        })
-      ).toBeVisible();
-      expect(
-        screen.getByRole('combobox', {
-          name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER Navigation.TripSelector.ERROR_DESTINATION_MISSING',
-        })
-      ).toBeVisible();
-
-      await userEvent.type(
-        screen.getByRole('combobox', {
-          name: /Navigation.TripSelector.ORIGIN_PLACEHOLDER/,
-        }),
-        availableStations[0].name
-      );
-
-      await userEvent.type(
-        screen.getByRole('combobox', {
-          name: /Navigation.TripSelector.DESTINATION_PLACEHOLDER/,
-        }),
-        availableStations[1].name
-      );
-
-      expect(
-        screen.queryByRole('combobox', {
-          name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER Navigation.TripSelector.ERROR_ORIGIN_MISSING',
-        })
-      ).not.toBeInTheDocument();
-      expect(
-        screen.queryByRole('combobox', {
-          name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER Navigation.TripSelector.ERROR_DESTINATION_MISSING',
-        })
-      ).not.toBeInTheDocument();
     });
   });
 });

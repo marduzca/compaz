@@ -17,9 +17,10 @@ interface ComboboxProps {
   options: Option[];
   inputValue: string;
   onChange: (inputValue: string) => void;
-  validationError?: boolean;
   toggleButtonTitle: string;
   clearButtonTitle: string;
+  validationError?: boolean;
+  required?: boolean;
   onClearButtonClick: (inputName: string) => void;
 }
 
@@ -75,6 +76,7 @@ const Combobox: React.FC<ComboboxProps> = (props) => {
         }`}
       >
         <input
+          required={props.required}
           name={props.name}
           onClick={(e) => {
             if (!isOpen) getToggleButtonProps().onClick(e);
@@ -134,6 +136,7 @@ const Combobox: React.FC<ComboboxProps> = (props) => {
 
 Combobox.defaultProps = {
   validationError: false,
+  required: false,
 };
 
 export default Combobox;

@@ -7,35 +7,29 @@ import DateAndTimePickerContainer from './dateAndTimePicker/DateAndTimePickerCon
 import MobileHeader from '../../../../molecules/mobileHeader/MobileHeader';
 
 interface TripSelectorProps {
-  showOriginMissingError: boolean;
-  showDestinationMissingError: boolean;
   onMenuButtonClick: () => void;
-  onSearchButtonClick: () => void;
+  onSubmit: (event: React.FormEvent) => void;
 }
 
 const TripSelector: React.FC<TripSelectorProps> = (props) => {
   const { t } = useTranslation();
 
   return (
-    <section className={styles.tripSelector}>
+    <form className={styles.tripSelector} onSubmit={props.onSubmit}>
       <MobileHeader onMenuButtonClick={props.onMenuButtonClick} />
       <div className={styles.inputFields}>
-        <StationsSelectorContainer
-          showOriginMissingError={props.showOriginMissingError}
-          showDestinationMissingError={props.showDestinationMissingError}
-        />
+        <StationsSelectorContainer />
         <DateAndTimePickerContainer />
       </div>
       <button
-        type="button"
+        type="submit"
         aria-label={t('Navigation.TripSelector.SEARCH_BUTTON')}
         className={styles.searchButton}
-        onClick={props.onSearchButtonClick}
       >
         <p>{t('Navigation.TripSelector.SEARCH_BUTTON')}</p>
         <SearchIcon />
       </button>
-    </section>
+    </form>
   );
 };
 

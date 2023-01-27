@@ -70,11 +70,13 @@ const NavigationPage: React.FC<NavigationProps> = (props) => {
     // eslint-disable-next-line
   }, [i18n.language]);
 
-  const handleSearchButtonClick = () => {
+  const handleSearchButtonClick = (event: React.FormEvent) => {
     setRoute(calculateRoute(stations, lines));
     setCurrentAppViewState(AppViewState.ROUTES_OVERVIEW);
 
     navigate(`${NavigationLink.NAVIGATION}${NavigationLink.ROUTES_OVERVIEW}`);
+
+    event.preventDefault();
   };
 
   const handleBackButtonClick = (previousPage: AppViewState) => {

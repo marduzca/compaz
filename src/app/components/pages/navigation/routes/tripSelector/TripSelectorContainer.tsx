@@ -1,40 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import TripSelector from './TripSelector';
-import { useNavigation } from '../../../../providers/navigation/NavigationProvider';
 
 interface TripSelectorContainerProps {
   onMenuButtonClick: () => void;
-  onSearchButtonClick: () => void;
+  onSearchButtonClick: (event: React.FormEvent) => void;
 }
 
-const TripSelectorContainer: React.FC<TripSelectorContainerProps> = (props) => {
-  const { origin, destination } = useNavigation();
-
-  const [showOriginMissingError, setShowOriginMissingError] =
-    useState<boolean>(false);
-  const [showDestinationMissingError, setShowDestinationMissingError] =
-    useState<boolean>(false);
-
-  const handleSearchButtonClick = () => {
-    if (origin && destination) {
-      setShowOriginMissingError(false);
-      setShowDestinationMissingError(false);
-
-      props.onSearchButtonClick();
-    } else {
-      setShowOriginMissingError(!origin);
-      setShowDestinationMissingError(!destination);
-    }
-  };
-
-  return (
-    <TripSelector
-      onMenuButtonClick={props.onMenuButtonClick}
-      onSearchButtonClick={handleSearchButtonClick}
-      showOriginMissingError={showOriginMissingError}
-      showDestinationMissingError={showDestinationMissingError}
-    />
-  );
-};
+const TripSelectorContainer: React.FC<TripSelectorContainerProps> = (props) => (
+  <TripSelector
+    onMenuButtonClick={props.onMenuButtonClick}
+    onSubmit={props.onSearchButtonClick}
+  />
+);
 
 export default TripSelectorContainer;

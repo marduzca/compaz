@@ -14,8 +14,6 @@ interface StationsSelectorProps {
   destinationInputValue: string;
   showOriginValidationError: boolean;
   showDestinationValidationError: boolean;
-  showOriginMissingError: boolean;
-  showDestinationMissingError: boolean;
   onOriginChange: (newOrigin: string) => void;
   onDestinationChange: (newDestination: string) => void;
   onSwitcherClick: () => void;
@@ -31,11 +29,8 @@ const StationsSelector: React.FC<StationsSelectorProps> = (props) => {
       <Combobox
         name={t(ORIGIN)}
         placeholder={`${t(ORIGIN)}${
-          // eslint-disable-next-line no-nested-ternary
           props.showOriginValidationError
             ? ` - ${t('Navigation.TripSelector.ERROR_VALIDATION')}`
-            : props.showOriginMissingError && !props.originInputValue.length
-            ? ` ${t('Navigation.TripSelector.ERROR_ORIGIN_MISSING')}`
             : ''
         }`}
         options={props.stations
@@ -45,12 +40,10 @@ const StationsSelector: React.FC<StationsSelectorProps> = (props) => {
           )}
         inputValue={props.originInputValue}
         onChange={props.onOriginChange}
-        validationError={
-          props.showOriginValidationError ||
-          (props.showOriginMissingError && !props.originInputValue.length)
-        }
+        validationError={props.showOriginValidationError}
         toggleButtonTitle={t('Navigation.TripSelector.TOGGLE_STATIONS')}
         clearButtonTitle={t('Navigation.TripSelector.CLEAR_INPUT')}
+        required
         onClearButtonClick={props.onClearOriginButtonClick}
       />
       <button
@@ -64,13 +57,9 @@ const StationsSelector: React.FC<StationsSelectorProps> = (props) => {
       </button>
       <Combobox
         name={t(DESTINATION)}
-        placeholder={`${t(DESTINATION)} ${
-          // eslint-disable-next-line no-nested-ternary
+        placeholder={`${t(DESTINATION)}${
           props.showDestinationValidationError
             ? ` - ${t('Navigation.TripSelector.ERROR_VALIDATION')}`
-            : props.showDestinationMissingError &&
-              !props.destinationInputValue.length
-            ? ` ${t('Navigation.TripSelector.ERROR_DESTINATION_MISSING')}`
             : ''
         }`}
         options={props.stations
@@ -80,13 +69,10 @@ const StationsSelector: React.FC<StationsSelectorProps> = (props) => {
           )}
         inputValue={props.destinationInputValue}
         onChange={props.onDestinationChange}
-        validationError={
-          props.showDestinationValidationError ||
-          (props.showDestinationMissingError &&
-            props.destinationInputValue.length === 0)
-        }
+        validationError={props.showDestinationValidationError}
         toggleButtonTitle={t('Navigation.TripSelector.TOGGLE_STATIONS')}
         clearButtonTitle={t('Navigation.TripSelector.CLEAR_INPUT')}
+        required
         onClearButtonClick={props.onClearDestinationButtonClick}
       />
     </div>
