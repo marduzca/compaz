@@ -20,7 +20,7 @@
   }
 }
 
-@media only screen and (max-height: 480px) {
+@media screen and (max-width: 950px) and (min-device-aspect-ratio: 1/1) and (orientation: landscape) {
   .App {
     display: none;
   }
