@@ -100,6 +100,8 @@
     "CONTACT_TITLE": "Contacto",
     "SKETCH_ALT": "Sketch del desarrollador autor de compaz",
     "LINKEDIN_LINK": "Cuenta de LinkedIn",
+    "INSTAGRAM_LINK": "Cuenta de Instagram",
+    "FACEBOOK_LINK": "Cuenta de Facebook",
     "HEADER": "Contáctame",
     "SUBHEADER": "¿Tienes alguna duda o quieres dejarme un comentario?",
     "NAME_LABEL": "Nombre",
@@ -111,7 +113,7 @@
     "Introduction": {
       "PARAGRAPH_1": "Hola, mi nombre es Miguel Arduz y soy el creador de <1>compaz</1>. Nacido y crecido en la ciudad de La Paz, me mudé a Alemania a los 19 años para realizar mis estudios universitarios en la Universidad de Mannheim. Actualmente vivo en Berlín y trabajo como consultor/programador en la consultora Thoughtworks.",
       "PARAGRAPH_2": "La idea de <1>compaz</1> surge de mi gran gusto por el teleférico y lo complicado que me parece manejarse en él cada vez que estoy de visita en La Paz.\nDesarrollé la aplicación dedicando mucho tiempo y esfuerzo para crear no solo algo que sirva, sino también un producto de alta calidad. Me apasiona la inclusión, por ende hice un esfuerzo extra en hacer a <1>compaz</1> accesible, de forma que usuarios que requieran lectores de pantalla o solo usen el teclado no deberían tener problemas para usar la aplicación.\nEste trabajo representa mi regalo de agradecimiento por todo lo que me dió mi querida ciudad.",
-      "PARAGRAPH_3": "Espero que les guste y sobre todo, que les sea útil. Cualquier duda o comentario no duden en contactarme a través del formulario en esta misma página o por mis redes sociales."
+      "PARAGRAPH_3": "Espero que les guste y sobre todo, que les sea útil. Cualquier duda o comentario no duden en contactarme a través del formulario en esta misma página o por nuestras redes sociales."
     }
   },
   "HowToInstall": {

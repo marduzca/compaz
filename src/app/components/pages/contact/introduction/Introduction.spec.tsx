@@ -9,5 +9,13 @@ describe('Contact', () => {
     expect(
       screen.getByRole('link', { name: 'Contact.LINKEDIN_LINK' })
     ).toHaveAttribute('href', 'https://www.linkedin.com/in/miguelarduz/');
+
+    expect(
+      screen.getByRole('link', { name: 'Contact.INSTAGRAM_LINK' })
+    ).toHaveAttribute('href', 'https://www.instagram.com/compaz.app/');
+
+    expect(
+      screen.getByRole('link', { name: 'Contact.FACEBOOK_LINK' })
+    ).toHaveAttribute('href', 'https://www.facebook.com/compaz.application/');
   });
 });

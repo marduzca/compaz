@@ -2,6 +2,8 @@ import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import sketch from '../../../../static/img/sketch.png';
 import { ReactComponent as LinkedinIcon } from '../../../../static/svg/linkedin.svg';
+import { ReactComponent as InstagramIcon } from '../../../../static/svg/instagram.svg';
+import { ReactComponent as FacebookIcon } from '../../../../static/svg/facebook.svg';
 import styles from './Introduction.module.css';
 
 const Introduction: React.FC = () => {
@@ -41,6 +43,24 @@ const Introduction: React.FC = () => {
           rel="noreferrer"
         >
           <LinkedinIcon />
+        </a>
+        <a
+          href="https://www.instagram.com/compaz.app/"
+          title={t('Contact.INSTAGRAM_LINK')}
+          aria-label={t('Contact.INSTAGRAM_LINK')}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <InstagramIcon />
+        </a>
+        <a
+          href="https://www.facebook.com/compaz.application/"
+          title={t('Contact.FACEBOOK_LINK')}
+          aria-label={t('Contact.FACEBOOK_LINK')}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <FacebookIcon />
         </a>
       </div>
     </section>
