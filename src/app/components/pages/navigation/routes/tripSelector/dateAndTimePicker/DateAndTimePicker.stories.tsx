@@ -38,9 +38,7 @@ export const BasicInNormalState = () =>
       onTimePickerChange={actions('onTimePickerChange').onTimePickerChange}
       onSelectButtonClick={actions('onSelectButtonClick').onSelectButtonClick}
       onNowButtonClick={actions('onNowButtonClick').onNowButtonClick}
-      onHideSelectionPanel={
-        actions('onHideSelectionPanel').onHideSelectionPanel
-      }
+      dateAndTimeSelectionWrapperRef={{} as React.RefObject<HTMLDivElement>}
     />
   );
 
@@ -57,9 +55,7 @@ export const WithOpenSelectionPanelInNormalState = () =>
       onTimePickerChange={actions('onTimePickerChange').onTimePickerChange}
       onSelectButtonClick={actions('onSelectButtonClick').onSelectButtonClick}
       onNowButtonClick={actions('onNowButtonClick').onNowButtonClick}
-      onHideSelectionPanel={
-        actions('onHideSelectionPanel').onHideSelectionPanel
-      }
+      dateAndTimeSelectionWrapperRef={{} as React.RefObject<HTMLDivElement>}
       showSelectionPanel
     />
   );
@@ -76,9 +72,7 @@ export const WithTimeError = () =>
       onTimePickerChange={actions('onTimePickerChange').onTimePickerChange}
       onSelectButtonClick={actions('onSelectButtonClick').onSelectButtonClick}
       onNowButtonClick={actions('onNowButtonClick').onNowButtonClick}
-      onHideSelectionPanel={
-        actions('onHideSelectionPanel').onHideSelectionPanel
-      }
+      dateAndTimeSelectionWrapperRef={{} as React.RefObject<HTMLDivElement>}
       showSelectionPanel
       isSelectedTimeOutsideOfFunctionalHours
     />

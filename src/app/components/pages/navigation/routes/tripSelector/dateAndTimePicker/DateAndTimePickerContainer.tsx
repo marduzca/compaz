@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import DateAndTimePicker from './DateAndTimePicker';
 import { useNavigation } from '../../../../../providers/navigation/NavigationProvider';
 import {
@@ -7,23 +7,26 @@ import {
   parseToSimpleTime,
 } from '../../../util/dateFormatter';
 
+const WEEKDAY_BEGIN_OF_FUNCTIONAL_HOURS = 6;
+const WEEKDAY_END_OF_FUNCTIONAL_HOURS = 22;
+const WEEKEND_BEGIN_OF_FUNCTIONAL_HOURS = 7;
+const WEEKEND_END_OF_FUNCTIONAL_HOURS = 21;
+
 const DateAndTimePickerContainer: React.FC = () => {
-  const weekdayBeginOfFunctionalHours = 6;
-  const weekdayEndOfFunctionalHours = 22;
-  const weekendBeginOfFunctionalHours = 7;
-  const weekendEndOfFunctionalHours = 21;
+  const dateAndTimeSelectionPanelRef = useRef<HTMLDivElement>(null);
 
   const isTimeOutsideOfFunctionalHours = (hour: number) => {
     if (
       isWeekday(currentlySelectedDate) &&
-      (hour < weekdayBeginOfFunctionalHours ||
-        hour > weekdayEndOfFunctionalHours)
+      (hour < WEEKDAY_BEGIN_OF_FUNCTIONAL_HOURS ||
+        hour > WEEKDAY_END_OF_FUNCTIONAL_HOURS)
     ) {
       return true;
     }
 
     return (
-      hour < weekendBeginOfFunctionalHours || hour > weekendEndOfFunctionalHours
+      hour < WEEKEND_BEGIN_OF_FUNCTIONAL_HOURS ||
+      hour > WEEKEND_END_OF_FUNCTIONAL_HOURS
     );
   };
 
@@ -96,6 +99,31 @@ const DateAndTimePickerContainer: React.FC = () => {
     setShowSelectionPanel(false);
   };
 
+  const handleClickOutsideOfMobileMenu = (e: MouseEvent) => {
+    if (
+      dateAndTimeSelectionPanelRef.current &&
+      dateAndTimeSelectionPanelRef.current.contains(e.target as Node)
+    ) {
+      return;
+    }
+
+    setShowSelectionPanel(false);
+  };
+
+  useEffect(() => {
+    if (showSelectionPanel) {
+      document.addEventListener('mousedown', handleClickOutsideOfMobileMenu);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutsideOfMobileMenu);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutsideOfMobileMenu);
+    };
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showSelectionPanel]);
+
   return (
     <DateAndTimePicker
       departureDate={departureDate}
@@ -111,9 +139,7 @@ const DateAndTimePickerContainer: React.FC = () => {
       onTimePickerChange={handleTimePickerChange}
       onSelectButtonClick={handleSelectButtonClick}
       onNowButtonClick={handleNowButtonClick}
-      onHideSelectionPanel={() => {
-        setShowSelectionPanel(false);
-      }}
+      dateAndTimeSelectionWrapperRef={dateAndTimeSelectionPanelRef}
     />
   );
 };

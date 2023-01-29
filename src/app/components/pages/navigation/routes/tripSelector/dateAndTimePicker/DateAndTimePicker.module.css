@@ -64,6 +64,10 @@
   max-height: 1.25rem;
 }
 
+.invisible {
+  display: none;
+}
+
 .menu {
   z-index: 3;
   position: absolute;

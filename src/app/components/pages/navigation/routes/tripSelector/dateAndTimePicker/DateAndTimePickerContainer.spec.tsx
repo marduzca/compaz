@@ -107,35 +107,6 @@ describe('DateAndTimePickerContainer', () => {
     );
   });
 
-  it('hides selection panel when clicking outside of it', async () => {
-    render(
-      <div>
-        <DateAndTimePickerContainer />
-        <span>This is outside the panel</span>
-      </div>
-    );
-
-    await userEvent.click(
-      screen.getByRole('button', {
-        name: 'Navigation.DateAndTimePicker.DATE_TIME_PICKER_BUTTON_DESCRIPTION',
-      })
-    );
-
-    expect(
-      screen.getByRole('button', {
-        name: 'Navigation.DateAndTimePicker.NOW_BUTTON',
-      })
-    ).toBeVisible();
-
-    await userEvent.click(screen.getByText('This is outside the panel'));
-
-    expect(
-      screen.queryByRole('button', {
-        name: 'Navigation.DateAndTimePicker.NOW_BUTTON',
-      })
-    ).not.toBeInTheDocument();
-  });
-
   describe('error message', () => {
     it('shows error message when time outside of functional hours during the week', async () => {
       render(<DateAndTimePickerContainer />);

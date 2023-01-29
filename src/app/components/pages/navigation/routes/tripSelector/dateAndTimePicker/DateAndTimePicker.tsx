@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './DateAndTimePicker.module.css';
 import { ReactComponent as CalendarIcon } from '../../../../../../static/svg/date_picker.svg';
@@ -20,41 +20,17 @@ interface DateAndTimePickerProps {
   onTimePickerChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onSelectButtonClick: () => void;
   onNowButtonClick: () => void;
-  onHideSelectionPanel: () => void;
+  dateAndTimeSelectionWrapperRef: React.RefObject<HTMLDivElement>;
 }
 
 const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => {
   const { t } = useTranslation();
 
-  const dateAndTimeSelectionPanelRef = useRef<HTMLDivElement>(null);
-
-  const handleClickOutsideOfMobileMenu = (e: MouseEvent) => {
-    if (
-      dateAndTimeSelectionPanelRef.current &&
-      dateAndTimeSelectionPanelRef.current.contains(e.target as Node)
-    ) {
-      return;
-    }
-
-    props.onHideSelectionPanel();
-  };
-
-  useEffect(() => {
-    if (props.showSelectionPanel) {
-      document.addEventListener('mousedown', handleClickOutsideOfMobileMenu);
-    } else {
-      document.removeEventListener('mousedown', handleClickOutsideOfMobileMenu);
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutsideOfMobileMenu);
-    };
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.showSelectionPanel]);
-
   return (
-    <div className={styles.dateAndTimePickerContainer}>
+    <div
+      className={styles.dateAndTimePickerContainer}
+      ref={props.dateAndTimeSelectionWrapperRef}
+    >
       <button
         type="button"
         title={t('Navigation.DateAndTimePicker.DATE_TIME_PICKER_BUTTON')}
@@ -97,64 +73,66 @@ const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => {
           </span>
         </div>
       </button>
-      {props.showSelectionPanel && (
-        <div className={styles.menu} ref={dateAndTimeSelectionPanelRef}>
-          <div className={styles.inputFields}>
-            <div>
-              <label htmlFor="dateInput">
-                {t('Navigation.DateAndTimePicker.DATE_LABEL')}
-              </label>
-              <input
-                type="date"
-                id="dateInput"
-                className={styles.dateInput}
-                defaultValue={props.departureDate}
-                onChange={props.onDatePickerChange}
-                autoFocus
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="timeInput">
-                {t('Navigation.DateAndTimePicker.TIME_LABEL')}
-              </label>
-              <input
-                type="time"
-                id="timeInput"
-                defaultValue={props.departureTime}
-                onChange={props.onTimePickerChange}
-                className={
-                  props.isSelectedTimeOutsideOfFunctionalHours
-                    ? styles.outsideOfFunctionalHours
-                    : ''
-                }
-                required
-              />
-            </div>
+      <div
+        className={`${styles.menu} ${
+          !props.showSelectionPanel && styles.invisible
+        }`}
+      >
+        <div className={styles.inputFields}>
+          <div>
+            <label htmlFor="dateInput">
+              {t('Navigation.DateAndTimePicker.DATE_LABEL')}
+            </label>
+            <input
+              type="date"
+              id="dateInput"
+              className={styles.dateInput}
+              defaultValue={props.departureDate}
+              onChange={props.onDatePickerChange}
+              autoFocus
+              required
+            />
           </div>
-          {props.isSelectedTimeOutsideOfFunctionalHours && (
-            <p className={styles.timeError}>
-              {t('Navigation.DateAndTimePicker.TIME_ERROR')}
-            </p>
-          )}
-          <div className={styles.footer}>
-            <button
-              type="button"
-              className={styles.nowButton}
-              onClick={props.onNowButtonClick}
-            >
-              {t('Navigation.DateAndTimePicker.NOW_BUTTON')}
-            </button>
-            <button
-              type="button"
-              className={styles.selectButton}
-              onClick={props.onSelectButtonClick}
-            >
-              {t('Navigation.DateAndTimePicker.SELECT_BUTTON')}
-            </button>
+          <div>
+            <label htmlFor="timeInput">
+              {t('Navigation.DateAndTimePicker.TIME_LABEL')}
+            </label>
+            <input
+              type="time"
+              id="timeInput"
+              defaultValue={props.departureTime}
+              onChange={props.onTimePickerChange}
+              className={
+                props.isSelectedTimeOutsideOfFunctionalHours
+                  ? styles.outsideOfFunctionalHours
+                  : ''
+              }
+              required
+            />
           </div>
         </div>
-      )}
+        {props.isSelectedTimeOutsideOfFunctionalHours && (
+          <p className={styles.timeError}>
+            {t('Navigation.DateAndTimePicker.TIME_ERROR')}
+          </p>
+        )}
+        <div className={styles.footer}>
+          <button
+            type="button"
+            className={styles.nowButton}
+            onClick={props.onNowButtonClick}
+          >
+            {t('Navigation.DateAndTimePicker.NOW_BUTTON')}
+          </button>
+          <button
+            type="button"
+            className={styles.selectButton}
+            onClick={props.onSelectButtonClick}
+          >
+            {t('Navigation.DateAndTimePicker.SELECT_BUTTON')}
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
