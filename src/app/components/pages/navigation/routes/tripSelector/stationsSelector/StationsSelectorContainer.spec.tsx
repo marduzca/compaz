@@ -54,7 +54,14 @@ describe('StationsSelectorContainer', () => {
   });
 
   it('clears station input when clicking on the clear button', async () => {
-    render(<StationsSelectorContainer />);
+    render(
+      <StationsSelectorContainer
+        showOriginSubmissionError={false}
+        showDestinationSubmissionError={false}
+        setShowOriginSubmissionError={() => {}}
+        setShowDestinationSubmissionError={() => {}}
+      />
+    );
 
     await userEvent.type(
       screen.getByRole('combobox', {
@@ -108,7 +115,14 @@ describe('StationsSelectorContainer', () => {
   });
 
   it('allows to select stations from the dropdown', () => {
-    render(<StationsSelectorContainer />);
+    render(
+      <StationsSelectorContainer
+        showOriginSubmissionError={false}
+        showDestinationSubmissionError={false}
+        setShowOriginSubmissionError={() => {}}
+        setShowDestinationSubmissionError={() => {}}
+      />
+    );
 
     fireEvent.change(
       screen.getByRole('combobox', {
@@ -154,7 +168,14 @@ describe('StationsSelectorContainer', () => {
         ({ subRoutes: [], totalTime: 0, price: 0 } as Route),
     });
 
-    render(<StationsSelectorContainer />);
+    render(
+      <StationsSelectorContainer
+        showOriginSubmissionError={false}
+        showDestinationSubmissionError={false}
+        setShowOriginSubmissionError={() => {}}
+        setShowDestinationSubmissionError={() => {}}
+      />
+    );
 
     fireEvent.change(
       screen.getByRole('combobox', {
@@ -187,7 +208,14 @@ describe('StationsSelectorContainer', () => {
         ({ subRoutes: [], totalTime: 0, price: 0 } as Route),
     });
 
-    render(<StationsSelectorContainer />);
+    render(
+      <StationsSelectorContainer
+        showOriginSubmissionError={false}
+        showDestinationSubmissionError={false}
+        setShowOriginSubmissionError={() => {}}
+        setShowDestinationSubmissionError={() => {}}
+      />
+    );
 
     fireEvent.change(
       screen.getByRole('combobox', {
@@ -206,7 +234,14 @@ describe('StationsSelectorContainer', () => {
   });
 
   it('switches origin and destination content when clicking on switcher button', async () => {
-    render(<StationsSelectorContainer />);
+    render(
+      <StationsSelectorContainer
+        showOriginSubmissionError={false}
+        showDestinationSubmissionError={false}
+        setShowOriginSubmissionError={() => {}}
+        setShowDestinationSubmissionError={() => {}}
+      />
+    );
 
     fireEvent.change(
       screen.getByRole('combobox', {
@@ -245,7 +280,14 @@ describe('StationsSelectorContainer', () => {
 
   describe('errors', () => {
     it("shows validation error when the current origin input doesn't correspond to any list item", async () => {
-      render(<StationsSelectorContainer />);
+      render(
+        <StationsSelectorContainer
+          showOriginSubmissionError={false}
+          showDestinationSubmissionError={false}
+          setShowOriginSubmissionError={() => {}}
+          setShowDestinationSubmissionError={() => {}}
+        />
+      );
 
       await userEvent.type(
         screen.getByRole('combobox', {
@@ -262,7 +304,14 @@ describe('StationsSelectorContainer', () => {
     });
 
     it("shows validation error when the current destination input doesn't correspond to any list item", async () => {
-      render(<StationsSelectorContainer />);
+      render(
+        <StationsSelectorContainer
+          showOriginSubmissionError={false}
+          showDestinationSubmissionError={false}
+          setShowOriginSubmissionError={() => {}}
+          setShowDestinationSubmissionError={() => {}}
+        />
+      );
 
       await userEvent.type(
         screen.getByRole('combobox', {

@@ -3,7 +3,16 @@ import StationsSelector from './StationsSelector';
 import { useNavigation } from '../../../../../providers/navigation/NavigationProvider';
 import { useFirebase } from '../../../../../providers/firebase/FirebaseProvider';
 
-const StationsSelectorContainer: React.FC = () => {
+interface StationsSelectorContainerProps {
+  showOriginSubmissionError: boolean;
+  setShowOriginSubmissionError: (newValue: boolean) => void;
+  showDestinationSubmissionError: boolean;
+  setShowDestinationSubmissionError: (newValue: boolean) => void;
+}
+
+const StationsSelectorContainer: React.FC<StationsSelectorContainerProps> = (
+  props
+) => {
   const { stations } = useFirebase();
   const {
     origin,
@@ -74,16 +83,21 @@ const StationsSelectorContainer: React.FC = () => {
   const handleClearOriginButtonClick = () => {
     setOriginInputValue('');
     setShowOriginValidationError(false);
+    props.setShowOriginSubmissionError(false);
     setOriginStation(undefined);
   };
 
   const handleClearDestinationButtonClick = () => {
     setDestinationInputValue('');
     setShowDestinationValidationError(false);
+    props.setShowDestinationSubmissionError(false);
     setDestinationStation(undefined);
   };
 
   const handleSwitcherClick = () => {
+    props.setShowOriginSubmissionError(false);
+    props.setShowDestinationSubmissionError(false);
+
     setOriginStation(destination);
     setDestinationStation(origin);
 
@@ -97,8 +111,12 @@ const StationsSelectorContainer: React.FC = () => {
       destinationInputValue={destinationInputValue}
       onOriginChange={handleOriginChange}
       onDestinationChange={handleDestinationChange}
-      showOriginValidationError={showOriginValidationError}
-      showDestinationValidationError={showDestinationValidationError}
+      showOriginValidationError={
+        showOriginValidationError || props.showOriginSubmissionError
+      }
+      showDestinationValidationError={
+        showDestinationValidationError || props.showDestinationSubmissionError
+      }
       onSwitcherClick={handleSwitcherClick}
       stations={stations}
       onClearOriginButtonClick={handleClearOriginButtonClick}
