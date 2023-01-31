@@ -162,7 +162,7 @@ export const FirebaseProvider: React.FC<FirebaseProviderProps> = (props) => {
     message: string
   ): Promise<boolean> => {
     try {
-      await setDoc(doc(firestore, 'message', `${email}_${Date.now()}`), {
+      await setDoc(doc(firestore, 'message', `${Date.now()}_${email}`), {
         name,
         email,
         message,
