@@ -1,6 +1,7 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
+import { MemoryRouter } from 'react-router-dom';
 import TripSelector from './TripSelector';
 
 const guaranteedSize = (child: React.ReactNode): React.ReactNode => (
@@ -21,6 +22,13 @@ const guaranteedSize = (child: React.ReactNode): React.ReactNode => (
 export default {
   title: 'NavigationPage / TripSelector',
   component: TripSelector,
+  decorators: [
+    (Story) => (
+      <MemoryRouter>
+        <Story />
+      </MemoryRouter>
+    ),
+  ],
 } as Meta;
 
 export const NormalState = () =>

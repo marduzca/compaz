@@ -10,10 +10,7 @@ interface PageContentContainerProps {
 
 const PageContentContainer: React.FC<PageContentContainerProps> = (props) => (
   <main className={styles.container}>
-    <MobileHeader
-      onMenuButtonClick={props.onMenuButtonClick}
-      hasLightBackground
-    />
+    <MobileHeader onMenuButtonClick={props.onMenuButtonClick} />
     <div className={`${styles.content} ${props.wrapperClassName}`}>
       {props.children}
     </div>

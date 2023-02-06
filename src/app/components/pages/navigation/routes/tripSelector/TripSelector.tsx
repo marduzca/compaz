@@ -36,7 +36,10 @@ const TripSelector: React.FC<TripSelectorProps> = (props) => {
 
   return (
     <form className={styles.tripSelector} onSubmit={handleSubmit}>
-      <MobileHeader onMenuButtonClick={props.onMenuButtonClick} />
+      <MobileHeader
+        onMenuButtonClick={props.onMenuButtonClick}
+        isNavigationPage
+      />
       <div className={styles.inputFields}>
         <StationsSelectorContainer
           showOriginSubmissionError={showOriginSubmissionError}

@@ -9,7 +9,7 @@
   .invisibleHeader {
     display: initial;
 
-    position: absolute;
+    position: absolute !important;
     z-index: 2;
 
     top: 1rem;
@@ -21,30 +21,38 @@
   }
 
   .header {
-    position: relative;
-
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 
     width: 100%;
   }
 
-  .menuButton {
-    max-height: 100%;
+  .withoutMapLink {
+    position: relative;
 
+    justify-content: center;
+  }
+
+  .withoutMapLink > .menuButton {
     position: absolute;
     top: 50%;
     transform: translate(0, -50%);
     left: 0;
   }
 
-  .blueMenuButton > svg > path {
+  .withoutMapLink > .blueMenuButton > svg > path {
+    color: blue;
     fill: var(--primary-color);
   }
 
   .logo {
     height: 3rem;
     width: 11.575rem;
+  }
+
+  .mapLink > svg {
+    max-width: 2.25rem;
+    height: min-content;
   }
 }

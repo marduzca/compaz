@@ -15,10 +15,7 @@ const ErrorPage: React.FC<ErrorPageProps> = (props) => {
   return (
     <main className={styles.container}>
       {props.onMenuButtonClick && (
-        <MobileHeader
-          onMenuButtonClick={props.onMenuButtonClick}
-          hasLightBackground
-        />
+        <MobileHeader onMenuButtonClick={props.onMenuButtonClick} />
       )}
       <section className={styles.content}>
         <img src={spaceLlama} loading="lazy" alt={t('ErrorPage.SPACE_ALT')} />

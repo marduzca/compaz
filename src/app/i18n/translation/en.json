@@ -168,6 +168,7 @@
   },
   "Map": {
     "MAP_TITLE": "Map",
+    "GO_TO_MAP": "See map with the complete teleférico network",
     "LOADING_MAP": "Loading map",
     "OFFLINE_MAP": "Sorry, the map is not available offline."
   },

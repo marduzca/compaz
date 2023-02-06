@@ -168,6 +168,7 @@
   },
   "Map": {
     "MAP_TITLE": "Mapa",
+    "GO_TO_MAP": "Ver mapa con la red completa de teleférico",
     "LOADING_MAP": "Loading map",
     "OFFLINE_MAP": "Lo sentimos, el mapa no está disponible sin internet."
   },

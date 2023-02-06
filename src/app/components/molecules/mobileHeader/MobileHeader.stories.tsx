@@ -1,6 +1,7 @@
 import React from 'react';
 import { actions } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';
+import { MemoryRouter } from 'react-router-dom';
 import MobileHeader from './MobileHeader';
 
 export default {
@@ -11,15 +12,17 @@ export default {
 export const OnLightBackground: React.FC = () => (
   <MobileHeader
     onMenuButtonClick={actions('onMenuButtonClick').onMenuButtonClick}
-    hasLightBackground
   />
 );
 
 export const OnDarkBackground: React.FC = () => (
   <div style={{ backgroundColor: '#1976d2' }}>
-    <MobileHeader
-      onMenuButtonClick={actions('onMenuButtonClick').onMenuButtonClick}
-    />
+    <MemoryRouter>
+      <MobileHeader
+        onMenuButtonClick={actions('onMenuButtonClick').onMenuButtonClick}
+        isNavigationPage
+      />
+    </MemoryRouter>
   </div>
 );
 

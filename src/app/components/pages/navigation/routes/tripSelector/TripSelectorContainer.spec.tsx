@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { MemoryRouter } from 'react-router-dom';
 import TripSelectorContainer from './TripSelectorContainer';
 import * as FirebaseProvider from '../../../../providers/firebase/FirebaseProvider';
 import * as NavigationProvider from '../../../../providers/navigation/NavigationProvider';
@@ -71,10 +72,12 @@ describe('TripSelectorContainer', () => {
   describe('when stations have been loaded', () => {
     it('renders the trip selector content', () => {
       render(
-        <TripSelectorContainer
-          onMenuButtonClick={() => {}}
-          onSearchButtonClick={() => {}}
-        />
+        <MemoryRouter>
+          <TripSelectorContainer
+            onMenuButtonClick={() => {}}
+            onSearchButtonClick={() => {}}
+          />
+        </MemoryRouter>
       );
 
       expect(
@@ -116,10 +119,12 @@ describe('TripSelectorContainer', () => {
         .mockImplementation((e) => e.preventDefault());
 
       render(
-        <TripSelectorContainer
-          onMenuButtonClick={() => {}}
-          onSearchButtonClick={onSearchButtonClickMock}
-        />
+        <MemoryRouter>
+          <TripSelectorContainer
+            onMenuButtonClick={() => {}}
+            onSearchButtonClick={onSearchButtonClickMock}
+          />
+        </MemoryRouter>
       );
 
       await userEvent.click(
@@ -149,10 +154,12 @@ describe('TripSelectorContainer', () => {
       const onSearchButtonClickMock = jest.fn();
 
       render(
-        <TripSelectorContainer
-          onMenuButtonClick={() => {}}
-          onSearchButtonClick={onSearchButtonClickMock}
-        />
+        <MemoryRouter>
+          <TripSelectorContainer
+            onMenuButtonClick={() => {}}
+            onSearchButtonClick={onSearchButtonClickMock}
+          />
+        </MemoryRouter>
       );
 
       await userEvent.click(
@@ -187,10 +194,12 @@ describe('TripSelectorContainer', () => {
       const onSearchButtonClickMock = jest.fn();
 
       render(
-        <TripSelectorContainer
-          onMenuButtonClick={() => {}}
-          onSearchButtonClick={onSearchButtonClickMock}
-        />
+        <MemoryRouter>
+          <TripSelectorContainer
+            onMenuButtonClick={() => {}}
+            onSearchButtonClick={onSearchButtonClickMock}
+          />
+        </MemoryRouter>
       );
 
       await userEvent.click(

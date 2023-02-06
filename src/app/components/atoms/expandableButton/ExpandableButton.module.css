@@ -1,4 +1,9 @@
 .expandableButton {
+  display: grid;
+  place-items: center;
+
+  height: fit-content;
+
   margin: 0;
   padding: 0;
 

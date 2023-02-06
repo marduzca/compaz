@@ -24,10 +24,7 @@ const HowToInstallPage: React.FC<HowToInstallProps> = (props) => {
 
   return (
     <main className={styles.container}>
-      <MobileHeader
-        onMenuButtonClick={props.onMenuButtonClick}
-        hasLightBackground
-      />
+      <MobileHeader onMenuButtonClick={props.onMenuButtonClick} />
       <div className={styles.content}>
         <h1>{t('Menu.HOW_TO_INSTALL')}</h1>
         <section

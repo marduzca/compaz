@@ -52,7 +52,7 @@
   }
 
   .container > header > button {
-    left: 1.25rem;
+    left: 1.25rem !important;
   }
 
   .content {
