@@ -23,12 +23,12 @@ describe('Navigation', () => {
     );
 
     RoutesOverview.showEarlierRoute();
-    RoutesOverview.shouldShowRouteWithGivenTimes('09:25', '09:54');
+    RoutesOverview.shouldShowRouteWithGivenTimes('09:25', '10:00');
 
     RoutesOverview.showLaterRoute();
-    RoutesOverview.shouldShowRouteWithGivenTimes('09:50', '10:19');
+    RoutesOverview.shouldShowRouteWithGivenTimes('09:50', '10:25');
 
-    RoutesOverview.selectRouteWithGivenTimes('09:45', '10:14');
+    RoutesOverview.selectRouteWithGivenTimes('09:45', '10:20');
 
     // Route details
     const capitalizedGreenLine = `${LineColor.GREEN.charAt(
