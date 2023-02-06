@@ -105,6 +105,11 @@ export const calculateTotalTimeOfSubRoute = (subRoute: Station[]) => {
     }
   });
 
+  // Add intermediate station time
+  if (subRoute.length > 2) {
+    totalTime += TIME_INTERMEDIATE_STATION * (subRoute.length - 2);
+  }
+
   return Math.round(totalTime);
 };
 
@@ -200,6 +205,7 @@ export const addTransferTimeBetweenLines = (
 
 const INITIAL_PRICE = 3;
 const TRANSFER_PRICE = 2;
+const TIME_INTERMEDIATE_STATION = 1.33;
 
 const calculateRoutePrice = (subRoutes: SubRoute[]): number => {
   let routePrice = INITIAL_PRICE + TRANSFER_PRICE * (subRoutes.length - 1);
@@ -321,6 +327,11 @@ export const NavigationProvider: React.FC<NavigationProviderProps> = (
     );
 
     subRoutesWithTimeLineAndTransferInfo.forEach((subRoute) => {
+      if (subRoute.stationsPath.length === 1) {
+        return;
+      }
+
+      // Add transfer time
       if (subRoute.transferTimeToNextLine) {
         totalTimeOfFullRoute += subRoute.transferTimeToNextLine;
       }

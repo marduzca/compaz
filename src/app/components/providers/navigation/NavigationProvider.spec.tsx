@@ -130,7 +130,7 @@ describe('NavigationProvider', () => {
           connectedStations: [],
         },
       ],
-      totalTime: 4,
+      totalTime: 5,
       line: LineColor.RED,
       direction: 'Station d',
     },
@@ -189,7 +189,7 @@ describe('NavigationProvider', () => {
           ] as ConnectedStation[],
         },
       ],
-      totalTime: 4,
+      totalTime: 5,
       line: LineColor.RED,
       direction: 'Station d',
       transferTimeToNextLine: 3,
@@ -272,7 +272,7 @@ describe('NavigationProvider', () => {
 
     expect(route).toEqual({
       subRoutes: routeWithOneTransfer as SubRoute[],
-      totalTime: 8,
+      totalTime: 9,
       price: 5,
     } as Route);
   });
@@ -301,7 +301,7 @@ describe('NavigationProvider', () => {
 
     expect(route).toEqual({
       subRoutes: routeWithMultipleTransfers as SubRoute[],
-      totalTime: 13,
+      totalTime: 14,
       price: 7,
     } as Route);
   });
@@ -451,6 +451,79 @@ describe('NavigationProvider', () => {
     );
 
     expect(route.price).toBe(3);
+  });
+
+  it('adds intermediate stations times correctly', async () => {
+    const listOfStationsWithOneLine = [
+      {
+        id: 'station_a',
+        name: 'Station a',
+        lines: [LineColor.GREEN],
+        connectedStations: [{ id: 'station_b', timeTo: 2 } as ConnectedStation],
+      },
+      {
+        id: 'station_b',
+        name: 'Station b',
+        lines: [LineColor.GREEN],
+        connectedStations: [{ id: 'station_c', timeTo: 2 } as ConnectedStation],
+      },
+      {
+        id: 'station_c',
+        name: 'Station c',
+        lines: [LineColor.GREEN],
+        connectedStations: [{ id: 'station_d', timeTo: 2 } as ConnectedStation],
+      },
+      {
+        id: 'station_d',
+        name: 'Station d',
+        lines: [LineColor.GREEN],
+        connectedStations: [{ id: 'station_c', timeTo: 2 } as ConnectedStation],
+      },
+    ] as Station[];
+
+    const lonelyLine = [
+      {
+        id: LineColor.GREEN,
+        stationsPath: ['station_a', 'station_b', 'station_c', 'station_d'],
+        connectedLines: [],
+      },
+    ] as Line[];
+
+    const routeWithMultipleIntermediateStations = [
+      {
+        stationsPath: listOfStationsWithOneLine,
+        totalTime: 9,
+        line: LineColor.GREEN,
+        direction: 'Station d',
+      },
+    ] as SubRoute[];
+
+    const { result } = renderHook(() => useNavigation(), {
+      wrapper: NavigationProvider,
+    });
+
+    act(() => {
+      result.current.generateStationsMap(listOfStationsWithOneLine);
+    });
+
+    act(() => {
+      result.current.setOriginStation(listOfStationsWithOneLine[0]);
+    });
+
+    act(() => {
+      result.current.setDestinationStation(listOfStationsWithOneLine[3]);
+    });
+
+    const route = result.current.calculateRoute(
+      listOfStationsWithOneLine,
+      lonelyLine
+    );
+
+    expect(route).toEqual({
+      subRoutes: routeWithMultipleIntermediateStations as SubRoute[],
+      totalTime: 9,
+      price: 3,
+    } as Route);
   });
 
   describe('extractSubRoutes', () => {
@@ -643,7 +716,7 @@ describe('NavigationProvider', () => {
         listOfStationsWithTwoLines
       );
 
-      expect(calculatedTotalTime).toBe(6);
+      expect(calculatedTotalTime).toBe(9);
     });
   });
 
