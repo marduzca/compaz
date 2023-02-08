@@ -1,7 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { initializeApp } from 'firebase/app';
-import { getAnalytics, isSupported } from 'firebase/analytics';
-import { getPerformance } from 'firebase/performance';
+import { initializeApp, FirebaseOptions } from 'firebase/app';
 import {
   collection,
   doc,
@@ -42,7 +40,7 @@ export const FirebaseContext = createContext<FirebaseContextInterface>({
   storeMessage: async () => true,
 });
 
-const firebaseProdConfig = {
+const firebaseProdConfig: FirebaseOptions = {
   apiKey: 'AIzaSyCOp-cYAUCxncqLQAcWCCNzD5Wj6NOTDTc',
   authDomain: 'compaz-4.firebaseapp.com',
   projectId: 'compaz-4',
@@ -52,28 +50,21 @@ const firebaseProdConfig = {
   measurementId: 'G-BG76THH0ZB',
 };
 
-const firebaseDevConfig = {
+const firebaseDevConfig: FirebaseOptions = {
   apiKey: 'AIzaSyAT1dGP4E4sQ5mDmK46DST0hBxwiE8aRhs',
   authDomain: 'compaz-dev.firebaseapp.com',
   projectId: 'compaz-dev',
   storageBucket: 'compaz-dev.appspot.com',
   messagingSenderId: '160278539724',
   appId: '1:160278539724:web:df58d3fa75515f91e70169',
-  measurementId: 'G-N6C1W6MZS9',
+  measurementId: 'G-3G1XQ74N3F',
 };
 
 const firebaseApp = initializeApp(
-  window.location.href.match(/compaz.app/)
+  window.location.hostname.match(/compaz.app/)
     ? firebaseProdConfig
     : firebaseDevConfig
 );
-
-isSupported().then((isAnalyticsSupported) => {
-  if (isAnalyticsSupported && window.location.href.match(/compaz.app/)) {
-    getAnalytics(firebaseApp);
-    getPerformance(firebaseApp);
-  }
-});
 
 const firestore = getFirestore(firebaseApp);
 
