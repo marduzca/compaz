@@ -1,9 +1,6 @@
 @import '../../../../../variables.css';
 
 .container {
-  position: absolute;
-  left: 50%;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,8 +21,6 @@
 
 @media only screen and (max-width: 950px) {
   .container {
-    position: unset;
-
     gap: 0.5rem;
   }
 

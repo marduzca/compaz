@@ -7,7 +7,7 @@ const OfflineMapMessage: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <div className={styles.container}>
+    <div role="alert" aria-live="off" className={styles.container}>
       <OfflineMap aria-hidden />
       <p>{t('Map.OFFLINE_MAP')}</p>
     </div>
