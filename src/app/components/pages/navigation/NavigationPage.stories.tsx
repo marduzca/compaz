@@ -59,14 +59,3 @@ export const NormalStateWithDayBackground = () => {
     />
   );
 };
-
-export const MobileAndLandscapeState = () => {
-  MockDate.set('1993-03-15T09:30:00.000Z');
-
-  return (
-    <NavigationPage
-      onMenuButtonClick={actions('onMenuButtonClick').onMenuButtonClick}
-      isMobileMenuOpen={false}
-    />
-  );
-};
