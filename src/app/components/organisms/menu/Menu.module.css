@@ -149,9 +149,7 @@
   .headerItems {
     align-self: flex-start;
 
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    display: grid;
     gap: 0;
 
     margin: 0;
@@ -194,5 +192,27 @@
 
   .headerItems {
     gap: 3rem;
+  }
+}
+
+@media only screen and (max-width: 950px) and (min-height: 300px) and (orientation: landscape) {
+  @media only screen and (min-aspect-ratio: 1/1),
+    (min-device-aspect-ratio: 1/1) {
+    .header {
+      padding-inline: 1.5rem;
+    }
+
+    .navBar {
+      padding: 0;
+    }
+
+    .headerItems {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+
+    .message {
+      align-self: start;
+    }
   }
 }
