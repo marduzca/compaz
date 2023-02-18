@@ -95,7 +95,7 @@
   }
 }
 
-@media only screen and (max-width: 950px) and (min-height: 315px) and (orientation: landscape) {
+@media only screen and (max-width: 950px) and (min-height: 300px) and (orientation: landscape) {
   @media only screen and (min-aspect-ratio: 1/1),
     (min-device-aspect-ratio: 1/1) {
     .tripSelectorContainer {
