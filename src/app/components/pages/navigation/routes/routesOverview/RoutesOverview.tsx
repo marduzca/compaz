@@ -91,22 +91,24 @@ const RoutesOverview: React.FC<RoutesOverviewProps> = (props) => {
             className={styles.title}
           >{`${props.originName} - ${props.destinationName}`}</h1>
         </div>
-        <span>
-          {i18n.language.match(/en/i)
-            ? parseToEnglishDateString(props.dateAndTime, false)
-            : parseToSpanishDateString(props.dateAndTime, false)}
-        </span>
-        <div className={styles.price}>
-          <CoinIcon aria-label={t('Navigation.RoutesOverview.PRICE')} />
-          <div>
-            <p>
-              {t('Navigation.RoutesOverview.NORMAL_RATE')}:
-              <span>{` ${props.route.price}  Bs.`}</span>
-            </p>
-            <p>
-              {t('Navigation.RoutesOverview.PREFERENTIAL_RATE')}:
-              <span> {`${props.route.price / 2}  Bs.`}</span>
-            </p>
+        <div className={styles.routeInfo}>
+          <span>
+            {i18n.language.match(/en/i)
+              ? parseToEnglishDateString(props.dateAndTime, false)
+              : parseToSpanishDateString(props.dateAndTime, false)}
+          </span>
+          <div className={styles.price}>
+            <CoinIcon aria-label={t('Navigation.RoutesOverview.PRICE')} />
+            <div>
+              <p>
+                {t('Navigation.RoutesOverview.NORMAL_RATE')}:
+                <span>{` ${props.route.price}  Bs.`}</span>
+              </p>
+              <p>
+                {t('Navigation.RoutesOverview.PREFERENTIAL_RATE')}:
+                <span> {`${props.route.price / 2}  Bs.`}</span>
+              </p>
+            </div>
           </div>
         </div>
       </header>

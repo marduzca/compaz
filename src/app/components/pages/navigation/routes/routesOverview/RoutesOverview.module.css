@@ -65,6 +65,12 @@
   font-weight: 700;
 }
 
+.routeInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .price {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -188,5 +194,15 @@
 
   .routeClock {
     margin-top: 1.75rem;
+  }
+}
+
+@media only screen and (max-width: 950px) and (min-height: 300px) and (orientation: landscape) {
+  @media only screen and (min-aspect-ratio: 1/1),
+    (min-device-aspect-ratio: 1/1) {
+    .routeInfo {
+      flex-direction: row;
+      justify-content: space-between;
+    }
   }
 }
