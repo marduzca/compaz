@@ -12,7 +12,3 @@ export const NormalAndMobileState: React.FC = () => (
     onMenuButtonClick={actions('onMenuButtonClick').onMenuButtonClick}
   />
 );
-
-export const LandscapeErrorMobileState: React.FC = () => (
-  <ErrorPage landscapeError />
-);

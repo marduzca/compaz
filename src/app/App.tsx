@@ -19,100 +19,95 @@ const App = () => {
   const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
 
   return (
-    <>
-      <div className={styles.landscapeMessage}>
-        <ErrorPage landscapeError />
-      </div>
-      <div className={styles.App}>
-        <MenuContainer
-          showMenuOnMobile={showMobileMenu}
-          onHideMobileMenu={() => {
-            setShowMobileMenu(false);
-          }}
-        />
-        <FirebaseProvider>
-          <Routes>
-            <Route
-              path={`${NavigationLink.BASE}/*`}
-              element={
-                <NavigationProvider>
-                  <NavigationPage
-                    onMenuButtonClick={() => {
-                      setShowMobileMenu(true);
-                    }}
-                    isMobileMenuOpen={showMobileMenu}
-                  />
-                </NavigationProvider>
-              }
-            />
-            <Route
-              path={`${NavigationLink.NAVIGATION}/*`}
-              element={
-                <NavigationProvider>
-                  <NavigationPage
-                    onMenuButtonClick={() => {
-                      setShowMobileMenu(true);
-                    }}
-                    isMobileMenuOpen={showMobileMenu}
-                  />
-                </NavigationProvider>
-              }
-            />
-            <Route
-              path={NavigationLink.MAP}
-              element={
-                <MapPage
+    <div className={styles.App}>
+      <MenuContainer
+        showMenuOnMobile={showMobileMenu}
+        onHideMobileMenu={() => {
+          setShowMobileMenu(false);
+        }}
+      />
+      <FirebaseProvider>
+        <Routes>
+          <Route
+            path={`${NavigationLink.BASE}/*`}
+            element={
+              <NavigationProvider>
+                <NavigationPage
                   onMenuButtonClick={() => {
                     setShowMobileMenu(true);
                   }}
+                  isMobileMenuOpen={showMobileMenu}
                 />
-              }
-            />
-            <Route
-              path={NavigationLink.HOW_TO_INSTALL}
-              element={
-                <HowToInstallPage
+              </NavigationProvider>
+            }
+          />
+          <Route
+            path={`${NavigationLink.NAVIGATION}/*`}
+            element={
+              <NavigationProvider>
+                <NavigationPage
                   onMenuButtonClick={() => {
                     setShowMobileMenu(true);
                   }}
+                  isMobileMenuOpen={showMobileMenu}
                 />
-              }
-            />
-            <Route
-              path={NavigationLink.CONTACT}
-              element={
-                <ContactPage
-                  onMenuButtonClick={() => {
-                    setShowMobileMenu(true);
-                  }}
-                />
-              }
-            />
-            <Route
-              path={NavigationLink.ABOUT}
-              element={
-                <AboutPage
-                  onMenuButtonClick={() => {
-                    setShowMobileMenu(true);
-                  }}
-                />
-              }
-            />
-            <Route
-              path="/*"
-              element={
-                <ErrorPage
-                  onMenuButtonClick={() => {
-                    setShowMobileMenu(true);
-                  }}
-                />
-              }
-            />
-          </Routes>
-        </FirebaseProvider>
-        <NotificationContainer />
-      </div>
-    </>
+              </NavigationProvider>
+            }
+          />
+          <Route
+            path={NavigationLink.MAP}
+            element={
+              <MapPage
+                onMenuButtonClick={() => {
+                  setShowMobileMenu(true);
+                }}
+              />
+            }
+          />
+          <Route
+            path={NavigationLink.HOW_TO_INSTALL}
+            element={
+              <HowToInstallPage
+                onMenuButtonClick={() => {
+                  setShowMobileMenu(true);
+                }}
+              />
+            }
+          />
+          <Route
+            path={NavigationLink.CONTACT}
+            element={
+              <ContactPage
+                onMenuButtonClick={() => {
+                  setShowMobileMenu(true);
+                }}
+              />
+            }
+          />
+          <Route
+            path={NavigationLink.ABOUT}
+            element={
+              <AboutPage
+                onMenuButtonClick={() => {
+                  setShowMobileMenu(true);
+                }}
+              />
+            }
+          />
+          <Route
+            path="/*"
+            element={
+              <ErrorPage
+                onMenuButtonClick={() => {
+                  setShowMobileMenu(true);
+                }}
+              />
+            }
+          />
+        </Routes>
+      </FirebaseProvider>
+      <NotificationContainer />
+    </div>
   );
 };
 

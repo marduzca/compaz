@@ -117,5 +117,9 @@
 
       background-color: grey;
     }
+
+    .headerItem {
+      flex-wrap: initial;
+    }
   }
 }
