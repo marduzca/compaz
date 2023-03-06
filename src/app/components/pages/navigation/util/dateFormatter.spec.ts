@@ -5,7 +5,7 @@ import {
   parseToSpanishDateString,
   parseToSimpleTime,
   reduceMinutesToDate,
-  isWeekday,
+  isNormalDay,
 } from './dateFormatter';
 
 describe('dateFormatter', () => {
@@ -61,15 +61,15 @@ describe('dateFormatter', () => {
     });
   });
 
-  describe('isWeekday', () => {
-    it('returns true if date is during the week', () => {
-      const isDayDuringWeek = isWeekday('1993-03-17');
+  describe('isNormalday', () => {
+    it('returns true if date is normal day', () => {
+      const isDayDuringWeek = isNormalDay('1993-03-17');
 
       expect(isDayDuringWeek).toBeTruthy();
     });
 
-    it('returns false if date is during the weekend', () => {
-      const isDayDuringWeek = isWeekday('1993-03-13');
+    it('returns false if date is Sunday or holiday', () => {
+      const isDayDuringWeek = isNormalDay('1993-03-14');
 
       expect(isDayDuringWeek).toBeFalsy();
     });

@@ -82,12 +82,12 @@ export const addMinutesToDate = (date: Date, minutes: number): Date =>
 export const reduceMinutesToDate = (date: Date, minutes: number): Date =>
   new Date(date.getTime() - minutes * 60000);
 
-export const isWeekday = (dateString: string): boolean => {
-  const weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+export const isNormalDay = (dateString: string): boolean => {
+  const normalDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   const dayOfTheWeek = new Intl.DateTimeFormat('en', {
     weekday: 'short',
   }).format(new Date(`${dateString}T12:00:00.000Z`));
 
-  return weekdays.includes(dayOfTheWeek);
+  return normalDays.includes(dayOfTheWeek);
 };

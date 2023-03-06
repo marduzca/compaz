@@ -2,31 +2,31 @@ import React, { useEffect, useRef, useState } from 'react';
 import DateAndTimePicker from './DateAndTimePicker';
 import { useNavigation } from '../../../../../providers/navigation/NavigationProvider';
 import {
-  isWeekday,
+  isNormalDay,
   parseToSimpleDate,
   parseToSimpleTime,
 } from '../../../util/dateFormatter';
 
-const WEEKDAY_BEGIN_OF_FUNCTIONAL_HOURS = 6;
-const WEEKDAY_END_OF_FUNCTIONAL_HOURS = 22;
-const WEEKEND_BEGIN_OF_FUNCTIONAL_HOURS = 7;
-const WEEKEND_END_OF_FUNCTIONAL_HOURS = 21;
+const NORMAL_DAY_BEGIN_OF_FUNCTIONAL_HOURS = 6;
+const NORMAL_DAY_END_OF_FUNCTIONAL_HOURS = 23;
+const SUNDAY_OR_HOLIDAY_BEGIN_OF_FUNCTIONAL_HOURS = 7;
+const SUNDAY_OR_HOLIDAY_END_OF_FUNCTIONAL_HOURS = 21;
 
 const DateAndTimePickerContainer: React.FC = () => {
   const dateAndTimeSelectionPanelRef = useRef<HTMLDivElement>(null);
 
   const isTimeOutsideOfFunctionalHours = (hour: number) => {
     if (
-      isWeekday(currentlySelectedDate) &&
-      (hour < WEEKDAY_BEGIN_OF_FUNCTIONAL_HOURS ||
-        hour > WEEKDAY_END_OF_FUNCTIONAL_HOURS)
+      isNormalDay(currentlySelectedDate) &&
+      (hour < NORMAL_DAY_BEGIN_OF_FUNCTIONAL_HOURS ||
+        hour > NORMAL_DAY_END_OF_FUNCTIONAL_HOURS)
     ) {
       return true;
     }
 
     return (
-      hour < WEEKEND_BEGIN_OF_FUNCTIONAL_HOURS ||
-      hour > WEEKEND_END_OF_FUNCTIONAL_HOURS
+      hour < SUNDAY_OR_HOLIDAY_BEGIN_OF_FUNCTIONAL_HOURS ||
+      hour > SUNDAY_OR_HOLIDAY_END_OF_FUNCTIONAL_HOURS
     );
   };
 
