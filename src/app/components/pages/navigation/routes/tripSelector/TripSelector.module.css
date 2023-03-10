@@ -117,15 +117,12 @@
   }
 }
 
-@media only screen and (max-width: 950px) and (min-height: 300px) and (orientation: landscape) {
-  @media only screen and (min-aspect-ratio: 1/1),
-    (min-device-aspect-ratio: 1/1) {
-    .searchButton {
-      bottom: unset;
-      top: 50%;
-      right: calc(-100% + 3.5rem);
+@media only screen and (max-width: 950px) and (min-height: 300px) and (orientation: landscape) and (min-aspect-ratio: 1/1) {
+  .searchButton {
+    bottom: unset;
+    top: 50%;
+    right: calc(-100% + 3.5rem);
 
-      transform: translate(0, -50%);
-    }
+    transform: translate(0, -50%);
   }
 }
