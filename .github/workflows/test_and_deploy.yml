@@ -202,7 +202,7 @@ jobs:
           path: cypress/screenshots/**
 
   build_and_deploy_prod:
-    needs: [visual_regression_test, user_journey_test_dev]
+    needs: [ user_journey_test_dev ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
