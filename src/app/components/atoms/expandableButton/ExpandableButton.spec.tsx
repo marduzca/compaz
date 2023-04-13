@@ -1,4 +1,5 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import ExpandableButton from './ExpandableButton';
@@ -29,7 +30,7 @@ describe('ExpandableButton', () => {
   });
 
   it('triggers onClick handler when clicking', async () => {
-    const onClickMock = jest.fn();
+    const onClickMock = vi.fn();
 
     render(
       <ExpandableButton

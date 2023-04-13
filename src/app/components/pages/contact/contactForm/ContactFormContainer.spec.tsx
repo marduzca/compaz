@@ -1,4 +1,5 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import * as FirebaseProvider from '../../../providers/firebase/FirebaseProvider';
@@ -11,9 +12,9 @@ import { OFFLINE_ERROR_NOTIFICATION_KEY } from '../../../organisms/notification/
 import { NotificationEvent } from '../../../domain';
 
 describe('ContactFormContainer', () => {
-  const useFirebaseMock = jest.spyOn(FirebaseProvider, 'useFirebase');
+  const useFirebaseMock = vi.spyOn(FirebaseProvider, 'useFirebase');
 
-  const storeMessageMock = jest.fn().mockResolvedValue(true);
+  const storeMessageMock = vi.fn().mockResolvedValue(true);
 
   beforeEach(() => {
     useFirebaseMock.mockReturnValue({
@@ -24,11 +25,11 @@ describe('ContactFormContainer', () => {
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('calls the function to store the message with name, email and content', async () => {
-    const storeMessageMock = jest.fn().mockImplementation(async () => {
+    const storeMessageMock = vi.fn().mockImplementation(async () => {
       // Wait before returning to give time to the test to verify that the loader is shown
       await new Promise((resolve) => {
         setTimeout(resolve, 100);
@@ -108,8 +109,8 @@ describe('ContactFormContainer', () => {
   });
 
   it("doesn't store message and dispatches error event for notification to pop-up while offline", async () => {
-    const dispatchEventSpy = jest.spyOn(window, 'dispatchEvent');
-    const navigatorOnlineSpy = jest.spyOn(window.navigator, 'onLine', 'get');
+    const dispatchEventSpy = vi.spyOn(window, 'dispatchEvent');
+    const navigatorOnlineSpy = vi.spyOn(window.navigator, 'onLine', 'get');
     navigatorOnlineSpy.mockReturnValue(false);
 
     render(<ContactFormContainer />);

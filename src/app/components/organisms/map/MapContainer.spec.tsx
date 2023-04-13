@@ -4,7 +4,7 @@ import MapContainer from './MapContainer';
 
 describe('MapContainer', () => {
   afterAll(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('renders the loader when map is not yet loaded', () => {
@@ -16,7 +16,7 @@ describe('MapContainer', () => {
   });
 
   it('renders the offline map message when offline', () => {
-    const navigatorOnlineSpy = jest.spyOn(window.navigator, 'onLine', 'get');
+    const navigatorOnlineSpy = vi.spyOn(window.navigator, 'onLine', 'get');
     navigatorOnlineSpy.mockReturnValue(false);
 
     render(<MapContainer />);

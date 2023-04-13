@@ -15,7 +15,7 @@ const MapContainer: React.FC<MapContainerProps> = (props) => {
   const isMobile = useMediaQuery();
   const { origin, destination } = useNavigation();
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_MAPS_API_KEY || 'fake-key',
+    googleMapsApiKey: import.meta.env.VITE_MAPS_API_KEY || 'fake-key',
     language: navigator.language,
     preventGoogleFontsLoading: true,
   });

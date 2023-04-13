@@ -1,4 +1,5 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import StationsSelectorContainer from './StationsSelectorContainer';
@@ -7,8 +8,8 @@ import * as NavigationProvider from '../../../../../providers/navigation/Navigat
 import * as FirebaseProvider from '../../../../../providers/firebase/FirebaseProvider';
 
 describe('StationsSelectorContainer', () => {
-  const useFirebaseMock = jest.spyOn(FirebaseProvider, 'useFirebase');
-  const useNavigationMock = jest.spyOn(NavigationProvider, 'useNavigation');
+  const useFirebaseMock = vi.spyOn(FirebaseProvider, 'useFirebase');
+  const useNavigationMock = vi.spyOn(NavigationProvider, 'useNavigation');
 
   const availableStations = [
     {
@@ -39,18 +40,18 @@ describe('StationsSelectorContainer', () => {
       destination: undefined,
       departureTime: '10:24',
       departureDate: '2021-12-25',
-      setNewDepartureTime: jest.fn(),
-      setNewDepartureDate: jest.fn(),
-      setOriginStation: jest.fn(),
-      setDestinationStation: jest.fn(),
-      generateStationsMap: jest.fn(),
+      setNewDepartureTime: vi.fn(),
+      setNewDepartureDate: vi.fn(),
+      setOriginStation: vi.fn(),
+      setDestinationStation: vi.fn(),
+      generateStationsMap: vi.fn(),
       calculateRoute: () =>
         ({ subRoutes: [], totalTime: 0, price: 0 } as Route),
     });
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('clears station input when clicking on the clear button', async () => {
@@ -159,11 +160,11 @@ describe('StationsSelectorContainer', () => {
       destination: undefined,
       departureTime: '10:24',
       departureDate: '2021-12-25',
-      setNewDepartureTime: jest.fn(),
-      setNewDepartureDate: jest.fn(),
-      setOriginStation: jest.fn(),
-      setDestinationStation: jest.fn(),
-      generateStationsMap: jest.fn(),
+      setNewDepartureTime: vi.fn(),
+      setNewDepartureDate: vi.fn(),
+      setOriginStation: vi.fn(),
+      setDestinationStation: vi.fn(),
+      generateStationsMap: vi.fn(),
       calculateRoute: () =>
         ({ subRoutes: [], totalTime: 0, price: 0 } as Route),
     });
@@ -199,11 +200,11 @@ describe('StationsSelectorContainer', () => {
       destination: availableStations[0],
       departureTime: '10:24',
       departureDate: '2021-12-25',
-      setNewDepartureTime: jest.fn(),
-      setNewDepartureDate: jest.fn(),
-      setOriginStation: jest.fn(),
-      setDestinationStation: jest.fn(),
-      generateStationsMap: jest.fn(),
+      setNewDepartureTime: vi.fn(),
+      setNewDepartureDate: vi.fn(),
+      setOriginStation: vi.fn(),
+      setDestinationStation: vi.fn(),
+      generateStationsMap: vi.fn(),
       calculateRoute: () =>
         ({ subRoutes: [], totalTime: 0, price: 0 } as Route),
     });

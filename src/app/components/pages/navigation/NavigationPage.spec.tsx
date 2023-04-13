@@ -1,4 +1,5 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Route as Path, Routes } from 'react-router-dom';
@@ -15,8 +16,8 @@ import {
 import { NavigationLink } from '../../organisms/menu/Menu';
 
 describe('NavigationPage', () => {
-  const useFirebaseMock = jest.spyOn(FirebaseProvider, 'useFirebase');
-  const useNavigationMock = jest.spyOn(NavigationProvider, 'useNavigation');
+  const useFirebaseMock = vi.spyOn(FirebaseProvider, 'useFirebase');
+  const useNavigationMock = vi.spyOn(NavigationProvider, 'useNavigation');
 
   const originStation = {
     id: 'origin_station',
@@ -100,14 +101,14 @@ describe('NavigationPage', () => {
     Object.defineProperty(window, 'location', {
       value: {
         href: '',
-        replace: jest.fn(),
+        replace: vi.fn(),
       },
       writable: true,
     });
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   beforeEach(() => {
@@ -122,17 +123,17 @@ describe('NavigationPage', () => {
       destination: destinationStation,
       departureTime: '17:30',
       departureDate: '2021-09-24',
-      setNewDepartureTime: jest.fn(),
-      setNewDepartureDate: jest.fn(),
-      setOriginStation: jest.fn(),
-      setDestinationStation: jest.fn(),
-      generateStationsMap: jest.fn(),
+      setNewDepartureTime: vi.fn(),
+      setNewDepartureDate: vi.fn(),
+      setOriginStation: vi.fn(),
+      setDestinationStation: vi.fn(),
+      generateStationsMap: vi.fn(),
       calculateRoute: () => testRoute,
     });
   });
 
   afterAll(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   const renderNavigationWithRouter = (
@@ -173,7 +174,7 @@ describe('NavigationPage', () => {
 
     expect(
       screen.getByRole('img', {
-        name: 'LOADING',
+        name: 'Loading...',
       })
     ).toBeVisible();
   });
@@ -189,7 +190,7 @@ describe('NavigationPage', () => {
 
     expect(
       screen.getByRole('img', {
-        name: 'LOADING',
+        name: 'Loading...',
       })
     ).toBeVisible();
   });
@@ -200,11 +201,11 @@ describe('NavigationPage', () => {
       destination: destinationStation,
       departureTime: '17:30',
       departureDate: '2021-09-24',
-      setNewDepartureTime: jest.fn(),
-      setNewDepartureDate: jest.fn(),
-      setOriginStation: jest.fn(),
-      setDestinationStation: jest.fn(),
-      generateStationsMap: jest.fn(),
+      setNewDepartureTime: vi.fn(),
+      setNewDepartureDate: vi.fn(),
+      setOriginStation: vi.fn(),
+      setDestinationStation: vi.fn(),
+      generateStationsMap: vi.fn(),
       calculateRoute: () =>
         ({ subRoutes: [], totalTime: 0, price: 0 } as Route), // Route is not set
     });
@@ -214,7 +215,7 @@ describe('NavigationPage', () => {
     );
 
     expect(
-      screen.getByRole('heading', { name: 'Navigation.Heading.TRIP_SELECTOR' })
+      screen.getByRole('heading', { name: 'Navigation > Trip selector' })
     ).toBeVisible();
   });
 
@@ -223,7 +224,7 @@ describe('NavigationPage', () => {
 
     await userEvent.click(
       screen.getByRole('button', {
-        name: 'Navigation.TripSelector.SEARCH_BUTTON',
+        name: 'Search',
       })
     );
 
@@ -239,17 +240,19 @@ describe('NavigationPage', () => {
 
     await userEvent.click(
       screen.getByRole('button', {
-        name: 'Navigation.TripSelector.SEARCH_BUTTON',
+        name: 'Search',
       })
     );
 
     await userEvent.click(
-      screen.getByRole('button', { name: 'GO_BACK_BUTTON_DESCRIPTIVE' })
+      screen.getByRole('button', {
+        name: 'Go back to Trip Selector page. Currently in Routes Overview page',
+      })
     );
 
     expect(
       screen.getByRole('button', {
-        name: 'Navigation.TripSelector.SEARCH_BUTTON',
+        name: 'Search',
       })
     ).toBeVisible();
   });
@@ -259,34 +262,34 @@ describe('NavigationPage', () => {
 
     await userEvent.click(
       screen.getByRole('button', {
-        name: 'Navigation.TripSelector.SEARCH_BUTTON',
+        name: 'Search',
       })
     );
 
     await userEvent.click(
       screen.getByRole('button', {
-        name: 'Navigation.RoutesOverview.SINGLE_ROUTE_BUTTON_TITLE 17:30 - 17:41',
+        name: 'Route with times 17:30 - 17:41',
       })
     );
 
     const withinPurpleLine = within(
-      screen.getByRole('listitem', { name: 'Navigation.Route.Lines.PURPLE' })
+      screen.getByRole('listitem', { name: 'Purple line' })
     );
 
     const withinBlueLine = within(
-      screen.getByRole('listitem', { name: 'Navigation.Route.Lines.BLUE' })
+      screen.getByRole('listitem', { name: 'Blue line' })
     );
 
     expect(
       withinPurpleLine.getByRole('img', {
-        name: 'Navigation.Route.Lines.PURPLE',
+        name: 'Purple line',
       })
     ).toBeVisible();
     expect(withinPurpleLine.getByText('Origin Station')).toBeVisible();
     expect(withinPurpleLine.getByText('Intermediate Station')).toBeVisible();
 
     expect(
-      withinBlueLine.getByRole('img', { name: 'Navigation.Route.Lines.BLUE' })
+      withinBlueLine.getByRole('img', { name: 'Blue line' })
     ).toBeVisible();
     expect(withinBlueLine.getByText('Intermediate Station')).toBeVisible();
     expect(withinBlueLine.getByText('Destination Station')).toBeVisible();
@@ -297,18 +300,20 @@ describe('NavigationPage', () => {
 
     await userEvent.click(
       screen.getByRole('button', {
-        name: 'Navigation.TripSelector.SEARCH_BUTTON',
+        name: 'Search',
       })
     );
 
     await userEvent.click(
       screen.getByRole('button', {
-        name: 'Navigation.RoutesOverview.SINGLE_ROUTE_BUTTON_TITLE 17:30 - 17:41',
+        name: 'Route with times 17:30 - 17:41',
       })
     );
 
     await userEvent.click(
-      screen.getByRole('button', { name: 'GO_BACK_BUTTON_DESCRIPTIVE' })
+      screen.getByRole('button', {
+        name: 'Go back to Routes Overview page. Currently in Route Details page',
+      })
     );
 
     expect(

@@ -1,4 +1,5 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import RoutesOverviewContainer from './RoutesOverviewContainer';
@@ -87,8 +88,8 @@ describe('RoutesOverviewContainer', () => {
     price: 5,
   } as Route;
 
-  const useFirebaseMock = jest.spyOn(FirebaseProvider, 'useFirebase');
-  const useNavigationMock = jest.spyOn(NavigationProvider, 'useNavigation');
+  const useFirebaseMock = vi.spyOn(FirebaseProvider, 'useFirebase');
+  const useNavigationMock = vi.spyOn(NavigationProvider, 'useNavigation');
 
   beforeEach(() => {
     useFirebaseMock.mockReturnValue({
@@ -118,18 +119,18 @@ describe('RoutesOverviewContainer', () => {
       destination: destinationStation,
       departureTime: '17:30',
       departureDate: '2021-09-24',
-      setNewDepartureTime: jest.fn(),
-      setNewDepartureDate: jest.fn(),
-      setOriginStation: jest.fn(),
-      setDestinationStation: jest.fn(),
-      generateStationsMap: jest.fn(),
+      setNewDepartureTime: vi.fn(),
+      setNewDepartureDate: vi.fn(),
+      setOriginStation: vi.fn(),
+      setDestinationStation: vi.fn(),
+      generateStationsMap: vi.fn(),
       calculateRoute: () =>
         ({ subRoutes: [], totalTime: 0, price: 0 } as Route),
     });
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('displays origin and destination in the header', () => {
@@ -159,27 +160,27 @@ describe('RoutesOverviewContainer', () => {
 
     const withinFirstRouteSection = within(
       screen.getByRole('button', {
-        name: 'Navigation.RoutesOverview.SINGLE_ROUTE_BUTTON_TITLE 17:30 - 17:39',
+        name: 'Route with times 17:30 - 17:39',
       })
     );
 
     expect(
       withinFirstRouteSection.getByRole('img', {
-        name: 'Navigation.Route.Lines.GREEN',
+        name: 'Green line',
       })
     ).toBeVisible();
     expect(withinFirstRouteSection.getByText('3')).toBeVisible();
 
     expect(
       withinFirstRouteSection.getByRole('img', {
-        name: 'Navigation.RoutesOverview.TRANSFER',
+        name: 'Transfer',
       })
     ).toBeVisible();
     expect(withinFirstRouteSection.getByText('2')).toBeVisible();
 
     expect(
       withinFirstRouteSection.getByRole('img', {
-        name: 'Navigation.Route.Lines.RED',
+        name: 'Red line',
       })
     ).toBeVisible();
     expect(withinFirstRouteSection.getByText('4')).toBeVisible();
@@ -196,7 +197,7 @@ describe('RoutesOverviewContainer', () => {
 
     await userEvent.click(
       screen.getByRole('button', {
-        name: 'Navigation.RoutesOverview.EARLIER_BUTTON',
+        name: 'Earlier',
       })
     );
 
@@ -214,7 +215,7 @@ describe('RoutesOverviewContainer', () => {
 
     await userEvent.click(
       screen.getByRole('button', {
-        name: 'Navigation.RoutesOverview.LATER_BUTTON',
+        name: 'Later',
       })
     );
 
@@ -233,7 +234,7 @@ describe('RoutesOverviewContainer', () => {
 
       const withinFirstRouteSection = within(
         screen.getByRole('button', {
-          name: 'Navigation.RoutesOverview.SINGLE_ROUTE_BUTTON_TITLE 17:30 - 17:39',
+          name: 'Route with times 17:30 - 17:39',
         })
       );
 
@@ -311,7 +312,7 @@ describe('RoutesOverviewContainer', () => {
 
       const withinFirstRouteSection = within(
         screen.getByRole('button', {
-          name: 'Navigation.RoutesOverview.SINGLE_ROUTE_BUTTON_TITLE 17:30 - 18:45',
+          name: 'Route with times 17:30 - 18:45',
         })
       );
 
@@ -385,11 +386,11 @@ describe('RoutesOverviewContainer', () => {
         destination: destinationStation,
         departureTime: '17:30',
         departureDate: '2021-09-24',
-        setNewDepartureTime: jest.fn(),
-        setNewDepartureDate: jest.fn(),
-        setOriginStation: jest.fn(),
-        setDestinationStation: jest.fn(),
-        generateStationsMap: jest.fn(),
+        setNewDepartureTime: vi.fn(),
+        setNewDepartureDate: vi.fn(),
+        setOriginStation: vi.fn(),
+        setDestinationStation: vi.fn(),
+        generateStationsMap: vi.fn(),
         calculateRoute: () => routeWithTotalTimeOfExactlyAnHour,
       });
 
@@ -403,7 +404,7 @@ describe('RoutesOverviewContainer', () => {
 
       const withinFirstRouteSection = within(
         screen.getByRole('button', {
-          name: 'Navigation.RoutesOverview.SINGLE_ROUTE_BUTTON_TITLE 17:30 - 18:30',
+          name: 'Route with times 17:30 - 18:30',
         })
       );
 

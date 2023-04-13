@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Select, { Option } from './Select';
@@ -83,7 +84,7 @@ describe('Select', () => {
   });
 
   it('triggers onChange handler when selecting a new option', async () => {
-    const handlerFn = jest.fn();
+    const handlerFn = vi.fn();
     render(
       <Select
         onChange={handlerFn}

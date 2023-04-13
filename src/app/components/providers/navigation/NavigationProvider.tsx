@@ -1,12 +1,11 @@
 import React, { createContext, useContext, useState } from 'react';
+// @ts-ignore
+import dijkstra from 'dijkstrajs';
 import { Line, LineColor, Route, Station, SubRoute } from '../../domain';
 import {
   parseToSimpleDate,
   parseToSimpleTime,
 } from '../../pages/navigation/util/dateFormatter';
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const dijkstra = require('dijkstrajs');
 
 interface StationsMap {
   [stationID: string]: ConnectedStationTimeTo;

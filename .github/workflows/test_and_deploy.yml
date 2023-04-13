@@ -86,7 +86,7 @@ jobs:
       - name: create env file
         run: |
           touch .env
-          echo REACT_APP_MAPS_API_KEY =${{ secrets.DEV_MAPS_API_KEY }} >> .env
+          echo VITE_MAPS_API_KEY =${{ secrets.DEV_MAPS_API_KEY }} >> .env
 
       - name: Cache Node Modules
         id: node-cache
@@ -111,7 +111,7 @@ jobs:
           path: cypress/screenshots/**
 
   outdated_deps:
-    needs: [visual_regression_test, user_journey_test_local]
+    needs: [user_journey_test_local]
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -138,14 +138,14 @@ jobs:
         run: test $(npm outdated | wc -l) -lt "10"
 
   build_and_deploy_dev:
-    needs: [ visual_regression_test, user_journey_test_local ]
+    needs: [ user_journey_test_local ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
       - name: create env file
         run: |
           touch .env
-          echo REACT_APP_MAPS_API_KEY =${{ secrets.DEV_MAPS_API_KEY }} >> .env
+          echo VITE_MAPS_API_KEY =${{ secrets.DEV_MAPS_API_KEY }} >> .env
 
       - name: Cache Node Modules
         id: node-cache
@@ -209,7 +209,7 @@ jobs:
       - name: create env file
         run: |
           touch .env
-          echo REACT_APP_MAPS_API_KEY =${{ secrets.MAPS_API_KEY }} >> .env
+          echo VITE_MAPS_API_KEY =${{ secrets.MAPS_API_KEY }} >> .env
 
       - name: Cache Node Modules
         id: node-cache

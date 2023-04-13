@@ -1,8 +1,19 @@
 module.exports = {
-  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  stories: ['../src/**/*.stories.@(js|jsx|ts|tsx)'],
   staticDirs: ['../public'],
-  addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@storybook/preset-create-react-app'],
-  core: {
-    builder: 'webpack5'
-  }
+  addons: [
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@storybook/addon-interactions',
+  ],
+  framework: {
+    name: '@storybook/react-vite',
+    options: {},
+  },
+  features: {
+    storyStoreV7: true,
+  },
+  docs: {
+    autodocs: true,
+  },
 };

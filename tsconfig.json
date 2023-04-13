@@ -1,10 +1,16 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "esnext",
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
+    ],
+    "types": [
+      "vite/client",
+      "vitest/globals",
+      "vite-plugin-svgr/client",
+      "cypress"
     ],
     "allowJs": true,
     "skipLibCheck": true,

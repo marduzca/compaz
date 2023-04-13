@@ -62,7 +62,7 @@ describe('ComboBox', () => {
       ).not.toBeInTheDocument();
       expect(screen.getByText('placeholder')).toBeVisible();
 
-      await userEvent.click(screen.getByText('placeholder'));
+      await userEvent.click(screen.getByRole('button'));
 
       expect(screen.getByRole('option', { name: 'opt 1' })).toBeVisible();
     });
@@ -84,7 +84,7 @@ describe('ComboBox', () => {
       ).not.toBeInTheDocument();
       expect(screen.getByText('placeholder')).toBeVisible();
 
-      await userEvent.click(screen.getByText('placeholder'));
+      await userEvent.click(screen.getByRole('button'));
       expect(screen.getByRole('option', { name: 'opt 1' })).toBeVisible();
 
       await userEvent.click(screen.getByRole('button'));
@@ -99,7 +99,7 @@ describe('ComboBox', () => {
       ).not.toBeInTheDocument();
       expect(screen.getByText('placeholder')).toBeVisible();
 
-      await userEvent.click(screen.getByText('placeholder'));
+      await userEvent.click(screen.getByRole('button'));
       expect(screen.getByRole('option', { name: 'opt 1' })).toBeVisible();
       expect(screen.getByRole('option', { name: 'opt 2' })).toBeVisible();
 

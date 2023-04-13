@@ -18,7 +18,9 @@ describe('MobileHeader', () => {
       </Router>
     );
 
-    await userEvent.click(screen.getByRole('link', { name: /Menu.GO_HOME/ }));
+    await userEvent.click(
+      screen.getByRole('link', { name: /Go to home page/ })
+    );
 
     expect(history.location.pathname).toBe(NavigationLink.BASE);
   });
@@ -34,7 +36,11 @@ describe('MobileHeader', () => {
       </Router>
     );
 
-    await userEvent.click(screen.getByRole('link', { name: /Map.GO_TO_MAP/ }));
+    await userEvent.click(
+      screen.getByRole('link', {
+        name: /See map with the complete teleférico network/,
+      })
+    );
 
     expect(history.location.pathname).toBe(NavigationLink.MAP);
   });
