@@ -13,6 +13,7 @@ export default defineConfig({
     svgrPlugin(),
     VitePWA({
       registerType: 'autoUpdate',
+      filename: 'service-worker.js',
       workbox: {
         globPatterns: ['**/*.{js,css,html}', '**/*.{svg,png,gif}'],
         maximumFileSizeToCacheInBytes: 5242880,
