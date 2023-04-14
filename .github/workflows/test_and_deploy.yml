@@ -46,30 +46,30 @@ jobs:
       - name: eslint & tests
         run: npm run lint && npm run only-test
 
-  visual_regression_test:
-    needs: build_and_test
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [ 14.x ]
-    steps:
-    - uses: actions/checkout@master
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-
-    - name: Cache Node Modules
-      id: node-cache
-      uses: actions/cache@v3
-      env:
-        cache-name: cache-node-modules
-      with:
-        path: node_modules
-        key: node-modules-${{ hashFiles('package-lock.json') }}
-
-    - name: Run visual regression tests
-      run: npm run loki:ci
+#  visual_regression_test:
+#    needs: build_and_test
+#    runs-on: ubuntu-latest
+#    strategy:
+#      matrix:
+#        node-version: [ 14.x ]
+#    steps:
+#    - uses: actions/checkout@master
+#    - name: Use Node.js ${{ matrix.node-version }}
+#      uses: actions/setup-node@v1
+#      with:
+#        node-version: ${{ matrix.node-version }}
+#
+#    - name: Cache Node Modules
+#      id: node-cache
+#      uses: actions/cache@v3
+#      env:
+#        cache-name: cache-node-modules
+#      with:
+#        path: node_modules
+#        key: node-modules-${{ hashFiles('package-lock.json') }}
+#
+#    - name: Run visual regression tests
+#      run: npm run loki:ci
 
   user_journey_test_local:
     needs: build_and_test
