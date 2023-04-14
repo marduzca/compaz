@@ -10,9 +10,7 @@ describe('MapContainer', () => {
   it('renders the loader when map is not yet loaded', () => {
     render(<MapContainer />);
 
-    expect(
-      screen.getByRole('alert', { name: 'Map.LOADING_MAP' })
-    ).toBeVisible();
+    expect(screen.getByRole('alert', { name: 'Loading map' })).toBeVisible();
   });
 
   it('renders the offline map message when offline', () => {
@@ -21,6 +19,8 @@ describe('MapContainer', () => {
 
     render(<MapContainer />);
 
-    expect(screen.getByText('Map.OFFLINE_MAP')).toBeVisible();
+    expect(
+      screen.getByText('Sorry, the map is not available offline.')
+    ).toBeVisible();
   });
 });

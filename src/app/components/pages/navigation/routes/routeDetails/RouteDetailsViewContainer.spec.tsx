@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, within } from '@testing-library/react';
+import { act, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import RouteDetailsViewContainer from './RouteDetailsViewContainer';
 import {
@@ -82,24 +82,28 @@ describe('RouteDetailsViewContainer', () => {
     );
 
     const withinPurpleLine = within(
-      screen.getByRole('listitem', { name: 'Navigation.Route.Lines.PURPLE' })
+      screen.getByRole('listitem', { name: 'Purple line' })
     );
 
     expect(withinPurpleLine.queryByText('A.5 Station')).not.toBeInTheDocument();
 
-    await userEvent.click(
-      withinPurpleLine.getByRole('button', {
-        name: 'Navigation.RouteDetails.INTERMEDIATE_STATIONS_OPEN_BUTTON_TITLE',
-      })
-    );
+    await act(async () => {
+      await userEvent.click(
+        withinPurpleLine.getByRole('button', {
+          name: 'Show intermediate stations',
+        })
+      );
+    });
 
     expect(withinPurpleLine.getByText('A.5 Station')).toBeVisible();
 
-    await userEvent.click(
-      withinPurpleLine.getByRole('button', {
-        name: 'Navigation.RouteDetails.INTERMEDIATE_STATIONS_CLOSE_BUTTON_TITLE',
-      })
-    );
+    await act(async () => {
+      await userEvent.click(
+        withinPurpleLine.getByRole('button', {
+          name: 'Hide intermediate stations',
+        })
+      );
+    });
 
     expect(withinPurpleLine.queryByText('A.5 Station')).not.toBeInTheDocument();
   });
@@ -114,11 +118,11 @@ describe('RouteDetailsViewContainer', () => {
     );
 
     const withinPurpleLine = within(
-      screen.getByRole('listitem', { name: 'Navigation.Route.Lines.PURPLE' })
+      screen.getByRole('listitem', { name: 'Purple line' })
     );
 
     const withinBlueLine = within(
-      screen.getByRole('listitem', { name: 'Navigation.Route.Lines.BLUE' })
+      screen.getByRole('listitem', { name: 'Blue line' })
     );
 
     expect(withinPurpleLine.getByText('09:30')).toBeVisible();
@@ -138,26 +142,26 @@ describe('RouteDetailsViewContainer', () => {
     );
 
     const withinPurpleLine = within(
-      screen.getByRole('listitem', { name: 'Navigation.Route.Lines.PURPLE' })
+      screen.getByRole('listitem', { name: 'Purple line' })
     );
 
     const withinBlueLine = within(
-      screen.getByRole('listitem', { name: 'Navigation.Route.Lines.BLUE' })
+      screen.getByRole('listitem', { name: 'Blue line' })
     );
 
     expect(
       withinPurpleLine.getByRole('img', {
-        name: 'Navigation.Route.Lines.PURPLE',
+        name: 'Purple line',
       })
     ).toBeVisible();
     expect(withinPurpleLine.getByText('Origin Station')).toBeVisible();
     expect(
-      withinPurpleLine.getByText('Navigation.RouteDetails.DIRECTION')
+      withinPurpleLine.getByText('Direction: End Station Purple Line')
     ).toBeVisible();
     expect(withinPurpleLine.getByText('Intermediate Station')).toBeVisible();
 
     expect(
-      withinBlueLine.getByRole('img', { name: 'Navigation.Route.Lines.BLUE' })
+      withinBlueLine.getByRole('img', { name: 'Blue line' })
     ).toBeVisible();
     expect(withinBlueLine.getByText('Intermediate Station')).toBeVisible();
     expect(withinBlueLine.getByText('Destination Station')).toBeVisible();
@@ -172,17 +176,15 @@ describe('RouteDetailsViewContainer', () => {
       />
     );
 
-    const withinTransferBlock = within(
-      screen.getByTitle('Navigation.RoutesOverview.TRANSFER')
-    );
+    const withinTransferBlock = within(screen.getByTitle('Transfer'));
 
     expect(
       withinTransferBlock.getByRole('img', {
-        name: 'Navigation.RoutesOverview.TRANSFER',
+        name: 'Transfer',
       })
     ).toBeVisible();
     expect(
-      withinTransferBlock.getByText('Navigation.RouteDetails.TRANSFER_MESSAGE')
+      withinTransferBlock.getByText('Transfer line (3 min)')
     ).toBeVisible();
   });
 });

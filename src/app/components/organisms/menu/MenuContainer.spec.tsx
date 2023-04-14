@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, within } from '@testing-library/react';
+import { act, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
@@ -24,38 +24,52 @@ describe('MenuContainer', () => {
       withinNavigation.getByRole('link', { name: 'Go to home page' })
     ).toHaveAttribute('aria-current', 'page');
 
-    await userEvent.click(withinNavigation.getByRole('link', { name: /Home/ }));
+    await act(async () => {
+      await userEvent.click(
+        withinNavigation.getByRole('link', { name: /Home/ })
+      );
+    });
     expect(history.location.pathname).toBe(NavigationLink.BASE);
     expect(
       withinNavigation.getByRole('link', { name: /Home/ })
     ).toHaveAttribute('aria-current', 'page');
 
-    await userEvent.click(withinNavigation.getByRole('link', { name: /Map/ }));
+    await act(async () => {
+      await userEvent.click(
+        withinNavigation.getByRole('link', { name: /Map/ })
+      );
+    });
     expect(history.location.pathname).toBe(NavigationLink.MAP);
     expect(withinNavigation.getByRole('link', { name: /Map/ })).toHaveAttribute(
       'aria-current',
       'page'
     );
 
-    await userEvent.click(
-      withinNavigation.getByRole('link', { name: /How to install/ })
-    );
+    await act(async () => {
+      await userEvent.click(
+        withinNavigation.getByRole('link', { name: /How to install/ })
+      );
+    });
     expect(history.location.pathname).toBe(NavigationLink.HOW_TO_INSTALL);
     expect(
       withinNavigation.getByRole('link', { name: /How to install/ })
     ).toHaveAttribute('aria-current', 'page');
 
-    await userEvent.click(
-      withinNavigation.getByRole('link', { name: /Contact/ })
-    );
+    await act(async () => {
+      await userEvent.click(
+        withinNavigation.getByRole('link', { name: /Contact/ })
+      );
+    });
     expect(history.location.pathname).toBe(NavigationLink.CONTACT);
     expect(
       withinNavigation.getByRole('link', { name: /Contact/ })
     ).toHaveAttribute('aria-current', 'page');
 
-    await userEvent.click(
-      withinNavigation.getByRole('link', { name: /About/ })
-    );
+    await act(async () => {
+      await userEvent.click(
+        withinNavigation.getByRole('link', { name: /About/ })
+      );
+    });
     expect(history.location.pathname).toBe(NavigationLink.ABOUT);
     expect(
       withinNavigation.getByRole('link', { name: /About/ })
@@ -76,9 +90,11 @@ describe('MenuContainer', () => {
           </MemoryRouter>
         );
 
-        await userEvent.click(
-          screen.getByRole('button', { name: 'Change language' })
-        );
+        await act(async () => {
+          await userEvent.click(
+            screen.getByRole('button', { name: 'Change language' })
+          );
+        });
 
         expect(localStorage.getItem('i18nextLng')).toBe('es');
       });
@@ -97,9 +113,11 @@ describe('MenuContainer', () => {
           </MemoryRouter>
         );
 
-        await userEvent.click(
-          screen.getByRole('button', { name: 'Cambiar idioma' })
-        );
+        await act(async () => {
+          await userEvent.click(
+            screen.getByRole('button', { name: 'Cambiar idioma' })
+          );
+        });
 
         expect(localStorage.getItem('i18nextLng')).toBe('en');
       });

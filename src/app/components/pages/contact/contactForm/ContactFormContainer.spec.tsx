@@ -1,6 +1,6 @@
 import React from 'react';
 import { vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import * as FirebaseProvider from '../../../providers/firebase/FirebaseProvider';
 import ContactFormContainer from './ContactFormContainer';
@@ -48,59 +48,56 @@ describe('ContactFormContainer', () => {
 
     render(<ContactFormContainer />);
 
-    await userEvent.type(
-      screen.getByRole('textbox', { name: 'Contact.NAME_LABEL' }),
-      name
-    );
-    await userEvent.type(
-      screen.getByRole('textbox', { name: 'Contact.EMAIL_LABEL' }),
-      email
-    );
-    await userEvent.type(
-      screen.getByRole('textbox', { name: 'Contact.MESSAGE_PLACEHOLDER' }),
-      message
-    );
+    await act(async () => {
+      await userEvent.type(screen.getByRole('textbox', { name: 'Name' }), name);
+      await userEvent.type(
+        screen.getByRole('textbox', { name: 'Email' }),
+        email
+      );
+      await userEvent.type(
+        screen.getByRole('textbox', { name: 'Your message' }),
+        message
+      );
 
-    await userEvent.click(
-      screen.getByRole('button', { name: 'Contact.SEND_BUTTON' })
-    );
+      await userEvent.click(screen.getByRole('button', { name: 'Send' }));
+    });
 
     // First we see the loader
     expect(
-      await screen.getByRole('alert', { name: 'Contact.MESSAGE_LOADER' })
+      await screen.getByRole('alert', { name: 'Trying to send message' })
     ).toBeVisible();
 
     // After the message was successfully sent, we see the success icon
     expect(storeMessageMock).toHaveBeenCalledWith(name, email, message);
     expect(
-      await screen.findByRole('alert', { name: 'Contact.MESSAGE_SENT_ALT' })
+      await screen.findByRole('alert', { name: 'Message sent successfully' })
     ).toBeVisible();
   });
 
   it('avoids storing message if url input was filled (only discoverable by bots)', async () => {
     render(<ContactFormContainer />);
 
-    await userEvent.type(
-      screen.getByRole('textbox', { name: 'Contact.NAME_LABEL' }),
-      'name'
-    );
-    await userEvent.type(
-      screen.getByRole('textbox', { name: 'Contact.EMAIL_LABEL' }),
-      'email@email.com'
-    );
-    await userEvent.type(
-      screen.getByRole('textbox', { name: 'Contact.MESSAGE_PLACEHOLDER' }),
-      'message'
-    );
+    await act(async () => {
+      await userEvent.type(
+        screen.getByRole('textbox', { name: 'Name' }),
+        'name'
+      );
+      await userEvent.type(
+        screen.getByRole('textbox', { name: 'Email' }),
+        'email@email.com'
+      );
+      await userEvent.type(
+        screen.getByRole('textbox', { name: 'Your message' }),
+        'message'
+      );
 
-    await userEvent.type(
-      screen.getByRole('textbox', { name: 'Url' }),
-      'I am a bot'
-    );
+      await userEvent.type(
+        screen.getByRole('textbox', { name: 'Url' }),
+        'I am a bot'
+      );
 
-    await userEvent.click(
-      screen.getByRole('button', { name: 'Contact.SEND_BUTTON' })
-    );
+      await userEvent.click(screen.getByRole('button', { name: 'Send' }));
+    });
 
     expect(storeMessageMock).not.toHaveBeenCalled();
     expect(
@@ -115,22 +112,22 @@ describe('ContactFormContainer', () => {
 
     render(<ContactFormContainer />);
 
-    await userEvent.type(
-      screen.getByRole('textbox', { name: 'Contact.NAME_LABEL' }),
-      'name'
-    );
-    await userEvent.type(
-      screen.getByRole('textbox', { name: 'Contact.EMAIL_LABEL' }),
-      'email@email.com'
-    );
-    await userEvent.type(
-      screen.getByRole('textbox', { name: 'Contact.MESSAGE_PLACEHOLDER' }),
-      'message'
-    );
+    await act(async () => {
+      await userEvent.type(
+        screen.getByRole('textbox', { name: 'Name' }),
+        'name'
+      );
+      await userEvent.type(
+        screen.getByRole('textbox', { name: 'Email' }),
+        'email@email.com'
+      );
+      await userEvent.type(
+        screen.getByRole('textbox', { name: 'Your message' }),
+        'message'
+      );
 
-    await userEvent.click(
-      screen.getByRole('button', { name: 'Contact.SEND_BUTTON' })
-    );
+      await userEvent.click(screen.getByRole('button', { name: 'Send' }));
+    });
 
     expect(storeMessageMock).not.toHaveBeenCalled();
     expect(dispatchEventSpy).toHaveBeenCalledWith(

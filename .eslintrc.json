@@ -33,7 +33,7 @@
     "import/no-extraneous-dependencies": [
       "error",
       {
-        "devDependencies": ["src/app/**/*.spec.{ts,tsx}", "src/setupTests.ts", "**/*.stories.tsx", "cypress.config.ts"]
+        "devDependencies": ["src/app/**/*.spec.{ts,tsx}", "src/test/setupTests.ts", "**/*.stories.tsx", "cypress.config.ts"]
       }
     ],
     "prettier/prettier": [

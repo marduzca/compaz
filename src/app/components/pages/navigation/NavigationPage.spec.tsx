@@ -1,6 +1,6 @@
 import React from 'react';
 import { vi } from 'vitest';
-import { render, screen, within } from '@testing-library/react';
+import { act, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Route as Path, Routes } from 'react-router-dom';
 import NavigationPage from './NavigationPage';
@@ -222,11 +222,13 @@ describe('NavigationPage', () => {
   it('navigates to routes overview when clicking on search', async () => {
     renderNavigationWithRouter();
 
-    await userEvent.click(
-      screen.getByRole('button', {
-        name: 'Search',
-      })
-    );
+    await act(async () => {
+      await userEvent.click(
+        screen.getByRole('button', {
+          name: 'Search',
+        })
+      );
+    });
 
     expect(
       screen.getByRole('heading', {
@@ -238,17 +240,21 @@ describe('NavigationPage', () => {
   it('navigates back to trip selection when clicking on routes overview back button', async () => {
     renderNavigationWithRouter();
 
-    await userEvent.click(
-      screen.getByRole('button', {
-        name: 'Search',
-      })
-    );
+    await act(async () => {
+      await userEvent.click(
+        screen.getByRole('button', {
+          name: 'Search',
+        })
+      );
+    });
 
-    await userEvent.click(
-      screen.getByRole('button', {
-        name: 'Go back to Trip Selector page. Currently in Routes Overview page',
-      })
-    );
+    await act(async () => {
+      await userEvent.click(
+        screen.getByRole('button', {
+          name: 'Go back to Trip Selector page. Currently in Routes Overview page',
+        })
+      );
+    });
 
     expect(
       screen.getByRole('button', {
@@ -260,17 +266,21 @@ describe('NavigationPage', () => {
   it('navigates to route details when clicking on specific route in overview', async () => {
     renderNavigationWithRouter();
 
-    await userEvent.click(
-      screen.getByRole('button', {
-        name: 'Search',
-      })
-    );
+    await act(async () => {
+      await userEvent.click(
+        screen.getByRole('button', {
+          name: 'Search',
+        })
+      );
+    });
 
-    await userEvent.click(
-      screen.getByRole('button', {
-        name: 'Route with times 17:30 - 17:41',
-      })
-    );
+    await act(async () => {
+      await userEvent.click(
+        screen.getByRole('button', {
+          name: 'Route with times 17:30 - 17:41',
+        })
+      );
+    });
 
     const withinPurpleLine = within(
       screen.getByRole('listitem', { name: 'Purple line' })
@@ -298,23 +308,29 @@ describe('NavigationPage', () => {
   it('navigates back to routes overview when clicking on route details back button', async () => {
     renderNavigationWithRouter();
 
-    await userEvent.click(
-      screen.getByRole('button', {
-        name: 'Search',
-      })
-    );
+    await act(async () => {
+      await userEvent.click(
+        screen.getByRole('button', {
+          name: 'Search',
+        })
+      );
+    });
 
-    await userEvent.click(
-      screen.getByRole('button', {
-        name: 'Route with times 17:30 - 17:41',
-      })
-    );
+    await act(async () => {
+      await userEvent.click(
+        screen.getByRole('button', {
+          name: 'Route with times 17:30 - 17:41',
+        })
+      );
+    });
 
-    await userEvent.click(
-      screen.getByRole('button', {
-        name: 'Go back to Routes Overview page. Currently in Route Details page',
-      })
-    );
+    await act(async () => {
+      await userEvent.click(
+        screen.getByRole('button', {
+          name: 'Go back to Routes Overview page. Currently in Route Details page',
+        })
+      );
+    });
 
     expect(
       screen.getByRole('heading', {

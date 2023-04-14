@@ -1,6 +1,6 @@
 import React from 'react';
 import { vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import ExpandableButton from './ExpandableButton';
 
@@ -20,11 +20,15 @@ describe('ExpandableButton', () => {
 
     expect(expandableButton).toHaveAttribute('aria-haspopup', 'true');
 
-    await userEvent.click(expandableButton);
+    await act(async () => {
+      await userEvent.click(expandableButton);
+    });
 
     expect(expandableButton).toHaveAttribute('aria-expanded', 'true');
 
-    await userEvent.click(expandableButton);
+    await act(async () => {
+      await userEvent.click(expandableButton);
+    });
 
     expect(expandableButton).toHaveAttribute('aria-expanded', 'false');
   });
@@ -42,7 +46,9 @@ describe('ExpandableButton', () => {
 
     const expandableButton = screen.getByRole('button');
 
-    await userEvent.click(expandableButton);
+    await act(async () => {
+      await userEvent.click(expandableButton);
+    });
 
     expect(onClickMock).toHaveBeenCalledTimes(1);
   });

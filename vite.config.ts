@@ -26,10 +26,10 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    setupFiles: './src/setupTests.ts',
+    setupFiles: './src/test/setupTests.ts',
     coverage: {
       reporter: ['text', 'html'],
-      exclude: ['node_modules/', 'src/setupTests.ts'],
+      exclude: ['node_modules/', 'src/test/setupTests.ts'],
     },
   },
   server: {

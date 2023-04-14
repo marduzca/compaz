@@ -24,7 +24,7 @@ describe('NotificationContainer', () => {
     });
 
     expect(
-      screen.getByRole('alert', { name: 'Notification.INFO' })
+      screen.getByRole('alert', { name: 'Information notification' })
     ).toBeVisible();
     expect(screen.getByText('this is an info notification')).toBeVisible();
   });
@@ -48,7 +48,7 @@ describe('NotificationContainer', () => {
     });
 
     expect(
-      screen.getByRole('alert', { name: 'Notification.SUCCESS' })
+      screen.getByRole('alert', { name: 'Success notification' })
     ).toBeVisible();
     expect(screen.getByText('this is a success notification')).toBeVisible();
   });
@@ -72,7 +72,7 @@ describe('NotificationContainer', () => {
     });
 
     expect(
-      screen.getByRole('alert', { name: 'Notification.ERROR' })
+      screen.getByRole('alert', { name: 'Error notification' })
     ).toBeVisible();
     expect(screen.getByText('this is an error notification')).toBeVisible();
   });
@@ -96,16 +96,16 @@ describe('NotificationContainer', () => {
     });
 
     const withinNotification = within(
-      screen.getByRole('alert', { name: 'Notification.INFO' })
+      screen.getByRole('alert', { name: 'Information notification' })
     );
 
     expect(
       withinNotification.getByRole('link', {
-        name: 'Notification.RELOAD_ANCHOR_DESCRIPTION',
+        name: 'Click here to refresh the page and download the newest updates',
       })
     ).toBeVisible();
     expect(
-      withinNotification.getByText('Notification.RELOAD_MESSAGE')
+      withinNotification.getByText(/There are new updates to the app./)
     ).toBeVisible();
   });
 });

@@ -1,6 +1,6 @@
 import React from 'react';
 import { vi } from 'vitest';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import StationsSelectorContainer from './StationsSelectorContainer';
 import { LineColor, Route, Station } from '../../../../../domain';
@@ -64,53 +64,61 @@ describe('StationsSelectorContainer', () => {
       />
     );
 
-    await userEvent.type(
-      screen.getByRole('combobox', {
-        name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER',
-      }),
-      availableStations[0].name
-    );
+    await act(async () => {
+      await userEvent.type(
+        screen.getByRole('combobox', {
+          name: 'Origin',
+        }),
+        availableStations[0].name
+      );
+    });
 
     expect(
       screen.getByRole('combobox', {
-        name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER',
+        name: 'Origin',
       })
     ).toHaveValue(availableStations[0].name);
 
-    await userEvent.click(
-      screen.getByRole('button', {
-        name: 'Navigation.TripSelector.CLEAR_INPUT',
-      })
-    );
+    await act(async () => {
+      await userEvent.click(
+        screen.getByRole('button', {
+          name: 'Clear text',
+        })
+      );
+    });
 
     expect(
       screen.getByRole('combobox', {
-        name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER',
+        name: 'Origin',
       })
     ).toHaveValue('');
 
-    await userEvent.type(
-      screen.getByRole('combobox', {
-        name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER',
-      }),
-      availableStations[1].name
-    );
+    await act(async () => {
+      await userEvent.type(
+        screen.getByRole('combobox', {
+          name: 'Destination',
+        }),
+        availableStations[1].name
+      );
+    });
 
     expect(
       screen.getByRole('combobox', {
-        name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER',
+        name: 'Destination',
       })
     ).toHaveValue(availableStations[1].name);
 
-    await userEvent.click(
-      screen.getByRole('button', {
-        name: 'Navigation.TripSelector.CLEAR_INPUT',
-      })
-    );
+    await act(async () => {
+      await userEvent.click(
+        screen.getByRole('button', {
+          name: 'Clear text',
+        })
+      );
+    });
 
     expect(
       screen.getByRole('combobox', {
-        name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER',
+        name: 'Destination',
       })
     ).toHaveValue('');
   });
@@ -127,7 +135,7 @@ describe('StationsSelectorContainer', () => {
 
     fireEvent.change(
       screen.getByRole('combobox', {
-        name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER',
+        name: 'Origin',
       }),
       {
         target: { value: availableStations[0].name },
@@ -135,7 +143,7 @@ describe('StationsSelectorContainer', () => {
     );
     fireEvent.change(
       screen.getByRole('combobox', {
-        name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER',
+        name: 'Destination',
       }),
       {
         target: { value: availableStations[1].name },
@@ -144,12 +152,12 @@ describe('StationsSelectorContainer', () => {
 
     expect(
       screen.getByRole('combobox', {
-        name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER',
+        name: 'Origin',
       })
     ).toHaveValue(availableStations[0].name);
     expect(
       screen.getByRole('combobox', {
-        name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER',
+        name: 'Destination',
       })
     ).toHaveValue(availableStations[1].name);
   });
@@ -180,7 +188,7 @@ describe('StationsSelectorContainer', () => {
 
     fireEvent.change(
       screen.getByRole('combobox', {
-        name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER',
+        name: 'Destination',
       }),
       {
         target: { value: availableStations[0].name },
@@ -188,9 +196,7 @@ describe('StationsSelectorContainer', () => {
     );
 
     expect(
-      screen.getByText(
-        'Navigation.TripSelector.DESTINATION_PLACEHOLDER - Navigation.TripSelector.ERROR_VALIDATION'
-      )
+      screen.getByText('Destination - Non-existent station')
     ).toBeVisible();
   });
 
@@ -220,18 +226,14 @@ describe('StationsSelectorContainer', () => {
 
     fireEvent.change(
       screen.getByRole('combobox', {
-        name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER',
+        name: 'Origin',
       }),
       {
         target: { value: availableStations[0].name },
       }
     );
 
-    expect(
-      screen.getByText(
-        'Navigation.TripSelector.ORIGIN_PLACEHOLDER - Navigation.TripSelector.ERROR_VALIDATION'
-      )
-    ).toBeVisible();
+    expect(screen.getByText('Origin - Non-existent station')).toBeVisible();
   });
 
   it('switches origin and destination content when clicking on switcher button', async () => {
@@ -246,7 +248,7 @@ describe('StationsSelectorContainer', () => {
 
     fireEvent.change(
       screen.getByRole('combobox', {
-        name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER',
+        name: 'Origin',
       }),
       {
         target: { value: availableStations[0].name },
@@ -254,27 +256,29 @@ describe('StationsSelectorContainer', () => {
     );
     fireEvent.change(
       screen.getByRole('combobox', {
-        name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER',
+        name: 'Destination',
       }),
       {
         target: { value: availableStations[1].name },
       }
     );
 
-    await userEvent.click(
-      screen.getByRole('button', {
-        name: 'Navigation.TripSelector.STATIONS_SWITCHER',
-      })
-    );
+    await act(async () => {
+      await userEvent.click(
+        screen.getByRole('button', {
+          name: 'Switch stations',
+        })
+      );
+    });
 
     expect(
       screen.getByRole('combobox', {
-        name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER',
+        name: 'Origin',
       })
     ).toHaveValue(availableStations[1].name);
     expect(
       screen.getByRole('combobox', {
-        name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER',
+        name: 'Destination',
       })
     ).toHaveValue(availableStations[0].name);
   });
@@ -290,16 +294,18 @@ describe('StationsSelectorContainer', () => {
         />
       );
 
-      await userEvent.type(
-        screen.getByRole('combobox', {
-          name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER',
-        }),
-        'This is a non-existent station'
-      );
+      await act(async () => {
+        await userEvent.type(
+          screen.getByRole('combobox', {
+            name: 'Origin',
+          }),
+          'This is a non-existent station'
+        );
+      });
 
       expect(
         screen.getByRole('combobox', {
-          name: 'Navigation.TripSelector.ORIGIN_PLACEHOLDER - Navigation.TripSelector.ERROR_VALIDATION',
+          name: 'Origin - Non-existent station',
         })
       ).toBeVisible();
     });
@@ -314,14 +320,16 @@ describe('StationsSelectorContainer', () => {
         />
       );
 
-      await userEvent.type(
-        screen.getByRole('combobox', {
-          name: 'Navigation.TripSelector.DESTINATION_PLACEHOLDER',
-        }),
-        'This is a non-existent station'
-      );
+      await act(async () => {
+        await userEvent.type(
+          screen.getByRole('combobox', {
+            name: 'Destination',
+          }),
+          'This is a non-existent station'
+        );
+      });
 
-      expect(screen.getByText(/Navigation.TripSelector.ERROR/)).toBeVisible();
+      expect(screen.getByText(/Non-existent station/)).toBeVisible();
     });
   });
 });

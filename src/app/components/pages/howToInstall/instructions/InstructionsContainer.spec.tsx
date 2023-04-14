@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, within } from '@testing-library/react';
+import { act, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import InstructionsContainer, { Browser } from './InstructionsContainer';
 
@@ -8,51 +8,56 @@ describe('InstructionsContainer', () => {
     selectLabel: string,
     option: string
   ) => {
-    await userEvent.click(
-      screen.getByRole('combobox', {
-        name: selectLabel,
-      })
-    );
-    await userEvent.selectOptions(
-      screen.getByRole('listbox', {
-        name: selectLabel,
-      }),
-      screen.getByRole('option', {
-        name: option,
-      })
-    );
+    await act(async () => {
+      await userEvent.click(
+        screen.getByRole('combobox', {
+          name: selectLabel,
+        })
+      );
+    });
+    await act(async () => {
+      await userEvent.selectOptions(
+        screen.getByRole('listbox', {
+          name: selectLabel,
+        }),
+        screen.getByRole('option', {
+          name: option,
+        })
+      );
+    });
   };
 
   it('should show only the available browsers for the selected device type', async () => {
     render(<InstructionsContainer />);
 
-    await userEvent.click(
-      screen.getByRole('combobox', {
-        name: 'HowToInstall.Instructions.BROWSER_SELECTOR_LABEL',
-      })
-    );
+    await act(async () => {
+      await userEvent.click(
+        screen.getByRole('combobox', {
+          name: 'Browser',
+        })
+      );
+    });
     const browserOptionsForLaptop = within(
       screen.getByRole('listbox', {
-        name: 'HowToInstall.Instructions.BROWSER_SELECTOR_LABEL',
+        name: 'Browser',
       })
     ).getAllByRole('option');
 
     expect(browserOptionsForLaptop).toHaveLength(1);
     expect(browserOptionsForLaptop[0]).toHaveTextContent(Browser.GOOGLE_CHROME);
 
-    await selectOptionFromDropdown(
-      'HowToInstall.Instructions.DEVICE_SELECTOR_LABEL',
-      'HowToInstall.Instructions.ANDROID_AND_TABLET_OPTION'
-    );
+    await selectOptionFromDropdown('Device', 'Android / Tablet');
 
-    await userEvent.click(
-      screen.getByRole('combobox', {
-        name: 'HowToInstall.Instructions.BROWSER_SELECTOR_LABEL',
-      })
-    );
+    await act(async () => {
+      await userEvent.click(
+        screen.getByRole('combobox', {
+          name: 'Browser',
+        })
+      );
+    });
     const browserOptionsForMobile = within(
       screen.getByRole('listbox', {
-        name: 'HowToInstall.Instructions.BROWSER_SELECTOR_LABEL',
+        name: 'Browser',
       })
     ).getAllByRole('option');
 
@@ -73,85 +78,77 @@ describe('InstructionsContainer', () => {
       /install_laptop_chrome/
     );
     expect(
-      screen.getByText('HowToInstall.Instructions.STEP_1_LAPTOP_GOOGLE_CHROME')
+      screen.getByText(
+        'Go to compaz.app and click the Install icon on the address bar.'
+      )
     ).toBeVisible();
     expect(
-      screen.getByText('HowToInstall.Instructions.STEP_2_LAPTOP_GOOGLE_CHROME')
+      screen.getByText(
+        "In the newly opened window, confirm by clicking 'Install'."
+      )
     ).toBeVisible();
 
-    await selectOptionFromDropdown(
-      'HowToInstall.Instructions.DEVICE_SELECTOR_LABEL',
-      'HowToInstall.Instructions.ANDROID_AND_TABLET_OPTION'
-    );
+    await selectOptionFromDropdown('Device', 'Android / Tablet');
 
     expect((screen.getByRole('img') as HTMLImageElement).src).toMatch(
       /install_android_chrome/
     );
     expect(
       screen.getByText(
-        'HowToInstall.Instructions.STEP_1_ANDROID_AND_TABLET_GOOGLE_CHROME'
+        'Go to compaz.app and open the browser menu by clicking on the three dots at the top right of the screen.'
       )
     ).toBeVisible();
     expect(
       screen.getByText(
-        'HowToInstall.Instructions.STEP_2_ANDROID_AND_TABLET_GOOGLE_CHROME'
+        "In the newly opened menu, click 'Install compaz' or ‘Install’."
       )
     ).toBeVisible();
 
-    await selectOptionFromDropdown(
-      'HowToInstall.Instructions.BROWSER_SELECTOR_LABEL',
-      Browser.MOZILLA_FIREFOX
-    );
+    await selectOptionFromDropdown('Browser', Browser.MOZILLA_FIREFOX);
 
     expect((screen.getByRole('img') as HTMLImageElement).src).toMatch(
       /install_android_firefox/
     );
     expect(
       screen.getByText(
-        'HowToInstall.Instructions.STEP_1_ANDROID_AND_TABLET_MOZILLA_FIREFOX'
+        'Go to compaz.app and open the browser menu by clicking on the three dots at the bottom right of the screen.'
       )
     ).toBeVisible();
     expect(
       screen.getByText(
-        'HowToInstall.Instructions.STEP_2_ANDROID_AND_TABLET_MOZILLA_FIREFOX'
+        "In the newly opened menu, click 'Install compaz' or ‘Install’."
       )
     ).toBeVisible();
 
-    await selectOptionFromDropdown(
-      'HowToInstall.Instructions.BROWSER_SELECTOR_LABEL',
-      Browser.SAMSUNG_INTERNET
-    );
+    await selectOptionFromDropdown('Browser', Browser.SAMSUNG_INTERNET);
 
     expect((screen.getByRole('img') as HTMLImageElement).src).toMatch(
       /install_android_samsung/
     );
     expect(
       screen.getByText(
-        'HowToInstall.Instructions.STEP_1_ANDROID_AND_TABLET_SAMSUNG_INTERNET'
+        'Go to compaz.app and open the browser menu by clicking on the three lines at the bottom right of the screen.'
       )
     ).toBeVisible();
     expect(
       screen.getByText(
-        'HowToInstall.Instructions.STEP_2_ANDROID_AND_TABLET_SAMSUNG_INTERNET'
+        'In the newly opened menu, click on ‘Add page to’, select ‘Home Screen’ and confirm.'
       )
     ).toBeVisible();
 
-    await selectOptionFromDropdown(
-      'HowToInstall.Instructions.DEVICE_SELECTOR_LABEL',
-      'HowToInstall.Instructions.IPHONE_AND_IPAD_OPTION'
-    );
+    await selectOptionFromDropdown('Device', 'iPhone / iPad');
 
     expect((screen.getByRole('img') as HTMLImageElement).src).toMatch(
       /install_iphone_safari/
     );
     expect(
       screen.getByText(
-        'HowToInstall.Instructions.STEP_1_IPHONE_AND_IPAD_SAFARI'
+        'Go to compaz.app and open the browser menu by clicking on the Share icon (box with an arrow) next to the address bar.'
       )
     ).toBeVisible();
     expect(
       screen.getByText(
-        'HowToInstall.Instructions.STEP_2_IPHONE_AND_IPAD_SAFARI'
+        'In the newly opened menu, click on ‘Add to Home Screen’ and confirm.'
       )
     ).toBeVisible();
   });
@@ -159,29 +156,20 @@ describe('InstructionsContainer', () => {
   it('should fallback to first available browser when switching device and another unsupported browser is selected', async () => {
     render(<InstructionsContainer />);
 
-    await selectOptionFromDropdown(
-      'HowToInstall.Instructions.DEVICE_SELECTOR_LABEL',
-      'HowToInstall.Instructions.ANDROID_AND_TABLET_OPTION'
-    );
+    await selectOptionFromDropdown('Device', 'Android / Tablet');
 
-    await selectOptionFromDropdown(
-      'HowToInstall.Instructions.BROWSER_SELECTOR_LABEL',
-      Browser.MOZILLA_FIREFOX
-    );
+    await selectOptionFromDropdown('Browser', Browser.MOZILLA_FIREFOX);
 
     expect((screen.getByRole('img') as HTMLImageElement).src).toMatch(
       /install_android_firefox/
     );
 
-    await selectOptionFromDropdown(
-      'HowToInstall.Instructions.DEVICE_SELECTOR_LABEL',
-      'HowToInstall.Instructions.IPHONE_AND_IPAD_OPTION'
-    );
+    await selectOptionFromDropdown('Device', 'iPhone / iPad');
 
     expect(
       within(
         screen.getByRole('combobox', {
-          name: 'HowToInstall.Instructions.BROWSER_SELECTOR_LABEL',
+          name: 'Browser',
         }) as HTMLSelectElement
       ).getByText(Browser.SAFARI)
     ).toBeVisible();

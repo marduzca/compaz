@@ -1,6 +1,6 @@
 import React from 'react';
 import { vi } from 'vitest';
-import { render, screen, within } from '@testing-library/react';
+import { act, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import RoutesOverviewContainer from './RoutesOverviewContainer';
 import * as NavigationProvider from '../../../../providers/navigation/NavigationProvider';
@@ -195,11 +195,13 @@ describe('RoutesOverviewContainer', () => {
       />
     );
 
-    await userEvent.click(
-      screen.getByRole('button', {
-        name: 'Earlier',
-      })
-    );
+    await act(async () => {
+      await userEvent.click(
+        screen.getByRole('button', {
+          name: 'Earlier',
+        })
+      );
+    });
 
     expect(screen.getByText('17:25 - 17:34')).toBeVisible();
   });
@@ -213,11 +215,13 @@ describe('RoutesOverviewContainer', () => {
       />
     );
 
-    await userEvent.click(
-      screen.getByRole('button', {
-        name: 'Later',
-      })
-    );
+    await act(async () => {
+      await userEvent.click(
+        screen.getByRole('button', {
+          name: 'Later',
+        })
+      );
+    });
 
     expect(screen.getByText('17:50 - 17:59')).toBeVisible();
   });
