@@ -8,6 +8,11 @@ import OfflineMapMessage from './offlineMapMessage/OfflineMapMessage';
 import StationMarker from './stationMarker/StationMarker';
 import StationsConnector from './stationsConnector/StationsConnector';
 import { MapLine } from '../../pages/map/MapPage';
+import CurrentLocationMarker from './currentLocationMarker/CurrentLocationMarker';
+import {
+  isFeatureFlagSet,
+  SHOW_CURRENT_LOCATION_FLAG,
+} from '../../../featureFlag/FeatureFlag';
 
 interface MapProps {
   isLoaded: boolean;
@@ -223,7 +228,9 @@ const Map: React.FC<MapProps> = (props) => {
               lineColor={DEFAULT_CONNECTOR_COLOR}
             />
           )}
-
+          {isFeatureFlagSet(SHOW_CURRENT_LOCATION_FLAG) && (
+            <CurrentLocationMarker />
+          )}
           {props.route && routeMarkers}
           {props.lines?.length && lineMarkers}
         </GoogleMap>

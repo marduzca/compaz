@@ -1,6 +1,7 @@
 import React from 'react';
 
 export const DISABLE_MESSAGE_STORAGE_FLAG = 'disableMessageStorage';
+export const SHOW_CURRENT_LOCATION_FLAG = 'showCurrentLocation';
 
 const getParam = (key: string) => {
   const searchParams = new URLSearchParams(window.location.search);

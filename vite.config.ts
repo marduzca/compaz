@@ -18,6 +18,7 @@ export default defineConfig({
         globPatterns: ['**/*.{js,css,html}', '**/*.{svg,png,gif}'],
         maximumFileSizeToCacheInBytes: 5242880,
       },
+      devOptions: { enabled: false },
     }),
   ],
   build: {
@@ -30,6 +31,7 @@ export default defineConfig({
     coverage: {
       reporter: ['text', 'html'],
       exclude: ['node_modules/', 'src/test/setupTests.ts'],
+      provider: 'c8',
     },
   },
   server: {
