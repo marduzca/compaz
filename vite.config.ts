@@ -28,11 +28,6 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: './src/test/setupTests.ts',
-    coverage: {
-      reporter: ['text', 'html'],
-      exclude: ['node_modules/', 'src/test/setupTests.ts'],
-      provider: 'c8',
-    },
   },
   server: {
     open: true,
