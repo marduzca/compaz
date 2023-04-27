@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@react-google-maps/api": "^2.18.1",
-    "@vitejs/plugin-react": "^3.1.0",
+    "@vitejs/plugin-react": "^4.0.0",
     "dijkstrajs": "^1.0.2",
     "downshift": "^7.6.0",
     "firebase": "^9.19.1",
