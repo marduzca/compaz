@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { MarkerF } from '@react-google-maps/api';
 import { GeoLocation } from '../../../domain';
+import currentLocationIcon from '../../../../static/svg/current_location.svg';
 
 const CurrentLocationMarker: React.FC = () => {
   const [currentLocation, setCurrentLocation] = useState<
@@ -30,7 +31,17 @@ const CurrentLocationMarker: React.FC = () => {
             lat: currentLocation.latitude,
             lng: currentLocation.longitude,
           }}
-          label={{ text: 'My location' }}
+          zIndex={2}
+          icon={{
+            url: currentLocationIcon,
+            scaledSize: {
+              height: 30,
+              width: 30,
+              equals: () =>
+                // This is here only to make TypeScript happy, but won't have any use
+                true,
+            },
+          }}
         />
       )}
     </>
