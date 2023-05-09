@@ -14,11 +14,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [ 14.x ]
+        node-version: [ 16.x ]
     steps:
       - uses: actions/checkout@master
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -51,11 +51,11 @@ jobs:
 #    runs-on: ubuntu-latest
 #    strategy:
 #      matrix:
-#        node-version: [ 14.x ]
+#        node-version: [ 16.x ]
 #    steps:
 #    - uses: actions/checkout@master
 #    - name: Use Node.js ${{ matrix.node-version }}
-#      uses: actions/setup-node@v1
+#      uses: actions/setup-node@v3
 #      with:
 #        node-version: ${{ matrix.node-version }}
 #
@@ -76,11 +76,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [ 14.x ]
+        node-version: [ 16.x ]
     steps:
       - uses: actions/checkout@master
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
       - name: create env file
@@ -115,11 +115,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [ 16.x ]
     steps:
       - uses: actions/checkout@master
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -171,11 +171,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [ 14.x ]
+        node-version: [ 16.x ]
     steps:
       - uses: actions/checkout@master
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -235,11 +235,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [ 14.x ]
+        node-version: [ 16.x ]
     steps:
       - uses: actions/checkout@master
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
 
