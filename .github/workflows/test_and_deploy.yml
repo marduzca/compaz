@@ -31,11 +31,6 @@ jobs:
           path: node_modules
           key: node-modules-${{ hashFiles('package-lock.json') }}
 
-      - name: List the state of node modules
-        if: steps.cache.outputs.cache-hit != 'true'
-        continue-on-error: true
-        run: npm list
-
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: CYPRESS_INSTALL_BINARY=0 npm install
