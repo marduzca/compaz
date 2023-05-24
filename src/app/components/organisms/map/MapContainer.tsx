@@ -9,9 +9,9 @@ import useMapFitBounds from '../../hooks/useMapFitBounds';
 import LatLngBounds = google.maps.LatLngBounds;
 
 export enum MapMode {
-  ROUTE,
-  ORIGIN_AND_DESTINATION,
-  LINES,
+  ROUTE = 'ROUTE',
+  ORIGIN_AND_DESTINATION = 'ORIGIN_AND_DESTINATION',
+  LINES = 'LINES',
 }
 
 interface MapContainerProps {
@@ -122,6 +122,7 @@ const MapContainer: React.FC<MapContainerProps> = (props) => {
     googleMap,
     isLoaded,
     isMobile,
+    currentMapMode,
   ]);
 
   return (
