@@ -36,9 +36,9 @@ const MapContainer: React.FC<MapContainerProps> = (props) => {
     MapMode.ORIGIN_AND_DESTINATION
   );
 
-  const { fitScreenToMarkerBounds } = useMapFitBounds(googleMap);
+  const { fitScreenToBounds } = useMapFitBounds(googleMap);
 
-  const defineBoundsBasedOnUseCase = useCallback((): LatLngBounds => {
+  const defineBoundsBasedOnCurrentMapMode = useCallback((): LatLngBounds => {
     const bounds = new window.google.maps.LatLngBounds();
 
     if (currentMapMode === MapMode.ROUTE && props.route) {
@@ -109,9 +109,8 @@ const MapContainer: React.FC<MapContainerProps> = (props) => {
         return;
       }
 
-      const markerBounds = defineBoundsBasedOnUseCase();
-
-      fitScreenToMarkerBounds(markerBounds, currentMapMode);
+      const markerBounds = defineBoundsBasedOnCurrentMapMode();
+      fitScreenToBounds(markerBounds, currentMapMode);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

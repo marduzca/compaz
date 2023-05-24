@@ -29,7 +29,7 @@ const useMapFitBounds = (googleMap?: Map) => {
   };
 
   return {
-    fitScreenToMarkerBounds: (
+    fitScreenToBounds: (
       markerBounds: LatLngBounds,
       currentMapMode: MapMode
     ) => {
