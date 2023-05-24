@@ -1,10 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useLoadScript } from '@react-google-maps/api';
 import Map from './Map';
 import { useNavigation } from '../../providers/navigation/NavigationProvider';
 import { Route } from '../../domain';
 import useMediaQuery from '../../hooks/useMediaQuery';
 import { MapLine } from '../../pages/map/MapPage';
+import useMapFitBounds from '../../hooks/useMapFitBounds';
+import LatLngBounds = google.maps.LatLngBounds;
+
+export enum MapMode {
+  ROUTE,
+  ORIGIN_AND_DESTINATION,
+  LINES,
+}
 
 interface MapContainerProps {
   route?: Route;
@@ -12,7 +20,7 @@ interface MapContainerProps {
 }
 
 const MapContainer: React.FC<MapContainerProps> = (props) => {
-  const isMobile = useMediaQuery();
+  const isMobile = useMediaQuery(); // Only used to adjust bounds if the screen dynamically changes size to be mobile
   const { origin, destination } = useNavigation();
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: import.meta.env.VITE_MAPS_API_KEY || 'fake-key',
@@ -24,88 +32,97 @@ const MapContainer: React.FC<MapContainerProps> = (props) => {
     undefined
   );
 
-  useEffect(() => {
-    const fitBounds = () => {
-      const bounds = new window.google.maps.LatLngBounds();
+  const [currentMapMode, setCurrentMapMode] = useState<MapMode>(
+    MapMode.ORIGIN_AND_DESTINATION
+  );
 
-      if (props.route) {
-        props.route.subRoutes.forEach((subRoute) => {
-          subRoute.stationsPath.forEach((station) => {
-            bounds.extend({
-              lat: station.geoLocation.latitude,
-              lng: station.geoLocation.longitude,
-            });
+  const { fitScreenToMarkerBounds } = useMapFitBounds(googleMap);
+
+  const defineBoundsBasedOnUseCase = useCallback((): LatLngBounds => {
+    const bounds = new window.google.maps.LatLngBounds();
+
+    if (currentMapMode === MapMode.ROUTE && props.route) {
+      props.route.subRoutes.forEach((subRoute) => {
+        subRoute.stationsPath.forEach((station) => {
+          bounds.extend({
+            lat: station.geoLocation.latitude,
+            lng: station.geoLocation.longitude,
           });
         });
-      } else {
-        if (origin) {
-          bounds.extend({
-            lat: origin.geoLocation.latitude,
-            lng: origin.geoLocation.longitude,
-          });
-        }
-        if (destination) {
-          bounds.extend({
-            lat: destination.geoLocation.latitude,
-            lng: destination.geoLocation.longitude,
-          });
-        }
-      }
+      });
 
-      if (props.lines?.length) {
-        props.lines.forEach((line) =>
-          line.stationsPath.forEach((station) => {
-            bounds.extend({
-              lat: station.geoLocation.latitude,
-              lng: station.geoLocation.longitude,
-            });
-          })
-        );
-      }
-
-      if (googleMap) {
-        if (!props.lines?.length && !props.route && !origin && !destination) {
-          googleMap.setZoom(12);
-
-          return;
-        }
-
-        googleMap.fitBounds(bounds);
-
-        google.maps.event.addListenerOnce(googleMap, 'idle', () => {
-          if (props.route) {
-            if (window.innerHeight > window.innerWidth) {
-              googleMap.panBy(0, window.innerHeight * 0.2);
-            } else {
-              googleMap.panBy(
-                window.innerWidth * -0.1,
-                window.innerHeight * -0.03
-              );
-            }
-          }
-
-          if (props.lines?.length) {
-            if (window.innerHeight > window.innerWidth) {
-              googleMap.setZoom(13);
-            } else {
-              googleMap.panBy(0, window.innerHeight * -0.03);
-            }
-          }
-        });
-      }
-    };
-
-    if (isLoaded) {
-      fitBounds();
+      return bounds;
     }
+
+    if (currentMapMode === MapMode.LINES && props.lines?.length) {
+      props.lines.forEach((line) =>
+        line.stationsPath.forEach((station) => {
+          bounds.extend({
+            lat: station.geoLocation.latitude,
+            lng: station.geoLocation.longitude,
+          });
+        })
+      );
+
+      return bounds;
+    }
+
+    if (origin) {
+      bounds.extend({
+        lat: origin.geoLocation.latitude,
+        lng: origin.geoLocation.longitude,
+      });
+    }
+    if (destination) {
+      bounds.extend({
+        lat: destination.geoLocation.latitude,
+        lng: destination.geoLocation.longitude,
+      });
+    }
+
+    return bounds;
+  }, [currentMapMode, destination, origin, props.lines, props.route]);
+
+  useEffect(() => {
+    if (props.route) {
+      setCurrentMapMode(MapMode.ROUTE);
+
+      return;
+    }
+
+    if (props.lines?.length) {
+      setCurrentMapMode(MapMode.LINES);
+
+      return;
+    }
+
+    if (origin || destination) {
+      setCurrentMapMode(MapMode.ORIGIN_AND_DESTINATION);
+    }
+  }, [destination, origin, props.lines?.length, props.route]);
+
+  useEffect(() => {
+    if (isLoaded && googleMap) {
+      if (!props.lines?.length && !props.route && !origin && !destination) {
+        googleMap.setZoom(12);
+
+        return;
+      }
+
+      const markerBounds = defineBoundsBasedOnUseCase();
+
+      fitScreenToMarkerBounds(markerBounds, currentMapMode);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
+    props.route,
+    props.lines,
     origin,
     destination,
-    props.route,
     googleMap,
     isLoaded,
     isMobile,
-    props.lines,
   ]);
 
   return (
