@@ -2,11 +2,26 @@ import React, { useEffect, useState } from 'react';
 import { MarkerF } from '@react-google-maps/api';
 import { GeoLocation } from '../../../domain';
 import currentLocationIcon from '../../../../static/svg/current_location.svg';
+import useMapFitBounds from '../../../hooks/useMapFitBounds';
+import { MapMode } from '../MapContainer';
+import styles from './CurrentLocation.module.css';
 
-const CurrentLocationMarker: React.FC = () => {
+interface CurrentLocationMarkerProps {
+  googleMapReference?: google.maps.Map;
+}
+
+const CurrentLocation: React.FC<CurrentLocationMarkerProps> = (props) => {
+  const { fitScreenToBounds } = useMapFitBounds(props.googleMapReference);
+
   const [currentLocation, setCurrentLocation] = useState<
     GeoLocation | undefined
   >(undefined);
+
+  const handleMoveToCurrentLocationClick = () => {
+    if (currentLocation) {
+      fitScreenToBounds([currentLocation], MapMode.CURRENT_LOCATION);
+    }
+  };
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -25,6 +40,13 @@ const CurrentLocationMarker: React.FC = () => {
 
   return (
     <>
+      <button
+        type="button"
+        onClick={handleMoveToCurrentLocationClick}
+        className={styles.currentLocationButton}
+      >
+        Current location
+      </button>
       {currentLocation && (
         <MarkerF
           position={{
@@ -48,4 +70,8 @@ const CurrentLocationMarker: React.FC = () => {
   );
 };
 
-export default CurrentLocationMarker;
+CurrentLocation.defaultProps = {
+  googleMapReference: undefined,
+};
+
+export default CurrentLocation;

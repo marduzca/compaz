@@ -11,6 +11,7 @@ export enum MapMode {
   ROUTE = 'ROUTE',
   ORIGIN_AND_DESTINATION = 'ORIGIN_AND_DESTINATION',
   LINES = 'LINES',
+  CURRENT_LOCATION = 'CURRENT_LOCATION',
 }
 
 interface MapContainerProps {
@@ -132,6 +133,7 @@ const MapContainer: React.FC<MapContainerProps> = (props) => {
       destination={destination}
       route={props.route}
       onGoogleMapLoad={setGoogleMap}
+      googleMapReference={googleMap}
       lines={props.lines}
     />
   );

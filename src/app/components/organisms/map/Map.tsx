@@ -8,7 +8,7 @@ import OfflineMapMessage from './offlineMapMessage/OfflineMapMessage';
 import StationMarker from './stationMarker/StationMarker';
 import StationsConnector from './stationsConnector/StationsConnector';
 import { MapLine } from '../../pages/map/MapPage';
-import CurrentLocationMarker from './currentLocationMarker/CurrentLocationMarker';
+import CurrentLocation from './currentLocationMarker/CurrentLocation';
 import {
   isFeatureFlagSet,
   SHOW_CURRENT_LOCATION_FLAG,
@@ -20,6 +20,7 @@ interface MapProps {
   destination: Station | undefined;
   route: Route | undefined;
   onGoogleMapLoad: (map: google.maps.Map) => void;
+  googleMapReference?: google.maps.Map;
   lines?: MapLine[];
 }
 
@@ -201,7 +202,6 @@ const Map: React.FC<MapProps> = (props) => {
           clickableIcons={false}
           options={{
             disableDefaultUI: true,
-            minZoom: 11,
             styles: MAP_STYLES,
           }}
           onLoad={props.onGoogleMapLoad}
@@ -229,7 +229,7 @@ const Map: React.FC<MapProps> = (props) => {
             />
           )}
           {isFeatureFlagSet(SHOW_CURRENT_LOCATION_FLAG) && (
-            <CurrentLocationMarker />
+            <CurrentLocation googleMapReference={props.googleMapReference} />
           )}
           {props.route && routeMarkers}
           {props.lines?.length && lineMarkers}
@@ -241,6 +241,6 @@ const Map: React.FC<MapProps> = (props) => {
   );
 };
 
-Map.defaultProps = { lines: undefined };
+Map.defaultProps = { lines: undefined, googleMapReference: undefined };
 
 export default Map;
