@@ -1,5 +1,5 @@
 import { MapMode } from '../organisms/map/MapContainer';
-import LatLngBounds = google.maps.LatLngBounds;
+import { GeoLocation } from '../domain';
 import Map = google.maps.Map;
 
 const useMapFitBounds = (googleMap?: Map) => {
@@ -30,10 +30,18 @@ const useMapFitBounds = (googleMap?: Map) => {
 
   return {
     fitScreenToBounds: (
-      markerBounds: LatLngBounds,
+      markerLocations: GeoLocation[],
       currentMapMode: MapMode
     ) => {
       if (googleMap) {
+        const markerBounds = new window.google.maps.LatLngBounds();
+        markerLocations.forEach((markerBound) => {
+          markerBounds.extend({
+            lat: markerBound.latitude,
+            lng: markerBound.longitude,
+          });
+        });
+
         googleMap.fitBounds(markerBounds);
 
         applyMapPostAdjustments(currentMapMode);
