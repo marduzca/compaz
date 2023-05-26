@@ -1,5 +1,5 @@
-import { MapMode } from '../organisms/map/MapContainer';
-import { GeoLocation } from '../domain';
+import { MapMode } from '../../organisms/map/MapContainer';
+import { GeoLocation } from '../../domain';
 
 const useMapFitBounds = (googleMap?: google.maps.Map) => {
   const applyMapPostAdjustments = (currentMapMode: MapMode) => {

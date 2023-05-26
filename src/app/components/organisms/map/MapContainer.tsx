@@ -5,7 +5,7 @@ import { useNavigation } from '../../providers/navigation/NavigationProvider';
 import { GeoLocation, Route } from '../../domain';
 import useMediaQuery from '../../hooks/useMediaQuery';
 import { MapLine } from '../../pages/map/MapPage';
-import useMapFitBounds from '../../hooks/useMapFitBounds';
+import useMapFitBounds from '../../hooks/useMapFitBounds/useMapFitBounds';
 
 export enum MapMode {
   ROUTE = 'ROUTE',

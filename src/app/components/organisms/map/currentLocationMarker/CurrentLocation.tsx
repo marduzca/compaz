@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { MarkerF } from '@react-google-maps/api';
 import { GeoLocation } from '../../../domain';
 import currentLocationIcon from '../../../../static/svg/current_location.svg';
-import useMapFitBounds from '../../../hooks/useMapFitBounds';
+import useMapFitBounds from '../../../hooks/useMapFitBounds/useMapFitBounds';
 import { MapMode } from '../MapContainer';
 import styles from './CurrentLocation.module.css';
 

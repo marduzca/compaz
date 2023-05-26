@@ -3,11 +3,11 @@ import { render, screen } from '@testing-library/react';
 import { Mock, vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import CurrentLocation from './CurrentLocation';
-import useMapFitBounds from '../../../hooks/useMapFitBounds';
+import useMapFitBounds from '../../../hooks/useMapFitBounds/useMapFitBounds';
 import { GeoLocation } from '../../../domain';
 import { MapMode } from '../MapContainer';
 
-vi.mock('../../../hooks/useMapFitBounds');
+vi.mock('../../../hooks/useMapFitBounds/useMapFitBounds');
 
 vi.mock('@react-google-maps/api', () => ({
   __esModule: true,
