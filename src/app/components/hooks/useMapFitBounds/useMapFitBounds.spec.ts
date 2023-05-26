@@ -63,6 +63,15 @@ describe('useMapFitBounds', () => {
     expect(setZoomMock).not.toHaveBeenCalled();
   });
 
+  it('SHOULD trigger the corresponding map post adjustments WHEN on CURRENT_LOCATION mode', () => {
+    const { result } = renderHook(() => useMapFitBounds(new google.maps.Map()));
+
+    result.current.fitScreenToBounds([], MapMode.CURRENT_LOCATION);
+
+    expect(fitBoundsMock).toHaveBeenCalled();
+    expect(setZoomMock).toHaveBeenCalledWith(15);
+  });
+
   describe('WHEN on mobile', () => {
     const originalInnerWidth = window.innerWidth;
     const originalInnerHeight = window.innerHeight;

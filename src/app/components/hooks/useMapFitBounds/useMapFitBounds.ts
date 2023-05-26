@@ -23,6 +23,10 @@ const useMapFitBounds = (googleMap?: google.maps.Map) => {
             googleMap.panBy(0, window.innerHeight * -0.03);
           }
         }
+
+        if (currentMapMode === MapMode.CURRENT_LOCATION) {
+          googleMap.setZoom(15);
+        }
       });
     }
   };
