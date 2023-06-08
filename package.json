@@ -18,9 +18,9 @@
     "update-deps": "npm outdated || true && npm update && npm outdated || true && npm install && npm run pre-commit && git add . && git commit -m \"update deps\"",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "loki:update": "concurrently --prefix none --kill-others 'npm run storybook' 'loki update'",
-    "loki:test": "concurrently --prefix none --kill-others 'npm run storybook' 'loki test'",
-    "loki:ci": "concurrently --prefix none --kill-others 'npm run storybook' 'loki --requireReference --verboseRenderer'",
+    "loki:update": "start-server-and-test 'npm run storybook' 6006 'loki update'",
+    "loki:test": "start-server-and-test 'npm run storybook' 6006 'loki test'",
+    "loki:ci": "start-server-and-test 'npm run storybook' 6006 'loki --requireReference --verboseRenderer'",
     "cypress:open": "cypress open",
     "cypress:ci": "cypress run",
     "ci:cypress-run": "start-server-and-test start http://localhost:3000 cypress:ci"
@@ -70,7 +70,6 @@
     "@typescript-eslint/eslint-plugin": "^5.58.0",
     "@typescript-eslint/parser": "^5.58.0",
     "babel-loader": "^9.1.2",
-    "concurrently": "^8.1.0",
     "cypress": "^12.9.0",
     "eslint": "^8.38.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -125,11 +124,6 @@
     "storybook-static"
   ],
   "loki": {
-    "diffingEngine": "looks-same",
-    "looks-same": {
-      "chromeTolerance": 50,
-      "tolerance": 50
-    },
     "configurations": {
       "chrome.laptop": {
         "target": "chrome.docker",
