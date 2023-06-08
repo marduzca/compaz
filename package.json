@@ -20,7 +20,7 @@
     "build-storybook": "storybook build",
     "loki:update": "start-server-and-test 'npm run storybook -- --no-open' 6006 'loki update'",
     "loki:test": "start-server-and-test 'npm run storybook -- --no-open' 6006 'loki test'",
-    "loki:ci": "start-server-and-test 'npm run storybook -- --no-open' 6006 'loki --requireReference --verboseRenderer'",
+    "loki:ci": "start-server-and-test 'npm run storybook -- --no-open' 6006 'sleep 5 && loki --requireReference --verboseRenderer'",
     "cypress:open": "cypress open",
     "cypress:ci": "cypress run",
     "ci:cypress-run": "start-server-and-test start http://localhost:3000 cypress:ci"
