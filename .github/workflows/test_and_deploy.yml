@@ -66,6 +66,13 @@ jobs:
     - name: Run visual regression tests
       run: npm run loki:ci
 
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      if: failure()
+      with:
+        name: visual_regression_tests_difference
+        path: .loki/difference/**
+
   user_journey_test_local:
     needs: build_and_test
     runs-on: ubuntu-latest
