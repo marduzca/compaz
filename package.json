@@ -7,7 +7,7 @@
     "start:pwa": "npm run build && npx serve build",
     "build": "GENERATE_SOURCEMAP=false tsc && vite build",
     "serve": "vite preview",
-    "pre-commit": "npm run build && npm test",
+    "pre-commit": "npm run build && npm test && npm run loki:test",
     "test": "npm run lint && vitest run",
     "only-test": "vitest run",
     "test:coverage": "vitest run --coverage",
@@ -20,7 +20,7 @@
     "build-storybook": "storybook build",
     "loki:update": "concurrently --prefix none --kill-others 'npm run storybook' 'loki update'",
     "loki:test": "concurrently --prefix none --kill-others 'npm run storybook' 'loki test'",
-    "loki:ci": "npm run build-storybook && loki --requireReference --verboseRenderer --reactUri file:./storybook-static",
+    "loki:ci": "concurrently --prefix none --kill-others 'npm run storybook' 'loki --requireReference --verboseRenderer'",
     "cypress:open": "cypress open",
     "cypress:ci": "cypress run",
     "ci:cypress-run": "start-server-and-test start http://localhost:3000 cypress:ci"
