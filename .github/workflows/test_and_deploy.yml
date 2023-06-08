@@ -47,7 +47,6 @@ jobs:
     strategy:
       matrix:
         node-version: [ 16.x ]
-        architecture: [ aarch64 ]
     steps:
     - uses: actions/checkout@master
     - name: Use Node.js ${{ matrix.node-version }}
