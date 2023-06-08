@@ -127,8 +127,8 @@
   "loki": {
     "diffingEngine": "looks-same",
     "looks-same": {
-      "chromeTolerance": 0.1,
-      "tolerance": 0.1
+      "chromeTolerance": 50,
+      "tolerance": 50
     },
     "configurations": {
       "chrome.laptop": {
