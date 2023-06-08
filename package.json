@@ -18,9 +18,9 @@
     "update-deps": "npm outdated || true && npm update && npm outdated || true && npm install && npm run pre-commit && git add . && git commit -m \"update deps\"",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "loki:update": "start-server-and-test 'npm run storybook -- --no-open' 6006 'sleep 2 && loki update'",
-    "loki:test": "start-server-and-test 'npm run storybook -- --no-open' 6006 'sleep 2 && loki test'",
-    "loki:ci": "start-server-and-test 'npm run storybook -- --no-open' 6006 'sleep 2 && loki --requireReference --verboseRenderer'",
+    "loki:update": "start-server-and-test 'npm run storybook -- --no-open' 6006 'loki update'",
+    "loki:test": "start-server-and-test 'npm run storybook -- --no-open' 6006 'loki test'",
+    "loki:ci": "start-server-and-test 'npm run storybook -- --no-open' 6006 'loki --requireReference --verboseRenderer'",
     "cypress:open": "cypress open",
     "cypress:ci": "cypress run",
     "ci:cypress-run": "start-server-and-test start http://localhost:3000 cypress:ci"
