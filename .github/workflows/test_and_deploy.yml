@@ -42,12 +42,12 @@ jobs:
         run: npm run lint && npm run only-test
 
   visual_regression_test:
-    needs: build_and_test
+#    needs: build_and_test
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [ 16.x ]
-        architecture: [ arm64 ]
+        architecture: [ amd64 ]
     steps:
     - uses: actions/checkout@master
     - name: Use Node.js ${{ matrix.node-version }}
