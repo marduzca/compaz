@@ -25,6 +25,7 @@
   "plugins": [
     "react",
     "@typescript-eslint",
+    "jest-dom",
     "testing-library",
     "eslint-plugin-prettier"
   ],
