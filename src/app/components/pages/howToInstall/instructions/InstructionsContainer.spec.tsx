@@ -74,7 +74,7 @@ describe('InstructionsContainer', () => {
   it('shows the correct installation gif and steps when switching devices and browsers', async () => {
     render(<InstructionsContainer />);
 
-    expect((screen.getByRole('img') as HTMLImageElement).src).toMatch(
+    expect((screen.getByRole('presentation') as HTMLImageElement).src).toMatch(
       /install_laptop_chrome/
     );
     expect(
@@ -90,7 +90,7 @@ describe('InstructionsContainer', () => {
 
     await selectOptionFromDropdown('Device', 'Android / Tablet');
 
-    expect((screen.getByRole('img') as HTMLImageElement).src).toMatch(
+    expect((screen.getByRole('presentation') as HTMLImageElement).src).toMatch(
       /install_android_chrome/
     );
     expect(
@@ -106,7 +106,7 @@ describe('InstructionsContainer', () => {
 
     await selectOptionFromDropdown('Browser', Browser.MOZILLA_FIREFOX);
 
-    expect((screen.getByRole('img') as HTMLImageElement).src).toMatch(
+    expect((screen.getByRole('presentation') as HTMLImageElement).src).toMatch(
       /install_android_firefox/
     );
     expect(
@@ -122,7 +122,7 @@ describe('InstructionsContainer', () => {
 
     await selectOptionFromDropdown('Browser', Browser.SAMSUNG_INTERNET);
 
-    expect((screen.getByRole('img') as HTMLImageElement).src).toMatch(
+    expect((screen.getByRole('presentation') as HTMLImageElement).src).toMatch(
       /install_android_samsung/
     );
     expect(
@@ -138,7 +138,7 @@ describe('InstructionsContainer', () => {
 
     await selectOptionFromDropdown('Device', 'iPhone / iPad');
 
-    expect((screen.getByRole('img') as HTMLImageElement).src).toMatch(
+    expect((screen.getByRole('presentation') as HTMLImageElement).src).toMatch(
       /install_iphone_safari/
     );
     expect(
@@ -160,7 +160,7 @@ describe('InstructionsContainer', () => {
 
     await selectOptionFromDropdown('Browser', Browser.MOZILLA_FIREFOX);
 
-    expect((screen.getByRole('img') as HTMLImageElement).src).toMatch(
+    expect((screen.getByRole('presentation') as HTMLImageElement).src).toMatch(
       /install_android_firefox/
     );
 
@@ -173,7 +173,7 @@ describe('InstructionsContainer', () => {
         }) as HTMLSelectElement
       ).getByText(Browser.SAFARI)
     ).toBeVisible();
-    expect((screen.getByRole('img') as HTMLImageElement).src).toMatch(
+    expect((screen.getByRole('presentation') as HTMLImageElement).src).toMatch(
       /install_iphone_safari/
     );
   });

@@ -173,7 +173,7 @@ describe('NavigationPage', () => {
     renderNavigationWithRouter();
 
     expect(
-      screen.getByRole('img', {
+      screen.getByRole('presentation', {
         name: 'Loading...',
       })
     ).toBeVisible();
@@ -189,7 +189,7 @@ describe('NavigationPage', () => {
     renderNavigationWithRouter();
 
     expect(
-      screen.getByRole('img', {
+      screen.getByRole('presentation', {
         name: 'Loading...',
       })
     ).toBeVisible();
@@ -291,7 +291,7 @@ describe('NavigationPage', () => {
     );
 
     expect(
-      withinPurpleLine.getByRole('img', {
+      withinPurpleLine.getByRole('presentation', {
         name: 'Purple line',
       })
     ).toBeVisible();
@@ -299,7 +299,7 @@ describe('NavigationPage', () => {
     expect(withinPurpleLine.getByText('Intermediate Station')).toBeVisible();
 
     expect(
-      withinBlueLine.getByRole('img', { name: 'Blue line' })
+      withinBlueLine.getByRole('presentation', { name: 'Blue line' })
     ).toBeVisible();
     expect(withinBlueLine.getByText('Intermediate Station')).toBeVisible();
     expect(withinBlueLine.getByText('Destination Station')).toBeVisible();
