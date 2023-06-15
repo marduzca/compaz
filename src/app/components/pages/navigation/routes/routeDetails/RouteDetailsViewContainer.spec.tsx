@@ -150,7 +150,7 @@ describe('RouteDetailsViewContainer', () => {
     );
 
     expect(
-      withinPurpleLine.getByRole('presentation', {
+      withinPurpleLine.getByRole('img', {
         name: 'Purple line',
       })
     ).toBeVisible();
@@ -161,7 +161,7 @@ describe('RouteDetailsViewContainer', () => {
     expect(withinPurpleLine.getByText('Intermediate Station')).toBeVisible();
 
     expect(
-      withinBlueLine.getByRole('presentation', { name: 'Blue line' })
+      withinBlueLine.getByRole('img', { name: 'Blue line' })
     ).toBeVisible();
     expect(withinBlueLine.getByText('Intermediate Station')).toBeVisible();
     expect(withinBlueLine.getByText('Destination Station')).toBeVisible();
@@ -179,7 +179,7 @@ describe('RouteDetailsViewContainer', () => {
     const withinTransferBlock = within(screen.getByTitle('Transfer'));
 
     expect(
-      withinTransferBlock.getByRole('presentation', {
+      withinTransferBlock.getByRole('img', {
         name: 'Transfer',
       })
     ).toBeVisible();

@@ -165,21 +165,21 @@ describe('RoutesOverviewContainer', () => {
     );
 
     expect(
-      withinFirstRouteSection.getByRole('presentation', {
+      withinFirstRouteSection.getByRole('img', {
         name: 'Green line',
       })
     ).toBeVisible();
     expect(withinFirstRouteSection.getByText('3')).toBeVisible();
 
     expect(
-      withinFirstRouteSection.getByRole('presentation', {
+      withinFirstRouteSection.getByRole('img', {
         name: 'Transfer',
       })
     ).toBeVisible();
     expect(withinFirstRouteSection.getByText('2')).toBeVisible();
 
     expect(
-      withinFirstRouteSection.getByRole('presentation', {
+      withinFirstRouteSection.getByRole('img', {
         name: 'Red line',
       })
     ).toBeVisible();
