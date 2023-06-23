@@ -167,6 +167,7 @@
     "SUCCESS": "Notificación de tipo Exito"
   },
   "Map": {
+    "CURRENT_LOCATION": "Mostrar ubicación actual",
     "MAP_TITLE": "Mapa",
     "GO_TO_MAP": "Ver mapa con la red completa de teleférico",
     "LOADING_MAP": "Loading map",

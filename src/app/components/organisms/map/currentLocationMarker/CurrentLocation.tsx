@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { MarkerF } from '@react-google-maps/api';
+import { useTranslation } from 'react-i18next';
 import { GeoLocation } from '../../../domain';
 import currentLocationIcon from '../../../../static/svg/current_location.svg';
+import { ReactComponent as CurrentLocationIcon } from '../../../../static/svg/location.svg';
 import useMapFitBounds from '../../../hooks/useMapFitBounds/useMapFitBounds';
 import { MapMode } from '../MapContainer';
 import styles from './CurrentLocation.module.css';
@@ -11,6 +13,7 @@ interface CurrentLocationMarkerProps {
 }
 
 const CurrentLocation: React.FC<CurrentLocationMarkerProps> = (props) => {
+  const { t } = useTranslation();
   const { fitScreenToBounds } = useMapFitBounds(props.googleMapReference);
 
   const [currentLocation, setCurrentLocation] = useState<
@@ -44,8 +47,9 @@ const CurrentLocation: React.FC<CurrentLocationMarkerProps> = (props) => {
         type="button"
         onClick={handleMoveToCurrentLocationClick}
         className={styles.currentLocationButton}
+        aria-label={t('Map.CURRENT_LOCATION')}
       >
-        Current location
+        <CurrentLocationIcon />
       </button>
       {currentLocation && (
         <MarkerF

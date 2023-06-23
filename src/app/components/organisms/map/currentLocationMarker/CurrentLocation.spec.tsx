@@ -58,7 +58,7 @@ describe('CurrentLocation', () => {
     render(<CurrentLocation googleMapReference={new google.maps.Map()} />);
 
     const currentLocationButton = screen.getByRole('button', {
-      name: 'Current location',
+      name: 'Show current location',
     });
     await userEvent.click(currentLocationButton);
 

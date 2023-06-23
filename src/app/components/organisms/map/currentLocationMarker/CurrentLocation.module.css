@@ -1,4 +1,29 @@
 .currentLocationButton {
-  position: relative;
   z-index: 2;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+
+  display: grid;
+  place-items: center;
+
+  height: fit-content;
+  padding: 0.25rem;
+
+  cursor: pointer;
+
+  border: 0;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 0 0.5rem 0 grey;
+}
+
+.currentLocationButton > svg {
+  max-height: 3rem;
+  max-width: 3rem;
+}
+
+.currentLocationButton:focus-visible {
+  outline: var(--focus-outline-light-background);
+  outline-offset: var(--focus-outline-offset);
 }

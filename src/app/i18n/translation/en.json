@@ -167,6 +167,7 @@
     "SUCCESS": "Success notification"
   },
   "Map": {
+    "CURRENT_LOCATION": "Show current location",
     "MAP_TITLE": "Map",
     "GO_TO_MAP": "See map with the complete teleférico network",
     "LOADING_MAP": "Loading map",
