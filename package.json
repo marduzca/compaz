@@ -15,7 +15,7 @@
     "lint:fix": "eslint . --fix --ext .js,.ts,.tsx && prettier --write 'src/**/*.{js,ts,tsx,css,scss,json,html}'",
     "release:major": "npm version major && npm run update-app-version",
     "release:minor": "npm version minor && git push && echo 'Wait 1 min for first commit to start running in pipeline...' && sleep 60 && npm run update-app-version && git push",
-    "update-deps": "npm outdated || true && npm update && npm outdated || true && npm install && npm run pre-commit && git add . && git commit -m \"update deps\"",
+    "update-deps": "npm outdated || true && npm update && npm outdated || true && npm run pre-commit && git add . && git commit -m \"update deps\"",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "loki:update": "start-server-and-test 'npm run storybook -- --no-open' 6006 'loki update'",
