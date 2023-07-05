@@ -169,6 +169,7 @@
   "Map": {
     "CURRENT_LOCATION": "Show current location",
     "LOCATION_ACCESS_ERROR": "Something went wrong. You probably blocked access to your location, please allow it in your browser settings. Otherwise just refresh the page and try again.",
+    "BROWSER_SUPPORT_ERROR": "We are sorry. Your browser does not support Geolocation, so we cannot retrieve your current location.",
     "MAP_TITLE": "Map",
     "GO_TO_MAP": "See map with the complete teleférico network",
     "LOADING_MAP": "Loading map",

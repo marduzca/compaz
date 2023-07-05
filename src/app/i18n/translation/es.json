@@ -168,8 +168,8 @@
   },
   "Map": {
     "CURRENT_LOCATION": "Mostrar ubicación actual",
-    "LOCATION_ACCESS_ERROR": "Something went wrong. You probably blocked access to your location, please allow it in your browser settings. Otherwise just refresh the page and try again.",
     "LOCATION_ACCESS_ERROR": "Algo salió mal. Probablemente bloqueaste el acceso a tu ubicación, por favor permítelo en la configuración de tu navegador. Si ese no es el caso, vuelve a cargar la página e inténtalo de nuevo.",
+    "BROWSER_SUPPORT_ERROR": "Lo sentimos. Tu navegador no funciona con Geolocalización, por lo que no podemos recibir tu ubicación actual.",
     "MAP_TITLE": "Mapa",
     "GO_TO_MAP": "Ver mapa con la red completa de teleférico",
     "LOADING_MAP": "Loading map",

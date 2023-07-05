@@ -53,14 +53,37 @@ describe('CurrentLocation', () => {
     };
   });
 
-  describe('should call the location API to ask for the current location', () => {
-    it('on the first render', () => {
-      render(<CurrentLocation googleMapReference={new google.maps.Map()} />);
+  it('SHOULD call the location API to ask for the current location WHEN it renders', () => {
+    render(<CurrentLocation googleMapReference={new google.maps.Map()} />);
 
-      expect(getCurrentPositionMock).toHaveBeenCalled();
+    expect(getCurrentPositionMock).toHaveBeenCalled();
+  });
+
+  it('SHOULD show an error WHEN the browser doesnt support the geolocation API', () => {
+    // eslint-disable-next-line
+    (global as any).navigator.geolocation = undefined;
+
+    render(
+      <>
+        <NotificationContainer />
+        <CurrentLocation googleMapReference={new google.maps.Map()} />
+      </>
+    );
+
+    const errorAlert = screen.getByRole('alert', {
+      name: 'Error notification',
     });
 
-    it('when clicking the current location button', async () => {
+    expect(errorAlert).toBeVisible();
+    expect(
+      within(errorAlert).getByText(
+        'We are sorry. Your browser does not support Geolocation, so we cannot retrieve your current location.'
+      )
+    ).toBeVisible();
+  });
+
+  describe('WHEN clicking the current location button', () => {
+    it('SHOULD call the location API to ask for the current location', async () => {
       render(<CurrentLocation googleMapReference={new google.maps.Map()} />);
 
       const currentLocationButton = screen.getByRole('button', {
@@ -70,9 +93,7 @@ describe('CurrentLocation', () => {
 
       expect(getCurrentPositionMock).toHaveBeenCalled();
     });
-  });
 
-  describe('WHEN clicking the current location button', () => {
     it('SHOULD show access denied error WHEN user denied access to their location', async () => {
       getCurrentPositionMock = vi
         .fn()
@@ -118,7 +139,7 @@ describe('CurrentLocation', () => {
       ).toBeVisible();
     });
 
-    it('should trigger the function to center the current location when clicking the location button', async () => {
+    it('SHOULD trigger the function to center the current location WHEN clicking the location button', async () => {
       render(<CurrentLocation googleMapReference={new google.maps.Map()} />);
 
       const currentLocationButton = screen.getByRole('button', {

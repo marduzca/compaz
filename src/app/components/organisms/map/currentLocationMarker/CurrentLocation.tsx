@@ -24,6 +24,19 @@ const CurrentLocation: React.FC<CurrentLocationMarkerProps> = (props) => {
   const retrieveCurrentLocation = (
     showErrorIfLocationSharingWasDenied: boolean
   ) => {
+    if (!navigator.geolocation) {
+      window.dispatchEvent(
+        new CustomEvent(EventType.NOTIFICATION, {
+          detail: {
+            type: NotificationType.ERROR,
+            content: t('Map.BROWSER_SUPPORT_ERROR'),
+          } as NotificationEvent,
+        })
+      );
+
+      return;
+    }
+
     const onSuccess = (position: GeolocationPosition) => {
       setCurrentLocation({
         latitude: position.coords.latitude,
@@ -51,7 +64,6 @@ const CurrentLocation: React.FC<CurrentLocationMarkerProps> = (props) => {
   const handleMoveToCurrentLocationClick = () => {
     // TODO
     // 3. Break function before fitting bounds when no location
-    // 4. Show error if browser doesn't support navigator.geolocation
 
     retrieveCurrentLocation(true);
 
