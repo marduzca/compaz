@@ -13,6 +13,7 @@ import {
   isFeatureFlagSet,
   SHOW_CURRENT_LOCATION_FLAG,
 } from '../../../featureFlag/FeatureFlag';
+import { MapMode } from './MapContainer';
 
 interface MapProps {
   isLoaded: boolean;
@@ -22,6 +23,7 @@ interface MapProps {
   onGoogleMapLoad: (map: google.maps.Map) => void;
   googleMapReference?: google.maps.Map;
   lines?: MapLine[];
+  currentMapMode: MapMode;
 }
 
 const LA_PAZ_CENTER = { lat: -16.494363149497282, lng: -68.1572941780699 };
@@ -228,9 +230,10 @@ const Map: React.FC<MapProps> = (props) => {
               lineColor={DEFAULT_CONNECTOR_COLOR}
             />
           )}
-          {isFeatureFlagSet(SHOW_CURRENT_LOCATION_FLAG) && (
-            <CurrentLocation googleMapReference={props.googleMapReference} />
-          )}
+          {isFeatureFlagSet(SHOW_CURRENT_LOCATION_FLAG) &&
+            props.currentMapMode !== MapMode.ORIGIN_AND_DESTINATION && (
+              <CurrentLocation googleMapReference={props.googleMapReference} />
+            )}
           {props.route && routeMarkers}
           {props.lines?.length && lineMarkers}
         </GoogleMap>

@@ -128,6 +128,7 @@ const MapContainer: React.FC<MapContainerProps> = (props) => {
 
   return (
     <Map
+      currentMapMode={currentMapMode}
       isLoaded={isLoaded}
       origin={origin}
       destination={destination}
