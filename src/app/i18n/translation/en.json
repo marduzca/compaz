@@ -168,6 +168,7 @@
   },
   "Map": {
     "CURRENT_LOCATION": "Show current location",
+    "LOCATION_ACCESS_ERROR": "Something went wrong. You probably blocked access to your location, please allow it in your browser settings. Otherwise just refresh the page and try again.",
     "MAP_TITLE": "Map",
     "GO_TO_MAP": "See map with the complete teleférico network",
     "LOADING_MAP": "Loading map",

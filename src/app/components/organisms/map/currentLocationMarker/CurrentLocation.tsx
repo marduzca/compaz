@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { MarkerF } from '@react-google-maps/api';
 import { useTranslation } from 'react-i18next';
-import { GeoLocation } from '../../../domain';
+import { GeoLocation, NotificationEvent } from '../../../domain';
 import currentLocationIcon from '../../../../static/svg/current_location.svg';
 import { ReactComponent as CurrentLocationIcon } from '../../../../static/svg/location.svg';
 import useMapFitBounds from '../../../hooks/useMapFitBounds/useMapFitBounds';
 import { MapMode } from '../MapContainer';
 import styles from './CurrentLocation.module.css';
+import { EventType, NotificationType } from '../../notification/Notification';
 
 interface CurrentLocationMarkerProps {
   googleMapReference?: google.maps.Map;
@@ -20,25 +21,48 @@ const CurrentLocation: React.FC<CurrentLocationMarkerProps> = (props) => {
     GeoLocation | undefined
   >(undefined);
 
+  const retrieveCurrentLocation = (
+    showErrorIfLocationSharingWasDenied: boolean
+  ) => {
+    const onSuccess = (position: GeolocationPosition) => {
+      setCurrentLocation({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+      });
+    };
+
+    const onError = () => {
+      window.dispatchEvent(
+        new CustomEvent(EventType.NOTIFICATION, {
+          detail: {
+            type: NotificationType.ERROR,
+            content: t('Map.LOCATION_ACCESS_ERROR'),
+          } as NotificationEvent,
+        })
+      );
+    };
+
+    navigator.geolocation.getCurrentPosition(
+      onSuccess,
+      showErrorIfLocationSharingWasDenied ? onError : undefined
+    );
+  };
+
   const handleMoveToCurrentLocationClick = () => {
-    if (currentLocation) {
+    // TODO
+    // 3. Break function before fitting bounds when no location
+    // 4. Show error if browser doesn't support navigator.geolocation
+
+    retrieveCurrentLocation(true);
+
+    if (currentLocation)
       fitScreenToBounds([currentLocation], MapMode.CURRENT_LOCATION);
-    }
   };
 
   useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position: GeolocationPosition) => {
-          setCurrentLocation({
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-          });
-        }
-      );
-    } else {
-      // Handle error: Browser doesn't support Geolocation
-    }
+    retrieveCurrentLocation(false);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
