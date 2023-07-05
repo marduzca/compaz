@@ -155,5 +155,21 @@ describe('CurrentLocation', () => {
         MapMode.CURRENT_LOCATION
       );
     });
+
+    it('SHOULD not trigger the function to center the current location WHEN the currentLocation is not set for whatever reason', async () => {
+      fitScreenToBoundsMock.mockClear();
+
+      // eslint-disable-next-line
+      (global as any).navigator.geolocation = undefined;
+
+      render(<CurrentLocation googleMapReference={new google.maps.Map()} />);
+
+      const currentLocationButton = screen.getByRole('button', {
+        name: 'Show current location',
+      });
+      await userEvent.click(currentLocationButton);
+
+      expect(fitScreenToBoundsMock).not.toHaveBeenCalled();
+    });
   });
 });

@@ -62,9 +62,6 @@ const CurrentLocation: React.FC<CurrentLocationMarkerProps> = (props) => {
   };
 
   const handleMoveToCurrentLocationClick = () => {
-    // TODO
-    // 3. Break function before fitting bounds when no location
-
     retrieveCurrentLocation(true);
 
     if (currentLocation)
