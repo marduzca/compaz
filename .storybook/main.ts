@@ -1,6 +1,7 @@
 import { mergeConfig } from 'vite';
+import { StorybookConfig } from '@storybook/react-vite';
 
-module.exports = {
+const config: StorybookConfig = {
   stories: ['../src/**/*.stories.@(js|jsx|ts|tsx)'],
   staticDirs: ['../public'],
   addons: [
@@ -21,3 +22,5 @@ module.exports = {
     autodocs: true,
   },
 };
+
+export default config;
