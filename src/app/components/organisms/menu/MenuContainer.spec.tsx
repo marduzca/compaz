@@ -15,64 +15,64 @@ describe('MenuContainer', () => {
     render(
       <Router location={history.location} navigator={history}>
         <MenuContainer showMenuOnMobile={false} onHideMobileMenu={() => {}} />
-      </Router>
+      </Router>,
     );
 
     const withinNavigation = within(screen.getByRole('banner'));
 
     expect(
-      withinNavigation.getByRole('link', { name: 'Go to home page' })
+      withinNavigation.getByRole('link', { name: 'Go to home page' }),
     ).toHaveAttribute('aria-current', 'page');
 
     await act(async () => {
       await userEvent.click(
-        withinNavigation.getByRole('link', { name: /Home/ })
+        withinNavigation.getByRole('link', { name: /Home/ }),
       );
     });
     expect(history.location.pathname).toBe(NavigationLink.BASE);
     expect(
-      withinNavigation.getByRole('link', { name: /Home/ })
+      withinNavigation.getByRole('link', { name: /Home/ }),
     ).toHaveAttribute('aria-current', 'page');
 
     await act(async () => {
       await userEvent.click(
-        withinNavigation.getByRole('link', { name: /Map/ })
+        withinNavigation.getByRole('link', { name: /Map/ }),
       );
     });
     expect(history.location.pathname).toBe(NavigationLink.MAP);
     expect(withinNavigation.getByRole('link', { name: /Map/ })).toHaveAttribute(
       'aria-current',
-      'page'
+      'page',
     );
 
     await act(async () => {
       await userEvent.click(
-        withinNavigation.getByRole('link', { name: /How to install/ })
+        withinNavigation.getByRole('link', { name: /How to install/ }),
       );
     });
     expect(history.location.pathname).toBe(NavigationLink.HOW_TO_INSTALL);
     expect(
-      withinNavigation.getByRole('link', { name: /How to install/ })
+      withinNavigation.getByRole('link', { name: /How to install/ }),
     ).toHaveAttribute('aria-current', 'page');
 
     await act(async () => {
       await userEvent.click(
-        withinNavigation.getByRole('link', { name: /Contact/ })
+        withinNavigation.getByRole('link', { name: /Contact/ }),
       );
     });
     expect(history.location.pathname).toBe(NavigationLink.CONTACT);
     expect(
-      withinNavigation.getByRole('link', { name: /Contact/ })
+      withinNavigation.getByRole('link', { name: /Contact/ }),
     ).toHaveAttribute('aria-current', 'page');
 
     await act(async () => {
       await userEvent.click(
-        withinNavigation.getByRole('link', { name: /About/ })
+        withinNavigation.getByRole('link', { name: /About/ }),
       );
     });
     expect(history.location.pathname).toBe(NavigationLink.ABOUT);
     expect(
-      withinNavigation.getByRole('link', { name: /About/ })
+      withinNavigation.getByRole('link', { name: /About/ }),
     ).toHaveAttribute('aria-current', 'page');
   });
 
@@ -87,12 +87,12 @@ describe('MenuContainer', () => {
               onHideMobileMenu={() => {}}
               showMenuOnMobile={false}
             />
-          </MemoryRouter>
+          </MemoryRouter>,
         );
 
         await act(async () => {
           await userEvent.click(
-            screen.getByRole('button', { name: 'Change language' })
+            screen.getByRole('button', { name: 'Change language' }),
           );
         });
 
@@ -110,12 +110,12 @@ describe('MenuContainer', () => {
               showMenuOnMobile={false}
               onHideMobileMenu={() => {}}
             />
-          </MemoryRouter>
+          </MemoryRouter>,
         );
 
         await act(async () => {
           await userEvent.click(
-            screen.getByRole('button', { name: 'Cambiar idioma' })
+            screen.getByRole('button', { name: 'Cambiar idioma' }),
           );
         });
 

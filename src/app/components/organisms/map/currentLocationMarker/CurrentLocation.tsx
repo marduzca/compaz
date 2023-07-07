@@ -22,7 +22,7 @@ const CurrentLocation: React.FC<CurrentLocationMarkerProps> = (props) => {
   >(undefined);
 
   const retrieveCurrentLocation = (
-    showErrorIfLocationSharingWasDenied: boolean
+    showErrorIfLocationSharingWasDenied: boolean,
   ) => {
     if (!navigator.geolocation) {
       window.dispatchEvent(
@@ -31,7 +31,7 @@ const CurrentLocation: React.FC<CurrentLocationMarkerProps> = (props) => {
             type: NotificationType.ERROR,
             content: t('Map.BROWSER_SUPPORT_ERROR'),
           } as NotificationEvent,
-        })
+        }),
       );
 
       return;
@@ -51,13 +51,13 @@ const CurrentLocation: React.FC<CurrentLocationMarkerProps> = (props) => {
             type: NotificationType.ERROR,
             content: t('Map.LOCATION_ACCESS_ERROR'),
           } as NotificationEvent,
-        })
+        }),
       );
     };
 
     navigator.geolocation.getCurrentPosition(
       onSuccess,
-      showErrorIfLocationSharingWasDenied ? onError : undefined
+      showErrorIfLocationSharingWasDenied ? onError : undefined,
     );
   };
 

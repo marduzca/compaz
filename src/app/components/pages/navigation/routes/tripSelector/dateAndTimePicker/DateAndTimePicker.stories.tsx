@@ -39,7 +39,7 @@ export const BasicInNormalState = () =>
       onSelectButtonClick={actions('onSelectButtonClick').onSelectButtonClick}
       onNowButtonClick={actions('onNowButtonClick').onNowButtonClick}
       dateAndTimeSelectionWrapperRef={{} as React.RefObject<HTMLDivElement>}
-    />
+    />,
   );
 
 export const WithOpenSelectionPanelInNormalState = () =>
@@ -57,7 +57,7 @@ export const WithOpenSelectionPanelInNormalState = () =>
       onNowButtonClick={actions('onNowButtonClick').onNowButtonClick}
       dateAndTimeSelectionWrapperRef={{} as React.RefObject<HTMLDivElement>}
       showSelectionPanel
-    />
+    />,
   );
 
 export const WithTimeError = () =>
@@ -75,5 +75,5 @@ export const WithTimeError = () =>
       dateAndTimeSelectionWrapperRef={{} as React.RefObject<HTMLDivElement>}
       showSelectionPanel
       isSelectedTimeOutsideOfFunctionalHours
-    />
+    />,
   );

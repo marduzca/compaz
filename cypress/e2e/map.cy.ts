@@ -353,7 +353,7 @@ describe('Map', () => {
     mapLines.forEach((line) =>
       line.stationsPath.forEach((station) => {
         Map.shouldShowStationMarker(station.name.toUpperCase());
-      })
+      }),
     );
   });
 });

@@ -14,7 +14,7 @@ interface RoutesOverviewContainerProps {
 }
 
 const RoutesOverviewContainer: React.FC<RoutesOverviewContainerProps> = (
-  props
+  props,
 ) => {
   const { origin, destination, departureDate, departureTime } = useNavigation();
 
@@ -30,7 +30,7 @@ const RoutesOverviewContainer: React.FC<RoutesOverviewContainerProps> = (
   const handleEarlierButtonClick = () => {
     const updatedDisplayedRouteTimes = [...displayedRouteTimes];
     updatedDisplayedRouteTimes.unshift(
-      reduceMinutesToDate(updatedDisplayedRouteTimes[0], 5)
+      reduceMinutesToDate(updatedDisplayedRouteTimes[0], 5),
     );
 
     setDisplayedRouteTimes(updatedDisplayedRouteTimes);
@@ -41,8 +41,8 @@ const RoutesOverviewContainer: React.FC<RoutesOverviewContainerProps> = (
     updatedDisplayedRouteTimes.push(
       addMinutesToDate(
         updatedDisplayedRouteTimes[updatedDisplayedRouteTimes.length - 1],
-        5
-      )
+        5,
+      ),
     );
 
     setDisplayedRouteTimes(updatedDisplayedRouteTimes);

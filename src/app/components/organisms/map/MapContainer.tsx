@@ -29,11 +29,11 @@ const MapContainer: React.FC<MapContainerProps> = (props) => {
   });
 
   const [googleMap, setGoogleMap] = useState<google.maps.Map | undefined>(
-    undefined
+    undefined,
   );
 
   const [currentMapMode, setCurrentMapMode] = useState<MapMode>(
-    MapMode.ORIGIN_AND_DESTINATION
+    MapMode.ORIGIN_AND_DESTINATION,
   );
 
   const { fitScreenToBounds } = useMapFitBounds(googleMap);
@@ -62,7 +62,7 @@ const MapContainer: React.FC<MapContainerProps> = (props) => {
               latitude: station.geoLocation.latitude,
               longitude: station.geoLocation.longitude,
             });
-          })
+          }),
         );
 
         return markerLocations;

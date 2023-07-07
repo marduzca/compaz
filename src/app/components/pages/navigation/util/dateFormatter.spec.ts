@@ -13,7 +13,7 @@ describe('dateFormatter', () => {
     it('parses a date to english long format correctly', () => {
       const dateInLongFormat = parseToEnglishDateString(
         new Date('2021-09-24 17:30'),
-        false
+        false,
       );
 
       expect(dateInLongFormat).toBe('Friday 24 September');
@@ -22,7 +22,7 @@ describe('dateFormatter', () => {
     it('parses a date to english short format correctly', () => {
       const dateInLongFormat = parseToEnglishDateString(
         new Date('2021-09-24 17:30'),
-        true
+        true,
       );
 
       expect(dateInLongFormat).toBe('Fri 24 Sep');
@@ -39,7 +39,7 @@ describe('dateFormatter', () => {
     it('parses a date to spanish long format correctly', () => {
       const dateInLongFormat = parseToSpanishDateString(
         new Date('2021-09-24 17:30'),
-        false
+        false,
       );
 
       expect(dateInLongFormat).toBe('Viernes 24 Septiembre');
@@ -48,7 +48,7 @@ describe('dateFormatter', () => {
     it('parses a date to spanish short format correctly', () => {
       const dateInLongFormat = parseToSpanishDateString(
         new Date('2021-09-24 17:30'),
-        true
+        true,
       );
 
       expect(dateInLongFormat).toBe('Vie 24 Sept');
@@ -84,7 +84,7 @@ describe('dateFormatter', () => {
   it('adds given minutes to given date correctly', () => {
     const dateWithAddedMinutes = addMinutesToDate(
       new Date('2021-09-24 17:35'),
-      30
+      30,
     );
 
     expect(dateWithAddedMinutes.getHours()).toBe(18);
@@ -94,7 +94,7 @@ describe('dateFormatter', () => {
   it('reduces given minutes to given date correctly', () => {
     const dateWithAddedMinutes = reduceMinutesToDate(
       new Date('2021-09-24 17:35'),
-      40
+      40,
     );
 
     expect(dateWithAddedMinutes.getHours()).toBe(16);

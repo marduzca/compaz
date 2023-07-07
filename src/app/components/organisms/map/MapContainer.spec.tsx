@@ -20,7 +20,7 @@ describe('MapContainer', () => {
     render(<MapContainer />);
 
     expect(
-      screen.getByText('Sorry, the map is not available offline.')
+      screen.getByText('Sorry, the map is not available offline.'),
     ).toBeVisible();
   });
 });

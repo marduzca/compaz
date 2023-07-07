@@ -11,7 +11,7 @@ interface StationsSelectorContainerProps {
 }
 
 const StationsSelectorContainer: React.FC<StationsSelectorContainerProps> = (
-  props
+  props,
 ) => {
   const { stations } = useFirebase();
   const {
@@ -23,10 +23,10 @@ const StationsSelectorContainer: React.FC<StationsSelectorContainerProps> = (
   } = useNavigation();
 
   const [originInputValue, setOriginInputValue] = useState<string>(
-    origin?.name || ''
+    origin?.name || '',
   );
   const [destinationInputValue, setDestinationInputValue] = useState<string>(
-    destination?.name || ''
+    destination?.name || '',
   );
   const [showOriginValidationError, setShowOriginValidationError] =
     useState<boolean>(false);
@@ -40,22 +40,22 @@ const StationsSelectorContainer: React.FC<StationsSelectorContainerProps> = (
 
   const shouldShowValidationError = (
     searchTerm: string,
-    filterOutValue: string | undefined = ''
+    filterOutValue: string | undefined = '',
   ): boolean =>
     !stations
       .filter((station) => station.name !== filterOutValue)
       .some((station) =>
-        station.name.toLowerCase().includes(searchTerm.toLowerCase())
+        station.name.toLowerCase().includes(searchTerm.toLowerCase()),
       );
 
   const handleOriginChange = (newOrigin: string) => {
     setOriginInputValue(newOrigin);
     setShowOriginValidationError(
-      shouldShowValidationError(newOrigin, destination?.name)
+      shouldShowValidationError(newOrigin, destination?.name),
     );
 
     const newOriginStation = stations.find(
-      (station) => station.name === newOrigin
+      (station) => station.name === newOrigin,
     );
     if (newOriginStation) {
       setOriginStation(newOriginStation);
@@ -67,11 +67,11 @@ const StationsSelectorContainer: React.FC<StationsSelectorContainerProps> = (
   const handleDestinationChange = (newDestination: string) => {
     setDestinationInputValue(newDestination);
     setShowDestinationValidationError(
-      shouldShowValidationError(newDestination, origin?.name)
+      shouldShowValidationError(newDestination, origin?.name),
     );
 
     const newDestinationStation = stations.find(
-      (station) => station.name === newDestination
+      (station) => station.name === newDestination,
     );
     if (newDestinationStation) {
       setDestinationStation(newDestinationStation);

@@ -114,7 +114,7 @@ const Map: React.FC<MapProps> = (props) => {
                 />
               </div>
             );
-          })
+          }),
         )}
         {props.route.subRoutes.map((subRoute) =>
           subRoute.stationsPath.map((station, index) => {
@@ -141,7 +141,7 @@ const Map: React.FC<MapProps> = (props) => {
                 />
               </div>
             );
-          })
+          }),
         )}
       </>
     );
@@ -163,7 +163,7 @@ const Map: React.FC<MapProps> = (props) => {
                 isLinesMap
               />
             </div>
-          ))
+          )),
         )}
         {props.lines.map((line) =>
           line.stationsPath.map((station, index) => {
@@ -185,7 +185,7 @@ const Map: React.FC<MapProps> = (props) => {
                 />
               </div>
             );
-          })
+          }),
         )}
       </>
     );

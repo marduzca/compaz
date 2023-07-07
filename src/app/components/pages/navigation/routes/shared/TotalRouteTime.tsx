@@ -7,7 +7,7 @@ interface TotalRouteTimeProps {
 
 const TotalRouteTime: React.FC<TotalRouteTimeProps> = (props) => {
   const convertMinutesToHoursMinutes = (
-    givenMinutes: number
+    givenMinutes: number,
   ): React.ReactNode => {
     const resultHours = Math.floor(givenMinutes / 60);
     const resultMinutes = givenMinutes % 60;

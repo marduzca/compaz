@@ -6,13 +6,13 @@ import InstructionsContainer, { Browser } from './InstructionsContainer';
 describe('InstructionsContainer', () => {
   const selectOptionFromDropdown = async (
     selectLabel: string,
-    option: string
+    option: string,
   ) => {
     await act(async () => {
       await userEvent.click(
         screen.getByRole('combobox', {
           name: selectLabel,
-        })
+        }),
       );
     });
     await act(async () => {
@@ -22,7 +22,7 @@ describe('InstructionsContainer', () => {
         }),
         screen.getByRole('option', {
           name: option,
-        })
+        }),
       );
     });
   };
@@ -34,13 +34,13 @@ describe('InstructionsContainer', () => {
       await userEvent.click(
         screen.getByRole('combobox', {
           name: 'Browser',
-        })
+        }),
       );
     });
     const browserOptionsForLaptop = within(
       screen.getByRole('listbox', {
         name: 'Browser',
-      })
+      }),
     ).getAllByRole('option');
 
     expect(browserOptionsForLaptop).toHaveLength(1);
@@ -52,22 +52,22 @@ describe('InstructionsContainer', () => {
       await userEvent.click(
         screen.getByRole('combobox', {
           name: 'Browser',
-        })
+        }),
       );
     });
     const browserOptionsForMobile = within(
       screen.getByRole('listbox', {
         name: 'Browser',
-      })
+      }),
     ).getAllByRole('option');
 
     expect(browserOptionsForMobile).toHaveLength(3);
     expect(browserOptionsForMobile[0]).toHaveTextContent(Browser.GOOGLE_CHROME);
     expect(browserOptionsForMobile[1]).toHaveTextContent(
-      Browser.MOZILLA_FIREFOX
+      Browser.MOZILLA_FIREFOX,
     );
     expect(browserOptionsForMobile[2]).toHaveTextContent(
-      Browser.SAMSUNG_INTERNET
+      Browser.SAMSUNG_INTERNET,
     );
   });
 
@@ -75,81 +75,81 @@ describe('InstructionsContainer', () => {
     render(<InstructionsContainer />);
 
     expect((screen.getByRole('img') as HTMLImageElement).src).toMatch(
-      /install_laptop_chrome/
+      /install_laptop_chrome/,
     );
     expect(
       screen.getByText(
-        'Go to compaz.app and click the Install icon on the address bar.'
-      )
+        'Go to compaz.app and click the Install icon on the address bar.',
+      ),
     ).toBeVisible();
     expect(
       screen.getByText(
-        "In the newly opened window, confirm by clicking 'Install'."
-      )
+        "In the newly opened window, confirm by clicking 'Install'.",
+      ),
     ).toBeVisible();
 
     await selectOptionFromDropdown('Device', 'Android / Tablet');
 
     expect((screen.getByRole('img') as HTMLImageElement).src).toMatch(
-      /install_android_chrome/
+      /install_android_chrome/,
     );
     expect(
       screen.getByText(
-        'Go to compaz.app and open the browser menu by clicking on the three dots at the top right of the screen.'
-      )
+        'Go to compaz.app and open the browser menu by clicking on the three dots at the top right of the screen.',
+      ),
     ).toBeVisible();
     expect(
       screen.getByText(
-        "In the newly opened menu, click 'Install compaz' or ‘Install’."
-      )
+        "In the newly opened menu, click 'Install compaz' or ‘Install’.",
+      ),
     ).toBeVisible();
 
     await selectOptionFromDropdown('Browser', Browser.MOZILLA_FIREFOX);
 
     expect((screen.getByRole('img') as HTMLImageElement).src).toMatch(
-      /install_android_firefox/
+      /install_android_firefox/,
     );
     expect(
       screen.getByText(
-        'Go to compaz.app and open the browser menu by clicking on the three dots at the bottom right of the screen.'
-      )
+        'Go to compaz.app and open the browser menu by clicking on the three dots at the bottom right of the screen.',
+      ),
     ).toBeVisible();
     expect(
       screen.getByText(
-        "In the newly opened menu, click 'Install compaz' or ‘Install’."
-      )
+        "In the newly opened menu, click 'Install compaz' or ‘Install’.",
+      ),
     ).toBeVisible();
 
     await selectOptionFromDropdown('Browser', Browser.SAMSUNG_INTERNET);
 
     expect((screen.getByRole('img') as HTMLImageElement).src).toMatch(
-      /install_android_samsung/
+      /install_android_samsung/,
     );
     expect(
       screen.getByText(
-        'Go to compaz.app and open the browser menu by clicking on the three lines at the bottom right of the screen.'
-      )
+        'Go to compaz.app and open the browser menu by clicking on the three lines at the bottom right of the screen.',
+      ),
     ).toBeVisible();
     expect(
       screen.getByText(
-        'In the newly opened menu, click on ‘Add page to’, select ‘Home Screen’ and confirm.'
-      )
+        'In the newly opened menu, click on ‘Add page to’, select ‘Home Screen’ and confirm.',
+      ),
     ).toBeVisible();
 
     await selectOptionFromDropdown('Device', 'iPhone / iPad');
 
     expect((screen.getByRole('img') as HTMLImageElement).src).toMatch(
-      /install_iphone_safari/
+      /install_iphone_safari/,
     );
     expect(
       screen.getByText(
-        'Go to compaz.app and open the browser menu by clicking on the Share icon (box with an arrow) next to the address bar.'
-      )
+        'Go to compaz.app and open the browser menu by clicking on the Share icon (box with an arrow) next to the address bar.',
+      ),
     ).toBeVisible();
     expect(
       screen.getByText(
-        'In the newly opened menu, click on ‘Add to Home Screen’ and confirm.'
-      )
+        'In the newly opened menu, click on ‘Add to Home Screen’ and confirm.',
+      ),
     ).toBeVisible();
   });
 
@@ -161,7 +161,7 @@ describe('InstructionsContainer', () => {
     await selectOptionFromDropdown('Browser', Browser.MOZILLA_FIREFOX);
 
     expect((screen.getByRole('img') as HTMLImageElement).src).toMatch(
-      /install_android_firefox/
+      /install_android_firefox/,
     );
 
     await selectOptionFromDropdown('Device', 'iPhone / iPad');
@@ -170,11 +170,11 @@ describe('InstructionsContainer', () => {
       within(
         screen.getByRole('combobox', {
           name: 'Browser',
-        }) as HTMLSelectElement
-      ).getByText(Browser.SAFARI)
+        }) as HTMLSelectElement,
+      ).getByText(Browser.SAFARI),
     ).toBeVisible();
     expect((screen.getByRole('img') as HTMLImageElement).src).toMatch(
-      /install_iphone_safari/
+      /install_iphone_safari/,
     );
   });
 });

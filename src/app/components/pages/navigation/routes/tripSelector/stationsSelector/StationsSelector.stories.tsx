@@ -35,7 +35,7 @@ export const NormalState = () =>
       onClearDestinationButtonClick={
         actions('onClearDestinationButtonClick').onClearDestinationButtonClick
       }
-    />
+    />,
   );
 
 export const WithInputTextNormalState = () =>
@@ -55,7 +55,7 @@ export const WithInputTextNormalState = () =>
       onClearDestinationButtonClick={
         actions('onClearDestinationButtonClick').onClearDestinationButtonClick
       }
-    />
+    />,
   );
 
 export const WithValidationErrorNormalState = () =>
@@ -75,5 +75,5 @@ export const WithValidationErrorNormalState = () =>
       onClearDestinationButtonClick={
         actions('onClearDestinationButtonClick').onClearDestinationButtonClick
       }
-    />
+    />,
   );

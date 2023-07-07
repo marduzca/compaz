@@ -137,7 +137,7 @@ describe('NavigationPage', () => {
   });
 
   const renderNavigationWithRouter = (
-    initialLocation: string = NavigationLink.NAVIGATION
+    initialLocation: string = NavigationLink.NAVIGATION,
   ) => {
     render(
       <MemoryRouter
@@ -156,10 +156,10 @@ describe('NavigationPage', () => {
                 }
                 key={path}
               />
-            )
+            ),
           )}
         </Routes>
-      </MemoryRouter>
+      </MemoryRouter>,
     );
   };
 
@@ -175,7 +175,7 @@ describe('NavigationPage', () => {
     expect(
       screen.getByRole('img', {
         name: 'Loading...',
-      })
+      }),
     ).toBeVisible();
   });
 
@@ -191,7 +191,7 @@ describe('NavigationPage', () => {
     expect(
       screen.getByRole('img', {
         name: 'Loading...',
-      })
+      }),
     ).toBeVisible();
   });
 
@@ -207,15 +207,15 @@ describe('NavigationPage', () => {
       setDestinationStation: vi.fn(),
       generateStationsMap: vi.fn(),
       calculateRoute: () =>
-        ({ subRoutes: [], totalTime: 0, price: 0 } as Route), // Route is not set
+        ({ subRoutes: [], totalTime: 0, price: 0 }) as Route, // Route is not set
     });
 
     renderNavigationWithRouter(
-      `${NavigationLink.NAVIGATION}${NavigationLink.ROUTES_OVERVIEW}`
+      `${NavigationLink.NAVIGATION}${NavigationLink.ROUTES_OVERVIEW}`,
     );
 
     expect(
-      screen.getByRole('heading', { name: 'Navigation > Trip selector' })
+      screen.getByRole('heading', { name: 'Navigation > Trip selector' }),
     ).toBeVisible();
   });
 
@@ -226,14 +226,14 @@ describe('NavigationPage', () => {
       await userEvent.click(
         screen.getByRole('button', {
           name: 'Search',
-        })
+        }),
       );
     });
 
     expect(
       screen.getByRole('heading', {
         name: `${originStation.name} - ${destinationStation.name}`,
-      })
+      }),
     ).toBeVisible();
   });
 
@@ -244,7 +244,7 @@ describe('NavigationPage', () => {
       await userEvent.click(
         screen.getByRole('button', {
           name: 'Search',
-        })
+        }),
       );
     });
 
@@ -252,14 +252,14 @@ describe('NavigationPage', () => {
       await userEvent.click(
         screen.getByRole('button', {
           name: 'Go back to Trip Selector page. Currently in Routes Overview page',
-        })
+        }),
       );
     });
 
     expect(
       screen.getByRole('button', {
         name: 'Search',
-      })
+      }),
     ).toBeVisible();
   });
 
@@ -270,7 +270,7 @@ describe('NavigationPage', () => {
       await userEvent.click(
         screen.getByRole('button', {
           name: 'Search',
-        })
+        }),
       );
     });
 
@@ -278,28 +278,28 @@ describe('NavigationPage', () => {
       await userEvent.click(
         screen.getByRole('button', {
           name: 'Route with times 17:30 - 17:41',
-        })
+        }),
       );
     });
 
     const withinPurpleLine = within(
-      screen.getByRole('listitem', { name: 'Purple line' })
+      screen.getByRole('listitem', { name: 'Purple line' }),
     );
 
     const withinBlueLine = within(
-      screen.getByRole('listitem', { name: 'Blue line' })
+      screen.getByRole('listitem', { name: 'Blue line' }),
     );
 
     expect(
       withinPurpleLine.getByRole('img', {
         name: 'Purple line',
-      })
+      }),
     ).toBeVisible();
     expect(withinPurpleLine.getByText('Origin Station')).toBeVisible();
     expect(withinPurpleLine.getByText('Intermediate Station')).toBeVisible();
 
     expect(
-      withinBlueLine.getByRole('img', { name: 'Blue line' })
+      withinBlueLine.getByRole('img', { name: 'Blue line' }),
     ).toBeVisible();
     expect(withinBlueLine.getByText('Intermediate Station')).toBeVisible();
     expect(withinBlueLine.getByText('Destination Station')).toBeVisible();
@@ -312,7 +312,7 @@ describe('NavigationPage', () => {
       await userEvent.click(
         screen.getByRole('button', {
           name: 'Search',
-        })
+        }),
       );
     });
 
@@ -320,7 +320,7 @@ describe('NavigationPage', () => {
       await userEvent.click(
         screen.getByRole('button', {
           name: 'Route with times 17:30 - 17:41',
-        })
+        }),
       );
     });
 
@@ -328,14 +328,14 @@ describe('NavigationPage', () => {
       await userEvent.click(
         screen.getByRole('button', {
           name: 'Go back to Routes Overview page. Currently in Route Details page',
-        })
+        }),
       );
     });
 
     expect(
       screen.getByRole('heading', {
         name: `${originStation.name} - ${destinationStation.name}`,
-      })
+      }),
     ).toBeVisible();
   });
 });

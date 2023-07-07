@@ -7,7 +7,7 @@ const withinLineSubRoute = (lineColor: string, scopedFunction: () => void) => {
 const shouldShowSubRouteWithInfo = (
   lineColor: string,
   firstStation: string,
-  lastStation: string
+  lastStation: string,
 ) => {
   withinLineSubRoute(lineColor, () => {
     cy.get(`img[alt="${lineColor} line"]`).should('be.visible');

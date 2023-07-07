@@ -17,7 +17,7 @@ const HowToInstallPage: React.FC<HowToInstallProps> = (props) => {
 
   useEffect(() => {
     document.title = `${PAGE_TITLE_PREFIX} ${t(
-      'HowToInstall.HOW_TO_INSTALL_TITLE'
+      'HowToInstall.HOW_TO_INSTALL_TITLE',
     )}`;
     // eslint-disable-next-line
   }, [i18n.language]);

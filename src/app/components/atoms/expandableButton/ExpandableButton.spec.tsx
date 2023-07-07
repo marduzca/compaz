@@ -11,7 +11,7 @@ describe('ExpandableButton', () => {
         onClick={() => {}}
         icon={<span>icon</span>}
         accessibleName="Menu button"
-      />
+      />,
     );
 
     const expandableButton = screen.getByRole('button', {
@@ -41,7 +41,7 @@ describe('ExpandableButton', () => {
         onClick={onClickMock}
         icon={<span>icon</span>}
         accessibleName="Menu button"
-      />
+      />,
     );
 
     const expandableButton = screen.getByRole('button');

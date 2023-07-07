@@ -11,7 +11,7 @@ const useMapFitBounds = (googleMap?: google.maps.Map) => {
           } else {
             googleMap.panBy(
               window.innerWidth * -0.1,
-              window.innerHeight * -0.03
+              window.innerHeight * -0.03,
             );
           }
         }
@@ -34,7 +34,7 @@ const useMapFitBounds = (googleMap?: google.maps.Map) => {
   return {
     fitScreenToBounds: (
       markerLocations: GeoLocation[],
-      currentMapMode: MapMode
+      currentMapMode: MapMode,
     ) => {
       if (googleMap) {
         const markerBounds = new window.google.maps.LatLngBounds();

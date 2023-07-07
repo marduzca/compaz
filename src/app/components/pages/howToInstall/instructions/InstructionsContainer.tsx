@@ -33,10 +33,10 @@ const InstructionsContainer: React.FC = () => {
   const isMobile = useMediaQuery();
 
   const [selectedDevice, setSelectedDevice] = useState<Device>(
-    isMobile ? Device.ANDROID_AND_TABLET : Device.LAPTOP
+    isMobile ? Device.ANDROID_AND_TABLET : Device.LAPTOP,
   );
   const [selectedBrowser, setSelectedBrowser] = useState<Browser>(
-    Browser.GOOGLE_CHROME
+    Browser.GOOGLE_CHROME,
   );
 
   const handleDeviceSelection = (newDevice: string) => {
@@ -45,11 +45,11 @@ const InstructionsContainer: React.FC = () => {
 
     if (
       !availableBrowsersForDevice[Device[typedDeviceString]].includes(
-        selectedBrowser
+        selectedBrowser,
       )
     ) {
       setSelectedBrowser(
-        availableBrowsersForDevice[Device[typedDeviceString]][0]
+        availableBrowsersForDevice[Device[typedDeviceString]][0],
       );
     }
   };

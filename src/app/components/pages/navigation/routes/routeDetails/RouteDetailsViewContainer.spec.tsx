@@ -78,11 +78,11 @@ describe('RouteDetailsViewContainer', () => {
         route={testRoute}
         departureTime={new Date('1993-03-15 09:30')}
         onBackButtonClick={() => {}}
-      />
+      />,
     );
 
     const withinPurpleLine = within(
-      screen.getByRole('listitem', { name: 'Purple line' })
+      screen.getByRole('listitem', { name: 'Purple line' }),
     );
 
     expect(withinPurpleLine.queryByText('A.5 Station')).not.toBeInTheDocument();
@@ -91,7 +91,7 @@ describe('RouteDetailsViewContainer', () => {
       await userEvent.click(
         withinPurpleLine.getByRole('button', {
           name: 'Show intermediate stations',
-        })
+        }),
       );
     });
 
@@ -101,7 +101,7 @@ describe('RouteDetailsViewContainer', () => {
       await userEvent.click(
         withinPurpleLine.getByRole('button', {
           name: 'Hide intermediate stations',
-        })
+        }),
       );
     });
 
@@ -114,15 +114,15 @@ describe('RouteDetailsViewContainer', () => {
         route={testRoute}
         departureTime={new Date('1993-03-15 09:30')}
         onBackButtonClick={() => {}}
-      />
+      />,
     );
 
     const withinPurpleLine = within(
-      screen.getByRole('listitem', { name: 'Purple line' })
+      screen.getByRole('listitem', { name: 'Purple line' }),
     );
 
     const withinBlueLine = within(
-      screen.getByRole('listitem', { name: 'Blue line' })
+      screen.getByRole('listitem', { name: 'Blue line' }),
     );
 
     expect(withinPurpleLine.getByText('09:30')).toBeVisible();
@@ -138,30 +138,30 @@ describe('RouteDetailsViewContainer', () => {
         route={testRoute}
         departureTime={new Date('1993-03-15 09:30')}
         onBackButtonClick={() => {}}
-      />
+      />,
     );
 
     const withinPurpleLine = within(
-      screen.getByRole('listitem', { name: 'Purple line' })
+      screen.getByRole('listitem', { name: 'Purple line' }),
     );
 
     const withinBlueLine = within(
-      screen.getByRole('listitem', { name: 'Blue line' })
+      screen.getByRole('listitem', { name: 'Blue line' }),
     );
 
     expect(
       withinPurpleLine.getByRole('img', {
         name: 'Purple line',
-      })
+      }),
     ).toBeVisible();
     expect(withinPurpleLine.getByText('Origin Station')).toBeVisible();
     expect(
-      withinPurpleLine.getByText('Direction: End Station Purple Line')
+      withinPurpleLine.getByText('Direction: End Station Purple Line'),
     ).toBeVisible();
     expect(withinPurpleLine.getByText('Intermediate Station')).toBeVisible();
 
     expect(
-      withinBlueLine.getByRole('img', { name: 'Blue line' })
+      withinBlueLine.getByRole('img', { name: 'Blue line' }),
     ).toBeVisible();
     expect(withinBlueLine.getByText('Intermediate Station')).toBeVisible();
     expect(withinBlueLine.getByText('Destination Station')).toBeVisible();
@@ -173,7 +173,7 @@ describe('RouteDetailsViewContainer', () => {
         route={testRoute}
         departureTime={new Date('1993-03-15 09:30')}
         onBackButtonClick={() => {}}
-      />
+      />,
     );
 
     const withinTransferBlock = within(screen.getByTitle('Transfer'));
@@ -181,10 +181,10 @@ describe('RouteDetailsViewContainer', () => {
     expect(
       withinTransferBlock.getByRole('img', {
         name: 'Transfer',
-      })
+      }),
     ).toBeVisible();
     expect(
-      withinTransferBlock.getByText('Transfer line (3 min)')
+      withinTransferBlock.getByText('Transfer line (3 min)'),
     ).toBeVisible();
   });
 });

@@ -9,7 +9,7 @@ describe('NotificationContainer', () => {
     render(<NotificationContainer />);
 
     expect(
-      screen.queryByText('this is an info notification')
+      screen.queryByText('this is an info notification'),
     ).not.toBeInTheDocument();
 
     const infoNotificationEvent = new CustomEvent(EventType.NOTIFICATION, {
@@ -24,7 +24,7 @@ describe('NotificationContainer', () => {
     });
 
     expect(
-      screen.getByRole('alert', { name: 'Information notification' })
+      screen.getByRole('alert', { name: 'Information notification' }),
     ).toBeVisible();
     expect(screen.getByText('this is an info notification')).toBeVisible();
   });
@@ -33,7 +33,7 @@ describe('NotificationContainer', () => {
     render(<NotificationContainer />);
 
     expect(
-      screen.queryByText('this is a success notification')
+      screen.queryByText('this is a success notification'),
     ).not.toBeInTheDocument();
 
     const infoNotificationEvent = new CustomEvent(EventType.NOTIFICATION, {
@@ -48,7 +48,7 @@ describe('NotificationContainer', () => {
     });
 
     expect(
-      screen.getByRole('alert', { name: 'Success notification' })
+      screen.getByRole('alert', { name: 'Success notification' }),
     ).toBeVisible();
     expect(screen.getByText('this is a success notification')).toBeVisible();
   });
@@ -57,7 +57,7 @@ describe('NotificationContainer', () => {
     render(<NotificationContainer />);
 
     expect(
-      screen.queryByText('this is an error notification')
+      screen.queryByText('this is an error notification'),
     ).not.toBeInTheDocument();
 
     const infoNotificationEvent = new CustomEvent(EventType.NOTIFICATION, {
@@ -72,7 +72,7 @@ describe('NotificationContainer', () => {
     });
 
     expect(
-      screen.getByRole('alert', { name: 'Error notification' })
+      screen.getByRole('alert', { name: 'Error notification' }),
     ).toBeVisible();
     expect(screen.getByText('this is an error notification')).toBeVisible();
   });
@@ -88,7 +88,7 @@ describe('NotificationContainer', () => {
           type: NotificationType.INFO,
           content: RELOAD_EVENT,
         } as UpdateAvailabilityEvent,
-      }
+      },
     );
 
     act(() => {
@@ -96,16 +96,16 @@ describe('NotificationContainer', () => {
     });
 
     const withinNotification = within(
-      screen.getByRole('alert', { name: 'Information notification' })
+      screen.getByRole('alert', { name: 'Information notification' }),
     );
 
     expect(
       withinNotification.getByRole('link', {
         name: 'Click here to refresh the page and download the newest updates',
-      })
+      }),
     ).toBeVisible();
     expect(
-      withinNotification.getByText(/There are new updates to the app./)
+      withinNotification.getByText(/There are new updates to the app./),
     ).toBeVisible();
   });
 });

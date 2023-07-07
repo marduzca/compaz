@@ -125,7 +125,7 @@ describe('RoutesOverviewContainer', () => {
       setDestinationStation: vi.fn(),
       generateStationsMap: vi.fn(),
       calculateRoute: () =>
-        ({ subRoutes: [], totalTime: 0, price: 0 } as Route),
+        ({ subRoutes: [], totalTime: 0, price: 0 }) as Route,
     });
   });
 
@@ -139,13 +139,13 @@ describe('RoutesOverviewContainer', () => {
         route={simpleRoute}
         onRouteSelection={() => {}}
         onBackButtonClick={() => {}}
-      />
+      />,
     );
 
     expect(
       screen.getByRole('heading', {
         name: 'Origin station - Destination station',
-      })
+      }),
     ).toBeVisible();
   });
 
@@ -155,33 +155,33 @@ describe('RoutesOverviewContainer', () => {
         route={simpleRoute}
         onRouteSelection={() => {}}
         onBackButtonClick={() => {}}
-      />
+      />,
     );
 
     const withinFirstRouteSection = within(
       screen.getByRole('button', {
         name: 'Route with times 17:30 - 17:39',
-      })
+      }),
     );
 
     expect(
       withinFirstRouteSection.getByRole('img', {
         name: 'Green line',
-      })
+      }),
     ).toBeVisible();
     expect(withinFirstRouteSection.getByText('3')).toBeVisible();
 
     expect(
       withinFirstRouteSection.getByRole('img', {
         name: 'Transfer',
-      })
+      }),
     ).toBeVisible();
     expect(withinFirstRouteSection.getByText('2')).toBeVisible();
 
     expect(
       withinFirstRouteSection.getByRole('img', {
         name: 'Red line',
-      })
+      }),
     ).toBeVisible();
     expect(withinFirstRouteSection.getByText('4')).toBeVisible();
   });
@@ -192,14 +192,14 @@ describe('RoutesOverviewContainer', () => {
         route={simpleRoute}
         onRouteSelection={() => {}}
         onBackButtonClick={() => {}}
-      />
+      />,
     );
 
     await act(async () => {
       await userEvent.click(
         screen.getByRole('button', {
           name: 'Earlier',
-        })
+        }),
       );
     });
 
@@ -212,14 +212,14 @@ describe('RoutesOverviewContainer', () => {
         route={simpleRoute}
         onRouteSelection={() => {}}
         onBackButtonClick={() => {}}
-      />
+      />,
     );
 
     await act(async () => {
       await userEvent.click(
         screen.getByRole('button', {
           name: 'Later',
-        })
+        }),
       );
     });
 
@@ -233,13 +233,13 @@ describe('RoutesOverviewContainer', () => {
           route={simpleRoute}
           onRouteSelection={() => {}}
           onBackButtonClick={() => {}}
-        />
+        />,
       );
 
       const withinFirstRouteSection = within(
         screen.getByRole('button', {
           name: 'Route with times 17:30 - 17:39',
-        })
+        }),
       );
 
       expect(screen.getByText('Friday 24 September')).toBeVisible();
@@ -311,13 +311,13 @@ describe('RoutesOverviewContainer', () => {
           route={routeWithTotalTimeAboveOneHour}
           onRouteSelection={() => {}}
           onBackButtonClick={() => {}}
-        />
+        />,
       );
 
       const withinFirstRouteSection = within(
         screen.getByRole('button', {
           name: 'Route with times 17:30 - 18:45',
-        })
+        }),
       );
 
       expect(screen.getByText('Friday 24 September')).toBeVisible();
@@ -403,19 +403,19 @@ describe('RoutesOverviewContainer', () => {
           route={routeWithTotalTimeOfExactlyAnHour}
           onRouteSelection={() => {}}
           onBackButtonClick={() => {}}
-        />
+        />,
       );
 
       const withinFirstRouteSection = within(
         screen.getByRole('button', {
           name: 'Route with times 17:30 - 18:30',
-        })
+        }),
       );
 
       expect(screen.getByText('Friday 24 September')).toBeVisible();
       expect(withinFirstRouteSection.getByText('1 h')).toBeVisible();
       expect(
-        withinFirstRouteSection.queryByText(/min/)
+        withinFirstRouteSection.queryByText(/min/),
       ).not.toBeInTheDocument();
       expect(withinFirstRouteSection.getByText('17:30 - 18:30')).toBeVisible();
     });

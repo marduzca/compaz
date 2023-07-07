@@ -39,7 +39,7 @@ const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => {
           {
             selectedDate: props.departureDate,
             selectedTime: props.departureTime,
-          }
+          },
         )}
         className={styles.dateAndTimePickerButton}
         onClick={props.onDateAndTimeButtonClick}
@@ -54,13 +54,13 @@ const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => {
                   props.departureDate
                     ? new Date(`${props.departureDate}T12:00:00.000Z`)
                     : new Date(),
-                  true
+                  true,
                 )
               : parseToSpanishDateString(
                   props.departureDate
                     ? new Date(`${props.departureDate}T12:00:00.000Z`)
                     : new Date(),
-                  true
+                  true,
                 )}
           </span>
         </div>

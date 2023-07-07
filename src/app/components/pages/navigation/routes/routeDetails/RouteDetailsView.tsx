@@ -33,7 +33,7 @@ const DetailsContentBox: React.FC<DetailsContentBoxProps> = (props) => {
             subRoute={subRoute}
             startTime={addMinutesToDate(props.departureTime, passedTime)}
             showIntermediateStations={props.linesWithOpenIntermediateStations.includes(
-              subRoute.line
+              subRoute.line,
             )}
             onIntermediateStationsButtonClick={
               props.onIntermediateStationsButtonClick
@@ -77,7 +77,7 @@ const DetailsContentBox: React.FC<DetailsContentBoxProps> = (props) => {
                 })}
               </span>
             </div>
-          </li>
+          </li>,
         );
       }
     }

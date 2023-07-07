@@ -30,7 +30,7 @@ interface FirebaseContextInterface {
   storeMessage: (
     name: string,
     email: string,
-    message: string
+    message: string,
   ) => Promise<boolean>;
 }
 
@@ -63,17 +63,17 @@ const firebaseDevConfig: FirebaseOptions = {
 const firebaseApp = initializeApp(
   window.location.hostname.match(/compaz.app/)
     ? firebaseProdConfig
-    : firebaseDevConfig
+    : firebaseDevConfig,
 );
 
 const firestore = getFirestore(firebaseApp);
 
 const dataVersionRef = doc(firestore, 'metadata', 'data').withConverter(
-  versionConverter
+  versionConverter,
 );
 const stationsRef = query(
   collection(firestore, 'stations').withConverter(stationConverter),
-  orderBy('name')
+  orderBy('name'),
 );
 const linesRef = collection(firestore, 'lines').withConverter(lineConverter);
 
@@ -99,10 +99,10 @@ export const FirebaseProvider: React.FC<FirebaseProviderProps> = (props) => {
 
   const [currentDataVersion] = useDocumentDataOnce<Version>(dataVersionRef);
   const [currentStations] = useCollectionDataOnce<Station>(
-    dataNeedsUpdate ? stationsRef : undefined
+    dataNeedsUpdate ? stationsRef : undefined,
   );
   const [currentLines] = useCollectionDataOnce<Line>(
-    dataNeedsUpdate ? linesRef : undefined
+    dataNeedsUpdate ? linesRef : undefined,
   );
 
   useEffect(() => {
@@ -110,10 +110,10 @@ export const FirebaseProvider: React.FC<FirebaseProviderProps> = (props) => {
 
     if (storedDataVersion) {
       const storedStations = JSON.parse(
-        localStorage.getItem(STATIONS_KEY) as string
+        localStorage.getItem(STATIONS_KEY) as string,
       ) as Station[];
       const storedLines = JSON.parse(
-        localStorage.getItem(LINES_KEY) as string
+        localStorage.getItem(LINES_KEY) as string,
       ) as Line[];
 
       setStations(storedStations);
@@ -140,7 +140,7 @@ export const FirebaseProvider: React.FC<FirebaseProviderProps> = (props) => {
 
           localStorage.setItem(
             DATA_VERSION_KEY,
-            currentDataVersion.version.toString()
+            currentDataVersion.version.toString(),
           );
         }
       }
@@ -150,7 +150,7 @@ export const FirebaseProvider: React.FC<FirebaseProviderProps> = (props) => {
   const storeMessage = async (
     name: string,
     email: string,
-    message: string
+    message: string,
   ): Promise<boolean> => {
     try {
       await setDoc(doc(firestore, 'message', `${Date.now()}_${email}`), {
@@ -168,7 +168,7 @@ export const FirebaseProvider: React.FC<FirebaseProviderProps> = (props) => {
             type: NotificationType.ERROR,
             content: GENERAL_ERROR_NOTIFICATION_KEY,
           } as NotificationEvent,
-        })
+        }),
       );
 
       return false;

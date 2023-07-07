@@ -51,14 +51,14 @@ describe('ComboBox', () => {
   describe('visible functionality', () => {
     it('initially closed and shows placeholder', () => {
       expect(
-        screen.queryByRole('option', { name: 'opt 1' })
+        screen.queryByRole('option', { name: 'opt 1' }),
       ).not.toBeInTheDocument();
       expect(screen.getByText('placeholder')).toBeVisible();
     });
 
     it('shows options when focused', async () => {
       expect(
-        screen.queryByRole('option', { name: 'opt 1' })
+        screen.queryByRole('option', { name: 'opt 1' }),
       ).not.toBeInTheDocument();
       expect(screen.getByText('placeholder')).toBeVisible();
 
@@ -71,7 +71,7 @@ describe('ComboBox', () => {
 
     it('shows options when toggle button clicked', async () => {
       expect(
-        screen.queryByRole('option', { name: 'opt 1' })
+        screen.queryByRole('option', { name: 'opt 1' }),
       ).not.toBeInTheDocument();
       expect(screen.getByText('placeholder')).toBeVisible();
 
@@ -84,7 +84,7 @@ describe('ComboBox', () => {
 
     it('closes when clicking on toggle button again', async () => {
       expect(
-        screen.queryByRole('option', { name: 'opt 1' })
+        screen.queryByRole('option', { name: 'opt 1' }),
       ).not.toBeInTheDocument();
       expect(screen.getByText('placeholder')).toBeVisible();
 
@@ -97,13 +97,13 @@ describe('ComboBox', () => {
         await userEvent.click(screen.getByRole('button'));
       });
       expect(
-        screen.queryByRole('option', { name: 'opt 1' })
+        screen.queryByRole('option', { name: 'opt 1' }),
       ).not.toBeInTheDocument();
     });
 
     it('shows selected value and when clicked closes the options', async () => {
       expect(
-        screen.queryByRole('option', { name: 'opt 1' })
+        screen.queryByRole('option', { name: 'opt 1' }),
       ).not.toBeInTheDocument();
       expect(screen.getByText('placeholder')).toBeVisible();
 
@@ -117,11 +117,11 @@ describe('ComboBox', () => {
         await userEvent.click(screen.getByRole('option', { name: 'opt 1' }));
       });
       expect(
-        screen.queryByRole('option', { name: 'opt 2' })
+        screen.queryByRole('option', { name: 'opt 2' }),
       ).not.toBeInTheDocument();
 
       expect(
-        screen.getByRole('combobox', { name: 'placeholder' })
+        screen.getByRole('combobox', { name: 'placeholder' }),
       ).toHaveAttribute('value', 'opt 1');
       expect(screen.getByText('placeholder')).toBeVisible();
     });
@@ -130,7 +130,7 @@ describe('ComboBox', () => {
   describe('with input filtering', () => {
     it('only shows options that match the input value', async () => {
       expect(
-        screen.queryByRole('option', { name: 'opt 1' })
+        screen.queryByRole('option', { name: 'opt 1' }),
       ).not.toBeInTheDocument();
       expect(screen.getByText('placeholder')).toBeVisible();
 
@@ -143,10 +143,10 @@ describe('ComboBox', () => {
       });
 
       expect(
-        screen.queryByRole('option', { name: 'opt 1' })
+        screen.queryByRole('option', { name: 'opt 1' }),
       ).not.toBeInTheDocument();
       expect(
-        screen.queryByRole('option', { name: 'opt 12' })
+        screen.queryByRole('option', { name: 'opt 12' }),
       ).not.toBeInTheDocument();
       expect(screen.getByRole('option', { name: 'opt 2' })).toBeVisible();
       expect(screen.getByRole('option', { name: 'opt 20' })).toBeVisible();
@@ -156,11 +156,11 @@ describe('ComboBox', () => {
       });
 
       expect(
-        screen.queryByRole('option', { name: 'opt 2' })
+        screen.queryByRole('option', { name: 'opt 2' }),
       ).not.toBeInTheDocument();
 
       expect(
-        screen.getByRole('combobox', { name: 'placeholder' })
+        screen.getByRole('combobox', { name: 'placeholder' }),
       ).toHaveAttribute('value', 'opt 2');
     });
   });

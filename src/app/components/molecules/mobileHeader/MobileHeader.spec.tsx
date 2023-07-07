@@ -15,11 +15,11 @@ describe('MobileHeader', () => {
     render(
       <Router location={history.location} navigator={history}>
         <MobileHeader onMenuButtonClick={() => {}} />
-      </Router>
+      </Router>,
     );
 
     await userEvent.click(
-      screen.getByRole('link', { name: /Go to home page/ })
+      screen.getByRole('link', { name: /Go to home page/ }),
     );
 
     expect(history.location.pathname).toBe(NavigationLink.BASE);
@@ -33,13 +33,13 @@ describe('MobileHeader', () => {
     render(
       <Router location={history.location} navigator={history}>
         <MobileHeader onMenuButtonClick={() => {}} isNavigationPage />
-      </Router>
+      </Router>,
     );
 
     await userEvent.click(
       screen.getByRole('link', {
         name: /See map with the complete teleférico network/,
-      })
+      }),
     );
 
     expect(history.location.pathname).toBe(NavigationLink.MAP);

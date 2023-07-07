@@ -44,7 +44,7 @@ const NavigationPage: React.FC<NavigationProps> = (props) => {
   const location = useLocation();
 
   const [currentAppViewState, setCurrentAppViewState] = useState<AppViewState>(
-    AppViewState.TRIP_SELECTOR
+    AppViewState.TRIP_SELECTOR,
   );
   const [route, setRoute] = useState<Route>({
     subRoutes: [],

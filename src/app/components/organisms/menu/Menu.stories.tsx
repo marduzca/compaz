@@ -38,5 +38,5 @@ export const MobileState = () =>
       onHideMobileMenu={actions('onBackButtonClick').onBackButtonClick}
       showMenuOnMobile
       isMobile
-    />
+    />,
   );

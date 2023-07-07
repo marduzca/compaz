@@ -10,7 +10,7 @@ interface RouteDetailsViewContainerProps {
 }
 
 const RouteDetailsViewContainer: React.FC<RouteDetailsViewContainerProps> = (
-  props
+  props,
 ) => {
   const isMobile = useMediaQuery();
 
@@ -32,7 +32,7 @@ const RouteDetailsViewContainer: React.FC<RouteDetailsViewContainerProps> = (
     }
 
     setLinesWithOpenIntermediateStations(
-      updatedLinesWithOpenIntermediateStations
+      updatedLinesWithOpenIntermediateStations,
     );
   };
 

@@ -19,7 +19,7 @@ describe('Navigation', () => {
     RoutesOverview.shouldShowCorrectHeaderInfo(
       'Irpavi',
       'El Prado',
-      'Monday 15 March'
+      'Monday 15 March',
     );
 
     RoutesOverview.showEarlierRoute();
@@ -32,7 +32,7 @@ describe('Navigation', () => {
 
     // Route details
     const capitalizedGreenLine = `${LineColor.GREEN.charAt(
-      0
+      0,
     ).toUpperCase()}${LineColor.GREEN.slice(1)}`;
 
     RouteDetails.withinLineSubRoute(capitalizedGreenLine, () => {
@@ -43,7 +43,7 @@ describe('Navigation', () => {
     RouteDetails.shouldShowSubRouteWithInfo(
       capitalizedGreenLine,
       'Irpavi',
-      'Libertador'
+      'Libertador',
     );
 
     RouteDetails.shouldShowTransfer();
@@ -51,7 +51,7 @@ describe('Navigation', () => {
     RouteDetails.shouldShowSubRouteWithInfo(
       'Light blue',
       'Libertador',
-      'El Prado'
+      'El Prado',
     );
 
     cy.get('div[aria-label="Map"]').should('be.visible');

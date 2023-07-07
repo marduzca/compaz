@@ -25,19 +25,19 @@ const IntermediateStations: React.FC<IntermediateStationsProps> = (props) => {
           title={
             props.showIntermediateStations
               ? t(
-                  'Navigation.RouteDetails.INTERMEDIATE_STATIONS_CLOSE_BUTTON_TITLE'
+                  'Navigation.RouteDetails.INTERMEDIATE_STATIONS_CLOSE_BUTTON_TITLE',
                 )
               : t(
-                  'Navigation.RouteDetails.INTERMEDIATE_STATIONS_OPEN_BUTTON_TITLE'
+                  'Navigation.RouteDetails.INTERMEDIATE_STATIONS_OPEN_BUTTON_TITLE',
                 )
           }
           aria-label={
             props.showIntermediateStations
               ? t(
-                  'Navigation.RouteDetails.INTERMEDIATE_STATIONS_CLOSE_BUTTON_TITLE'
+                  'Navigation.RouteDetails.INTERMEDIATE_STATIONS_CLOSE_BUTTON_TITLE',
                 )
               : t(
-                  'Navigation.RouteDetails.INTERMEDIATE_STATIONS_OPEN_BUTTON_TITLE'
+                  'Navigation.RouteDetails.INTERMEDIATE_STATIONS_OPEN_BUTTON_TITLE',
                 )
           }
           className={styles.intermediateStationsButton}
@@ -140,7 +140,7 @@ const SubRouteDetails: React.FC<SubRouteDetailsProps> = (props) => {
       </span>
       <span className={styles.destinationTime}>
         {parseToSimpleTime(
-          addMinutesToDate(props.startTime, props.subRoute.totalTime)
+          addMinutesToDate(props.startTime, props.subRoute.totalTime),
         )}
       </span>
     </li>

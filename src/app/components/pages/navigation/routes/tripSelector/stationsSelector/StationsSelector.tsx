@@ -36,7 +36,7 @@ const StationsSelector: React.FC<StationsSelectorProps> = (props) => {
         options={props.stations
           .filter((station) => station.name !== props.destinationInputValue)
           .map(
-            (station) => ({ value: station.id, text: station.name } as Option)
+            (station) => ({ value: station.id, text: station.name }) as Option,
           )}
         inputValue={props.originInputValue}
         onChange={props.onOriginChange}
@@ -65,7 +65,7 @@ const StationsSelector: React.FC<StationsSelectorProps> = (props) => {
         options={props.stations
           .filter((station) => station.name !== props.originInputValue)
           .map(
-            (station) => ({ value: station.id, text: station.name } as Option)
+            (station) => ({ value: station.id, text: station.name }) as Option,
           )}
         inputValue={props.destinationInputValue}
         onChange={props.onDestinationChange}

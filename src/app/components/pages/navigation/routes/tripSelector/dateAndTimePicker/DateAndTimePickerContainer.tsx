@@ -51,21 +51,21 @@ const DateAndTimePickerContainer: React.FC = () => {
     if (departureTime) {
       setSelectedTimeOutsideOfFunctionalHours(
         isTimeOutsideOfFunctionalHours(
-          parseInt(departureTime.substring(0, 2), 10)
-        )
+          parseInt(departureTime.substring(0, 2), 10),
+        ),
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [departureTime]);
 
   const handleDatePickerChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     setCurrentlySelectedDate(event.target.value);
   };
 
   const handleTimePickerChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const newSelectedTime = event.target.value;
 
@@ -74,7 +74,7 @@ const DateAndTimePickerContainer: React.FC = () => {
     const hour = parseInt(newSelectedTime.substring(0, 2), 10);
 
     setSelectedTimeOutsideOfFunctionalHours(
-      isTimeOutsideOfFunctionalHours(hour)
+      isTimeOutsideOfFunctionalHours(hour),
     );
   };
 

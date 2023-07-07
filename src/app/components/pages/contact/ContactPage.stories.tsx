@@ -16,5 +16,5 @@ export const NormalAndMobileState: React.FC = () =>
   guaranteedSize(
     <ContactPage
       onMenuButtonClick={actions('onMenuButtonClick').onMenuButtonClick}
-    />
+    />,
   );

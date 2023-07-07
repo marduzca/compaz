@@ -36,7 +36,7 @@ export const NormalState = () =>
     <TripSelector
       onMenuButtonClick={actions('onMenuButtonClick').onMenuButtonClick}
       onSubmit={actions('onSubmit').onSubmit}
-    />
+    />,
   );
 
 export const MobileState = () => (

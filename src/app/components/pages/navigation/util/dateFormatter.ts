@@ -12,7 +12,7 @@ const capitalize = (textToCapitalize: string) =>
 
 export const parseToEnglishDateString = (
   date: Date,
-  shortFormat: boolean
+  shortFormat: boolean,
 ): string => {
   const todayIndicator = isToday(date) && !shortFormat ? 'Today, ' : '';
 
@@ -33,7 +33,7 @@ export const parseToEnglishDateString = (
 
 export const parseToSpanishDateString = (
   date: Date,
-  shortFormat: boolean
+  shortFormat: boolean,
 ): string => {
   const todayIndicator = isToday(date) && !shortFormat ? 'Hoy, ' : '';
 
@@ -50,7 +50,7 @@ export const parseToSpanishDateString = (
   }).format(date);
 
   return `${todayIndicator}${capitalize(weekday)} ${dayOfMonth} ${capitalize(
-    month
+    month,
   )}`;
 };
 

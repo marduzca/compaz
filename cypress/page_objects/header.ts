@@ -2,7 +2,7 @@ const changeLanguage = (currentLanguage: string) => {
   cy.get(
     `button[title="${
       currentLanguage === 'en' ? 'Change language' : 'Cambiar idioma'
-    }"]`
+    }"]`,
   ).click();
 };
 

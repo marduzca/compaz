@@ -7,15 +7,15 @@ describe('Contact', () => {
     render(<Introduction />);
 
     expect(
-      screen.getByRole('link', { name: 'LinkedIn account' })
+      screen.getByRole('link', { name: 'LinkedIn account' }),
     ).toHaveAttribute('href', 'https://www.linkedin.com/in/miguelarduz/');
 
     expect(
-      screen.getByRole('link', { name: 'Instagram account' })
+      screen.getByRole('link', { name: 'Instagram account' }),
     ).toHaveAttribute('href', 'https://www.instagram.com/compaz_app/');
 
     expect(
-      screen.getByRole('link', { name: 'Facebook account' })
+      screen.getByRole('link', { name: 'Facebook account' }),
     ).toHaveAttribute('href', 'https://www.facebook.com/compaz.application/');
   });
 });

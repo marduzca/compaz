@@ -34,7 +34,7 @@ const MapPage: React.FC<MapPageProps> = (props) => {
         const completeStationsPath: MapLineStation[] = line.stationsPath.map(
           (lineStation) => {
             const fullStation = stations.find(
-              (completeStation) => completeStation.id === lineStation
+              (completeStation) => completeStation.id === lineStation,
             );
 
             return {
@@ -42,12 +42,12 @@ const MapPage: React.FC<MapPageProps> = (props) => {
               name: fullStation?.name || '',
               geoLocation: fullStation?.geoLocation || ({} as GeoLocation),
             } as MapLineStation;
-          }
+          },
         );
 
         return { color: line.id, stationsPath: completeStationsPath };
       }),
-    [lines, stations]
+    [lines, stations],
   );
 
   return (

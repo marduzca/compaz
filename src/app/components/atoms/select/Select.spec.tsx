@@ -25,7 +25,7 @@ describe('Select', () => {
         selectedOption={books[0]}
         options={books}
         ariaLabel="Books combobox"
-      />
+      />,
     );
 
     expect(screen.queryAllByRole('option')).toHaveLength(0);
@@ -34,7 +34,7 @@ describe('Select', () => {
       await userEvent.click(
         screen.getByRole('combobox', {
           name: 'Books combobox',
-        })
+        }),
       );
     });
 
@@ -44,7 +44,7 @@ describe('Select', () => {
       await userEvent.click(
         screen.getByRole('combobox', {
           name: 'Books combobox',
-        })
+        }),
       );
     });
 
@@ -73,7 +73,7 @@ describe('Select', () => {
       await userEvent.click(
         screen.getByRole('combobox', {
           name: 'Books combobox',
-        })
+        }),
       );
     });
 
@@ -83,7 +83,7 @@ describe('Select', () => {
       await userEvent.click(
         screen.getByRole('option', {
           name: 'A Picture of Dorian Gray',
-        })
+        }),
       );
     });
 
@@ -99,14 +99,14 @@ describe('Select', () => {
         selectedOption={books[0]}
         options={books}
         ariaLabel="Books combobox"
-      />
+      />,
     );
 
     await act(async () => {
       await userEvent.click(
         screen.getByRole('combobox', {
           name: 'Books combobox',
-        })
+        }),
       );
     });
     await act(async () => {
@@ -116,7 +116,7 @@ describe('Select', () => {
         }),
         screen.getByRole('option', {
           name: 'A Picture of Dorian Gray',
-        })
+        }),
       );
     });
 

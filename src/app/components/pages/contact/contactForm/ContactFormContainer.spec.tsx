@@ -52,11 +52,11 @@ describe('ContactFormContainer', () => {
       await userEvent.type(screen.getByRole('textbox', { name: 'Name' }), name);
       await userEvent.type(
         screen.getByRole('textbox', { name: 'Email' }),
-        email
+        email,
       );
       await userEvent.type(
         screen.getByRole('textbox', { name: 'Your message' }),
-        message
+        message,
       );
 
       await userEvent.click(screen.getByRole('button', { name: 'Send' }));
@@ -64,13 +64,13 @@ describe('ContactFormContainer', () => {
 
     // First we see the loader
     expect(
-      await screen.getByRole('alert', { name: 'Trying to send message' })
+      await screen.getByRole('alert', { name: 'Trying to send message' }),
     ).toBeVisible();
 
     // After the message was successfully sent, we see the success icon
     expect(storeMessageMock).toHaveBeenCalledWith(name, email, message);
     expect(
-      await screen.findByRole('alert', { name: 'Message sent successfully' })
+      await screen.findByRole('alert', { name: 'Message sent successfully' }),
     ).toBeVisible();
   });
 
@@ -80,20 +80,20 @@ describe('ContactFormContainer', () => {
     await act(async () => {
       await userEvent.type(
         screen.getByRole('textbox', { name: 'Name' }),
-        'name'
+        'name',
       );
       await userEvent.type(
         screen.getByRole('textbox', { name: 'Email' }),
-        'email@email.com'
+        'email@email.com',
       );
       await userEvent.type(
         screen.getByRole('textbox', { name: 'Your message' }),
-        'message'
+        'message',
       );
 
       await userEvent.type(
         screen.getByRole('textbox', { name: 'Url' }),
-        'I am a bot'
+        'I am a bot',
       );
 
       await userEvent.click(screen.getByRole('button', { name: 'Send' }));
@@ -101,7 +101,7 @@ describe('ContactFormContainer', () => {
 
     expect(storeMessageMock).not.toHaveBeenCalled();
     expect(
-      screen.queryByRole('img', { name: 'Contact.MESSAGE_SENT_ALT' })
+      screen.queryByRole('img', { name: 'Contact.MESSAGE_SENT_ALT' }),
     ).not.toBeInTheDocument();
   });
 
@@ -115,15 +115,15 @@ describe('ContactFormContainer', () => {
     await act(async () => {
       await userEvent.type(
         screen.getByRole('textbox', { name: 'Name' }),
-        'name'
+        'name',
       );
       await userEvent.type(
         screen.getByRole('textbox', { name: 'Email' }),
-        'email@email.com'
+        'email@email.com',
       );
       await userEvent.type(
         screen.getByRole('textbox', { name: 'Your message' }),
-        'message'
+        'message',
       );
 
       await userEvent.click(screen.getByRole('button', { name: 'Send' }));
@@ -136,10 +136,10 @@ describe('ContactFormContainer', () => {
           type: NotificationType.ERROR,
           content: OFFLINE_ERROR_NOTIFICATION_KEY,
         } as NotificationEvent,
-      })
+      }),
     );
     expect(
-      screen.queryByRole('img', { name: 'Contact.MESSAGE_SENT_ALT' })
+      screen.queryByRole('img', { name: 'Contact.MESSAGE_SENT_ALT' }),
     ).not.toBeInTheDocument();
   });
 });

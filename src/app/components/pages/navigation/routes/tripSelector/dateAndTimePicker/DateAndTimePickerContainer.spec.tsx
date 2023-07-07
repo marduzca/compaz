@@ -27,7 +27,7 @@ describe('DateAndTimePickerContainer', () => {
       setDestinationStation: vi.fn(),
       generateStationsMap: vi.fn(),
       calculateRoute: () =>
-        ({ subRoutes: [], totalTime: 0, price: 0 } as Route),
+        ({ subRoutes: [], totalTime: 0, price: 0 }) as Route,
     });
   });
 
@@ -41,12 +41,12 @@ describe('DateAndTimePickerContainer', () => {
     expect(
       screen.getByRole('button', {
         name: 'Select departure date and time. Current selected date is 2021-12-25 at 10:24',
-      }).textContent
+      }).textContent,
     ).toContain('Sat 25 Dec');
     expect(
       screen.getByRole('button', {
         name: 'Select departure date and time. Current selected date is 2021-12-25 at 10:24',
-      }).textContent
+      }).textContent,
     ).toContain('10:24');
   });
 
@@ -57,7 +57,7 @@ describe('DateAndTimePickerContainer', () => {
       await userEvent.click(
         screen.getByRole('button', {
           name: 'Select departure date and time. Current selected date is 2021-12-25 at 10:24',
-        })
+        }),
       );
 
       await userEvent.clear(screen.getByLabelText('Date'));
@@ -69,7 +69,7 @@ describe('DateAndTimePickerContainer', () => {
       await userEvent.click(
         screen.getByRole('button', {
           name: 'Select',
-        })
+        }),
       );
     });
     await act(async () => {});
@@ -85,21 +85,21 @@ describe('DateAndTimePickerContainer', () => {
       await userEvent.click(
         screen.getByRole('button', {
           name: 'Select departure date and time. Current selected date is 2021-12-25 at 10:24',
-        })
+        }),
       );
 
       await userEvent.click(
         screen.getByRole('button', {
           name: 'Now',
-        })
+        }),
       );
     });
 
     expect(setNewDepartureTimeMock).toHaveBeenCalledWith(
-      parseToSimpleTime(new Date())
+      parseToSimpleTime(new Date()),
     );
     expect(setNewDepartureDateMock).toHaveBeenLastCalledWith(
-      parseToSimpleDate(new Date())
+      parseToSimpleDate(new Date()),
     );
   });
 
@@ -111,7 +111,7 @@ describe('DateAndTimePickerContainer', () => {
         await userEvent.click(
           screen.getByRole('button', {
             name: 'Select departure date and time. Current selected date is 2021-12-25 at 10:24',
-          })
+          }),
         );
 
         await userEvent.clear(screen.getByLabelText('Date'));
@@ -122,7 +122,7 @@ describe('DateAndTimePickerContainer', () => {
       });
 
       expect(
-        screen.getByText('Time is outside of functional hours')
+        screen.getByText('Time is outside of functional hours'),
       ).toBeVisible();
     });
 
@@ -133,7 +133,7 @@ describe('DateAndTimePickerContainer', () => {
         await userEvent.click(
           screen.getByRole('button', {
             name: 'Select departure date and time. Current selected date is 2021-12-25 at 10:24',
-          })
+          }),
         );
 
         await userEvent.clear(screen.getByLabelText('Date'));
@@ -144,7 +144,7 @@ describe('DateAndTimePickerContainer', () => {
       });
 
       expect(
-        screen.getByText('Time is outside of functional hours')
+        screen.getByText('Time is outside of functional hours'),
       ).toBeVisible();
     });
   });

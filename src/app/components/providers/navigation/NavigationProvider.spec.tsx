@@ -267,7 +267,7 @@ describe('NavigationProvider', () => {
 
     const route = result.current.calculateRoute(
       listOfStationsWithTwoLines,
-      lines
+      lines,
     );
 
     expect(route).toEqual({
@@ -296,7 +296,7 @@ describe('NavigationProvider', () => {
 
     const route = result.current.calculateRoute(
       listOfStationsWithMultipleLines,
-      lines
+      lines,
     );
 
     expect(route).toEqual({
@@ -382,7 +382,7 @@ describe('NavigationProvider', () => {
 
     const route = result.current.calculateRoute(
       stationsWithWhiteLightBlueLines,
-      linesWithWhiteLightBlueLinesException
+      linesWithWhiteLightBlueLinesException,
     );
 
     expect(route.price).toBe(5);
@@ -447,7 +447,7 @@ describe('NavigationProvider', () => {
 
     const route = result.current.calculateRoute(
       stationsWithBrownLine,
-      linesWithBrownLineException
+      linesWithBrownLineException,
     );
 
     expect(route.price).toBe(3);
@@ -516,7 +516,7 @@ describe('NavigationProvider', () => {
 
     const route = result.current.calculateRoute(
       listOfStationsWithOneLine,
-      lonelyLine
+      lonelyLine,
     );
 
     expect(route).toEqual({
@@ -638,7 +638,7 @@ describe('NavigationProvider', () => {
 
     it('extracts sub routes correctly from route with multiple transfers', () => {
       const calculatedSubRoutes = extractSubRoutes(
-        listOfStationsWithMultipleLines
+        listOfStationsWithMultipleLines,
       );
 
       expect(calculatedSubRoutes).toEqual([
@@ -713,7 +713,7 @@ describe('NavigationProvider', () => {
   describe('calculateTotalTimeOfSubRoute', () => {
     it('calculates total time of route correctly', () => {
       const calculatedTotalTime = calculateTotalTimeOfSubRoute(
-        listOfStationsWithTwoLines
+        listOfStationsWithTwoLines,
       );
 
       expect(calculatedTotalTime).toBe(9);
@@ -724,7 +724,7 @@ describe('NavigationProvider', () => {
     it('calculates lines of route correctly', () => {
       const subRouteLine = calculateLineOfSubRoute(
         listOfStationsWithTwoLines.slice(0, 2),
-        lines
+        lines,
       );
 
       expect(subRouteLine).toEqual(lines[0]);
@@ -799,7 +799,7 @@ describe('NavigationProvider', () => {
       const subRouteDirection = calculateDirectionOfSubRoute(
         allStations,
         redLine,
-        routeHeadingEndOfLine
+        routeHeadingEndOfLine,
       );
 
       expect(subRouteDirection).toBe('Last station red');
@@ -809,7 +809,7 @@ describe('NavigationProvider', () => {
       const subRouteDirection = calculateDirectionOfSubRoute(
         allStations,
         redLine,
-        routeHeadingEndOfLine.reverse()
+        routeHeadingEndOfLine.reverse(),
       );
 
       expect(subRouteDirection).toBe('First station red');
@@ -820,7 +820,7 @@ describe('NavigationProvider', () => {
     it('calculates total transfer time correctly', () => {
       const routeWithMultipleTransferTimes = addTransferTimeBetweenLines(
         routeWithMultipleTransfers,
-        lines
+        lines,
       );
 
       expect(routeWithMultipleTransferTimes).toEqual([

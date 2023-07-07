@@ -62,7 +62,7 @@ describe('TripSelectorContainer', () => {
       setDestinationStation: vi.fn(),
       generateStationsMap: vi.fn(),
       calculateRoute: () =>
-        ({ subRoutes: [], totalTime: 0, price: 0 } as Route),
+        ({ subRoutes: [], totalTime: 0, price: 0 }) as Route,
     });
   });
 
@@ -78,23 +78,23 @@ describe('TripSelectorContainer', () => {
             onMenuButtonClick={() => {}}
             onSearchButtonClick={() => {}}
           />
-        </MemoryRouter>
+        </MemoryRouter>,
       );
 
       expect(
         screen.getByRole('combobox', {
           name: 'Origin',
-        })
+        }),
       ).toBeVisible();
       expect(
         screen.getByRole('combobox', {
           name: 'Destination',
-        })
+        }),
       ).toBeVisible();
       expect(
         screen.getByRole('button', {
           name: 'Search',
-        })
+        }),
       ).toBeVisible();
     });
   });
@@ -112,7 +112,7 @@ describe('TripSelectorContainer', () => {
         setDestinationStation: vi.fn(),
         generateStationsMap: vi.fn(),
         calculateRoute: () =>
-          ({ subRoutes: [], totalTime: 0, price: 0 } as Route),
+          ({ subRoutes: [], totalTime: 0, price: 0 }) as Route,
       });
 
       const onSearchButtonClickMock = vi
@@ -125,13 +125,13 @@ describe('TripSelectorContainer', () => {
             onMenuButtonClick={() => {}}
             onSearchButtonClick={onSearchButtonClickMock}
           />
-        </MemoryRouter>
+        </MemoryRouter>,
       );
 
       await userEvent.click(
         screen.getByRole('button', {
           name: 'Search',
-        })
+        }),
       );
 
       expect(onSearchButtonClickMock).toHaveBeenCalledTimes(1);
@@ -149,7 +149,7 @@ describe('TripSelectorContainer', () => {
         setDestinationStation: vi.fn(),
         generateStationsMap: vi.fn(),
         calculateRoute: () =>
-          ({ subRoutes: [], totalTime: 0, price: 0 } as Route),
+          ({ subRoutes: [], totalTime: 0, price: 0 }) as Route,
       });
 
       const onSearchButtonClickMock = vi.fn();
@@ -160,13 +160,13 @@ describe('TripSelectorContainer', () => {
             onMenuButtonClick={() => {}}
             onSearchButtonClick={onSearchButtonClickMock}
           />
-        </MemoryRouter>
+        </MemoryRouter>,
       );
 
       await userEvent.click(
         screen.getByRole('button', {
           name: 'Search',
-        })
+        }),
       );
 
       expect(onSearchButtonClickMock).not.toHaveBeenCalled();
@@ -184,7 +184,7 @@ describe('TripSelectorContainer', () => {
         setDestinationStation: vi.fn(),
         generateStationsMap: vi.fn(),
         calculateRoute: () =>
-          ({ subRoutes: [], totalTime: 0, price: 0 } as Route),
+          ({ subRoutes: [], totalTime: 0, price: 0 }) as Route,
       });
 
       const onSearchButtonClickMock = vi.fn();
@@ -195,13 +195,13 @@ describe('TripSelectorContainer', () => {
             onMenuButtonClick={() => {}}
             onSearchButtonClick={onSearchButtonClickMock}
           />
-        </MemoryRouter>
+        </MemoryRouter>,
       );
 
       await userEvent.click(
         screen.getByRole('button', {
           name: 'Search',
-        })
+        }),
       );
 
       expect(onSearchButtonClickMock).not.toHaveBeenCalled();

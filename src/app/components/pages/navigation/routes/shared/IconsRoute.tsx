@@ -43,7 +43,7 @@ const IconsRoute: React.FC<SimpleIconsRouteProps> = (props) => {
               alt={t('Navigation.RoutesOverview.TRANSFER')}
               loading="lazy"
             />
-          </li>
+          </li>,
         );
       }
     }

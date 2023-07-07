@@ -25,7 +25,7 @@ export const WithoutInput: React.FC = () =>
       value=""
       onChange={actions('onChange').onChange}
       label="Your message"
-    />
+    />,
   );
 
 export const WithInput: React.FC = () =>
@@ -34,5 +34,5 @@ export const WithInput: React.FC = () =>
       value="Le queria decir que su app es excelente! :D"
       onChange={actions('onChange').onChange}
       label="Your message"
-    />
+    />,
   );

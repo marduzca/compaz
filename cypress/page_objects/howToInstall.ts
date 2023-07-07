@@ -1,16 +1,16 @@
 const shouldShowAppRunningInDevicesImage = () => {
   cy.get(
-    'img[alt="Different devices (Laptop, tablet and mobile) running the compaz app"]'
+    'img[alt="Different devices (Laptop, tablet and mobile) running the compaz app"]',
   ).should('be.visible');
 };
 
 const shouldShowCorrespondingInstallationGif = (
   device: string,
-  browser: string
+  browser: string,
 ) =>
   cy
     .get(
-      `img[alt="Animation showing installations process on a ${device} using ${browser}."]`
+      `img[alt="Animation showing installations process on a ${device} using ${browser}."]`,
     )
     .should('be.visible');
 

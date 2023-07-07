@@ -15,7 +15,7 @@ const google = {
         fitBounds: fitBoundsMock,
         panBy: panByMock,
         setZoom: setZoomMock,
-      })
+      }),
     ),
     LatLngBounds: vi.fn().mockImplementation(() => ({
       extend: vi.fn(),
@@ -33,7 +33,7 @@ google.maps.event.addListenerOnce.mockImplementation(
     callback();
 
     return vi.fn();
-  }
+  },
 );
 
 describe('useMapFitBounds', () => {
@@ -49,7 +49,7 @@ describe('useMapFitBounds', () => {
     expect(fitBoundsMock).toHaveBeenCalled();
     expect(panByMock).toHaveBeenCalledWith(
       window.innerWidth * -0.1,
-      window.innerHeight * -0.03
+      window.innerHeight * -0.03,
     );
   });
 
@@ -104,7 +104,7 @@ describe('useMapFitBounds', () => {
 
     it('SHOULD trigger the corresponding map post adjustments WHEN on ROUTE mode', () => {
       const { result } = renderHook(() =>
-        useMapFitBounds(new google.maps.Map())
+        useMapFitBounds(new google.maps.Map()),
       );
 
       result.current.fitScreenToBounds([], MapMode.ROUTE);
@@ -115,7 +115,7 @@ describe('useMapFitBounds', () => {
 
     it('SHOULD trigger the corresponding map post adjustments WHEN on LINES mode', () => {
       const { result } = renderHook(() =>
-        useMapFitBounds(new google.maps.Map())
+        useMapFitBounds(new google.maps.Map()),
       );
 
       result.current.fitScreenToBounds([], MapMode.LINES);

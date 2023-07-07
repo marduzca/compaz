@@ -32,14 +32,14 @@ const NotificationContainer = () => {
     };
 
     const handleUpdateAvailabilityEvent = (
-      updateAvailabilityEvent: CustomEvent
+      updateAvailabilityEvent: CustomEvent,
     ) => {
       if (!updateAvailabilityEvent.detail.serviceWorkerRegistration) {
         return;
       }
 
       setServiceWorkerRegistration(
-        updateAvailabilityEvent.detail.serviceWorkerRegistration
+        updateAvailabilityEvent.detail.serviceWorkerRegistration,
       );
 
       triggerNotification(updateAvailabilityEvent);
@@ -47,23 +47,23 @@ const NotificationContainer = () => {
 
     window.addEventListener(
       EventType.NOTIFICATION,
-      triggerNotification as EventListener
+      triggerNotification as EventListener,
     );
 
     window.addEventListener(
       EventType.UPDATE_AVAILABILITY,
-      handleUpdateAvailabilityEvent as EventListener
+      handleUpdateAvailabilityEvent as EventListener,
     );
 
     return () => {
       window.removeEventListener(
         EventType.NOTIFICATION,
-        triggerNotification as EventListener
+        triggerNotification as EventListener,
       );
 
       window.removeEventListener(
         EventType.UPDATE_AVAILABILITY,
-        handleUpdateAvailabilityEvent as EventListener
+        handleUpdateAvailabilityEvent as EventListener,
       );
     };
   }, []);

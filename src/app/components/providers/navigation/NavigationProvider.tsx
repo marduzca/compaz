@@ -38,7 +38,7 @@ export const NavigationContext = createContext<NavigationContextInterface>({
   setOriginStation: () => {},
   setDestinationStation: () => {},
   generateStationsMap: () => {},
-  calculateRoute: () => ({ subRoutes: [], totalTime: 0, price: 0 } as Route),
+  calculateRoute: () => ({ subRoutes: [], totalTime: 0, price: 0 }) as Route,
 });
 
 const identifyTransferPositions = (stationsPath: Station[]): number[] => {
@@ -50,7 +50,7 @@ const identifyTransferPositions = (stationsPath: Station[]): number[] => {
         // Next station is connected to more than one line
         if (
           !stationsPath[index + 2].lines.some((line) =>
-            subPath.lines.includes(line)
+            subPath.lines.includes(line),
           ) // Station after the next one doesn't belong to line of current station
         ) {
           transferPositions.push(index + 1);
@@ -76,7 +76,7 @@ export const extractSubRoutes = (stationsPath: Station[]): Station[][] => {
   transferPositions.forEach((transferPoint, index) => {
     if (index !== transferPositions.length - 1) {
       subRoutes.push(
-        stationsPath.slice(transferPoint, transferPositions[index + 1] + 1)
+        stationsPath.slice(transferPoint, transferPositions[index + 1] + 1),
       );
     }
   });
@@ -84,8 +84,8 @@ export const extractSubRoutes = (stationsPath: Station[]): Station[][] => {
   subRoutes.push(
     stationsPath.slice(
       transferPositions[transferPositions.length - 1],
-      stationsPath.length
-    )
+      stationsPath.length,
+    ),
   );
 
   return subRoutes;
@@ -97,7 +97,7 @@ export const calculateTotalTimeOfSubRoute = (subRoute: Station[]) => {
   subRoute.forEach((station, index) => {
     if (index < subRoute.length - 1) {
       const nextStation = station.connectedStations.find(
-        (connectedStation) => connectedStation.id === subRoute[index + 1].id
+        (connectedStation) => connectedStation.id === subRoute[index + 1].id,
       );
 
       if (nextStation) totalTime += nextStation.timeTo;
@@ -114,10 +114,10 @@ export const calculateTotalTimeOfSubRoute = (subRoute: Station[]) => {
 
 export const calculateLineOfSubRoute = (
   subRoute: Station[],
-  lines: Line[]
+  lines: Line[],
 ): Line => {
   const lineInCommon = lines.find((line) =>
-    subRoute.every((station) => station.lines.includes(line.id))
+    subRoute.every((station) => station.lines.includes(line.id)),
   );
 
   if (lineInCommon) {
@@ -134,13 +134,13 @@ export const calculateLineOfSubRoute = (
 export const calculateDirectionOfSubRoute = (
   allStations: Station[],
   subRouteLine: Line,
-  subRoute: Station[]
+  subRoute: Station[],
 ): string => {
   const positionOfSubRouteStartWithinLine = subRouteLine.stationsPath.indexOf(
-    subRoute[0].id
+    subRoute[0].id,
   );
   const positionOfSubRouteEndWithinLine = subRouteLine.stationsPath.indexOf(
-    subRoute[subRoute.length - 1].id
+    subRoute[subRoute.length - 1].id,
   );
 
   if (
@@ -156,7 +156,7 @@ export const calculateDirectionOfSubRoute = (
       : subRouteLine.stationsPath[0];
 
   const directionStation = allStations.find(
-    (station) => station.id === directionId
+    (station) => station.id === directionId,
   );
 
   if (!directionStation) {
@@ -168,7 +168,7 @@ export const calculateDirectionOfSubRoute = (
 
 export const addTransferTimeBetweenLines = (
   subRoutesWithTimeAndLineInfo: SubRoute[],
-  lines: Line[]
+  lines: Line[],
 ): SubRoute[] => {
   if (subRoutesWithTimeAndLineInfo.length === 1) {
     return subRoutesWithTimeAndLineInfo;
@@ -183,7 +183,7 @@ export const addTransferTimeBetweenLines = (
       if (currentLine) {
         const nextLine = currentLine.connectedLines.find(
           (connectedLine) =>
-            connectedLine.id === subRoutesWithTimeAndLineInfo[index + 1].line
+            connectedLine.id === subRoutesWithTimeAndLineInfo[index + 1].line,
         );
 
         if (nextLine) {
@@ -235,17 +235,17 @@ interface NavigationProviderProps {
 }
 
 export const NavigationProvider: React.FC<NavigationProviderProps> = (
-  props
+  props,
 ) => {
   const [origin, setOrigin] = useState<Station | undefined>(undefined);
   const [destination, setDestination] = useState<Station | undefined>(
-    undefined
+    undefined,
   );
   const [departureTime, setDepartureTime] = useState<string>(
-    parseToSimpleTime(new Date())
+    parseToSimpleTime(new Date()),
   );
   const [departureDate, setDepartureDate] = useState<string>(
-    parseToSimpleDate(new Date())
+    parseToSimpleDate(new Date()),
   );
   const [stationsMap, setStationsMap] = useState<StationsMap>({});
 
@@ -283,13 +283,13 @@ export const NavigationProvider: React.FC<NavigationProviderProps> = (
   };
 
   const findShortestPathFromOriginToDestination = (
-    allStations: Station[]
+    allStations: Station[],
   ): Station[] => {
     const findPath = dijkstra.find_path;
 
     return findPath(stationsMap, origin?.id, destination?.id).map(
       (stationId: string) =>
-        allStations.find((station) => station.id === stationId)
+        allStations.find((station) => station.id === stationId),
     );
   };
 
@@ -309,7 +309,7 @@ export const NavigationProvider: React.FC<NavigationProviderProps> = (
       const subRouteDirection = calculateDirectionOfSubRoute(
         allStations,
         subRouteLine,
-        subRoute
+        subRoute,
       );
 
       return {
@@ -322,7 +322,7 @@ export const NavigationProvider: React.FC<NavigationProviderProps> = (
 
     const subRoutesWithTimeLineAndTransferInfo = addTransferTimeBetweenLines(
       subRoutesWithTimeAndLineInfo,
-      lines
+      lines,
     );
 
     subRoutesWithTimeLineAndTransferInfo.forEach((subRoute) => {

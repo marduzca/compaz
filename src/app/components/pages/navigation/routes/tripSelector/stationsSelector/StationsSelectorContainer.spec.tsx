@@ -46,7 +46,7 @@ describe('StationsSelectorContainer', () => {
       setDestinationStation: vi.fn(),
       generateStationsMap: vi.fn(),
       calculateRoute: () =>
-        ({ subRoutes: [], totalTime: 0, price: 0 } as Route),
+        ({ subRoutes: [], totalTime: 0, price: 0 }) as Route,
     });
   });
 
@@ -61,7 +61,7 @@ describe('StationsSelectorContainer', () => {
         showDestinationSubmissionError={false}
         setShowOriginSubmissionError={() => {}}
         setShowDestinationSubmissionError={() => {}}
-      />
+      />,
     );
 
     await act(async () => {
@@ -69,28 +69,28 @@ describe('StationsSelectorContainer', () => {
         screen.getByRole('combobox', {
           name: 'Origin',
         }),
-        availableStations[0].name
+        availableStations[0].name,
       );
     });
 
     expect(
       screen.getByRole('combobox', {
         name: 'Origin',
-      })
+      }),
     ).toHaveValue(availableStations[0].name);
 
     await act(async () => {
       await userEvent.click(
         screen.getByRole('button', {
           name: 'Clear text',
-        })
+        }),
       );
     });
 
     expect(
       screen.getByRole('combobox', {
         name: 'Origin',
-      })
+      }),
     ).toHaveValue('');
 
     await act(async () => {
@@ -98,28 +98,28 @@ describe('StationsSelectorContainer', () => {
         screen.getByRole('combobox', {
           name: 'Destination',
         }),
-        availableStations[1].name
+        availableStations[1].name,
       );
     });
 
     expect(
       screen.getByRole('combobox', {
         name: 'Destination',
-      })
+      }),
     ).toHaveValue(availableStations[1].name);
 
     await act(async () => {
       await userEvent.click(
         screen.getByRole('button', {
           name: 'Clear text',
-        })
+        }),
       );
     });
 
     expect(
       screen.getByRole('combobox', {
         name: 'Destination',
-      })
+      }),
     ).toHaveValue('');
   });
 
@@ -130,7 +130,7 @@ describe('StationsSelectorContainer', () => {
         showDestinationSubmissionError={false}
         setShowOriginSubmissionError={() => {}}
         setShowDestinationSubmissionError={() => {}}
-      />
+      />,
     );
 
     fireEvent.change(
@@ -139,7 +139,7 @@ describe('StationsSelectorContainer', () => {
       }),
       {
         target: { value: availableStations[0].name },
-      }
+      },
     );
     fireEvent.change(
       screen.getByRole('combobox', {
@@ -147,18 +147,18 @@ describe('StationsSelectorContainer', () => {
       }),
       {
         target: { value: availableStations[1].name },
-      }
+      },
     );
 
     expect(
       screen.getByRole('combobox', {
         name: 'Origin',
-      })
+      }),
     ).toHaveValue(availableStations[0].name);
     expect(
       screen.getByRole('combobox', {
         name: 'Destination',
-      })
+      }),
     ).toHaveValue(availableStations[1].name);
   });
 
@@ -174,7 +174,7 @@ describe('StationsSelectorContainer', () => {
       setDestinationStation: vi.fn(),
       generateStationsMap: vi.fn(),
       calculateRoute: () =>
-        ({ subRoutes: [], totalTime: 0, price: 0 } as Route),
+        ({ subRoutes: [], totalTime: 0, price: 0 }) as Route,
     });
 
     render(
@@ -183,7 +183,7 @@ describe('StationsSelectorContainer', () => {
         showDestinationSubmissionError={false}
         setShowOriginSubmissionError={() => {}}
         setShowDestinationSubmissionError={() => {}}
-      />
+      />,
     );
 
     fireEvent.change(
@@ -192,11 +192,11 @@ describe('StationsSelectorContainer', () => {
       }),
       {
         target: { value: availableStations[0].name },
-      }
+      },
     );
 
     expect(
-      screen.getByText('Destination - Non-existent station')
+      screen.getByText('Destination - Non-existent station'),
     ).toBeVisible();
   });
 
@@ -212,7 +212,7 @@ describe('StationsSelectorContainer', () => {
       setDestinationStation: vi.fn(),
       generateStationsMap: vi.fn(),
       calculateRoute: () =>
-        ({ subRoutes: [], totalTime: 0, price: 0 } as Route),
+        ({ subRoutes: [], totalTime: 0, price: 0 }) as Route,
     });
 
     render(
@@ -221,7 +221,7 @@ describe('StationsSelectorContainer', () => {
         showDestinationSubmissionError={false}
         setShowOriginSubmissionError={() => {}}
         setShowDestinationSubmissionError={() => {}}
-      />
+      />,
     );
 
     fireEvent.change(
@@ -230,7 +230,7 @@ describe('StationsSelectorContainer', () => {
       }),
       {
         target: { value: availableStations[0].name },
-      }
+      },
     );
 
     expect(screen.getByText('Origin - Non-existent station')).toBeVisible();
@@ -243,7 +243,7 @@ describe('StationsSelectorContainer', () => {
         showDestinationSubmissionError={false}
         setShowOriginSubmissionError={() => {}}
         setShowDestinationSubmissionError={() => {}}
-      />
+      />,
     );
 
     fireEvent.change(
@@ -252,7 +252,7 @@ describe('StationsSelectorContainer', () => {
       }),
       {
         target: { value: availableStations[0].name },
-      }
+      },
     );
     fireEvent.change(
       screen.getByRole('combobox', {
@@ -260,26 +260,26 @@ describe('StationsSelectorContainer', () => {
       }),
       {
         target: { value: availableStations[1].name },
-      }
+      },
     );
 
     await act(async () => {
       await userEvent.click(
         screen.getByRole('button', {
           name: 'Switch stations',
-        })
+        }),
       );
     });
 
     expect(
       screen.getByRole('combobox', {
         name: 'Origin',
-      })
+      }),
     ).toHaveValue(availableStations[1].name);
     expect(
       screen.getByRole('combobox', {
         name: 'Destination',
-      })
+      }),
     ).toHaveValue(availableStations[0].name);
   });
 
@@ -291,7 +291,7 @@ describe('StationsSelectorContainer', () => {
           showDestinationSubmissionError={false}
           setShowOriginSubmissionError={() => {}}
           setShowDestinationSubmissionError={() => {}}
-        />
+        />,
       );
 
       await act(async () => {
@@ -299,14 +299,14 @@ describe('StationsSelectorContainer', () => {
           screen.getByRole('combobox', {
             name: 'Origin',
           }),
-          'This is a non-existent station'
+          'This is a non-existent station',
         );
       });
 
       expect(
         screen.getByRole('combobox', {
           name: 'Origin - Non-existent station',
-        })
+        }),
       ).toBeVisible();
     });
 
@@ -317,7 +317,7 @@ describe('StationsSelectorContainer', () => {
           showDestinationSubmissionError={false}
           setShowOriginSubmissionError={() => {}}
           setShowDestinationSubmissionError={() => {}}
-        />
+        />,
       );
 
       await act(async () => {
@@ -325,7 +325,7 @@ describe('StationsSelectorContainer', () => {
           screen.getByRole('combobox', {
             name: 'Destination',
           }),
-          'This is a non-existent station'
+          'This is a non-existent station',
         );
       });
 

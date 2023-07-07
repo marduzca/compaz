@@ -11,7 +11,7 @@ export const stationConverter: FirestoreDataConverter<Station> = {
   },
   fromFirestore(
     snapshot: QueryDocumentSnapshot,
-    options: SnapshotOptions
+    options: SnapshotOptions,
   ): Station {
     const data = snapshot.data(options);
     return {
@@ -30,7 +30,7 @@ export const lineConverter: FirestoreDataConverter<Line> = {
   },
   fromFirestore(
     snapshot: QueryDocumentSnapshot,
-    options: SnapshotOptions
+    options: SnapshotOptions,
   ): Line {
     const data = snapshot.data(options);
     return {
@@ -47,7 +47,7 @@ export const versionConverter: FirestoreDataConverter<Version> = {
   },
   fromFirestore(
     snapshot: QueryDocumentSnapshot,
-    options: SnapshotOptions
+    options: SnapshotOptions,
   ): Version {
     const data = snapshot.data(options);
     return {

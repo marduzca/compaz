@@ -44,7 +44,7 @@ const getCorrespondingTelefericoIcon = (lineColor: string): string => {
             type: NotificationType.ERROR,
             content: GENERAL_ERROR_NOTIFICATION_KEY,
           } as NotificationEvent,
-        })
+        }),
       );
 
       return '';

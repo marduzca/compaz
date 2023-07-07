@@ -27,7 +27,7 @@ const ContactForm: React.FC<ContactFormProps> = (props) => {
   const formHeight = useMemo(
     () => formRef.current?.clientHeight,
     // eslint-disable-next-line
-    [props.wasMessageSuccessfullySent]
+    [props.wasMessageSuccessfullySent],
   );
 
   return (

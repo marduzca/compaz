@@ -67,7 +67,7 @@ describe('CurrentLocation', () => {
       <>
         <NotificationContainer />
         <CurrentLocation googleMapReference={new google.maps.Map()} />
-      </>
+      </>,
     );
 
     const errorAlert = screen.getByRole('alert', {
@@ -77,8 +77,8 @@ describe('CurrentLocation', () => {
     expect(errorAlert).toBeVisible();
     expect(
       within(errorAlert).getByText(
-        'We are sorry. Your browser does not support Geolocation, so we cannot retrieve your current location.'
-      )
+        'We are sorry. Your browser does not support Geolocation, so we cannot retrieve your current location.',
+      ),
     ).toBeVisible();
   });
 
@@ -108,7 +108,7 @@ describe('CurrentLocation', () => {
         .mockImplementationOnce(
           (successCallback, errorCallback: () => void) => {
             errorCallback();
-          }
+          },
         );
       // eslint-disable-next-line
       (global as any).navigator.geolocation = {
@@ -119,7 +119,7 @@ describe('CurrentLocation', () => {
         <>
           <CurrentLocation googleMapReference={new google.maps.Map()} />
           <NotificationContainer />
-        </>
+        </>,
       );
 
       const currentLocationButton = screen.getByRole('button', {
@@ -134,8 +134,8 @@ describe('CurrentLocation', () => {
       expect(errorAlert).toBeVisible();
       expect(
         within(errorAlert).getByText(
-          'Something went wrong. You probably blocked access to your location, please allow it in your browser settings. Otherwise just refresh the page and try again.'
-        )
+          'Something went wrong. You probably blocked access to your location, please allow it in your browser settings. Otherwise just refresh the page and try again.',
+        ),
       ).toBeVisible();
     });
 
@@ -152,7 +152,7 @@ describe('CurrentLocation', () => {
 
       expect(fitScreenToBoundsMock).toHaveBeenCalledWith(
         boundsForMockedCurrentLocation,
-        MapMode.CURRENT_LOCATION
+        MapMode.CURRENT_LOCATION,
       );
     });
 

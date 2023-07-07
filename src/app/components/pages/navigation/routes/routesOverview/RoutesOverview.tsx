@@ -26,9 +26,9 @@ const SingleRoute: React.FC<SingleRouteProps> = (props) => {
   const { t } = useTranslation();
 
   const routeClockTime = `${parseToSimpleTime(
-    props.departureTime
+    props.departureTime,
   )} - ${parseToSimpleTime(
-    addMinutesToDate(props.departureTime, props.route.totalTime)
+    addMinutesToDate(props.departureTime, props.route.totalTime),
   )}`;
 
   return (
@@ -37,7 +37,7 @@ const SingleRoute: React.FC<SingleRouteProps> = (props) => {
         <button
           type="button"
           aria-label={`${t(
-            'Navigation.RoutesOverview.SINGLE_ROUTE_BUTTON_TITLE'
+            'Navigation.RoutesOverview.SINGLE_ROUTE_BUTTON_TITLE',
           )} ${routeClockTime}`}
           className={styles.singleRouteOverview}
           onClick={() => {

@@ -1,7 +1,7 @@
 const shouldShowCorrectHeaderInfo = (
   origin: string,
   destination: string,
-  date: string
+  date: string,
 ) => {
   cy.contains(`${origin} - ${destination}`).should('be.visible');
   cy.contains(date).should('be.visible');
@@ -17,19 +17,19 @@ const showLaterRoute = () => {
 
 const shouldShowRouteWithGivenTimes = (
   departureTime: string,
-  arrivalTime: string
+  arrivalTime: string,
 ) => {
   cy.get(
-    `button[aria-label="Route with times ${departureTime} - ${arrivalTime}"]`
+    `button[aria-label="Route with times ${departureTime} - ${arrivalTime}"]`,
   ).should('be.visible');
 };
 
 const selectRouteWithGivenTimes = (
   departureTime: string,
-  arrivalTime: string
+  arrivalTime: string,
 ) => {
   cy.get(
-    `button[aria-label="Route with times ${departureTime} - ${arrivalTime}"]`
+    `button[aria-label="Route with times ${departureTime} - ${arrivalTime}"]`,
   ).click();
 };
 

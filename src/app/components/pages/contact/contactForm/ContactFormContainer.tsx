@@ -51,7 +51,7 @@ const ContactFormContainer: React.FC = () => {
             type: NotificationType.ERROR,
             content: OFFLINE_ERROR_NOTIFICATION_KEY,
           } as NotificationEvent,
-        })
+        }),
       );
 
       setWasMessageSuccessfullySent(false);

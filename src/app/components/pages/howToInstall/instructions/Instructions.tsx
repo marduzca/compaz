@@ -61,7 +61,7 @@ const Instructions: React.FC<InstructionsProps> = (props) => {
                 {
                   value: props.selectedDevice,
                   text: t(
-                    `HowToInstall.Instructions.${props.selectedDevice}_OPTION`
+                    `HowToInstall.Instructions.${props.selectedDevice}_OPTION`,
                   ),
                 } as Option
               }
@@ -70,7 +70,7 @@ const Instructions: React.FC<InstructionsProps> = (props) => {
                   ({
                     value: device,
                     text: t(`HowToInstall.Instructions.${device}_OPTION`),
-                  } as Option)
+                  }) as Option,
               )}
             />
           </div>
@@ -94,7 +94,7 @@ const Instructions: React.FC<InstructionsProps> = (props) => {
                   ({
                     value: browser,
                     text: browser,
-                  } as Option)
+                  }) as Option,
               )}
             />
           </div>
@@ -105,7 +105,7 @@ const Instructions: React.FC<InstructionsProps> = (props) => {
               src={installationGifSource}
               alt={t('HowToInstall.Instructions.INSTALLATION_GIF_ALT', {
                 device: t(
-                  `HowToInstall.Instructions.${props.selectedDevice}_OPTION`
+                  `HowToInstall.Instructions.${props.selectedDevice}_OPTION`,
                 ),
                 browser: props.selectedBrowser,
               })}
@@ -130,7 +130,7 @@ const Instructions: React.FC<InstructionsProps> = (props) => {
                   props.selectedDevice
                 }_${props.selectedBrowser
                   .toLocaleUpperCase()
-                  .replace(/ /g, '_')}`
+                  .replace(/ /g, '_')}`,
               )}
             </li>
             <li>
@@ -139,7 +139,7 @@ const Instructions: React.FC<InstructionsProps> = (props) => {
                   props.selectedDevice
                 }_${props.selectedBrowser
                   .toLocaleUpperCase()
-                  .replace(/ /g, '_')}`
+                  .replace(/ /g, '_')}`,
               )}
             </li>
             <li>{t('HowToInstall.Instructions.STEP_3')}</li>

@@ -12,25 +12,25 @@ describe('HowToInstall', () => {
 
     HowToInstall.shouldShowCorrespondingInstallationGif(
       'Laptop',
-      'Google Chrome'
+      'Google Chrome',
     ).scrollIntoView();
 
     HowToInstall.selectOptionFromDropdown(
       'deviceSelectorId',
-      'Android / Tablet'
+      'Android / Tablet',
     );
     HowToInstall.shouldShowCorrespondingInstallationGif(
       'Android / Tablet',
-      'Google Chrome'
+      'Google Chrome',
     );
 
     HowToInstall.selectOptionFromDropdown(
       'browserSelectorId',
-      'Samsung Internet'
+      'Samsung Internet',
     );
     HowToInstall.shouldShowCorrespondingInstallationGif(
       'Android / Tablet',
-      'Samsung Internet'
+      'Samsung Internet',
     ).scrollIntoView();
   });
 });
