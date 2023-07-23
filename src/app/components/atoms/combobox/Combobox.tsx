@@ -78,9 +78,6 @@ const Combobox: React.FC<ComboboxProps> = (props) => {
         <input
           required={props.required}
           name={props.name}
-          onClick={(e) => {
-            if (!isOpen) getToggleButtonProps().onClick(e);
-          }}
           spellCheck={false}
           {...getInputProps({
             onFocus: () => {
