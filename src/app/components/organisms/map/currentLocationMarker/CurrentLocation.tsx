@@ -13,6 +13,8 @@ interface CurrentLocationMarkerProps {
   googleMapReference?: google.maps.Map;
 }
 
+const REFRESH_LOCATION_TIME_IN_MS = 10000;
+
 const CurrentLocation: React.FC<CurrentLocationMarkerProps> = (props) => {
   const { t } = useTranslation();
   const { fitScreenToBounds } = useMapFitBounds(props.googleMapReference);
@@ -70,6 +72,15 @@ const CurrentLocation: React.FC<CurrentLocationMarkerProps> = (props) => {
 
   useEffect(() => {
     retrieveCurrentLocation(false);
+
+    const refreshLocationTimer = setInterval(
+      () => retrieveCurrentLocation(false),
+      REFRESH_LOCATION_TIME_IN_MS,
+    );
+
+    return () => {
+      clearInterval(refreshLocationTimer);
+    };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

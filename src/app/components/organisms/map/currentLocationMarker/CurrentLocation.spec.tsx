@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, within } from '@testing-library/react';
+import { act, render, screen, within } from '@testing-library/react';
 import { Mock, vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import CurrentLocation from './CurrentLocation';
@@ -53,10 +53,26 @@ describe('CurrentLocation', () => {
     };
   });
 
-  it('SHOULD call the location API to ask for the current location WHEN it renders', () => {
+  it('SHOULD call the location API to ask for the current location WHEN it renders and every 10 seconds', () => {
+    vi.useFakeTimers();
+
     render(<CurrentLocation googleMapReference={new google.maps.Map()} />);
 
     expect(getCurrentPositionMock).toHaveBeenCalled();
+
+    act(() => {
+      vi.advanceTimersByTime(10000);
+    });
+
+    expect(getCurrentPositionMock).toHaveBeenCalledTimes(2);
+
+    act(() => {
+      vi.advanceTimersByTime(10000);
+    });
+
+    expect(getCurrentPositionMock).toHaveBeenCalledTimes(3);
+
+    vi.useRealTimers();
   });
 
   it('SHOULD show an error WHEN the browser doesnt support the geolocation API', () => {
