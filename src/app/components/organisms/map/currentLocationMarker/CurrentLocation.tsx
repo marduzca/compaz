@@ -13,7 +13,7 @@ interface CurrentLocationMarkerProps {
   googleMapReference?: google.maps.Map;
 }
 
-const REFRESH_LOCATION_TIME_IN_MS = 10000;
+const REFRESH_LOCATION_TIME_IN_SECONDS = 10;
 
 const CurrentLocation: React.FC<CurrentLocationMarkerProps> = (props) => {
   const { t } = useTranslation();
@@ -25,6 +25,7 @@ const CurrentLocation: React.FC<CurrentLocationMarkerProps> = (props) => {
 
   const retrieveCurrentLocation = (
     showErrorIfLocationSharingWasDenied: boolean,
+    refreshLocationTimer?: NodeJS.Timer,
   ) => {
     if (!navigator.geolocation) {
       window.dispatchEvent(
@@ -39,14 +40,24 @@ const CurrentLocation: React.FC<CurrentLocationMarkerProps> = (props) => {
       return;
     }
 
-    const onSuccess = (position: GeolocationPosition) => {
+    const onSuccess: PositionCallback = (position: GeolocationPosition) => {
       setCurrentLocation({
         latitude: position.coords.latitude,
         longitude: position.coords.longitude,
       });
     };
 
-    const onError = () => {
+    const onError: PositionErrorCallback = (
+      error: GeolocationPositionError,
+    ) => {
+      if (!showErrorIfLocationSharingWasDenied) {
+        if (error.code === error.PERMISSION_DENIED && refreshLocationTimer) {
+          clearInterval(refreshLocationTimer);
+        }
+
+        return;
+      }
+
       window.dispatchEvent(
         new CustomEvent(EventType.NOTIFICATION, {
           detail: {
@@ -57,10 +68,7 @@ const CurrentLocation: React.FC<CurrentLocationMarkerProps> = (props) => {
       );
     };
 
-    navigator.geolocation.getCurrentPosition(
-      onSuccess,
-      showErrorIfLocationSharingWasDenied ? onError : undefined,
-    );
+    navigator.geolocation.getCurrentPosition(onSuccess, onError);
   };
 
   const handleMoveToCurrentLocationClick = () => {
@@ -73,9 +81,9 @@ const CurrentLocation: React.FC<CurrentLocationMarkerProps> = (props) => {
   useEffect(() => {
     retrieveCurrentLocation(false);
 
-    const refreshLocationTimer = setInterval(
-      () => retrieveCurrentLocation(false),
-      REFRESH_LOCATION_TIME_IN_MS,
+    const refreshLocationTimer: NodeJS.Timer = setInterval(
+      () => retrieveCurrentLocation(false, refreshLocationTimer),
+      REFRESH_LOCATION_TIME_IN_SECONDS * 1000,
     );
 
     return () => {

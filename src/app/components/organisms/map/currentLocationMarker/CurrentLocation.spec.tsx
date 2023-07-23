@@ -60,17 +60,56 @@ describe('CurrentLocation', () => {
 
     expect(getCurrentPositionMock).toHaveBeenCalled();
 
+    const TOTAL_TIME_IN_SECONDS = 50;
+
     act(() => {
-      vi.advanceTimersByTime(10000);
+      vi.advanceTimersByTime(TOTAL_TIME_IN_SECONDS * 1000);
     });
 
+    // Call is made every 10 seconds. So here we expect the time seconds divided by 10, but we need to add one for the initial call that was done
+    expect(getCurrentPositionMock).toHaveBeenCalledTimes(
+      TOTAL_TIME_IN_SECONDS / 10 + 1,
+    );
+
+    vi.useRealTimers();
+  });
+
+  it('SHOULD not keep refreshing current location WHEN location permission was denied', () => {
+    vi.useFakeTimers();
+
+    getCurrentPositionMock = vi
+      .fn()
+      .mockImplementation(
+        (
+          successCallback,
+          errorCallback: (error: Partial<GeolocationPositionError>) => void,
+        ) => {
+          const PERMISSION_DENIED_ERROR_CODE = 1;
+          const geolocationPositionError: Partial<GeolocationPositionError> = {
+            code: PERMISSION_DENIED_ERROR_CODE,
+            PERMISSION_DENIED: PERMISSION_DENIED_ERROR_CODE,
+            message: 'Permission denied',
+          };
+
+          errorCallback(geolocationPositionError);
+        },
+      );
+
+    // eslint-disable-next-line
+    (global as any).navigator.geolocation = {
+      getCurrentPosition: getCurrentPositionMock,
+    };
+
+    render(<CurrentLocation googleMapReference={new google.maps.Map()} />);
+
+    expect(getCurrentPositionMock).toHaveBeenCalled();
+
+    act(() => {
+      vi.advanceTimersByTime(50000);
+    });
+
+    // The expected number is 2, because of the initial call to get the location and the very first time the interval is triggered. Afterwards it is stopped
     expect(getCurrentPositionMock).toHaveBeenCalledTimes(2);
-
-    act(() => {
-      vi.advanceTimersByTime(10000);
-    });
-
-    expect(getCurrentPositionMock).toHaveBeenCalledTimes(3);
 
     vi.useRealTimers();
   });
@@ -122,8 +161,18 @@ describe('CurrentLocation', () => {
           successCallback(mockPosition);
         })
         .mockImplementationOnce(
-          (successCallback, errorCallback: () => void) => {
-            errorCallback();
+          (
+            successCallback,
+            errorCallback: (error: Partial<GeolocationPositionError>) => void,
+          ) => {
+            const POSITION_UNAVAILABLE_ERROR_CODE = 2;
+            const geolocationPositionError: Partial<GeolocationPositionError> =
+              {
+                code: POSITION_UNAVAILABLE_ERROR_CODE,
+                message: 'Position unavailable',
+              };
+
+            errorCallback(geolocationPositionError);
           },
         );
       // eslint-disable-next-line
