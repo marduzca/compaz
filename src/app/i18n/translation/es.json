@@ -167,7 +167,8 @@
     "SUCCESS": "Notificación de tipo Exito"
   },
   "Map": {
-    "CURRENT_LOCATION": "Mostrar ubicación actual",
+    "CURRENT_LOCATION": "Ubicación actual",
+    "SHOW_CURRENT_LOCATION": "Mostrar ubicación actual",
     "LOCATION_ACCESS_ERROR": "Algo salió mal. Probablemente bloqueaste el acceso a tu ubicación, por favor permítelo en la configuración de tu navegador. Si ese no es el caso, vuelve a cargar la página e inténtalo de nuevo.",
     "BROWSER_SUPPORT_ERROR": "Lo sentimos. Tu navegador no funciona con Geolocalización, por lo que no podemos recibir tu ubicación actual.",
     "MAP_TITLE": "Mapa",

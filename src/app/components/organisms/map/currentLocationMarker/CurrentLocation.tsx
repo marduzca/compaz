@@ -99,7 +99,7 @@ const CurrentLocation: React.FC<CurrentLocationMarkerProps> = (props) => {
         type="button"
         onClick={handleMoveToCurrentLocationClick}
         className={styles.currentLocationButton}
-        aria-label={t('Map.CURRENT_LOCATION')}
+        aria-label={t('Map.SHOW_CURRENT_LOCATION')}
       >
         <CurrentLocationIcon />
       </button>
@@ -120,6 +120,7 @@ const CurrentLocation: React.FC<CurrentLocationMarkerProps> = (props) => {
                 true,
             },
           }}
+          title={t('Map.CURRENT_LOCATION')}
         />
       )}
     </>
