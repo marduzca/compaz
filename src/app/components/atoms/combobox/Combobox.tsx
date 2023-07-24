@@ -120,7 +120,7 @@ const Combobox: React.FC<ComboboxProps> = (props) => {
               className={`${styles.option} ${
                 highlightedIndex === index ? styles.highlighted : ''
               }`}
-              key={`${option.value}`}
+              key={option.value}
               {...getItemProps({ item: option, index })}
             >
               {option.text}

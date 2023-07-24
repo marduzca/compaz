@@ -125,7 +125,7 @@ const NavigationPage: React.FC<NavigationProps> = (props) => {
                 }
               />
               <Path
-                path={`${NavigationLink.ROUTES_OVERVIEW}`}
+                path={NavigationLink.ROUTES_OVERVIEW}
                 element={
                   <RoutesOverviewContainer
                     route={route}
@@ -137,7 +137,7 @@ const NavigationPage: React.FC<NavigationProps> = (props) => {
                 }
               />
               <Path
-                path={`${NavigationLink.ROUTE_DETAILS}`}
+                path={NavigationLink.ROUTE_DETAILS}
                 element={
                   <>
                     <RouteDetailsViewContainer

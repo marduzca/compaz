@@ -98,7 +98,7 @@ const SubRouteDetails: React.FC<SubRouteDetailsProps> = (props) => {
         style={{ color: `var(--teleferico-${props.subRoute.line})` }}
       >
         <img
-          key={`${props.subRoute.line}`}
+          key={props.subRoute.line}
           alt={t(`Navigation.Route.Lines.${props.subRoute.line.toUpperCase()}`)}
           src={getCorrespondingTelefericoIcon(props.subRoute.line)}
           loading="lazy"

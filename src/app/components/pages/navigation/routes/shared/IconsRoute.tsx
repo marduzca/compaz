@@ -17,7 +17,7 @@ const IconsRoute: React.FC<SimpleIconsRouteProps> = (props) => {
     const lineIcons = props.subRoutes.map((subRoute) => (
       <li key={subRoute.line} className={styles.teleferico}>
         <img
-          key={`${subRoute.line}`}
+          key={subRoute.line}
           title={t(`Navigation.Route.Lines.${subRoute.line.toUpperCase()}`)}
           alt={t(`Navigation.Route.Lines.${subRoute.line.toUpperCase()}`)}
           src={getCorrespondingTelefericoIcon(subRoute.line)}
