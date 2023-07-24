@@ -9,10 +9,6 @@ import StationMarker from './stationMarker/StationMarker';
 import StationsConnector from './stationsConnector/StationsConnector';
 import { MapLine } from '../../pages/map/MapPage';
 import CurrentLocation from './currentLocationMarker/CurrentLocation';
-import {
-  isFeatureFlagSet,
-  SHOW_CURRENT_LOCATION_FLAG,
-} from '../../../featureFlag/FeatureFlag';
 import { MapMode } from './MapContainer';
 
 interface MapProps {
@@ -230,10 +226,9 @@ const Map: React.FC<MapProps> = (props) => {
               lineColor={DEFAULT_CONNECTOR_COLOR}
             />
           )}
-          {isFeatureFlagSet(SHOW_CURRENT_LOCATION_FLAG) &&
-            props.currentMapMode !== MapMode.ORIGIN_AND_DESTINATION && (
-              <CurrentLocation googleMapReference={props.googleMapReference} />
-            )}
+          {props.currentMapMode !== MapMode.ORIGIN_AND_DESTINATION && (
+            <CurrentLocation googleMapReference={props.googleMapReference} />
+          )}
           {props.route && routeMarkers}
           {props.lines?.length && lineMarkers}
         </GoogleMap>

@@ -381,9 +381,7 @@ describe('Map', () => {
   });
 
   it('SHOULD jump to location marker WHEN clicking on current location button', () => {
-    cy.visit('/?showCurrentLocation', fakeCurrentLocation());
-
-    cy.wait(5000); // Needed for the feature flag to activate
+    cy.visit('/', fakeCurrentLocation());
 
     Header.goToMapPage();
 
