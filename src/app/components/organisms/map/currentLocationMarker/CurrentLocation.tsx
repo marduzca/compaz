@@ -112,6 +112,13 @@ const CurrentLocation: React.FC<CurrentLocationMarkerProps> = (props) => {
           zIndex={2}
           icon={{
             url: currentLocationIcon,
+            anchor: {
+              x: 0,
+              y: 15,
+              equals: () =>
+                // This is here only to make TypeScript happy, but won't have any use
+                true,
+            },
             scaledSize: {
               height: 30,
               width: 30,
