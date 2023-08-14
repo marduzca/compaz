@@ -19,5 +19,30 @@ describe('Contact', () => {
     Page.removeLocalStorageItem('disableMessageStorage');
   });
 
-  // TODO: Test error notification if offline, once Cypress supports simulating offline mode
+  it('shows an error notification if the user is offline', () => {
+    cy.visit('/', {
+      onBeforeLoad: (win) => {
+        // Go offline
+        Object.defineProperty(win.navigator, 'onLine', {
+          value: false,
+          configurable: true,
+        });
+      },
+    });
+    Header.goToContactPage();
+
+    Page.typeInField('Name', 'Offline');
+    Page.typeInField('Email', 'offline@chavonet.com');
+    Contact.typeMessage("I'm offline");
+
+    Contact.sendMessage();
+    Contact.isOfflineErrorMessageVisible();
+
+    // Go online again
+    cy.window().then((win) => {
+      Object.defineProperty(win.navigator, 'onLine', {
+        value: true,
+      });
+    });
+  });
 });
