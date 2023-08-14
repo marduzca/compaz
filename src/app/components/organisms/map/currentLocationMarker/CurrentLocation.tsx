@@ -25,7 +25,7 @@ const CurrentLocation: React.FC<CurrentLocationMarkerProps> = (props) => {
 
   const retrieveCurrentLocation = (
     showErrorIfLocationSharingWasDenied: boolean,
-    refreshLocationTimer?: NodeJS.Timer,
+    refreshLocationTimer?: NodeJS.Timeout,
   ) => {
     if (!navigator.geolocation) {
       window.dispatchEvent(
@@ -81,7 +81,7 @@ const CurrentLocation: React.FC<CurrentLocationMarkerProps> = (props) => {
   useEffect(() => {
     retrieveCurrentLocation(false);
 
-    const refreshLocationTimer: NodeJS.Timer = setInterval(
+    const refreshLocationTimer: NodeJS.Timeout = setInterval(
       () => retrieveCurrentLocation(false, refreshLocationTimer),
       REFRESH_LOCATION_TIME_IN_SECONDS * 1000,
     );
