@@ -44,15 +44,16 @@ export const NavigationContext = createContext<NavigationContextInterface>({
 const identifyTransferPositions = (stationsPath: Station[]): number[] => {
   const transferPositions = [] as number[];
 
-  stationsPath.forEach((subPath, index) => {
+  stationsPath.forEach((station, index) => {
     if (index < stationsPath.length - 2) {
       if (stationsPath[index + 1].lines.length > 1) {
-        // Next station is connected to more than one line
+        // If next station is connected to more than one line
         if (
           !stationsPath[index + 2].lines.some((line) =>
-            subPath.lines.includes(line),
-          ) // Station after the next one doesn't belong to line of current station
+            station.lines.includes(line),
+          )
         ) {
+          // If station after the next one doesn't belong to line of current station
           transferPositions.push(index + 1);
         }
       }
@@ -112,7 +113,7 @@ export const calculateTotalTimeOfSubRoute = (subRoute: Station[]) => {
   return Math.round(totalTime);
 };
 
-export const calculateLineOfSubRoute = (
+export const identifyLineOfSubRoute = (
   subRoute: Station[],
   lines: Line[],
 ): Line => {
@@ -304,7 +305,7 @@ export const NavigationProvider: React.FC<NavigationProviderProps> = (
       const totalTimeOfSubRoute = calculateTotalTimeOfSubRoute(subRoute);
       totalTimeOfFullRoute += totalTimeOfSubRoute;
 
-      const subRouteLine = calculateLineOfSubRoute(subRoute, lines);
+      const subRouteLine = identifyLineOfSubRoute(subRoute, lines);
 
       const subRouteDirection = calculateDirectionOfSubRoute(
         allStations,
@@ -325,6 +326,7 @@ export const NavigationProvider: React.FC<NavigationProviderProps> = (
       lines,
     );
 
+    // Add transfer times to total route time
     subRoutesWithTimeLineAndTransferInfo.forEach((subRoute) => {
       if (subRoute.stationsPath.length === 1) {
         return;

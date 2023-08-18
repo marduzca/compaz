@@ -1,12 +1,12 @@
 import { act, renderHook } from '@testing-library/react';
 import {
-  calculateLineOfSubRoute,
-  calculateTotalTimeOfSubRoute,
   addTransferTimeBetweenLines,
+  calculateDirectionOfSubRoute,
+  calculateTotalTimeOfSubRoute,
   extractSubRoutes,
+  identifyLineOfSubRoute,
   NavigationProvider,
   useNavigation,
-  calculateDirectionOfSubRoute,
 } from './NavigationProvider';
 import {
   ConnectedStation,
@@ -722,7 +722,7 @@ describe('NavigationProvider', () => {
 
   describe('calculateLineOfSubRoute', () => {
     it('calculates lines of route correctly', () => {
-      const subRouteLine = calculateLineOfSubRoute(
+      const subRouteLine = identifyLineOfSubRoute(
         listOfStationsWithTwoLines.slice(0, 2),
         lines,
       );
