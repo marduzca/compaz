@@ -9,8 +9,7 @@
     "types": [
       "vite/client",
       "vitest/globals",
-      "vite-plugin-svgr/client",
-      "cypress"
+      "vite-plugin-svgr/client"
     ],
     "allowJs": true,
     "skipLibCheck": true,
