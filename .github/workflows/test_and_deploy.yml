@@ -12,15 +12,12 @@ on:
 jobs:
   build_and_test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [ 16.x ]
     steps:
       - uses: actions/checkout@master
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js 16.x
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 16.x
 
       - name: Cache Node Modules
         id: node-cache
@@ -44,16 +41,12 @@ jobs:
   visual_regression_test:
     needs: build_and_test
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [ 16.x ]
-        architecture: [ arm64 ]
     steps:
     - uses: actions/checkout@master
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js 16.x
       uses: actions/setup-node@v3
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: 16.x
 
     - name: Cache Node Modules
       id: node-cache
@@ -77,15 +70,12 @@ jobs:
   user_journey_test_local:
     needs: build_and_test
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [ 16.x ]
     steps:
       - uses: actions/checkout@master
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js 16.x
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 16.x
       - name: create env file
         run: |
           touch .env
@@ -116,15 +106,12 @@ jobs:
   outdated_deps:
     needs: [ user_journey_test_local, visual_regression_test ]
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [ 16.x ]
     steps:
       - uses: actions/checkout@master
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js 16.x
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 16.x
 
       - name: Cache Node Modules
         id: node-cache
@@ -172,15 +159,12 @@ jobs:
   user_journey_test_dev:
     needs: build_and_deploy_dev
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [ 16.x ]
     steps:
       - uses: actions/checkout@master
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js 16.x
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 16.x
 
       - name: Cache Node Modules
         id: node-cache
@@ -236,15 +220,12 @@ jobs:
   user_journey_test_prod:
     needs: build_and_deploy_prod
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [ 16.x ]
     steps:
       - uses: actions/checkout@master
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js 16.x
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 16.x
 
       - name: Cache Node Modules
         id: node-cache
