@@ -18,9 +18,9 @@
     "update-deps": "npm outdated || true && npm update && npm outdated || true && npm run pre-commit && git add . && git commit -m \"update deps\"",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "loki:update": "start-server-and-test 'npm run storybook -- --no-open' 6006 'loki update'",
-    "loki:test": "start-server-and-test 'npm run storybook -- --no-open' 6006 'loki test'",
-    "loki:ci": "start-server-and-test 'npm run storybook -- --no-open' 6006 'sleep 5 && loki --requireReference --verboseRenderer'",
+    "loki:update": "start-server-and-test 'npm run storybook -- --no-open' 6006 'loki update --chromeDockerImage 'yukinying/chrome-headless-browser-stable:114.0.5735.106''",
+    "loki:test": "start-server-and-test 'npm run storybook -- --no-open' 6006 'loki test --chromeDockerImage 'yukinying/chrome-headless-browser-stable:114.0.5735.106''",
+    "loki:ci": "start-server-and-test 'npm run storybook -- --no-open' 6006 'sleep 5 && loki --requireReference --verboseRenderer --chromeDockerImage 'yukinying/chrome-headless-browser-stable:114.0.5735.106'",
     "cypress:open": "cypress open",
     "cypress:ci": "cypress run",
     "ci:cypress-run": "start-server-and-test start http://localhost:3000 cypress:ci"
@@ -125,10 +125,6 @@
     "storybook-static"
   ],
   "loki": {
-    "diffingEngine": "looks-same",
-    "looks-same": {
-      "tolerance": 10
-    },
     "configurations": {
       "chrome.laptop": {
         "target": "chrome.docker",
