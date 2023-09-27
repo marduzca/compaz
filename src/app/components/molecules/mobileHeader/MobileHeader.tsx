@@ -2,12 +2,12 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import styles from './MobileHeader.module.css';
-import { ReactComponent as MenuIcon } from '../../../static/svg/menu.svg';
-import { ReactComponent as LogoWhite } from '../../../static/svg/logo_white.svg';
-import { ReactComponent as MapLinkIconEnglish } from '../../../static/svg/map_link_en.svg';
-import { ReactComponent as MapLinkIconSpanish } from '../../../static/svg/map_link_es.svg';
+import MenuIcon from '../../../static/svg/menu.svg?react';
+import LogoWhite from '../../../static/svg/logo_white.svg?react';
+import MapLinkIconEnglish from '../../../static/svg/map_link_en.svg?react';
+import MapLinkIconSpanish from '../../../static/svg/map_link_es.svg?react';
 
-import { ReactComponent as LogoBlue } from '../../../static/svg/logo_blue.svg';
+import LogoBlue from '../../../static/svg/logo_blue.svg?react';
 import ExpandableButton from '../../atoms/expandableButton/ExpandableButton';
 import { NavigationLink } from '../../organisms/menu/Menu';
 import i18n from '../../../i18n/instance';

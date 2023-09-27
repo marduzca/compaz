@@ -3,7 +3,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import successIcon from '../../../static/svg/success.svg';
 import errorIcon from '../../../static/svg/error.svg';
 import infoIcon from '../../../static/svg/info.svg';
-import { ReactComponent as CloseIcon } from '../../../static/svg/close.svg';
+import CloseIcon from '../../../static/svg/close.svg?react';
 import styles from './Notification.module.css';
 
 export enum NotificationType {

@@ -1,7 +1,8 @@
 import React, { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Resizable } from 're-resizable';
-import { ReactComponent as ResizeIcon } from '../../../../../static/svg/resize.svg';
+import ResizeIcon from '../../../../../static/svg/resize.svg?react';
+import BackIcon from '../../../../../static/svg/arrow_back.svg?react';
 import { Route } from '../../../../domain';
 import SubRouteDetails from './SubRouteDetails';
 import { addMinutesToDate } from '../../util/dateFormatter';
@@ -9,7 +10,6 @@ import styles from './RouteDetailsView.module.css';
 import transferIcon from '../../../../../static/svg/transfer.svg';
 import IconsRoute from '../shared/IconsRoute';
 import TotalRouteTime from '../shared/TotalRouteTime';
-import { ReactComponent as BackIcon } from '../../../../../static/svg/arrow_back.svg';
 
 interface DetailsContentBoxProps {
   route: Route;

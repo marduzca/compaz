@@ -3,7 +3,7 @@ import { Meta } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 import { MemoryRouter } from 'react-router-dom';
 import MenuLink from './MenuLink';
-import { ReactComponent as HomeIcon } from '../../../../static/svg/home.svg';
+import HomeIcon from '../../../../static/svg/home.svg?react';
 
 export default {
   title: 'General / Menu / MenuLink',

@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading,jsx-a11y/role-has-required-aria-props */
 import React from 'react';
 import { useSelect } from 'downshift';
-import { ReactComponent as ArrowUpIcon } from '../../../static/svg/chevron_up.svg';
-import { ReactComponent as ArrowDownIcon } from '../../../static/svg/chevron_down.svg';
+import ArrowUpIcon from '../../../static/svg/chevron_up.svg?react';
+import ArrowDownIcon from '../../../static/svg/chevron_down.svg?react';
 import styles from './Select.module.css';
 
 export interface Option {

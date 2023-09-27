@@ -4,9 +4,9 @@ import { SubRoute } from '../../../../domain';
 import styles from './SubRouteDetails.module.css';
 import getCorrespondingTelefericoIcon from '../utils';
 import { addMinutesToDate, parseToSimpleTime } from '../../util/dateFormatter';
-import { ReactComponent as ArrowUpIcon } from '../../../../../static/svg/chevron_up.svg';
-import { ReactComponent as ArrowDownIcon } from '../../../../../static/svg/chevron_down.svg';
-import { ReactComponent as CircleIcon } from '../../../../../static/svg/circle.svg';
+import ArrowDownIcon from '../../../../../static/svg/chevron_down.svg?react';
+import ArrowUpIcon from '../../../../../static/svg/chevron_up.svg?react';
+import CircleIcon from '../../../../../static/svg/circle.svg?react';
 
 interface IntermediateStationsProps {
   subRoute: SubRoute;

@@ -2,7 +2,7 @@ import React from 'react';
 import { Meta } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 import ExpandableButton from './ExpandableButton';
-import { ReactComponent as MenuIcon } from '../../../static/svg/menu.svg';
+import MenuIcon from '../../../static/svg/menu.svg?react';
 
 export default {
   component: ExpandableButton,

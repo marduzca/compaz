@@ -1,9 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ReactComponent as ArrowUpIcon } from '../../../../../static/svg/chevron_up.svg';
-import { ReactComponent as ArrowDownIcon } from '../../../../../static/svg/chevron_down.svg';
-import { ReactComponent as BackIcon } from '../../../../../static/svg/arrow_back.svg';
-import { ReactComponent as CoinIcon } from '../../../../../static/svg/boliviano.svg';
+import ArrowUpIcon from '../../../../../static/svg/chevron_up.svg?react';
+import ArrowDownIcon from '../../../../../static/svg/chevron_down.svg?react';
+import BackIcon from '../../../../../static/svg/arrow_back.svg?react';
+import CoinIcon from '../../../../../static/svg/boliviano.svg?react';
 import styles from './RoutesOverview.module.css';
 import { Route } from '../../../../domain';
 import {

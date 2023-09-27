@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ReactComponent as OfflineMap } from '../../../../static/svg/offline_map.svg';
+import OfflineMap from '../../../../static/svg/offline_map.svg?react';
 import styles from './OfflineMapMessage.module.css';
 
 const OfflineMapMessage: React.FC = () => {

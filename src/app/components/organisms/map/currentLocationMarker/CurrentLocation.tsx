@@ -3,7 +3,7 @@ import { MarkerF } from '@react-google-maps/api';
 import { useTranslation } from 'react-i18next';
 import { GeoLocation, NotificationEvent } from '../../../domain';
 import currentLocationIcon from '../../../../static/svg/current_location.svg';
-import { ReactComponent as CurrentLocationIcon } from '../../../../static/svg/location.svg';
+import CurrentLocationIcon from '../../../../static/svg/location.svg?react';
 import useMapFitBounds from '../../../hooks/useMapFitBounds/useMapFitBounds';
 import { MapMode } from '../MapContainer';
 import styles from './CurrentLocation.module.css';

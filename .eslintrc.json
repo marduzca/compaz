@@ -83,7 +83,8 @@
       "labelAttributes": ["htmlFor"]
     }],
     "jsx-a11y/role-supports-aria-props": "off",
-    "react/no-unknown-property": ["error", { "ignore": ["inert"] }]
+    "react/no-unknown-property": ["error", { "ignore": ["inert"] }],
+    "import/no-unresolved": ["error", { "ignore": ["\\.svg\\?react$"] }]
   },
   "overrides": [
     {

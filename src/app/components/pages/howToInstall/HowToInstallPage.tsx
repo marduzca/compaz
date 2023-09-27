@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import i18n from 'i18next';
-import { ReactComponent as BulletPoint } from '../../../static/svg/bullet.svg';
+import BulletPoint from '../../../static/svg/bullet.svg?react';
 import devices from '../../../static/img/devices.png';
 import styles from './HowToInstallPage.module.css';
 import MobileHeader from '../../molecules/mobileHeader/MobileHeader';

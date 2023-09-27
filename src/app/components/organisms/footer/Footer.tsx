@@ -1,8 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ReactComponent as CheckMarkIcon } from '../../../static/svg/check.svg';
-import { ReactComponent as ClockIcon } from '../../../static/svg/clock.svg';
-import { ReactComponent as MapIcon } from '../../../static/svg/map.svg';
+import CheckMarkIcon from '../../../static/svg/check.svg?react';
+import ClockIcon from '../../../static/svg/clock.svg?react';
+import MapIcon from '../../../static/svg/map.svg?react';
 import styles from './Footer.module.css';
 
 interface FooterItemProps {
