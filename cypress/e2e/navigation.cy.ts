@@ -9,8 +9,6 @@ describe('Navigation', () => {
   it('Goes through the whole trip selection and visualization process successfully', () => {
     cy.visit('/');
 
-    Page.waitForLoadingAnimationToDisappear();
-
     TripSelector.selectDateAndTime('1993-03-15', '09:30');
     TripSelector.selectStations('Irpavi', 'El Prado');
     TripSelector.search();
