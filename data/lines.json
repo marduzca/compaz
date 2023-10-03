@@ -1,0 +1,204 @@
+[
+  {
+    "id": "blue",
+    "stationsPath": [
+      "ex_tranca_rio_seco",
+      "upea",
+      "plaza_la_paz",
+      "plaza_libertad",
+      "16_de_julio"
+    ],
+    "connectedLines": [
+      {
+        "transferTime": 3,
+        "id": "red"
+      },
+      {
+        "id": "silver",
+        "transferTime": 1
+      }
+    ]
+  },
+  {
+    "id": "brown",
+    "stationsPath": [
+      "busch",
+      "las_villas"
+    ],
+    "connectedLines": [
+      {
+        "transferTime": 2,
+        "id": "white"
+      }
+    ]
+  },
+  {
+    "id": "green",
+    "stationsPath": [
+      "libertador",
+      "alto_obrajes",
+      "obrajes_17",
+      "irpavi"
+    ],
+    "connectedLines": [
+      {
+        "transferTime": 0.5,
+        "id": "yellow"
+      },
+      {
+        "id": "light_blue",
+        "transferTime": 2.5
+      }
+    ]
+  },
+  {
+    "id": "light_blue",
+    "stationsPath": [
+      "el_prado",
+      "teatro_al_aire_libre",
+      "del_poeta",
+      "libertador"
+    ],
+    "connectedLines": [
+      {
+        "id": "white",
+        "transferTime": 3.1
+      },
+      {
+        "id": "yellow",
+        "transferTime": 2
+      },
+      {
+        "transferTime": 2.5,
+        "id": "green"
+      }
+    ]
+  },
+  {
+    "id": "orange",
+    "stationsPath": [
+      "central",
+      "armentia",
+      "periferica",
+      "plaza_villaroel"
+    ],
+    "connectedLines": [
+      {
+        "id": "red",
+        "transferTime": 2.4
+      },
+      {
+        "transferTime": 1.83,
+        "id": "white"
+      }
+    ]
+  },
+  {
+    "id": "purple",
+    "stationsPath": [
+      "6_de_marzo",
+      "faro_murillo",
+      "obelisco"
+    ],
+    "connectedLines": [
+      {
+        "id": "silver",
+        "transferTime": 2
+      }
+    ]
+  },
+  {
+    "id": "red",
+    "stationsPath": [
+      "16_de_julio",
+      "cementerio",
+      "central"
+    ],
+    "connectedLines": [
+      {
+        "transferTime": 3,
+        "id": "blue"
+      },
+      {
+        "transferTime": 4,
+        "id": "silver"
+      },
+      {
+        "id": "orange",
+        "transferTime": 2.4
+      }
+    ]
+  },
+  {
+    "id": "silver",
+    "stationsPath": [
+      "16_de_julio",
+      "faro_murillo",
+      "mirador"
+    ],
+    "connectedLines": [
+      {
+        "transferTime": 4,
+        "id": "red"
+      },
+      {
+        "id": "purple",
+        "transferTime": 2
+      },
+      {
+        "id": "blue",
+        "transferTime": 1
+      },
+      {
+        "transferTime": 2.7,
+        "id": "yellow"
+      }
+    ]
+  },
+  {
+    "id": "white",
+    "stationsPath": [
+      "plaza_villaroel",
+      "busch",
+      "plaza_triangular",
+      "del_poeta"
+    ],
+    "connectedLines": [
+      {
+        "transferTime": 2,
+        "id": "brown"
+      },
+      {
+        "id": "light_blue",
+        "transferTime": 3.1
+      },
+      {
+        "transferTime": 1.83,
+        "id": "orange"
+      }
+    ]
+  },
+  {
+    "id": "yellow",
+    "stationsPath": [
+      "mirador",
+      "buenos_aires",
+      "sopocachi",
+      "libertador"
+    ],
+    "connectedLines": [
+      {
+        "id": "green",
+        "transferTime": 0.5
+      },
+      {
+        "transferTime": 2,
+        "id": "light_blue"
+      },
+      {
+        "id": "silver",
+        "transferTime": 2.7
+      }
+    ]
+  }
+]

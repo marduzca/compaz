@@ -1,0 +1,558 @@
+[
+  {
+    "id": "16_de_julio",
+    "name": "16 de Julio",
+    "lines": [
+      "blue",
+      "silver",
+      "red"
+    ],
+    "geoLocation": {
+      "latitude": -16.497649790644072,
+      "longitude": -68.16446459364568
+    },
+    "connectedStations": [
+      {
+        "timeTo": 5.63,
+        "id": "cementerio"
+      },
+      {
+        "id": "faro_murillo",
+        "timeTo": 8.6
+      },
+      {
+        "timeTo": 4.47,
+        "id": "plaza_libertad"
+      }
+    ]
+  },
+  {
+    "id": "6_de_marzo",
+    "name": "6 de Marzo",
+    "lines": [
+      "purple"
+    ],
+    "geoLocation": {
+      "latitude": -16.52253580308544,
+      "longitude": -68.1693274319565
+    },
+    "connectedStations": [
+      {
+        "id": "faro_murillo",
+        "timeTo": 8.12
+      }
+    ]
+  },
+  {
+    "id": "alto_obrajes",
+    "name": "Alto Obrajes",
+    "lines": [
+      "green"
+    ],
+    "geoLocation": {
+      "latitude": -16.521552984153637,
+      "longitude": -68.11036179276364
+    },
+    "connectedStations": [
+      {
+        "id": "obrajes_17",
+        "timeTo": 5.15
+      },
+      {
+        "id": "libertador",
+        "timeTo": 3.42
+      }
+    ]
+  },
+  {
+    "id": "armentia",
+    "name": "Armentia",
+    "lines": [
+      "orange"
+    ],
+    "geoLocation": {
+      "latitude": -16.490360433964387,
+      "longitude": -68.13677266405941
+    },
+    "connectedStations": [
+      {
+        "id": "periferica",
+        "timeTo": 3.78
+      },
+      {
+        "id": "central",
+        "timeTo": 3.98
+      }
+    ]
+  },
+  {
+    "id": "buenos_aires",
+    "name": "Buenos Aires",
+    "lines": [
+      "yellow"
+    ],
+    "geoLocation": {
+      "latitude": -16.515450077592103,
+      "longitude": -68.14401434775876
+    },
+    "connectedStations": [
+      {
+        "timeTo": 6.25,
+        "id": "sopocachi"
+      },
+      {
+        "timeTo": 4,
+        "id": "mirador"
+      }
+    ]
+  },
+  {
+    "id": "busch",
+    "name": "Busch",
+    "lines": [
+      "white",
+      "brown"
+    ],
+    "geoLocation": {
+      "latitude": -16.49364925298172,
+      "longitude": -68.12128721053001
+    },
+    "connectedStations": [
+      {
+        "timeTo": 4.8,
+        "id": "plaza_triangular"
+      },
+      {
+        "timeTo": 3.78,
+        "id": "las_villas"
+      },
+      {
+        "timeTo": 3.95,
+        "id": "plaza_villaroel"
+      }
+    ]
+  },
+  {
+    "id": "cementerio",
+    "name": "Cementerio",
+    "lines": [
+      "red"
+    ],
+    "geoLocation": {
+      "latitude": -16.4981713934074,
+      "longitude": -68.15273532452069
+    },
+    "connectedStations": [
+      {
+        "timeTo": 5.15,
+        "id": "central"
+      },
+      {
+        "id": "16_de_julio",
+        "timeTo": 5.63
+      }
+    ]
+  },
+  {
+    "id": "del_poeta",
+    "name": "Del Poeta",
+    "lines": [
+      "white",
+      "light_blue"
+    ],
+    "geoLocation": {
+      "latitude": -16.510809568430027,
+      "longitude": -68.12099927852286
+    },
+    "connectedStations": [
+      {
+        "id": "libertador",
+        "timeTo": 3.17
+      },
+      {
+        "timeTo": 3.27,
+        "id": "plaza_triangular"
+      },
+      {
+        "id": "teatro_al_aire_libre",
+        "timeTo": 3.5
+      }
+    ]
+  },
+  {
+    "id": "el_prado",
+    "name": "El Prado",
+    "lines": [
+      "light_blue"
+    ],
+    "geoLocation": {
+      "latitude": -16.500461223903944,
+      "longitude": -68.13259670253261
+    },
+    "connectedStations": [
+      {
+        "id": "teatro_al_aire_libre",
+        "timeTo": 3.67
+      }
+    ]
+  },
+  {
+    "id": "central",
+    "name": "Estación Central",
+    "lines": [
+      "red",
+      "orange"
+    ],
+    "geoLocation": {
+      "latitude": -16.491448097412814,
+      "longitude": -68.14460759022887
+    },
+    "connectedStations": [
+      {
+        "timeTo": 3.98,
+        "id": "armentia"
+      },
+      {
+        "id": "cementerio",
+        "timeTo": 5.15
+      }
+    ]
+  },
+  {
+    "id": "ex_tranca_rio_seco",
+    "name": "Ex Tranca Río Seco",
+    "lines": [
+      "blue"
+    ],
+    "geoLocation": {
+      "latitude": -16.489962505473336,
+      "longitude": -68.20969704955483
+    },
+    "connectedStations": [
+      {
+        "timeTo": 7.1,
+        "id": "upea"
+      }
+    ]
+  },
+  {
+    "id": "faro_murillo",
+    "name": "Faro Murillo",
+    "lines": [
+      "silver",
+      "purple"
+    ],
+    "geoLocation": {
+      "latitude": -16.512304492477767,
+      "longitude": -68.15366569166622
+    },
+    "connectedStations": [
+      {
+        "id": "mirador",
+        "timeTo": 4.1
+      },
+      {
+        "id": "obelisco",
+        "timeTo": 8
+      },
+      {
+        "timeTo": 8.6,
+        "id": "16_de_julio"
+      },
+      {
+        "id": "6_de_marzo",
+        "timeTo": 8.12
+      }
+    ]
+  },
+  {
+    "id": "irpavi",
+    "name": "Irpavi",
+    "lines": [
+      "green"
+    ],
+    "geoLocation": {
+      "latitude": -16.538094029075953,
+      "longitude": -68.08734215527583
+    },
+    "connectedStations": [
+      {
+        "id": "obrajes_17",
+        "timeTo": 7.78
+      }
+    ]
+  },
+  {
+    "id": "las_villas",
+    "name": "Las Villas",
+    "lines": [
+      "brown"
+    ],
+    "geoLocation": {
+      "latitude": -16.497660948335128,
+      "longitude": -68.11510407075039
+    },
+    "connectedStations": [
+      {
+        "timeTo": 3.78,
+        "id": "busch"
+      }
+    ]
+  },
+  {
+    "id": "libertador",
+    "name": "Libertador",
+    "lines": [
+      "light_blue",
+      "yellow",
+      "green"
+    ],
+    "geoLocation": {
+      "latitude": -16.519112030566596,
+      "longitude": -68.11597359661714
+    },
+    "connectedStations": [
+      {
+        "timeTo": 3.42,
+        "id": "alto_obrajes"
+      },
+      {
+        "id": "del_poeta",
+        "timeTo": 3.17
+      },
+      {
+        "timeTo": 6.62,
+        "id": "sopocachi"
+      }
+    ]
+  },
+  {
+    "id": "mirador",
+    "name": "Mirador",
+    "lines": [
+      "yellow",
+      "silver"
+    ],
+    "geoLocation": {
+      "latitude": -16.51810025756233,
+      "longitude": -68.15022452244129
+    },
+    "connectedStations": [
+      {
+        "timeTo": 4,
+        "id": "buenos_aires"
+      },
+      {
+        "timeTo": 4.1,
+        "id": "faro_murillo"
+      }
+    ]
+  },
+  {
+    "id": "obelisco",
+    "name": "Obelisco",
+    "lines": [
+      "purple"
+    ],
+    "geoLocation": {
+      "latitude": -16.500024229051945,
+      "longitude": -68.13508567870626
+    },
+    "connectedStations": [
+      {
+        "timeTo": 8,
+        "id": "faro_murillo"
+      }
+    ]
+  },
+  {
+    "id": "obrajes_17",
+    "name": "Obrajes 17",
+    "lines": [
+      "green"
+    ],
+    "geoLocation": {
+      "latitude": -16.52685454454505,
+      "longitude": -68.10060444444267
+    },
+    "connectedStations": [
+      {
+        "timeTo": 7.78,
+        "id": "irpavi"
+      },
+      {
+        "id": "alto_obrajes",
+        "timeTo": 5.15
+      }
+    ]
+  },
+  {
+    "id": "periferica",
+    "name": "Periférica",
+    "lines": [
+      "orange"
+    ],
+    "geoLocation": {
+      "latitude": -16.48650973316236,
+      "longitude": -68.13122192258702
+    },
+    "connectedStations": [
+      {
+        "timeTo": 4.57,
+        "id": "plaza_villaroel"
+      },
+      {
+        "timeTo": 3.78,
+        "id": "armentia"
+      }
+    ]
+  },
+  {
+    "id": "plaza_la_paz",
+    "name": "Plaza La Paz",
+    "lines": [
+      "blue"
+    ],
+    "geoLocation": {
+      "latitude": -16.492250176126635,
+      "longitude": -68.18301875180748
+    },
+    "connectedStations": [
+      {
+        "timeTo": 4.3,
+        "id": "plaza_libertad"
+      },
+      {
+        "timeTo": 4.72,
+        "id": "upea"
+      }
+    ]
+  },
+  {
+    "id": "plaza_libertad",
+    "name": "Plaza Libertad",
+    "lines": [
+      "blue"
+    ],
+    "geoLocation": {
+      "latitude": -16.494799080638867,
+      "longitude": -68.17353384628392
+    },
+    "connectedStations": [
+      {
+        "id": "16_de_julio",
+        "timeTo": 4.47
+      },
+      {
+        "timeTo": 4.3,
+        "id": "plaza_la_paz"
+      }
+    ]
+  },
+  {
+    "id": "plaza_triangular",
+    "name": "Plaza Triangular",
+    "lines": [
+      "white"
+    ],
+    "geoLocation": {
+      "latitude": -16.50408752206713,
+      "longitude": -68.12078967642299
+    },
+    "connectedStations": [
+      {
+        "id": "del_poeta",
+        "timeTo": 3.27
+      },
+      {
+        "id": "busch",
+        "timeTo": 4.8
+      }
+    ]
+  },
+  {
+    "id": "plaza_villaroel",
+    "name": "Plaza Villarroel",
+    "lines": [
+      "orange",
+      "white"
+    ],
+    "geoLocation": {
+      "latitude": -16.48471098846887,
+      "longitude": -68.12201188173509
+    },
+    "connectedStations": [
+      {
+        "timeTo": 3.95,
+        "id": "busch"
+      },
+      {
+        "id": "periferica",
+        "timeTo": 4.57
+      }
+    ]
+  },
+  {
+    "id": "sopocachi",
+    "name": "Sopocachi",
+    "lines": [
+      "yellow"
+    ],
+    "geoLocation": {
+      "latitude": -16.514679825158304,
+      "longitude": -68.13015811919726
+    },
+    "connectedStations": [
+      {
+        "timeTo": 6.62,
+        "id": "libertador"
+      },
+      {
+        "timeTo": 6.25,
+        "id": "buenos_aires"
+      }
+    ]
+  },
+  {
+    "id": "teatro_al_aire_libre",
+    "name": "Teatro al Aire Libre",
+    "lines": [
+      "light_blue"
+    ],
+    "geoLocation": {
+      "latitude": -16.504139157566353,
+      "longitude": -68.12596687719952
+    },
+    "connectedStations": [
+      {
+        "id": "del_poeta",
+        "timeTo": 3.5
+      },
+      {
+        "id": "el_prado",
+        "timeTo": 3.67
+      }
+    ]
+  },
+  {
+    "id": "upea",
+    "name": "UPEA",
+    "lines": [
+      "blue"
+    ],
+    "geoLocation": {
+      "latitude": -16.489514271908067,
+      "longitude": -68.19312264683401
+    },
+    "connectedStations": [
+      {
+        "id": "plaza_la_paz",
+        "timeTo": 4.72
+      },
+      {
+        "timeTo": 7.1,
+        "id": "ex_tranca_rio_seco"
+      }
+    ]
+  }
+]

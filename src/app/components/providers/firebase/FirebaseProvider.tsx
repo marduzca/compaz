@@ -1,28 +1,14 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import { initializeApp, FirebaseOptions } from 'firebase/app';
-import {
-  collection,
-  doc,
-  getFirestore,
-  orderBy,
-  query,
-  setDoc,
-} from 'firebase/firestore';
-import {
-  useCollectionDataOnce,
-  useDocumentDataOnce,
-} from 'react-firebase-hooks/firestore';
-import { Line, NotificationEvent, Station, Version } from '../../domain';
+import React, { createContext, useContext } from 'react';
+import { FirebaseOptions, initializeApp } from 'firebase/app';
+import { doc, getFirestore, setDoc } from 'firebase/firestore';
+import { Line, NotificationEvent, Station } from '../../domain';
 import {
   EventType,
   NotificationType,
 } from '../../organisms/notification/Notification';
 import { GENERAL_ERROR_NOTIFICATION_KEY } from '../../organisms/notification/NotificationContainer';
-import {
-  lineConverter,
-  stationConverter,
-  versionConverter,
-} from './firestoreConverters';
+import stationsJson from '../../../../../data/stations.json';
+import linesJson from '../../../../../data/lines.json';
 
 interface FirebaseContextInterface {
   stations: Station[];
@@ -68,85 +54,14 @@ const firebaseApp = initializeApp(
 
 const firestore = getFirestore(firebaseApp);
 
-const dataVersionRef = doc(firestore, 'metadata', 'data').withConverter(
-  versionConverter,
-);
-const stationsRef = query(
-  collection(firestore, 'stations').withConverter(stationConverter),
-  orderBy('name'),
-);
-const linesRef = collection(firestore, 'lines').withConverter(lineConverter);
-
-// TODO: Find out how to write these tests:
-// when nothing saved, store current data ✅
-// when saved and current version, use old data ✅
-// when saved and old version, store current data ✅
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const APP_VERSION_KEY = 'app_version';
-const DATA_VERSION_KEY = 'data_version';
-const STATIONS_KEY = 'data_stations';
-const LINES_KEY = 'data_lines';
+const stations: Station[] = stationsJson;
+const lines: Line[] = linesJson;
 
 interface FirebaseProviderProps {
   children: React.ReactNode;
 }
 
 export const FirebaseProvider: React.FC<FirebaseProviderProps> = (props) => {
-  const [dataNeedsUpdate, setDataNeedsUpdate] = useState<boolean>(false);
-  const [stations, setStations] = useState<Station[]>([]);
-  const [lines, setLines] = useState<Line[]>([]);
-
-  const [currentDataVersion] = useDocumentDataOnce<Version>(dataVersionRef);
-  const [currentStations] = useCollectionDataOnce<Station>(
-    dataNeedsUpdate ? stationsRef : undefined,
-  );
-  const [currentLines] = useCollectionDataOnce<Line>(
-    dataNeedsUpdate ? linesRef : undefined,
-  );
-
-  useEffect(() => {
-    const storedDataVersion = localStorage.getItem(DATA_VERSION_KEY);
-
-    if (storedDataVersion) {
-      const storedStations = JSON.parse(
-        localStorage.getItem(STATIONS_KEY) as string,
-      ) as Station[];
-      const storedLines = JSON.parse(
-        localStorage.getItem(LINES_KEY) as string,
-      ) as Line[];
-
-      setStations(storedStations);
-      setLines(storedLines);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (currentDataVersion) {
-      const storedDataVersion = localStorage.getItem(DATA_VERSION_KEY);
-
-      const newVersionAvailable =
-        !storedDataVersion || storedDataVersion !== currentDataVersion.version;
-
-      if (newVersionAvailable) {
-        setDataNeedsUpdate(true);
-
-        if (currentStations && currentLines) {
-          setStations(currentStations);
-          setLines(currentLines);
-
-          localStorage.setItem(STATIONS_KEY, JSON.stringify(currentStations));
-          localStorage.setItem(LINES_KEY, JSON.stringify(currentLines));
-
-          localStorage.setItem(
-            DATA_VERSION_KEY,
-            currentDataVersion.version.toString(),
-          );
-        }
-      }
-    }
-  }, [currentLines, currentStations, currentDataVersion]);
-
   const storeMessage = async (
     name: string,
     email: string,
