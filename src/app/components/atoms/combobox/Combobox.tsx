@@ -80,6 +80,7 @@ const Combobox: React.FC<ComboboxProps> = (props) => {
           name={props.name}
           spellCheck={false}
           {...getInputProps({
+            ...getInputProps(),
             onFocus: () => {
               if (!isOpen) {
                 openMenu();
