@@ -1,4 +1,3 @@
-import Page from '../page_objects/page';
 import TripSelector from '../page_objects/tripSelector';
 import RoutesOverview from '../page_objects/routesOverview';
 import RouteDetails from '../page_objects/routeDetails';
