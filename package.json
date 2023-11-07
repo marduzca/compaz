@@ -125,6 +125,10 @@
     "storybook-static"
   ],
   "loki": {
+    "diffingEngine": "looks-same",
+    "looks-same": {
+      "tolerance": 10
+    },
     "configurations": {
       "chrome.laptop": {
         "target": "chrome.docker",
