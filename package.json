@@ -23,7 +23,7 @@
     "loki:ci": "start-server-and-test 'npm run storybook -- --no-open' 6006 'sleep 5 && loki --requireReference --verboseRenderer'",
     "cypress:open": "cypress open",
     "cypress:ci": "cypress run",
-    "ci:cypress-run": "start-server-and-test start http://localhost:3000 cypress:ci"
+    "ci:cypress-run": "start-server-and-test --expect 404 start http://localhost:3000 cypress:ci"
   },
   "dependencies": {
     "@react-google-maps/api": "^2.18.1",
@@ -89,7 +89,7 @@
     "mockdate": "^3.0.5",
     "mq-polyfill": "^1.1.8",
     "prettier": "^3.0.0",
-    "start-server-and-test": "^2.0.0",
+    "start-server-and-test": "^2.0.3",
     "storybook": "^7.0.4"
   },
   "browserslist": {
