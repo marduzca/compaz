@@ -385,6 +385,8 @@ describe('Map', () => {
 
     Header.goToMapPage();
 
+    cy.wait(1500);
+
     Map.showCurrentLocation();
 
     Map.shouldShowCurrentLocationMarker();
