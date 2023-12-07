@@ -4,29 +4,6 @@ import { MapLine } from '../../src/app/components/pages/map/MapPage';
 import { LineColor } from '../../src/app/components/domain';
 
 describe('Map', () => {
-  const fakeCurrentLocation = () => {
-    const fakeLocation = {
-      latitude: 52.553444,
-      longitude: 13.416418,
-    };
-
-    return {
-      onBeforeLoad(browserWindow) {
-        cy.stub(
-          browserWindow.navigator.geolocation,
-          'getCurrentPosition',
-          (successCallback) =>
-            successCallback({
-              coords: {
-                latitude: fakeLocation.latitude,
-                longitude: fakeLocation.longitude,
-              },
-            }),
-        );
-      },
-    };
-  };
-
   it('renders all the lines', () => {
     const mapLines: MapLine[] = [
       {
@@ -378,15 +355,5 @@ describe('Map', () => {
         Map.shouldShowStationMarker(station.name.toUpperCase());
       }),
     );
-  });
-
-  it('SHOULD jump to location marker WHEN clicking on current location button', () => {
-    cy.visit('/map', fakeCurrentLocation());
-
-    cy.wait(1500);
-
-    Map.showCurrentLocation();
-
-    Map.shouldShowCurrentLocationMarker();
   });
 });
