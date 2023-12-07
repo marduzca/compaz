@@ -27,6 +27,18 @@ describe('Map', () => {
     };
   };
 
+  it('SHOULD jump to location marker WHEN clicking on current location button', () => {
+    cy.visit('/', fakeCurrentLocation());
+
+    Header.goToMapPage();
+
+    cy.wait(1500);
+
+    Map.showCurrentLocation();
+
+    Map.shouldShowCurrentLocationMarker();
+  });
+
   it('renders all the lines', () => {
     const mapLines: MapLine[] = [
       {
@@ -378,17 +390,5 @@ describe('Map', () => {
         Map.shouldShowStationMarker(station.name.toUpperCase());
       }),
     );
-  });
-
-  it('SHOULD jump to location marker WHEN clicking on current location button', () => {
-    cy.visit('/', fakeCurrentLocation());
-
-    Header.goToMapPage();
-
-    cy.wait(1500);
-
-    Map.showCurrentLocation();
-
-    Map.shouldShowCurrentLocationMarker();
   });
 });
