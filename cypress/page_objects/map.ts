@@ -1,5 +1,5 @@
 const withinMap = (scopedFunction: () => void) => {
-  cy.get('div[aria-label="Map"]').within(scopedFunction);
+  cy.get('div[aria-label="Map"]').parent().within(scopedFunction);
 };
 
 const showCurrentLocation = () => {
@@ -10,7 +10,7 @@ const showCurrentLocation = () => {
 
 const shouldShowStationMarker = (name: string) => {
   withinMap(() => {
-    cy.get(`div[aria-label="${name}"]`).should('be.visible');
+    cy.contains(name).should('be.visible');
   });
 };
 
