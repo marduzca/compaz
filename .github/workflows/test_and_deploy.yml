@@ -80,6 +80,7 @@ jobs:
         run: |
           touch .env
           echo VITE_MAPS_API_KEY =${{ secrets.DEV_MAPS_API_KEY }} >> .env
+          echo VITE_FIREBASE_API_KEY =${{ secrets.DEV_FIREBASE_API_KEY }} >> .env
 
       - name: Cache Node Modules
         id: node-cache
@@ -136,6 +137,7 @@ jobs:
         run: |
           touch .env
           echo VITE_MAPS_API_KEY =${{ secrets.DEV_MAPS_API_KEY }} >> .env
+          echo VITE_FIREBASE_API_KEY =${{ secrets.DEV_FIREBASE_API_KEY }} >> .env
 
       - name: Cache Node Modules
         id: node-cache
@@ -197,6 +199,7 @@ jobs:
         run: |
           touch .env
           echo VITE_MAPS_API_KEY =${{ secrets.MAPS_API_KEY }} >> .env
+          echo VITE_FIREBASE_API_KEY =${{ secrets.FIREBASE_API_KEY }} >> .env
 
       - name: Cache Node Modules
         id: node-cache

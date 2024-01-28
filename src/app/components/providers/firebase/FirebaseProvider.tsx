@@ -27,7 +27,7 @@ export const FirebaseContext = createContext<FirebaseContextInterface>({
 });
 
 const firebaseProdConfig: FirebaseOptions = {
-  apiKey: 'AIzaSyCOp-cYAUCxncqLQAcWCCNzD5Wj6NOTDTc',
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || 'fake-key',
   authDomain: 'compaz-4.firebaseapp.com',
   projectId: 'compaz-4',
   storageBucket: 'compaz-4.appspot.com',
@@ -37,7 +37,7 @@ const firebaseProdConfig: FirebaseOptions = {
 };
 
 const firebaseDevConfig: FirebaseOptions = {
-  apiKey: 'AIzaSyAT1dGP4E4sQ5mDmK46DST0hBxwiE8aRhs',
+  apiKey: import.meta.env.VITE_FIREBASE_DEV_API_KEY || 'fake-key',
   authDomain: 'compaz-dev.firebaseapp.com',
   projectId: 'compaz-dev',
   storageBucket: 'compaz-dev.appspot.com',
