@@ -14,10 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Use Node.js 20.x.x
+      - name: Use Node.js 20
         uses: actions/setup-node@v3
         with:
-          node-version: 20.x.x
+          node-version: 20
 
       - name: Cache Node Modules
         id: node-cache
@@ -43,10 +43,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Use Node.js 20.x.x
+    - name: Use Node.js 20
       uses: actions/setup-node@v3
       with:
-        node-version: 20.x.x
+        node-version: 20
 
     - name: Cache Node Modules
       id: node-cache
@@ -72,10 +72,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Use Node.js 20.x.x
+      - name: Use Node.js 20
         uses: actions/setup-node@v3
         with:
-          node-version: 20.x.x
+          node-version: 20
       - name: create env file
         run: |
           touch .env
@@ -109,10 +109,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Use Node.js 20.x.x
+      - name: Use Node.js 20
         uses: actions/setup-node@v3
         with:
-          node-version: 20.x.x
+          node-version: 20
 
       - name: Cache Node Modules
         id: node-cache
@@ -163,10 +163,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Use Node.js 20.x.x
+      - name: Use Node.js 20
         uses: actions/setup-node@v3
         with:
-          node-version: 20.x.x
+          node-version: 20
 
       - name: Cache Node Modules
         id: node-cache
@@ -225,10 +225,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Use Node.js 20.x.x
+      - name: Use Node.js 20
         uses: actions/setup-node@v3
         with:
-          node-version: 20.x.x
+          node-version: 20
 
       - name: Cache Node Modules
         id: node-cache
