@@ -15,9 +15,6 @@ const config: StorybookConfig = {
       plugins: [],
     });
   },
-  features: {
-    storyStoreV7: true,
-  },
   docs: {
     autodocs: true,
   },
