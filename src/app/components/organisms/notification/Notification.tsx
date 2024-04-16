@@ -64,11 +64,12 @@ const Notification: React.FC<NotificationProps> = (props) => {
         {props.content === RELOAD_EVENT ? (
           <Trans i18nKey="Notification.RELOAD_MESSAGE">
             Notification.RELOAD_MESSAGE
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid,jsx-a11y/no-redundant-roles */}
             <a
               href=""
               onClick={props.onReloadClick}
               aria-label={t('Notification.RELOAD_ANCHOR_DESCRIPTION')}
+              role="link"
             >
               Reload link
             </a>
