@@ -144,7 +144,9 @@ describe('CurrentLocation', () => {
       const currentLocationButton = screen.getByRole('button', {
         name: 'Show current location',
       });
-      await userEvent.click(currentLocationButton);
+      await act(async () => {
+        await userEvent.click(currentLocationButton);
+      });
 
       expect(getCurrentPositionMock).toHaveBeenCalled();
     });
@@ -190,7 +192,9 @@ describe('CurrentLocation', () => {
       const currentLocationButton = screen.getByRole('button', {
         name: 'Show current location',
       });
-      await userEvent.click(currentLocationButton);
+      await act(async () => {
+        await userEvent.click(currentLocationButton);
+      });
 
       const errorAlert = screen.getByRole('alert', {
         name: 'Error notification',
@@ -210,7 +214,9 @@ describe('CurrentLocation', () => {
       const currentLocationButton = screen.getByRole('button', {
         name: 'Show current location',
       });
-      await userEvent.click(currentLocationButton);
+      await act(async () => {
+        await userEvent.click(currentLocationButton);
+      });
 
       const boundsForMockedCurrentLocation: GeoLocation[] = [];
       boundsForMockedCurrentLocation.push(currentLocation);
