@@ -19,7 +19,10 @@ interface MapContainerProps {
   lines?: MapLine[];
 }
 
-const MapContainer: React.FC<MapContainerProps> = (props) => {
+const MapContainer: React.FC<MapContainerProps> = ({
+  route = undefined,
+  lines = undefined,
+}) => {
   const isMobile = useMediaQuery(); // Only used to adjust bounds if the screen dynamically changes size to be mobile
   const { origin, destination } = useNavigation();
   const { isLoaded } = useLoadScript({
@@ -42,8 +45,8 @@ const MapContainer: React.FC<MapContainerProps> = (props) => {
     useCallback((): GeoLocation[] => {
       const markerLocations: GeoLocation[] = [];
 
-      if (currentMapMode === MapMode.ROUTE && props.route) {
-        props.route.subRoutes.forEach((subRoute) => {
+      if (currentMapMode === MapMode.ROUTE && route) {
+        route.subRoutes.forEach((subRoute) => {
           subRoute.stationsPath.forEach((station) => {
             markerLocations.push({
               latitude: station.geoLocation.latitude,
@@ -55,8 +58,8 @@ const MapContainer: React.FC<MapContainerProps> = (props) => {
         return markerLocations;
       }
 
-      if (currentMapMode === MapMode.LINES && props.lines?.length) {
-        props.lines.forEach((line) =>
+      if (currentMapMode === MapMode.LINES && lines?.length) {
+        lines.forEach((line) =>
           line.stationsPath.forEach((station) => {
             markerLocations.push({
               latitude: station.geoLocation.latitude,
@@ -82,16 +85,16 @@ const MapContainer: React.FC<MapContainerProps> = (props) => {
       }
 
       return markerLocations;
-    }, [currentMapMode, destination, origin, props.lines, props.route]);
+    }, [currentMapMode, destination, origin, lines, route]);
 
   useEffect(() => {
-    if (props.route) {
+    if (route) {
       setCurrentMapMode(MapMode.ROUTE);
 
       return;
     }
 
-    if (props.lines?.length) {
+    if (lines?.length) {
       setCurrentMapMode(MapMode.LINES);
 
       return;
@@ -100,11 +103,11 @@ const MapContainer: React.FC<MapContainerProps> = (props) => {
     if (origin || destination) {
       setCurrentMapMode(MapMode.ORIGIN_AND_DESTINATION);
     }
-  }, [destination, origin, props.lines?.length, props.route]);
+  }, [destination, origin, lines?.length, route]);
 
   useEffect(() => {
     if (isLoaded && googleMap) {
-      if (!props.lines?.length && !props.route && !origin && !destination) {
+      if (!lines?.length && !route && !origin && !destination) {
         googleMap.setZoom(12);
 
         return;
@@ -116,8 +119,8 @@ const MapContainer: React.FC<MapContainerProps> = (props) => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
-    props.route,
-    props.lines,
+    route,
+    lines,
     origin,
     destination,
     googleMap,
@@ -132,14 +135,12 @@ const MapContainer: React.FC<MapContainerProps> = (props) => {
       isLoaded={isLoaded}
       origin={origin}
       destination={destination}
-      route={props.route}
+      route={route}
       onGoogleMapLoad={setGoogleMap}
       googleMapReference={googleMap}
-      lines={props.lines}
+      lines={lines}
     />
   );
 };
-
-MapContainer.defaultProps = { route: undefined, lines: undefined };
 
 export default MapContainer;

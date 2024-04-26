@@ -27,11 +27,17 @@ interface NotificationProps {
   onCloseButtonClick: () => void;
 }
 
-const Notification: React.FC<NotificationProps> = (props) => {
+const Notification: React.FC<NotificationProps> = ({
+  nodeRef = null,
+  content,
+  notificationType,
+  onReloadClick,
+  onCloseButtonClick,
+}) => {
   const { t } = useTranslation();
 
   const getCorrespondingBackgroundColor = () => {
-    switch (props.notificationType) {
+    switch (notificationType) {
       case NotificationType.SUCCESS:
         return styles.success;
       case NotificationType.ERROR:
@@ -45,8 +51,8 @@ const Notification: React.FC<NotificationProps> = (props) => {
     <div
       role="alert"
       className={`${styles.container} ${getCorrespondingBackgroundColor()}`}
-      ref={props.nodeRef}
-      aria-label={t(`Notification.${props.notificationType.toString()}`)}
+      ref={nodeRef}
+      aria-label={t(`Notification.${notificationType.toString()}`)}
     >
       <img
         src={
@@ -54,20 +60,20 @@ const Notification: React.FC<NotificationProps> = (props) => {
             SUCCESS: successIcon,
             ERROR: errorIcon,
             INFO: infoIcon,
-          }[props.notificationType]
+          }[notificationType]
         }
-        alt={t(`Notification.${props.notificationType.toString()}`)}
+        alt={t(`Notification.${notificationType.toString()}`)}
         loading="lazy"
         aria-hidden
       />
       <p>
-        {props.content === RELOAD_EVENT ? (
+        {content === RELOAD_EVENT ? (
           <Trans i18nKey="Notification.RELOAD_MESSAGE">
             Notification.RELOAD_MESSAGE
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid,jsx-a11y/no-redundant-roles */}
             <a
               href=""
-              onClick={props.onReloadClick}
+              onClick={onReloadClick}
               aria-label={t('Notification.RELOAD_ANCHOR_DESCRIPTION')}
               role="link"
             >
@@ -75,23 +81,19 @@ const Notification: React.FC<NotificationProps> = (props) => {
             </a>
           </Trans>
         ) : (
-          t(props.content)
+          t(content)
         )}
       </p>
       <button
         type="button"
         title={t('Notification.CLOSE')}
         className={styles.closeButton}
-        onClick={props.onCloseButtonClick}
+        onClick={onCloseButtonClick}
       >
         <CloseIcon />
       </button>
     </div>
   );
-};
-
-Notification.defaultProps = {
-  nodeRef: null,
 };
 
 export default Notification;

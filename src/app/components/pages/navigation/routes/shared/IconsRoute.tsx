@@ -10,11 +10,14 @@ interface SimpleIconsRouteProps {
   hideTimes?: boolean;
 }
 
-const IconsRoute: React.FC<SimpleIconsRouteProps> = (props) => {
+const IconsRoute: React.FC<SimpleIconsRouteProps> = ({
+  hideTimes = false,
+  subRoutes,
+}) => {
   const { t } = useTranslation();
 
   const renderRoute = (): ReactNode[] => {
-    const lineIcons = props.subRoutes.map((subRoute) => (
+    const lineIcons = subRoutes.map((subRoute) => (
       <li key={subRoute.line} className={styles.teleferico}>
         <img
           key={subRoute.line}
@@ -23,19 +26,19 @@ const IconsRoute: React.FC<SimpleIconsRouteProps> = (props) => {
           src={getCorrespondingTelefericoIcon(subRoute.line)}
           loading="lazy"
         />
-        {!props.hideTimes && <span>{subRoute.totalTime}</span>}
+        {!hideTimes && <span>{subRoute.totalTime}</span>}
       </li>
     ));
 
-    for (let index = 0; index < props.subRoutes.length * 2 - 1; index += 1) {
+    for (let index = 0; index < subRoutes.length * 2 - 1; index += 1) {
       if (index !== 0 && index % 2 === 1) {
         lineIcons.splice(
           index,
           0,
           <li key={`transfer-${index}`} className={styles.transfer}>
-            {!props.hideTimes && (
+            {!hideTimes && (
               <span>
-                {props.subRoutes[Math.floor(index / 2)].transferTimeToNextLine}
+                {subRoutes[Math.floor(index / 2)].transferTimeToNextLine}
               </span>
             )}
             <img
@@ -56,10 +59,6 @@ const IconsRoute: React.FC<SimpleIconsRouteProps> = (props) => {
       {renderRoute().map((routeItem) => routeItem)}
     </ol>
   );
-};
-
-IconsRoute.defaultProps = {
-  hideTimes: false,
 };
 
 export default IconsRoute;

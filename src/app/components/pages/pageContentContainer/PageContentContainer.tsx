@@ -8,17 +8,15 @@ interface PageContentContainerProps {
   onMenuButtonClick: () => void;
 }
 
-const PageContentContainer: React.FC<PageContentContainerProps> = (props) => (
+const PageContentContainer: React.FC<PageContentContainerProps> = ({
+  wrapperClassName = '',
+  children,
+  onMenuButtonClick,
+}) => (
   <main className={styles.container}>
-    <MobileHeader onMenuButtonClick={props.onMenuButtonClick} />
-    <div className={`${styles.content} ${props.wrapperClassName}`}>
-      {props.children}
-    </div>
+    <MobileHeader onMenuButtonClick={onMenuButtonClick} />
+    <div className={`${styles.content} ${wrapperClassName}`}>{children}</div>
   </main>
 );
-
-PageContentContainer.defaultProps = {
-  wrapperClassName: '',
-};
 
 export default PageContentContainer;

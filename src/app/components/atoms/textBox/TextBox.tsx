@@ -9,24 +9,25 @@ interface TextBoxProps {
   required?: boolean;
 }
 
-const TextBox: React.FC<TextBoxProps> = (props) => (
-  <div className={`${styles.textBox} ${!!props.value && styles.notEmpty}`}>
+const TextBox: React.FC<TextBoxProps> = ({
+  required = false,
+  type = 'text',
+  value,
+  onChange,
+  label,
+}) => (
+  <div className={`${styles.textBox} ${!!value && styles.notEmpty}`}>
     <input
-      id={props.label}
-      name={props.label}
-      type={props.type}
-      value={props.value}
-      onChange={(event) => props.onChange(event.target.value)}
+      id={label}
+      name={label}
+      type={type}
+      value={value}
+      onChange={(event) => onChange(event.target.value)}
       spellCheck={false}
-      required={props.required}
+      required={required}
     />
-    <label htmlFor={props.label}>{props.label}</label>
+    <label htmlFor={label}>{label}</label>
   </div>
 );
-
-TextBox.defaultProps = {
-  required: false,
-  type: 'text',
-};
 
 export default TextBox;

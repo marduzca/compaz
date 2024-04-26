@@ -15,9 +15,11 @@ interface CurrentLocationMarkerProps {
 
 const REFRESH_LOCATION_TIME_IN_SECONDS = 10;
 
-const CurrentLocation: React.FC<CurrentLocationMarkerProps> = (props) => {
+const CurrentLocation: React.FC<CurrentLocationMarkerProps> = ({
+  googleMapReference = undefined,
+}) => {
   const { t } = useTranslation();
-  const { fitScreenToBounds } = useMapFitBounds(props.googleMapReference);
+  const { fitScreenToBounds } = useMapFitBounds(googleMapReference);
 
   const [currentLocation, setCurrentLocation] = useState<
     GeoLocation | undefined
@@ -132,10 +134,6 @@ const CurrentLocation: React.FC<CurrentLocationMarkerProps> = (props) => {
       )}
     </>
   );
-};
-
-CurrentLocation.defaultProps = {
-  googleMapReference: undefined,
 };
 
 export default CurrentLocation;

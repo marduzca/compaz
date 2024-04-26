@@ -24,8 +24,19 @@ interface ComboboxProps {
   onClearButtonClick: (inputName: string) => void;
 }
 
-const Combobox: React.FC<ComboboxProps> = (props) => {
-  const [inputOptions, setInputOptions] = useState(props.options);
+const Combobox: React.FC<ComboboxProps> = ({
+  validationError = false,
+  required = false,
+  name,
+  placeholder,
+  options,
+  inputValue,
+  onChange,
+  toggleButtonTitle,
+  clearButtonTitle,
+  onClearButtonClick,
+}) => {
+  const [inputOptions, setInputOptions] = useState(options);
   const {
     isOpen,
     getInputProps,
@@ -37,16 +48,16 @@ const Combobox: React.FC<ComboboxProps> = (props) => {
     highlightedIndex,
     setInputValue,
   } = useCombobox({
-    initialInputValue: props.inputValue || '',
+    initialInputValue: inputValue || '',
     items: inputOptions,
     itemToString: (option) => (option ? option.text : ''),
     onInputValueChange: ({ inputValue }) => {
       if (inputValue) {
-        setInputOptions(filterOptions(props.options, inputValue));
-        props.onChange(inputValue);
+        setInputOptions(filterOptions(options, inputValue));
+        onChange(inputValue);
       } else {
-        setInputOptions(props.options);
-        props.onChange('');
+        setInputOptions(options);
+        onChange('');
       }
     },
   });
@@ -57,27 +68,39 @@ const Combobox: React.FC<ComboboxProps> = (props) => {
     );
 
   useEffect(() => {
-    setInputValue(props.inputValue);
-  }, [props.inputValue, setInputValue]);
+    setInputValue(inputValue);
+  }, [inputValue, setInputValue]);
 
   useEffect(() => {
-    setInputOptions(filterOptions(props.options, props.inputValue));
-  }, [props, setInputOptions]);
+    setInputOptions(filterOptions(options, inputValue));
+  }, [
+    validationError,
+    required,
+    name,
+    placeholder,
+    options,
+    inputValue,
+    onChange,
+    toggleButtonTitle,
+    clearButtonTitle,
+    onClearButtonClick,
+    setInputOptions,
+  ]);
 
   return (
     <div
       className={`${styles.wrapper} ${
-        props.validationError ? styles.withValidationError : ''
+        validationError ? styles.withValidationError : ''
       } ${isOpen && inputOptions.length > 0 ? styles.open : ''}`}
     >
       <div
         className={`${styles.combobox} ${
-          props.inputValue && props.inputValue !== '' ? styles.selected : ''
+          inputValue && inputValue !== '' ? styles.selected : ''
         }`}
       >
         <input
-          required={props.required}
-          name={props.name}
+          required={required}
+          name={name}
           spellCheck={false}
           {...getInputProps({
             ...getInputProps(),
@@ -88,17 +111,17 @@ const Combobox: React.FC<ComboboxProps> = (props) => {
             },
           })}
         />
-        <label htmlFor={props.name} {...getLabelProps()}>
-          {props.placeholder}
+        <label htmlFor={name} {...getLabelProps()}>
+          {placeholder}
         </label>
-        {props.inputValue ? (
+        {inputValue ? (
           <button
             type="button"
-            title={props.clearButtonTitle}
-            aria-label={props.clearButtonTitle}
+            title={clearButtonTitle}
+            aria-label={clearButtonTitle}
             className={styles.clearButton}
             onClick={() => {
-              props.onClearButtonClick(props.name);
+              onClearButtonClick(name);
             }}
           >
             <ClearIcon />
@@ -106,7 +129,7 @@ const Combobox: React.FC<ComboboxProps> = (props) => {
         ) : (
           <button
             type="button"
-            title={props.toggleButtonTitle}
+            title={toggleButtonTitle}
             className={styles.toggleButton}
             {...getToggleButtonProps()}
           >
@@ -130,11 +153,6 @@ const Combobox: React.FC<ComboboxProps> = (props) => {
       </ul>
     </div>
   );
-};
-
-Combobox.defaultProps = {
-  validationError: false,
-  required: false,
 };
 
 export default Combobox;

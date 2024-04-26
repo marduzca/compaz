@@ -18,7 +18,13 @@ export interface SelectProps {
   ariaLabel?: string;
 }
 
-const Select: React.FC<SelectProps> = (props) => {
+const Select: React.FC<SelectProps> = ({
+  labelId = undefined,
+  ariaLabel = undefined,
+  onChange,
+  selectedOption,
+  options,
+}) => {
   const {
     isOpen,
     selectedItem,
@@ -27,12 +33,12 @@ const Select: React.FC<SelectProps> = (props) => {
     getMenuProps,
     getItemProps,
   } = useSelect({
-    initialSelectedItem: props.selectedOption,
-    items: props.options,
+    initialSelectedItem: selectedOption,
+    items: options,
     itemToString: (item) => (item ? item.text : ''),
     onSelectedItemChange: ({ selectedItem: newSelectedItem }) => {
       if (newSelectedItem) {
-        props.onChange(newSelectedItem);
+        onChange(newSelectedItem);
       }
     },
   });
@@ -44,20 +50,20 @@ const Select: React.FC<SelectProps> = (props) => {
         role="combobox"
         className={styles.toggleButton}
         tabIndex={0}
-        aria-labelledby={props.labelId}
-        aria-label={props.ariaLabel} // aria-labelledby is higher ranked than aria-label, so aria-label is only for exceptions like when no visible label is present or for tests
+        aria-labelledby={labelId}
+        aria-label={ariaLabel} // aria-labelledby is higher ranked than aria-label, so aria-label is only for exceptions like when no visible label is present or for tests
       >
-        <span>{props.selectedOption.text}</span>
+        <span>{selectedOption.text}</span>
         {isOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
       </div>
       <ul
         {...getMenuProps()}
-        aria-labelledby={props.labelId}
-        aria-label={props.ariaLabel} // aria-labelledby is higher ranked than aria-label, so aria-label is only for exceptions like when no visible label is present or for tests
+        aria-labelledby={labelId}
+        aria-label={ariaLabel} // aria-labelledby is higher ranked than aria-label, so aria-label is only for exceptions like when no visible label is present or for tests
         className={styles.optionsList}
       >
         {isOpen &&
-          props.options.map((item, index) => (
+          options.map((item, index) => (
             <li
               {...getItemProps({ item, index })}
               key={item.value}
@@ -72,11 +78,6 @@ const Select: React.FC<SelectProps> = (props) => {
       </ul>
     </div>
   );
-};
-
-Select.defaultProps = {
-  labelId: undefined,
-  ariaLabel: undefined,
 };
 
 export default Select;

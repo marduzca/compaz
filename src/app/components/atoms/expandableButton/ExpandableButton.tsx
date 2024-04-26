@@ -9,32 +9,33 @@ interface ExpandableButtonProps {
   isRounded?: boolean;
 }
 
-const ExpandableButton: React.FC<ExpandableButtonProps> = (props) => {
+const ExpandableButton: React.FC<ExpandableButtonProps> = ({
+  className = '',
+  isRounded = false,
+  accessibleName,
+  icon,
+  onClick,
+}) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
 
   return (
     <button
-      aria-label={props.accessibleName}
-      title={props.accessibleName}
+      aria-label={accessibleName}
+      title={accessibleName}
       type="button"
-      className={`${styles.expandableButton} ${props.className} ${
-        props.isRounded && styles.roundedButton
+      className={`${styles.expandableButton} ${className} ${
+        isRounded && styles.roundedButton
       }`}
       onClick={() => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
-        props.onClick();
+        onClick();
       }}
       aria-expanded={isMobileMenuOpen}
       aria-haspopup
     >
-      {props.icon}
+      {icon}
     </button>
   );
-};
-
-ExpandableButton.defaultProps = {
-  className: '',
-  isRounded: false,
 };
 
 export default ExpandableButton;

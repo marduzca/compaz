@@ -78,21 +78,30 @@ const MAP_STYLES = [
   },
 ];
 
-const Map: React.FC<MapProps> = (props) => {
+const Map: React.FC<MapProps> = ({
+  lines = undefined,
+  googleMapReference = undefined,
+  isLoaded,
+  origin,
+  destination,
+  route,
+  currentMapMode,
+  onGoogleMapLoad,
+}) => {
   const { t } = useTranslation();
 
   const routeMarkers = useMemo(() => {
-    if (!props.route) {
+    if (!route) {
       return null;
     }
 
     return (
       <>
-        {props.route.subRoutes.map((subRoute) =>
+        {route.subRoutes.map((subRoute) =>
           subRoute.stationsPath.map((station, index) => {
             if (
-              station.id === props.origin?.id ||
-              station.id === props.destination?.id ||
+              station.id === origin?.id ||
+              station.id === destination?.id ||
               (index > 0 && index < subRoute.stationsPath.length - 1) ||
               index === subRoute.stationsPath.length - 1
             ) {
@@ -112,7 +121,7 @@ const Map: React.FC<MapProps> = (props) => {
             );
           }),
         )}
-        {props.route.subRoutes.map((subRoute) =>
+        {route.subRoutes.map((subRoute) =>
           subRoute.stationsPath.map((station, index) => {
             if (index === 0) {
               return null;
@@ -141,16 +150,16 @@ const Map: React.FC<MapProps> = (props) => {
         )}
       </>
     );
-  }, [props.destination, props.origin, props.route]);
+  }, [destination, origin, route]);
 
   const lineMarkers = useMemo(() => {
-    if (!props.lines?.length) {
+    if (!lines?.length) {
       return null;
     }
 
     return (
       <>
-        {props.lines.map((line) =>
+        {lines.map((line) =>
           line.stationsPath.map((station) => (
             <div key={station.id}>
               <StationMarker
@@ -161,7 +170,7 @@ const Map: React.FC<MapProps> = (props) => {
             </div>
           )),
         )}
-        {props.lines.map((line) =>
+        {lines.map((line) =>
           line.stationsPath.map((station, index) => {
             if (index === 0) {
               return null;
@@ -185,14 +194,14 @@ const Map: React.FC<MapProps> = (props) => {
         )}
       </>
     );
-  }, [props.lines]);
+  }, [lines]);
 
   return (
     <div className={styles.container}>
       {/* eslint-disable-next-line no-nested-ternary */}
-      {!window.navigator.onLine && (!props.origin || !props.destination) ? (
+      {!window.navigator.onLine && (!origin || !destination) ? (
         <OfflineMapMessage />
-      ) : props.isLoaded ? (
+      ) : isLoaded ? (
         <GoogleMap
           center={LA_PAZ_CENTER}
           zoom={12}
@@ -202,35 +211,35 @@ const Map: React.FC<MapProps> = (props) => {
             disableDefaultUI: true,
             styles: MAP_STYLES,
           }}
-          onLoad={props.onGoogleMapLoad}
+          onLoad={onGoogleMapLoad}
         >
-          {props.origin && (
+          {origin && (
             <StationMarker
-              name={props.origin.name}
-              geoLocation={props.origin.geoLocation}
+              name={origin.name}
+              geoLocation={origin.geoLocation}
               isOrigin
             />
           )}
-          {props.destination && (
+          {destination && (
             <StationMarker
-              name={props.destination.name}
-              geoLocation={props.destination.geoLocation}
+              name={destination.name}
+              geoLocation={destination.geoLocation}
               isDestination
             />
           )}
-          {props.origin && props.destination && !props.route && (
+          {origin && destination && !route && (
             <StationsConnector
               positionInRoute={0}
-              fromGeoLocation={props.origin.geoLocation}
-              toGeoLocation={props.destination.geoLocation}
+              fromGeoLocation={origin.geoLocation}
+              toGeoLocation={destination.geoLocation}
               lineColor={DEFAULT_CONNECTOR_COLOR}
             />
           )}
-          {props.currentMapMode !== MapMode.ORIGIN_AND_DESTINATION && (
-            <CurrentLocation googleMapReference={props.googleMapReference} />
+          {currentMapMode !== MapMode.ORIGIN_AND_DESTINATION && (
+            <CurrentLocation googleMapReference={googleMapReference} />
           )}
-          {props.route && routeMarkers}
-          {props.lines?.length && lineMarkers}
+          {route && routeMarkers}
+          {lines?.length && lineMarkers}
         </GoogleMap>
       ) : (
         <Loader ariaLabel={t('Map.LOADING_MAP')} />
@@ -238,7 +247,5 @@ const Map: React.FC<MapProps> = (props) => {
     </div>
   );
 };
-
-Map.defaultProps = { lines: undefined, googleMapReference: undefined };
 
 export default Map;

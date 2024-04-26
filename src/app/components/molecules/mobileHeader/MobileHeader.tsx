@@ -18,28 +18,32 @@ interface MobileHeaderProps {
   hasMenuButtonOnly?: boolean;
 }
 
-const MobileHeader: React.FC<MobileHeaderProps> = (props) => {
+const MobileHeader: React.FC<MobileHeaderProps> = ({
+  hasMenuButtonOnly = false,
+  isNavigationPage = false,
+  onMenuButtonClick,
+}) => {
   const { t } = useTranslation();
 
   return (
     <header
       className={`${
-        props.hasMenuButtonOnly ? styles.invisibleHeader : styles.header
-      } ${!props.isNavigationPage && styles.withoutMapLink}`}
+        hasMenuButtonOnly ? styles.invisibleHeader : styles.header
+      } ${!isNavigationPage && styles.withoutMapLink}`}
     >
       <ExpandableButton
         accessibleName={t('Menu.OPEN_BUTTON')}
         icon={<MenuIcon />}
-        onClick={props.onMenuButtonClick}
-        className={`${!props.hasMenuButtonOnly && styles.menuButton} ${
-          !props.isNavigationPage && styles.blueMenuButton
+        onClick={onMenuButtonClick}
+        className={`${!hasMenuButtonOnly && styles.menuButton} ${
+          !isNavigationPage && styles.blueMenuButton
         }`}
-        isRounded={props.hasMenuButtonOnly}
+        isRounded={hasMenuButtonOnly}
       />
       <a href="./" title={t('Menu.GO_HOME')} className={styles.logo}>
-        {props.isNavigationPage ? <LogoWhite /> : <LogoBlue />}
+        {isNavigationPage ? <LogoWhite /> : <LogoBlue />}
       </a>
-      {props.isNavigationPage && (
+      {isNavigationPage && (
         <Link
           to={NavigationLink.MAP}
           className={styles.mapLink}
@@ -54,11 +58,6 @@ const MobileHeader: React.FC<MobileHeaderProps> = (props) => {
       )}
     </header>
   );
-};
-
-MobileHeader.defaultProps = {
-  hasMenuButtonOnly: false,
-  isNavigationPage: false,
 };
 
 export default MobileHeader;

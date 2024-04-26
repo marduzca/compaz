@@ -8,13 +8,15 @@ interface ErrorPageProps {
   onMenuButtonClick?: () => void;
 }
 
-const ErrorPage: React.FC<ErrorPageProps> = (props) => {
+const ErrorPage: React.FC<ErrorPageProps> = ({
+  onMenuButtonClick = undefined,
+}) => {
   const { t } = useTranslation();
 
   return (
     <main className={styles.container}>
-      {props.onMenuButtonClick && (
-        <MobileHeader onMenuButtonClick={props.onMenuButtonClick} />
+      {onMenuButtonClick && (
+        <MobileHeader onMenuButtonClick={onMenuButtonClick} />
       )}
       <section className={styles.content}>
         <img src={spaceLlama} loading="lazy" alt={t('ErrorPage.SPACE_ALT')} />
@@ -28,7 +30,4 @@ const ErrorPage: React.FC<ErrorPageProps> = (props) => {
   );
 };
 
-ErrorPage.defaultProps = {
-  onMenuButtonClick: undefined,
-};
 export default ErrorPage;

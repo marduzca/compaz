@@ -10,24 +10,30 @@ interface StationsConnectorProps {
   isIntermediatePath?: boolean;
 }
 
-const StationsConnector: React.FC<StationsConnectorProps> = (props) => (
+const StationsConnector: React.FC<StationsConnectorProps> = ({
+  isIntermediatePath = false,
+  fromGeoLocation,
+  toGeoLocation,
+  lineColor,
+  positionInRoute,
+}) => (
   <>
     <PolylineF
       path={[
         {
-          lat: props.fromGeoLocation.latitude,
-          lng: props.fromGeoLocation.longitude,
+          lat: fromGeoLocation.latitude,
+          lng: fromGeoLocation.longitude,
         },
         {
-          lat: props.toGeoLocation.latitude,
-          lng: props.toGeoLocation.longitude,
+          lat: toGeoLocation.latitude,
+          lng: toGeoLocation.longitude,
         },
       ]}
       options={{
-        strokeColor: props.lineColor,
+        strokeColor: lineColor,
         strokeWeight: 5,
-        zIndex: 100 - props.positionInRoute,
-        icons: props.isIntermediatePath
+        zIndex: 100 - positionInRoute,
+        icons: isIntermediatePath
           ? [
               {
                 icon: {
@@ -47,12 +53,12 @@ const StationsConnector: React.FC<StationsConnectorProps> = (props) => (
     <PolylineF
       path={[
         {
-          lat: props.fromGeoLocation.latitude,
-          lng: props.fromGeoLocation.longitude,
+          lat: fromGeoLocation.latitude,
+          lng: fromGeoLocation.longitude,
         },
         {
-          lat: props.toGeoLocation.latitude,
-          lng: props.toGeoLocation.longitude,
+          lat: toGeoLocation.latitude,
+          lng: toGeoLocation.longitude,
         },
       ]}
       options={{
@@ -64,9 +70,5 @@ const StationsConnector: React.FC<StationsConnectorProps> = (props) => (
     />
   </>
 );
-
-StationsConnector.defaultProps = {
-  isIntermediatePath: false,
-};
 
 export default StationsConnector;

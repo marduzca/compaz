@@ -8,21 +8,22 @@ interface TextAreaProps {
   required?: boolean;
 }
 
-const TextArea: React.FC<TextAreaProps> = (props) => (
+const TextArea: React.FC<TextAreaProps> = ({
+  required = false,
+  value,
+  onChange,
+  label,
+}) => (
   <textarea
-    name={props.label}
-    aria-label={props.label}
-    placeholder={props.label}
-    value={props.value}
-    onChange={(event) => props.onChange(event.target.value)}
+    name={label}
+    aria-label={label}
+    placeholder={label}
+    value={value}
+    onChange={(event) => onChange(event.target.value)}
     spellCheck={false}
-    required={props.required}
+    required={required}
     className={styles.textArea}
   />
 );
-
-TextArea.defaultProps = {
-  required: false,
-};
 
 export default TextArea;
