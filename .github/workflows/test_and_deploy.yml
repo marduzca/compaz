@@ -152,7 +152,7 @@ jobs:
         run: npm run build --if-present
 
       - name: Deploy to Firebase
-        uses: w9jds/firebase-action@master
+        uses: w9jds/firebase-action@v13.7.2
         with:
           args: deploy -P development
         env:
@@ -214,7 +214,7 @@ jobs:
         run: npm run build --if-present
 
       - name: Deploy to Firebase
-        uses: w9jds/firebase-action@master
+        uses: w9jds/firebase-action@v13.7.2
         with:
           args: deploy -P default
         env:
