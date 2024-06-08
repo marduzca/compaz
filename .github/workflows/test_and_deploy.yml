@@ -15,13 +15,13 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Use Node.js 20
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
 
       - name: Cache Node Modules
         id: node-cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         env:
           cache-name: cache-node-modules
         with:
@@ -44,13 +44,13 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Use Node.js 20
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: 20
 
     - name: Cache Node Modules
       id: node-cache
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       env:
         cache-name: cache-node-modules
       with:
@@ -73,7 +73,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Use Node.js 20
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
       - name: create env file
@@ -84,7 +84,7 @@ jobs:
 
       - name: Cache Node Modules
         id: node-cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         env:
           cache-name: cache-node-modules
         with:
@@ -110,13 +110,13 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Use Node.js 20
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
 
       - name: Cache Node Modules
         id: node-cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         env:
           cache-name: cache-node-modules
         with:
@@ -141,7 +141,7 @@ jobs:
 
       - name: Cache Node Modules
         id: node-cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         env:
           cache-name: cache-node-modules
         with:
@@ -164,13 +164,13 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Use Node.js 20
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
 
       - name: Cache Node Modules
         id: node-cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         env:
           cache-name: cache-node-modules
         with:
@@ -203,7 +203,7 @@ jobs:
 
       - name: Cache Node Modules
         id: node-cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         env:
           cache-name: cache-node-modules
         with:
@@ -226,13 +226,13 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Use Node.js 20
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
 
       - name: Cache Node Modules
         id: node-cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         env:
           cache-name: cache-node-modules
         with:
