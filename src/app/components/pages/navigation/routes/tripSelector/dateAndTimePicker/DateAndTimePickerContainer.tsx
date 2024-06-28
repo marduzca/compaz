@@ -120,8 +120,6 @@ const DateAndTimePickerContainer: React.FC = () => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutsideOfMobileMenu);
     };
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showSelectionPanel]);
 
   return (

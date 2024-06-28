@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { Preview } from '@storybook/react';
 import MockDate from 'mockdate';
 import '../src/app/i18n/instance';

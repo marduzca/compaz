@@ -1,6 +1,5 @@
 import { vi } from 'vitest';
 import './i18nForTests';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import '@testing-library/jest-dom/vitest';
 import '@testing-library/jest-dom';
 

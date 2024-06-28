@@ -2,7 +2,6 @@ import { isFeatureFlagSet } from './FeatureFlag';
 
 describe('can read feature toggle by key', () => {
   beforeEach(() => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     delete window.location;
     window.location = {
