@@ -12,7 +12,7 @@ describe('Contact', () => {
 
     expect(
       screen.getByRole('link', { name: 'Instagram account' }),
-    ).toHaveAttribute('href', 'https://www.instagram.com/compaz_app/');
+    ).toHaveAttribute('href', 'https://www.instagram.com/compaz.app/');
 
     expect(
       screen.getByRole('link', { name: 'Facebook account' }),

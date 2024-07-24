@@ -45,7 +45,7 @@ const Introduction: React.FC = () => {
           <LinkedinIcon />
         </a>
         <a
-          href="https://www.instagram.com/compaz_app/"
+          href="https://www.instagram.com/compaz.app/"
           title={t('Contact.INSTAGRAM_LINK')}
           aria-label={t('Contact.INSTAGRAM_LINK')}
           target="_blank"
