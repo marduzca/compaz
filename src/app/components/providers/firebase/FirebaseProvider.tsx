@@ -76,7 +76,7 @@ export const FirebaseProvider: React.FC<FirebaseProviderProps> = (props) => {
       });
 
       return true;
-    } catch (error) {
+    } catch {
       window.dispatchEvent(
         new CustomEvent(EventType.NOTIFICATION, {
           detail: {

@@ -1,4 +1,6 @@
 import { defineConfig } from 'cypress';
+import setupPlugins from './cypress/plugins/index';
+import PluginConfigOptions = Cypress.PluginConfigOptions;
 
 export default defineConfig({
   viewportHeight: 900,
@@ -8,11 +10,9 @@ export default defineConfig({
   fixturesFolder: false,
   pageLoadTimeout: 100000,
   e2e: {
-    // We've imported your old cypress plugins here.
-    // You may want to clean this up later by importing these.
     setupNodeEvents(on, config) {
-      // eslint-disable-next-line @typescript-eslint/no-var-requires,global-require
-      return require('./cypress/plugins/index')(on, config);
+      const pluginConfig = setupPlugins(on, config);
+      return pluginConfig as PluginConfigOptions;
     },
     baseUrl: 'http://localhost:3000',
   },
