@@ -17,18 +17,7 @@ export const WithoutInputInNormalState: React.FC = () => (
     onClearButtonClick={actions('onClearButtonClick').onClearButtonClick}
     name="origin"
     inputValue=""
-    options={[
-      { value: '1', text: 'opt 1' },
-      { value: '2', text: 'opt 2' },
-      { value: '3', text: 'opt 3' },
-      { value: '4', text: 'opt 4' },
-      { value: '5', text: 'opt 5' },
-      { value: '6', text: 'opt 6' },
-      { value: '7', text: 'opt 7' },
-      { value: '8', text: 'opt 8' },
-      { value: '9', text: 'opt 9' },
-      { value: '10', text: 'opt 10' },
-    ]}
+    options={[]}
   />
 );
 
@@ -56,11 +45,12 @@ export const WithIconsInNormalState: React.FC = () => (
     name="origin"
     inputValue="Station"
     options={[
-      { value: '1', text: 'Station 1' },
-      { value: '2', text: 'Station 2' },
-      { value: '3', text: 'Station 3' },
-      { value: '4', text: 'Station 4' },
-      { value: '5', text: 'Station 5' },
+      { value: '1', text: 'Station 1', lines: ['brown', 'blue'] },
+      { value: '2', text: 'Station 2', lines: ['green'] },
+      { value: '3', text: 'Station 3', lines: ['light_blue', 'orange'] },
+      { value: '4', text: 'Station 4', lines: ['purple', 'red'] },
+      { value: '5', text: 'Station 5', lines: ['silver', 'white'] },
+      { value: '6', text: 'Station 6', lines: ['yellow'] },
     ]}
   />
 );

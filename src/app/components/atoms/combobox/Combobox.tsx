@@ -13,6 +13,7 @@ import {
 export interface Option {
   value: string;
   text: string;
+  lines: string[];
 }
 
 interface ComboboxProps {
@@ -154,13 +155,21 @@ const Combobox: React.FC<ComboboxProps> = ({
               key={option.value}
               {...getItemProps({ item: option, index })}
             >
+              <span>{option.text}</span>
               {isFeatureFlagSet(SHOW_LINES_IN_STATION_SELECTOR) && (
                 <ul className={styles.lines}>
-                  <li />
-                  <li />
+                  {option.lines?.map((line) => (
+                    <li
+                      key={line}
+                      style={
+                        {
+                          '--line-color': `var(--teleferico-${line})`,
+                        } as React.CSSProperties
+                      }
+                    />
+                  ))}
                 </ul>
               )}
-              <span>{option.text}</span>
             </li>
           ))}
       </ul>

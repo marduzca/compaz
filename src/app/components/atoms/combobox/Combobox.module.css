@@ -133,13 +133,16 @@
 
 .option {
   --option-content-height: 1.25rem;
+  /* --line-color is set here just to define the default. It will be overwritten dynamically in the combobox component */
+  --line-color: white;
 
   display: flex;
-  gap: 0.5rem;
+  gap: 1rem;
+  justify-content: space-between;
   align-items: center;
 
   line-height: var(--option-content-height);
-  padding: 0.375rem 0.75rem;
+  padding: 0.375rem 1.5rem 0.375rem 0.75rem;
   list-style: none;
   cursor: pointer;
 
@@ -152,9 +155,11 @@
     li {
       width: var(--option-content-height);
       height: var(--option-content-height);
-      border-radius: 50%;
 
-      background-color: salmon;
+      border-radius: 50%;
+      border: 1px solid black;
+
+      background-color: var(--line-color);
     }
   }
 }
