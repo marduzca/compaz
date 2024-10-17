@@ -8,7 +8,7 @@ export default {
   title: 'Atoms / Combobox',
 } as Meta;
 
-export const WithoutInput: React.FC = () => (
+export const WithoutInputInNormalState: React.FC = () => (
   <Combobox
     toggleButtonTitle=""
     onChange={actions('onChange').onChange}
@@ -32,7 +32,7 @@ export const WithoutInput: React.FC = () => (
   />
 );
 
-export const WithInput: React.FC = () => (
+export const WithInputInNormalState: React.FC = () => (
   <Combobox
     toggleButtonTitle=""
     onChange={actions('onChange').onChange}
@@ -42,5 +42,25 @@ export const WithInput: React.FC = () => (
     name="origin"
     inputValue="Irpavi"
     options={[]}
+  />
+);
+
+export const WithIconsInNormalState: React.FC = () => (
+  <Combobox
+    isInitiallyOpen
+    toggleButtonTitle=""
+    onChange={actions('onChange').onChange}
+    placeholder="Origin"
+    clearButtonTitle=""
+    onClearButtonClick={actions('onClearButtonClick').onClearButtonClick}
+    name="origin"
+    inputValue="Station"
+    options={[
+      { value: '1', text: 'Station 1' },
+      { value: '2', text: 'Station 2' },
+      { value: '3', text: 'Station 3' },
+      { value: '4', text: 'Station 4' },
+      { value: '5', text: 'Station 5' },
+    ]}
   />
 );

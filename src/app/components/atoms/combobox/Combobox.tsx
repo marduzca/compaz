@@ -5,6 +5,10 @@ import ArrowUpIcon from '../../../static/svg/chevron_up.svg?react';
 import ArrowDownIcon from '../../../static/svg/chevron_down.svg?react';
 import ClearIcon from '../../../static/svg/close.svg?react';
 import styles from './Combobox.module.css';
+import {
+  isFeatureFlagSet,
+  SHOW_LINES_IN_STATION_SELECTOR,
+} from '../../../featureFlag/FeatureFlag';
 
 export interface Option {
   value: string;
@@ -22,6 +26,7 @@ interface ComboboxProps {
   validationError?: boolean;
   required?: boolean;
   onClearButtonClick: (inputName: string) => void;
+  isInitiallyOpen?: boolean;
 }
 
 const Combobox: React.FC<ComboboxProps> = ({
@@ -35,6 +40,7 @@ const Combobox: React.FC<ComboboxProps> = ({
   toggleButtonTitle,
   clearButtonTitle,
   onClearButtonClick,
+  isInitiallyOpen = false,
 }) => {
   const [inputOptions, setInputOptions] = useState(options);
   const {
@@ -48,6 +54,7 @@ const Combobox: React.FC<ComboboxProps> = ({
     highlightedIndex,
     setInputValue,
   } = useCombobox({
+    defaultIsOpen: isInitiallyOpen,
     initialInputValue: inputValue || '',
     items: inputOptions,
     itemToString: (option) => (option ? option.text : ''),
@@ -147,7 +154,13 @@ const Combobox: React.FC<ComboboxProps> = ({
               key={option.value}
               {...getItemProps({ item: option, index })}
             >
-              {option.text}
+              {isFeatureFlagSet(SHOW_LINES_IN_STATION_SELECTOR) && (
+                <ul className={styles.lines}>
+                  <li />
+                  <li />
+                </ul>
+              )}
+              <span>{option.text}</span>
             </li>
           ))}
       </ul>

@@ -132,13 +132,34 @@
 }
 
 .option {
-  line-height: 1.25rem;
+  --option-content-height: 1.25rem;
+
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+
+  line-height: var(--option-content-height);
   padding: 0.375rem 0.75rem;
   list-style: none;
   cursor: pointer;
+
+  .lines {
+    display: flex;
+    gap: 0.25rem;
+
+    padding: 0;
+
+    li {
+      width: var(--option-content-height);
+      height: var(--option-content-height);
+      border-radius: 50%;
+
+      background-color: salmon;
+    }
+  }
 }
 
-.optionList :not(:last-child) {
+.optionList > li:not(:last-child) {
   border-bottom: 1px dotted #e0e0e0;
 }
 
