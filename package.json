@@ -26,6 +26,9 @@
     "ci:cypress-run": "start-server-and-test start http://localhost:3000 cypress:ci"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/material": "^6.1.4",
     "@react-google-maps/api": "^2.18.1",
     "@vitejs/plugin-react": "^4.0.0",
     "dijkstrajs": "^1.0.2",
