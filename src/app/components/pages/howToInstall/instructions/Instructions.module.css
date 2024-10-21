@@ -15,6 +15,10 @@
   grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
 }
 
+.selectorsMui {
+  gap: 10rem;
+}
+
 .selectorWithLabel {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -84,7 +88,7 @@
 
   .selectors {
     grid-template-columns: 1fr;
-    row-gap: 1.5rem;
+    gap: 2rem;
   }
 
   .selectorWithLabel {

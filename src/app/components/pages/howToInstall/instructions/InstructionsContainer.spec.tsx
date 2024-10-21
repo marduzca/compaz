@@ -2,8 +2,17 @@ import React from 'react';
 import { act, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import InstructionsContainer, { Browser } from './InstructionsContainer';
+import { REPLACE_INPUTS_WITH_MUI } from '../../../../featureFlag/FeatureFlag';
 
 describe('InstructionsContainer', () => {
+  beforeEach(() => {
+    localStorage.setItem(REPLACE_INPUTS_WITH_MUI, 'true');
+  });
+
+  afterAll(() => {
+    localStorage.removeItem(REPLACE_INPUTS_WITH_MUI);
+  });
+
   const selectOptionFromDropdown = async (
     selectLabel: string,
     option: string,
@@ -46,6 +55,7 @@ describe('InstructionsContainer', () => {
     expect(browserOptionsForLaptop).toHaveLength(1);
     expect(browserOptionsForLaptop[0]).toHaveTextContent(Browser.GOOGLE_CHROME);
 
+    await userEvent.click(browserOptionsForLaptop[0]);
     await selectOptionFromDropdown('Device', 'Android / Tablet');
 
     await act(async () => {

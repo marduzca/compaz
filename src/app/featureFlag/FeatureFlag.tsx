@@ -2,6 +2,7 @@ import React from 'react';
 
 export const DISABLE_MESSAGE_STORAGE_FLAG = 'disableMessageStorage';
 export const SHOW_LINES_IN_STATION_SELECTOR = 'showLinesInStationSelector';
+export const REPLACE_INPUTS_WITH_MUI = 'replaceInputsWithMui';
 
 const getParam = (key: string) => {
   const searchParams = new URLSearchParams(window.location.search);

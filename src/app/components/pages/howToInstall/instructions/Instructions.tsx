@@ -8,6 +8,11 @@ import installAndroidSamsungSource from '../../../../static/gif/install_android_
 import installIphoneSafariSource from '../../../../static/gif/install_iphone_safari.gif';
 import { Browser, Device } from './InstructionsContainer';
 import Select, { Option } from '../../../atoms/select/Select';
+import {
+  isFeatureFlagSet,
+  REPLACE_INPUTS_WITH_MUI,
+} from '../../../../featureFlag/FeatureFlag';
+import SelectMui from '../../../atoms/select-mui/SelectMui';
 
 interface InstructionsProps {
   selectedDevice: Device;
@@ -47,24 +52,15 @@ const Instructions: React.FC<InstructionsProps> = (props) => {
     <section className={styles.container} aria-labelledby="instructions">
       <h2 id="instructions">{t('HowToInstall.Instructions.HEADING')}</h2>
       <div className={styles.content}>
-        <header className={styles.selectors}>
-          <div className={styles.selectorWithLabel}>
-            <label id={DEVICE_SELECTOR_LABEL_ID}>
-              {t('HowToInstall.Instructions.DEVICE_SELECTOR_LABEL')}
-            </label>
-            <Select
-              labelId={DEVICE_SELECTOR_LABEL_ID}
-              onChange={(option: Option) =>
-                props.onDeviceSelection(option.value)
+        <header
+          className={`${styles.selectors} ${isFeatureFlagSet(REPLACE_INPUTS_WITH_MUI) && styles.selectorsMui}`}
+        >
+          {isFeatureFlagSet(REPLACE_INPUTS_WITH_MUI) ? (
+            <SelectMui
+              onChange={(optionValue: string) =>
+                props.onDeviceSelection(optionValue)
               }
-              selectedOption={
-                {
-                  value: props.selectedDevice,
-                  text: t(
-                    `HowToInstall.Instructions.${props.selectedDevice}_OPTION`,
-                  ),
-                } as Option
-              }
+              selectedOption={props.selectedDevice}
               options={Object.keys(Device).map(
                 (device) =>
                   ({
@@ -72,23 +68,42 @@ const Instructions: React.FC<InstructionsProps> = (props) => {
                     text: t(`HowToInstall.Instructions.${device}_OPTION`),
                   }) as Option,
               )}
+              label={t('HowToInstall.Instructions.DEVICE_SELECTOR_LABEL')}
             />
-          </div>
-          <div className={styles.selectorWithLabel}>
-            <label id={BROWSER_SELECTOR_LABEL_ID}>
-              {t('HowToInstall.Instructions.BROWSER_SELECTOR_LABEL')}
-            </label>
-            <Select
-              labelId={BROWSER_SELECTOR_LABEL_ID}
-              onChange={(option: Option) =>
-                props.onBrowserSelection(option.value)
+          ) : (
+            <div className={styles.selectorWithLabel}>
+              <label id={DEVICE_SELECTOR_LABEL_ID}>
+                {t('HowToInstall.Instructions.DEVICE_SELECTOR_LABEL')}
+              </label>
+              <Select
+                labelId={DEVICE_SELECTOR_LABEL_ID}
+                onChange={(option: Option) =>
+                  props.onDeviceSelection(option.value)
+                }
+                selectedOption={
+                  {
+                    value: props.selectedDevice,
+                    text: t(
+                      `HowToInstall.Instructions.${props.selectedDevice}_OPTION`,
+                    ),
+                  } as Option
+                }
+                options={Object.keys(Device).map(
+                  (device) =>
+                    ({
+                      value: device,
+                      text: t(`HowToInstall.Instructions.${device}_OPTION`),
+                    }) as Option,
+                )}
+              />
+            </div>
+          )}
+          {isFeatureFlagSet(REPLACE_INPUTS_WITH_MUI) ? (
+            <SelectMui
+              onChange={(optionValue: string) =>
+                props.onBrowserSelection(optionValue)
               }
-              selectedOption={
-                {
-                  value: props.selectedBrowser,
-                  text: props.selectedBrowser,
-                } as Option
-              }
+              selectedOption={props.selectedBrowser}
               options={props.availableBrowsers.map(
                 (browser) =>
                   ({
@@ -96,8 +111,34 @@ const Instructions: React.FC<InstructionsProps> = (props) => {
                     text: browser,
                   }) as Option,
               )}
+              label={t('HowToInstall.Instructions.BROWSER_SELECTOR_LABEL')}
             />
-          </div>
+          ) : (
+            <div className={styles.selectorWithLabel}>
+              <label id={BROWSER_SELECTOR_LABEL_ID}>
+                {t('HowToInstall.Instructions.BROWSER_SELECTOR_LABEL')}
+              </label>
+              <Select
+                labelId={BROWSER_SELECTOR_LABEL_ID}
+                onChange={(option: Option) =>
+                  props.onBrowserSelection(option.value)
+                }
+                selectedOption={
+                  {
+                    value: props.selectedBrowser,
+                    text: props.selectedBrowser,
+                  } as Option
+                }
+                options={props.availableBrowsers.map(
+                  (browser) =>
+                    ({
+                      value: browser,
+                      text: browser,
+                    }) as Option,
+                )}
+              />
+            </div>
+          )}
         </header>
         <div className={styles.steps}>
           {!localStorage.getItem('replaceGifForVisualRegressionTest') ? (
