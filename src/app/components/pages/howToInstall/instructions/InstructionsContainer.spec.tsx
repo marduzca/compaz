@@ -1,5 +1,5 @@
 import React from 'react';
-import { act, render, screen, within } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import InstructionsContainer, { Browser } from './InstructionsContainer';
 import { REPLACE_INPUTS_WITH_MUI } from '../../../../featureFlag/FeatureFlag';
@@ -17,35 +17,29 @@ describe('InstructionsContainer', () => {
     selectLabel: string,
     option: string,
   ) => {
-    await act(async () => {
-      await userEvent.click(
-        screen.getByRole('combobox', {
-          name: selectLabel,
-        }),
-      );
-    });
-    await act(async () => {
-      await userEvent.selectOptions(
-        screen.getByRole('listbox', {
-          name: selectLabel,
-        }),
-        screen.getByRole('option', {
-          name: option,
-        }),
-      );
-    });
+    await userEvent.click(
+      screen.getByRole('combobox', {
+        name: selectLabel,
+      }),
+    );
+    await userEvent.selectOptions(
+      screen.getByRole('listbox', {
+        name: selectLabel,
+      }),
+      screen.getByRole('option', {
+        name: option,
+      }),
+    );
   };
 
   it('should show only the available browsers for the selected device type', async () => {
     render(<InstructionsContainer />);
 
-    await act(async () => {
-      await userEvent.click(
-        screen.getByRole('combobox', {
-          name: 'Browser',
-        }),
-      );
-    });
+    await userEvent.click(
+      screen.getByRole('combobox', {
+        name: 'Browser',
+      }),
+    );
     const browserOptionsForLaptop = within(
       screen.getByRole('listbox', {
         name: 'Browser',
@@ -58,13 +52,11 @@ describe('InstructionsContainer', () => {
     await userEvent.click(browserOptionsForLaptop[0]);
     await selectOptionFromDropdown('Device', 'Android / Tablet');
 
-    await act(async () => {
-      await userEvent.click(
-        screen.getByRole('combobox', {
-          name: 'Browser',
-        }),
-      );
-    });
+    await userEvent.click(
+      screen.getByRole('combobox', {
+        name: 'Browser',
+      }),
+    );
     const browserOptionsForMobile = within(
       screen.getByRole('listbox', {
         name: 'Browser',
