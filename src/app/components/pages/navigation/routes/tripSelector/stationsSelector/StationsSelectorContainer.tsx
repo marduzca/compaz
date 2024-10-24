@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import StationsSelector from './StationsSelector';
 import { useNavigation } from '../../../../../providers/navigation/NavigationProvider';
 import { useFirebase } from '../../../../../providers/firebase/FirebaseProvider';
+import { Station } from '../../../../../domain';
 
 interface StationsSelectorContainerProps {
   showOriginSubmissionError: boolean;
@@ -13,7 +14,7 @@ interface StationsSelectorContainerProps {
 const StationsSelectorContainer: React.FC<StationsSelectorContainerProps> = (
   props,
 ) => {
-  const { stations } = useFirebase();
+  const { stations, lines } = useFirebase();
   const {
     origin,
     destination,
@@ -38,6 +39,20 @@ const StationsSelectorContainer: React.FC<StationsSelectorContainerProps> = (
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stations]);
 
+  const stationsGroupedByLine = useMemo(() => {
+    const stationsGroupedByLine: Record<string, Station[]> = {};
+
+    lines.forEach((line) => {
+      stationsGroupedByLine[line.id] = line.stationsPath
+        .map((stationId) =>
+          stations.find((station) => station.id === stationId),
+        )
+        .filter((station): station is Station => station !== undefined);
+    });
+
+    return stationsGroupedByLine;
+  }, [lines, stations]);
+
   const shouldShowValidationError = (
     searchTerm: string,
     filterOutValue: string | undefined = '',
@@ -55,7 +70,7 @@ const StationsSelectorContainer: React.FC<StationsSelectorContainerProps> = (
     );
 
     const newOriginStation = stations.find(
-      (station) => station.name === newOrigin,
+      (station) => station.name === newOrigin || station.id === newOrigin,
     );
     if (newOriginStation) {
       setOriginStation(newOriginStation);
@@ -71,7 +86,8 @@ const StationsSelectorContainer: React.FC<StationsSelectorContainerProps> = (
     );
 
     const newDestinationStation = stations.find(
-      (station) => station.name === newDestination,
+      (station) =>
+        station.name === newDestination || station.id === newDestination,
     );
     if (newDestinationStation) {
       setDestinationStation(newDestinationStation);
@@ -121,6 +137,7 @@ const StationsSelectorContainer: React.FC<StationsSelectorContainerProps> = (
       stations={stations}
       onClearOriginButtonClick={handleClearOriginButtonClick}
       onClearDestinationButtonClick={handleClearDestinationButtonClick}
+      stationsGroupedByLine={stationsGroupedByLine}
     />
   );
 };

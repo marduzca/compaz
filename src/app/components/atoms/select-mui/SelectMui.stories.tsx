@@ -19,28 +19,3 @@ export const BasicInNormalState: React.FC = () => (
     ]}
   />
 );
-
-export const GroupedOptionsInNormalState: React.FC = () => (
-  <SelectMui
-    label="Device"
-    selectedOption="laptop"
-    onChange={() => ({})}
-    isInitiallyOpen
-    options={[
-      {
-        label: 'Desktop',
-        options: [
-          { value: 'laptop', text: 'Laptop' },
-          { value: 'pc', text: 'PC' },
-        ],
-      },
-      {
-        label: 'Mobile',
-        options: [
-          { value: 'android', text: 'Android' },
-          { value: 'iphone', text: 'iPhone' },
-        ],
-      },
-    ]}
-  />
-);

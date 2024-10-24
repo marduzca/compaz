@@ -3,15 +3,16 @@ import { vi } from 'vitest';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import StationsSelectorContainer from './StationsSelectorContainer';
-import { LineColor, Route, Station } from '../../../../../domain';
+import { Line, LineColor, Route, Station } from '../../../../../domain';
 import * as NavigationProvider from '../../../../../providers/navigation/NavigationProvider';
 import * as FirebaseProvider from '../../../../../providers/firebase/FirebaseProvider';
+import { REPLACE_INPUTS_WITH_MUI } from '../../../../../../featureFlag/FeatureFlag';
 
 describe('StationsSelectorContainer', () => {
   const useFirebaseMock = vi.spyOn(FirebaseProvider, 'useFirebase');
   const useNavigationMock = vi.spyOn(NavigationProvider, 'useNavigation');
 
-  const availableStations = [
+  const availableStations: Station[] = [
     {
       id: 'some_station',
       name: 'Some station',
@@ -26,12 +27,32 @@ describe('StationsSelectorContainer', () => {
       connectedStations: [],
       geoLocation: { latitude: 0, longitude: 0 },
     },
-  ] as Station[];
+    {
+      id: 'yet_another_station',
+      name: 'Yet another station',
+      lines: [LineColor.SILVER],
+      connectedStations: [],
+      geoLocation: { latitude: 0, longitude: 0 },
+    },
+  ];
+
+  const availableLines: Line[] = [
+    {
+      id: LineColor.GREEN,
+      stationsPath: [availableStations[0].id],
+      connectedLines: [],
+    },
+    {
+      id: LineColor.SILVER,
+      stationsPath: [availableStations[1].id, availableStations[2].id],
+      connectedLines: [],
+    },
+  ];
 
   beforeEach(() => {
     useFirebaseMock.mockReturnValue({
       stations: availableStations,
-      lines: [],
+      lines: availableLines,
       storeMessage: async () => true,
     });
 
@@ -330,6 +351,172 @@ describe('StationsSelectorContainer', () => {
       });
 
       expect(screen.getByText(/Non-existent station/)).toBeVisible();
+    });
+  });
+
+  describe('With Mui select components', () => {
+    beforeEach(() => {
+      localStorage.setItem(REPLACE_INPUTS_WITH_MUI, 'true');
+    });
+
+    afterAll(() => {
+      localStorage.removeItem(REPLACE_INPUTS_WITH_MUI);
+    });
+
+    it('allows to select stations from the dropdown', async () => {
+      render(
+        <StationsSelectorContainer
+          showOriginSubmissionError={false}
+          showDestinationSubmissionError={false}
+          setShowOriginSubmissionError={() => {}}
+          setShowDestinationSubmissionError={() => {}}
+        />,
+      );
+
+      const originDropdown = screen.getByRole('combobox', {
+        name: 'Origin',
+      });
+      await userEvent.click(originDropdown);
+
+      const originSelection = screen.getByRole('option', {
+        name: availableStations[0].name,
+      });
+      await userEvent.click(originSelection);
+
+      const destinationDropdown = screen.getByRole('combobox', {
+        name: 'Destination',
+      });
+      await userEvent.click(destinationDropdown);
+
+      const destinationSelection = screen.getByRole('option', {
+        name: availableStations[1].name,
+      });
+      await userEvent.click(destinationSelection);
+
+      expect((originSelection as HTMLOptionElement).selected).toBeTruthy();
+      expect((destinationSelection as HTMLOptionElement).selected).toBeTruthy();
+    });
+
+    it('removes the station from the destination when chosen already as origin', async () => {
+      useNavigationMock.mockReturnValue({
+        origin: availableStations[0],
+        destination: undefined,
+        departureTime: '10:24',
+        departureDate: '2021-12-25',
+        setNewDepartureTime: vi.fn(),
+        setNewDepartureDate: vi.fn(),
+        setOriginStation: vi.fn(),
+        setDestinationStation: vi.fn(),
+        generateStationsMap: vi.fn(),
+        calculateRoute: () =>
+          ({ subRoutes: [], totalTime: 0, price: 0 }) as Route,
+      });
+
+      render(
+        <StationsSelectorContainer
+          showOriginSubmissionError={false}
+          showDestinationSubmissionError={false}
+          setShowOriginSubmissionError={() => {}}
+          setShowDestinationSubmissionError={() => {}}
+        />,
+      );
+
+      const destinationDropdown = screen.getByRole('combobox', {
+        name: 'Destination',
+      });
+      await userEvent.click(destinationDropdown);
+
+      const stationAlreadySelectedAsOrigin = screen.queryByRole('option', {
+        name: availableStations[0].name,
+      });
+
+      expect(stationAlreadySelectedAsOrigin).not.toBeInTheDocument();
+    });
+
+    it('removes the station from the origin when chosen already as destination', async () => {
+      useNavigationMock.mockReturnValue({
+        origin: undefined,
+        destination: availableStations[0],
+        departureTime: '10:24',
+        departureDate: '2021-12-25',
+        setNewDepartureTime: vi.fn(),
+        setNewDepartureDate: vi.fn(),
+        setOriginStation: vi.fn(),
+        setDestinationStation: vi.fn(),
+        generateStationsMap: vi.fn(),
+        calculateRoute: () =>
+          ({ subRoutes: [], totalTime: 0, price: 0 }) as Route,
+      });
+
+      render(
+        <StationsSelectorContainer
+          showOriginSubmissionError={false}
+          showDestinationSubmissionError={false}
+          setShowOriginSubmissionError={() => {}}
+          setShowDestinationSubmissionError={() => {}}
+        />,
+      );
+
+      const originDropdown = screen.getByRole('combobox', {
+        name: 'Origin',
+      });
+      await userEvent.click(originDropdown);
+
+      const stationAlreadySelectedAsOrigin = screen.queryByRole('option', {
+        name: availableStations[0].name,
+      });
+
+      expect(stationAlreadySelectedAsOrigin).not.toBeInTheDocument();
+    });
+
+    // TODO: Finish after finishing migration
+    it.skip('switches origin and destination content when clicking on switcher button', async () => {
+      useNavigationMock.mockReturnValue({
+        origin: availableStations[0],
+        destination: availableStations[1],
+        departureTime: '10:24',
+        departureDate: '2021-12-25',
+        setNewDepartureTime: vi.fn(),
+        setNewDepartureDate: vi.fn(),
+        setOriginStation: vi.fn(),
+        setDestinationStation: vi.fn(),
+        generateStationsMap: vi.fn(),
+        calculateRoute: () =>
+          ({ subRoutes: [], totalTime: 0, price: 0 }) as Route,
+      });
+
+      render(
+        <StationsSelectorContainer
+          showOriginSubmissionError={false}
+          showDestinationSubmissionError={false}
+          setShowOriginSubmissionError={() => {}}
+          setShowDestinationSubmissionError={() => {}}
+        />,
+      );
+
+      await act(async () => {
+        await userEvent.click(
+          screen.getByRole('button', {
+            name: 'Switch stations',
+          }),
+        );
+      });
+
+      const originDropdown = screen.getByRole('combobox', {
+        name: 'Origin',
+      });
+      await userEvent.click(originDropdown);
+      const stationsPreviouslySelectedAsDestination = screen.getByRole(
+        'option',
+        {
+          name: availableStations[1].name,
+        },
+      );
+      expect(
+        (stationsPreviouslySelectedAsDestination as HTMLOptionElement).selected,
+      ).toBeTruthy();
+
+      // same for destination
     });
   });
 });

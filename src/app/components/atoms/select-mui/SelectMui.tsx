@@ -46,18 +46,19 @@ const SelectMui: React.FC<SelectMuiProps> = ({
   };
 
   return (
-    <FormControl fullWidth>
+    <FormControl size="small" fullWidth variant="filled">
       <InputLabel id={`${label}-select-label`}>{label}</InputLabel>
       <Select
-        labelId={`${label}-select-label`}
         id={`${label}-select`}
-        value={selectedOption}
+        labelId={`${label}-select-label`}
         label={label}
+        value={selectedOption}
         onChange={(event: SelectChangeEvent) =>
           onChange(event.target.value as string)
         }
         className={styles.select}
         defaultOpen={isInitiallyOpen}
+        MenuProps={{ sx: { maxHeight: '60vh' } }}
       >
         {areOptionsGrouped
           ? (options as OptionsGroup[]).map((group) => renderSelectGroup(group))

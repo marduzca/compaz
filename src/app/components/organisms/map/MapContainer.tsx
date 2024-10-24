@@ -28,7 +28,6 @@ const MapContainer: React.FC<MapContainerProps> = ({
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: import.meta.env.VITE_MAPS_API_KEY || 'fake-key',
     language: navigator.language,
-    preventGoogleFontsLoading: true,
   });
 
   const [googleMap, setGoogleMap] = useState<google.maps.Map | undefined>(
