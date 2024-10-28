@@ -46,7 +46,12 @@ const SelectMui: React.FC<SelectMuiProps> = ({
   };
 
   return (
-    <FormControl size="small" fullWidth variant="filled">
+    <FormControl
+      size="small"
+      fullWidth
+      variant="filled"
+      className={styles.container}
+    >
       <InputLabel id={`${label}-select-label`}>{label}</InputLabel>
       <Select
         id={`${label}-select`}
