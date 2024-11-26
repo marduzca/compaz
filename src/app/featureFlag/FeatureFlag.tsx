@@ -23,7 +23,7 @@ export const isFeatureFlagSet = (key: string): boolean => {
 
 interface FeatureFlagProps {
   flag: string;
-  children: React.ReactChildren;
+  children: React.ReactNode;
 }
 
 const FeatureFlag = (props: FeatureFlagProps): React.ReactNode | null => {
