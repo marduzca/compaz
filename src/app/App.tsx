@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router';
 import styles from './App.module.css';
 import MenuContainer from './components/organisms/menu/MenuContainer';
 import NavigationPage from './components/pages/navigation/NavigationPage';

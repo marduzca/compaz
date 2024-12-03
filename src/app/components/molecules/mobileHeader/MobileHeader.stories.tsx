@@ -1,7 +1,7 @@
 import React from 'react';
 import { actions } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router';
 import MobileHeader from './MobileHeader';
 
 export default {

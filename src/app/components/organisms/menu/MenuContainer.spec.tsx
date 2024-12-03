@@ -1,7 +1,7 @@
 import React from 'react';
 import { act, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { MemoryRouter, Router } from 'react-router-dom';
+import { MemoryRouter, Router } from 'react-router';
 import { createMemoryHistory } from 'history';
 import MenuContainer from './MenuContainer';
 import { NavigationLink } from './Menu';

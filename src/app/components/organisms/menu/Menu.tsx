@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CSSTransition } from 'react-transition-group';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 import LogoBlue from '../../../static/svg/logo_blue.svg?react';
 import FlagUSA from '../../../static/svg/flag_usa.svg?react';
 import FlagBolivia from '../../../static/svg/flag_bolivia.svg?react';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router';
 import TripSelector from './TripSelector';
 
 const guaranteedSize = (child: React.ReactNode): React.ReactNode => (

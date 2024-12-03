@@ -2,7 +2,7 @@ import React from 'react';
 import { vi } from 'vitest';
 import { act, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { MemoryRouter, Route as Path, Routes } from 'react-router-dom';
+import { MemoryRouter, Route as Path, Routes } from 'react-router';
 import NavigationPage from './NavigationPage';
 import * as FirebaseProvider from '../../providers/firebase/FirebaseProvider';
 import * as NavigationProvider from '../../providers/navigation/NavigationProvider';

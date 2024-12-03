@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  Route as Path,
-  Routes,
-  useLocation,
-  useNavigate,
-} from 'react-router-dom';
+import { Route as Path, Routes, useLocation, useNavigate } from 'react-router';
 import i18n from 'i18next';
 import styles from './NavigationPage.module.css';
 import TripSelectorContainer from './routes/tripSelector/TripSelectorContainer';

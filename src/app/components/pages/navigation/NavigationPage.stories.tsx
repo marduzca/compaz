@@ -3,7 +3,7 @@ import { Meta } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 import * as MockDate from 'mockdate';
 
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router';
 import NavigationPage from './NavigationPage';
 import { FirebaseContext } from '../../providers/firebase/FirebaseProvider';
 import { LineColor } from '../../domain';

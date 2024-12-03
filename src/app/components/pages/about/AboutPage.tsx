@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import i18n from 'i18next';
 import { PAGE_TITLE_PREFIX } from '../../../App';
 import styles from './AboutPage.module.css';

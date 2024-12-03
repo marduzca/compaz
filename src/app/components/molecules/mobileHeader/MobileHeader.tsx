@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import styles from './MobileHeader.module.css';
 import MenuIcon from '../../../static/svg/menu.svg?react';
 import LogoWhite from '../../../static/svg/logo_white.svg?react';
