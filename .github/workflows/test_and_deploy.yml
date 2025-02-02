@@ -61,10 +61,10 @@ jobs:
       run: npm run loki:ci
 
     - name: Upload artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: failure()
       with:
-        name: visual_regression_tests_difference
+        name: visual_regression_tests_difference_${{ matrix.runs-on }}
         path: .loki/difference/**
 
   user_journey_test_local:
@@ -98,10 +98,10 @@ jobs:
         run: npm run ci:cypress-run
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
-          name: user_journey_test_local_screenshot
+          name: user_journey_test_local_screenshot_${{ matrix.runs-on }}
           path: cypress/screenshots/**
 
   outdated_deps:
@@ -184,10 +184,10 @@ jobs:
         run: CYPRESS_BASE_URL=https://compaz-dev.web.app npm run cypress:ci
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
-          name: user_journey_test_dev_screenshot
+          name: user_journey_test_dev_screenshot_${{ matrix.runs-on }}
           path: cypress/screenshots/**
 
   build_and_deploy_prod:
@@ -246,8 +246,8 @@ jobs:
         run: CYPRESS_BASE_URL=https://compaz.app npm run cypress:ci
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
-          name: user_journey_test_prod_screenshot
+          name: user_journey_test_prod_screenshot_${{ matrix.runs-on }}
           path: cypress/screenshots/**
