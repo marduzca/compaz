@@ -2,13 +2,12 @@ import { isFeatureFlagSet } from './FeatureFlag';
 
 describe('can read feature toggle by key', () => {
   beforeEach(() => {
-    // @ts-ignore
-    delete window.location;
-    window.location = {
-      search: '',
-    } as Location;
-
     localStorage.clear();
+
+    Object.defineProperty(window, 'location', {
+      writable: true,
+      value: { search: '' },
+    });
   });
 
   it('shows feature when url param is set', () => {
