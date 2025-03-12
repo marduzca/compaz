@@ -24,7 +24,7 @@ export const WithoutInput: React.FC = () =>
     <TextArea
       value=""
       onChange={actions('onChange').onChange}
-      label="Your message"
+      label="Break Chromatic"
     />,
   );
 
