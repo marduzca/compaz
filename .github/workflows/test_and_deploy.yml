@@ -42,30 +42,52 @@ jobs:
     needs: build_and_test
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: Use Node.js 20
-      uses: actions/setup-node@v4
-      with:
-        node-version: 20
+      - uses: actions/checkout@master
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
-    - name: Cache Node Modules
-      id: node-cache
-      uses: actions/cache@v4
-      env:
-        cache-name: cache-node-modules
-      with:
-        path: node_modules
-        key: node-modules-${{ hashFiles('package-lock.json') }}
+      - name: Cache Node Modules
+        id: node-cache
+        uses: actions/cache@v4
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: node_modules
+          key: node-modules-${{ hashFiles('package-lock.json') }}
 
-    - name: Run visual regression tests
-      run: npm run loki:ci
+      - name: Run visual regression tests
+        run: npm run loki:ci
 
-    - name: Upload artifact
-      uses: actions/upload-artifact@v4
-      if: failure()
-      with:
-        name: visual_regression_tests_difference_${{ matrix.runs-on }}
-        path: .loki/difference/**
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: visual_regression_tests_difference_${{ matrix.runs-on }}
+          path: .loki/difference/**
+
+  chromatic:
+    needs: build_and_test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Cache Node Modules
+        id: node-cache
+        uses: actions/cache@v4
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: node_modules
+          key: node-modules-${{ hashFiles('package-lock.json') }}
+      - name: Run Chromatic
+        uses: chromaui/action@latest
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
 
   user_journey_test_local:
     needs: build_and_test
@@ -105,7 +127,7 @@ jobs:
           path: cypress/screenshots/**
 
   outdated_deps:
-    needs: [ user_journey_test_local, visual_regression_test ]
+    needs: [ user_journey_test_local, chromatic ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -129,7 +151,7 @@ jobs:
         run: test $(npm outdated | wc -l) -lt "10"
 
   build_and_deploy_dev:
-    needs: [ user_journey_test_local, visual_regression_test ]
+    needs: [ user_journey_test_local, chromatic ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
