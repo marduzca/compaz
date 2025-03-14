@@ -9,7 +9,7 @@ export default {
   title: 'General / Menu / MenuLink',
   component: MenuLink,
   decorators: [
-    (Story) => (
+    (Story: React.ComponentType) => (
       <MemoryRouter>
         <Story />
       </MemoryRouter>

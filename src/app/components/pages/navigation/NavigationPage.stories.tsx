@@ -12,7 +12,7 @@ export default {
   component: NavigationPage,
   title: 'NavigationPage',
   decorators: [
-    (Story) => (
+    (Story: React.ComponentType) => (
       <FirebaseContext.Provider
         value={{
           lines: [

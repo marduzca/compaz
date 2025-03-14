@@ -23,7 +23,7 @@ export default {
   title: 'NavigationPage / TripSelector',
   component: TripSelector,
   decorators: [
-    (Story) => (
+    (Story: React.ComponentType) => (
       <MemoryRouter>
         <Story />
       </MemoryRouter>

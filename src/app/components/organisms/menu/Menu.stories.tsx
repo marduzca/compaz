@@ -14,7 +14,7 @@ export default {
   title: 'General / Menu / Menu',
   component: Menu,
   decorators: [
-    (Story) => (
+    (Story: React.ComponentType) => (
       <MemoryRouter>
         <Story />
       </MemoryRouter>

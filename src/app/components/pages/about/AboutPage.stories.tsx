@@ -8,7 +8,7 @@ export default {
   component: AboutPage,
   title: 'AboutPage',
   decorators: [
-    (Story) => (
+    (Story: React.ComponentType) => (
       <MemoryRouter>
         <Story />
       </MemoryRouter>
