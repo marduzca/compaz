@@ -91,6 +91,7 @@ jobs:
         uses: chromaui/action@latest
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          exitZeroOnChanges: false
 
   user_journey_test_local:
     needs: build_and_test
