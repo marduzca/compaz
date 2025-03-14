@@ -24,7 +24,7 @@
     "cypress:open": "cypress open",
     "cypress:ci": "cypress run",
     "ci:cypress-run": "start-server-and-test start http://localhost:3000 cypress:ci",
-    "chromatic": "npx chromatic --exit-zero-on-changes"
+    "chromatic": "npx chromatic"
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",
