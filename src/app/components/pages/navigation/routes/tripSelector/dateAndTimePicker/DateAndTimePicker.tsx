@@ -20,7 +20,7 @@ interface DateAndTimePickerProps {
   onTimePickerChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onSelectButtonClick: () => void;
   onNowButtonClick: () => void;
-  dateAndTimeSelectionWrapperRef: React.RefObject<HTMLDivElement>;
+  dateAndTimeSelectionWrapperRef: React.RefObject<HTMLDivElement | null>;
 }
 
 const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { vi } from 'vitest';
-import { act, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Select, { Option } from './Select';
 
@@ -30,23 +30,19 @@ describe('Select', () => {
 
     expect(screen.queryAllByRole('option')).toHaveLength(0);
 
-    await act(async () => {
-      await userEvent.click(
-        screen.getByRole('combobox', {
-          name: 'Books combobox',
-        }),
-      );
-    });
+    await userEvent.click(
+      screen.getByRole('combobox', {
+        name: 'Books combobox',
+      }),
+    );
 
     expect(screen.queryAllByRole('option')).toHaveLength(10);
 
-    await act(async () => {
-      await userEvent.click(
-        screen.getByRole('combobox', {
-          name: 'Books combobox',
-        }),
-      );
-    });
+    await userEvent.click(
+      screen.getByRole('combobox', {
+        name: 'Books combobox',
+      }),
+    );
 
     expect(screen.queryAllByRole('option')).toHaveLength(0);
   });
@@ -69,23 +65,19 @@ describe('Select', () => {
 
     render(<SelectWrapper />);
 
-    await act(async () => {
-      await userEvent.click(
-        screen.getByRole('combobox', {
-          name: 'Books combobox',
-        }),
-      );
-    });
+    await userEvent.click(
+      screen.getByRole('combobox', {
+        name: 'Books combobox',
+      }),
+    );
 
     expect(screen.queryAllByRole('option')).toHaveLength(10);
 
-    await act(async () => {
-      await userEvent.click(
-        screen.getByRole('option', {
-          name: 'A Picture of Dorian Gray',
-        }),
-      );
-    });
+    await userEvent.click(
+      screen.getByRole('option', {
+        name: 'A Picture of Dorian Gray',
+      }),
+    );
 
     expect(screen.queryAllByRole('option')).toHaveLength(0);
     expect(screen.queryByText('A Picture of Dorian Gray')).toBeVisible();
@@ -102,23 +94,19 @@ describe('Select', () => {
       />,
     );
 
-    await act(async () => {
-      await userEvent.click(
-        screen.getByRole('combobox', {
-          name: 'Books combobox',
-        }),
-      );
-    });
-    await act(async () => {
-      await userEvent.selectOptions(
-        screen.getByRole('listbox', {
-          name: 'Books combobox',
-        }),
-        screen.getByRole('option', {
-          name: 'A Picture of Dorian Gray',
-        }),
-      );
-    });
+    await userEvent.click(
+      screen.getByRole('combobox', {
+        name: 'Books combobox',
+      }),
+    );
+    await userEvent.selectOptions(
+      screen.getByRole('listbox', {
+        name: 'Books combobox',
+      }),
+      screen.getByRole('option', {
+        name: 'A Picture of Dorian Gray',
+      }),
+    );
 
     expect(handlerFn).toHaveBeenCalledTimes(1);
     expect(handlerFn).toHaveBeenCalledWith(books[3]);

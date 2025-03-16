@@ -21,7 +21,7 @@
     "cypress:open": "cypress open",
     "cypress:ci": "cypress run",
     "ci:cypress-run": "start-server-and-test start http://localhost:3000 cypress:ci",
-    "chromatic": "npx chromatic"
+    "chromatic": "npx chromatic --force-rebuild"
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",
@@ -36,8 +36,8 @@
     "i18next-browser-languagedetector": "^8.0.0",
     "i18next-http-backend": "^3.0.1",
     "re-resizable": "^6.9.9",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "react-firebase-hooks": "^5.1.1",
     "react-i18next": "^15.0.0",
     "react-router": "^7.0.2",
@@ -68,8 +68,8 @@
     "@testing-library/user-event": "^14.4.3",
     "@types/google.maps": "^3.55.7",
     "@types/node": "^22.0.2",
-    "@types/react": "^18.2.74",
-    "@types/react-dom": "^18.2.24",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
     "@types/react-transition-group": "^4.4.5",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/parser": "^8.0.0",

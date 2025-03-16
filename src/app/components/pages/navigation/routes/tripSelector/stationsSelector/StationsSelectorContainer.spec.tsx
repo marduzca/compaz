@@ -1,6 +1,6 @@
 import React from 'react';
 import { vi } from 'vitest';
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import StationsSelectorContainer from './StationsSelectorContainer';
 import { Line, LineColor, Route, Station } from '../../../../../domain';
@@ -85,14 +85,12 @@ describe('StationsSelectorContainer', () => {
       />,
     );
 
-    await act(async () => {
-      await userEvent.type(
-        screen.getByRole('combobox', {
-          name: 'Origin',
-        }),
-        availableStations[0].name,
-      );
-    });
+    await userEvent.type(
+      screen.getByRole('combobox', {
+        name: 'Origin',
+      }),
+      availableStations[0].name,
+    );
 
     expect(
       screen.getByRole('combobox', {
@@ -100,13 +98,11 @@ describe('StationsSelectorContainer', () => {
       }),
     ).toHaveValue(availableStations[0].name);
 
-    await act(async () => {
-      await userEvent.click(
-        screen.getByRole('button', {
-          name: 'Clear text',
-        }),
-      );
-    });
+    await userEvent.click(
+      screen.getByRole('button', {
+        name: 'Clear text',
+      }),
+    );
 
     expect(
       screen.getByRole('combobox', {
@@ -114,14 +110,12 @@ describe('StationsSelectorContainer', () => {
       }),
     ).toHaveValue('');
 
-    await act(async () => {
-      await userEvent.type(
-        screen.getByRole('combobox', {
-          name: 'Destination',
-        }),
-        availableStations[1].name,
-      );
-    });
+    await userEvent.type(
+      screen.getByRole('combobox', {
+        name: 'Destination',
+      }),
+      availableStations[1].name,
+    );
 
     expect(
       screen.getByRole('combobox', {
@@ -129,13 +123,11 @@ describe('StationsSelectorContainer', () => {
       }),
     ).toHaveValue(availableStations[1].name);
 
-    await act(async () => {
-      await userEvent.click(
-        screen.getByRole('button', {
-          name: 'Clear text',
-        }),
-      );
-    });
+    await userEvent.click(
+      screen.getByRole('button', {
+        name: 'Clear text',
+      }),
+    );
 
     expect(
       screen.getByRole('combobox', {
@@ -284,13 +276,11 @@ describe('StationsSelectorContainer', () => {
       },
     );
 
-    await act(async () => {
-      await userEvent.click(
-        screen.getByRole('button', {
-          name: 'Switch stations',
-        }),
-      );
-    });
+    await userEvent.click(
+      screen.getByRole('button', {
+        name: 'Switch stations',
+      }),
+    );
 
     expect(
       screen.getByRole('combobox', {
@@ -315,14 +305,12 @@ describe('StationsSelectorContainer', () => {
         />,
       );
 
-      await act(async () => {
-        await userEvent.type(
-          screen.getByRole('combobox', {
-            name: 'Origin',
-          }),
-          'This is a non-existent station',
-        );
-      });
+      await userEvent.type(
+        screen.getByRole('combobox', {
+          name: 'Origin',
+        }),
+        'This is a non-existent station',
+      );
 
       expect(
         screen.getByRole('combobox', {
@@ -341,14 +329,12 @@ describe('StationsSelectorContainer', () => {
         />,
       );
 
-      await act(async () => {
-        await userEvent.type(
-          screen.getByRole('combobox', {
-            name: 'Destination',
-          }),
-          'This is a non-existent station',
-        );
-      });
+      await userEvent.type(
+        screen.getByRole('combobox', {
+          name: 'Destination',
+        }),
+        'This is a non-existent station',
+      );
 
       expect(screen.getByText(/Non-existent station/)).toBeVisible();
     });
@@ -393,8 +379,8 @@ describe('StationsSelectorContainer', () => {
       });
       await userEvent.click(destinationSelection);
 
-      expect((originSelection as HTMLOptionElement).selected).toBeTruthy();
-      expect((destinationSelection as HTMLOptionElement).selected).toBeTruthy();
+      expect(originDropdown).toHaveTextContent(availableStations[0].name);
+      expect(destinationDropdown).toHaveTextContent(availableStations[1].name);
     });
 
     it('removes the station from the destination when chosen already as origin', async () => {
@@ -494,13 +480,11 @@ describe('StationsSelectorContainer', () => {
         />,
       );
 
-      await act(async () => {
-        await userEvent.click(
-          screen.getByRole('button', {
-            name: 'Switch stations',
-          }),
-        );
-      });
+      await userEvent.click(
+        screen.getByRole('button', {
+          name: 'Switch stations',
+        }),
+      );
 
       const originDropdown = screen.getByRole('combobox', {
         name: 'Origin',

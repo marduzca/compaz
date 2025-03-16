@@ -3,7 +3,7 @@ import { Meta } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 import TextArea from './TextArea';
 
-const guaranteedSize = (child: JSX.Element): JSX.Element => (
+const guaranteedSize = (child: React.ReactNode): React.ReactNode => (
   <div
     style={{
       width: '100%',

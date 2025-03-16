@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Combobox, { Option } from './Combobox';
 
@@ -62,9 +62,7 @@ describe('ComboBox', () => {
       ).not.toBeInTheDocument();
       expect(screen.getByText('placeholder')).toBeVisible();
 
-      await act(async () => {
-        await userEvent.click(screen.getByRole('button'));
-      });
+      await userEvent.click(screen.getByRole('button'));
 
       expect(screen.getByRole('option', { name: 'opt 1' })).toBeVisible();
     });
@@ -75,9 +73,7 @@ describe('ComboBox', () => {
       ).not.toBeInTheDocument();
       expect(screen.getByText('placeholder')).toBeVisible();
 
-      await act(async () => {
-        await userEvent.click(screen.getByRole('button'));
-      });
+      await userEvent.click(screen.getByRole('button'));
 
       expect(screen.getByRole('option', { name: 'opt 1' })).toBeVisible();
     });
@@ -88,14 +84,10 @@ describe('ComboBox', () => {
       ).not.toBeInTheDocument();
       expect(screen.getByText('placeholder')).toBeVisible();
 
-      await act(async () => {
-        await userEvent.click(screen.getByRole('button'));
-      });
+      await userEvent.click(screen.getByRole('button'));
       expect(screen.getByRole('option', { name: 'opt 1' })).toBeVisible();
 
-      await act(async () => {
-        await userEvent.click(screen.getByRole('button'));
-      });
+      await userEvent.click(screen.getByRole('button'));
       expect(
         screen.queryByRole('option', { name: 'opt 1' }),
       ).not.toBeInTheDocument();
@@ -107,15 +99,11 @@ describe('ComboBox', () => {
       ).not.toBeInTheDocument();
       expect(screen.getByText('placeholder')).toBeVisible();
 
-      await act(async () => {
-        await userEvent.click(screen.getByRole('button'));
-      });
+      await userEvent.click(screen.getByRole('button'));
       expect(screen.getByRole('option', { name: 'opt 1' })).toBeVisible();
       expect(screen.getByRole('option', { name: 'opt 2' })).toBeVisible();
 
-      await act(async () => {
-        await userEvent.click(screen.getByRole('option', { name: 'opt 1' }));
-      });
+      await userEvent.click(screen.getByRole('option', { name: 'opt 1' }));
       expect(
         screen.queryByRole('option', { name: 'opt 2' }),
       ).not.toBeInTheDocument();
@@ -134,9 +122,7 @@ describe('ComboBox', () => {
       ).not.toBeInTheDocument();
       expect(screen.getByText('placeholder')).toBeVisible();
 
-      await act(async () => {
-        await userEvent.click(screen.getByText('placeholder'));
-      });
+      await userEvent.click(screen.getByText('placeholder'));
 
       fireEvent.change(screen.getByRole('combobox', { name: 'placeholder' }), {
         target: { value: 'opt 2' },
@@ -151,9 +137,7 @@ describe('ComboBox', () => {
       expect(screen.getByRole('option', { name: 'opt 2' })).toBeVisible();
       expect(screen.getByRole('option', { name: 'opt 20' })).toBeVisible();
 
-      await act(async () => {
-        await userEvent.click(screen.getByRole('option', { name: 'opt 2' }));
-      });
+      await userEvent.click(screen.getByRole('option', { name: 'opt 2' }));
 
       expect(
         screen.queryByRole('option', { name: 'opt 2' }),
