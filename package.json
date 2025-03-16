@@ -7,7 +7,7 @@
     "start:pwa": "npm run build && npx serve build",
     "build": "GENERATE_SOURCEMAP=false tsc && vite build",
     "serve": "vite preview",
-    "pre-commit": "npm run build && npm test && npm run loki:test",
+    "pre-commit": "npm run build && npm test && npm run chromatic",
     "test": "npm run lint && vitest run",
     "only-test": "vitest run",
     "test:coverage": "vitest run --coverage",
@@ -18,9 +18,6 @@
     "update-deps": "npm outdated || true && npm update && npm outdated || true && npm run pre-commit && git add . && git commit -m \"update deps\"",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "loki:update": "start-server-and-test 'npm run storybook -- --no-open' 6006 'loki update'",
-    "loki:test": "start-server-and-test 'npm run storybook -- --no-open' 6006 'loki test'",
-    "loki:ci": "start-server-and-test 'npm run storybook -- --no-open' 6006 'sleep 5 && loki --requireReference --verboseRenderer'",
     "cypress:open": "cypress open",
     "cypress:ci": "cypress run",
     "ci:cypress-run": "start-server-and-test start http://localhost:3000 cypress:ci",
@@ -94,7 +91,6 @@
     "globals": "^16.0.0",
     "history": "^5.3.0",
     "jsdom": "^26.0.0",
-    "loki": "^0.35.0",
     "mockdate": "^3.0.5",
     "mq-polyfill": "^1.1.8",
     "prettier": "^3.0.0",
@@ -132,28 +128,5 @@
     "build",
     "node_modules",
     "storybook-static"
-  ],
-  "loki": {
-    "diffingEngine": "looks-same",
-    "looks-same": {
-      "tolerance": 10
-    },
-    "configurations": {
-      "chrome.laptop": {
-        "target": "chrome.docker",
-        "width": 1680,
-        "height": 1050,
-        "deviceScaleFactor": 1,
-        "mobile": false,
-        "fitWindow": false,
-        "storiesFilter": "normal"
-      },
-      "chrome.iphone7": {
-        "target": "chrome.docker",
-        "preset": "iPhone 7",
-        "mobile": true,
-        "storiesFilter": "mobile"
-      }
-    }
-  }
+  ]
 }
