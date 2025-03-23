@@ -1,11 +1,11 @@
 import React from 'react';
 import { actions } from '@storybook/addon-actions';
-import ErrorPage from './ErrorPage';
+import { Meta } from '@storybook/react';
 import {
   DESKTOP_VIEWPORT,
   MOBILE_VIEWPORT,
 } from '../../../../../.storybook/preview';
-import { Meta } from '@storybook/react';
+import ErrorPage from './ErrorPage';
 
 export default {
   component: ErrorPage,

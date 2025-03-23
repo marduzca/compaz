@@ -8,10 +8,7 @@ import {
   Route,
   SubRoute,
 } from '../../../../domain';
-import {
-  DESKTOP_VIEWPORT,
-  MOBILE_VIEWPORT,
-} from '../../../../../../../.storybook/preview';
+import { MOBILE_VIEWPORT } from '../../../../../../../.storybook/preview';
 
 export default {
   title: 'NavigationPage / RouteDetailsView',
