@@ -6,7 +6,7 @@ import CurrentLocation from './CurrentLocation';
 export default {
   component: CurrentLocation,
   title: 'General / Map / CurrentLocation',
-} as Meta;
+} satisfies Meta;
 
 export const CurrentLocationInNormalState: React.FC = () => (
   <div

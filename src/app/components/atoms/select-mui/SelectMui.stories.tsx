@@ -5,7 +5,7 @@ import SelectMui from './SelectMui';
 export default {
   component: SelectMui,
   title: 'Atoms / SelectMui',
-} as Meta;
+} satisfies Meta;
 
 export const BasicInNormalState: React.FC = () => (
   <SelectMui

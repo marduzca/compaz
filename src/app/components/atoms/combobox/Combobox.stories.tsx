@@ -6,7 +6,7 @@ import Combobox from './Combobox';
 export default {
   component: Combobox,
   title: 'Atoms / Combobox',
-} as Meta;
+} satisfies Meta;
 
 export const WithoutInputInNormalState: React.FC = () => (
   <Combobox

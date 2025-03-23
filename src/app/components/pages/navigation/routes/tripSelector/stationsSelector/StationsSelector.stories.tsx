@@ -6,7 +6,7 @@ import StationsSelector from './StationsSelector';
 export default {
   title: 'NavigationPage / TripSelector /StationsSelector',
   component: StationsSelector,
-} as Meta;
+} satisfies Meta;
 
 const guaranteedSize = (child: React.ReactNode): React.ReactNode => (
   <div

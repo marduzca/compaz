@@ -6,7 +6,7 @@ import TextBox from './TextBox';
 export default {
   component: TextBox,
   title: 'Atoms / TextBox',
-} as Meta;
+} satisfies Meta;
 
 export const WithoutInput: React.FC = () => (
   <TextBox value="" onChange={actions('onChange').onChange} label="Name" />

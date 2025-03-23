@@ -2,6 +2,10 @@ import React from 'react';
 import { Meta } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 import ContactPage from './ContactPage';
+import {
+  DESKTOP_VIEWPORT,
+  MOBILE_VIEWPORT,
+} from '../../../../../.storybook/preview';
 
 const guaranteedSize = (child: React.ReactNode): React.ReactNode => (
   <div style={{ height: '750px' }}>{child}</div>
@@ -10,11 +14,18 @@ const guaranteedSize = (child: React.ReactNode): React.ReactNode => (
 export default {
   component: ContactPage,
   title: 'ContactPage',
-} as Meta;
+} satisfies Meta;
 
-export const NormalAndMobileState: React.FC = () =>
+export const Basic = () =>
   guaranteedSize(
     <ContactPage
       onMenuButtonClick={actions('onMenuButtonClick').onMenuButtonClick}
     />,
   );
+Basic.story = {
+  parameters: {
+    chromatic: {
+      viewports: [MOBILE_VIEWPORT, DESKTOP_VIEWPORT],
+    },
+  },
+};

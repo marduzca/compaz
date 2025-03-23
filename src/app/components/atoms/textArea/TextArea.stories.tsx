@@ -17,7 +17,7 @@ const guaranteedSize = (child: React.ReactNode): React.ReactNode => (
 export default {
   component: TextArea,
   title: 'Atoms / TextArea',
-} as Meta;
+} satisfies Meta;
 
 export const WithoutInput: React.FC = () =>
   guaranteedSize(

@@ -46,7 +46,7 @@ const testSubRoutes = [
 export default {
   title: 'NavigationPage / RoutesOverview / IconsRoute',
   component: IconsRoute,
-} as Meta;
+} satisfies Meta;
 
 export const BasicInNormalState = () => (
   <IconsRoute subRoutes={testSubRoutes} />

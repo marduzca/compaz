@@ -36,7 +36,7 @@ export default {
       </FirebaseContext.Provider>
     ),
   ],
-} as Meta;
+} satisfies Meta;
 
 export const NormalStateWithNightBackground = () => {
   MockDate.set('1993-03-15T19:30:00.000Z');

@@ -6,7 +6,7 @@ import Select, { Option } from './Select';
 export default {
   component: Select,
   title: 'Atoms / Select',
-} as Meta;
+} satisfies Meta;
 
 export const BasicInNormalState: React.FC = () => {
   const books: Option[] = [

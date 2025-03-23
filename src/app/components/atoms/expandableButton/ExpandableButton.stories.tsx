@@ -7,7 +7,7 @@ import MenuIcon from '../../../static/svg/menu.svg?react';
 export default {
   component: ExpandableButton,
   title: 'Atoms / ExpandableButton',
-} as Meta;
+} satisfies Meta;
 
 export const RoundedButtonInNormalState: React.FC = () => (
   <div

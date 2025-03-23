@@ -5,6 +5,6 @@ import Footer from './Footer';
 export default {
   title: 'NavigationPage / Footer',
   component: Footer,
-} as Meta;
+} satisfies Meta;
 
 export const NormalState = () => <Footer />;

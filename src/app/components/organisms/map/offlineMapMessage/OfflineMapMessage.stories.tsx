@@ -1,13 +1,17 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
 import OfflineMapMessage from './OfflineMapMessage';
+import {
+  DESKTOP_VIEWPORT,
+  MOBILE_VIEWPORT,
+} from '../../../../../../.storybook/preview';
 
 export default {
   title: 'General / Map / OfflineMapMessage',
   component: OfflineMapMessage,
-} as Meta;
+} satisfies Meta;
 
-export const NormalAndMobileState: React.FC = () => (
+export const Basic = () => (
   <div
     style={{
       height: '500px',
@@ -19,3 +23,10 @@ export const NormalAndMobileState: React.FC = () => (
     <OfflineMapMessage />
   </div>
 );
+Basic.story = {
+  parameters: {
+    chromatic: {
+      viewports: [MOBILE_VIEWPORT, DESKTOP_VIEWPORT],
+    },
+  },
+};

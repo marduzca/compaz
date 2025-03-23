@@ -6,7 +6,7 @@ import DateAndTimePicker from './DateAndTimePicker';
 export default {
   title: 'NavigationPage / TripSelector / DateAndTimePicker',
   component: DateAndTimePicker,
-} as Meta;
+} satisfies Meta;
 
 const guaranteedSize = (child: React.ReactNode): React.ReactNode => (
   <div

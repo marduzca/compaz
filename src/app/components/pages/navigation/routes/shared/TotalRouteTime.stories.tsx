@@ -5,7 +5,7 @@ import TotalRouteTime from './TotalRouteTime';
 export default {
   title: 'NavigationPage / RoutesOverview / TotalRouteTime',
   component: TotalRouteTime,
-} as Meta;
+} satisfies Meta;
 
 export const OnlyMinutesInNormalState = () => <TotalRouteTime totalTime={16} />;
 

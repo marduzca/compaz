@@ -2,13 +2,17 @@ import React from 'react';
 import { Meta } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 import PageContentContainer from './PageContentContainer';
+import {
+  DESKTOP_VIEWPORT,
+  MOBILE_VIEWPORT,
+} from '../../../../../.storybook/preview';
 
 export default {
   component: PageContentContainer,
   title: 'PageContentContainer',
-} as Meta;
+} satisfies Meta;
 
-export const NormalAndMobileState = () => (
+export const Basic = () => (
   <PageContentContainer
     onMenuButtonClick={actions('onMenuButtonClick').onMenuButtonClick}
   >
@@ -20,3 +24,10 @@ export const NormalAndMobileState = () => (
     </p>
   </PageContentContainer>
 );
+Basic.story = {
+  parameters: {
+    chromatic: {
+      viewports: [MOBILE_VIEWPORT, DESKTOP_VIEWPORT],
+    },
+  },
+};

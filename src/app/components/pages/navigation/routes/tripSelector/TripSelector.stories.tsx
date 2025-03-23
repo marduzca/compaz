@@ -3,6 +3,7 @@ import { Meta } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 import { MemoryRouter } from 'react-router';
 import TripSelector from './TripSelector';
+import { MOBILE_VIEWPORT } from '../../../../../../../.storybook/preview';
 
 const guaranteedSize = (child: React.ReactNode): React.ReactNode => (
   <div
@@ -29,9 +30,9 @@ export default {
       </MemoryRouter>
     ),
   ],
-} as Meta;
+} satisfies Meta;
 
-export const NormalState = () =>
+export const Basic = () =>
   guaranteedSize(
     <TripSelector
       onMenuButtonClick={actions('onMenuButtonClick').onMenuButtonClick}
@@ -39,9 +40,16 @@ export const NormalState = () =>
     />,
   );
 
-export const MobileState = () => (
+export const BasicMobile = () => (
   <TripSelector
     onMenuButtonClick={actions('onMenuButtonClick').onMenuButtonClick}
     onSubmit={actions('onSubmit').onSubmit}
   />
 );
+BasicMobile.story = {
+  parameters: {
+    chromatic: {
+      viewports: [MOBILE_VIEWPORT],
+    },
+  },
+};

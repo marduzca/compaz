@@ -7,7 +7,7 @@ import MobileHeader from './MobileHeader';
 export default {
   component: MobileHeader,
   title: 'Molecules / MobileHeader',
-} as Meta;
+} satisfies Meta;
 
 export const OnLightBackground: React.FC = () => (
   <MobileHeader

@@ -3,6 +3,7 @@ import { Meta } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 import { MemoryRouter } from 'react-router';
 import Menu from './Menu';
+import { MOBILE_VIEWPORT } from '../../../../../.storybook/preview';
 
 const guaranteedSize = (child: React.ReactNode): React.ReactNode => (
   <div style={{ height: '500px', width: '400px', display: 'flex' }}>
@@ -20,9 +21,9 @@ export default {
       </MemoryRouter>
     ),
   ],
-} as Meta;
+} satisfies Meta;
 
-export const NormalState = () => (
+export const Basic = () => (
   <Menu
     onLanguageChange={actions('onLanguageChange').onLanguageChange}
     onHideMobileMenu={actions('onBackButtonClick').onBackButtonClick}
@@ -31,7 +32,7 @@ export const NormalState = () => (
   />
 );
 
-export const MobileState = () =>
+export const BasicMobile = () =>
   guaranteedSize(
     <Menu
       onLanguageChange={actions('onLanguageChange').onLanguageChange}
@@ -40,3 +41,10 @@ export const MobileState = () =>
       isMobile
     />,
   );
+BasicMobile.story = {
+  parameters: {
+    chromatic: {
+      viewports: [MOBILE_VIEWPORT],
+    },
+  },
+};

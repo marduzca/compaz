@@ -8,13 +8,17 @@ import {
   Route,
   SubRoute,
 } from '../../../../domain';
+import {
+  DESKTOP_VIEWPORT,
+  MOBILE_VIEWPORT,
+} from '../../../../../../../.storybook/preview';
 
 export default {
   title: 'NavigationPage / RouteDetailsView',
   component: RouteDetailsView,
-} as Meta;
+} satisfies Meta;
 
-export const BasicInNormalState = () => (
+export const Basic = () => (
   <RouteDetailsView
     isMobile={false}
     route={
@@ -90,7 +94,7 @@ export const BasicInNormalState = () => (
   />
 );
 
-export const BasicInMobileState = () => (
+export const BasicMobile = () => (
   <RouteDetailsView
     isMobile
     route={{
@@ -163,3 +167,10 @@ export const BasicInMobileState = () => (
     }
   />
 );
+BasicMobile.story = {
+  parameters: {
+    chromatic: {
+      viewports: [MOBILE_VIEWPORT],
+    },
+  },
+};

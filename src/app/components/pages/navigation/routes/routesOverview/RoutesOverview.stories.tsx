@@ -8,13 +8,17 @@ import {
   Route,
   SubRoute,
 } from '../../../../domain';
+import {
+  DESKTOP_VIEWPORT,
+  MOBILE_VIEWPORT,
+} from '../../../../../../../.storybook/preview';
 
 export default {
   title: 'NavigationPage / RoutesOverview',
   component: RoutesOverview,
-} as Meta;
+} satisfies Meta;
 
-export const NormalAndMobileState = () => (
+export const Basic = () => (
   <RoutesOverview
     route={
       {
@@ -84,8 +88,15 @@ export const NormalAndMobileState = () => (
     onLaterButtonClick={actions('onLaterButtonClick').onLaterButtonClick}
   />
 );
+Basic.story = {
+  parameters: {
+    chromatic: {
+      viewports: [MOBILE_VIEWPORT, DESKTOP_VIEWPORT],
+    },
+  },
+};
 
-export const TooLongConnectionInNormalAndMobileState = () => (
+export const TooLongConnection = () => (
   <RoutesOverview
     route={
       {
@@ -224,8 +235,15 @@ export const TooLongConnectionInNormalAndMobileState = () => (
     onLaterButtonClick={actions('onLaterButtonClick').onLaterButtonClick}
   />
 );
+TooLongConnection.story = {
+  parameters: {
+    chromatic: {
+      viewports: [MOBILE_VIEWPORT, DESKTOP_VIEWPORT],
+    },
+  },
+};
 
-export const TimeAboveOneHourInNormalAndMobileState = () => (
+export const TimeAboveOneHour = () => (
   <RoutesOverview
     route={
       {
@@ -295,3 +313,10 @@ export const TimeAboveOneHourInNormalAndMobileState = () => (
     onLaterButtonClick={actions('onLaterButtonClick').onLaterButtonClick}
   />
 );
+TimeAboveOneHour.story = {
+  parameters: {
+    chromatic: {
+      viewports: [MOBILE_VIEWPORT, DESKTOP_VIEWPORT],
+    },
+  },
+};

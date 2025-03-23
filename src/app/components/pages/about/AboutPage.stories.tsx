@@ -3,6 +3,10 @@ import React from 'react';
 import { actions } from '@storybook/addon-actions';
 import { MemoryRouter } from 'react-router';
 import AboutPage from './AboutPage';
+import {
+  DESKTOP_VIEWPORT,
+  MOBILE_VIEWPORT,
+} from '../../../../../.storybook/preview';
 
 export default {
   component: AboutPage,
@@ -14,10 +18,17 @@ export default {
       </MemoryRouter>
     ),
   ],
-} as Meta;
+} satisfies Meta;
 
-export const NormalAndMobileState: React.FC = () => (
+export const Basic = () => (
   <AboutPage
     onMenuButtonClick={actions('onMenuButtonClick').onMenuButtonClick}
   />
 );
+Basic.story = {
+  parameters: {
+    chromatic: {
+      viewports: [MOBILE_VIEWPORT, DESKTOP_VIEWPORT],
+    },
+  },
+};

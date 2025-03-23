@@ -4,6 +4,10 @@ import { actions } from '@storybook/addon-actions';
 import { MemoryRouter } from 'react-router';
 import MenuLink from './MenuLink';
 import HomeIcon from '../../../../static/svg/home.svg?react';
+import {
+  DESKTOP_VIEWPORT,
+  MOBILE_VIEWPORT,
+} from '../../../../../../.storybook/preview';
 
 export default {
   title: 'General / Menu / MenuLink',
@@ -15,9 +19,9 @@ export default {
       </MemoryRouter>
     ),
   ],
-} as Meta;
+} satisfies Meta;
 
-export const MarkedAsCurrentPageInNormalState = () => (
+export const MarkedAsCurrentPage = () => (
   <MenuLink
     name="Home"
     icon={<HomeIcon />}
@@ -26,13 +30,10 @@ export const MarkedAsCurrentPageInNormalState = () => (
     onLinkClick={actions('onLinkClick').onLinkClick}
   />
 );
-
-export const MarkedAsCurrentPageInMobileState = () => (
-  <MenuLink
-    name="Home"
-    icon={<HomeIcon />}
-    href=""
-    isCurrentPage
-    onLinkClick={actions('onLinkClick').onLinkClick}
-  />
-);
+MarkedAsCurrentPage.story = {
+  parameters: {
+    chromatic: {
+      viewports: [MOBILE_VIEWPORT, DESKTOP_VIEWPORT],
+    },
+  },
+};

@@ -1,6 +1,10 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
 import LoadingPage from './LoadingPage';
+import {
+  DESKTOP_VIEWPORT,
+  MOBILE_VIEWPORT,
+} from '../../../../../../.storybook/preview';
 
 const guaranteedSize = (child: React.ReactNode): React.ReactNode => (
   <div
@@ -16,6 +20,13 @@ const guaranteedSize = (child: React.ReactNode): React.ReactNode => (
 export default {
   title: 'NavigationPage / LoadingPage',
   component: LoadingPage,
-} as Meta;
+} satisfies Meta;
 
-export const NormalAndMobileState = () => guaranteedSize(<LoadingPage />);
+export const Basic = () => guaranteedSize(<LoadingPage />);
+Basic.story = {
+  parameters: {
+    chromatic: {
+      viewports: [MOBILE_VIEWPORT, DESKTOP_VIEWPORT],
+    },
+  },
+};
