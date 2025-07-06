@@ -1,5 +1,5 @@
 import React from 'react';
-import { actions } from '@storybook/addon-actions';
+import { actions } from 'storybook/actions';
 import Notification, { NotificationType, RELOAD_EVENT } from './Notification';
 
 export default {

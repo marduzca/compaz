@@ -131,7 +131,7 @@ export default [{
     }],
 
     'import/no-unresolved': ['error', {
-      ignore: ['\\.svg\\?react$']
+      ignore: ['\\.svg\\?react$', '^storybook/.*$']
     }],
 
     'react/require-default-props': 'off',
@@ -140,7 +140,7 @@ export default [{
     'storybook/prefer-pascal-case': 'off',
     'storybook/default-exports': 'off',
     'storybook/use-storybook-testing-library': 'off',
-    'storybook/story-exports': 'off',
+    'storybook/story-exports': 'off'
   }
 }, {
   files: ['**/*Provider.tsx'],
@@ -170,6 +170,6 @@ export default [{
     'storybook/prefer-pascal-case': 'error',
     'storybook/default-exports': 'error',
     'storybook/use-storybook-testing-library': 'error',
-    'storybook/story-exports': 'error',
+    'storybook/story-exports': 'error'
   }
 }];

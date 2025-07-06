@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { Preview } from '@storybook/react';
+import { Preview } from '@storybook/react-vite';
 import MockDate from 'mockdate';
 import '../src/app/i18n/instance';
 import { SHOW_LINES_IN_STATION_SELECTOR } from '../src/app/featureFlag/FeatureFlag';

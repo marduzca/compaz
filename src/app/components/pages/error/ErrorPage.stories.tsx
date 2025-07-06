@@ -1,6 +1,6 @@
 import React from 'react';
-import { actions } from '@storybook/addon-actions';
-import { Meta } from '@storybook/react';
+import { actions } from 'storybook/actions';
+import { Meta } from '@storybook/react-vite';
 import {
   DESKTOP_VIEWPORT,
   MOBILE_VIEWPORT,

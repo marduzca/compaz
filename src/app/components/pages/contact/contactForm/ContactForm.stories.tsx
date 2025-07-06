@@ -1,5 +1,5 @@
 import React from 'react';
-import { actions } from '@storybook/addon-actions';
+import { actions } from 'storybook/actions';
 import ContactForm from './ContactForm';
 
 export default {

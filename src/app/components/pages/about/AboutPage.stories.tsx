@@ -1,6 +1,6 @@
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import React from 'react';
-import { actions } from '@storybook/addon-actions';
+import { actions } from 'storybook/actions';
 import { MemoryRouter } from 'react-router';
 import AboutPage from './AboutPage';
 import {

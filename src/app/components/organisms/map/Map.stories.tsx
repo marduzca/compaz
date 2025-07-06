@@ -1,6 +1,6 @@
 import React from 'react';
-import { Meta } from '@storybook/react';
-import { actions } from '@storybook/addon-actions';
+import { Meta } from '@storybook/react-vite';
+import { actions } from 'storybook/actions';
 import Map from './Map';
 import { MapMode } from './MapContainer';
 import { MOBILE_VIEWPORT } from '../../../../../.storybook/preview';
