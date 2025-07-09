@@ -56,8 +56,9 @@
     "@eslint/compat": "^1.1.0",
     "@eslint/eslintrc": "^3.1.0",
     "@eslint/js": "^9.5.0",
-    "@storybook/addon-links": "9.0.15",
-    "@storybook/react-vite": "9.0.15",
+    "@storybook/addon-docs": "^9.0.16",
+    "@storybook/addon-links": "^9.0.16",
+    "@storybook/react-vite": "^9.0.16",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.1.0",
     "@testing-library/react": "^16.3.0",
@@ -89,8 +90,7 @@
     "mockdate": "^3.0.5",
     "prettier": "^3.0.0",
     "start-server-and-test": "^2.0.3",
-    "storybook": "9.0.15",
-    "@storybook/addon-docs": "9.0.15"
+    "storybook": "^9.0.16"
   },
   "browserslist": {
     "production": [
