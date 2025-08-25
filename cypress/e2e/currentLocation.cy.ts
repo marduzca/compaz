@@ -12,13 +12,13 @@ describe('CurrentLocation', () => {
         cy.stub(
           browserWindow.navigator.geolocation,
           'getCurrentPosition',
-          (successCallback) =>
-            successCallback({
-              coords: {
-                latitude: fakeLocation.latitude,
-                longitude: fakeLocation.longitude,
-              },
-            }),
+        ).callsFake((successCallback) =>
+          successCallback({
+            coords: {
+              latitude: fakeLocation.latitude,
+              longitude: fakeLocation.longitude,
+            },
+          }),
         );
       },
     };
