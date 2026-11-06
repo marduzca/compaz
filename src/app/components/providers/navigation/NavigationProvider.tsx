@@ -46,10 +46,10 @@ const identifyTransferPositions = (stationsPath: Station[]): number[] => {
 
   stationsPath.forEach((station, index) => {
     if (index < stationsPath.length - 2) {
-      if (stationsPath[index + 1].lines.length > 1) {
+      if (stationsPath[index + 1]!.lines.length > 1) {
         // If next station is connected to more than one line
         if (
-          !stationsPath[index + 2].lines.some((line) =>
+          !stationsPath[index + 2]!.lines.some((line) =>
             station.lines.includes(line),
           )
         ) {
@@ -72,12 +72,12 @@ export const extractSubRoutes = (stationsPath: Station[]): Station[][] => {
     return subRoutes;
   }
 
-  subRoutes.push(stationsPath.slice(0, transferPositions[0] + 1));
+  subRoutes.push(stationsPath.slice(0, transferPositions[0]! + 1));
 
   transferPositions.forEach((transferPoint, index) => {
     if (index !== transferPositions.length - 1) {
       subRoutes.push(
-        stationsPath.slice(transferPoint, transferPositions[index + 1] + 1),
+        stationsPath.slice(transferPoint, transferPositions[index + 1]! + 1),
       );
     }
   });
@@ -98,7 +98,7 @@ export const calculateTotalTimeOfSubRoute = (subRoute: Station[]) => {
   subRoute.forEach((station, index) => {
     if (index < subRoute.length - 1) {
       const nextStation = station.connectedStations.find(
-        (connectedStation) => connectedStation.id === subRoute[index + 1].id,
+        (connectedStation) => connectedStation.id === subRoute[index + 1]!.id,
       );
 
       if (nextStation) totalTime += nextStation.timeTo;
@@ -138,10 +138,10 @@ export const calculateDirectionOfSubRoute = (
   subRoute: Station[],
 ): string => {
   const positionOfSubRouteStartWithinLine = subRouteLine.stationsPath.indexOf(
-    subRoute[0].id,
+    subRoute[0]!.id,
   );
   const positionOfSubRouteEndWithinLine = subRouteLine.stationsPath.indexOf(
-    subRoute[subRoute.length - 1].id,
+    subRoute[subRoute.length - 1]!.id,
   );
 
   if (
@@ -184,7 +184,7 @@ export const addTransferTimeBetweenLines = (
       if (currentLine) {
         const nextLine = currentLine.connectedLines.find(
           (connectedLine) =>
-            connectedLine.id === subRoutesWithTimeAndLineInfo[index + 1].line,
+            connectedLine.id === subRoutesWithTimeAndLineInfo[index + 1]!.line,
         );
 
         if (nextLine) {
@@ -214,10 +214,8 @@ const calculateRoutePrice = (subRoutes: SubRoute[]): number => {
     // Price exception for white-lightblue line: If there is a connection that connects both, the transfer is free
     if (
       subRoute.line === LineColor.WHITE &&
-      ((subRoutes[index - 1] &&
-        subRoutes[index - 1].line === LineColor.LIGHT_BLUE) ||
-        (subRoutes[index + 1] &&
-          subRoutes[index + 1].line === LineColor.LIGHT_BLUE))
+      (subRoutes[index - 1]?.line === LineColor.LIGHT_BLUE ||
+        subRoutes[index + 1]?.line === LineColor.LIGHT_BLUE)
     ) {
       routePrice -= 2;
     }

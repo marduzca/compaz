@@ -129,7 +129,7 @@ const Map: React.FC<MapProps> = ({
 
             return (
               <div
-                key={`line_${subRoute.stationsPath[index - 1].id}_to_${
+                key={`line_${subRoute.stationsPath[index - 1]!.id}_to_${
                   station.id
                 }`}
               >
@@ -138,7 +138,9 @@ const Map: React.FC<MapProps> = ({
                   isIntermediatePath={
                     index > 0 && index < subRoute.stationsPath.length - 1
                   }
-                  fromGeoLocation={subRoute.stationsPath[index - 1].geoLocation}
+                  fromGeoLocation={
+                    subRoute.stationsPath[index - 1]!.geoLocation
+                  }
                   toGeoLocation={station.geoLocation}
                   lineColor={window
                     .getComputedStyle(document.body)
@@ -178,11 +180,11 @@ const Map: React.FC<MapProps> = ({
 
             return (
               <div
-                key={`line_${line.stationsPath[index - 1].id}_to_${station.id}`}
+                key={`line_${line.stationsPath[index - 1]!.id}_to_${station.id}`}
               >
                 <StationsConnector
                   positionInRoute={index}
-                  fromGeoLocation={line.stationsPath[index - 1].geoLocation}
+                  fromGeoLocation={line.stationsPath[index - 1]!.geoLocation}
                   toGeoLocation={station.geoLocation}
                   lineColor={window
                     .getComputedStyle(document.body)

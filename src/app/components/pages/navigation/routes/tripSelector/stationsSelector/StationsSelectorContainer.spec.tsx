@@ -11,7 +11,7 @@ describe('StationsSelectorContainer', () => {
   const useFirebaseMock = vi.spyOn(FirebaseProvider, 'useFirebase');
   const useNavigationMock = vi.spyOn(NavigationProvider, 'useNavigation');
 
-  const availableStations: Station[] = [
+  const availableStations: [Station, Station, Station, ...Station[]] = [
     {
       id: 'some_station',
       name: 'Some station',

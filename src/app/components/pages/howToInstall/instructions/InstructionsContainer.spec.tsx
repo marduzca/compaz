@@ -48,7 +48,7 @@ describe('InstructionsContainer', () => {
     expect(browserOptionsForLaptop).toHaveLength(1);
     expect(browserOptionsForLaptop[0]).toHaveTextContent(Browser.GOOGLE_CHROME);
 
-    await userEvent.click(browserOptionsForLaptop[0]);
+    await userEvent.click(browserOptionsForLaptop[0]!);
     await selectOptionFromDropdown('Device', 'Android / Tablet');
 
     await userEvent.click(

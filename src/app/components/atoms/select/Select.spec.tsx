@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 import Select, { Option } from './Select';
 
 describe('Select', () => {
-  const books: Option[] = [
+  const books: [Option, ...Option[]] = [
     { value: 'To Kill a Mockingbird', text: 'To Kill a Mockingbird' },
     { value: 'War and Peace', text: 'War and Peace' },
     { value: 'The Idiot', text: 'The Idiot' },

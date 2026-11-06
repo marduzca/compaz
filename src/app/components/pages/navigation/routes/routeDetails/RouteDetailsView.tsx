@@ -72,7 +72,7 @@ const DetailsContentBox: React.FC<DetailsContentBoxProps> = (props) => {
               <span>
                 {t('Navigation.RouteDetails.TRANSFER_MESSAGE', {
                   transferTime:
-                    props.route.subRoutes[Math.floor(index / 2)]
+                    props.route.subRoutes[Math.floor(index / 2)]!
                       .transferTimeToNextLine,
                 })}
               </span>

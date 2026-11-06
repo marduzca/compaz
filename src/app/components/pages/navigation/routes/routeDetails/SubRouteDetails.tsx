@@ -106,7 +106,7 @@ const SubRouteDetails: React.FC<SubRouteDetailsProps> = (props) => {
       </div>
       <div className={styles.originStation}>
         <span className={styles.subRouteInfoStation} tabIndex={0}>
-          {props.subRoute.stationsPath[0].name}
+          {props.subRoute.stationsPath[0]!.name}
         </span>
         <span className={styles.subRouteDirection}>
           {t('Navigation.RouteDetails.DIRECTION', {
@@ -134,7 +134,7 @@ const SubRouteDetails: React.FC<SubRouteDetailsProps> = (props) => {
         tabIndex={0}
       >
         {
-          props.subRoute.stationsPath[props.subRoute.stationsPath.length - 1]
+          props.subRoute.stationsPath[props.subRoute.stationsPath.length - 1]!
             .name
         }
       </span>

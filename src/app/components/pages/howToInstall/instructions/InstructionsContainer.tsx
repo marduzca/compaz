@@ -49,7 +49,7 @@ const InstructionsContainer: React.FC = () => {
       )
     ) {
       setSelectedBrowser(
-        availableBrowsersForDevice[Device[typedDeviceString]][0],
+        availableBrowsersForDevice[Device[typedDeviceString]][0]!,
       );
     }
   };

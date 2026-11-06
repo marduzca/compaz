@@ -41,19 +41,17 @@ const StationsSelector: React.FC<StationsSelectorProps> = (props) => {
             options={Object.keys(props.stationsGroupedByLine).map((line) => ({
               label: line,
               options: props.stationsGroupedByLine
-                ? props.stationsGroupedByLine[line]
-                    .filter(
-                      (station) =>
-                        station.id !== props.destinationInputValue &&
-                        station.name !== props.destinationInputValue,
-                    )
-                    .map(
-                      (station) =>
-                        ({
-                          value: station.id,
-                          text: station.name,
-                        }) as Option,
-                    )
+                ? props.stationsGroupedByLine[line]!.filter(
+                    (station) =>
+                      station.id !== props.destinationInputValue &&
+                      station.name !== props.destinationInputValue,
+                  ).map(
+                    (station) =>
+                      ({
+                        value: station.id,
+                        text: station.name,
+                      }) as Option,
+                  )
                 : [],
             }))}
             label={t(ORIGIN)}
@@ -73,19 +71,17 @@ const StationsSelector: React.FC<StationsSelectorProps> = (props) => {
             options={Object.keys(props.stationsGroupedByLine).map((line) => ({
               label: line,
               options: props.stationsGroupedByLine
-                ? props.stationsGroupedByLine[line]
-                    .filter(
-                      (station) =>
-                        station.id !== props.originInputValue &&
-                        station.name !== props.originInputValue,
-                    )
-                    .map(
-                      (station) =>
-                        ({
-                          value: station.id,
-                          text: station.name,
-                        }) as Option,
-                    )
+                ? props.stationsGroupedByLine[line]!.filter(
+                    (station) =>
+                      station.id !== props.originInputValue &&
+                      station.name !== props.originInputValue,
+                  ).map(
+                    (station) =>
+                      ({
+                        value: station.id,
+                        text: station.name,
+                      }) as Option,
+                  )
                 : [],
             }))}
             label={t(DESTINATION)}

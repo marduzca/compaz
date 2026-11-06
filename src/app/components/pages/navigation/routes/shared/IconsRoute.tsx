@@ -38,7 +38,7 @@ const IconsRoute: React.FC<SimpleIconsRouteProps> = ({
           <li key={`transfer-${index}`} className={styles.transfer}>
             {!hideTimes && (
               <span>
-                {subRoutes[Math.floor(index / 2)].transferTimeToNextLine}
+                {subRoutes[Math.floor(index / 2)]!.transferTimeToNextLine}
               </span>
             )}
             <img

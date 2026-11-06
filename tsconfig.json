@@ -20,6 +20,7 @@
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "noUncheckedIndexedAccess": true,
     "module": "esnext",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,

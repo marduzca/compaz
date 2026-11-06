@@ -30,7 +30,7 @@ const RoutesOverviewContainer: React.FC<RoutesOverviewContainerProps> = (
   const handleEarlierButtonClick = () => {
     const updatedDisplayedRouteTimes = [...displayedRouteTimes];
     updatedDisplayedRouteTimes.unshift(
-      reduceMinutesToDate(updatedDisplayedRouteTimes[0], 5),
+      reduceMinutesToDate(updatedDisplayedRouteTimes[0]!, 5),
     );
 
     setDisplayedRouteTimes(updatedDisplayedRouteTimes);
@@ -40,7 +40,7 @@ const RoutesOverviewContainer: React.FC<RoutesOverviewContainerProps> = (
     const updatedDisplayedRouteTimes = [...displayedRouteTimes];
     updatedDisplayedRouteTimes.push(
       addMinutesToDate(
-        updatedDisplayedRouteTimes[updatedDisplayedRouteTimes.length - 1],
+        updatedDisplayedRouteTimes[updatedDisplayedRouteTimes.length - 1]!,
         5,
       ),
     );
