@@ -11,7 +11,6 @@ import { Route } from '../../domain';
 import RouteDetailsViewContainer from './routes/routeDetails/RouteDetailsViewContainer';
 import LoadingPage from './loadingPage/LoadingPage';
 import MapContainer from '../../organisms/map/MapContainer';
-import 'wicg-inert';
 import Footer from '../../organisms/footer/Footer';
 import { PAGE_TITLE_PREFIX } from '../../../App';
 import getTimeOfTheDay from '../../hooks/getTimeOfTheDay/getTimeOfTheDay';

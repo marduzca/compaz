@@ -1,38 +1,35 @@
-import { createMemoryHistory } from 'history';
 import { render, screen } from '@testing-library/react';
-import { Router } from 'react-router';
+import { MemoryRouter, useLocation } from 'react-router';
 import userEvent from '@testing-library/user-event';
 import { NavigationLink } from '../../organisms/menu/Menu';
 import MobileHeader from './MobileHeader';
 
+const CurrentPath = () => (
+  <div data-testid="path">{useLocation().pathname}</div>
+);
+
 describe('MobileHeader', () => {
   it('navigates to home page when clicking home link', async () => {
-    const history = createMemoryHistory({
-      initialEntries: [NavigationLink.BASE],
-    });
-
     render(
-      <Router location={history.location} navigator={history}>
+      <MemoryRouter initialEntries={[NavigationLink.BASE]}>
         <MobileHeader onMenuButtonClick={() => {}} />
-      </Router>,
+        <CurrentPath />
+      </MemoryRouter>,
     );
 
     await userEvent.click(
       screen.getByRole('link', { name: /Go to home page/ }),
     );
 
-    expect(history.location.pathname).toBe(NavigationLink.BASE);
+    expect(screen.getByTestId('path')).toHaveTextContent(NavigationLink.BASE);
   });
 
   it('navigates to map page when clicking full map link', async () => {
-    const history = createMemoryHistory({
-      initialEntries: [NavigationLink.BASE],
-    });
-
     render(
-      <Router location={history.location} navigator={history}>
+      <MemoryRouter initialEntries={[NavigationLink.BASE]}>
         <MobileHeader onMenuButtonClick={() => {}} isNavigationPage />
-      </Router>,
+        <CurrentPath />
+      </MemoryRouter>,
     );
 
     await userEvent.click(
@@ -41,6 +38,6 @@ describe('MobileHeader', () => {
       }),
     );
 
-    expect(history.location.pathname).toBe(NavigationLink.MAP);
+    expect(screen.getByTestId('path')).toHaveTextContent(NavigationLink.MAP);
   });
 });
