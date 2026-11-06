@@ -3,13 +3,11 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import jsxA11y from 'eslint-plugin-jsx-a11y-x';
 import importPlugin from 'eslint-plugin-import-x';
 import storybook from 'eslint-plugin-storybook';
-import typescriptEslint from '@typescript-eslint/eslint-plugin';
+import tseslint from 'typescript-eslint';
 import jestDom from 'eslint-plugin-jest-dom';
 import testingLibrary from 'eslint-plugin-testing-library';
-import prettier from 'eslint-plugin-prettier';
 import eslintConfigPrettier from 'eslint-config-prettier';
 import globals from 'globals';
-import tsParser from '@typescript-eslint/parser';
 import js from '@eslint/js';
 
 const tsFiles = ['**/*.ts', '**/*.tsx'];
@@ -26,7 +24,7 @@ export default [
     jsxA11y.configs.recommended,
     reactHooks.configs.flat.recommended,
     importPlugin.flatConfigs.warnings,
-    ...typescriptEslint.configs['flat/recommended'],
+    ...tseslint.configs.recommended,
     ...storybook.configs['flat/recommended'],
     eslintConfigPrettier
   ]),
@@ -35,8 +33,7 @@ export default [
 
     plugins: {
       'jest-dom': jestDom,
-      'testing-library': testingLibrary,
-      prettier
+      'testing-library': testingLibrary
     },
 
     languageOptions: {
@@ -44,7 +41,6 @@ export default [
         ...globals.browser
       },
 
-      parser: tsParser,
       ecmaVersion: 12,
       sourceType: 'module',
 
@@ -74,13 +70,10 @@ export default [
         'src/app/**/*.spec.{ts,tsx}',
         'src/test/setupTests.ts',
         '**/*.stories.tsx',
-        'cypress.config.ts'
+        'cypress.config.ts',
+        'vite.config.mts',
+        '.storybook/**'
       ]
-    }],
-
-    'prettier/prettier': ['warn', {
-      singleQuote: true,
-      semi: true
     }],
 
     'import-x/extensions': ['error', 'ignorePackages', {
@@ -138,12 +131,6 @@ export default [
   rules: {
     '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off'
-  }
-}, {
-  files: ['cypress/**/*.cy.ts'],
-
-  rules: {
-    'jest/expect-expect': 'off'
   }
 }, {
   // New override for Storybook-specific rules

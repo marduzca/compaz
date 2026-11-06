@@ -1,4 +1,3 @@
-/* eslint-disable import-x/no-extraneous-dependencies */
 import { Preview } from '@storybook/react-vite';
 import MockDate from 'mockdate';
 import '../src/app/i18n/instance';
