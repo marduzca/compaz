@@ -106,10 +106,7 @@
     "singleQuote": true
   },
   "overrides": {
-    "@grpc/grpc-js": "^1.14.5",
-    "react-i18next": {
-      "typescript": "$typescript"
-    }
+    "@grpc/grpc-js": "^1.14.5"
   },
   "eslintConfig": {
     "overrides": [
