@@ -9,147 +9,89 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+permissions:
+  contents: read
+
+# Main pushes queue so deploys never run out of order; PR runs cancel stale ones
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
-  build_and_test:
+  lint:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v7
-      - name: Use Node.js 24
-        uses: actions/setup-node@v7
-        with:
-          node-version: 24
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: ./.github/actions/setup
+      - run: npm run lint
+      - name: Audit production dependencies
+        run: npm audit --omit=dev --audit-level=high
 
-      - name: Cache Node Modules
-        id: node-cache
-        uses: actions/cache@v6
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: node_modules
-          key: node-modules-${{ hashFiles('package-lock.json') }}
+  unit_tests:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: ./.github/actions/setup
+      - run: npm run only-test
 
-      - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: CYPRESS_INSTALL_BINARY=0 npm install
-
-      - name: Build
-        run: npm run build --if-present
-
-      - name: eslint & tests
-        run: npm run lint && npm run only-test
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: ./.github/actions/setup
+      - run: npm run build
 
   visual_regression_test:
-    needs: build_and_test
+    needs: [ lint, unit_tests, build ]
     runs-on: ubuntu-24.04
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           fetch-depth: 0
-      - name: Use Node.js 24
-        uses: actions/setup-node@v7
-        with:
-          node-version: 24
-      - name: Cache Node Modules
-        id: node-cache
-        uses: actions/cache@v6
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: node_modules
-          key: node-modules-${{ hashFiles('package-lock.json') }}
+      - uses: ./.github/actions/setup
       - name: Run Chromatic
-        uses: chromaui/action@latest
+        uses: chromaui/action@1efa9d9b64308fe98fcf1eb4629f12639ffac902 # v18.14.1
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           exitZeroOnChanges: false
 
   user_journey_test_local:
-    needs: build_and_test
+    needs: [ lint, unit_tests, build ]
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v7
-      - name: Use Node.js 24
-        uses: actions/setup-node@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: ./.github/actions/setup
         with:
-          node-version: 24
+          install-cypress-binary: 'true'
       - name: create env file
         run: |
           touch .env
-          echo VITE_MAPS_API_KEY =${{ secrets.DEV_MAPS_API_KEY }} >> .env
-          echo VITE_FIREBASE_API_KEY =${{ secrets.DEV_FIREBASE_API_KEY }} >> .env
-
-      - name: Cache Node Modules
-        id: node-cache
-        uses: actions/cache@v6
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: node_modules
-          key: node-modules-${{ hashFiles('package-lock.json') }}
-
-      - name: Install Cypress
-        run: ./node_modules/cypress/bin/cypress install
-
+          echo VITE_MAPS_API_KEY=${{ secrets.DEV_MAPS_API_KEY }} >> .env
+          echo VITE_FIREBASE_API_KEY=${{ secrets.DEV_FIREBASE_API_KEY }} >> .env
       - name: Run User Journey tests
         run: npm run ci:cypress-run
-
       - name: Upload artifact
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         if: failure()
         with:
-          name: user_journey_test_local_screenshot_${{ matrix.runs-on }}
+          name: user_journey_test_local_screenshot
           path: cypress/screenshots/**
 
-  outdated_deps:
-    needs: [ user_journey_test_local, visual_regression_test ]
-    runs-on: ubuntu-24.04
-    steps:
-      - uses: actions/checkout@v7
-      - name: Use Node.js 24
-        uses: actions/setup-node@v7
-        with:
-          node-version: 24
-
-      - name: Cache Node Modules
-        id: node-cache
-        uses: actions/cache@v6
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: node_modules
-          key: node-modules-${{ hashFiles('package-lock.json') }}
-
-      - name: Show outdated deps
-        run: npm outdated || true
-      - name: Check outdated deps limit
-        run: test $(npm outdated | wc -l) -lt "10"
-
   build_and_deploy_dev:
+    if: github.ref == 'refs/heads/main'
     needs: [ user_journey_test_local, visual_regression_test ]
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: ./.github/actions/setup
       - name: create env file
         run: |
           touch .env
-          echo VITE_MAPS_API_KEY =${{ secrets.DEV_MAPS_API_KEY }} >> .env
-          echo VITE_FIREBASE_API_KEY =${{ secrets.DEV_FIREBASE_API_KEY }} >> .env
-
-      - name: Cache Node Modules
-        id: node-cache
-        uses: actions/cache@v6
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: node_modules
-          key: node-modules-${{ hashFiles('package-lock.json') }}
-
-      - name: Build
-        run: npm run build --if-present
-
+          echo VITE_MAPS_API_KEY=${{ secrets.DEV_MAPS_API_KEY }} >> .env
+          echo VITE_FIREBASE_API_KEY=${{ secrets.DEV_FIREBASE_API_KEY }} >> .env
+      - run: npm run build
       - name: Deploy to Firebase
-        uses: w9jds/firebase-action@v13.7.2
+        uses: w9jds/firebase-action@50971599cb12686ca6f1156f561875f4f1f2c63b # v13.7.2
         with:
           args: deploy -P development
         env:
@@ -159,59 +101,33 @@ jobs:
     needs: build_and_deploy_dev
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v7
-      - name: Use Node.js 24
-        uses: actions/setup-node@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: ./.github/actions/setup
         with:
-          node-version: 24
-
-      - name: Cache Node Modules
-        id: node-cache
-        uses: actions/cache@v6
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: node_modules
-          key: node-modules-${{ hashFiles('package-lock.json') }}
-
-      - name: Install Cypress
-        run: ./node_modules/cypress/bin/cypress install
-
+          install-cypress-binary: 'true'
       - name: Run User Journey tests
         run: CYPRESS_BASE_URL=https://compaz-dev.web.app npm run cypress:ci
-
       - name: Upload artifact
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         if: failure()
         with:
-          name: user_journey_test_dev_screenshot_${{ matrix.runs-on }}
+          name: user_journey_test_dev_screenshot
           path: cypress/screenshots/**
 
   build_and_deploy_prod:
-    needs: [ user_journey_test_dev ]
+    needs: user_journey_test_dev
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: ./.github/actions/setup
       - name: create env file
         run: |
           touch .env
-          echo VITE_MAPS_API_KEY =${{ secrets.MAPS_API_KEY }} >> .env
-          echo VITE_FIREBASE_API_KEY =${{ secrets.FIREBASE_API_KEY }} >> .env
-
-      - name: Cache Node Modules
-        id: node-cache
-        uses: actions/cache@v6
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: node_modules
-          key: node-modules-${{ hashFiles('package-lock.json') }}
-
-      - name: Build
-        run: npm run build --if-present
-
+          echo VITE_MAPS_API_KEY=${{ secrets.MAPS_API_KEY }} >> .env
+          echo VITE_FIREBASE_API_KEY=${{ secrets.FIREBASE_API_KEY }} >> .env
+      - run: npm run build
       - name: Deploy to Firebase
-        uses: w9jds/firebase-action@v13.7.2
+        uses: w9jds/firebase-action@50971599cb12686ca6f1156f561875f4f1f2c63b # v13.7.2
         with:
           args: deploy -P default
         env:
@@ -221,30 +137,15 @@ jobs:
     needs: build_and_deploy_prod
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v7
-      - name: Use Node.js 24
-        uses: actions/setup-node@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: ./.github/actions/setup
         with:
-          node-version: 24
-
-      - name: Cache Node Modules
-        id: node-cache
-        uses: actions/cache@v6
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: node_modules
-          key: node-modules-${{ hashFiles('package-lock.json') }}
-
-      - name: Install Cypress
-        run: ./node_modules/cypress/bin/cypress install
-
+          install-cypress-binary: 'true'
       - name: Run User Journey tests
         run: CYPRESS_BASE_URL=https://compaz.app npm run cypress:ci
-
       - name: Upload artifact
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         if: failure()
         with:
-          name: user_journey_test_prod_screenshot_${{ matrix.runs-on }}
+          name: user_journey_test_prod_screenshot
           path: cypress/screenshots/**

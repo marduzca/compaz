@@ -1,0 +1,25 @@
+name: Set up Node and install dependencies
+description: Installs Node from .nvmrc and runs npm ci with the npm cache
+
+inputs:
+  install-cypress-binary:
+    description: Whether to download the Cypress binary
+    default: 'false'
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+      with:
+        node-version-file: .nvmrc
+        cache: npm
+    - name: Install dependencies
+      if: inputs.install-cypress-binary == 'true'
+      shell: bash
+      run: npm ci
+    - name: Install dependencies (without Cypress binary)
+      if: inputs.install-cypress-binary != 'true'
+      shell: bash
+      run: npm ci
+      env:
+        CYPRESS_INSTALL_BINARY: '0'
