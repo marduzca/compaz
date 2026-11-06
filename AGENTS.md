@@ -7,7 +7,7 @@ Mobile is the main target: design and verify every UI change for small touch scr
 ## Verify
 
 - `npm test`: lint (`--max-warnings=0`), prettier, then vitest. Run before finishing any change.
-- `npm run build`: runs `tsc`, so type errors surface here.
+- `npm run build`: runs `npm run typecheck` (app, config/Storybook and Cypress `tsc` projects), so type errors surface here.
 - Cypress, Chromatic and `npm run pre-commit` belong to CI and the human (they need secrets and a Chromatic token).
 - Node 24 (`.nvmrc`, `engines`). `@types/node` stays on 24 to match the runtime; bump it together with Node.
 - Lint uses plugin `recommended` presets (airbnb was dropped) on ESLint 10, with `@eslint-react`, `eslint-plugin-import-x` and `eslint-plugin-jsx-a11y-x` (the maintained forks) instead of the stale `eslint-plugin-react`, `-import` and `-jsx-a11y`. `react-hooks` 7 compiler rules are errors: fix hits in code (derive state instead of `setState` in effects), do not disable.

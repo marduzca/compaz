@@ -5,7 +5,8 @@
   "scripts": {
     "start": "vite",
     "start:pwa": "npm run build && vite preview",
-    "build": "tsc && vite build",
+    "typecheck": "tsc && tsc -p tsconfig.node.json && tsc -p cypress/tsconfig.json",
+    "build": "npm run typecheck && vite build",
     "serve": "vite preview",
     "pre-commit": "npm run build && npm test && npm run chromatic",
     "test": "npm run lint && vitest run",

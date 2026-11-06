@@ -1,9 +1,12 @@
 {
   "compilerOptions": {
-    "target": "es2020",
-    "lib": ["es2020", "dom"],
-    "types": ["cypress"],
-    "jsx": "react-jsx"
+    "target": "es2022",
+    "lib": ["es2022", "dom"],
+    "types": ["cypress", "vite/client", "vite-plugin-svgr/client", "node"],
+    "jsx": "react-jsx",
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmit": true
   },
   "include": ["**/*.ts"]
 }

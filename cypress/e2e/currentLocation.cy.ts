@@ -1,7 +1,7 @@
 import Map from '../page_objects/map';
 
 describe('CurrentLocation', () => {
-  const fakeCurrentLocation = () => {
+  const fakeCurrentLocation = (): Partial<Cypress.VisitOptions> => {
     const fakeLocation = {
       latitude: 52.553444,
       longitude: 13.416418,
