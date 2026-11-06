@@ -66,7 +66,7 @@
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/parser": "^8.0.0",
     "chromatic": "^18.14.1",
-    "cypress": "^15.0.0",
+    "cypress": "^16.2.1",
     "eslint": "^9.5.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-import-resolver-typescript": "^4.4.5",
@@ -107,7 +107,10 @@
     "singleQuote": true
   },
   "overrides": {
-    "@grpc/grpc-js": "^1.14.5"
+    "@grpc/grpc-js": "^1.14.5",
+    "react-i18next": {
+      "typescript": "$typescript"
+    }
   },
   "eslintConfig": {
     "overrides": [
