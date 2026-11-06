@@ -9,7 +9,7 @@ Mobile is the main target: design and verify every UI change for small touch scr
 - `npm test`: lint (`--max-warnings=0`), prettier, then vitest. Run before finishing any change.
 - `npm run build`: runs `tsc`, so type errors surface here.
 - Cypress, Chromatic and `npm run pre-commit` belong to CI and the human (they need secrets and a Chromatic token).
-- Node 20. `.npmrc` sets `legacy-peer-deps` because `eslint-config-airbnb` peers on ESLint 8 while the repo runs ESLint 9; keep it until that changes.
+- Node 24 (`.nvmrc`, `engines`). `.npmrc` sets `legacy-peer-deps` because `eslint-config-airbnb` peers on ESLint 8 while the repo runs ESLint 9; keep it until that changes.
 - `npm start` serves on port 3000 and opens a browser. The PWA service worker caches builds, so a stale UI after `start:pwa` means hard-reload or clear site data.
 
 ## Layout
