@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { GeoLocation, NotificationEvent } from '../../../domain';
 import currentLocationIcon from '../../../../static/svg/current_location.svg';
 import CurrentLocationIcon from '../../../../static/svg/location.svg?react';
-import useMapFitBounds from '../../../hooks/useMapFitBounds/useMapFitBounds';
+import getMapFitBounds from '../../../hooks/getMapFitBounds/getMapFitBounds';
 import { MapMode } from '../MapContainer';
 import styles from './CurrentLocation.module.css';
 import { EventType, NotificationType } from '../../notification/Notification';
@@ -19,7 +19,7 @@ const CurrentLocation: React.FC<CurrentLocationMarkerProps> = ({
   googleMapReference = undefined,
 }) => {
   const { t } = useTranslation();
-  const { fitScreenToBounds } = useMapFitBounds(googleMapReference);
+  const { fitScreenToBounds } = getMapFitBounds(googleMapReference);
 
   const [currentLocation, setCurrentLocation] = useState<
     GeoLocation | undefined

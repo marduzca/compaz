@@ -16,7 +16,7 @@ import ContactIcon from '../../../static/svg/contact.svg?react';
 import AboutIcon from '../../../static/svg/about.svg?react';
 import styles from './Menu.module.css';
 import i18n from '../../../i18n/instance';
-import useTimeOfTheDay from '../../hooks/useTimeOfTheDay/useTimeOfTheDay';
+import getTimeOfTheDay from '../../hooks/getTimeOfTheDay/getTimeOfTheDay';
 import MenuLink from './menuLink/MenuLink';
 
 export enum NavigationLink {
@@ -74,7 +74,7 @@ interface MenuProps {
 const Menu: React.FC<MenuProps> = (props) => {
   const { t } = useTranslation();
   const location = useLocation();
-  const { isMorning, isAfternoon } = useTimeOfTheDay();
+  const { isMorning, isAfternoon } = getTimeOfTheDay();
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   const currentPage = location.pathname;

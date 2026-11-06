@@ -20,7 +20,7 @@ const RoutesOverviewContainer: React.FC<RoutesOverviewContainerProps> = (
 
   const departureDateAndTime = new Date(`${departureDate}T${departureTime}`);
 
-  const [displayedRouteTimes, setDisplayedRouteTimes] = useState<Date[]>([
+  const [displayedRouteTimes, setDisplayedRouteTimes] = useState<Date[]>(() => [
     departureDateAndTime,
     addMinutesToDate(departureDateAndTime, 5),
     addMinutesToDate(departureDateAndTime, 10),

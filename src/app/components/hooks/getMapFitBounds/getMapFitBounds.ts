@@ -1,7 +1,7 @@
 import { MapMode } from '../../organisms/map/MapContainer';
 import { GeoLocation } from '../../domain';
 
-const useMapFitBounds = (googleMap?: google.maps.Map) => {
+const getMapFitBounds = (googleMap?: google.maps.Map) => {
   const applyMapPostAdjustments = (currentMapMode: MapMode) => {
     if (googleMap) {
       google.maps.event.addListenerOnce(googleMap, 'idle', () => {
@@ -53,4 +53,4 @@ const useMapFitBounds = (googleMap?: google.maps.Map) => {
   };
 };
 
-export default useMapFitBounds;
+export default getMapFitBounds;

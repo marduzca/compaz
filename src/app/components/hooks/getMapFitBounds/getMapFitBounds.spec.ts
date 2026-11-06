@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react';
 import { vi } from 'vitest';
-import useMapFitBounds from './useMapFitBounds';
+import getMapFitBounds from './getMapFitBounds';
 import { MapMode } from '../../organisms/map/MapContainer';
 
 const fitBoundsMock = vi.fn();
@@ -40,13 +40,13 @@ google.maps.event.addListenerOnce.mockImplementation(
   },
 );
 
-describe('useMapFitBounds', () => {
+describe('getMapFitBounds', () => {
   afterEach(() => {
     vi.clearAllMocks();
   });
 
   it('SHOULD trigger the corresponding map post adjustments WHEN on ROUTE mode', () => {
-    const { result } = renderHook(() => useMapFitBounds(new google.maps.Map()));
+    const { result } = renderHook(() => getMapFitBounds(new google.maps.Map()));
 
     result.current.fitScreenToBounds([], MapMode.ROUTE);
 
@@ -58,7 +58,7 @@ describe('useMapFitBounds', () => {
   });
 
   it('SHOULD trigger the corresponding map post adjustments WHEN on LINES mode', () => {
-    const { result } = renderHook(() => useMapFitBounds(new google.maps.Map()));
+    const { result } = renderHook(() => getMapFitBounds(new google.maps.Map()));
 
     result.current.fitScreenToBounds([], MapMode.LINES);
 
@@ -68,7 +68,7 @@ describe('useMapFitBounds', () => {
   });
 
   it('SHOULD trigger the corresponding map post adjustments WHEN on CURRENT_LOCATION mode', () => {
-    const { result } = renderHook(() => useMapFitBounds(new google.maps.Map()));
+    const { result } = renderHook(() => getMapFitBounds(new google.maps.Map()));
 
     result.current.fitScreenToBounds([], MapMode.CURRENT_LOCATION);
 
@@ -108,7 +108,7 @@ describe('useMapFitBounds', () => {
 
     it('SHOULD trigger the corresponding map post adjustments WHEN on ROUTE mode', () => {
       const { result } = renderHook(() =>
-        useMapFitBounds(new google.maps.Map()),
+        getMapFitBounds(new google.maps.Map()),
       );
 
       result.current.fitScreenToBounds([], MapMode.ROUTE);
@@ -119,7 +119,7 @@ describe('useMapFitBounds', () => {
 
     it('SHOULD trigger the corresponding map post adjustments WHEN on LINES mode', () => {
       const { result } = renderHook(() =>
-        useMapFitBounds(new google.maps.Map()),
+        getMapFitBounds(new google.maps.Map()),
       );
 
       result.current.fitScreenToBounds([], MapMode.LINES);

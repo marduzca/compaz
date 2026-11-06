@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, use } from 'react';
 import { FirebaseOptions, initializeApp } from 'firebase/app';
 import { doc, getFirestore, setDoc } from 'firebase/firestore';
 import { Line, NotificationEvent, Station } from '../../domain';
@@ -91,7 +91,7 @@ export const FirebaseProvider: React.FC<FirebaseProviderProps> = (props) => {
   };
 
   return (
-    <FirebaseContext.Provider
+    <FirebaseContext
       value={{
         stations,
         lines,
@@ -99,11 +99,10 @@ export const FirebaseProvider: React.FC<FirebaseProviderProps> = (props) => {
       }}
     >
       {props.children}
-    </FirebaseContext.Provider>
+    </FirebaseContext>
   );
 };
 
-const useFirebase = (): FirebaseContextInterface =>
-  useContext<FirebaseContextInterface>(FirebaseContext);
+const useFirebase = (): FirebaseContextInterface => use(FirebaseContext);
 
 export { useFirebase };

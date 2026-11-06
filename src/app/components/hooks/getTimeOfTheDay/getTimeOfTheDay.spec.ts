@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react';
-import useTimeOfTheDay from './useTimeOfTheDay';
+import getTimeOfTheDay from './getTimeOfTheDay';
 
-describe('useTimeOfTheDay', () => {
+describe('getTimeOfTheDay', () => {
   afterAll(() => {
     vi.useRealTimers();
   });
@@ -9,7 +9,7 @@ describe('useTimeOfTheDay', () => {
   it('should tell it is morning if it is 7 or later', () => {
     vi.useFakeTimers().setSystemTime(new Date('2021-09-24 07:00'));
 
-    const { result } = renderHook(() => useTimeOfTheDay());
+    const { result } = renderHook(() => getTimeOfTheDay());
 
     expect(result.current.isMorning).toBeTruthy();
     expect(result.current.isAfternoon).toBeFalsy();
@@ -19,7 +19,7 @@ describe('useTimeOfTheDay', () => {
   it('should tell it is afternoon if it is 13 or later', () => {
     vi.useFakeTimers().setSystemTime(new Date('2021-09-24 13:00'));
 
-    const { result } = renderHook(() => useTimeOfTheDay());
+    const { result } = renderHook(() => getTimeOfTheDay());
 
     expect(result.current.isAfternoon).toBeTruthy();
     expect(result.current.isMorning).toBeFalsy();
@@ -29,7 +29,7 @@ describe('useTimeOfTheDay', () => {
   it('should tell it is night if it is 19 or later', () => {
     vi.useFakeTimers().setSystemTime(new Date('2021-09-24 19:00'));
 
-    const { result } = renderHook(() => useTimeOfTheDay());
+    const { result } = renderHook(() => getTimeOfTheDay());
 
     expect(result.current.isNight).toBeTruthy();
     expect(result.current.isMorning).toBeFalsy();
@@ -39,7 +39,7 @@ describe('useTimeOfTheDay', () => {
   it('should tell it is night if it is before 7 am', () => {
     vi.useFakeTimers().setSystemTime(new Date('2021-09-24 06:00'));
 
-    const { result } = renderHook(() => useTimeOfTheDay());
+    const { result } = renderHook(() => getTimeOfTheDay());
 
     expect(result.current.isNight).toBeTruthy();
     expect(result.current.isMorning).toBeFalsy();

@@ -1,7 +1,7 @@
-import react from 'eslint-plugin-react';
+import reactX from '@eslint-react/eslint-plugin';
 import reactHooks from 'eslint-plugin-react-hooks';
-import jsxA11y from 'eslint-plugin-jsx-a11y';
-import importPlugin from 'eslint-plugin-import';
+import jsxA11y from 'eslint-plugin-jsx-a11y-x';
+import importPlugin from 'eslint-plugin-import-x';
 import storybook from 'eslint-plugin-storybook';
 import typescriptEslint from '@typescript-eslint/eslint-plugin';
 import jestDom from 'eslint-plugin-jest-dom';
@@ -22,9 +22,8 @@ export default [
   },
   ...scoped([
     js.configs.recommended,
-    react.configs.flat.recommended,
-    react.configs.flat['jsx-runtime'],
-    jsxA11y.flatConfigs.recommended,
+    reactX.configs['recommended-typescript'],
+    jsxA11y.configs.recommended,
     reactHooks.configs.flat.recommended,
     importPlugin.flatConfigs.warnings,
     ...typescriptEslint.configs['flat/recommended'],
@@ -61,7 +60,7 @@ export default [
         version: 'detect'
       },
 
-      'import/resolver': {
+      'import-x/resolver': {
         typescript: true,
         node: {
           extensions: ['.js', '.jsx', '.ts', '.tsx']
@@ -70,7 +69,7 @@ export default [
     },
 
   rules: {
-    'import/no-extraneous-dependencies': ['error', {
+    'import-x/no-extraneous-dependencies': ['error', {
       devDependencies: [
         'src/app/**/*.spec.{ts,tsx}',
         'src/test/setupTests.ts',
@@ -84,11 +83,7 @@ export default [
       semi: true
     }],
 
-    'react/jsx-filename-extension': [2, {
-      extensions: ['.js', ',.jsx', ',.ts', '.tsx']
-    }],
-
-    'import/extensions': ['error', 'ignorePackages', {
+    'import-x/extensions': ['error', 'ignorePackages', {
       js: 'never',
       ts: 'never',
       tsx: 'never'
@@ -96,41 +91,34 @@ export default [
 
     'no-use-before-define': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
-    'react/prop-types': 'off',
-    'react/destructuring-assignment': 'off',
-    'jsx-a11y/click-events-have-key-events': 'off',
-    'jsx-a11y/no-noninteractive-tabindex': 'off',
+    'jsx-a11y-x/click-events-have-key-events': 'off',
+    'jsx-a11y-x/no-noninteractive-tabindex': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
     'no-shadow': 'off',
-    'jsx-a11y/no-autofocus': 'off',
+    'jsx-a11y-x/no-autofocus': 'off',
 
-    'react/function-component-definition': [2, {
-      namedComponents: 'arrow-function',
-      unnamedComponents: 'arrow-function'
-    }],
-
-    'react/jsx-no-useless-fragment': ['error', {
+    '@eslint-react/jsx-no-useless-fragment': ['error', {
       allowExpressions: true
     }],
 
-    'react/jsx-no-constructed-context-values': 'off',
+    '@eslint-react/no-unstable-context-value': 'off',
+    '@eslint-react/exhaustive-deps': 'off',
+    '@eslint-react/purity': 'off',
 
-    'jsx-a11y/label-has-associated-control': [2, {
+    'jsx-a11y-x/label-has-associated-control': [2, {
       labelComponents: ['label'],
       labelAttributes: ['htmlFor']
     }],
 
-    'jsx-a11y/role-supports-aria-props': 'off',
+    'jsx-a11y-x/role-supports-aria-props': 'off',
 
-    'react/no-unknown-property': ['error', {
+    '@eslint-react/dom-no-unknown-property': ['error', {
       ignore: ['inert']
     }],
 
-    'import/no-unresolved': ['error', {
+    'import-x/no-unresolved': ['error', {
       ignore: ['\\.svg\\?react$', '^storybook/.*$']
     }],
-
-    'react/require-default-props': 'off',
 
     'storybook/use-storybook-expect': 'off',
     'storybook/prefer-pascal-case': 'off',

@@ -70,7 +70,7 @@ const Notification: React.FC<NotificationProps> = ({
         {content === RELOAD_EVENT ? (
           <Trans i18nKey="Notification.RELOAD_MESSAGE">
             Notification.RELOAD_MESSAGE
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid,jsx-a11y/no-redundant-roles */}
+            {/* eslint-disable-next-line jsx-a11y-x/anchor-is-valid,jsx-a11y-x/no-redundant-roles */}
             <a
               href=""
               onClick={onReloadClick}

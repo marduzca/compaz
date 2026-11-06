@@ -9,8 +9,8 @@ Mobile is the main target: design and verify every UI change for small touch scr
 - `npm test`: lint (`--max-warnings=0`), prettier, then vitest. Run before finishing any change.
 - `npm run build`: runs `tsc`, so type errors surface here.
 - Cypress, Chromatic and `npm run pre-commit` belong to CI and the human (they need secrets and a Chromatic token).
-- Node 24 (`.nvmrc`, `engines`). ESLint stays on 9: `eslint-plugin-react`, `eslint-plugin-jsx-a11y` and `eslint-plugin-import` declare no ESLint 10 peer yet. When they do, bump `eslint` and `@eslint/js`.
-- Lint uses plugin `recommended` presets (airbnb was dropped). `react-hooks` 7 compiler rules are errors: fix hits in code (derive state instead of `setState` in effects), do not disable.
+- Node 24 (`.nvmrc`, `engines`). `@types/node` stays on 24 to match the runtime; bump it together with Node.
+- Lint uses plugin `recommended` presets (airbnb was dropped) on ESLint 10, with `@eslint-react`, `eslint-plugin-import-x` and `eslint-plugin-jsx-a11y-x` (the maintained forks) instead of the stale `eslint-plugin-react`, `-import` and `-jsx-a11y`. `react-hooks` 7 compiler rules are errors: fix hits in code (derive state instead of `setState` in effects), do not disable.
 - `npm start` serves on port 3000 and opens a browser. The PWA service worker caches builds, so a stale UI after `start:pwa` means hard-reload or clear site data.
 
 ## Layout
@@ -31,7 +31,6 @@ Mobile is the main target: design and verify every UI change for small touch scr
 
 ## Gotchas
 
-- `@babel/core` stays on `^7`: `@svgr/*`, `workbox-build` and `react-docgen` still need Babel 7 (plugin-react 6 no longer does), so a root v8 would be a dead copy and an ERESOLVE risk. Revisit when those move.
 - `typescript` stays on `^6`, not 7: the 7.0 npm package has no JS API, and `typescript-eslint` (8.72.x) peers on `<6.1.0`, so lint and Storybook docgen break. Revisit when typescript-eslint supports the TS 7.1 API.
 
 ## Git

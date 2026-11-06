@@ -14,7 +14,7 @@ import MapContainer from '../../organisms/map/MapContainer';
 import 'wicg-inert';
 import Footer from '../../organisms/footer/Footer';
 import { PAGE_TITLE_PREFIX } from '../../../App';
-import useTimeOfTheDay from '../../hooks/useTimeOfTheDay/useTimeOfTheDay';
+import getTimeOfTheDay from '../../hooks/getTimeOfTheDay/getTimeOfTheDay';
 import { NavigationLink } from '../../organisms/menu/Menu';
 
 enum AppViewState {
@@ -34,7 +34,7 @@ const NavigationPage: React.FC<NavigationProps> = (props) => {
   const { t } = useTranslation();
   const { stations, lines } = useFirebase();
   const { calculateRoute } = useNavigation();
-  const { isNight } = useTimeOfTheDay();
+  const { isNight } = getTimeOfTheDay();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -47,7 +47,7 @@ const NavigationPage: React.FC<NavigationProps> = (props) => {
     price: 0,
   });
   const [selectedRouteDepartureTime, setSelectedRouteDepartureTime] =
-    useState<Date>(new Date());
+    useState<Date>(() => new Date());
 
   useEffect(() => {
     if (

@@ -1,4 +1,4 @@
-const useTimeOfTheDay = () => {
+const getTimeOfTheDay = () => {
   const currentTime = new Date().getHours();
 
   return {
@@ -8,4 +8,4 @@ const useTimeOfTheDay = () => {
   };
 };
 
-export default useTimeOfTheDay;
+export default getTimeOfTheDay;

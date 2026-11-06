@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, use, useState } from 'react';
 // @ts-ignore
 import dijkstra from 'dijkstrajs';
 import { Line, LineColor, Route, Station, SubRoute } from '../../domain';
@@ -242,10 +242,10 @@ export const NavigationProvider: React.FC<NavigationProviderProps> = (
   const [destination, setDestination] = useState<Station | undefined>(
     undefined,
   );
-  const [departureTime, setDepartureTime] = useState<string>(
+  const [departureTime, setDepartureTime] = useState<string>(() =>
     parseToSimpleTime(new Date()),
   );
-  const [departureDate, setDepartureDate] = useState<string>(
+  const [departureDate, setDepartureDate] = useState<string>(() =>
     parseToSimpleDate(new Date()),
   );
   const [stationsMap, setStationsMap] = useState<StationsMap>({});
@@ -348,7 +348,7 @@ export const NavigationProvider: React.FC<NavigationProviderProps> = (
   };
 
   return (
-    <NavigationContext.Provider
+    <NavigationContext
       value={{
         origin,
         destination,
@@ -363,11 +363,10 @@ export const NavigationProvider: React.FC<NavigationProviderProps> = (
       }}
     >
       {props.children}
-    </NavigationContext.Provider>
+    </NavigationContext>
   );
 };
 
-const useNavigation = (): NavigationContextInterface =>
-  useContext<NavigationContextInterface>(NavigationContext);
+const useNavigation = (): NavigationContextInterface => use(NavigationContext);
 
 export { useNavigation };

@@ -5,7 +5,7 @@ import { useNavigation } from '../../providers/navigation/NavigationProvider';
 import { GeoLocation, Route } from '../../domain';
 import useMediaQuery from '../../hooks/useMediaQuery';
 import { MapLine } from '../../pages/map/MapPage';
-import useMapFitBounds from '../../hooks/useMapFitBounds/useMapFitBounds';
+import getMapFitBounds from '../../hooks/getMapFitBounds/getMapFitBounds';
 
 export enum MapMode {
   ROUTE = 'ROUTE',
@@ -41,7 +41,7 @@ const MapContainer: React.FC<MapContainerProps> = ({
     currentMapMode = MapMode.LINES;
   }
 
-  const { fitScreenToBounds } = useMapFitBounds(googleMap);
+  const { fitScreenToBounds } = getMapFitBounds(googleMap);
 
   const defineMarkerLocationsBasedOnCurrentMapMode =
     useCallback((): GeoLocation[] => {

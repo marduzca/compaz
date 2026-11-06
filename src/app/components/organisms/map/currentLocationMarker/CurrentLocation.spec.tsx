@@ -2,11 +2,11 @@ import { render, screen, within } from '@testing-library/react';
 import { Mock, vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import CurrentLocation from './CurrentLocation';
-import useMapFitBounds from '../../../hooks/useMapFitBounds/useMapFitBounds';
+import getMapFitBounds from '../../../hooks/getMapFitBounds/getMapFitBounds';
 import { GeoLocation } from '../../../domain';
 import NotificationContainer from '../../notification/NotificationContainer';
 
-vi.mock('../../../hooks/useMapFitBounds/useMapFitBounds');
+vi.mock('../../../hooks/getMapFitBounds/getMapFitBounds');
 
 vi.mock('@react-google-maps/api', () => ({
   __esModule: true,
@@ -28,7 +28,7 @@ const currentLocation: GeoLocation = {
 };
 
 const fitScreenToBoundsMock = vi.fn();
-(useMapFitBounds as Mock).mockReturnValue({
+(getMapFitBounds as Mock).mockReturnValue({
   fitScreenToBounds: fitScreenToBoundsMock,
 });
 

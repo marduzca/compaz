@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/role-has-required-aria-props */
+/* eslint-disable jsx-a11y-x/role-has-required-aria-props */
 import React from 'react';
 import { useSelect } from 'downshift';
 import ArrowUpIcon from '../../../static/svg/chevron_up.svg?react';
@@ -65,8 +65,8 @@ const Select: React.FC<SelectProps> = ({
         {isOpen &&
           options.map((item, index) => (
             <li
-              {...getItemProps({ item, index })}
               key={item.value}
+              {...getItemProps({ item, index })}
               className={`${styles.option} ${
                 highlightedIndex === index && styles.highlightedOption
               } ${selectedItem?.value === item.value && styles.selectedOption}`}

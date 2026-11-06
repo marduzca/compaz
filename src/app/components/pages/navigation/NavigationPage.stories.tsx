@@ -13,7 +13,7 @@ export default {
   title: 'NavigationPage',
   decorators: [
     (Story: React.ComponentType) => (
-      <FirebaseContext.Provider
+      <FirebaseContext
         value={{
           lines: [
             { id: LineColor.GREEN, stationsPath: [], connectedLines: [] },
@@ -33,7 +33,7 @@ export default {
         <MemoryRouter>
           <Story />
         </MemoryRouter>
-      </FirebaseContext.Provider>
+      </FirebaseContext>
     ),
   ],
 } satisfies Meta;
