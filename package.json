@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start": "vite",
-    "start:pwa": "npm run build && npx serve build",
-    "build": "GENERATE_SOURCEMAP=false tsc && vite build",
+    "start:pwa": "npm run build && vite preview",
+    "build": "tsc && vite build",
     "serve": "vite preview",
     "pre-commit": "npm run build && npm test && npm run chromatic",
     "test": "npm run lint && vitest run",
@@ -15,13 +15,12 @@
     "lint:fix": "eslint . --fix && prettier --write 'src/**/*.{js,ts,tsx,css,json,html}'",
     "release:major": "npm version major",
     "release:minor": "npm version minor && git push",
-    "update-deps": "npm outdated || true && npm update && npm outdated || true && npm run pre-commit && git add . && git commit -m \"update deps\"",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "cypress:open": "cypress open",
     "cypress:ci": "cypress run",
     "ci:cypress-run": "start-server-and-test start http://localhost:3000 cypress:ci",
-    "chromatic": "npx chromatic --force-rebuild"
+    "chromatic": "chromatic --force-rebuild"
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",

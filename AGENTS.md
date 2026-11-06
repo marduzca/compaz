@@ -36,7 +36,7 @@ Mobile is the main target: design and verify every UI change for small touch scr
 ## Git
 
 - Work on `main` with short imperative messages and no ticket prefix.
-- `release:*` and `update-deps` push and bump versions; the human runs them.
+- `release:*` push and bump versions; the human runs them.
 
 ## Agent skills
 

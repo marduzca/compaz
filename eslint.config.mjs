@@ -16,7 +16,7 @@ const scoped = (configs) =>
 
 export default [
   {
-    ignores: ['**/build/', '**/storybook-static/']
+    ignores: ['**/build/', '**/storybook-static/', '**/coverage/']
   },
   ...scoped([
     js.configs.recommended,
