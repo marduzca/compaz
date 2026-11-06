@@ -67,6 +67,7 @@ export default [{
     },
 
     'import/resolver': {
+      typescript: true,
       node: {
         extensions: ['.js', '.jsx', '.ts', '.tsx']
       }
