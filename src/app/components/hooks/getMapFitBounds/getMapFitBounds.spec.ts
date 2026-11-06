@@ -33,7 +33,7 @@ global.window.google = google;
 
 // Mock the event listener
 google.maps.event.addListenerOnce.mockImplementation(
-  (instance, eventName, callback) => {
+  (_instance, _eventName, callback) => {
     callback();
 
     return vi.fn();

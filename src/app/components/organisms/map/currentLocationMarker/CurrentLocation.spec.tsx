@@ -65,7 +65,7 @@ describe('CurrentLocation', () => {
         })
         .mockImplementationOnce(
           (
-            successCallback,
+            _successCallback,
             errorCallback: (error: Partial<GeolocationPositionError>) => void,
           ) => {
             const POSITION_UNAVAILABLE_ERROR_CODE = 2;
