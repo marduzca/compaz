@@ -32,6 +32,7 @@ Mobile is the main target: design and verify every UI change for small touch scr
 ## Gotchas
 
 - `@babel/core` stays on `^7`: `@svgr/*`, `workbox-build` and `react-docgen` still need Babel 7 (plugin-react 6 no longer does), so a root v8 would be a dead copy and an ERESOLVE risk. Revisit when those move.
+- `typescript` stays on `^6`, not 7: the 7.0 npm package has no JS API, and `typescript-eslint` (8.72.x) peers on `<6.1.0`, so lint and Storybook docgen break. Revisit when typescript-eslint supports the TS 7.1 API.
 
 ## Git
 
