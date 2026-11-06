@@ -91,7 +91,7 @@ jobs:
           echo VITE_FIREBASE_API_KEY=${{ secrets.DEV_FIREBASE_API_KEY }} >> .env
       - run: npm run build
       - name: Deploy to Firebase
-        uses: w9jds/firebase-action@50971599cb12686ca6f1156f561875f4f1f2c63b # v13.7.2
+        uses: w9jds/firebase-action@18be666dd40e1769c63de2dac0e6053e0e8c7349 # v15.34.2
         with:
           args: deploy -P development
         env:
@@ -127,7 +127,7 @@ jobs:
           echo VITE_FIREBASE_API_KEY=${{ secrets.FIREBASE_API_KEY }} >> .env
       - run: npm run build
       - name: Deploy to Firebase
-        uses: w9jds/firebase-action@50971599cb12686ca6f1156f561875f4f1f2c63b # v13.7.2
+        uses: w9jds/firebase-action@18be666dd40e1769c63de2dac0e6053e0e8c7349 # v15.34.2
         with:
           args: deploy -P default
         env:
