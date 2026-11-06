@@ -47,7 +47,7 @@
     "vite-plugin-pwa": "^1.0.0",
     "vite-plugin-svgr": "^4.0.0",
     "vite-tsconfig-paths": "^5.0.1",
-    "vitest": "^3.0.4",
+    "vitest": "^4.1.12",
     "web-vitals": "^5.0.3",
     "wicg-inert": "^3.1.2"
   },

@@ -7,19 +7,23 @@ const fitBoundsMock = vi.fn();
 const panByMock = vi.fn();
 const setZoomMock = vi.fn();
 
+// `function` (not arrow) so the mocks can be called with `new`
+function MapMock() {
+  return {
+    fitBounds: fitBoundsMock,
+    panBy: panByMock,
+    setZoom: setZoomMock,
+  };
+}
+
+function LatLngBoundsMock() {
+  return { extend: vi.fn() };
+}
+
 const google = {
   maps: {
-    Map: vi.fn().mockImplementation(() =>
-      // Mocked LatLngBounds object
-      ({
-        fitBounds: fitBoundsMock,
-        panBy: panByMock,
-        setZoom: setZoomMock,
-      }),
-    ),
-    LatLngBounds: vi.fn().mockImplementation(() => ({
-      extend: vi.fn(),
-    })),
+    Map: vi.fn().mockImplementation(MapMock),
+    LatLngBounds: vi.fn().mockImplementation(LatLngBoundsMock),
     event: { addListenerOnce: vi.fn() },
   },
 };
