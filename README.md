@@ -17,3 +17,21 @@ A web application to navigate the teleférico in the city of La Paz, Bolivia. co
 The idea of compaz was born out of my love for the teleférico and how complicated I find it to navigate it every time I’m visiting La Paz.
 I developed the application dedicating a lot of time and effort to create not only something that works, but also a high quality product. I’m passionate about inclusion, therefore I made an extra effort to make compaz accessible, so that users who require screen readers or can only use the keyboard shouldn’t have trouble using the application.
 This work represents my gift of gratitude for all that my dear city has given me.
+
+## Development
+
+Requires Node 24 (see `.nvmrc`).
+
+```sh
+cp .env.example .env   # add your API keys
+npm ci
+npm start              # dev server on http://localhost:3000
+```
+
+| Script                                | Purpose                                              |
+|---------------------------------------|------------------------------------------------------|
+| `npm test`                            | Lint, Prettier check and unit tests                  |
+| `npm run test:coverage`               | Unit tests with coverage                             |
+| `npm run build` / `npm run start:pwa` | Type-check and production build / preview it locally |
+| `npm run storybook`                   | Component catalogue on port 6006                     |
+| `npm run cypress:open`                | End-to-end tests (needs the dev server running)      |
