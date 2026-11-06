@@ -28,6 +28,10 @@ Mobile is the main target: design and verify every UI change for small touch scr
 - In-progress UI work goes behind a feature flag (`src/app/featureFlag`, enabled with `?flagName` in the URL, persisted in localStorage). The MUI migration (`replaceInputsWithMui`) is in progress: convert only the component you are touching.
 - Keep secrets out of reach: `.env` holds API keys, so leave it unread and uncommitted.
 
+## Gotchas
+
+- `@babel/core` stays on `^7`: `@vitejs/plugin-react` 4, `@svgr/*`, `workbox-build` and `react-docgen` need Babel 7, so a root v8 would be a dead copy and an ERESOLVE risk. Revisit after `@vitejs/plugin-react` 6.
+
 ## Git
 
 - Work on `main` with short imperative messages and no ticket prefix.
