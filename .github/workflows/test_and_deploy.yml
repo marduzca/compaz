@@ -78,6 +78,9 @@ jobs:
           path: cypress/screenshots/**
 
   build_and_deploy_dev:
+    permissions:
+      contents: read
+      id-token: write
     if: github.ref == 'refs/heads/main'
     needs: [ user_journey_test_local, visual_regression_test ]
     runs-on: ubuntu-24.04
@@ -90,12 +93,13 @@ jobs:
           echo VITE_MAPS_API_KEY=${{ secrets.DEV_MAPS_API_KEY }} >> .env
           echo VITE_FIREBASE_DEV_API_KEY=${{ secrets.DEV_FIREBASE_API_KEY }} >> .env
       - run: npm run build
-      - name: Deploy to Firebase
-        uses: w9jds/firebase-action@18be666dd40e1769c63de2dac0e6053e0e8c7349 # v15.34.2
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # v3
         with:
-          args: deploy -P development
-        env:
-          FIREBASE_TOKEN: ${{ secrets.DEV_FIREBASE_TOKEN }}
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.DEV_DEPLOY_SERVICE_ACCOUNT }}
+      - name: Deploy to Firebase
+        run: npx --yes firebase-tools@15.35.0 deploy -P development
 
   user_journey_test_dev:
     needs: build_and_deploy_dev
@@ -115,6 +119,9 @@ jobs:
           path: cypress/screenshots/**
 
   build_and_deploy_prod:
+    permissions:
+      contents: read
+      id-token: write
     needs: user_journey_test_dev
     runs-on: ubuntu-24.04
     steps:
@@ -126,12 +133,13 @@ jobs:
           echo VITE_MAPS_API_KEY=${{ secrets.MAPS_API_KEY }} >> .env
           echo VITE_FIREBASE_API_KEY=${{ secrets.FIREBASE_API_KEY }} >> .env
       - run: npm run build
-      - name: Deploy to Firebase
-        uses: w9jds/firebase-action@18be666dd40e1769c63de2dac0e6053e0e8c7349 # v15.34.2
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # v3
         with:
-          args: deploy -P default
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.PROD_DEPLOY_SERVICE_ACCOUNT }}
+      - name: Deploy to Firebase
+        run: npx --yes firebase-tools@15.35.0 deploy -P default
 
   user_journey_test_prod:
     needs: build_and_deploy_prod
