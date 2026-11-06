@@ -2,6 +2,8 @@
 
 PWA that finds optimal routes on La Paz's teleférico network. Vite + React 19 + TypeScript, Firebase hosting, i18n (`en`, `es`).
 
+Mobile is the main target: design and verify every UI change for small touch screens first.
+
 ## Verify
 
 - `npm test`: lint (`--max-warnings=0`), prettier, then vitest. Run before finishing any change.
