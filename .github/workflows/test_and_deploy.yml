@@ -11,17 +11,17 @@ on:
 
 jobs:
   build_and_test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v7
       - name: Use Node.js 24
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 24
 
       - name: Cache Node Modules
         id: node-cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         env:
           cache-name: cache-node-modules
         with:
@@ -40,19 +40,19 @@ jobs:
 
   visual_regression_test:
     needs: build_and_test
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - name: Use Node.js 24
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 24
       - name: Cache Node Modules
         id: node-cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         env:
           cache-name: cache-node-modules
         with:
@@ -66,11 +66,11 @@ jobs:
 
   user_journey_test_local:
     needs: build_and_test
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v7
       - name: Use Node.js 24
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 24
       - name: create env file
@@ -81,7 +81,7 @@ jobs:
 
       - name: Cache Node Modules
         id: node-cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         env:
           cache-name: cache-node-modules
         with:
@@ -95,7 +95,7 @@ jobs:
         run: npm run ci:cypress-run
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: failure()
         with:
           name: user_journey_test_local_screenshot_${{ matrix.runs-on }}
@@ -103,17 +103,17 @@ jobs:
 
   outdated_deps:
     needs: [ user_journey_test_local, visual_regression_test ]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v7
       - name: Use Node.js 24
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 24
 
       - name: Cache Node Modules
         id: node-cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         env:
           cache-name: cache-node-modules
         with:
@@ -127,9 +127,9 @@ jobs:
 
   build_and_deploy_dev:
     needs: [ user_journey_test_local, visual_regression_test ]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v7
       - name: create env file
         run: |
           touch .env
@@ -138,7 +138,7 @@ jobs:
 
       - name: Cache Node Modules
         id: node-cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         env:
           cache-name: cache-node-modules
         with:
@@ -157,17 +157,17 @@ jobs:
 
   user_journey_test_dev:
     needs: build_and_deploy_dev
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v7
       - name: Use Node.js 24
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 24
 
       - name: Cache Node Modules
         id: node-cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         env:
           cache-name: cache-node-modules
         with:
@@ -181,7 +181,7 @@ jobs:
         run: CYPRESS_BASE_URL=https://compaz-dev.web.app npm run cypress:ci
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: failure()
         with:
           name: user_journey_test_dev_screenshot_${{ matrix.runs-on }}
@@ -189,9 +189,9 @@ jobs:
 
   build_and_deploy_prod:
     needs: [ user_journey_test_dev ]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v7
       - name: create env file
         run: |
           touch .env
@@ -200,7 +200,7 @@ jobs:
 
       - name: Cache Node Modules
         id: node-cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         env:
           cache-name: cache-node-modules
         with:
@@ -219,17 +219,17 @@ jobs:
 
   user_journey_test_prod:
     needs: build_and_deploy_prod
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v7
       - name: Use Node.js 24
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 24
 
       - name: Cache Node Modules
         id: node-cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         env:
           cache-name: cache-node-modules
         with:
@@ -243,7 +243,7 @@ jobs:
         run: CYPRESS_BASE_URL=https://compaz.app npm run cypress:ci
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: failure()
         with:
           name: user_journey_test_prod_screenshot_${{ matrix.runs-on }}
