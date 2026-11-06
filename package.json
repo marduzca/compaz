@@ -87,18 +87,6 @@
     "storybook": "^10.6.6",
     "typescript": "^6.0.3"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
   "engines": {
     "node": ">=24.12.0"
   },
@@ -107,22 +95,5 @@
   },
   "overrides": {
     "@grpc/grpc-js": "^1.14.5"
-  },
-  "eslintConfig": {
-    "overrides": [
-      {
-        "files": [
-          "**/*.stories.*"
-        ],
-        "rules": {
-          "import/no-anonymous-default-export": "off"
-        }
-      }
-    ]
-  },
-  "eslintIgnore": [
-    "build",
-    "node_modules",
-    "storybook-static"
-  ]
+  }
 }
