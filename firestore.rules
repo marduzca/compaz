@@ -14,7 +14,16 @@ service cloud.firestore {
       allow read: if true;
     }
     match /message/{message_id} {
-      allow write: if true;
+      allow create: if request.resource.data.keys().hasOnly(['name', 'email', 'message', 'timestamp'])
+        && request.resource.data.keys().hasAll(['name', 'email', 'message', 'timestamp'])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() <= 200
+        && request.resource.data.email is string
+        && request.resource.data.email.size() <= 320
+        && request.resource.data.message is string
+        && request.resource.data.message.size() <= 5000
+        && request.resource.data.timestamp is timestamp
+        && message_id.size() <= 400;
     }
   }
 }
