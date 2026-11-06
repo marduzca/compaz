@@ -30,7 +30,7 @@ Mobile is the main target: design and verify every UI change for small touch scr
 
 ## Gotchas
 
-- `@babel/core` stays on `^7`: `@vitejs/plugin-react` 4, `@svgr/*`, `workbox-build` and `react-docgen` need Babel 7, so a root v8 would be a dead copy and an ERESOLVE risk. Revisit after `@vitejs/plugin-react` 6.
+- `@babel/core` stays on `^7`: `@svgr/*`, `workbox-build` and `react-docgen` still need Babel 7 (plugin-react 6 no longer does), so a root v8 would be a dead copy and an ERESOLVE risk. Revisit when those move.
 
 ## Git
 
