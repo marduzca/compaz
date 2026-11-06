@@ -1,9 +1,6 @@
 import React, { createContext, use } from 'react';
 import { FirebaseOptions, initializeApp } from 'firebase/app';
-import {
-  initializeAppCheck,
-  ReCaptchaEnterpriseProvider,
-} from 'firebase/app-check';
+import { initializeAppCheck, ReCaptchaV3Provider } from 'firebase/app-check';
 import { doc, getFirestore, setDoc } from 'firebase/firestore';
 import { Line, NotificationEvent, Station } from '../../domain';
 import {
@@ -60,7 +57,7 @@ const recaptchaSiteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 
 if (recaptchaSiteKey) {
   initializeAppCheck(firebaseApp, {
-    provider: new ReCaptchaEnterpriseProvider(recaptchaSiteKey),
+    provider: new ReCaptchaV3Provider(recaptchaSiteKey),
     isTokenAutoRefreshEnabled: true,
   });
 }
