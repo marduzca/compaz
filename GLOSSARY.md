@@ -4,4 +4,5 @@
 - **Line**: a teleférico line identified by colour (`LineColor`), with an ordered `stationsPath` and `connectedLines` (other lines with a `transferTime` in minutes). Source: `data/lines.json`.
 - **Route**: a full trip between two stations, made of **SubRoutes** (one per line ridden), with `totalTime` and `price`.
 - **SubRoute**: the leg of a Route on a single line, with its `direction` and the `transferTimeToNextLine`.
+- **Transfer station**: a Station served by more than one Line, where a Transfer can happen. A Station is always one entity, even when it is listed under several Lines.
 - **Transfer**: changing from one line to another at a shared station. Queuing time is not included in estimates.
