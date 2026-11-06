@@ -1,4 +1,3 @@
-import React from 'react';
 import { actions } from 'storybook/actions';
 import { Meta } from '@storybook/react-vite';
 import HowToInstallPage from './HowToInstallPage';

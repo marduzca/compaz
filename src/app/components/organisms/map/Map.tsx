@@ -198,7 +198,6 @@ const Map: React.FC<MapProps> = ({
 
   return (
     <div className={styles.container}>
-      {/* eslint-disable-next-line no-nested-ternary */}
       {!window.navigator.onLine && (!origin || !destination) ? (
         <OfflineMapMessage />
       ) : isLoaded ? (

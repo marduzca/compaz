@@ -9,7 +9,8 @@ Mobile is the main target: design and verify every UI change for small touch scr
 - `npm test`: lint (`--max-warnings=0`), prettier, then vitest. Run before finishing any change.
 - `npm run build`: runs `tsc`, so type errors surface here.
 - Cypress, Chromatic and `npm run pre-commit` belong to CI and the human (they need secrets and a Chromatic token).
-- Node 24 (`.nvmrc`, `engines`). `.npmrc` sets `legacy-peer-deps` because `eslint-config-airbnb` peers on ESLint 8 while the repo runs ESLint 9; keep it until that changes.
+- Node 24 (`.nvmrc`, `engines`). ESLint stays on 9: `eslint-plugin-react`, `eslint-plugin-jsx-a11y` and `eslint-plugin-import` declare no ESLint 10 peer yet. When they do, bump `eslint` and `@eslint/js`.
+- Lint uses plugin `recommended` presets (airbnb was dropped). `react-hooks` 7 compiler rules are errors: fix hits in code (derive state instead of `setState` in effects), do not disable.
 - `npm start` serves on port 3000 and opens a browser. The PWA service worker caches builds, so a stale UI after `start:pwa` means hard-reload or clear site data.
 
 ## Layout

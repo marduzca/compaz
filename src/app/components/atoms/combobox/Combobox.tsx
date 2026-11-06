@@ -1,5 +1,4 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useCombobox } from 'downshift';
 import ArrowUpIcon from '../../../static/svg/chevron_up.svg?react';
 import ArrowDownIcon from '../../../static/svg/chevron_down.svg?react';
@@ -30,6 +29,11 @@ interface ComboboxProps {
   isInitiallyOpen?: boolean;
 }
 
+const filterOptions = (options: Option[], filterValue: string) =>
+  options.filter((option) =>
+    option.text.toLowerCase().includes(filterValue.toLowerCase()),
+  );
+
 const Combobox: React.FC<ComboboxProps> = ({
   validationError = false,
   required = false,
@@ -43,7 +47,10 @@ const Combobox: React.FC<ComboboxProps> = ({
   onClearButtonClick,
   isInitiallyOpen = false,
 }) => {
-  const [inputOptions, setInputOptions] = useState(options);
+  const inputOptions = useMemo(
+    () => filterOptions(options, inputValue),
+    [options, inputValue],
+  );
   const {
     isOpen,
     getInputProps,
@@ -61,39 +68,16 @@ const Combobox: React.FC<ComboboxProps> = ({
     itemToString: (option) => (option ? option.text : ''),
     onInputValueChange: ({ inputValue }) => {
       if (inputValue) {
-        setInputOptions(filterOptions(options, inputValue));
         onChange(inputValue);
       } else {
-        setInputOptions(options);
         onChange('');
       }
     },
   });
 
-  const filterOptions = (options: Option[], filterValue: string) =>
-    options.filter((option) =>
-      option.text.toLowerCase().includes(filterValue.toLowerCase()),
-    );
-
   useEffect(() => {
     setInputValue(inputValue);
   }, [inputValue, setInputValue]);
-
-  useEffect(() => {
-    setInputOptions(filterOptions(options, inputValue));
-  }, [
-    validationError,
-    required,
-    name,
-    placeholder,
-    options,
-    inputValue,
-    onChange,
-    toggleButtonTitle,
-    clearButtonTitle,
-    onClearButtonClick,
-    setInputOptions,
-  ]);
 
   return (
     <div

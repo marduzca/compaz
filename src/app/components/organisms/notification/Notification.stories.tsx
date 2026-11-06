@@ -1,4 +1,3 @@
-import React from 'react';
 import { actions } from 'storybook/actions';
 import Notification, { NotificationType, RELOAD_EVENT } from './Notification';
 

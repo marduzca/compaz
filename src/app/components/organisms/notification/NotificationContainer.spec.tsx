@@ -1,4 +1,3 @@
-import React from 'react';
 import { act, render, screen, within } from '@testing-library/react';
 import NotificationContainer from './NotificationContainer';
 import { EventType, NotificationType, RELOAD_EVENT } from './Notification';

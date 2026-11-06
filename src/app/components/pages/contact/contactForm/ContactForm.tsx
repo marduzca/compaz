@@ -1,4 +1,4 @@
-import React, { useMemo, useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './ContactForm.module.css';
 import emailSentIcon from '../../../../static/svg/email_sent.svg';
@@ -24,11 +24,7 @@ const ContactForm: React.FC<ContactFormProps> = (props) => {
   const formRef = useRef<HTMLFormElement>(null);
   const vampireSlayerRef = useRef<HTMLInputElement>(null);
 
-  const formHeight = useMemo(
-    () => formRef.current?.clientHeight,
-    // eslint-disable-next-line
-    [props.wasMessageSuccessfullySent],
-  );
+  const [formHeight, setFormHeight] = useState<number>();
 
   return (
     <section className={styles.container}>
@@ -40,6 +36,8 @@ const ContactForm: React.FC<ContactFormProps> = (props) => {
         <form
           className={styles.form}
           onSubmit={(event) => {
+            setFormHeight(formRef.current?.clientHeight);
+
             if (
               vampireSlayerRef.current &&
               vampireSlayerRef.current.value.length === 0 // Verify if the input to slay bots has been filled

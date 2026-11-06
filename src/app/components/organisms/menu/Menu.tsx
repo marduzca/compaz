@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CSSTransition } from 'react-transition-group';
 import { useLocation } from 'react-router';
@@ -77,7 +77,7 @@ const Menu: React.FC<MenuProps> = (props) => {
   const { isMorning, isAfternoon } = useTimeOfTheDay();
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
-  const [currentPage, setCurrentPage] = useState<string>(location.pathname);
+  const currentPage = location.pathname;
 
   const handleClickOutsideOfMobileMenu = (e: MouseEvent) => {
     if (
@@ -89,10 +89,6 @@ const Menu: React.FC<MenuProps> = (props) => {
 
     props.onHideMobileMenu();
   };
-
-  useEffect(() => {
-    setCurrentPage(location.pathname);
-  }, [location]);
 
   useEffect(() => {
     if (props.showMenuOnMobile) {
@@ -182,10 +178,7 @@ const Menu: React.FC<MenuProps> = (props) => {
                 name={t(menuItem.name)}
                 icon={menuItem.icon}
                 href={menuItem.navigationLink}
-                onLinkClick={(href: string) => {
-                  setCurrentPage(href);
-                  props.onHideMobileMenu();
-                }}
+                onLinkClick={props.onHideMobileMenu}
                 isCurrentPage={currentPage === menuItem.navigationLink}
               />
             ))}

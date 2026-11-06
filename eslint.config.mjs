@@ -1,78 +1,73 @@
-import { fixupConfigRules, fixupPluginRules } from '@eslint/compat';
 import react from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
+import importPlugin from 'eslint-plugin-import';
+import storybook from 'eslint-plugin-storybook';
 import typescriptEslint from '@typescript-eslint/eslint-plugin';
 import jestDom from 'eslint-plugin-jest-dom';
 import testingLibrary from 'eslint-plugin-testing-library';
 import prettier from 'eslint-plugin-prettier';
+import eslintConfigPrettier from 'eslint-config-prettier';
 import globals from 'globals';
 import tsParser from '@typescript-eslint/parser';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import js from '@eslint/js';
-import { FlatCompat } from '@eslint/eslintrc';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all
-});
+const tsFiles = ['**/*.ts', '**/*.tsx'];
+const scoped = (configs) =>
+  [configs].flat().map((config) => ({ ...config, files: tsFiles }));
 
-export default [{
-  ignores: ['**/build/']
-}, ...fixupConfigRules(compat.extends(
-  'plugin:react/recommended',
-  'airbnb',
-  'prettier',
-  'eslint-config-prettier',
-  'plugin:@typescript-eslint/recommended',
-  'plugin:react-hooks/recommended',
-  'plugin:jsx-a11y/recommended',
-  'plugin:import/warnings',
-  'plugin:storybook/recommended'
-)).map(config => ({
-  ...config,
-  files: ['**/*.ts', '**/*.tsx']
-})), {
-  files: ['**/*.ts', '**/*.tsx'],
-
-  plugins: {
-    react: fixupPluginRules(react),
-    '@typescript-eslint': fixupPluginRules(typescriptEslint),
-    'jest-dom': jestDom,
-    'testing-library': testingLibrary,
-    prettier
+export default [
+  {
+    ignores: ['**/build/', '**/storybook-static/']
   },
+  ...scoped([
+    js.configs.recommended,
+    react.configs.flat.recommended,
+    react.configs.flat['jsx-runtime'],
+    jsxA11y.flatConfigs.recommended,
+    reactHooks.configs.flat.recommended,
+    importPlugin.flatConfigs.warnings,
+    ...typescriptEslint.configs['flat/recommended'],
+    ...storybook.configs['flat/recommended'],
+    eslintConfigPrettier
+  ]),
+  {
+    files: tsFiles,
 
-  languageOptions: {
-    globals: {
-      ...globals.browser
+    plugins: {
+      'jest-dom': jestDom,
+      'testing-library': testingLibrary,
+      prettier
     },
 
-    parser: tsParser,
-    ecmaVersion: 12,
-    sourceType: 'module',
+    languageOptions: {
+      globals: {
+        ...globals.browser
+      },
 
-    parserOptions: {
-      ecmaFeatures: {
-        jsx: true
+      parser: tsParser,
+      ecmaVersion: 12,
+      sourceType: 'module',
+
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true
+        }
       }
-    }
-  },
-
-  settings: {
-    react: {
-      version: 'detect'
     },
 
-    'import/resolver': {
-      typescript: true,
-      node: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx']
+    settings: {
+      react: {
+        version: 'detect'
+      },
+
+      'import/resolver': {
+        typescript: true,
+        node: {
+          extensions: ['.js', '.jsx', '.ts', '.tsx']
+        }
       }
-    }
-  },
+    },
 
   rules: {
     'import/no-extraneous-dependencies': ['error', {

@@ -1,5 +1,4 @@
 import { Meta } from '@storybook/react-vite';
-import React from 'react';
 import TotalRouteTime from './TotalRouteTime';
 
 export default {

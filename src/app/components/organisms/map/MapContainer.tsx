@@ -34,9 +34,12 @@ const MapContainer: React.FC<MapContainerProps> = ({
     undefined,
   );
 
-  const [currentMapMode, setCurrentMapMode] = useState<MapMode>(
-    MapMode.ORIGIN_AND_DESTINATION,
-  );
+  let currentMapMode = MapMode.ORIGIN_AND_DESTINATION;
+  if (route) {
+    currentMapMode = MapMode.ROUTE;
+  } else if (lines?.length) {
+    currentMapMode = MapMode.LINES;
+  }
 
   const { fitScreenToBounds } = useMapFitBounds(googleMap);
 
@@ -85,24 +88,6 @@ const MapContainer: React.FC<MapContainerProps> = ({
 
       return markerLocations;
     }, [currentMapMode, destination, origin, lines, route]);
-
-  useEffect(() => {
-    if (route) {
-      setCurrentMapMode(MapMode.ROUTE);
-
-      return;
-    }
-
-    if (lines?.length) {
-      setCurrentMapMode(MapMode.LINES);
-
-      return;
-    }
-
-    if (origin || destination) {
-      setCurrentMapMode(MapMode.ORIGIN_AND_DESTINATION);
-    }
-  }, [destination, origin, lines?.length, route]);
 
   useEffect(() => {
     if (isLoaded && googleMap) {

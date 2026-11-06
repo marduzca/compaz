@@ -1,4 +1,3 @@
-import React from 'react';
 import { Meta } from '@storybook/react-vite';
 import OfflineMapMessage from './OfflineMapMessage';
 import {

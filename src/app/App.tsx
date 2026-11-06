@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Route, Routes } from 'react-router';
 import styles from './App.module.css';
 import MenuContainer from './components/organisms/menu/MenuContainer';

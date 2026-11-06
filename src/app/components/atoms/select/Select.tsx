@@ -1,4 +1,4 @@
-/* eslint-disable react/jsx-props-no-spreading,jsx-a11y/role-has-required-aria-props */
+/* eslint-disable jsx-a11y/role-has-required-aria-props */
 import React from 'react';
 import { useSelect } from 'downshift';
 import ArrowUpIcon from '../../../static/svg/chevron_up.svg?react';

@@ -23,13 +23,16 @@ interface DateAndTimePickerProps {
   dateAndTimeSelectionWrapperRef: React.RefObject<HTMLDivElement | null>;
 }
 
-const DateAndTimePicker: React.FC<DateAndTimePickerProps> = (props) => {
+const DateAndTimePicker: React.FC<DateAndTimePickerProps> = ({
+  dateAndTimeSelectionWrapperRef,
+  ...props
+}) => {
   const { t } = useTranslation();
 
   return (
     <div
       className={styles.dateAndTimePickerContainer}
-      ref={props.dateAndTimeSelectionWrapperRef}
+      ref={dateAndTimeSelectionWrapperRef}
     >
       <button
         type="button"

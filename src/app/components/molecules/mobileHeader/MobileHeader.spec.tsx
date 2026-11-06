@@ -2,7 +2,6 @@ import { createMemoryHistory } from 'history';
 import { render, screen } from '@testing-library/react';
 import { Router } from 'react-router';
 import userEvent from '@testing-library/user-event';
-import React from 'react';
 import { NavigationLink } from '../../organisms/menu/Menu';
 import MobileHeader from './MobileHeader';
 

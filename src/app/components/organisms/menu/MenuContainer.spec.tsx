@@ -1,22 +1,27 @@
-import React from 'react';
 import { act, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { MemoryRouter, Router } from 'react-router';
-import { createMemoryHistory } from 'history';
+import { createMemoryRouter, MemoryRouter, RouterProvider } from 'react-router';
 import MenuContainer from './MenuContainer';
 import { NavigationLink } from './Menu';
 
 describe('MenuContainer', () => {
   it('goes to the corresponding url when clicking on a nav link', async () => {
-    const history = createMemoryHistory({
-      initialEntries: [NavigationLink.BASE],
-    });
-
-    render(
-      <Router location={history.location} navigator={history}>
-        <MenuContainer showMenuOnMobile={false} onHideMobileMenu={() => {}} />
-      </Router>,
+    const router = createMemoryRouter(
+      [
+        {
+          path: '*',
+          element: (
+            <MenuContainer
+              showMenuOnMobile={false}
+              onHideMobileMenu={() => {}}
+            />
+          ),
+        },
+      ],
+      { initialEntries: [NavigationLink.BASE] },
     );
+
+    render(<RouterProvider router={router} />);
 
     const withinNavigation = within(screen.getByRole('banner'));
 
@@ -29,7 +34,7 @@ describe('MenuContainer', () => {
         withinNavigation.getByRole('link', { name: /Home/ }),
       );
     });
-    expect(history.location.pathname).toBe(NavigationLink.BASE);
+    expect(router.state.location.pathname).toBe(NavigationLink.BASE);
     expect(
       withinNavigation.getByRole('link', { name: /Home/ }),
     ).toHaveAttribute('aria-current', 'page');
@@ -39,7 +44,7 @@ describe('MenuContainer', () => {
         withinNavigation.getByRole('link', { name: /Map/ }),
       );
     });
-    expect(history.location.pathname).toBe(NavigationLink.MAP);
+    expect(router.state.location.pathname).toBe(NavigationLink.MAP);
     expect(withinNavigation.getByRole('link', { name: /Map/ })).toHaveAttribute(
       'aria-current',
       'page',
@@ -50,7 +55,7 @@ describe('MenuContainer', () => {
         withinNavigation.getByRole('link', { name: /How to install/ }),
       );
     });
-    expect(history.location.pathname).toBe(NavigationLink.HOW_TO_INSTALL);
+    expect(router.state.location.pathname).toBe(NavigationLink.HOW_TO_INSTALL);
     expect(
       withinNavigation.getByRole('link', { name: /How to install/ }),
     ).toHaveAttribute('aria-current', 'page');
@@ -60,7 +65,7 @@ describe('MenuContainer', () => {
         withinNavigation.getByRole('link', { name: /Contact/ }),
       );
     });
-    expect(history.location.pathname).toBe(NavigationLink.CONTACT);
+    expect(router.state.location.pathname).toBe(NavigationLink.CONTACT);
     expect(
       withinNavigation.getByRole('link', { name: /Contact/ }),
     ).toHaveAttribute('aria-current', 'page');
@@ -70,7 +75,7 @@ describe('MenuContainer', () => {
         withinNavigation.getByRole('link', { name: /About/ }),
       );
     });
-    expect(history.location.pathname).toBe(NavigationLink.ABOUT);
+    expect(router.state.location.pathname).toBe(NavigationLink.ABOUT);
     expect(
       withinNavigation.getByRole('link', { name: /About/ }),
     ).toHaveAttribute('aria-current', 'page');

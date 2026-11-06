@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen, within } from '@testing-library/react';
 import { Mock, vi } from 'vitest';
 import userEvent from '@testing-library/user-event';

@@ -42,21 +42,13 @@ const DateAndTimePickerContainer: React.FC = () => {
   const [currentlySelectedTime, setCurrentlySelectedTime] =
     useState<string>(departureTime);
   const [showSelectionPanel, setShowSelectionPanel] = useState<boolean>(false);
-  const [
-    isSelectedTimeOutsideOfFunctionalHours,
-    setSelectedTimeOutsideOfFunctionalHours,
-  ] = useState<boolean>(false);
 
-  useEffect(() => {
-    if (departureTime) {
-      setSelectedTimeOutsideOfFunctionalHours(
-        isTimeOutsideOfFunctionalHours(
-          parseInt(departureTime.substring(0, 2), 10),
-        ),
-      );
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [departureTime]);
+  const isSelectedTimeOutsideOfFunctionalHours =
+    currentlySelectedDate && currentlySelectedTime
+      ? isTimeOutsideOfFunctionalHours(
+          parseInt(currentlySelectedTime.substring(0, 2), 10),
+        )
+      : false;
 
   const handleDatePickerChange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -70,12 +62,6 @@ const DateAndTimePickerContainer: React.FC = () => {
     const newSelectedTime = event.target.value;
 
     setCurrentlySelectedTime(newSelectedTime);
-
-    const hour = parseInt(newSelectedTime.substring(0, 2), 10);
-
-    setSelectedTimeOutsideOfFunctionalHours(
-      isTimeOutsideOfFunctionalHours(hour),
-    );
   };
 
   const handleSelectButtonClick = () => {
