@@ -10,7 +10,7 @@ import eslintConfigPrettier from 'eslint-config-prettier';
 import globals from 'globals';
 import js from '@eslint/js';
 
-const tsFiles = ['**/*.ts', '**/*.tsx'];
+const tsFiles = ['**/*.ts', '**/*.tsx', '**/*.mts'];
 const scoped = (configs) =>
   [configs].flat().map((config) => ({ ...config, files: tsFiles }));
 
@@ -28,6 +28,13 @@ export default [
     ...storybook.configs['flat/recommended'],
     eslintConfigPrettier
   ]),
+  {
+    files: ['**/*.js', '**/*.mjs'],
+    ...js.configs.recommended,
+    languageOptions: {
+      globals: { ...globals.node, ...globals.browser, Cypress: 'readonly', cy: 'readonly' }
+    }
+  },
   {
     files: tsFiles,
 
