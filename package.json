@@ -31,14 +31,13 @@
     "@vitejs/plugin-react": "^4.0.0",
     "dijkstrajs": "^1.0.2",
     "downshift": "^9.0.4",
-    "firebase": "^12.0.0",
+    "firebase": "^13.2.0",
     "i18next": "^25.2.1",
     "i18next-browser-languagedetector": "^8.0.0",
     "i18next-http-backend": "^3.0.1",
     "re-resizable": "^6.9.9",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-firebase-hooks": "^5.1.1",
     "react-i18next": "^15.0.0",
     "react-router": "^7.0.2",
     "react-transition-group": "^4.4.5",
@@ -110,6 +109,9 @@
   },
   "prettier": {
     "singleQuote": true
+  },
+  "overrides": {
+    "@grpc/grpc-js": "^1.14.5"
   },
   "eslintConfig": {
     "overrides": [
