@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId } from 'react';
 import {
   FormControl,
   InputLabel,
@@ -7,21 +7,27 @@ import {
   Select,
   SelectChangeEvent,
 } from '@mui/material';
-import { Option } from '../select/Select';
-import styles from './SelectMui.module.css';
+
+export interface SelectOption {
+  value: string;
+  text: string;
+}
 
 export interface OptionsGroup {
   label: string;
-  options: Option[];
+  options: SelectOption[];
 }
 
 export interface SelectMuiProps {
   onChange: (newOption: string) => void;
   selectedOption: string;
-  options: OptionsGroup[] | Option[];
+  options: ReadonlyArray<SelectOption | OptionsGroup>;
   label: string;
   isInitiallyOpen?: boolean;
 }
+
+const isGroup = (item: SelectOption | OptionsGroup): item is OptionsGroup =>
+  'options' in item;
 
 const SelectMui: React.FC<SelectMuiProps> = ({
   onChange,
@@ -30,48 +36,35 @@ const SelectMui: React.FC<SelectMuiProps> = ({
   label,
   isInitiallyOpen = false,
 }) => {
-  const areOptionsGrouped = (options[0] as OptionsGroup).label !== undefined;
+  const id = useId();
+  const labelId = `${id}-label`;
 
-  const renderSelectGroup = (group: OptionsGroup) => {
-    const optionsForGroup = group.options.map((p) => (
-      <MenuItem key={p.value} value={p.value}>
-        {p.text}
-      </MenuItem>
-    ));
-
-    return [
-      <ListSubheader key={group.label}>{group.label}</ListSubheader>,
-      ...optionsForGroup,
-    ];
-  };
+  const renderOption = (option: SelectOption) => (
+    <MenuItem key={option.value} value={option.value}>
+      {option.text}
+    </MenuItem>
+  );
 
   return (
-    <FormControl
-      size="small"
-      fullWidth
-      variant="filled"
-      className={styles.container}
-    >
-      <InputLabel id={`${label}-select-label`}>{label}</InputLabel>
+    <FormControl size="small" fullWidth variant="filled">
+      <InputLabel id={labelId}>{label}</InputLabel>
       <Select
-        id={`${label}-select`}
-        labelId={`${label}-select-label`}
+        id={id}
+        labelId={labelId}
         label={label}
         value={selectedOption}
-        onChange={(event: SelectChangeEvent) =>
-          onChange(event.target.value as string)
-        }
-        className={styles.select}
+        onChange={(event: SelectChangeEvent) => onChange(event.target.value)}
         defaultOpen={isInitiallyOpen}
         MenuProps={{ sx: { maxHeight: '60vh' } }}
       >
-        {areOptionsGrouped
-          ? (options as OptionsGroup[]).map((group) => renderSelectGroup(group))
-          : (options as Option[]).map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.text}
-              </MenuItem>
-            ))}
+        {options.flatMap((item) =>
+          isGroup(item)
+            ? [
+                <ListSubheader key={item.label}>{item.label}</ListSubheader>,
+                ...item.options.map(renderOption),
+              ]
+            : [renderOption(item)],
+        )}
       </Select>
     </FormControl>
   );

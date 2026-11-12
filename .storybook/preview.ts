@@ -1,6 +1,9 @@
 import { Preview } from '@storybook/react-vite';
+import { createElement } from 'react';
+import { ThemeProvider } from '@mui/material';
 import MockDate from 'mockdate';
 import '../src/app/i18n/instance';
+import theme from '../src/app/theme';
 import { SHOW_LINES_IN_STATION_SELECTOR } from '../src/app/featureFlag/FeatureFlag';
 
 export const MOBILE_VIEWPORT = 390;
@@ -20,6 +23,9 @@ const preview: Preview = {
       },
     },
   },
+  decorators: [
+    (Story) => createElement(ThemeProvider, { theme }, createElement(Story)),
+  ],
   tags: ['autodocs'],
 };
 export default preview;
