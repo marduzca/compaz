@@ -1,0 +1,60 @@
+.badge {
+  --line-outline: rgba(0, 0, 0, 0.45);
+
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  color: #1f1f1f;
+  line-height: 1.2;
+}
+
+.header {
+  font-size: 1.25rem;
+}
+
+.row {
+  font-size: 1rem;
+}
+
+.name {
+  font-weight: 600;
+}
+
+.bar + .name {
+  font-weight: 700;
+}
+
+.icon {
+  flex: none;
+  width: 1em;
+  height: 1em;
+}
+
+.hanger {
+  fill: none;
+  stroke: var(--line-outline);
+  stroke-width: 1.5px;
+  stroke-linecap: round;
+}
+
+.body {
+  fill: var(--line-color);
+  stroke: var(--line-outline);
+  stroke-width: 1.5px;
+}
+
+.window {
+  fill: #fff;
+  stroke: var(--line-outline);
+  stroke-width: 1.5px;
+}
+
+.bar {
+  flex: none;
+  align-self: stretch;
+  width: 4px;
+  border-radius: 2px;
+  background-color: var(--line-color);
+  box-shadow: 0 0 0 1.5px var(--line-outline);
+  margin: 0.125em 1.5px;
+}
