@@ -4,6 +4,8 @@ import { LineColor } from '../../domain';
 import styles from './LineBadge.module.css';
 
 export type LineBadgeSize = 'header' | 'row';
+// 'bar' is the documented Plan B: a 4px colour bar plus bold name, kept behind
+// the same API in case the cabin icon looks wrong. Switch callers via `variant`.
 export type LineBadgeVariant = 'cabin' | 'bar';
 
 interface LineBadgeProps {
@@ -34,7 +36,7 @@ const LineBadge: React.FC<LineBadgeProps> = ({
 
   return (
     <span
-      className={`${styles.badge} ${styles[size]} ${styles[variant]}`}
+      className={`${styles.badge} ${styles[size]}`}
       style={
         { '--line-color': `var(--teleferico-${line})` } as React.CSSProperties
       }
