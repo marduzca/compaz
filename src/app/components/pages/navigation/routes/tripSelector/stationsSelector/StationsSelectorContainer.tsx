@@ -2,7 +2,8 @@ import React, { useEffect, useMemo, useState } from 'react';
 import StationsSelector from './StationsSelector';
 import { useNavigation } from '../../../../../providers/navigation/NavigationProvider';
 import { useFirebase } from '../../../../../providers/firebase/FirebaseProvider';
-import { Station } from '../../../../../domain';
+import { LineColor, Station } from '../../../../../domain';
+import { StationsOfLine } from '../../../../../atoms/station-picker/StationPicker';
 
 interface StationsSelectorContainerProps {
   showOriginSubmissionError: boolean;
@@ -39,19 +40,33 @@ const StationsSelectorContainer: React.FC<StationsSelectorContainerProps> = (
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stations]);
 
-  const stationsGroupedByLine = useMemo(() => {
-    const stationsGroupedByLine: Record<string, Station[]> = {};
+  const findStationId = (inputValue: string): string | undefined =>
+    stations.find(
+      (station) => station.id === inputValue || station.name === inputValue,
+    )?.id;
 
-    lines.forEach((line) => {
-      stationsGroupedByLine[line.id] = line.stationsPath
-        .map((stationId) =>
-          stations.find((station) => station.id === stationId),
-        )
-        .filter((station): station is Station => station !== undefined);
-    });
+  const originStationId = findStationId(originInputValue);
+  const destinationStationId = findStationId(destinationInputValue);
 
-    return stationsGroupedByLine;
-  }, [lines, stations]);
+  const groupsExcluding = (excludedId: string | undefined): StationsOfLine[] =>
+    lines.map((line) => ({
+      line: line.id as LineColor,
+      stations: line.stationsPath
+        .filter((stationId) => stationId !== excludedId)
+        .map((stationId) => stations.find((s) => s.id === stationId))
+        .filter((station): station is Station => station !== undefined),
+    }));
+
+  const originGroups = useMemo(
+    () => groupsExcluding(destinationStationId),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [lines, stations, destinationStationId],
+  );
+  const destinationGroups = useMemo(
+    () => groupsExcluding(originStationId),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [lines, stations, originStationId],
+  );
 
   const shouldShowValidationError = (
     searchTerm: string,
@@ -139,7 +154,10 @@ const StationsSelectorContainer: React.FC<StationsSelectorContainerProps> = (
       stations={stations}
       onClearOriginButtonClick={handleClearOriginButtonClick}
       onClearDestinationButtonClick={handleClearDestinationButtonClick}
-      stationsGroupedByLine={stationsGroupedByLine}
+      originGroups={originGroups}
+      destinationGroups={destinationGroups}
+      originStationId={originStationId}
+      destinationStationId={destinationStationId}
     />
   );
 };

@@ -133,9 +133,7 @@ export const StationSelector: React.FC = () =>
           groups={[LineColor.RED, LineColor.YELLOW, LineColor.GREEN].map(
             (line) => ({
               line,
-              stations: stations
-                .filter((s) => s.lines.includes(line))
-                .map(({ id, name }) => ({ id, name })),
+              stations: stations.filter((s) => s.lines.includes(line)),
             }),
           )}
         />

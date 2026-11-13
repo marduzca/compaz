@@ -1,12 +1,9 @@
 import React, { useMemo } from 'react';
 import { Autocomplete, ListSubheader, TextField } from '@mui/material';
 import LineBadge from '../lineBadge/LineBadge';
-import { LineColor } from '../../domain';
+import { LineColor, Station } from '../../domain';
 
-export interface StationOption {
-  id: string;
-  name: string;
-}
+export type StationOption = Pick<Station, 'id' | 'name'>;
 
 export interface StationsOfLine {
   line: LineColor;

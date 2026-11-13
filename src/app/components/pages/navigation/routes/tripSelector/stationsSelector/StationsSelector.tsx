@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import styles from './StationsSelector.module.css';
 import Combobox, { Option } from '../../../../../atoms/combobox/Combobox';
 import Switcher from '../../../../../../static/svg/switcher.svg?react';
-import { LineColor, Station } from '../../../../../domain';
+import { Station } from '../../../../../domain';
 import {
   isFeatureFlagSet,
   REPLACE_INPUTS_WITH_MUI,
@@ -17,7 +17,10 @@ const DESTINATION = 'Navigation.TripSelector.DESTINATION_PLACEHOLDER';
 
 interface StationsSelectorProps {
   stations: Station[];
-  stationsGroupedByLine?: Record<string, Station[]>;
+  originGroups?: StationsOfLine[];
+  destinationGroups?: StationsOfLine[];
+  originStationId?: string | undefined;
+  destinationStationId?: string | undefined;
   originInputValue: string;
   destinationInputValue: string;
   showOriginValidationError: boolean;
@@ -32,32 +35,16 @@ interface StationsSelectorProps {
 const StationsSelector: React.FC<StationsSelectorProps> = (props) => {
   const { t } = useTranslation();
 
-  const findStationId = (inputValue: string): string | undefined =>
-    props.stations.find(
-      (station) => station.id === inputValue || station.name === inputValue,
-    )?.id;
-
-  const groupsExcluding = (otherInputValue: string): StationsOfLine[] => {
-    const excludedId = findStationId(otherInputValue);
-    return Object.entries(props.stationsGroupedByLine ?? {}).map(
-      ([line, stations]) => ({
-        line: line as LineColor,
-        stations: stations
-          .filter((station) => station.id !== excludedId)
-          .map(({ id, name }) => ({ id, name })),
-      }),
-    );
-  };
-
   return (
     <>
       {isFeatureFlagSet(REPLACE_INPUTS_WITH_MUI) &&
-      props.stationsGroupedByLine ? (
+      props.originGroups &&
+      props.destinationGroups ? (
         <div className={styles.stationsSelector}>
           <StationPicker
             label={t(ORIGIN)}
-            groups={groupsExcluding(props.destinationInputValue)}
-            selectedStationId={findStationId(props.originInputValue)}
+            groups={props.originGroups}
+            selectedStationId={props.originStationId}
             onSelect={props.onOriginChange}
             onClear={props.onClearOriginButtonClick}
             clearText={t('Navigation.TripSelector.CLEAR_INPUT')}
@@ -78,8 +65,8 @@ const StationsSelector: React.FC<StationsSelectorProps> = (props) => {
           </button>
           <StationPicker
             label={t(DESTINATION)}
-            groups={groupsExcluding(props.originInputValue)}
-            selectedStationId={findStationId(props.destinationInputValue)}
+            groups={props.destinationGroups}
+            selectedStationId={props.destinationStationId}
             onSelect={props.onDestinationChange}
             onClear={props.onClearDestinationButtonClick}
             clearText={t('Navigation.TripSelector.CLEAR_INPUT')}
