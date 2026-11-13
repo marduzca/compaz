@@ -3,12 +3,14 @@ import { useTranslation } from 'react-i18next';
 import styles from './StationsSelector.module.css';
 import Combobox, { Option } from '../../../../../atoms/combobox/Combobox';
 import Switcher from '../../../../../../static/svg/switcher.svg?react';
-import { Station } from '../../../../../domain';
+import { LineColor, Station } from '../../../../../domain';
 import {
   isFeatureFlagSet,
   REPLACE_INPUTS_WITH_MUI,
 } from '../../../../../../featureFlag/FeatureFlag';
-import SelectMui from '../../../../../atoms/select-mui/SelectMui';
+import StationPicker, {
+  StationsOfLine,
+} from '../../../../../atoms/station-picker/StationPicker';
 
 const ORIGIN = 'Navigation.TripSelector.ORIGIN_PLACEHOLDER';
 const DESTINATION = 'Navigation.TripSelector.DESTINATION_PLACEHOLDER';
@@ -30,31 +32,40 @@ interface StationsSelectorProps {
 const StationsSelector: React.FC<StationsSelectorProps> = (props) => {
   const { t } = useTranslation();
 
+  const findStationId = (inputValue: string): string | undefined =>
+    props.stations.find(
+      (station) => station.id === inputValue || station.name === inputValue,
+    )?.id;
+
+  const groupsExcluding = (otherInputValue: string): StationsOfLine[] => {
+    const excludedId = findStationId(otherInputValue);
+    return Object.entries(props.stationsGroupedByLine ?? {}).map(
+      ([line, stations]) => ({
+        line: line as LineColor,
+        stations: stations
+          .filter((station) => station.id !== excludedId)
+          .map(({ id, name }) => ({ id, name })),
+      }),
+    );
+  };
+
   return (
     <>
       {isFeatureFlagSet(REPLACE_INPUTS_WITH_MUI) &&
       props.stationsGroupedByLine ? (
         <div className={styles.stationsSelector}>
-          <SelectMui
-            onChange={props.onOriginChange}
-            selectedOption={props.originInputValue}
-            options={Object.keys(props.stationsGroupedByLine).map((line) => ({
-              label: line,
-              options: props.stationsGroupedByLine
-                ? props.stationsGroupedByLine[line]!.filter(
-                    (station) =>
-                      station.id !== props.destinationInputValue &&
-                      station.name !== props.destinationInputValue,
-                  ).map(
-                    (station) =>
-                      ({
-                        value: station.id,
-                        text: station.name,
-                      }) as Option,
-                  )
-                : [],
-            }))}
+          <StationPicker
             label={t(ORIGIN)}
+            groups={groupsExcluding(props.destinationInputValue)}
+            selectedStationId={findStationId(props.originInputValue)}
+            onSelect={props.onOriginChange}
+            onClear={props.onClearOriginButtonClick}
+            clearText={t('Navigation.TripSelector.CLEAR_INPUT')}
+            errorMessage={
+              props.showOriginValidationError
+                ? t('Navigation.TripSelector.ERROR_VALIDATION')
+                : undefined
+            }
           />
           <button
             title={t('Navigation.TripSelector.STATIONS_SWITCHER')}
@@ -65,26 +76,18 @@ const StationsSelector: React.FC<StationsSelectorProps> = (props) => {
           >
             <Switcher />
           </button>
-          <SelectMui
-            onChange={props.onDestinationChange}
-            selectedOption={props.destinationInputValue}
-            options={Object.keys(props.stationsGroupedByLine).map((line) => ({
-              label: line,
-              options: props.stationsGroupedByLine
-                ? props.stationsGroupedByLine[line]!.filter(
-                    (station) =>
-                      station.id !== props.originInputValue &&
-                      station.name !== props.originInputValue,
-                  ).map(
-                    (station) =>
-                      ({
-                        value: station.id,
-                        text: station.name,
-                      }) as Option,
-                  )
-                : [],
-            }))}
+          <StationPicker
             label={t(DESTINATION)}
+            groups={groupsExcluding(props.originInputValue)}
+            selectedStationId={findStationId(props.destinationInputValue)}
+            onSelect={props.onDestinationChange}
+            onClear={props.onClearDestinationButtonClick}
+            clearText={t('Navigation.TripSelector.CLEAR_INPUT')}
+            errorMessage={
+              props.showDestinationValidationError
+                ? t('Navigation.TripSelector.ERROR_VALIDATION')
+                : undefined
+            }
           />
         </div>
       ) : (

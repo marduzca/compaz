@@ -3,6 +3,8 @@ import { Meta } from '@storybook/react-vite';
 import Select, { Option } from './select/Select';
 import SelectMui from './select-mui/SelectMui';
 import Combobox from './combobox/Combobox';
+import StationPicker from './station-picker/StationPicker';
+import { LineColor } from '../domain';
 
 export default {
   title: 'Atoms / Compare old vs new inputs',
@@ -90,10 +92,14 @@ export const InstructionsBrowserSelect: React.FC = () =>
   );
 
 const stations = [
-  { id: 'irpavi', name: 'Irpavi', lines: ['red'] },
-  { id: 'central', name: 'Estación Central', lines: ['red', 'yellow'] },
-  { id: 'cementerio', name: 'Cementerio', lines: ['green'] },
-  { id: 'libertador', name: 'Libertador', lines: ['yellow'] },
+  { id: 'irpavi', name: 'Irpavi', lines: [LineColor.RED] },
+  {
+    id: 'central',
+    name: 'Estación Central',
+    lines: [LineColor.RED, LineColor.YELLOW],
+  },
+  { id: 'cementerio', name: 'Cementerio', lines: [LineColor.GREEN] },
+  { id: 'libertador', name: 'Libertador', lines: [LineColor.YELLOW] },
 ];
 
 export const StationSelector: React.FC = () =>
@@ -117,17 +123,21 @@ export const StationSelector: React.FC = () =>
         />
       }
       mui={
-        <SelectMui
+        <StationPicker
           isInitiallyOpen
           label="Origin"
-          selectedOption=""
-          onChange={() => ({})}
-          options={['red', 'yellow', 'green'].map((line) => ({
-            label: line,
-            options: stations
-              .filter((s) => s.lines.includes(line))
-              .map((s) => ({ value: s.id, text: s.name })),
-          }))}
+          selectedStationId={undefined}
+          onSelect={() => ({})}
+          onClear={() => ({})}
+          clearText="Clear"
+          groups={[LineColor.RED, LineColor.YELLOW, LineColor.GREEN].map(
+            (line) => ({
+              line,
+              stations: stations
+                .filter((s) => s.lines.includes(line))
+                .map(({ id, name }) => ({ id, name })),
+            }),
+          )}
         />
       }
     />,

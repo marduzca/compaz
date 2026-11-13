@@ -64,14 +64,15 @@ const StationsSelectorContainer: React.FC<StationsSelectorContainerProps> = (
       );
 
   const handleOriginChange = (newOrigin: string) => {
-    setOriginInputValue(newOrigin);
-    setShowOriginValidationError(
-      shouldShowValidationError(newOrigin, destination?.name),
-    );
-
     const newOriginStation = stations.find(
       (station) => station.name === newOrigin || station.id === newOrigin,
     );
+    const originText = newOriginStation?.name ?? newOrigin;
+    setOriginInputValue(originText);
+    setShowOriginValidationError(
+      shouldShowValidationError(originText, destination?.name),
+    );
+
     if (newOriginStation) {
       setOriginStation(newOriginStation);
     } else if (origin) {
@@ -80,15 +81,16 @@ const StationsSelectorContainer: React.FC<StationsSelectorContainerProps> = (
   };
 
   const handleDestinationChange = (newDestination: string) => {
-    setDestinationInputValue(newDestination);
-    setShowDestinationValidationError(
-      shouldShowValidationError(newDestination, origin?.name),
-    );
-
     const newDestinationStation = stations.find(
       (station) =>
         station.name === newDestination || station.id === newDestination,
     );
+    const destinationText = newDestinationStation?.name ?? newDestination;
+    setDestinationInputValue(destinationText);
+    setShowDestinationValidationError(
+      shouldShowValidationError(destinationText, origin?.name),
+    );
+
     if (newDestinationStation) {
       setDestinationStation(newDestinationStation);
     } else if (destination) {
